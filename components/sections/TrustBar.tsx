@@ -31,10 +31,10 @@ export function TrustBar({ items }: TrustBarProps) {
               </div>
 
               <div className="relative">
-                <div className="text-3xl font-extrabold tracking-tight text-brand-navy md:text-4xl">
+                <div className="text-3xl font-extrabold tracking-tight text-brand-cyan md:text-4xl">
                   {item.value}
                 </div>
-                <div className="mt-1 text-sm font-medium text-muted-foreground">
+                <div className="mt-1 text-sm font-medium text-brand-cyan">
                   {item.label}
                 </div>
               </div>
