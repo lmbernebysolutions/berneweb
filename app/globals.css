@@ -1,26 +1,134 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@plugin "@tailwindcss/typography";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Brand Tokens - Heavy Industrial */
+  --color-brand-navy: #283569;
+  --color-brand-cyan: #03f9f9;
+  --color-brand-cyan-dim: color-mix(in srgb, #03f9f9 20%, transparent);
+
+  /* Animation Easings - Machine Precision */
+  --ease-mechanical: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --radius-sm: 0px;
+  /* Brutalist corners */
+  --radius-md: 2px;
+  --radius-lg: 4px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  /* DARK MODE ONLY - Forced Industrial Theme */
+  --background: #283569;
+  --foreground: #ffffff;
+  --card: #283569;
+  --card-foreground: #ffffff;
+  --popover: #283569;
+  --popover-foreground: #ffffff;
+  --primary: #03f9f9;
+  --primary-foreground: #283569;
+  --secondary: color-mix(in srgb, #283569 80%, white);
+  --secondary-foreground: #03f9f9;
+  --muted: color-mix(in srgb, #283569 90%, black);
+  --muted-foreground: #8aa1cf;
+  --accent: #03f9f9;
+  --accent-foreground: #283569;
+  --destructive: #ff3366;
+  --border: color-mix(in srgb, #03f9f9 30%, transparent);
+  --input: color-mix(in srgb, #03f9f9 30%, transparent);
+  --ring: #03f9f9;
+  --radius: 0;
 }
 
+/* ==========================================================================
+   GLOBAL BLUEPRINT GRID
+   ========================================================================== */
 body {
-  background: var(--background);
+  background-color: var(--background);
+  /* Fixed: Was undefined var(--brand-navy) */
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+
+  /* FLUID GRID BACKGROUND */
+  /* FLUID GRID BACKGROUND REMOVED */
+  background-size: 60px 60px;
+  background-attachment: fixed;
+  /* Parallax effect by fixing grid */
+  position: relative;
+}
+
+/* Heavy Shadow Utility */
+.shadow-heavy {
+  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* Industrial Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 800;
+  line-height: 0.95;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  background: #1a2342;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #03f9f9;
+  border: 2px solid #1a2342;
+}
+
+/* ==========================================================================
+   UTILITIES
+   ========================================================================== */
+.text-cyan {
+  color: #03f9f9;
+}
+
+.bg-cyan {
+  background-color: #03f9f9;
+  color: #283569;
+}
+
+.border-cyan {
+  border-color: #03f9f9;
+}
+
+/* "Power On" Hover Effect */
+.hover-power {
+  transition: all 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-power:hover {
+  background-color: #03f9f9;
+  color: #283569;
+  box-shadow: 0 0 20px rgba(3, 249, 249, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Clip-Path Containers */
+.clip-corner {
+  clip-path: polygon(0 0,
+      100% 0,
+      100% calc(100% - 10px),
+      calc(100% - 10px) 100%,
+      0 100%);
 }

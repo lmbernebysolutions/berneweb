@@ -1,0 +1,816 @@
+---
+description: Vollständiger Implementationsplan – Berneby Solutions Website
+version: 2.0
+date: 2026-02-06
+---
+
+# BERNEBY SOLUTIONS – VOLLSTÄNDIGER IMPLEMENTATIONSPLAN
+
+---
+
+## 0. META-INFORMATIONEN
+
+| Feld | Wert |
+|---|---|
+| **Projekt** | Website Berneby Solutions |
+| **Stack** | Next.js 16 + Shadcn/ui (radix-maia, neutral, cyan, tabler, noto-sans, radius=small) |
+| **Init-Befehl** | `pnpm dlx shadcn@latest create --preset "https://ui.shadcn.com/init?base=radix&style=maia&baseColor=neutral&theme=cyan&iconLibrary=tabler&font=noto-sans&menuAccent=subtle&menuColor=default&radius=small&template=next&rtl=false" --template next` |
+| **Projektname** | `berneby-website` |
+| **Standort** | Aue-Bad Schlema, Erzgebirgskreis |
+| **Telefon** | +49 15511 960927 |
+| **E-Mail** | info@berneby.de [ZU BESTÄTIGEN] |
+| **Rechtsform** | GbR |
+| **Gründer** | Lennard Meyer (51%, Tech) & Daniel Hamburg (49%, Strategie) |
+| **Analytics** | Google Analytics (GA4) |
+| **GBP** | Noch nicht vorhanden (wird in Phase 5 erstellt) |
+| **Büro** | Kein physisches Büro – Remote & vor Ort beim Kunden |
+| **Domain** | [INPUT NEEDED] |
+
+---
+
+## 1. DESIGN-DECISION FREEDOM STATEMENT
+
+Alle Gestaltungsentscheidungen werden autonom getroffen: Stilrichtung, Layout-Grid, Spacing-Hierarchie, Typografie-Scale, Komponentenmuster, Animationsphilosophie, Bildsprache, Informationsdichte, Sektionsreihenfolge, Pricing-Darstellung, Interaktionsmuster und Textton. Die einzigen Leitplanken sind die definierten Constraints (Farben, Stack, Wirkung, Zielgruppe). Alle Entscheidungen basieren auf UI/UX-Datenbank-Recherche (Trust & Authority + Swiss Modernism 2.0 als Stilhybrid), den Business-Dokumenten und bewährten Conversion-Patterns für lokale Dienstleister. Jede Wahl priorisiert Klarheit vor Effekt, Vertrauen vor Cleverness, Lesbarkeit vor Dichte.
+
+---
+
+## 2. SKILL-ORCHESTRIERUNG
+
+Folgende Skills werden phasengerecht eingesetzt:
+
+| Skill | Phase(n) | Einsatz |
+|---|---|---|
+| `ui-ux-pro-max` | 1, 3, 4 | Design-System, Stilrichtung, Spacing, Typo, Accessibility, Responsive. Wird ZUERST aktiviert bei jedem Design-relevanten Schritt. |
+| `brand-guardian` | 1 | Logo-Regeln, Farbkonsistenz, Tonalität, Brand Do/Don't. Review aller Komponenten auf Brand-Konsistenz. |
+| `web-typography` | 1 | Font-Scale (Noto Sans), Hierarchie (Display→H1→H2→H3→Body→Small→Tiny), Lesbarkeit, Fluid clamp(), Zeilenlänge max 75ch, CSS-Implementierung. |
+| `landing-page-design` | 2, 3 | Sektionsstruktur, CTA-Platzierung, Conversion-Patterns, Anti-AI-Slop Copy. Funnel-Struktur (Problem→Lösung→Proof→CTA). |
+| `frontend-design` | 3 | Distinctive UI, Custom Components, Premium-Look. Vermeidung generischer AI-Ästhetik. |
+| `top-design` | 3 | Award-Level Qualität, Immersive Micro-Interactions, 10/10 Typografie. |
+| `ux-heuristics` | 3, 4 | Usability-Audit (Nielsen + Krug), Heuristic Evaluation, Form-Usability, Navigation, Informationsarchitektur. |
+| `interactive-portfolio` | 3 | Case-Studies / Proof-Darstellung (wenn Projekte vorhanden). |
+| `keyword-research` | 2 | Keyword-Discovery, Suchintent-Analyse, Content-Opportunities, Topic Clusters, GEO Keywords. |
+| `competitor-analysis` | 2 | Wettbewerber-SEO/GEO im Raum Erzgebirge/Chemnitz, Ranking-Keywords, Lücken. |
+| `define-seo-strategy` | 2 | SEO_STRATEGY.md, Plattform-Taktiken (Google, ChatGPT, Perplexity, Claude, Gemini). |
+| `web-content` | 2, 3 | Schema.org Plan, AI-Discovery-Struktur, Entities, FAQ-Strategie. |
+| `resonance-seo` | 2, 3, 5 | Technisches SEO, Schema-Markup, Meta-Tags, Sitemap, robots.txt. |
+| `seo-geo` | 2, 3 | AI-Suchmaschinen-Optimierung, Keyword-Analyse, Zitierbarkeit. |
+| `geo-content-optimizer` | 3, 5, 6 | Content AI-zitierbar machen, faktische Aussagen, Entitäten-Klarheit. |
+| `web-design-reviewer` | 4 | Visual QA, Responsive-Checks, Layout-Bugs, Spacing-Konsistenz, Fix-Backlog. |
+
+---
+
+## 3. BRAND OPERATING SYSTEM (Brand Guardian)
+
+### 3.1 Logo-System
+
+| Asset | Datei | Einsatz | Regeln |
+|---|---|---|---|
+| **Schweinchen** | `/public/Schweinchen.svg` | Primäres Markensymbol. Header (links), Favicon, OG-Image, Footer. | Mindestgröße 32px Höhe. Nie verzerren, nie unter 24px. Auf Navy-BG: `brightness-0 invert` CSS-Filter für weiße Variante. |
+| **„B"** | `/public/B.svg` | Sekundäres Markenzeichen. Loader, Scroll-Indikator, Mobile Navigation, Watermark, Favicon. | Immer in Cyan (#03f9f9). Nie auf Cyan-Hintergrund. Mindestabstand: halbe eigene Breite zu anderen Elementen. |
+| **Textlogo** „Berneby Solutions" | Code-Komponente | Header neben Schweinchen, Footer. | „Berneby" in font-weight 700, „Solutions" in font-weight 400. Beides in `--foreground` oder weiß je nach Hintergrund. |
+
+### 3.2 Farbverwendung
+
+| Token | Wert (Light) | CSS Variable | Einsatz |
+|---|---|---|---|
+| **Brand Navy** | `#283569` | `--brand-navy: oklch(0.30 0.08 265)` | Hintergründe für Hero, Footer, CTA-Sektionen, Trust-Sektionen. Text auf hellem Grund. |
+| **Brand Navy Light** | Hover-Variante | `--brand-navy-light: oklch(0.35 0.06 265)` | Hover-States auf Navy. |
+| **Brand Navy Foreground** | Weiß | `--brand-navy-foreground: oklch(0.98 0 0)` | Text auf Navy-Hintergrund. |
+| **Brand Cyan** | `#03f9f9` | `--brand-cyan: oklch(0.87 0.15 195)` | CTAs, Highlights, Hover-States, „B"-Logo, Akzentlinien, Icon-Akzente. **Nie als Textfarbe auf Weiß** (Kontrast ungenügend). |
+| **Cyan gedämpft** | 15% Opacity | `--brand-cyan-muted: oklch(0.87 0.08 195 / 15%)` | Hintergrund für Feature-Cards, Badges, subtile Akzente. |
+| **Section Alt** | Fast-Weiß | `--section-alt: oklch(0.975 0 0)` | Alternierend mit Weiß für Sektions-Hintergründe. |
+| **Section Dark** | Navy | `--section-dark: var(--brand-navy)` | Hero, CTA, Footer. |
+
+**Kontrast-Regel:** Cyan (#03f9f9) nur als Akzent auf dunklem Grund (Navy/Schwarz). Auf hellem Grund stattdessen Navy als CTA-Farbe mit Cyan-Border oder Cyan-Icon.
+
+### 3.3 Typografie-System (Noto Sans, Fluid mit clamp)
+
+| Stufe | Desktop | Mobile | CSS | Weight | Line-Height | Einsatz |
+|---|---|---|---|---|---|---|
+| Display | 3.5rem | 2rem | `clamp(2rem, 1.4rem + 2.5vw, 3.5rem)` | 800 | 1.15 | Hero-Headline (nur 1x pro Seite) |
+| H1 | 2.5rem | 1.5rem | `clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem)` | 700 | 1.15 | Sektions-Titel |
+| H2 | 1.75rem | 1.25rem | `clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem)` | 600 | 1.3 | Untertitel, Card-Headlines |
+| H3 | 1.5rem | 1.125rem | `clamp(1.125rem, 1rem + 0.5vw, 1.5rem)` | 600 | 1.4 | Feature-Titel |
+| Body | 1.125rem | 1rem | `clamp(1rem, 0.95rem + 0.2vw, 1.125rem)` | 400 | 1.6 | Fließtext |
+| Small | 0.875rem | 0.875rem | — | 400 | 1.5 | Captions, Labels, Badges |
+| Tiny | 0.75rem | 0.75rem | — | 500 | 1.4 | Legal, Footnotes |
+
+**Regeln:** Max 75 Zeichen pro Zeile (`max-width: 75ch` auf `p, li`). Überschriften `text-balance`. Headings `tracking-tight`. Body `leading-relaxed` (1.6).
+
+### 3.4 Icon-Style (Tabler Icons)
+
+- Library: `@tabler/icons-react`
+- Stroke-Width: 1.5 (Default)
+- Größen: 16px (inline), 20px (Buttons), 24px (Feature-Listen), 40px (Feature-Cards in `h-10 w-10` Container)
+- Farbe: `currentColor` oder `text-brand-cyan` auf Navy-Grund
+- Nie: Emojis als Icons. Nie: gemischte Icon-Libraries.
+
+### 3.5 Spacing-Prinzipien
+
+| Token | Wert | Einsatz |
+|---|---|---|
+| Section-Padding | `py-16 md:py-24` (64px / 96px) | Abstand zwischen Sektionen |
+| Container | `max-w-6xl mx-auto px-4 md:px-6` (1152px) | Hauptcontainer |
+| Container Narrow | `max-w-3xl` (768px) | Textblöcke, FAQ |
+| Card-Padding | `p-6 md:p-8` (24px / 32px) | Cards, Panels |
+| Grid-Gap | `gap-6` (24px) | Grids |
+| Stack-Gap (vertikal) | `space-y-6` (24px) | Vertikale Listen |
+
+### 3.6 Radii / Shadows / Hover
+
+- Radius: `--radius: 0.45rem` (Shadcn-Preset, klein und professionell)
+- Schatten Standard: `shadow-sm` auf Cards
+- Schatten Hover: `shadow-md`
+- Hover-Transition: `transition-all duration-200 ease-out`
+- Hover-Lift: `hover:-translate-y-0.5`
+- Highlighted Card: `border-brand-cyan shadow-lg shadow-brand-cyan/10`
+
+### 3.7 Tone of Voice
+
+| Prinzip | Beispiel Gut | Beispiel Schlecht |
+|---|---|---|
+| **Direkt, nicht flapsig** | „Wir machen Ihre Website sichtbar." | „Rocken Sie das Web!" |
+| **Lokal, nicht provinziell** | „Ihr Digital-Partner im Erzgebirge" | „Die Besten in der Region" |
+| **Kompetent, nicht überheblich** | „Seit 2026 lösen wir digitale Probleme." | „Wir sind die Nummer 1." |
+| **Konkret, nicht vage** | „50 lokale Landingpages für Google" | „Maximale Online-Präsenz" |
+| **Deutsch, klar, kurz** | Anglizismen nur wenn etabliert (SEO, KI, App) | Marketing-Buzzwords |
+| **Sie-Anrede** | „Wir helfen Ihnen" | Du-Form |
+
+### 3.8 Brand Do / Don't
+
+| DO | DON'T |
+|---|---|
+| Schweinchen als Wiedererkennungsmerkmal nutzen | Schweinchen als Witz/Meme einsetzen |
+| Cyan sparsam als Highlight auf dunklem Grund | Cyan als Flächenfarbe auf Weiß |
+| Navy als Vertrauensfarbe großflächig einsetzen | Grelle Farbkombinationen |
+| Echte Zahlen und Prozesse zeigen | Vage Versprechen ohne Substanz |
+| Mobile-first denken | Desktop-Layout auf Mobile quetschen |
+| Whitespace als Gestaltungselement | Jede Fläche mit Inhalt füllen |
+| SVG-Logos mit CSS-Filter für Light/Dark | Logo mit hardcoded Farben auf inkompatiblem BG |
+
+---
+
+## 4. WEBSITE BLUEPRINT (Sitemap + Section Map)
+
+### 4.1 Seitenstruktur
+
+| Seite | Route | Ziel | Primäre CTA | Fokus |
+|---|---|---|---|---|
+| **Home** | `/` | Überblick, Vertrauen, Lead-Generierung | „Erstgespräch vereinbaren" | Primary |
+| **Handwerk** | `/handwerk` | Craft-Suite verkaufen, Pakete zeigen | „Paket auswählen" / „Anrufen" | Primary |
+| **Leistungen** | `/leistungen` | Gesamtportfolio, Tech + Design + Marketing | „Anfrage stellen" | Primary |
+| **Über uns** | `/ueber-uns` | Vertrauen, Team, Vision | „Kontakt aufnehmen" | Secondary |
+| **Kontakt** | `/kontakt` | Lead-Capture, Telefon, Formular | Formular absenden | Primary |
+| **Impressum** | `/impressum` | Rechtlich | — | Legal |
+| **Datenschutz** | `/datenschutz` | Rechtlich | — | Legal |
+
+### 4.2 Section Map (Detail pro Seite)
+
+#### HOME `/`
+
+| # | Sektion | Inhalt | Pattern |
+|---|---|---|---|
+| 1 | **Hero** | Display-Headline + Subline + 2 CTAs (Erstgespräch / Leistungen) | Full-width, Navy-BG, Cyan-Akzente, subtiles Grid-Pattern, Cyan-Glow |
+| 2 | **Trust-Bar** | Kennzahlen: 100% Lokal, 24/7 KI-Telefon, 50+ Landingpages, 2 Macher | Horizontal Grid, weiß, Cyan-Zahlen |
+| 3 | **Problem → Lösung** | 3 Pain-Points + 3 Lösungen mit Icons | 3-Spalten-Grid, Cards mit Hover |
+| 4 | **Zwei Säulen** | Handwerks-Suite vs. General Tech (2 große Cards, je Features + CTA) | 2-Spalten-Grid, Navy-Icon vs Cyan-Icon |
+| 5 | **So läuft's ab** | 5 Prozess-Steps (Erstgespräch → Analyse → Umsetzung → Launch → Betreuung) | Horizontal Stepper Desktop, vertikal Mobile |
+| 6 | **Social Proof** | Platzhalter für Kundenstimmen (Skeleton-Cards) | 3-Spalten-Grid mit Dashed-Border |
+| 7 | **FAQ (5 Fragen)** | Wichtigste Fragen aus dem FAQ-Pool | Accordion, narrow Container |
+| 8 | **Final CTA** | „Bereit, digital durchzustarten?" + 2 CTAs | Navy-BG, zentriert, Cyan-Glow |
+| 9 | **Footer** | Logo, Navigation, Leistungen, Kontakt, Legal | 4-Spalten-Grid, Navy-BG |
+
+#### HANDWERK `/handwerk`
+
+| # | Sektion | Inhalt |
+|---|---|---|
+| 1 | **Hero** | „Mehr Aufträge. Weniger Aufwand." Navy-BG. |
+| 2 | **Pain-Points** | 3 Probleme (Telefon, Google, Bewertungen) – rote/destructive Cards |
+| 3 | **USP-Grid** | 4 Module: Geo-Net, Voice-Guard, Review-Radar, Live-Pulse – Feature-Cards |
+| 4 | **Pricing-Cards** | 3 Pakete: Geselle (950€), Meisterbetrieb (1.950€, Bestseller), Marktführer (2.800€) |
+| 5 | **Prozess-Timeline** | „In 4 Wochen online" – 5 Steps |
+| 6 | **Social Proof** | Platzhalter (2 Testimonial-Skeletons) |
+| 7 | **CTA** | „Kostenlose Erstberatung für Handwerker" |
+
+#### LEISTUNGEN `/leistungen`
+
+| # | Sektion | Inhalt |
+|---|---|---|
+| 1 | **Hero (compact)** | „Alles aus einer Hand." |
+| 2 | **Service-Tabs** | 6 Tabs: Webseiten, E-Commerce, Design, Office/KI, Marketing, Wartung |
+| 3 | **Tab-Inhalte** | Je Tab: Service-Cards mit Titel, Beschreibung, Preis, CTA |
+| 4 | **Digitaler Hausmeister** | Prominente Standalone-Sektion (Icon, Preis 850€, Erklärung) |
+| 5 | **Einzelmodule** | Accordion: Geo-Net (350€), Voice-Guard (690€), Review-Radar (290€) |
+| 6 | **CTA** | „Nicht sicher was Sie brauchen? Kostenlos beraten lassen." |
+
+#### ÜBER UNS `/ueber-uns`
+
+| # | Sektion | Inhalt |
+|---|---|---|
+| 1 | **Hero (compact)** | „Zwei Macher. Ein Ziel." |
+| 2 | **Team** | Lennard (Tech) + Daniel (Strategie) – Foto-Platzhalter (Initialen), Rolle, Beschreibung |
+| 3 | **Vision/Mission** | Kurze klare Texte, zentriert |
+| 4 | **Werte** | 4 Werte: Ehrlichkeit, Pragmatismus, Nähe, Verlässlichkeit – Feature-Grid |
+| 5 | **CTA** | „Lernen Sie uns kennen." → Kontakt |
+
+#### KONTAKT `/kontakt`
+
+| # | Sektion | Inhalt |
+|---|---|---|
+| 1 | **Hero (compact, light)** | „Sprechen Sie mit uns." |
+| 2 | **Layout 5-Spalten** | Links (2 col): Kontaktinfo-Cards (Telefon, E-Mail, Standort). Rechts (3 col): Formular |
+| 3 | **Kontaktformular** | Name*, E-Mail*, Telefon (optional), Betreff (Select), Nachricht*. Validation, Loading-State, Erfolgs-Feedback. |
+| 4 | **Standort-Hinweis** | „Aue-Bad Schlema – Remote & vor Ort – wir kommen zu Ihnen" |
+
+#### IMPRESSUM `/impressum` & DATENSCHUTZ `/datenschutz`
+
+- Statische Textseiten mit pt-28 für Header-Offset
+- `robots: { index: false }` im Metadata
+- GbR-Angaben, Streitschlichtung, TMG-Pflichtangaben
+- Datenschutz: Platzhalter mit Hinweis auf Generator (e-recht24)
+
+---
+
+## 5. OFFER PRIORITIZATION SYSTEM
+
+### 5.1 Hero-würdig (Above the Fold, Top 3)
+
+| # | Angebot | Warum |
+|---|---|---|
+| 1 | **Handwerks-Pakete** (Geselle/Meister/Marktführer) | Kerngeschäft, höchste Marge, stärkste Differenzierung, klare Pakete = niedrige Entscheidungshürde |
+| 2 | **Digitaler Hausmeister** (10er Stundenkarte 850€) | Niedrige Einstiegshürde, breite Zielgruppe, wiederkehrend, einzigartiger Name |
+| 3 | **Webseiten + E-Commerce** | Universell verständlich, hohe Nachfrage, Türöffner für Upsells |
+
+### 5.2 Secondary Angebote (Progressive Disclosure)
+
+| Angebot | Sichtbarkeits-Pattern |
+|---|---|
+| Design & Branding | Tab auf Leistungsseite + Cross-Sell auf Handwerk |
+| Office/M365/KI-Support | Tab auf Leistungsseite + „Digitaler Hausmeister" Card |
+| Google Ads / Social Recruiting | Tab auf Leistungsseite |
+| Wartungspakete | Footer-nah auf Handwerk + eigener Tab |
+| Einzelmodule (Geo-Net, Voice-Guard, Review-Radar) | Accordion auf Leistungsseite + integriert in Handwerk-Pakete |
+
+### 5.3 Cross-Sell-Regeln
+
+- `/handwerk` nach Paketauswahl → „Ergänzen Sie mit Wartung" + „Google Ads für sofortige Sichtbarkeit"
+- `/leistungen` Tab E-Commerce → „Passend dazu: Logo & Branding"
+- `/leistungen` Tab Office/KI → „Stundenkarte: Digitaler Hausmeister"
+- Überall Footer-Banner → „Nicht sicher was Sie brauchen? Kostenloses Erstgespräch."
+
+---
+
+## 6. COPY & CONTENT PACK (Anti-AI-Slop)
+
+### 6.1 Home Hero – Optionen
+
+**Headlines (5):**
+1. „Ihr digitaler Partner im Erzgebirge."
+2. „Technik, die Ihr Geschäft nach vorne bringt." ← EMPFOHLEN
+3. „Vom Handwerksbetrieb zur digitalen Präsenz."
+4. „Weniger Papierkram. Mehr Aufträge."
+5. „Die externe IT-Abteilung für Ihren Betrieb."
+
+**Subheadlines (5):**
+1. „Webseiten, KI-Telefon, Online-Sichtbarkeit – wir kümmern uns um alles Digitale, damit Sie sich auf Ihr Handwerk konzentrieren können."
+2. „Berneby Solutions macht lokale Betriebe im Erzgebirge online sichtbar und automatisiert das, was Zeit frisst." ← EMPFOHLEN
+3. „Zwei Macher, ein Ziel: Ihre digitale Seite auf Vordermann bringen. Persönlich, lokal, ohne Agentur-Gedöns."
+4. „Von der Website über den Online-Shop bis zum KI-Assistenten – wir bauen, was Sie brauchen."
+5. „Digitale Lösungen, die funktionieren. Ohne Fachchinesisch, ohne Vertragsfallen."
+
+**CTA-Labels:**
+- Primär: „Erstgespräch vereinbaren" / „Kostenlos beraten lassen"
+- Sekundär: „Unsere Leistungen" / „Was wir machen"
+
+### 6.2 Sektions-Texte (Home)
+
+**Problem → Lösung:**
+- „Kunden finden Sie nicht bei Google?" → „Wir bringen Sie mit 50+ lokalen Landingpages auf Seite 1 – für jeden Ort, den Sie bedienen."
+- „Anrufe gehen ins Leere?" → „Unser KI-Telefonassistent nimmt ab – 24 Stunden, 7 Tage. Kein Kunde geht mehr verloren."
+- „Kein Budget für eine IT-Abteilung?" → „Wir sind Ihre externe IT – flexibel, stundengenau, ohne Festanstellung."
+
+**Zwei Säulen:**
+- Handwerk: „Speziell für Handwerker entwickelt. Website, Sichtbarkeit und Telefonservice – alles in einem Paket."
+- General Tech: „Excel-Probleme, Shop-Betreuung, Software-Umzug oder KI-Schulung – wir lösen jedes digitale Problem."
+
+**Digitaler Hausmeister:**
+- „10 Stunden Tech-Support, flexibel einsetzbar. Wie ein Hausmeister – aber für Ihre IT. Rufen Sie an, wir kommen (digital)."
+
+### 6.3 FAQ (10 Fragen + Antworten)
+
+1. **Was kostet eine Website bei Berneby Solutions?**
+   „Unsere Webseiten starten bei 950 € für einen professionellen One-Pager. Umfangreichere Projekte mit Suchmaschinen-Optimierung beginnen bei 1.950 €. Alle Preise verstehen sich netto zzgl. MwSt."
+
+2. **Arbeitet ihr nur mit Handwerkern?**
+   „Nein. Handwerk ist unser Spezialgebiet, aber wir unterstützen alle lokalen Betriebe – vom Einzelhändler bis zum Freiberufler."
+
+3. **Was ist der Geo-Net Dominator?**
+   „Wir erstellen 50 lokale Landingpages, die Ihren Betrieb für Suchbegriffe wie 'Elektriker Annaberg' oder 'Installateur Marienberg' sichtbar machen."
+
+4. **Wie funktioniert die KI-Telefonassistenz?**
+   „Ein trainierter KI-Assistent nimmt Anrufe entgegen, wenn Sie beschäftigt sind. Er erfasst Name, Anliegen und Rückrufnummer – und Sie erhalten alles per Nachricht."
+
+5. **Brauche ich technisches Wissen?**
+   „Nein. Wir erklären alles verständlich und übernehmen die Technik komplett. Sie müssen sich um nichts kümmern."
+
+6. **Wie lange dauert eine Website?**
+   „Ein One-Pager ist in 1–2 Wochen fertig. Größere Projekte mit Geo-Net dauern ca. 3–4 Wochen."
+
+7. **Was ist der Digitale Hausmeister?**
+   „Eine 10er-Stundenkarte für 850 €. Sie rufen an, wenn etwas klemmt – Excel-Problem, Website-Frage, Software-Setup. Wir helfen. 12 Monate gültig."
+
+8. **Bietet ihr auch Wartung an?**
+   „Ja. Ab 45 €/Monat halten wir Ihre Website sicher und aktuell. Oder ab 180 €/Monat inklusive 2 Stunden Support."
+
+9. **Könnt ihr auch einen Online-Shop einrichten?**
+   „Ja. Wir arbeiten mit Shopify und WooCommerce. Ein Basis-Shop startet bei 1.200 €."
+
+10. **Wo sitzt ihr?**
+    „In Aue-Bad Schlema im Erzgebirgskreis. Wir arbeiten remote und vor Ort – kurze Wege, persönlicher Kontakt."
+
+### 6.4 Prozess „So läuft's ab" (5 Steps)
+
+| Step | Titel | Text |
+|---|---|---|
+| 1 | **Erstgespräch** | „Wir lernen Ihr Geschäft kennen – kostenlos, unverbindlich, 30 Minuten." |
+| 2 | **Analyse & Angebot** | „Wir identifizieren, was Sie brauchen und erstellen ein transparentes Angebot." |
+| 3 | **Umsetzung** | „Wir bauen. Sie bekommen regelmäßig Zwischenstände und können Feedback geben." |
+| 4 | **Launch** | „Ihre Lösung geht live. Wir prüfen alles und schulen Sie ein." |
+| 5 | **Betreuung** | „Wir bleiben dran. Updates, Support, Optimierung – so lange Sie möchten." |
+
+---
+
+## 7. SHADCN / NEXT.JS BUILD SPEC
+
+### 7.1 App-Router Ordnerstruktur
+
+```
+berneby-website/
+├── app/
+│   ├── layout.tsx              # Root: Noto Sans, lang="de", Metadata, Header/Footer
+│   ├── page.tsx                # Home (9 Sektionen)
+│   ├── loading.tsx             # Global Skeleton (B.svg)
+│   ├── not-found.tsx           # Custom 404 (Schweinchen + CTA)
+│   ├── handwerk/
+│   │   └── page.tsx            # Craft-Suite (7 Sektionen)
+│   ├── leistungen/
+│   │   └── page.tsx            # Portfolio mit Tabs (6 Sektionen)
+│   ├── ueber-uns/
+│   │   └── page.tsx            # Team & Vision (5 Sektionen)
+│   ├── kontakt/
+│   │   └── page.tsx            # Formular + Info (4 Sektionen)
+│   ├── impressum/
+│   │   └── page.tsx            # Legal (noindex)
+│   └── datenschutz/
+│       └── page.tsx            # Legal (noindex)
+├── components/
+│   ├── layout/
+│   │   ├── Header.tsx          # Sticky Nav, transparent→solid, Mobile Sheet
+│   │   ├── Footer.tsx          # 4-Column, Navy-BG
+│   │   ├── Section.tsx         # Wrapper: bg white|alt|dark|navy, padding, container
+│   │   └── Container.tsx       # max-w-6xl mx-auto px-4 md:px-6
+│   ├── brand/
+│   │   ├── Logo.tsx            # Schweinchen + Text, light/dark mit CSS filter
+│   │   └── BLogo.tsx           # Standalone B.svg
+│   ├── sections/
+│   │   ├── Hero.tsx            # Props: headline, subline, ctas[], variant, compact
+│   │   ├── SectionHeading.tsx  # H1/H2 + Subline, align left|center
+│   │   ├── CtaSection.tsx      # Navy-BG, Headline + Buttons, Cyan-Glow
+│   │   ├── ProcessSteps.tsx    # Horizontal Desktop / Vertikal Mobile
+│   │   ├── FeatureGrid.tsx     # Icon + Title + Text, 2|3|4 cols responsive
+│   │   ├── FaqAccordion.tsx    # Shadcn Accordion Wrapper
+│   │   ├── TrustBar.tsx        # Kennzahlen-Leiste (Cyan Zahlen)
+│   │   ├── PricingCards.tsx    # 3-Tier, Highlight mit Cyan-Border
+│   │   ├── ServiceTabs.tsx     # Client Component, Shadcn Tabs + Cards
+│   │   ├── TeamSection.tsx     # Foto-Platzhalter + Bio
+│   │   └── ContactForm.tsx     # Client Component, Validation, Loading, Success
+│   └── ui/                     # Shadcn UI Components
+│       ├── accordion.tsx       # shadcn add accordion
+│       ├── alert-dialog.tsx    # vorhanden (Init)
+│       ├── badge.tsx           # vorhanden (Init)
+│       ├── button.tsx          # vorhanden (Init)
+│       ├── card.tsx            # vorhanden (Init)
+│       ├── combobox.tsx        # vorhanden (Init)
+│       ├── dropdown-menu.tsx   # vorhanden (Init)
+│       ├── field.tsx           # vorhanden (Init)
+│       ├── input-group.tsx     # vorhanden (Init)
+│       ├── input.tsx           # vorhanden (Init)
+│       ├── label.tsx           # vorhanden (Init)
+│       ├── navigation-menu.tsx # shadcn add navigation-menu
+│       ├── select.tsx          # vorhanden (Init)
+│       ├── separator.tsx       # vorhanden (Init)
+│       ├── sheet.tsx           # shadcn add sheet
+│       ├── skeleton.tsx        # shadcn add skeleton
+│       ├── tabs.tsx            # shadcn add tabs
+│       ├── textarea.tsx        # vorhanden (Init)
+│       └── tooltip.tsx         # shadcn add tooltip
+├── lib/
+│   ├── utils.ts                # cn() helper (vorhanden)
+│   └── constants.ts            # NAV_ITEMS, COMPANY, FAQ, PROCESS, SERVICES, PACKAGES
+├── hooks/
+│   └── use-scroll.ts           # Scroll-Position für Header-Transparenz
+└── public/
+    ├── B.svg                   # Brand Mark
+    ├── Schweinchen.svg         # Primary Logo
+    ├── og-image.png            # [ZU ERSTELLEN]
+    └── favicon.ico             # [ZU GENERIEREN aus Schweinchen.svg]
+```
+
+### 7.2 Shadcn CLI-Commands
+
+```bash
+# Nach Projekt-Init diese Komponenten zusätzlich installieren:
+pnpm dlx shadcn@latest add accordion
+pnpm dlx shadcn@latest add tabs
+pnpm dlx shadcn@latest add sheet
+pnpm dlx shadcn@latest add navigation-menu
+pnpm dlx shadcn@latest add tooltip
+pnpm dlx shadcn@latest add skeleton
+```
+
+### 7.3 Theming/Tokens – Ergänzungen in globals.css
+
+```css
+:root {
+  /* Shadcn Default-Tokens bleiben bestehen */
+  /* Zusätzliche Brand-Tokens: */
+  --brand-navy: oklch(0.30 0.08 265);
+  --brand-navy-light: oklch(0.35 0.06 265);
+  --brand-navy-foreground: oklch(0.98 0 0);
+  --brand-cyan: oklch(0.87 0.15 195);
+  --brand-cyan-muted: oklch(0.87 0.08 195 / 15%);
+  --section-alt: oklch(0.975 0 0);
+  --section-dark: var(--brand-navy);
+}
+
+/* Tailwind v4 @theme inline Ergänzungen: */
+@theme inline {
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-navy-light: var(--brand-navy-light);
+  --color-brand-navy-foreground: var(--brand-navy-foreground);
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-cyan-muted: var(--brand-cyan-muted);
+  --color-section-alt: var(--section-alt);
+  --color-section-dark: var(--section-dark);
+}
+
+/* Fluid Typography */
+@layer base {
+  body {
+    font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4 {
+    @apply tracking-tight text-balance;
+    line-height: 1.15;
+  }
+  h1 { font-size: clamp(2rem, 1.4rem + 2.5vw, 3.5rem); }
+  h2 { font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem); }
+  h3 { font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem); }
+  p, li { max-width: 75ch; }
+}
+```
+
+### 7.4 Reusable Components – Props-Spezifikation
+
+| Komponente | Props | Beschreibung |
+|---|---|---|
+| `<Hero>` | `headline: string, subline: string, ctas?: {label, href, variant}[], variant?: "navy"\|"light", compact?: boolean` | Navy oder Light BG, Grid-Pattern auf Navy, Cyan-Glow |
+| `<Section>` | `bg?: "white"\|"alt"\|"dark"\|"navy", narrow?: boolean, id?: string, className?: string` | Konsistentes Padding + Container |
+| `<SectionHeading>` | `title: string, subtitle?: string, align?: "left"\|"center", as?: "h1"\|"h2"\|"h3", light?: boolean` | Responsive Heading + Subline |
+| `<ServiceTabs>` | `categories: Record<string, {title, items[]}>` | Client Component, Pill-Style Tabs |
+| `<FeatureGrid>` | `features: {icon, title, description}[], cols?: 2\|3\|4` | Responsive Grid, Hover-Lift |
+| `<PricingCards>` | `packages: {name, price, description, features[], highlighted?, badge?}[]` | 3-Tier, mittlere prominent, Cyan-Highlight |
+| `<ProcessSteps>` | `steps: {step, title, description}[]` | Horizontal Desktop, vertikal Mobile, Connecting-Line |
+| `<TrustBar>` | `items: {value, label}[]` | Kennzahlen in Cyan, 4-Spalten-Grid |
+| `<FaqAccordion>` | `items: {question, answer}[]` | Shadcn Accordion Single Collapsible |
+| `<CtaSection>` | `headline: string, subline?: string, ctas: {label, href}[]` | Navy-BG, Cyan-Glow-Orbs, zentriert |
+| `<ContactForm>` | — | Client, States: idle/sending/success, Select-Betreff |
+| `<Logo>` | `variant?: "light"\|"dark"` | Schweinchen + Text, CSS brightness filter auf Light |
+
+---
+
+## 8. MODERN SEARCH / LLM DISCOVERY PLAN
+
+### 8.1 Entities & Schema.org
+
+| Entity | Seite | Schema Type |
+|---|---|---|
+| Berneby Solutions | Alle (JSON-LD im Layout) | `LocalBusiness` + `ProfessionalService` |
+| Lennard Meyer | Über uns | `Person` (employee) |
+| Daniel Hamburg | Über uns | `Person` (employee) |
+| Handwerks-Pakete | Handwerk | `Product` + `Offer` (je Paket) |
+| Digitaler Hausmeister | Leistungen | `Service` + `Offer` |
+| Geo-Net Dominator | Handwerk | `Service` |
+| 24/7 Voice-Guard | Handwerk | `Service` |
+| FAQ | Home + Handwerk | `FAQPage` |
+| Breadcrumbs | Alle Unterseiten | `BreadcrumbList` |
+
+### 8.2 Keyword-Strategie (aus keyword-research Skill)
+
+**Primäre Keywords (Transactional/Commercial):**
+
+| Keyword | Seite | Intent | Schwierigkeit |
+|---|---|---|---|
+| Webdesign Erzgebirge | Home, Leistungen | Commercial | Mittel |
+| Website Handwerker Erzgebirge | Handwerk | Commercial | Niedrig |
+| IT-Service Aue | Home | Commercial | Niedrig |
+| Online-Shop erstellen Erzgebirge | Leistungen | Transactional | Niedrig |
+| KI Telefonassistent Handwerk | Handwerk | Commercial | Niedrig |
+| Logo Design Erzgebirge | Leistungen | Commercial | Niedrig |
+| Google Ads Agentur Erzgebirge | Leistungen | Commercial | Mittel |
+
+**Long-Tail (Informational → GEO-relevant):**
+
+| Keyword | Content-Format |
+|---|---|
+| Was kostet eine Website für Handwerker | FAQ + Blog-Artikel |
+| KI im Handwerk Praxisbeispiele | Blog-Artikel |
+| Website erstellen lassen Kosten 2026 | Blog-Artikel |
+| Digitalagentur vs Freelancer Vor- und Nachteile | Blog-Artikel |
+| Handwerker bei Google sichtbar machen | FAQ + Handwerk-Seite |
+
+### 8.3 FAQ-Strategie (LLM-optimiert)
+
+- Jede Antwort als eigenständiger, vollständiger Satz (nicht nur Stichwort)
+- Natürliche Sprache, die LLMs zitieren können
+- Fragen so formuliert, wie Nutzer sie bei ChatGPT/Google eintippen
+- Zahlen und Fakten direkt in der Antwort
+- Beispiel: „Was kostet eine Website für Handwerker im Erzgebirge?" → direkte Antwort mit Zahlen
+
+### 8.4 Interne Verlinkung
+
+| Von | Nach | Kontext |
+|---|---|---|
+| Home „Zwei Säulen" Cards | `/handwerk` + `/leistungen` | CTA-Buttons in Cards |
+| Handwerk „Mehr erfahren" USPs | `/leistungen` (Einzelmodule) | Cross-Referenz |
+| Leistungen „Für Handwerker" | `/handwerk` | Badge/Banner |
+| Alle Seiten Footer | Alle Hauptseiten | Standard-Navigation |
+| FAQ Antworten | Relevante Leistungsseite | Inline-Links |
+| Kontaktseite | `/handwerk` + `/leistungen` | „Nicht sicher? Schauen Sie sich unsere Pakete an." |
+
+### 8.5 Local SEO
+
+- Google Business Profile erstellen (Phase 5): Service Area Business (kein Büro)
+- NAP (Name, Address, Phone) konsistent auf jeder Seite im Footer
+- Erzgebirge/Erzgebirgskreis/Aue-Bad Schlema als lokales Keyword natürlich einbauen
+- Meta-Titles: „[Leistung] im Erzgebirge | Berneby Solutions"
+- Hreflang: `de-DE`
+- Strukturierte Daten: areaServed = Erzgebirgskreis
+
+### 8.6 Content-Ideen (Backlog für Phase 6)
+
+| Thema | Format | Ziel-Keyword | Priorität |
+|---|---|---|---|
+| „Was kostet eine Website 2026?" | Blog | website kosten 2026 | Hoch |
+| „KI im Handwerk: 5 Praxisbeispiele" | Blog | KI handwerk | Hoch |
+| „Handwerker bei Google auf Seite 1" | Blog | handwerker google | Mittel |
+| „Checkliste: Digitalisierung Handwerk" | Lead-Magnet PDF | digitalisierung handwerk | Mittel |
+| „Shopify vs WooCommerce für KMU" | Blog | shopify woocommerce vergleich | Niedrig |
+
+---
+
+## 9. IMPLEMENTATION PHASES (Tasklists)
+
+### PHASE 0: PROJEKT-SETUP & BEREINIGUNG
+
+**Ziel:** Lauffähiges Projekt mit korrektem Theming.
+**Definition of Done:** `pnpm dev` zeigt leere Seite mit Noto Sans und Brand-Farben.
+
+- [ ] **0.1** Next.js + Shadcn initialisieren mit Preset-Befehl (siehe Meta-Informationen)
+- [ ] **0.2** Brand-SVGs in `/public/` kopieren (Schweinchen.svg, B.svg)
+- [ ] **0.3** Default-Dateien entfernen (`public/file.svg`, `globe.svg`, `next.svg`, `vercel.svg`, `window.svg`, `components/component-example.tsx`, `components/example.tsx`)
+- [ ] **0.4** `layout.tsx`: `lang="de"`, Geist-Fonts entfernen, nur Noto Sans, Metadata setzen
+- [ ] **0.5** `globals.css`: Brand-Tokens hinzufügen (--brand-navy, --brand-cyan etc.), @theme inline erweitern, Fluid Typography
+- [ ] **0.6** Favicon aus Schweinchen.svg generieren
+- [ ] **0.7** Shadcn-Komponenten installieren: `accordion tabs sheet navigation-menu tooltip skeleton`
+- [ ] **0.8** Ordnerstruktur anlegen: `components/layout/`, `components/brand/`, `components/sections/`, `hooks/`
+- [ ] **0.9** `lib/constants.ts` anlegen (alle Daten: NAV, COMPANY, FAQ, PROCESS, SERVICES, PACKAGES)
+- [ ] **0.10** `.env.local` Platzhalter: `NEXT_PUBLIC_GA_ID`, `CONTACT_FORM_ENDPOINT`
+- [ ] **0.11** `pnpm dev` erfolgreich testen
+
+### PHASE 1: BRAND-SYSTEM & UI-FOUNDATIONS
+
+**Ziel:** Wiederverwendbare Design-Basis.
+**Skills:** `ui-ux-pro-max`, `brand-guardian`, `web-typography`
+**Definition of Done:** Alle Basis-Komponenten rendern. Header + Footer sichtbar.
+
+- [ ] **1.1** `components/brand/Logo.tsx` – Schweinchen + Text, light/dark, CSS brightness filter
+- [ ] **1.2** `components/brand/BLogo.tsx` – Standalone B.svg
+- [ ] **1.3** `components/layout/Container.tsx` – max-w-6xl, zentriert
+- [ ] **1.4** `components/layout/Section.tsx` – bg-Varianten, Padding, Container
+- [ ] **1.5** `components/layout/Header.tsx` – Sticky, transparent→solid, Mobile Sheet, CTA-Button
+- [ ] **1.6** `components/layout/Footer.tsx` – 4-Spalten, Navy-BG, Kontakt, Legal
+- [ ] **1.7** `hooks/use-scroll.ts` – Scroll-Position
+- [ ] **1.8** `components/sections/Hero.tsx` – Navy/Light, Grid-Pattern, Cyan-Glow, CTAs
+- [ ] **1.9** `components/sections/SectionHeading.tsx` – H1/H2 + Subline
+- [ ] **1.10** `components/sections/FeatureGrid.tsx` – Icon + Text, responsive cols
+- [ ] **1.11** `components/sections/ProcessSteps.tsx` – Horizontal/Vertikal, Connecting-Line
+- [ ] **1.12** `components/sections/FaqAccordion.tsx` – Shadcn Accordion Wrapper
+- [ ] **1.13** `components/sections/CtaSection.tsx` – Navy-BG, Glow-Orbs
+- [ ] **1.14** `components/sections/TrustBar.tsx` – Kennzahlen
+- [ ] **1.15** `components/sections/PricingCards.tsx` – 3-Tier, Highlight
+- [ ] **1.16** `components/sections/ServiceTabs.tsx` – Client, Pill-Tabs
+- [ ] **1.17** `components/sections/ContactForm.tsx` – Client, Validation, States
+
+### PHASE 2: SEO/GEO-STRATEGIE & CONTENT
+
+**Ziel:** SEO-Strategie dokumentiert. Keywords gemappt. Content finalisiert.
+**Skills:** `keyword-research`, `competitor-analysis`, `define-seo-strategy`, `web-content`, `resonance-seo`, `seo-geo`, `geo-content-optimizer`, `landing-page-design`
+**Definition of Done:** SEO_STRATEGY.md existiert. Alle Copy in constants.ts.
+
+- [ ] **2.1** CUSTOMER.md erstellen (Personas, Pain-Points, Kaufmotive)
+- [ ] **2.2** Keyword-Research durchführen → Keyword-Map
+- [ ] **2.3** Wettbewerber-Analyse (lokale Agenturen Erzgebirge/Chemnitz)
+- [ ] **2.4** SEO_STRATEGY.md erstellen (Google + AI Overviews + ChatGPT/Perplexity)
+- [ ] **2.5** Schema.org Plan finalisieren (JSON-LD Templates)
+- [ ] **2.6** Content aller Seiten texten und in constants.ts einfügen
+- [ ] **2.7** Meta-Titles + Descriptions für jede Seite
+- [ ] **2.8** GEO-Optimierung: Inhalte auf AI-Zitierbarkeit prüfen
+
+### PHASE 3: BUILD (Seiten implementieren)
+
+**Ziel:** Alle Seiten fertig, responsive, mit Content.
+**Skills:** `frontend-design`, `top-design`, `ui-ux-pro-max`, `ux-heuristics`, `landing-page-design`, `web-content`, `resonance-seo`, `geo-content-optimizer`
+**Definition of Done:** Alle 7 Routen navigierbar. Responsive. Schema.org drin.
+
+**Home `/`:**
+- [ ] **3.1** Hero-Sektion
+- [ ] **3.2** Trust-Bar
+- [ ] **3.3** Problem→Lösung (3 Cards)
+- [ ] **3.4** Zwei-Säulen-Übersicht
+- [ ] **3.5** Prozess-Steps
+- [ ] **3.6** Testimonials/Proof (Platzhalter)
+- [ ] **3.7** FAQ-Accordion (5 Fragen)
+- [ ] **3.8** Final-CTA-Sektion
+- [ ] **3.9** Schema.org JSON-LD (LocalBusiness + FAQPage)
+
+**Handwerk `/handwerk`:**
+- [ ] **3.10** Hero
+- [ ] **3.11** Pain-Points (3 rote Cards)
+- [ ] **3.12** USP-Grid (4 Module)
+- [ ] **3.13** Pricing-Cards (3 Pakete)
+- [ ] **3.14** Prozess-Timeline
+- [ ] **3.15** Social-Proof-Platzhalter
+- [ ] **3.16** CTA-Sektion
+- [ ] **3.17** Schema.org (Product/Offer)
+
+**Leistungen `/leistungen`:**
+- [ ] **3.18** Hero (compact)
+- [ ] **3.19** Service-Tabs (6 Kategorien)
+- [ ] **3.20** Digitaler Hausmeister (prominent)
+- [ ] **3.21** Einzelmodule-Accordion
+- [ ] **3.22** CTA-Sektion
+- [ ] **3.23** Schema.org (Service)
+
+**Über uns `/ueber-uns`:**
+- [ ] **3.24** Hero (compact)
+- [ ] **3.25** Team-Sektion
+- [ ] **3.26** Vision/Mission
+- [ ] **3.27** Werte (4 Icons)
+- [ ] **3.28** CTA → Kontakt
+- [ ] **3.29** Schema.org (Person)
+
+**Kontakt `/kontakt`:**
+- [ ] **3.30** Hero (compact, light)
+- [ ] **3.31** Kontaktinfo-Cards
+- [ ] **3.32** Kontaktformular
+- [ ] **3.33** Standort-Hinweis
+
+**Legal + Global:**
+- [ ] **3.34** Impressum (GbR, Aue-Bad Schlema)
+- [ ] **3.35** Datenschutz (Platzhalter + GA-Hinweis)
+- [ ] **3.36** `not-found.tsx` (404)
+- [ ] **3.37** `loading.tsx` (Skeleton)
+- [ ] **3.38** Header Mobile Sheet
+- [ ] **3.39** Header Scroll-Verhalten
+- [ ] **3.40** Footer komplett
+- [ ] **3.41** Alle internen Links verbinden
+- [ ] **3.42** Smooth Scroll für Anker (#pakete etc.)
+
+### PHASE 4: QA & REVIEW
+
+**Ziel:** Produktionsreif.
+**Skills:** `web-design-reviewer`, `ux-heuristics`, `ui-ux-pro-max`
+**Definition of Done:** Lighthouse > 90. WCAG AA. Keine Layout-Breaks.
+
+- [ ] **4.1** Visual QA: 5 Breakpoints (320, 375, 768, 1024, 1440px)
+- [ ] **4.2** Usability-Audit (Nielsen's 10 Heuristiken)
+- [ ] **4.3** Accessibility: Keyboard, Focus, aria-labels, Kontrast, Skip-to-content
+- [ ] **4.4** Performance: Lighthouse, CWV, next/image, Font-Subsetting
+- [ ] **4.5** Cross-Browser: Chrome, Safari, Firefox, Edge, iOS Safari
+- [ ] **4.6** Content-Review: Tippfehler, Sie-Anrede, Platzhalter, Preise
+- [ ] **4.7** SEO-Check: Meta-Tags, OG, Schema validieren, Sitemap, robots.txt
+- [ ] **4.8** Legal-Check: Impressum, Datenschutz, Cookie-Banner
+- [ ] **4.9** Link-Check: Keine toten Links
+- [ ] **4.10** Formular-Test: Validation, Fehlerfall, Erfolgsmeldung
+
+### PHASE 5: LAUNCH
+
+**Ziel:** Live und indexiert.
+**Skills:** `resonance-seo`, `seo-geo`, `geo-content-optimizer`
+**Definition of Done:** Domain erreichbar. GA trackt. GSC verifiziert.
+
+- [ ] **5.1** Domain konfigurieren [INPUT NEEDED]
+- [ ] **5.2** Deployment (Vercel empfohlen)
+- [ ] **5.3** SSL aktiv
+- [ ] **5.4** Google Business Profile erstellen (Service Area Business)
+- [ ] **5.5** Google Analytics GA4 einrichten + Cookie-Consent
+- [ ] **5.6** Google Search Console verifizieren + Sitemap einreichen
+- [ ] **5.7** `next-sitemap` installieren + konfigurieren
+- [ ] **5.8** robots.txt final
+- [ ] **5.9** OG-Images erstellen
+- [ ] **5.10** Cookie-Banner (DSGVO)
+- [ ] **5.11** Lighthouse Final-Check
+- [ ] **5.12** Smoke-Test (alle Seiten, Formular, Mobile)
+
+### PHASE 6: POST-LAUNCH & ITERATION
+
+**Ziel:** Datenbasierte Optimierung.
+**Skills:** `keyword-research`, `competitor-analysis`, `geo-content-optimizer`, `web-design-reviewer`
+
+- [ ] **6.1** A/B-Test Hero-Headline (nach 2 Wochen)
+- [ ] **6.2** Microsoft Clarity einrichten (Heatmaps, kostenlos)
+- [ ] **6.3** CTA-Conversion tracken (GA4 Events)
+- [ ] **6.4** Blog/Ratgeber starten (SEO-Wachstum)
+- [ ] **6.5** Erste Case Studies ergänzen
+- [ ] **6.6** GEO-Monitoring (ChatGPT/Perplexity Zitierungen prüfen)
+- [ ] **6.7** Google Ads Landing Pages (separate Routen)
+- [ ] **6.8** Voice-Guard Live-Demo auf Website
+- [ ] **6.9** Bewertungs-Widget Integration
+- [ ] **6.10** Backlog pflegen
+
+---
+
+## 10. QA & REVIEW CHECKLISTE (Web Design Reviewer)
+
+### Accessibility
+- [ ] Alle Bilder haben `alt`-Text
+- [ ] Formulare: `<label>` + `htmlFor` für jedes Input
+- [ ] Focus-States sichtbar (Shadcn-Default: `outline-ring/50`)
+- [ ] Farbkontrast 4.5:1 (Text), 3:1 (große Schrift)
+- [ ] Keyboard-Navigation: Tab-Reihenfolge logisch
+- [ ] `aria-label` auf Icon-Only-Buttons (Hamburger, Sheet-Close)
+- [ ] SheetTitle für Screen-Reader (`sr-only`)
+- [ ] Skip-to-content Link
+- [ ] `prefers-reduced-motion` respektieren (keine Daueranimationen)
+
+### Responsive
+- [ ] 320px: Kein Horizontal-Scroll
+- [ ] 375px: iPhone SE korrekt
+- [ ] 768px: Tablet 2-Spalten
+- [ ] 1024px: Desktop 3-4 Spalten
+- [ ] 1440px: max-width greift, kein Stretch
+- [ ] Touch-Targets: Minimum 44x44px
+- [ ] ProcessSteps: Horizontal ab md, vertikal darunter
+
+### Performance
+- [ ] Lighthouse > 90 (alle Kategorien)
+- [ ] Core Web Vitals: LCP < 2.5s, FID < 100ms, CLS < 0.1
+- [ ] `next/image` für alle Bilder (Lazy-Load below fold)
+- [ ] `next/font` mit display: swap, Subset
+- [ ] Server Components wo möglich (kein unnötiges `"use client"`)
+- [ ] Bundle-Analyse
+
+### Consistency
+- [ ] Alle Headlines folgen Fluid clamp()-Scale
+- [ ] Section-Padding überall `py-16 md:py-24`
+- [ ] Farben nur aus definierten CSS-Variablen
+- [ ] Icons: nur Tabler, einheitliche Größe per Kontext
+- [ ] CTAs: konsistente Labels und Farben
+- [ ] border-radius überall aus `--radius`
+
+### Common Failures + Fixes
+
+| Problem | Fix |
+|---|---|
+| Cyan auf Weiß nicht lesbar | Cyan nur auf dunklem Grund; auf Weiß → Navy |
+| Mobile Nav überlappt | Sheet mit Overlay, sr-only SheetTitle |
+| Pricing-Cards brechen Tablet | `md:grid-cols-3` → ggf. `lg:grid-cols-3` |
+| Hero-Text zu lang Mobile | Display clamp auf 2rem min, max 2 Zeilen |
+| Formular ohne Feedback | Loading-State + Erfolgs-/Fehlermeldung |
+| SVG nicht skalierbar | viewBox korrekt, Größe via CSS |
+| Deutsche Anführungszeichen in JSX | Keine `„"` in JSX-Strings; Standard `""` oder Template-Literals |
+| Logo auf Navy unsichtbar | `brightness-0 invert` CSS-Filter auf light variant |
+
+---
+
+## 11. OFFENE PLATZHALTER
+
+| Was | Status | Wert |
+|---|---|---|
+| Telefonnummer | ✅ | +49 15511 960927 |
+| Standort | ✅ | Aue-Bad Schlema, Erzgebirgskreis |
+| Rechtsform | ✅ | GbR |
+| Analytics | ✅ | Google Analytics (GA4) |
+| Domain | ❌ | [INPUT NEEDED] |
+| E-Mail | ⚠️ | info@berneby.de [ZU BESTÄTIGEN] |
+| Team-Fotos | ❌ | Platzhalter (Initialen-Kreise) |
+| Kundenstimmen | ❌ | Platzhalter (Skeleton-Cards) |
+| USt-IdNr. | ❌ | [INPUT NEEDED oder Kleinunternehmerregelung] |
+| Vollständige Adresse | ❌ | [INPUT NEEDED – Straße, PLZ] |
+| Google Business Profile | ❌ | Wird in Phase 5 erstellt |
+| Datenschutz-Generator | ❌ | [Empfehlung: e-recht24 oder IT-Recht Kanzlei] |
+| OG-Image | ❌ | [ZU ERSTELLEN] |
+| Favicon | ❌ | [AUS Schweinchen.svg GENERIEREN] |
+| Contact Form Endpoint | ❌ | [INPUT NEEDED: Formspree, Resend, oder Custom API] |
