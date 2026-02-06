@@ -48,7 +48,7 @@ export function Hero({
       <BackdropNumber number="01" className="top-[10%] left-[-5%] opacity-100" />
 
       {/* 2. THE CONTENT FRAME */}
-      <div className="container relative z-10 mx-auto px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
 
           {/* Left Block: Massive Type */}

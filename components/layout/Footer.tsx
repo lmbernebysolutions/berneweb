@@ -5,7 +5,7 @@ import { IconPhone, IconMail, IconMapPin, IconArrowUpRight } from "@tabler/icons
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-brand-navy text-brand-navy-foreground">
+    <footer className="relative overflow-hidden bg-brand-navy text-brand-navy-foreground border-t border-brand-cyan/20">
       {/* Atmospheric background */}
       <div className="noise-overlay pointer-events-none absolute inset-0" aria-hidden="true" />
       <div
