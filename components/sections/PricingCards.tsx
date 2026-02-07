@@ -40,8 +40,9 @@ export function PricingCards({ packages }: PricingCardsProps) {
           {/* Tech Corners - 2→4 diagonal pattern */}
           <TechCorners
             pattern="diagonal"
-            variant={pkg.highlighted ? "cyan" : "navy"}
+            variant="cyan"
             size="lg"
+            hoverExpand
           />
 
           {/* Badge */}

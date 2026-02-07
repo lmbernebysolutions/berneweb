@@ -40,16 +40,16 @@ export function ProblemSection({
                         : "bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#03f9f9_10px,#03f9f9_20px)]"
                         }`} />
 
-                    {/* Tech Corners */}
+                    {/* Tech Corners - always cyan for visibility */}
                     <TechCorners
                         pattern="diagonal"
-                        variant={isRed ? "red" : "cyan"}
-                        size="md"
-
+                        variant="cyan"
+                        size="lg"
+                        hoverExpand
                     />
 
                     <div className="relative mb-6 inline-block">
-                        <TechCorners pattern="all" variant={isRed ? "red" : "cyan"} size="sm" />
+                        <TechCorners pattern="all" variant="cyan" size="sm" />
                         <p className={`relative z-10 font-bold uppercase tracking-wider px-4 py-1 text-xs ${isRed ? "text-red-500" : "text-brand-cyan"
                             }`}>
                             {isRed ? `Fehlercode #${i + 1}` : `Problem #${i + 1}`}
