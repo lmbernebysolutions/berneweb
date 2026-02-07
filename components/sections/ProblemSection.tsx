@@ -30,7 +30,7 @@ export function ProblemSection({
                     data-animate="fade-up"
                     data-animate-delay={String(i * 80)}
                     className={`group relative overflow-hidden border p-8 transition-colors ${isRed
-                        ? "border-red-500/40 bg-black/40 hover:bg-black/50"
+                        ? "border-red-400/50 bg-red-950/30 hover:bg-red-950/40"
                         : "border-brand-cyan/30 bg-brand-cyan/5 hover:bg-brand-cyan/10"
                         }`}
                 >
