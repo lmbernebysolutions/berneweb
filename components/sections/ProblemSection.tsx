@@ -30,7 +30,7 @@ export function ProblemSection({
                     data-animate="fade-up"
                     data-animate-delay={String(i * 80)}
                     className={`group relative overflow-hidden border p-8 transition-colors ${isRed
-                        ? "border-red-500/30 bg-red-950/20 hover:bg-red-950/30"
+                        ? "border-red-500/40 bg-black/40 hover:bg-black/50"
                         : "border-brand-cyan/30 bg-brand-cyan/5 hover:bg-brand-cyan/10"
                         }`}
                 >
@@ -40,16 +40,16 @@ export function ProblemSection({
                         : "bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#03f9f9_10px,#03f9f9_20px)]"
                         }`} />
 
-                    {/* Tech Corners - always cyan for visibility */}
+                    {/* Tech Corners - red for problem section, cyan for solutions */}
                     <TechCorners
                         pattern="diagonal"
-                        variant="cyan"
+                        variant={isRed ? "red" : "cyan"}
                         size="lg"
                         hoverExpand
                     />
 
                     <div className="relative mb-6 inline-block">
-                        <TechCorners pattern="all" variant="cyan" size="sm" />
+                        <TechCorners pattern="all" variant={isRed ? "red" : "cyan"} size="sm" />
                         <p className={`relative z-10 font-bold uppercase tracking-wider px-4 py-1 text-xs ${isRed ? "text-red-500" : "text-brand-cyan"
                             }`}>
                             {isRed ? `Fehlercode #${i + 1}` : `Problem #${i + 1}`}
