@@ -9,6 +9,7 @@ import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { IconCheck, IconArrowRight, IconQuote } from "@tabler/icons-react";
 import { TEAM, VALUES, PAGE_META, COMPANY, FAQ_ITEMS } from "@/lib/constants";
 import { SchweinDivider } from "@/components/ui/schweinchen-divider";
+import { TechCorners } from "@/components/ui/tech-corners";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -89,11 +90,10 @@ export default function UeberUnsPage() {
 
           <div
             data-animate="fade-right"
-            className="group relative overflow-hidden border border-border bg-card transition-all hover:border-brand-cyan shadow-sm"
+            className="group relative overflow-hidden border border-border bg-card transition-all shadow-sm"
           >
             {/* Tech corners */}
-            <div className="absolute top-0 left-0 h-3 w-3 border-t-2 border-l-2 border-brand-cyan/10 group-hover:border-brand-cyan transition-colors" />
-            <div className="absolute bottom-0 right-0 h-3 w-3 border-b-2 border-r-2 border-brand-cyan/10 group-hover:border-brand-cyan transition-colors" />
+            <TechCorners pattern="diagonal" variant="cyan" size="md" />
             <div className="h-1.5 w-full bg-gradient-to-r from-brand-cyan/40 to-brand-cyan" />
             <div className="p-8 md:p-10">
               <div className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-brand-cyan">
@@ -132,8 +132,7 @@ export default function UeberUnsPage() {
               {/* Box dot - industrial square */}
               <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center border-2 border-brand-cyan/40 bg-brand-navy shadow-lg shadow-brand-cyan/10 md:absolute md:left-1/2 md:-translate-x-1/2">
                 {/* Mini tech corners */}
-                <div className="absolute -top-px -left-px h-2 w-2 border-t-2 border-l-2 border-brand-cyan" />
-                <div className="absolute -bottom-px -right-px h-2 w-2 border-b-2 border-r-2 border-brand-cyan" />
+                <TechCorners pattern="diagonal" variant="cyan" size="sm" />
                 <span className="text-xs font-mono font-extrabold text-brand-cyan">{item.year}</span>
               </div>
 
@@ -181,10 +180,10 @@ export default function UeberUnsPage() {
               key={item.point}
               data-animate="fade-up"
               data-animate-delay={String(i * 80)}
-              className="group relative flex items-start gap-4 border border-border bg-card p-5 transition-all hover:border-brand-cyan/30"
+              className="group relative flex items-start gap-4 border border-border bg-card p-5 transition-all"
             >
-              {/* Tech corner */}
-              <div className="absolute top-0 right-0 h-2 w-2 border-t border-r border-brand-cyan/20 group-hover:border-brand-cyan/40" />
+              {/* Tech corners */}
+              <TechCorners pattern="diagonal" variant="cyan" size="sm" />
 
               <div className="flex h-8 w-8 shrink-0 items-center justify-center border border-brand-cyan/20 bg-brand-cyan/5">
                 <IconCheck className="size-4 text-brand-cyan" stroke={2.5} />

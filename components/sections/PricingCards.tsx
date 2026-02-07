@@ -33,8 +33,8 @@ export function PricingCards({ packages }: PricingCardsProps) {
             "group relative flex flex-col border p-8 transition-colors",
             "rounded-none", // Brutalist
             pkg.highlighted
-              ? "bg-brand-navy border-brand-cyan shadow-[0_0_30px_rgba(3,249,249,0.1)]"
-              : "bg-brand-navy/60 backdrop-blur-md border-white/10 hover:border-brand-cyan/50"
+              ? "bg-brand-navy border-brand-cyan shadow-[0_0_30px_rgba(3,249,249,0.1)] hover:shadow-[0_0_40px_rgba(3,249,249,0.15)]"
+              : "bg-brand-navy/60 backdrop-blur-md border-white/10"
           )}
         >
           {/* Tech Corners - 2→4 diagonal pattern */}

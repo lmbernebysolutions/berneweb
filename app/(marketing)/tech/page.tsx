@@ -76,7 +76,7 @@ export default function TechPage() {
                     {serviceCategories.map(([key, category]) => {
                         const Icon = TECH_ICONS[key] || IconTool;
                         return (
-                            <div key={key} className="group relative flex flex-col border border-white/10 bg-brand-navy/60 backdrop-blur-md overflow-hidden transition-all hover:border-brand-cyan hover:bg-brand-navy/80">
+                            <div key={key} className="group relative flex flex-col border border-white/10 bg-brand-navy/60 backdrop-blur-md overflow-hidden transition-all hover:bg-brand-navy/80">
                                 <TechCorners pattern="diagonal" variant="cyan" size="lg" />
 
                                 <div className="absolute top-0 right-0 p-4 opacity-10">

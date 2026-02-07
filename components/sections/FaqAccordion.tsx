@@ -35,12 +35,17 @@ export function FaqAccordion({ items, number }: FaqAccordionProps) {
             value={`faq-${i}`}
             data-animate="fade-up"
             data-animate-delay={String(i * 60)}
-            className="group/faq relative overflow-hidden border border-white/10 bg-white/[0.03] px-6 shadow-sm transition-all"
+            className="group/faq relative overflow-hidden border border-white/10 bg-white/[0.03] px-6 shadow-sm transition-all data-[state=open]:border-brand-cyan/30 data-[state=open]:bg-brand-cyan/5"
           >
-            {/* Tech corners - 2 corners default, 4 on open */}
-            <TechCorners pattern="diagonal" variant="cyan" size="md" groupName="faq" />
+            {/* Tech corners - 2 corners default, 4 on hover/open */}
+            <TechCorners pattern="diagonal" variant="cyan" size="md" hoverExpand groupName="faq" />
+
+            {/* All 4 corners visible when open, with brighter glow */}
             <div className="hidden group-data-[state=open]/faq:block">
-              <TechCorners pattern="all" variant="cyan" size="md" />
+              <div className="absolute top-0 left-0 h-3 w-3 border-t-2 border-l-2 border-brand-cyan transition-colors shadow-[0_0_8px_rgba(3,249,249,0.6)]" />
+              <div className="absolute top-0 right-0 h-3 w-3 border-t-2 border-r-2 border-brand-cyan transition-colors shadow-[0_0_8px_rgba(3,249,249,0.6)]" />
+              <div className="absolute bottom-0 left-0 h-3 w-3 border-b-2 border-l-2 border-brand-cyan transition-colors shadow-[0_0_8px_rgba(3,249,249,0.6)]" />
+              <div className="absolute bottom-0 right-0 h-3 w-3 border-b-2 border-r-2 border-brand-cyan transition-colors shadow-[0_0_8px_rgba(3,249,249,0.6)]" />
             </div>
 
 

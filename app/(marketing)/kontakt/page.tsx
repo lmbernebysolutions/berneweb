@@ -72,7 +72,7 @@ export default function KontaktPage() {
                 key={item.label}
                 data-animate="fade-left"
                 data-animate-delay={String(i * 80)}
-                className="group relative overflow-hidden border border-white/10 bg-white/[0.03] transition-all hover:border-brand-cyan/50"
+                className="group relative overflow-hidden border border-white/10 bg-white/[0.03] transition-all"
               >
                 <TechCorners pattern="diagonal" variant="cyan" size="md" />
 
@@ -108,7 +108,7 @@ export default function KontaktPage() {
             <div
               data-animate="fade-left"
               data-animate-delay="240"
-              className="group relative border border-white/10 bg-white/[0.03] p-5 transition-all hover:border-brand-cyan/50"
+              className="group relative border border-white/10 bg-white/[0.03] p-5 transition-all"
             >
               <TechCorners pattern="diagonal" variant="cyan" size="md" />
 
@@ -126,7 +126,7 @@ export default function KontaktPage() {
             <div
               data-animate="fade-left"
               data-animate-delay="320"
-              className="group relative border border-white/10 bg-white/[0.03] p-5 transition-all hover:border-brand-cyan/50"
+              className="group relative border border-white/10 bg-white/[0.03] p-5 transition-all"
             >
               <TechCorners pattern="diagonal" variant="cyan" size="md" />
 
@@ -188,7 +188,7 @@ export default function KontaktPage() {
               key={item.text}
               data-animate="fade-up"
               data-animate-delay={String(i * 100)}
-              className="group relative flex items-center gap-3 border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-brand-cyan/30"
+              className="group relative flex items-center gap-3 border border-white/10 bg-white/[0.03] p-4 transition-all"
             >
               <div className="absolute top-0 left-0 h-1.5 w-1.5 border-t border-l border-brand-cyan/40" />
               <div className="absolute bottom-0 right-0 h-1.5 w-1.5 border-b border-r border-brand-cyan/40" />
