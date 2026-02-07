@@ -147,9 +147,21 @@ h6 {
   }
 }
 
+.wave-animate {
+  animation: wave 8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.wave-animate-delayed {
+  animation: wave 8s ease-in-out infinite;
+  animation-delay: 0.5s;
+  transform-origin: center;
+}
+
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .animate-\[wave_8s_ease-in-out_infinite\] {
+  .wave-animate,
+  .wave-animate-delayed {
     animation: none !important;
   }
 }

@@ -90,7 +90,7 @@ export function FeatureGrid({
                 className={cn(
                   "mb-6 flex h-12 w-12 items-center justify-center border transition-all duration-300",
                   light
-                    ? "border-brand-cyan/30 bg-brand-navy group-hover:border-brand-cyan"
+                    ? "border-brand-cyan/30 bg-brand-navy"
                     : "border-brand-navy/10 bg-white group-hover:border-brand-navy"
                 )}
               >

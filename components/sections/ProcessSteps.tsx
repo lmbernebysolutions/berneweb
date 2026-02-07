@@ -38,7 +38,7 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
 
               {/* Step number - industrial square */}
               <div className="relative z-10">
-                <div className="relative flex h-16 w-16 items-center justify-center border border-brand-cyan/30 bg-brand-navy transition-all group-hover:border-brand-cyan">
+                <div className="relative flex h-16 w-16 items-center justify-center border border-brand-cyan/30 bg-brand-navy transition-all">
                   {/* Tech Corners */}
                   <TechCorners pattern="all" variant="cyan" size="sm" />
 

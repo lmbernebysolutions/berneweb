@@ -28,7 +28,7 @@ export function TestimonialGrid({
                     key={i}
                     data-animate="fade-up"
                     data-animate-delay={String(i * 120)}
-                    className="group relative border border-white/10 bg-white/[0.03] p-6 transition-all hover:border-brand-cyan/50 hover:shadow-[0_0_20px_rgba(3,249,249,0.06)]"
+                    className="group relative border border-white/10 bg-white/[0.03] p-6 transition-all"
                 >
                     {/* Tech corners - 2→4 diagonal pattern */}
                     <TechCorners pattern="diagonal" variant="cyan" size="md" />

@@ -32,10 +32,7 @@ export function SchweinDivider({ flip = false, className }: SchweinDividerProps)
         <path
           d="M0 80 C200 80 250 20 400 30 C550 40 580 60 700 50 C820 40 900 15 1000 25 C1100 35 1150 60 1200 50 L1200 80 Z"
           fill="rgba(3, 249, 249, 0.03)"
-          className="motion-safe:animate-[wave_8s_ease-in-out_infinite]"
-          style={{
-            transformOrigin: 'center',
-          }}
+          className="wave-animate"
         />
         {/* Thin accent line following the organic curve */}
         <path
@@ -43,11 +40,7 @@ export function SchweinDivider({ flip = false, className }: SchweinDividerProps)
           stroke="rgba(3, 249, 249, 0.1)"
           strokeWidth="1"
           fill="none"
-          className="motion-safe:animate-[wave_8s_ease-in-out_infinite]"
-          style={{
-            transformOrigin: 'center',
-            animationDelay: '0.5s',
-          }}
+          className="wave-animate-delayed"
         />
       </svg>
     </div>
