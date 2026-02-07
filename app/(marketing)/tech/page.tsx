@@ -14,7 +14,10 @@ import {
     IconCheck,
     IconArrowRight,
 } from "@tabler/icons-react";
-import { SERVICES, COMPANY } from "@/lib/constants";
+import { SERVICES, COMPANY, FAQ_ITEMS } from "@/lib/constants";
+import { SchweinDivider } from "@/components/ui/schweinchen-divider";
+import { FaqAccordion } from "@/components/sections/FaqAccordion";
+import { TechCorners } from "@/components/ui/tech-corners";
 
 export const metadata: Metadata = {
     title: "General Tech Solutions – Ihre externe IT-Abteilung im Erzgebirge",
@@ -73,7 +76,9 @@ export default function TechPage() {
                     {serviceCategories.map(([key, category]) => {
                         const Icon = TECH_ICONS[key] || IconTool;
                         return (
-                            <div key={key} className="group relative flex flex-col border border-white/10 bg-brand-navy/60 backdrop-blur-md overflow-hidden hover:border-brand-cyan transition-colors">
+                            <div key={key} className="group relative flex flex-col border border-white/10 bg-brand-navy/60 backdrop-blur-md overflow-hidden transition-all hover:border-brand-cyan hover:bg-brand-navy/80">
+                                <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+
                                 <div className="absolute top-0 right-0 p-4 opacity-10">
                                     <Icon className="size-24 text-white" />
                                 </div>
@@ -86,10 +91,11 @@ export default function TechPage() {
                                 </div>
                                 <div className="p-6 flex flex-col grow gap-4 relative z-10">
                                     {category.items.map((item) => (
-                                        <div key={item.title} className="group/item">
-                                            <div className="flex justify-between items-baseline border-l-2 border-white/10 pl-3 group-hover/item:border-brand-cyan transition-colors">
-                                                <h4 className="font-medium text-sm text-white/90">{item.title}</h4>
-                                                <span className="text-xs font-mono text-brand-cyan">
+                                        <div key={item.title} className="group/item relative">
+                                            <TechCorners pattern="all" variant="cyan" size="sm" />
+                                            <div className="flex justify-between items-baseline px-4 py-2 transition-colors group-hover/item:bg-brand-cyan/5">
+                                                <h4 className="font-medium text-xs text-white/90 uppercase tracking-wider">{item.title}</h4>
+                                                <span className="text-[10px] font-mono text-brand-cyan">
                                                     {item.price.includes("Monat") ? item.price : `€ ${item.price}`}
                                                 </span>
                                             </div>
@@ -164,6 +170,21 @@ export default function TechPage() {
                     </div>
                 </div>
             </Section>
+
+
+            {/* 05: FAQ */}
+            <Section bg="transparent">
+                <SectionHeading
+                    number="05"
+                    overline="Support"
+                    title="Häufige Fragen"
+                    align="left"
+                    light
+                />
+                <FaqAccordion items={FAQ_ITEMS} />
+            </Section>
+
+            <SchweinDivider />
 
             <CtaSection
                 headline="Welches Problem dürfen wir lösen?"

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { IconCheck, IconArrowRight } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
+import { TechCorners } from "@/components/ui/tech-corners";
 
 interface Package {
   name: string;
@@ -34,11 +35,12 @@ export function PricingCards({ packages }: PricingCardsProps) {
               : "bg-brand-navy/60 backdrop-blur-md border-white/10 hover:border-brand-cyan/50"
           )}
         >
-          {/* Tech Corners */}
-          <div className={cn("absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2", pkg.highlighted ? "border-brand-cyan" : "border-white/20")} />
-          <div className={cn("absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2", pkg.highlighted ? "border-brand-cyan" : "border-white/20")} />
-          <div className={cn("absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2", pkg.highlighted ? "border-brand-cyan" : "border-white/20")} />
-          <div className={cn("absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2", pkg.highlighted ? "border-brand-cyan" : "border-white/20")} />
+          {/* Tech Corners - 2→4 diagonal pattern */}
+          <TechCorners
+            pattern="diagonal"
+            variant={pkg.highlighted ? "cyan" : "navy"}
+            size="lg"
+          />
 
           {/* Badge */}
           {pkg.badge && (

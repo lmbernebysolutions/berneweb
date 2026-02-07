@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { COMPANY, FOOTER_NAV } from "@/lib/constants";
-import { IconPhone, IconMail, IconMapPin, IconArrowUpRight } from "@tabler/icons-react";
+import { IconPhone, IconMail, IconMapPin, IconArrowUpRight, IconArrowRight } from "@tabler/icons-react";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-brand-navy text-brand-navy-foreground border-t border-brand-cyan/20">
+    <footer className="relative overflow-hidden border-t border-brand-cyan/20 bg-brand-navy text-brand-navy-foreground">
       {/* Atmospheric background */}
       <div className="noise-overlay pointer-events-none absolute inset-0" aria-hidden="true" />
       <div
@@ -48,7 +48,7 @@ export function Footer() {
 
           {/* Leistungen */}
           <div className="md:col-span-3">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-white/30">
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/50">
               Leistungen
             </h3>
             <ul className="space-y-2.5">
@@ -68,7 +68,7 @@ export function Footer() {
 
           {/* Unternehmen */}
           <div className="md:col-span-2">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-white/30">
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/50">
               Unternehmen
             </h3>
             <ul className="space-y-2.5">
@@ -86,21 +86,27 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* CTA card */}
+          {/* CTA card - industrialized */}
           <div className="md:col-span-3">
-            <div className="rounded-xl border border-white/8 bg-white/[0.03] p-5 backdrop-blur-sm">
-              <p className="text-sm font-semibold text-white/80">
-                Projekt besprechen?
+            <div className="relative border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm">
+              {/* Tech corners */}
+              <div className="absolute top-0 left-0 h-2 w-2 border-t-2 border-l-2 border-brand-cyan/40" />
+              <div className="absolute top-0 right-0 h-2 w-2 border-t-2 border-r-2 border-brand-cyan/40" />
+              <div className="absolute bottom-0 left-0 h-2 w-2 border-b-2 border-l-2 border-brand-cyan/40" />
+              <div className="absolute bottom-0 right-0 h-2 w-2 border-b-2 border-r-2 border-brand-cyan/40" />
+
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/60">
+                Projekt starten
               </p>
-              <p className="mt-1.5 text-xs leading-relaxed text-white/40">
+              <p className="mt-2 text-sm font-semibold text-white/80">
                 Kostenloses Erstgespräch, 30 Minuten, unverbindlich.
               </p>
               <Link
                 href="/kontakt"
-                className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-brand-cyan/10 px-4 py-2 text-sm font-semibold text-brand-cyan transition-colors hover:bg-brand-cyan/20"
+                className="mt-4 inline-flex items-center gap-1.5 border border-brand-cyan/30 bg-brand-cyan/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-brand-cyan transition-all hover:border-brand-cyan hover:bg-brand-cyan/20 hover:shadow-[0_0_15px_rgba(3,249,249,0.15)]"
               >
-                Kontakt aufnehmen
-                <IconArrowUpRight className="size-3.5" stroke={2} />
+                Kontakt
+                <IconArrowRight className="size-3.5" stroke={2} />
               </Link>
             </div>
           </div>

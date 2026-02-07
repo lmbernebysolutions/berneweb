@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { IconToolsKitchen2, IconArrowRight, IconCheck } from "@tabler/icons-react";
 import { SERVICES, CRAFT_MODULES, PAGE_META, FAQ_ITEMS } from "@/lib/constants";
+import { SchweinDivider } from "@/components/ui/schweinchen-divider";
 
 export const metadata: Metadata = {
   title: PAGE_META.leistungen.title,
@@ -69,11 +70,16 @@ export default function LeistungenPage() {
 
           <div data-animate="fade-right" className="flex items-center justify-center">
             <div className="relative">
-              <div className="flex h-32 w-32 items-center justify-center rounded-3xl bg-white/[0.04] shadow-xl ring-1 ring-white/10 backdrop-blur-sm">
+              <div className="flex h-32 w-32 items-center justify-center border border-white/10 bg-white/[0.04] shadow-xl ring-1 ring-white/10 backdrop-blur-sm">
                 <IconToolsKitchen2 className="size-16 text-brand-cyan" stroke={1} />
+                {/* Tech corners */}
+                <div className="absolute top-0 left-0 h-3 w-3 border-t-2 border-l-2 border-brand-cyan" />
+                <div className="absolute bottom-0 right-0 h-3 w-3 border-b-2 border-r-2 border-brand-cyan" />
               </div>
               {/* Price badge */}
-              <div className="absolute -right-4 -bottom-4 rounded-xl border border-white/10 bg-brand-navy px-4 py-2 shadow-lg">
+              <div className="absolute -right-4 -bottom-4 border border-brand-cyan/30 bg-brand-navy px-4 py-2 shadow-lg group">
+                {/* Mini tech corners */}
+                <div className="absolute -top-px -left-px h-2 w-2 border-t font-mono border-l border-brand-cyan" />
                 <div className="text-2xl font-extrabold text-brand-cyan">850 &euro;</div>
                 <div className="text-xs text-white/50">10 Stunden</div>
               </div>
@@ -107,6 +113,8 @@ export default function LeistungenPage() {
         />
         <FaqAccordion items={FAQ_ITEMS.slice(5, 10)} />
       </Section>
+
+      <SchweinDivider />
 
       {/* 6. CTA */}
       <CtaSection

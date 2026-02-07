@@ -9,20 +9,20 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground hover:bg-primary/90 clip-corner shadow-[4px_4px_0_0_rgba(0,0,0,0.3)] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_0_rgba(3,249,249,0.2)] active:translate-y-[0px] active:shadow-none",
+          "bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90 clip-corner shadow-[4px_4px_0_0_rgba(0,0,0,0.3)] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_0_rgba(3,249,249,0.3)] active:translate-y-[0px] active:shadow-none",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 clip-corner",
         outline:
-          "border-2 border-input bg-transparent hover:bg-brand-cyan hover:text-brand-navy hover:border-brand-cyan clip-corner",
+          "border-2 border-brand-cyan bg-transparent text-brand-cyan hover:bg-brand-cyan hover:text-brand-navy clip-corner hover:shadow-[4px_4px_0_0_rgba(3,249,249,0.2)]",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 clip-corner",
+          "bg-brand-navy border border-brand-cyan/30 text-brand-cyan hover:bg-brand-navy/80 clip-corner",
         ghost: "hover:bg-brand-cyan/10 hover:text-brand-cyan",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-brand-cyan underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-12 px-6 py-2",
+        default: "h-12 px-8 py-2",
         sm: "h-9 px-4 text-xs",
-        lg: "h-14 px-8 text-base",
+        lg: "h-14 px-10 text-base",
         icon: "h-10 w-10",
       },
     },

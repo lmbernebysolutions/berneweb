@@ -52,7 +52,7 @@ export function Hero({
         {/* Headline Container (Wide) */}
         <div className="container mx-auto px-6 mb-8">
           <div className="lg:col-span-12">
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black uppercase leading-[0.85] tracking-tighter text-white drop-shadow-xl">
+            <h1 className="text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black uppercase leading-[0.85] tracking-tighter text-white drop-shadow-xl">
               {headlineParts}
             </h1>
           </div>

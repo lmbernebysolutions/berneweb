@@ -11,6 +11,7 @@ import {
   IconShield,
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
+import { TechCorners } from "@/components/ui/tech-corners";
 
 const iconMap: Record<string, React.ElementType> = {
   IconSearch,
@@ -49,7 +50,7 @@ export function FeatureGrid({
   };
 
   return (
-    <div className={cn("grid gap-5", colClasses[cols])}>
+    <div className={cn("grid gap-6 md:gap-8", colClasses[cols])}>
       {features.map((feature, i) => {
         const Icon = iconMap[feature.icon];
         return (
@@ -58,35 +59,42 @@ export function FeatureGrid({
             data-animate="fade-up"
             data-animate-delay={String(i * 80)}
             className={cn(
-              "card-hover-glow group relative rounded-xl border p-7 md:p-8",
+              "group relative overflow-hidden border p-8 transition-all duration-300",
               light
-                ? "border-white/10 bg-white/[0.04]"
+                ? "border-brand-cyan/20 bg-brand-navy/40 backdrop-blur-sm"
                 : "border-border bg-card"
             )}
           >
+            {/* Tech Corners - 2→4 diagonal pattern */}
+            <TechCorners
+              pattern="diagonal"
+              variant={light ? "cyan" : "navy"}
+              size="lg"
+            />
+
             {/* Decorative index */}
             <div
               className={cn(
-                "pointer-events-none absolute top-4 right-4 text-xs font-bold select-none",
-                light ? "text-white/10" : "text-border"
+                "pointer-events-none absolute top-4 right-6 font-mono text-sm font-bold select-none tracking-tighter opacity-10",
+                light ? "text-brand-cyan" : "text-border"
               )}
               aria-hidden="true"
             >
-              {String(i + 1).padStart(2, "0")}
+              ID.{String(i + 1).padStart(2, "0")}
             </div>
 
             {Icon && (
               <div
                 className={cn(
-                  "mb-5 flex h-11 w-11 items-center justify-center rounded-xl transition-colors duration-300",
+                  "mb-6 flex h-12 w-12 items-center justify-center border transition-all duration-300",
                   light
-                    ? "bg-brand-cyan/10 group-hover:bg-brand-cyan/20"
-                    : "bg-brand-navy/5 group-hover:bg-brand-navy/10"
+                    ? "border-brand-cyan/30 bg-brand-navy group-hover:border-brand-cyan"
+                    : "border-brand-navy/10 bg-white group-hover:border-brand-navy"
                 )}
               >
                 <Icon
                   className={cn(
-                    "size-5",
+                    "size-6",
                     light ? "text-brand-cyan" : "text-brand-navy"
                   )}
                   stroke={1.5}
@@ -96,16 +104,17 @@ export function FeatureGrid({
 
             <h3
               className={cn(
-                "font-bold",
+                "text-xl font-bold uppercase tracking-wide",
                 light ? "text-white" : "text-foreground"
               )}
             >
               {feature.title}
             </h3>
+
             <p
               className={cn(
-                "mt-2 text-[0.9375rem] leading-relaxed",
-                light ? "text-white/60" : "text-muted-foreground"
+                "mt-4 text-[0.9375rem] leading-relaxed",
+                light ? "text-blue-100/70" : "text-muted-foreground"
               )}
             >
               {feature.description}

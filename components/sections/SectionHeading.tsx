@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { BackdropNumber } from "@/components/ui/backdrop-number";
+import { TechCorners } from "@/components/ui/tech-corners";
 
 interface SectionHeadingProps {
   title: string;
@@ -54,14 +55,17 @@ export function SectionHeading({
             {overline}
           </div>
         )}
-        <Tag
-          className={cn(
-            "text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight",
-            light ? "text-brand-navy-foreground" : "text-foreground"
-          )}
-        >
-          {title}
-        </Tag>
+        <div className={cn("relative inline-block", align === "center" && "mx-auto")}>
+          <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+          <Tag
+            className={cn(
+              "text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight px-6 py-2",
+              light ? "text-brand-navy-foreground" : "text-foreground"
+            )}
+          >
+            {title}
+          </Tag>
+        </div>
         {subtitle && (
           <p
             className={cn(

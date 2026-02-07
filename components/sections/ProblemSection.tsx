@@ -1,0 +1,64 @@
+import { TechCorners } from "@/components/ui/tech-corners";
+
+interface ProblemItem {
+    problem: string;
+    description: string;
+}
+
+interface ProblemSectionProps {
+    title: string;
+    subtitle?: string;
+    problems: ProblemItem[];
+    variant?: "red" | "cyan";
+}
+
+export function ProblemSection({
+    title,
+    subtitle,
+    problems,
+    variant = "red",
+}: ProblemSectionProps) {
+    const isRed = variant === "red";
+
+    return (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {problems.map((item, i) => (
+                <div
+                    key={item.problem}
+                    data-animate="fade-up"
+                    data-animate-delay={String(i * 80)}
+                    className={`group relative overflow-hidden border p-8 transition-colors ${isRed
+                        ? "border-red-500/30 bg-red-950/20 hover:bg-red-950/30"
+                        : "border-brand-cyan/30 bg-brand-cyan/5 hover:bg-brand-cyan/10"
+                        }`}
+                >
+                    {/* Caution Stripes */}
+                    <div className={`absolute top-0 right-0 w-16 h-16 opacity-10 ${isRed
+                        ? "bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#ef4444_10px,#ef4444_20px)]"
+                        : "bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#03f9f9_10px,#03f9f9_20px)]"
+                        }`} />
+
+                    {/* Tech Corners */}
+                    <TechCorners
+                        pattern="diagonal"
+                        variant={isRed ? "red" : "cyan"}
+                        size="md"
+
+                    />
+
+                    <div className="relative mb-6 inline-block">
+                        <TechCorners pattern="all" variant={isRed ? "red" : "cyan"} size="sm" />
+                        <p className={`relative z-10 font-bold uppercase tracking-wider px-4 py-1 text-xs ${isRed ? "text-red-500" : "text-brand-cyan"
+                            }`}>
+                            {isRed ? `Fehlercode #${i + 1}` : `Problem #${i + 1}`}
+                        </p>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">{item.problem}</h3>
+                    <p className="text-white/60 leading-relaxed text-sm">
+                        {item.description}
+                    </p>
+                </div>
+            ))}
+        </div>
+    );
+}

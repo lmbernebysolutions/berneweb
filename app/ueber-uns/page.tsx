@@ -8,6 +8,7 @@ import { CtaSection } from "@/components/sections/CtaSection";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { IconCheck, IconArrowRight, IconQuote } from "@tabler/icons-react";
 import { TEAM, VALUES, PAGE_META, COMPANY, FAQ_ITEMS } from "@/lib/constants";
+import { SchweinDivider } from "@/components/ui/schweinchen-divider";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -67,8 +68,11 @@ export default function UeberUnsPage() {
         <div className="grid gap-8 md:grid-cols-2 md:gap-12">
           <div
             data-animate="fade-left"
-            className="card-hover relative overflow-hidden rounded-2xl border border-border bg-card"
+            className="group relative overflow-hidden border border-border bg-card transition-all hover:border-brand-navy shadow-sm"
           >
+            {/* Tech corners */}
+            <div className="absolute top-0 left-0 h-3 w-3 border-t-2 border-l-2 border-brand-navy/10 group-hover:border-brand-navy transition-colors" />
+            <div className="absolute bottom-0 right-0 h-3 w-3 border-b-2 border-r-2 border-brand-navy/10 group-hover:border-brand-navy transition-colors" />
             <div className="h-1.5 w-full bg-gradient-to-r from-brand-navy to-brand-navy/40" />
             <div className="p-8 md:p-10">
               <div className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-brand-cyan">
@@ -85,8 +89,11 @@ export default function UeberUnsPage() {
 
           <div
             data-animate="fade-right"
-            className="card-hover relative overflow-hidden rounded-2xl border border-border bg-card"
+            className="group relative overflow-hidden border border-border bg-card transition-all hover:border-brand-cyan shadow-sm"
           >
+            {/* Tech corners */}
+            <div className="absolute top-0 left-0 h-3 w-3 border-t-2 border-l-2 border-brand-cyan/10 group-hover:border-brand-cyan transition-colors" />
+            <div className="absolute bottom-0 right-0 h-3 w-3 border-b-2 border-r-2 border-brand-cyan/10 group-hover:border-brand-cyan transition-colors" />
             <div className="h-1.5 w-full bg-gradient-to-r from-brand-cyan/40 to-brand-cyan" />
             <div className="p-8 md:p-10">
               <div className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-brand-cyan">
@@ -119,19 +126,22 @@ export default function UeberUnsPage() {
               key={item.year}
               data-animate="fade-up"
               data-animate-delay={String(i * 150)}
-              className={`relative mb-10 flex items-start gap-6 last:mb-0 ${
-                i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
+              className={`relative mb-10 flex items-start gap-6 last:mb-0 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                }`}
             >
-              {/* Dot */}
-              <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-brand-cyan/40 bg-brand-navy shadow-lg shadow-brand-cyan/10 md:absolute md:left-1/2 md:-translate-x-1/2">
-                <span className="text-xs font-extrabold text-brand-cyan">{item.year}</span>
+              {/* Box dot - industrial square */}
+              <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center border-2 border-brand-cyan/40 bg-brand-navy shadow-lg shadow-brand-cyan/10 md:absolute md:left-1/2 md:-translate-x-1/2">
+                {/* Mini tech corners */}
+                <div className="absolute -top-px -left-px h-2 w-2 border-t-2 border-l-2 border-brand-cyan" />
+                <div className="absolute -bottom-px -right-px h-2 w-2 border-b-2 border-r-2 border-brand-cyan" />
+                <span className="text-xs font-mono font-extrabold text-brand-cyan">{item.year}</span>
               </div>
 
               {/* Content card */}
-              <div className={`rounded-xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm ${
-                i % 2 === 0 ? "md:mr-auto md:w-[calc(50%-3rem)]" : "md:ml-auto md:w-[calc(50%-3rem)]"
-              }`}>
+              <div className={`relative border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm ${i % 2 === 0 ? "md:mr-auto md:w-[calc(50%-3rem)]" : "md:ml-auto md:w-[calc(50%-3rem)]"
+                }`}>
+                {/* Tech corner */}
+                <div className="absolute top-0 left-0 h-2 w-2 border-t border-l border-brand-cyan/30" />
                 <h3 className="font-bold text-brand-navy-foreground">{item.event}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-white/50">{item.description}</p>
               </div>
@@ -139,6 +149,8 @@ export default function UeberUnsPage() {
           ))}
         </div>
       </Section>
+
+      <SchweinDivider />
 
       {/* 6. Werte */}
       <Section>
@@ -169,13 +181,16 @@ export default function UeberUnsPage() {
               key={item.point}
               data-animate="fade-up"
               data-animate-delay={String(i * 80)}
-              className="flex items-start gap-4 rounded-xl border border-border bg-card p-5"
+              className="group relative flex items-start gap-4 border border-border bg-card p-5 transition-all hover:border-brand-cyan/30"
             >
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-cyan-muted">
-                <IconCheck className="size-4 text-brand-navy" stroke={2.5} />
+              {/* Tech corner */}
+              <div className="absolute top-0 right-0 h-2 w-2 border-t border-r border-brand-cyan/20 group-hover:border-brand-cyan/40" />
+
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center border border-brand-cyan/20 bg-brand-cyan/5">
+                <IconCheck className="size-4 text-brand-cyan" stroke={2.5} />
               </div>
               <div>
-                <p className="font-bold">{item.point}</p>
+                <p className="font-bold uppercase tracking-tight text-white/90">{item.point}</p>
                 <p className="mt-0.5 text-sm text-muted-foreground">{item.detail}</p>
               </div>
             </div>

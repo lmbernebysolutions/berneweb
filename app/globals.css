@@ -71,16 +71,17 @@ body {
   text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
-/* Industrial Typography */
+/* Industrial Typography - Display Font for Headings */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
+  font-family: var(--font-sans), sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 0.95;
 }
 

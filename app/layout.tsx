@@ -12,6 +12,8 @@ const notoSans = Noto_Sans({
   display: "swap",
 });
 
+
+
 export const metadata: Metadata = {
   title: {
     default: "Berneby Solutions – Ihr Digital-Partner im Erzgebirge",
@@ -37,9 +39,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={notoSans.variable}>
+    <html lang="de" className={`${notoSans.variable}`}>
       <body className="font-sans antialiased">
-        <a href="#main-content" className="skip-to-content">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-brand-cyan focus:text-brand-navy focus:p-4 focus:font-bold"
+        >
           Zum Inhalt springen
         </a>
         <Header />

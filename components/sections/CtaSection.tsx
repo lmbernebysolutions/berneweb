@@ -43,11 +43,6 @@ export function CtaSection({ headline, subline, ctas }: CtaSectionProps) {
               variant={i === 0 ? "default" : "outline"}
               size="lg"
               asChild
-              className={
-                i > 0
-                  ? "border-white/20 text-white hover:bg-white/10 h-16 px-10 text-lg"
-                  : "bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90 h-16 px-10 text-lg shadow-[0_0_20px_rgba(3,249,249,0.4)]"
-              }
             >
               <Link href={cta.href}>
                 {cta.label}

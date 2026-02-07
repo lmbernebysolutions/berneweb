@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CONTACT_SUBJECTS } from "@/lib/constants";
-import { IconCheck, IconLoader2, IconArrowRight, IconSend } from "@tabler/icons-react";
+import { IconCheck, IconLoader2, IconSend } from "@tabler/icons-react";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -35,11 +35,20 @@ export function ContactForm() {
 
   if (state === "success") {
     return (
-      <div className="flex flex-col items-center rounded-2xl border border-border bg-section-alt p-10 text-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-green-100 shadow-lg shadow-green-100/50">
-          <IconCheck className="size-8 text-green-600" stroke={2} />
+      <div className="relative flex flex-col items-center border border-brand-cyan/30 bg-brand-cyan/5 p-10 text-center">
+        {/* Tech corners */}
+        <div className="absolute top-0 left-0 h-3 w-3 border-t-2 border-l-2 border-brand-cyan" />
+        <div className="absolute top-0 right-0 h-3 w-3 border-t-2 border-r-2 border-brand-cyan" />
+        <div className="absolute bottom-0 left-0 h-3 w-3 border-b-2 border-l-2 border-brand-cyan" />
+        <div className="absolute bottom-0 right-0 h-3 w-3 border-b-2 border-r-2 border-brand-cyan" />
+
+        <div className="flex h-16 w-16 items-center justify-center border-2 border-brand-cyan bg-brand-cyan/10 shadow-[0_0_30px_rgba(3,249,249,0.2)]">
+          <IconCheck className="size-8 text-brand-cyan" stroke={2} />
         </div>
-        <h3 className="mt-5 text-xl font-extrabold">Nachricht gesendet!</h3>
+        <div className="mt-2 font-mono text-[0.6rem] text-brand-cyan/50 uppercase tracking-widest">
+          STATUS: GESENDET
+        </div>
+        <h3 className="mt-4 text-xl font-extrabold uppercase tracking-wide">Nachricht gesendet</h3>
         <p className="mt-2 text-muted-foreground">
           Wir melden uns innerhalb von 24 Stunden bei Ihnen.
         </p>
@@ -58,7 +67,7 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="name" className="text-sm font-semibold">
+          <Label htmlFor="name" className="text-xs font-bold uppercase tracking-[0.15em]">
             Name *
           </Label>
           <Input
@@ -67,11 +76,10 @@ export function ContactForm() {
             required
             placeholder="Max Mustermann"
             disabled={state === "sending"}
-            className="rounded-xl"
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-sm font-semibold">
+          <Label htmlFor="email" className="text-xs font-bold uppercase tracking-[0.15em]">
             E-Mail *
           </Label>
           <Input
@@ -81,14 +89,13 @@ export function ContactForm() {
             required
             placeholder="max@beispiel.de"
             disabled={state === "sending"}
-            className="rounded-xl"
           />
         </div>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="phone" className="text-sm font-semibold">
+          <Label htmlFor="phone" className="text-xs font-bold uppercase tracking-[0.15em]">
             Telefon
           </Label>
           <Input
@@ -97,15 +104,14 @@ export function ContactForm() {
             type="tel"
             placeholder="+49 ..."
             disabled={state === "sending"}
-            className="rounded-xl"
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="subject" className="text-sm font-semibold">
+          <Label htmlFor="subject" className="text-xs font-bold uppercase tracking-[0.15em]">
             Betreff *
           </Label>
           <Select name="subject" required disabled={state === "sending"}>
-            <SelectTrigger id="subject" className="rounded-xl">
+            <SelectTrigger id="subject">
               <SelectValue placeholder="Bitte wählen" />
             </SelectTrigger>
             <SelectContent>
@@ -120,7 +126,7 @@ export function ContactForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="message" className="text-sm font-semibold">
+        <Label htmlFor="message" className="text-xs font-bold uppercase tracking-[0.15em]">
           Nachricht *
         </Label>
         <Textarea
@@ -130,12 +136,13 @@ export function ContactForm() {
           placeholder="Wie können wir Ihnen helfen?"
           rows={5}
           disabled={state === "sending"}
-          className="rounded-xl"
         />
       </div>
 
       {state === "error" && (
-        <div className="rounded-xl border border-destructive/20 bg-destructive/5 p-3">
+        <div className="relative border border-destructive/30 bg-destructive/5 p-3">
+          <div className="absolute top-0 left-0 h-1.5 w-1.5 border-t border-l border-destructive" />
+          <div className="absolute bottom-0 right-0 h-1.5 w-1.5 border-b border-r border-destructive" />
           <p className="text-sm text-destructive">
             Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie
             uns an.
@@ -146,7 +153,7 @@ export function ContactForm() {
       <Button
         type="submit"
         size="lg"
-        className="group w-full cursor-pointer shadow-lg sm:w-auto"
+        className="group w-full cursor-pointer shadow-[0_0_15px_rgba(3,249,249,0.2)] sm:w-auto"
         disabled={state === "sending"}
       >
         {state === "sending" ? (

@@ -23,6 +23,10 @@ import {
   COMPANY,
 } from "@/lib/constants";
 
+import { SchweinDivider } from "@/components/ui/schweinchen-divider";
+import { TestimonialGrid } from "@/components/sections/TestimonialGrid";
+import { ProblemSection } from "@/components/sections/ProblemSection";
+
 export const metadata: Metadata = {
   title: PAGE_META.handwerk.title,
   description: PAGE_META.handwerk.description,
@@ -44,6 +48,42 @@ const PAIN_POINTS = [
     problem: "Bürokram am Wochenende.",
     description:
       "Angebote schreiben, Rechnungen prüfen... statt Erholung nur Papierkram.",
+  },
+];
+
+const FLATRATE_PROBLEMS = [
+  {
+    problem: "Ständig neue IT-Probleme",
+    description: "Excel-Tabelle kaputt, E-Mail funktioniert nicht, Website zeigt Fehler – jedes Mal ein neuer Dienstleister?",
+  },
+  {
+    problem: "Unkalkulierbare Kosten",
+    description: "Jede Anfrage wird einzeln abgerechnet. Am Ende des Monats wissen Sie nie, was auf Sie zukommt.",
+  },
+  {
+    problem: "Lange Wartezeiten",
+    description: "IT-Probleme kosten Zeit. Aber der Dienstleister hat erst in 2 Wochen einen Termin frei.",
+  },
+];
+
+const HANDWERK_TESTIMONIALS = [
+  {
+    name: "Markus W.",
+    role: "Dachdecker, Marienberg",
+    text: "Seit der neuen Website bekomme ich regelmäßig Anfragen aus der ganzen Region.",
+    result: "5x mehr Anfragen in 8 Wochen",
+  },
+  {
+    name: "Andreas B.",
+    role: "Sanitärbetrieb, Stollberg",
+    text: "Die KI-Telefonassistenz ist genial. Ich kann in Ruhe arbeiten.",
+    result: "Keine verpassten Anrufe mehr",
+  },
+  {
+    name: "Thomas K.",
+    role: "Elektrikermeister, Aue",
+    text: "Professionell, schnell, unkompliziert. Genau so muss das sein.",
+    result: "Website live in 10 Tagen",
   },
 ];
 
@@ -70,25 +110,11 @@ export default function HandwerkPage() {
           align="left"
           light
         />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {PAIN_POINTS.map((item, i) => (
-            <div
-              key={item.problem}
-              className="group relative overflow-hidden border border-red-500/30 bg-red-950/20 p-8 hover:bg-red-950/30 transition-colors"
-            >
-              {/* Caution Stripes */}
-              <div className="absolute top-0 right-0 w-16 h-16 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#ef4444_10px,#ef4444_20px)] opacity-10" />
-
-              <p className="font-bold text-red-500 uppercase tracking-wider mb-4 border-l-2 border-red-500 pl-3">
-                Fehlercode #{i + 1}
-              </p>
-              <h3 className="text-xl font-bold text-white mb-3">{item.problem}</h3>
-              <p className="text-white/60 leading-relaxed text-sm">
-                {item.description}
-              </p>
-            </div>
-          ))}
-        </div>
+        <ProblemSection
+          title="Risiko: Stillstand"
+          problems={PAIN_POINTS}
+          variant="red"
+        />
       </Section>
 
       {/* 03: MODULES */}
@@ -110,7 +136,36 @@ export default function HandwerkPage() {
         />
       </Section>
 
-      {/* 04: PRICING */}
+      {/* 04: FLATRATE PROBLEM */}
+      <Section bg="transparent">
+        <SectionHeading
+          number="04"
+          overline="Flatrate"
+          title="Der Digitale Hausmeister"
+          subtitle="10 Stunden Tech-Support für 850 € – 12 Monate gültig. Ihr IT-Partner auf Abruf."
+          align="left"
+          light
+        />
+        <ProblemSection
+          title="Der Digitale Hausmeister"
+          problems={FLATRATE_PROBLEMS}
+          variant="cyan"
+        />
+      </Section>
+
+      {/* 06: TESTIMONIALS */}
+      <Section bg="transparent">
+        <SectionHeading
+          number="06"
+          overline="Baustellentalk"
+          title="Handwerker vertrauen uns"
+          align="left"
+          light
+        />
+        <TestimonialGrid testimonials={HANDWERK_TESTIMONIALS} />
+      </Section>
+
+      {/* 07: PRICING */}
       <Section id="pakete" bg="transparent">
         <SectionHeading
           number="04"
@@ -135,51 +190,19 @@ export default function HandwerkPage() {
         <ProcessSteps steps={PROCESS_STEPS} />
       </Section>
 
-      {/* 06: SOCIAL PROOF */}
+      {/* 08: FAQ */}
       <Section bg="transparent">
         <SectionHeading
-          number="06"
-          overline="Baustellentalk"
-          title="Handwerker vertrauen uns"
-          align="left"
-          light
-        />
-        <div className="grid gap-6 sm:grid-cols-2">
-          {[
-            {
-              quote: "Seit der neuen Website bekomme ich regelmäßig Anfragen aus der ganzen Region.",
-              name: "Markus W.",
-              role: "Dachdecker, Marienberg",
-            },
-            {
-              quote: "Die KI-Telefonassistenz ist genial. Ich kann in Ruhe arbeiten.",
-              name: "Andreas B.",
-              role: "Sanitärbetrieb, Stollberg",
-            },
-          ].map((t) => (
-            <div key={t.name} className="border border-brand-cyan/20 bg-brand-navy/50 p-6 flex gap-4 items-start">
-              <div className="text-6xl font-black text-brand-cyan/20 leading-[0] mt-4">“</div>
-              <div>
-                <p className="text-lg text-white mb-4 leading-relaxed">{t.quote}</p>
-                <div className="text-brand-cyan font-bold">{t.name}</div>
-                <div className="text-xs uppercase text-white/50">{t.role}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* 07: FAQ */}
-      <Section bg="transparent" narrow>
-        <SectionHeading
-          number="07"
+          number="08"
           overline="Support"
           title="Häufige Fragen"
           align="left"
           light
         />
-        <FaqAccordion items={FAQ_ITEMS.slice(0, 5)} />
+        <FaqAccordion items={FAQ_ITEMS} />
       </Section>
+
+      <SchweinDivider />
 
       {/* CTA */}
       <CtaSection
