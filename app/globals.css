@@ -132,3 +132,24 @@ h6 {
       calc(100% - 10px) 100%,
       0 100%);
 }
+
+/* ==========================================================================
+   SCHWEINCHEN WAVE ANIMATION - Subtle, Tech-Style
+   ========================================================================== */
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0px) scaleY(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-2px) scaleY(1.02);
+    opacity: 0.95;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[wave_8s_ease-in-out_infinite\] {
+    animation: none !important;
+  }
+}

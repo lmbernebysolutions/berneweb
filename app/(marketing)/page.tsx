@@ -152,9 +152,12 @@ export default function Home() {
         />
         <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
           {/* Legacy System: Ohne Uns */}
-          <div className="relative border border-red-950/40 bg-red-950/5 p-8 backdrop-blur-sm" data-animate="fade-left">
+          <div className="relative border border-red-950/40 bg-red-950/5 p-8 backdrop-blur-sm overflow-hidden" data-animate="fade-left">
+            {/* Tech Corners - all 4 corners pattern */}
+            <TechCorners pattern="all" variant="red" size="lg" />
+
             {/* Corner Labels */}
-            <div className="absolute top-0 right-0 border-b border-l border-red-500/20 bg-red-950/20 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-red-400">
+            <div className="absolute top-0 right-0 border-b border-l border-red-500/20 bg-red-950/20 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-red-400 z-20">
               STATUS_CRITICAL
             </div>
 
@@ -184,9 +187,12 @@ export default function Home() {
           </div>
 
           {/* Optimized System: Mit Uns */}
-          <div className="relative border border-brand-cyan/40 bg-brand-cyan/5 p-8 backdrop-blur-sm shadow-[0_0_40px_rgba(3,249,249,0.05)]" data-animate="fade-right">
+          <div className="relative border border-brand-cyan/40 bg-brand-cyan/5 p-8 backdrop-blur-sm shadow-[0_0_40px_rgba(3,249,249,0.05)] overflow-hidden" data-animate="fade-right">
+            {/* Tech Corners - all 4 corners pattern */}
+            <TechCorners pattern="all" variant="cyan" size="lg" />
+
             {/* Corner Labels */}
-            <div className="absolute top-0 right-0 border-b border-l border-brand-cyan/20 bg-brand-cyan/20 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-brand-cyan">
+            <div className="absolute top-0 right-0 border-b border-l border-brand-cyan/20 bg-brand-cyan/20 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-brand-cyan z-20">
               SYSTEM_READY
             </div>
 
@@ -205,9 +211,6 @@ export default function Home() {
                 { label: "Außendarstellung", val: "Premium Design & Branding", gain: "High" },
               ].map((item) => (
                 <div key={item.label} className="group relative border-l-2 border-brand-cyan bg-brand-cyan/10 p-4 transition-colors hover:bg-brand-cyan/20">
-                  {/* Tech corners - 2→4 diagonal pattern */}
-                  <TechCorners pattern="diagonal" variant="cyan" size="sm" />
-
                   <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-brand-cyan">
                     <span>{item.label}</span>
                     <span className="flex items-center gap-1">
