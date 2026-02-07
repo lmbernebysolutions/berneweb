@@ -1,3 +1,5 @@
+"use client";
+
 import { IconStarFilled, IconCheck } from "@tabler/icons-react";
 import { TechCorners } from "@/components/ui/tech-corners";
 

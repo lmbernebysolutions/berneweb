@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { BackdropNumber } from "@/components/ui/backdrop-number";
 import { TechCorners } from "@/components/ui/tech-corners";

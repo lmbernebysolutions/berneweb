@@ -1,3 +1,5 @@
+"use client";
+
 interface TeamMember {
   name: string;
   role: string;

@@ -1,3 +1,5 @@
+"use client";
+
 interface TrustBarItem {
   value: string;
   label: string;

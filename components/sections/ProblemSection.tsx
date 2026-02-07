@@ -1,3 +1,5 @@
+"use client";
+
 import { TechCorners } from "@/components/ui/tech-corners";
 
 interface ProblemItem {
