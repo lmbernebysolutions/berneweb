@@ -136,32 +136,35 @@ h6 {
 /* ==========================================================================
    SCHWEINCHEN WAVE ANIMATION - Subtle, Tech-Style
    ========================================================================== */
-@keyframes wave {
+@keyframes wave-pulse {
   0%, 100% {
-    transform: translateY(0px) scaleY(1);
-    opacity: 1;
+    opacity: 0.8;
   }
   50% {
-    transform: translateY(-2px) scaleY(1.02);
-    opacity: 0.95;
+    opacity: 1;
+  }
+}
+
+@keyframes wave-flow {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 
 .wave-animate {
-  animation: wave 8s ease-in-out infinite;
-  transform-origin: center;
-}
-
-.wave-animate-delayed {
-  animation: wave 8s ease-in-out infinite;
-  animation-delay: 0.5s;
-  transform-origin: center;
+  animation: wave-pulse 6s ease-in-out infinite, wave-flow 12s ease-in-out infinite;
+  will-change: opacity, transform;
 }
 
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .wave-animate,
-  .wave-animate-delayed {
+  .wave-animate {
     animation: none !important;
   }
 }
