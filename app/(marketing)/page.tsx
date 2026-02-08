@@ -28,10 +28,14 @@ import {
   PROCESS_STEPS,
   FAQ_ITEMS,
   COMPANY,
+  TECH_STACK,
+  REFERENZEN_HOME,
+  HOME_MINI_FAQ,
 } from "@/lib/constants";
 import { SchweinDivider } from "@/components/ui/schweinchen-divider";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { TestimonialGrid } from "@/components/sections/TestimonialGrid";
+import { ReferenzenStrip } from "@/components/sections/ReferenzenStrip";
 
 export const metadata: Metadata = {
   title: "Berneby Solutions – Ihr Digital-Partner im Erzgebirge",
@@ -260,11 +264,64 @@ export default function Home() {
         />
         <TestimonialGrid
           testimonials={[
-            { name: "Thomas M.", role: "Elektrikermeister", text: "Endlich werde ich gefunden. Die KI am Telefon ist der Wahnsinn.", result: "3x mehr Anfragen in 4 Wochen" },
-            { name: "Stefan K.", role: "Heizungsbau", text: "Kein generisches Bla-Bla. Berneby liefert ab.", result: "Website live in 2 Wochen" },
-            { name: "Sandra L.", role: "Friseursalon", text: "Sieht top aus und bringt neue Kunden. Danke!", result: "40% mehr Online-Buchungen" },
+            { name: "Thomas M.", role: "Elektrikermeister", text: "Endlich werde ich gefunden. Die KI am Telefon ist der Wahnsinn. Wirklich top!", result: "3x mehr Anfragen in 4 Wochen" },
+            { name: "Stefan K.", role: "Heizungsbau", text: "Kein generisches Bla-Bla. Berneby liefert ab. Genau das, was wir brauchten. Danke!", result: "Website live in 2 Wochen" },
+            { name: "Sandra L.", role: "Friseursalon", text: "Sieht top aus und bringt neue Kunden. Genau das, was ich mir vorgestellt habe. Danke!", result: "40% mehr Online-Buchungen" },
           ]}
         />
+      </Section>
+
+      {/* 06: Partner / Technologien */}
+      <Section bg="transparent">
+        <SectionHeading
+          number="06"
+          overline="Womit wir arbeiten"
+          title="Technologien & Werkzeuge"
+          subtitle="Moderne Stacks, klare Ergebnisse."
+          align="left"
+          light
+        />
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
+          {TECH_STACK.map((item, i) => (
+            <div
+              key={item}
+              data-animate="fade-up"
+              data-animate-delay={String(i * 60)}
+              className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20"
+            >
+              <TechCorners pattern="diagonal" variant="cyan" size="md" />
+              <p className="relative z-10 text-center text-sm font-bold uppercase tracking-wider text-white">
+                {item}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* 07: Referenzen – Für wen wir arbeiten */}
+      <Section bg="transparent">
+        <SectionHeading
+          number="07"
+          overline="Vertrauen"
+          title="Handwerker & Betriebe,"
+          titleLine2="die uns vertrauen"
+          subtitle="Von Handwerk über Einzelhandel bis Dienstleistung – aus dem Erzgebirge."
+          align="left"
+          light
+        />
+        <ReferenzenStrip items={REFERENZEN_HOME} />
+      </Section>
+
+      {/* 08: Mini-FAQ */}
+      <Section bg="transparent">
+        <SectionHeading
+          number="08"
+          overline="FAQ"
+          title="Kurz gefragt"
+          align="left"
+          light
+        />
+        <FaqAccordion items={HOME_MINI_FAQ} />
       </Section>
 
       {/* Organic Divider - Schweinchen DNA */}

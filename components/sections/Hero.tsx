@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { IconArrowRight } from "@tabler/icons-react";
 import { BackdropNumber } from "@/components/ui/backdrop-number";
+import { HeroMascot } from "@/components/sections/HeroMascot";
 
 interface HeroCta {
   label: string;
@@ -43,6 +44,7 @@ export function Hero({
 
   return (
     <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden pt-32 pb-20">
+
 
       {/* 1. THE MASSIVE SHADOW NUMBER */}
       <BackdropNumber number="01" className="top-[10%] left-[-5%] opacity-100" />
@@ -90,17 +92,9 @@ export function Hero({
               )}
             </div>
 
-            {/* Right Block: Technical Decoration */}
-            <div className="lg:col-span-4 hidden lg:flex flex-col justify-end items-end opacity-50">
-              <div className="text-right font-mono text-xs text-cyan space-y-1">
-                <p>SYS.STATUS: ONLINE</p>
-                <p>LOC: ERZGEBIRGE</p>
-                <p>V.2024.0.1</p>
-              </div>
-              <div className="mt-4 w-24 h-24 border border-cyan/30 relative animate-spin-slow">
-                <div className="absolute top-0 left-0 w-2 h-2 bg-cyan"></div>
-                <div className="absolute bottom-0 right-0 w-2 h-2 bg-cyan"></div>
-              </div>
+            {/* Right Block: Schweinchen + Hover-Tooltip */}
+            <div className="lg:col-span-4 hidden lg:flex flex-col justify-end items-end">
+              <HeroMascot />
             </div>
           </div>
         </div>

@@ -7,16 +7,20 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
     IconDeviceDesktop,
+    IconDeviceLaptop,
     IconShoppingCart,
     IconBrush,
     IconTool,
-    IconPhone,
-    IconCheck,
+    IconChartBar,
+    IconShield,
     IconArrowRight,
 } from "@tabler/icons-react";
-import { SERVICES, COMPANY, FAQ_ITEMS } from "@/lib/constants";
+import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK, TECH_TESTIMONIALS, TECH_REFERENCES } from "@/lib/constants";
 import { SchweinDivider } from "@/components/ui/schweinchen-divider";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
+import { MissionSection } from "@/components/sections/MissionSection";
+import { ProcessSteps } from "@/components/sections/ProcessSteps";
+import { TestimonialGrid } from "@/components/sections/TestimonialGrid";
 import { TechCorners } from "@/components/ui/tech-corners";
 
 export const metadata: Metadata = {
@@ -25,13 +29,13 @@ export const metadata: Metadata = {
     alternates: { canonical: "/tech" },
 };
 
-const TECH_ICONS: Record<string, any> = {
+const TECH_ICONS: Record<string, (typeof IconDeviceDesktop)> = {
     webseiten: IconDeviceDesktop,
     ecommerce: IconShoppingCart,
     design: IconBrush,
-    office: IconTool,
-    marketing: IconDeviceDesktop,
-    wartung: IconCheck,
+    office: IconDeviceLaptop,
+    marketing: IconChartBar,
+    wartung: IconShield,
 };
 
 export default function TechPage() {
@@ -42,24 +46,26 @@ export default function TechPage() {
             <Hero
                 headline="IHRE EXTERNE IT-ABTEILUNG."
                 accentText="IT-ABTEILUNG."
-                subline="Flexibel. Auf Abruf. Ohne Festanstellung. Wir lösen Ihre digitalen Probleme – vom veralteten Shop bis zum Excel-Chaos."
+                subline="Flexibel. Auf Abruf. Ohne Festanstellung. Von der neuen Webseite über Shops bis IT-Support – wir bauen und betreuen."
                 ctas={[
-                    { label: "Problem melden", href: "/kontakt", variant: "default" },
+                    { label: "Webseite anfragen", href: "/kontakt", variant: "default" },
                     { label: "Alle Leistungen", href: "#leistungen", variant: "outline" },
                 ]}
                 variant="cyan"
             />
 
-            {/* 02: Intro Promise */}
+            {/* 02: Mission – Überschrift + Untertitel unverändert, Inhalt in 3 Varianten (a|b|c) */}
             <Section bg="transparent">
                 <SectionHeading
                     number="02"
                     overline="Mission"
-                    title="Kein Bullshit. Nur Lösungen."
+                    title="Kein Bullshit."
+                    titleLine2="Nur Lösungen."
                     subtitle="Große Systemhäuser sind zu teuer, der Neffe vom Chef hat keine Zeit. Wir sind Ihr digitaler Hausmeister."
                     align="left"
                     light
                 />
+                <MissionSection variant="a" />
             </Section>
 
             {/* 03: Services Grid */}
@@ -171,11 +177,95 @@ export default function TechPage() {
                 </div>
             </Section>
 
-
-            {/* 05: FAQ */}
+            {/* 05: Testimonials */}
             <Section bg="transparent">
                 <SectionHeading
                     number="05"
+                    overline="Stimmen"
+                    title="Das sagen unsere Kunden"
+                    align="left"
+                    light
+                />
+                <TestimonialGrid testimonials={[...TECH_TESTIMONIALS]} />
+            </Section>
+
+            {/* 06: Prozess */}
+            <Section bg="transparent">
+                <SectionHeading
+                    number="06"
+                    overline="Ablauf"
+                    title="So arbeiten wir"
+                    subtitle="Von der Anfrage bis zur Umsetzung – transparent und auf Augenhöhe."
+                    align="left"
+                    light
+                />
+                <ProcessSteps steps={PROCESS_STEPS} />
+            </Section>
+
+            {/* 07: Technologien */}
+            <Section bg="transparent">
+                <SectionHeading
+                    number="07"
+                    overline="Womit wir bauen"
+                    title="Tech-Stack"
+                    align="left"
+                    light
+                />
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
+                    {TECH_STACK.map((item, i) => (
+                        <div
+                            key={item}
+                            data-animate="fade-up"
+                            data-animate-delay={String(i * 60)}
+                            className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20"
+                        >
+                            <TechCorners pattern="diagonal" variant="cyan" size="md" />
+                            <p className="relative z-10 text-center text-sm font-bold uppercase tracking-wider text-white">
+                                {item}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </Section>
+
+            {/* 08: Referenzen / Case Studies */}
+            <Section bg="transparent">
+                <SectionHeading
+                    number="08"
+                    overline="Referenzen"
+                    title="Projekte mit Ergebnis"
+                    align="left"
+                    light
+                />
+                <div className="grid gap-6 md:grid-cols-3">
+                    {TECH_REFERENCES.map((ref, i) => (
+                        <div
+                            key={ref.title}
+                            data-animate="fade-up"
+                            data-animate-delay={String(i * 80)}
+                            className="group relative flex flex-col overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20"
+                        >
+                            <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+                            <h3 className="relative z-10 text-lg font-bold uppercase tracking-wider text-white">
+                                {ref.title}
+                            </h3>
+                            <p className="relative z-10 mt-2 text-sm leading-relaxed text-white/70">
+                                {ref.description}
+                            </p>
+                            <div className="relative z-10 mt-4 inline-flex items-center gap-2 border border-brand-cyan/20 bg-brand-cyan/5 px-3 py-1.5">
+                                <span className="text-xs font-bold uppercase tracking-wider text-brand-cyan">
+                                    {ref.result}
+                                </span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </Section>
+
+            {/* 09: FAQ */}
+            <Section bg="transparent">
+                <SectionHeading
+                    number="09"
                     overline="Support"
                     title="Häufige Fragen"
                     align="left"
@@ -188,7 +278,7 @@ export default function TechPage() {
 
             <CtaSection
                 headline="Welches Problem dürfen wir lösen?"
-                subline="Egal ob Excel-Makro oder kompletter Shop-Umzug. Wir machen das."
+                subline="Egal ob neue Webseite, Shop oder IT-Support. Wir machen das."
                 ctas={[
                     { label: "Anfrage senden", href: "/kontakt" },
                     { label: `Anrufen: ${COMPANY.phoneDisplay}`, href: `tel:${COMPANY.phone}` },

@@ -1,38 +1,21 @@
-import Image from "next/image";
-import Link from "next/link";
+/**
+ * DEPRECATED: Use TextLogo instead
+ *
+ * Logo.tsx was originally designed with the Schweinchen mascot embedded,
+ * but has been replaced by TextLogo.tsx which shows only the text brand.
+ *
+ * The Schweinchen mascot is now strategically used in:
+ * - Testimonials (as avatar replacements)
+ * - Loading states
+ * - Error pages (404)
+ * - Future service cards and case studies
+ *
+ * With CSS filter visibility solution:
+ * CSS: brightness-110 filter drop-shadow-[0_0_8px_rgba(3,249,249,0.4)]
+ * This solves the Navy-on-Navy contrast problem without white containers.
+ *
+ * Import TextLogo instead:
+ * import { TextLogo } from "@/components/brand/TextLogo";
+ */
 
-interface LogoProps {
-  variant?: "light" | "dark";
-  className?: string;
-}
-
-export function Logo({ variant = "dark", className }: LogoProps) {
-  return (
-    <Link href="/" className={`flex items-center gap-2.5 ${className ?? ""}`}>
-      <Image
-        src="/Schweinchen.svg"
-        alt="Berneby Solutions Logo"
-        width={40}
-        height={32}
-        className={variant === "light" ? "brightness-0 invert" : ""}
-        priority
-      />
-      <span className="flex items-baseline gap-1">
-        <span
-          className={`text-lg font-bold ${
-            variant === "light" ? "text-white" : "text-foreground"
-          }`}
-        >
-          Berneby
-        </span>
-        <span
-          className={`text-lg font-normal ${
-            variant === "light" ? "text-white/80" : "text-foreground/70"
-          }`}
-        >
-          Solutions
-        </span>
-      </span>
-    </Link>
-  );
-}
+export {};

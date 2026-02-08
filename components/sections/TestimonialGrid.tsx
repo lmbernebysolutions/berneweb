@@ -36,7 +36,7 @@ export function TestimonialGrid({
                     <div className="flex gap-1 text-brand-cyan mb-4">
                         {[1, 2, 3, 4, 5].map(s => <IconStarFilled key={s} className="size-4" />)}
                     </div>
-                    <p className="text-lg text-white mb-4">&ldquo;{t.text}&rdquo;</p>
+                    <p className="text-lg text-white mb-4 min-h-[5.25rem]">&ldquo;{t.text}&rdquo;</p>
 
                     {/* Result badge */}
                     <div className="mb-6 inline-flex items-center gap-2 border border-brand-cyan/20 bg-brand-cyan/5 px-3 py-1.5">

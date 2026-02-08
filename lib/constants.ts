@@ -27,6 +27,7 @@ export const COMPANY = {
 
 export const NAV_ITEMS = [
   { label: "Home", href: "/" },
+  { label: "Über uns", href: "/ueber-uns" },
   { label: "Handwerk", href: "/handwerk" },
   { label: "Tech Solutions", href: "/tech" },
   { label: "Kontakt", href: "/kontakt" },
@@ -34,11 +35,11 @@ export const NAV_ITEMS = [
 
 export const FOOTER_NAV = {
   leistungen: [
-    { label: "Webseiten", href: "/leistungen" },
-    { label: "E-Commerce", href: "/leistungen" },
-    { label: "Design & Branding", href: "/leistungen" },
+    { label: "Webseiten", href: "/tech#leistungen" },
+    { label: "E-Commerce", href: "/tech#leistungen" },
+    { label: "Design & Branding", href: "/tech#leistungen" },
     { label: "Handwerks-Pakete", href: "/handwerk" },
-    { label: "Digitaler Hausmeister", href: "/leistungen" },
+    { label: "Digitaler Hausmeister", href: "/tech#leistungen" },
   ],
   unternehmen: [
     { label: "Über uns", href: "/ueber-uns" },
@@ -60,7 +61,7 @@ export const HOME_HERO = {
     "Berneby Solutions macht lokale Betriebe im Erzgebirge online sichtbar und automatisiert das, was Zeit frisst.",
   ctas: [
     { label: "Erstgespräch vereinbaren", href: "/kontakt", variant: "default" as const },
-    { label: "Unsere Leistungen", href: "/leistungen", variant: "outline" as const },
+    { label: "Unsere Leistungen", href: "/tech", variant: "outline" as const },
   ],
 } as const;
 
@@ -73,6 +74,130 @@ export const TRUST_BAR = [
   { value: "24/7", label: "KI-Telefon" },
   { value: "50+", label: "Landingpages" },
   { value: "2", label: "Macher" },
+] as const;
+
+// =============================================================================
+// TECH STACK / PARTNER (Home, Tech)
+// =============================================================================
+
+export const TECH_STACK = [
+  "Next.js",
+  "React",
+  "Shopware",
+  "Microsoft 365",
+  "SEO & GEO",
+  "KI-Integration",
+] as const;
+
+// =============================================================================
+// REFERENZEN – BRANCHEN / FÜR WEN WIR ARBEITEN (Home, Handwerk)
+// =============================================================================
+
+/** Handwerk-Seite: 4 Branchen, passen sauber in den Strip */
+export const REFERENZEN_BRANCHEN = [
+  "Elektrik",
+  "Dachdecker",
+  "Sanitär",
+  "Heizungsbau",
+] as const;
+
+/** Home: 4 Branchen, passen sauber in den Strip */
+export const REFERENZEN_HOME = [
+  "Handwerk",
+  "Einzelhandel",
+  "Gastronomie",
+  "Dienstleistung",
+] as const;
+
+// =============================================================================
+// HOME – MINI-FAQ
+// =============================================================================
+
+export const HOME_MINI_FAQ = [
+  {
+    question: "Was kostet das Erstgespräch?",
+    answer:
+      "Nichts. Das Erstgespräch ist kostenlos und unverbindlich. Wir besprechen Ihr Anliegen und geben eine erste Einschätzung.",
+  },
+  {
+    question: "Wie schnell kann es losgehen?",
+    answer:
+      "Nach dem Erstgespräch erhalten Sie ein transparentes Angebot. Je nach Projekt starten wir innerhalb von 1–2 Wochen.",
+  },
+  {
+    question: "Arbeitet ihr nur im Erzgebirge?",
+    answer:
+      "Unser Fokus liegt auf dem Erzgebirge – wir kommen vor Ort. Für reine Online-Projekte arbeiten wir auch überregional.",
+  },
+] as const;
+
+// =============================================================================
+// TECH SEITE – TESTIMONIALS & REFERENZEN
+// =============================================================================
+
+export const TECH_TESTIMONIALS = [
+  {
+    name: "Stefan K.",
+    role: "Heizungsbau",
+    text: "Schnell, unkompliziert, faire Preise. Genau das, was wir als kleiner Betrieb brauchen.",
+    result: "Website + Shop in 3 Wochen",
+  },
+  {
+    name: "Sandra L.",
+    role: "Friseursalon",
+    text: "Die 10er-Karte ist Gold wert. Immer jemand erreichbar, der sich auskennt.",
+    result: "Keine IT-Stress mehr",
+  },
+  {
+    name: "Thomas M.",
+    role: "Elektrikermeister",
+    text: "Endlich eine IT, die versteht, was Handwerker brauchen. Kein Bullshit.",
+    result: "3x mehr Anfragen",
+  },
+] as const;
+
+export const TECH_REFERENCES = [
+  {
+    title: "Website Relaunch",
+    description: "Mehrseitige Website mit SEO und lokalen Landingpages.",
+    result: "3x mehr Anfragen in 4 Wochen",
+  },
+  {
+    title: "Online-Shop",
+    description: "Shop-Einrichtung und Betreuung für Handwerksbedarf.",
+    result: "Live in 3 Wochen",
+  },
+  {
+    title: "Digitaler Hausmeister",
+    description: "10er-Karte für laufenden IT-Support und Office-Betreuung.",
+    result: "24/7 Ruhe bei IT-Fragen",
+  },
+] as const;
+
+// =============================================================================
+// HANDWERK SEITE – KENNZAHLEN & GARANTIEN
+// =============================================================================
+
+export const HANDWERK_STATS = [
+  { value: "4", label: "Wochen bis Go-Live" },
+  { value: "24/7", label: "KI-Telefon" },
+  { value: "50+", label: "Landingpages" },
+  { value: "100%", label: "Lokal" },
+] as const;
+
+export const HANDWERK_GARANTIEN = [
+  {
+    title: "Festpreis bis Abnahme",
+    description: "Keine versteckten Kosten. Was im Angebot steht, zahlen Sie.",
+  },
+  {
+    title: "12 Monate Support inklusive",
+    description: "Nach dem Launch sind wir für Sie da – im Paket bereits enthalten.",
+  },
+  {
+    title: "Kein Kleingedrucktes",
+    description: "Transparente Verträge. Sie wissen immer, wofür Sie zahlen.",
+  },
 ] as const;
 
 // =============================================================================
@@ -127,7 +252,7 @@ export const TWO_PILLARS = {
       "KI-Integration",
       "Digitaler Hausmeister",
     ],
-    cta: { label: "Alle Leistungen", href: "/leistungen" },
+    cta: { label: "Alle Leistungen", href: "/tech" },
   },
 } as const;
 
@@ -140,7 +265,7 @@ export const PROCESS_STEPS = [
     step: 1,
     title: "Erstgespräch",
     description:
-      "Wir lernen Ihr Geschäft kennen – kostenlos, unverbindlich, 30 Minuten.",
+      "Wir lernen Ihr Geschäft kennen – kostenlos, unverbindlich, 30 Minuten. Bei Ihnen.",
   },
   {
     step: 2,
@@ -152,19 +277,19 @@ export const PROCESS_STEPS = [
     step: 3,
     title: "Umsetzung",
     description:
-      "Wir bauen. Sie bekommen regelmäßig Zwischenstände und können Feedback geben.",
+      "Wir bauen. Sie bekommen Zwischenstände und geben Feedback.",
   },
   {
     step: 4,
     title: "Launch",
     description:
-      "Ihre Lösung geht live. Wir prüfen alles und schulen Sie ein.",
+      "Ihre Lösung geht live. Wir prüfen alles und schulen Sie ein. Inkl. Support.",
   },
   {
     step: 5,
     title: "Betreuung",
     description:
-      "Wir bleiben dran. Updates, Support, Optimierung – so lange Sie möchten.",
+      "Wir bleiben dran. Updates, Support, Optimierung – so lange Sie möchten.    ",
   },
 ] as const;
 
@@ -469,6 +594,36 @@ export const VALUES = [
 ] as const;
 
 // =============================================================================
+// ÜBER UNS – KENNZAHLEN & STANDORT
+// =============================================================================
+
+export const UEBER_UNS_STATS = [
+  { value: "2026", label: "Gegründet" },
+  { value: "2", label: "Macher" },
+  { value: "100%", label: "Erzgebirge" },
+  { value: "24/7", label: "KI-Telefon" },
+] as const;
+
+export const EINZUGSGEBIET_ORTE = [
+  "Aue-Bad Schlema",
+  "Annaberg-Buchholz",
+  "Stollberg",
+  "Schwarzenberg",
+  "Marienberg",
+  "Erzgebirgskreis",
+] as const;
+
+// =============================================================================
+// KONTAKT – ANFAHRT
+// =============================================================================
+
+export const ANFAHRT = {
+  auto: "Kostenlose Parkmöglichkeiten in der Nähe. Wir arbeiten überwiegend remote und kommen zu Ihnen – kurze Wege im gesamten Erzgebirgskreis.",
+  oepnv: "Aue-Bad Schlema ist mit Bus und Bahn erreichbar. Für ein persönliches Treffen vereinbaren wir einen Termin – wir kommen auch zu Ihnen.",
+  hinweis: "Wir arbeiten digital und persönlich. Kurze Wege im gesamten Erzgebirgskreis – wir kommen zu Ihnen.",
+} as const;
+
+// =============================================================================
 // KONTAKT – BETREFF-OPTIONEN
 // =============================================================================
 
@@ -495,11 +650,6 @@ export const PAGE_META = {
     title: "Webseiten & Digitalisierung für Handwerker",
     description:
       "Mehr Aufträge, weniger Aufwand: Handwerks-Pakete mit Website, KI-Telefonassistent und Google-Sichtbarkeit. Ab 950 \u20AC.",
-  },
-  leistungen: {
-    title: "Leistungen – Webseiten, E-Commerce, KI & mehr",
-    description:
-      "Webseiten, Online-Shops, Design, Office-Support, Marketing und Wartung. Alle digitalen Leistungen von Berneby Solutions im Überblick.",
   },
   ueberUns: {
     title: "Über uns – Zwei Macher, ein Ziel",

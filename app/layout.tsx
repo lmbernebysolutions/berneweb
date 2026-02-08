@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
+import { Noto_Sans, JetBrains_Mono } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
@@ -12,7 +12,11 @@ const notoSans = Noto_Sans({
   display: "swap",
 });
 
-
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -39,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${notoSans.variable}`}>
+    <html lang="de" className={`${notoSans.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans antialiased">
         <a
           href="#main-content"

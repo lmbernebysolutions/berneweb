@@ -48,8 +48,10 @@ export function FaqAccordion({ items, number }: FaqAccordionProps) {
 
 
 
-            <AccordionTrigger className="cursor-pointer text-left text-base font-semibold hover:no-underline [&[data-state=open]]:text-brand-cyan">
-              {item.question}
+            <AccordionTrigger className="cursor-pointer flex items-center gap-4 py-5 text-base font-semibold hover:no-underline [&[data-state=open]]:text-brand-cyan">
+              <span className="flex-1 flex justify-center text-center min-w-0">
+                {item.question}
+              </span>
             </AccordionTrigger>
             <AccordionContent className="border-t border-white/10 pt-4 text-[0.9375rem] leading-relaxed text-muted-foreground">
               {item.answer}

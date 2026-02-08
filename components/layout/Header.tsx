@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IconMenu2, IconArrowRight } from "@tabler/icons-react";
-import { Logo } from "@/components/brand/Logo";
+import { TextLogo } from "@/components/brand/TextLogo";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -34,7 +34,7 @@ export function Header() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-cyan/30 to-transparent" />
 
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:h-[4.5rem] md:px-6">
-        <Logo variant={scrolled ? "dark" : "dark"} />
+        <TextLogo variant="dark" />
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-0.5 md:flex" aria-label="Hauptnavigation">

@@ -6,6 +6,8 @@ import { TechCorners } from "@/components/ui/tech-corners";
 
 interface SectionHeadingProps {
   title: string;
+  /** Optional second line (renders after <br />). Use for explicit line break, e.g. "Nur Lösungen." */
+  titleLine2?: string;
   subtitle?: string;
   align?: "left" | "center";
   as?: "h1" | "h2" | "h3";
@@ -18,6 +20,7 @@ interface SectionHeadingProps {
 
 export function SectionHeading({
   title,
+  titleLine2,
   subtitle,
   align = "left",
   as: Tag = "h2",
@@ -44,8 +47,8 @@ export function SectionHeading({
         />
       )}
 
-      {/* Content Container (z-index check) */}
-      <div className="relative z-10">
+      {/* Content Container (z-index check) – w-fit so Tech Corners sit at title end */}
+      <div className={cn("relative z-10 w-fit", align === "center" && "mx-auto")}>
         {overline && (
           <div
             className={cn(
@@ -57,15 +60,21 @@ export function SectionHeading({
             {overline}
           </div>
         )}
-        <div className={cn("relative inline-block", align === "center" && "mx-auto")}>
+        <div className={cn("relative w-fit inline-block", align === "center" && "mx-auto")}>
           <TechCorners pattern="diagonal" variant="cyan" size="lg" />
           <Tag
             className={cn(
-              "text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight px-6 py-2",
+              "block text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight px-6 py-2 w-fit",
               light ? "text-brand-navy-foreground" : "text-foreground"
             )}
           >
             {title}
+            {titleLine2 != null && titleLine2 !== "" && (
+              <>
+                <br />
+                {titleLine2}
+              </>
+            )}
           </Tag>
         </div>
         {subtitle && (

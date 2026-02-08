@@ -11,8 +11,11 @@ import {
   IconClock,
   IconCheck,
 } from "@tabler/icons-react";
-import { COMPANY, PAGE_META, FAQ_ITEMS } from "@/lib/constants";
+import { COMPANY, PAGE_META, EINZUGSGEBIET_ORTE } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+import { SectionCard } from "@/components/ui/section-card";
 import { SchweinDivider } from "@/components/ui/schweinchen-divider";
+import { Button } from "@/components/ui/button";
 import { TechCorners } from "@/components/ui/tech-corners";
 import Link from "next/link";
 
@@ -37,13 +40,6 @@ const CONTACT_INFO = [
     href: `mailto:${COMPANY.email}`,
     description: "Antwort innerhalb von 24h",
   },
-  {
-    icon: IconMapPin,
-    label: "Standort",
-    value: `${COMPANY.location}, ${COMPANY.region}`,
-    href: undefined,
-    description: "Remote & vor Ort – wir kommen zu Ihnen",
-  },
 ];
 
 
@@ -62,21 +58,47 @@ export default function KontaktPage() {
 
 
 
-      {/* 3. Contact Info + Form Grid */}
-      <Section>
-        <div className="grid gap-8 lg:grid-cols-5">
-          {/* Left: Contact Info */}
-          <div className="space-y-4 lg:col-span-2">
+      {/* Contact Info + Form Grid – gleiche Höhe links/rechts */}
+      <Section bg="transparent">
+        <div className="grid gap-8 lg:grid-cols-5 lg:items-stretch">
+          {/* Left: Contact Info + Map + Städte */}
+          <div className="flex flex-col gap-4 lg:col-span-2 lg:min-h-0">
+            {/* Schnell-Kontakt: Jetzt anrufen */}
+            <SectionCard
+              variant="default"
+              data-animate="fade-left"
+              className="overflow-hidden p-0 shrink-0"
+            >
+              <TechCorners pattern="diagonal" variant="cyan" size="sm" />
+              <div className="relative z-10 p-5">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/60">
+                  Schnellkontakt
+                </p>
+                <Button
+                  asChild
+                  size="lg"
+                  className="mt-3 w-full bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90"
+                >
+                  <a href={`tel:${COMPANY.phone}`}>
+                    <IconPhone className="mr-2 size-5" stroke={2} />
+                    Jetzt anrufen
+                  </a>
+                </Button>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  {COMPANY.phoneDisplay} · Mo–Fr, 9–18 Uhr
+                </p>
+              </div>
+            </SectionCard>
+
             {CONTACT_INFO.map((item, i) => (
-              <div
+              <SectionCard
                 key={item.label}
+                variant="default"
                 data-animate="fade-left"
                 data-animate-delay={String(i * 80)}
-                className="group relative overflow-hidden border border-white/10 bg-white/[0.03] transition-all"
+                className="shrink-0 p-5"
               >
-                <TechCorners pattern="diagonal" variant="cyan" size="md" />
-
-                <div className="p-5">
+                <div>
                   <div className="flex items-center gap-3">
                     <div className="flex h-11 w-11 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10">
                       <item.icon className="size-5 text-brand-cyan" stroke={1.5} />
@@ -101,35 +123,16 @@ export default function KontaktPage() {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </SectionCard>
             ))}
 
-            {/* Opening hours card */}
-            <div
-              data-animate="fade-left"
-              data-animate-delay="240"
-              className="group relative border border-white/10 bg-white/[0.03] p-5 transition-all"
-            >
-              <TechCorners pattern="diagonal" variant="cyan" size="md" />
-
-              <div className="flex items-center gap-2.5 text-sm font-semibold">
-                <IconClock className="size-4 text-brand-cyan" stroke={2} />
-                <span className="uppercase tracking-wide">Erreichbarkeit</span>
-              </div>
-              <div className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-                <p>Mo – Fr: 9:00 – 18:00 Uhr</p>
-                <p>Sa – So: Nach Vereinbarung</p>
-              </div>
-            </div>
-
-            {/* Link hint card */}
-            <div
+            {/* Link hint – flex-1: füllt Resthöhe für gleiche Spaltenhöhe */}
+            <SectionCard
+              variant="default"
               data-animate="fade-left"
               data-animate-delay="320"
-              className="group relative border border-white/10 bg-white/[0.03] p-5 transition-all"
+              className="flex min-h-0 flex-1 flex-col p-5"
             >
-              <TechCorners pattern="diagonal" variant="cyan" size="md" />
-
               <p className="text-sm leading-relaxed text-muted-foreground">
                 Nicht sicher, was Sie brauchen? Schauen Sie sich unsere{" "}
                 <Link
@@ -140,25 +143,19 @@ export default function KontaktPage() {
                 </Link>{" "}
                 oder{" "}
                 <Link
-                  href="/leistungen"
+                  href="/tech"
                   className="font-medium text-brand-cyan underline underline-offset-2 hover:text-brand-cyan/80"
                 >
                   alle Leistungen
                 </Link>{" "}
                 an.
               </p>
-            </div>
+            </SectionCard>
           </div>
 
-          {/* Right: Form - industrialized */}
-          <div data-animate="fade-right" className="lg:col-span-3">
-            <div className="relative border border-white/10 bg-white/[0.03] p-6 md:p-8">
-              {/* Tech corners */}
-              <div className="absolute top-0 left-0 h-3 w-3 border-t-2 border-l-2 border-brand-cyan" />
-              <div className="absolute top-0 right-0 h-3 w-3 border-t-2 border-r-2 border-brand-cyan" />
-              <div className="absolute bottom-0 left-0 h-3 w-3 border-b-2 border-l-2 border-brand-cyan" />
-              <div className="absolute bottom-0 right-0 h-3 w-3 border-b-2 border-r-2 border-brand-cyan" />
-
+          {/* Right: Form – Höhe durch Formularinhalt */}
+          <div data-animate="fade-right" className="flex lg:col-span-3">
+            <SectionCard variant="default" className="flex-1 p-6 md:p-8">
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-xl font-extrabold uppercase tracking-wide">Nachricht schreiben</h2>
@@ -171,14 +168,98 @@ export default function KontaktPage() {
                 </div>
               </div>
               <ContactForm />
-            </div>
+            </SectionCard>
           </div>
+        </div>
+
+        {/* Ort-Elemente unter Form: Map, Einzugsgebiet, Erreichbarkeit – gleiche Breite wie oben */}
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Map */}
+          <SectionCard
+            variant="default"
+            data-animate="fade-up"
+            data-animate-delay="100"
+            className="overflow-hidden p-0"
+          >
+            <TechCorners pattern="diagonal" variant="cyan" size="sm" />
+            <div className="relative z-10">
+              <div className="border-b border-white/10 px-4 py-3">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/60">
+                  Standort
+                </p>
+                <p className="font-semibold">{COMPANY.location}, {COMPANY.region}</p>
+              </div>
+              <div className="relative h-[180px] w-full overflow-hidden">
+                <iframe
+                  title="Karte Aue-Bad Schlema"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=12.678%2C50.575%2C12.708%2C50.595&layer=mapnik&marker=50.585,12.693"
+                  className="absolute inset-0 h-full w-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+              <div className="p-3">
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY.location + " " + COMPANY.region)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold text-brand-cyan underline underline-offset-2 hover:text-brand-cyan/80"
+                >
+                  In Google Maps öffnen
+                </a>
+              </div>
+            </div>
+          </SectionCard>
+
+          {/* Einzugsgebiet */}
+          <SectionCard
+            variant="default"
+            data-animate="fade-up"
+            data-animate-delay="150"
+            className="p-5"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/60">
+              Einzugsgebiet
+            </p>
+            <p className="mt-1 font-semibold">{COMPANY.location}</p>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {EINZUGSGEBIET_ORTE.map((ort) => (
+                <li
+                  key={ort}
+                  className="border border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 text-xs font-medium uppercase tracking-wider text-brand-cyan"
+                >
+                  {ort}
+                </li>
+              ))}
+            </ul>
+          </SectionCard>
+
+          {/* Erreichbarkeit */}
+          <SectionCard
+            variant="default"
+            data-animate="fade-up"
+            data-animate-delay="200"
+            className="p-5"
+          >
+            <div className="flex items-center gap-2.5 text-sm font-semibold">
+              <IconClock className="size-4 text-brand-cyan" stroke={2} />
+              <span className="uppercase tracking-wide">Erreichbarkeit</span>
+            </div>
+            <div className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+              <p>Mo – Fr: 9:00 – 18:00 Uhr</p>
+              <p>Sa – So: Nach Vereinbarung</p>
+            </div>
+          </SectionCard>
         </div>
       </Section>
 
-      {/* 4. Trust Indicators - industrialized */}
+      {/* Trust-Bar */}
       <Section bg="alt" narrow>
-        <div className="grid gap-4 sm:grid-cols-3">
+        <SectionCard
+          variant="default"
+          data-animate="fade-up"
+          className="flex flex-col sm:flex-row"
+        >
           {[
             { icon: IconCheck, text: "Kostenlos & unverbindlich" },
             { icon: IconClock, text: "Antwort in 24 Stunden" },
@@ -186,44 +267,28 @@ export default function KontaktPage() {
           ].map((item, i) => (
             <div
               key={item.text}
-              data-animate="fade-up"
-              data-animate-delay={String(i * 100)}
-              className="group relative flex items-center gap-3 border border-white/10 bg-white/[0.03] p-4 transition-all"
+              className={cn(
+                "relative z-10 flex flex-1 items-center justify-center gap-3 px-6 py-5",
+                i > 0 && "border-t border-white/10 sm:border-t-0 sm:border-l border-white/10"
+              )}
             >
-              <div className="absolute top-0 left-0 h-1.5 w-1.5 border-t border-l border-brand-cyan/40" />
-              <div className="absolute bottom-0 right-0 h-1.5 w-1.5 border-b border-r border-brand-cyan/40" />
-
-              <div className="flex h-8 w-8 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10">
-                <item.icon className="size-4 shrink-0 text-brand-cyan" stroke={2} />
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10">
+                <item.icon className="size-4 text-brand-cyan" stroke={2} />
               </div>
-              <span className="text-sm font-semibold">{item.text}</span>
+              <span className="text-sm font-semibold text-center">{item.text}</span>
             </div>
           ))}
-        </div>
+        </SectionCard>
       </Section>
 
-      {/* 5. Standort */}
-      <Section narrow>
+      {/* FAQ – wie auf anderen Seiten: transparent, number, light, linksbündig */}
+      <Section bg="transparent">
         <SectionHeading
-          overline="Standort"
-          title="Aue-Bad Schlema – mitten im Erzgebirge"
-          align="center"
-        />
-        <div data-animate="fade-up" className="text-center">
-          <p className="mx-auto max-w-xl text-muted-foreground">
-            Wir arbeiten digital und persönlich. Kurze Wege im gesamten
-            Erzgebirgskreis – ob Annaberg-Buchholz, Stollberg, Aue oder Schwarzenberg.
-            Wir kommen zu Ihnen.
-          </p>
-        </div>
-      </Section>
-
-      {/* 6. FAQ - with backdrop number */}
-      <Section bg="alt" narrow>
-        <SectionHeading
+          number="02"
           overline="FAQ"
           title="Häufige Fragen zum Erstgespräch"
-          align="center"
+          align="left"
+          light
         />
         <FaqAccordion
           number="?"

@@ -6,12 +6,18 @@ import { TeamSection } from "@/components/sections/TeamSection";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
-import { IconCheck, IconArrowRight, IconQuote } from "@tabler/icons-react";
-import { TEAM, VALUES, PAGE_META, COMPANY, FAQ_ITEMS } from "@/lib/constants";
+import { TrustBar } from "@/components/sections/TrustBar";
+import { IconQuote } from "@tabler/icons-react";
+import {
+  TEAM,
+  VALUES,
+  PAGE_META,
+  COMPANY,
+  FAQ_ITEMS,
+  UEBER_UNS_STATS,
+} from "@/lib/constants";
 import { SchweinDivider } from "@/components/ui/schweinchen-divider";
 import { TechCorners } from "@/components/ui/tech-corners";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: PAGE_META.ueberUns.title,
@@ -20,15 +26,50 @@ export const metadata: Metadata = {
 };
 
 const TIMELINE = [
-  { year: "2024", event: "Erste gemeinsame Projekte", description: "Lennard und Daniel starten erste Kundenprojekte nebenberuflich." },
-  { year: "2025", event: "Die Idee nimmt Form an", description: "Aus Einzelprojekten wird ein System – die Module werden entwickelt." },
-  { year: "2026", event: "Berneby Solutions GbR", description: "Offizielle Gründung. Alles aus einer Hand für lokale Betriebe." },
+  {
+    year: "2024",
+    event: "Erste gemeinsame Projekte",
+    description:
+      "Lennard und Daniel starten erste Kundenprojekte nebenberuflich.",
+  },
+  {
+    year: "2025",
+    event: "Die Idee nimmt Form an",
+    description:
+      "Aus Einzelprojekten wird ein System – die Module werden entwickelt.",
+  },
+  {
+    year: "2026",
+    event: "Berneby Solutions GbR",
+    description:
+      "Offizielle Gründung. Alles aus einer Hand für lokale Betriebe.",
+  },
+];
+
+const WARUM_BERNEBY = [
+  {
+    point: "Persönlich",
+    detail: "Keine Ticketnummer. Sie sprechen direkt mit den Machern.",
+  },
+  {
+    point: "Lokal",
+    detail:
+      "Aus dem Erzgebirge, für das Erzgebirge. Kurze Wege, echtes Verständnis.",
+  },
+  {
+    point: "Fair",
+    detail: "Transparente Preise. Kein Kleingedrucktes, keine Überraschungen.",
+  },
+  {
+    point: "Ganzheitlich",
+    detail:
+      "Von der Website über SEO bis zum KI-Telefon – alles aus einer Hand.",
+  },
 ];
 
 export default function UeberUnsPage() {
   return (
     <>
-      {/* 1. Hero */}
       <Hero
         headline="Zwei Macher. Ein Ziel."
         accentText="Ein Ziel"
@@ -37,70 +78,96 @@ export default function UeberUnsPage() {
         compact
       />
 
-      {/* 2. Intro-Statement */}
-      <Section narrow>
-        <div data-animate="fade-up" className="text-center">
-          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-cyan-muted">
-            <IconQuote className="size-7 text-brand-navy" stroke={1.5} />
+      {/* 02: Kennzahlen */}
+      <TrustBar items={UEBER_UNS_STATS} />
+
+      {/* 02: Intro-Statement (Zitat) */}
+      <Section bg="transparent">
+        <SectionHeading
+          number="02"
+          overline="Unser Versprechen"
+          title="Digitale Präsenz. Jetzt."
+          align="left"
+          light
+        />
+        <div
+          data-animate="fade-up"
+          className="relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md p-8 md:p-10"
+        >
+          <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+          <div className="relative z-10 flex flex-col items-center text-center">
+            <div className="mb-6 flex h-14 w-14 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10">
+              <IconQuote className="size-7 text-brand-cyan" stroke={1.5} />
+            </div>
+            <blockquote className="text-xl font-semibold leading-relaxed text-white md:text-2xl">
+              &ldquo;Wir glauben, dass jeder lokale Betrieb eine digitale
+              Präsenz verdient, die funktioniert. Nicht in zehn Jahren &ndash;{" "}
+              <span className="text-brand-cyan">jetzt.</span>&rdquo;
+            </blockquote>
+            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
+              &mdash; Lennard &amp; Daniel, Gründer von Berneby Solutions
+            </p>
           </div>
-          <blockquote className="text-xl font-semibold leading-relaxed md:text-2xl">
-            &ldquo;Wir glauben, dass jeder lokale Betrieb eine digitale Präsenz verdient, die funktioniert.
-            Nicht in zehn Jahren &ndash; <span className="text-gradient-brand">jetzt.</span>&rdquo;
-          </blockquote>
-          <p className="mt-4 text-muted-foreground">
-            &mdash; Lennard &amp; Daniel, Gründer von Berneby Solutions
-          </p>
         </div>
       </Section>
 
-      {/* 3. Team */}
-      <Section bg="alt">
+      {/* 03: Team */}
+      <Section bg="transparent">
         <SectionHeading
+          number="03"
           overline="Das Team"
           title="Technik trifft Strategie"
           subtitle="Eine Kombination, die funktioniert – zwei Perspektiven für ganzheitliche Lösungen."
-          align="center"
+          align="left"
+          light
         />
-        <TeamSection members={TEAM} />
+        <TeamSection members={TEAM} variant="navy" />
       </Section>
 
-      {/* 4. Vision / Mission – Split Layout */}
-      <Section>
+      {/* 05: Vision / Mission */}
+      <Section bg="transparent">
+        <SectionHeading
+          number="05"
+          overline="Vision & Mission"
+          title="Wo wir hinwollen. Was wir tun."
+          align="left"
+          light
+        />
         <div className="grid gap-8 md:grid-cols-2 md:gap-12">
           <div
             data-animate="fade-left"
-            className="group relative overflow-hidden border border-border bg-card transition-all hover:border-brand-navy shadow-sm"
+            className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20"
           >
-            {/* Tech corners */}
-            <div className="absolute top-0 left-0 h-3 w-3 border-t-2 border-l-2 border-brand-navy/10 group-hover:border-brand-navy transition-colors" />
-            <div className="absolute bottom-0 right-0 h-3 w-3 border-b-2 border-r-2 border-brand-navy/10 group-hover:border-brand-navy transition-colors" />
-            <div className="h-1.5 w-full bg-gradient-to-r from-brand-navy to-brand-navy/40" />
-            <div className="p-8 md:p-10">
+            <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+            <div className="relative z-10 p-8 md:p-10">
               <div className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-brand-cyan">
                 Vision
               </div>
-              <h2 className="text-2xl font-extrabold md:text-3xl">Wo wir hinwollen</h2>
-              <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted-foreground">
-                Jeder lokale Betrieb im Erzgebirge verdient eine digitale Präsenz,
-                die funktioniert. Wir glauben, dass Technologie nicht kompliziert
-                sein muss, und dass persönlicher Kontakt den Unterschied macht.
+              <h2 className="text-2xl font-extrabold text-white md:text-3xl">
+                Wo wir hinwollen
+              </h2>
+              <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/80">
+                Jeder lokale Betrieb im Erzgebirge verdient eine digitale
+                Präsenz, die funktioniert. Wir glauben, dass Technologie nicht
+                kompliziert sein muss, und dass persönlicher Kontakt den
+                Unterschied macht.
               </p>
             </div>
           </div>
 
           <div
             data-animate="fade-right"
-            className="group relative overflow-hidden border border-border bg-card transition-all shadow-sm"
+            className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20"
           >
-            {/* Tech corners */}
-            <TechCorners pattern="diagonal" variant="cyan" size="md" />
-            <div className="h-1.5 w-full bg-gradient-to-r from-brand-cyan/40 to-brand-cyan" />
-            <div className="p-8 md:p-10">
+            <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+            <div className="relative z-10 p-8 md:p-10">
               <div className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-brand-cyan">
                 Mission
               </div>
-              <h2 className="text-2xl font-extrabold md:text-3xl">Was wir tun</h2>
-              <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted-foreground">
+              <h2 className="text-2xl font-extrabold text-white md:text-3xl">
+                Was wir tun
+              </h2>
+              <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/80">
                 Wir bringen lokale Betriebe ins Netz – mit ehrlicher Beratung,
                 sauberer Technik und Lösungen, die sich rechnen. Ohne
                 Fachchinesisch, ohne Vertragsfallen.
@@ -110,114 +177,125 @@ export default function UeberUnsPage() {
         </div>
       </Section>
 
-      {/* 5. Timeline */}
-      <Section bg="navy">
+      {/* 05: Timeline */}
+      <Section bg="transparent">
         <SectionHeading
+          number="05"
           overline="Unsere Geschichte"
           title="Von der Idee zum Unternehmen"
-          align="center"
+          align="left"
+          light
         />
         <div className="relative mx-auto max-w-2xl">
-          {/* Vertical line */}
-          <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-brand-cyan/50 via-white/20 to-transparent md:left-1/2 md:-translate-x-px" />
+          <div
+            className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-brand-cyan/50 via-white/20 to-transparent md:left-1/2 md:-translate-x-px"
+            aria-hidden="true"
+          />
 
           {TIMELINE.map((item, i) => (
             <div
               key={item.year}
               data-animate="fade-up"
               data-animate-delay={String(i * 150)}
-              className={`relative mb-10 flex items-start gap-6 last:mb-0 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
+              className={`relative mb-10 flex items-start gap-6 last:mb-0 ${
+                i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              }`}
             >
-              {/* Box dot - industrial square */}
               <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center border-2 border-brand-cyan/40 bg-brand-navy shadow-lg shadow-brand-cyan/10 md:absolute md:left-1/2 md:-translate-x-1/2">
-                {/* Mini tech corners */}
                 <TechCorners pattern="diagonal" variant="cyan" size="sm" />
-                <span className="text-xs font-mono font-extrabold text-brand-cyan">{item.year}</span>
+                <span className="text-xs font-mono font-extrabold text-brand-cyan">
+                  {item.year}
+                </span>
               </div>
 
-              {/* Content card */}
-              <div className={`relative border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm ${i % 2 === 0 ? "md:mr-auto md:w-[calc(50%-3rem)]" : "md:ml-auto md:w-[calc(50%-3rem)]"
-                }`}>
-                {/* Tech corner */}
+              <div
+                className={`relative overflow-hidden border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm ${
+                  i % 2 === 0
+                    ? "md:mr-auto md:w-[calc(50%-3rem)]"
+                    : "md:ml-auto md:w-[calc(50%-3rem)]"
+                }`}
+              >
                 <div className="absolute top-0 left-0 h-2 w-2 border-t border-l border-brand-cyan/30" />
-                <h3 className="font-bold text-brand-navy-foreground">{item.event}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-white/50">{item.description}</p>
+                <h3 className="font-bold text-white">{item.event}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-white/50">
+                  {item.description}
+                </p>
               </div>
             </div>
           ))}
         </div>
       </Section>
 
-      <SchweinDivider />
-
-      {/* 6. Werte */}
-      <Section>
+      {/* 06: Werte */}
+      <Section bg="transparent">
         <SectionHeading
+          number="06"
           overline="Unsere Werte"
           title="Wofür wir stehen"
           subtitle="Vier Prinzipien, die unsere Arbeit leiten – jeden Tag."
-          align="center"
+          align="left"
+          light
         />
-        <FeatureGrid features={VALUES} cols={4} />
+        <FeatureGrid features={VALUES} cols={4} light />
       </Section>
 
-      {/* 7. Warum wir – Differenzierung */}
-      <Section bg="alt" narrow>
+      {/* 08: Warum Berneby – nummeriert (Option B) */}
+      <Section bg="transparent">
         <SectionHeading
+          number="08"
           overline="Der Unterschied"
           title="Warum Berneby?"
-          align="center"
+          align="left"
+          light
         />
-        <div className="space-y-4">
-          {[
-            { point: "Persönlich", detail: "Keine Ticketnummer. Sie sprechen direkt mit den Machern." },
-            { point: "Lokal", detail: "Aus dem Erzgebirge, für das Erzgebirge. Kurze Wege, echtes Verständnis." },
-            { point: "Fair", detail: "Transparente Preise. Kein Kleingedrucktes, keine Überraschungen." },
-            { point: "Ganzheitlich", detail: "Von der Website über SEO bis zum KI-Telefon – alles aus einer Hand." },
-          ].map((item, i) => (
+        <div className="grid gap-6 sm:grid-cols-2">
+          {WARUM_BERNEBY.map((item, i) => (
             <div
               key={item.point}
               data-animate="fade-up"
               data-animate-delay={String(i * 80)}
-              className="group relative flex items-start gap-4 border border-border bg-card p-5 transition-all"
+              className="group relative flex gap-6 overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20"
             >
-              {/* Tech corners */}
-              <TechCorners pattern="diagonal" variant="cyan" size="sm" />
-
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center border border-brand-cyan/20 bg-brand-cyan/5">
-                <IconCheck className="size-4 text-brand-cyan" stroke={2.5} />
+              <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+              <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10 font-mono text-xl font-bold text-brand-cyan">
+                {String(i + 1).padStart(2, "0")}
               </div>
-              <div>
-                <p className="font-bold uppercase tracking-tight text-white/90">{item.point}</p>
-                <p className="mt-0.5 text-sm text-muted-foreground">{item.detail}</p>
+              <div className="relative z-10 min-w-0">
+                <p className="font-bold uppercase tracking-tight text-white">
+                  {item.point}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">
+                  {item.detail}
+                </p>
               </div>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* 8. FAQ */}
-      <Section narrow>
+      {/* 08: FAQ */}
+      <Section bg="transparent">
         <SectionHeading
+          number="08"
           overline="FAQ"
           title="Fragen über uns"
-          align="center"
+          align="left"
+          light
         />
         <FaqAccordion items={FAQ_ITEMS.filter((_, i) => [1, 4, 9].includes(i))} />
       </Section>
 
-      {/* 9. CTA */}
+      <SchweinDivider />
+
       <CtaSection
         headline="Lernen Sie uns kennen."
         subline="30 Minuten, unverbindlich – wir freuen uns auf ein persönliches Gespräch."
         ctas={[
           { label: "Kontakt aufnehmen", href: "/kontakt" },
-          { label: "Unsere Leistungen", href: "/leistungen" },
+          { label: "Unsere Leistungen", href: "/tech" },
         ]}
       />
 
-      {/* Schema.org */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { Logo } from "@/components/brand/Logo";
+import { TextLogo } from "@/components/brand/TextLogo";
+import { TechCorners } from "@/components/ui/tech-corners";
 import { COMPANY, FOOTER_NAV } from "@/lib/constants";
 import { IconPhone, IconMail, IconMapPin, IconArrowUpRight, IconArrowRight } from "@tabler/icons-react";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-brand-cyan/20 bg-brand-navy text-brand-navy-foreground">
+    <footer className="relative z-20 overflow-hidden border-t border-brand-cyan/20 bg-brand-navy text-brand-navy-foreground">
       {/* Atmospheric background */}
       <div className="noise-overlay pointer-events-none absolute inset-0" aria-hidden="true" />
       <div
@@ -13,12 +14,13 @@ export function Footer() {
         aria-hidden="true"
       />
 
+      {/* Inhalt in Beam-Breite (wie Rest der Seite), Beams im Footer nicht sichtbar (z-20 + Hintergrund) */}
       <div className="relative mx-auto max-w-6xl px-4 pt-16 pb-8 md:px-6 md:pt-20">
         {/* Main grid */}
         <div className="grid gap-10 md:grid-cols-12 md:gap-8">
           {/* Brand - takes more space */}
           <div className="md:col-span-4">
-            <Logo variant="light" />
+            <TextLogo variant="light" />
             <p className="mt-5 max-w-xs text-[0.9375rem] leading-relaxed text-white/50">
               Ihr Digital-Partner im Erzgebirge. Webseiten, KI-Telefon,
               Online-Sichtbarkeit – alles aus einer Hand.
@@ -86,24 +88,20 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* CTA card - industrialized */}
+          {/* CTA card – SectionCard-Style, TechCorners (V2) */}
           <div className="md:col-span-3">
-            <div className="relative border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm">
-              {/* Tech corners */}
-              <div className="absolute top-0 left-0 h-2 w-2 border-t-2 border-l-2 border-brand-cyan/40" />
-              <div className="absolute top-0 right-0 h-2 w-2 border-t-2 border-r-2 border-brand-cyan/40" />
-              <div className="absolute bottom-0 left-0 h-2 w-2 border-b-2 border-l-2 border-brand-cyan/40" />
-              <div className="absolute bottom-0 right-0 h-2 w-2 border-b-2 border-r-2 border-brand-cyan/40" />
+            <div className="group relative overflow-hidden border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm">
+              <TechCorners pattern="diagonal" variant="cyan" size="sm" />
 
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/60">
+              <p className="relative z-10 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/60">
                 Projekt starten
               </p>
-              <p className="mt-2 text-sm font-semibold text-white/80">
+              <p className="relative z-10 mt-2 text-sm font-semibold text-white/80">
                 Kostenloses Erstgespräch, 30 Minuten, unverbindlich.
               </p>
               <Link
                 href="/kontakt"
-                className="mt-4 inline-flex items-center gap-1.5 border border-brand-cyan/30 bg-brand-cyan/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-brand-cyan transition-all hover:border-brand-cyan hover:bg-brand-cyan/20 hover:shadow-[0_0_15px_rgba(3,249,249,0.15)]"
+                className="relative z-10 mt-4 inline-flex items-center gap-1.5 border border-brand-cyan/30 bg-brand-cyan/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-brand-cyan transition-all hover:border-brand-cyan hover:bg-brand-cyan/20 hover:shadow-[0_0_15px_rgba(3,249,249,0.15)]"
               >
                 Kontakt
                 <IconArrowRight className="size-3.5" stroke={2} />
@@ -129,6 +127,7 @@ export function Footer() {
             ))}
           </nav>
         </div>
+
       </div>
     </footer>
   );

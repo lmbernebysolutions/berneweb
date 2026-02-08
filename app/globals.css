@@ -162,9 +162,113 @@ h6 {
   will-change: opacity, transform;
 }
 
+/* SchweinDivider wave animations */
+@keyframes schwein-wave-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes schwein-wave-flow {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-15px); }
+  100% { transform: translateX(0); }
+}
+
+.schwein-wave-svg {
+  animation: schwein-wave-pulse 6s ease-in-out infinite, schwein-wave-flow 10s ease-in-out infinite;
+}
+
+/* Schweinchen Wiggle Animation - for 404 page */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+/* Schweinchen Shake Animation - for 500 error page (distressed) */
+@keyframes shake {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  10% { transform: translateX(-4px) translateY(-4px); }
+  20% { transform: translateX(4px) translateY(4px); }
+  30% { transform: translateX(-4px) translateY(4px); }
+  40% { transform: translateX(4px) translateY(-4px); }
+  50% { transform: translateX(-2px) translateY(-2px); }
+  60% { transform: translateX(2px) translateY(2px); }
+  70% { transform: translateX(-2px) translateY(2px); }
+  80% { transform: translateX(2px) translateY(-2px); }
+  90% { transform: translateX(-1px) translateY(-1px); }
+}
+
+/* Schweinchen Float Animation - for ambient mascot presence */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Partner Presence Animation - Hero Schweinchen breathing effect */
+@keyframes partner-presence {
+  0%, 100% {
+    transform: translateY(0px);
+    filter: drop-shadow(0 0 14px rgba(3, 249, 249, 0.6));
+  }
+  50% {
+    transform: translateY(-4px);
+    filter: drop-shadow(0 0 18px rgba(3, 249, 249, 0.8));
+  }
+}
+
+/* Partner Glow Animation - Connection line to box */
+@keyframes partner-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* Tailwind Animation Classes */
+@layer utilities {
+  .animate-partner-presence {
+    animation: partner-presence 4s ease-in-out infinite;
+  }
+
+  .animate-partner-glow {
+    animation: partner-glow 3s ease-in-out infinite;
+  }
+}
+
+/* ==========================================================================
+   HERO SPIN ANIMATION
+   ========================================================================== */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Referenzen strip marquee */
+@keyframes referenzen-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-referenzen-marquee {
+  animation: referenzen-marquee 25s linear infinite;
+}
+
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .wave-animate {
+  .wave-animate,
+  .schwein-wave-svg,
+  .animate-spin-slow,
+  .animate-referenzen-marquee {
     animation: none !important;
   }
 }
