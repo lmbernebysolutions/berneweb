@@ -28,6 +28,7 @@ export function FaqAccordion({ items, number }: FaqAccordionProps) {
           className="-top-16 -left-8 opacity-50"
         />
       )}
+
       <Accordion type="single" collapsible className="relative z-10 w-full space-y-3">
         {items.map((item, i) => (
           <AccordionItem
@@ -35,7 +36,7 @@ export function FaqAccordion({ items, number }: FaqAccordionProps) {
             value={`faq-${i}`}
             data-animate="fade-up"
             data-animate-delay={String(i * 60)}
-            className="group/faq relative overflow-hidden border border-white/10 bg-white/[0.03] px-6 shadow-sm transition-all data-[state=open]:border-brand-cyan/30 data-[state=open]:bg-brand-cyan/5"
+            className="group/faq relative overflow-hidden border border-white/10 bg-white/[0.03] px-6 shadow-sm transition-colors data-[state=open]:border-brand-cyan/30 data-[state=open]:bg-brand-cyan/5"
           >
             {/* Tech corners - diagonal pattern, expands to all 4 on hover */}
             <TechCorners pattern="diagonal" variant="cyan" size="md" hoverExpand groupName="faq" />

@@ -15,8 +15,8 @@ import {
     IconShield,
     IconArrowRight,
 } from "@tabler/icons-react";
-import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK, TECH_TESTIMONIALS, TECH_REFERENCES } from "@/lib/constants";
-import { SchweinDivider } from "@/components/ui/schweinchen-divider";
+import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK, TECH_STATS, TECH_TESTIMONIALS, TECH_REFERENCES } from "@/lib/constants";
+import { TrustBar } from "@/components/sections/TrustBar";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { MissionSection } from "@/components/sections/MissionSection";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
@@ -54,6 +54,8 @@ export default function TechPage() {
                 variant="cyan"
             />
 
+            <TrustBar items={TECH_STATS} />
+
             {/* 02: Mission – Überschrift + Untertitel unverändert, Inhalt in 3 Varianten (a|b|c) */}
             <Section bg="transparent">
                 <SectionHeading
@@ -69,7 +71,7 @@ export default function TechPage() {
             </Section>
 
             {/* 03: Services Grid */}
-            <Section id="leistungen" bg="transparent">
+            <Section id="leistungen" bg="subtle">
                 <SectionHeading
                     number="03"
                     overline="Katalog"
@@ -79,13 +81,18 @@ export default function TechPage() {
                 />
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {serviceCategories.map(([key, category]) => {
+                    {serviceCategories.map(([key, category], i) => {
                         const Icon = TECH_ICONS[key] || IconTool;
                         return (
-                            <div key={key} className="group relative flex flex-col border border-white/10 bg-brand-navy/60 backdrop-blur-md overflow-hidden transition-all hover:bg-brand-navy/80">
-                                <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+                            <div
+                                key={key}
+                                data-animate="fade-up"
+                                data-animate-delay={String(i * 80)}
+                                className="group relative flex flex-col border border-white/10 bg-brand-navy/60 backdrop-blur-md overflow-hidden transition-all hover:bg-brand-navy/80 card-hover-glow"
+                            >
+                                <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
 
-                                <div className="absolute top-0 right-0 p-4 opacity-10">
+                                <div className="absolute top-0 right-0 p-4 opacity-10" aria-hidden="true">
                                     <Icon className="size-24 text-white" />
                                 </div>
 
@@ -130,7 +137,7 @@ export default function TechPage() {
                     align="left"
                     light
                 />
-                <div className="grid md:grid-cols-2 gap-12 items-center border border-brand-cyan/30 bg-brand-cyan/5 p-8 md:p-12 relative overflow-hidden">
+                <div className="grid md:grid-cols-2 gap-12 items-center border border-brand-cyan/30 bg-brand-cyan/5 backdrop-blur-xl bg-white/[0.03] p-8 md:p-12 relative overflow-hidden">
                     <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none" />
 
                     <div className="relative z-10">
@@ -178,7 +185,7 @@ export default function TechPage() {
             </Section>
 
             {/* 05: Testimonials */}
-            <Section bg="transparent">
+            <Section bg="subtle">
                 <SectionHeading
                     number="05"
                     overline="Stimmen"
@@ -203,7 +210,7 @@ export default function TechPage() {
             </Section>
 
             {/* 07: Technologien */}
-            <Section bg="transparent">
+            <Section bg="subtle">
                 <SectionHeading
                     number="07"
                     overline="Womit wir bauen"
@@ -219,7 +226,7 @@ export default function TechPage() {
                             data-animate-delay={String(i * 60)}
                             className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20"
                         >
-                            <TechCorners pattern="diagonal" variant="cyan" size="md" />
+                            <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
                             <p className="relative z-10 text-center text-sm font-bold uppercase tracking-wider text-white">
                                 {item}
                             </p>
@@ -243,9 +250,9 @@ export default function TechPage() {
                             key={ref.title}
                             data-animate="fade-up"
                             data-animate-delay={String(i * 80)}
-                            className="group relative flex flex-col overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20"
+                            className="group relative flex flex-col overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
                         >
-                            <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+                            <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
                             <h3 className="relative z-10 text-lg font-bold uppercase tracking-wider text-white">
                                 {ref.title}
                             </h3>
@@ -262,19 +269,22 @@ export default function TechPage() {
                 </div>
             </Section>
 
-            {/* 09: FAQ */}
-            <Section bg="transparent">
-                <SectionHeading
-                    number="09"
-                    overline="Support"
-                    title="Häufige Fragen"
-                    align="left"
-                    light
-                />
-                <FaqAccordion items={FAQ_ITEMS} />
-            </Section>
-
-            <SchweinDivider />
+            {/* 09: FAQ – Subtle nur im Beam; Wave darin eingeschlossen; nur Trennlinie volle Breite */}
+            <div className="relative">
+                <div className="relative mx-auto max-w-6xl px-4 md:px-6 overflow-hidden">
+                    <div className="relative py-20 md:py-28 lg:py-32 bg-white/[0.015] overflow-hidden">
+                        <SectionHeading
+                            number="09"
+                            overline="Support"
+                            title="Häufige Fragen"
+                            align="left"
+                            light
+                        />
+                        <FaqAccordion items={FAQ_ITEMS} />
+                    </div>
+                </div>
+                <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
+            </div>
 
             <CtaSection
                 headline="Welches Problem dürfen wir lösen?"

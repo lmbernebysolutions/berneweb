@@ -29,7 +29,7 @@ function MissionVariantA() {
           const Icon = p.icon;
           return (
           <div key={i} className="relative z-10 border-l-2 border-brand-cyan/40 pl-4">
-            <Icon className="mb-2 size-5 text-brand-cyan" stroke={1.5} />
+            <Icon className="mb-2 size-5 text-brand-cyan" stroke={1.5} aria-hidden="true" />
             <h3 className="text-sm font-bold uppercase tracking-wider text-white">
               {p.title}
             </h3>

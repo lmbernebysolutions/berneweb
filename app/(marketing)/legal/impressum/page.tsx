@@ -62,6 +62,7 @@ export default function ImpressumPage() {
           teilzunehmen.
         </p>
       </div>
+      <div className="w-full h-px bg-brand-cyan/20 shrink-0 mt-16" role="presentation" aria-hidden="true" />
     </Section>
   );
 }

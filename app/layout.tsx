@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans, JetBrains_Mono } from "next/font/google";
+import { Noto_Sans, JetBrains_Mono, Bebas_Neue } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
@@ -16,6 +16,13 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
+});
+
+const bebasNeue = Bebas_Neue({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -37,13 +44,17 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  themeColor: "#283569",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${notoSans.variable} ${jetbrainsMono.variable}`}>
+    <html lang="de" className={`${notoSans.variable} ${jetbrainsMono.variable} ${bebasNeue.variable}`} style={{ colorScheme: "dark" }}>
       <body className="font-sans antialiased">
         <a
           href="#main-content"

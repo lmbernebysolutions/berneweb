@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/select";
 import { CONTACT_SUBJECTS } from "@/lib/constants";
 import { IconCheck, IconLoader2, IconSend } from "@tabler/icons-react";
+import { TechCorners } from "@/components/ui/tech-corners";
+import { AnimatedMascot } from "@/components/brand/AnimatedMascot";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -35,17 +37,11 @@ export function ContactForm() {
 
   if (state === "success") {
     return (
-      <div className="relative flex flex-col items-center border border-brand-cyan/30 bg-brand-cyan/5 p-10 text-center">
-        {/* Tech corners */}
-        <div className="absolute top-0 left-0 h-3 w-3 border-t-2 border-l-2 border-brand-cyan" />
-        <div className="absolute top-0 right-0 h-3 w-3 border-t-2 border-r-2 border-brand-cyan" />
-        <div className="absolute bottom-0 left-0 h-3 w-3 border-b-2 border-l-2 border-brand-cyan" />
-        <div className="absolute bottom-0 right-0 h-3 w-3 border-b-2 border-r-2 border-brand-cyan" />
+      <div className="relative flex flex-col items-center border border-brand-cyan/30 bg-brand-cyan/5 p-10 text-center overflow-hidden">
+        <TechCorners pattern="all" variant="cyan" size="md" />
 
-        <div className="flex h-16 w-16 items-center justify-center border-2 border-brand-cyan bg-brand-cyan/10 shadow-[0_0_30px_rgba(3,249,249,0.2)]">
-          <IconCheck className="size-8 text-brand-cyan" stroke={2} />
-        </div>
-        <div className="mt-2 font-mono text-[0.6rem] text-brand-cyan/50 uppercase tracking-widest">
+        <AnimatedMascot size="lg" animation="float" />
+        <div className="mt-2 font-mono text-[0.6rem] text-brand-warm/80 uppercase tracking-widest">
           STATUS: GESENDET
         </div>
         <h3 className="mt-4 text-xl font-extrabold uppercase tracking-wide">Nachricht gesendet</h3>
@@ -74,8 +70,10 @@ export function ContactForm() {
             id="name"
             name="name"
             required
-            placeholder="Max Mustermann"
+            autoComplete="name"
+            placeholder="Max Mustermann…"
             disabled={state === "sending"}
+            className="input-focus-glow"
           />
         </div>
         <div className="space-y-2">
@@ -87,8 +85,11 @@ export function ContactForm() {
             name="email"
             type="email"
             required
-            placeholder="max@beispiel.de"
+            autoComplete="email"
+            spellCheck={false}
+            placeholder="max@beispiel.de…"
             disabled={state === "sending"}
+            className="input-focus-glow"
           />
         </div>
       </div>
@@ -102,7 +103,8 @@ export function ContactForm() {
             id="phone"
             name="phone"
             type="tel"
-            placeholder="+49 ..."
+            autoComplete="tel"
+            placeholder="+49…"
             disabled={state === "sending"}
           />
         </div>
@@ -133,9 +135,10 @@ export function ContactForm() {
           id="message"
           name="message"
           required
-          placeholder="Wie können wir Ihnen helfen?"
+          placeholder="Wie können wir Ihnen helfen?…"
           rows={5}
           disabled={state === "sending"}
+          className="input-focus-glow"
         />
       </div>
 

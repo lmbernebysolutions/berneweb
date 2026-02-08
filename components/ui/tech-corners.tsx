@@ -11,6 +11,8 @@ interface TechCornersProps {
     hoverExpand?: boolean;
     /** Group name for named groups like group/faq */
     groupName?: string;
+    /** Whether to animate corners drawing on */
+    animate?: boolean;
 }
 
 const SIZE = {
@@ -47,21 +49,21 @@ export function TechCorners({
     size = "lg",
     hoverExpand = true,
     groupName,
+    animate = false,
 }: TechCornersProps) {
     const sizeClass = SIZE[size];
     const colors = COLORS[variant];
     const hoverColor = groupName === "faq" ? colors.hoverFaq : colors.hover;
     const hiddenHover = groupName === "faq" ? colors.hoverFaq : colors.hover;
-
-    const base = "absolute border-t-2 border-l-2 transition-colors z-10";
+    const anim = animate ? "tech-corner-animate" : "";
 
     if (pattern === "all") {
         return (
             <>
-                <div className={cn("absolute top-0 left-0 border-t-2 border-l-2 transition-colors z-10", sizeClass, colors.base, hoverColor)} />
-                <div className={cn("absolute top-0 right-0 border-t-2 border-r-2 transition-colors z-10", sizeClass, colors.base, hoverColor)} />
-                <div className={cn("absolute bottom-0 left-0 border-b-2 border-l-2 transition-colors z-10", sizeClass, colors.base, hoverColor)} />
-                <div className={cn("absolute bottom-0 right-0 border-b-2 border-r-2 transition-colors z-10", sizeClass, colors.base, hoverColor)} />
+                <div className={cn("absolute top-0 left-0 border-t-2 border-l-2 transition-colors z-10 tech-corner-tl", anim, sizeClass, colors.base, hoverColor)} />
+                <div className={cn("absolute top-0 right-0 border-t-2 border-r-2 transition-colors z-10 tech-corner-tr", anim, sizeClass, colors.base, hoverColor)} />
+                <div className={cn("absolute bottom-0 left-0 border-b-2 border-l-2 transition-colors z-10 tech-corner-bl", anim, sizeClass, colors.base, hoverColor)} />
+                <div className={cn("absolute bottom-0 right-0 border-b-2 border-r-2 transition-colors z-10 tech-corner-br", anim, sizeClass, colors.base, hoverColor)} />
             </>
         );
     }
@@ -70,14 +72,14 @@ export function TechCorners({
     return (
         <>
             {/* Always visible: top-left and bottom-right */}
-            <div className={cn("absolute top-0 left-0 border-t-2 border-l-2 transition-colors z-10", sizeClass, colors.base, hoverColor)} />
-            <div className={cn("absolute bottom-0 right-0 border-b-2 border-r-2 transition-colors z-10", sizeClass, colors.base, hoverColor)} />
+            <div className={cn("absolute top-0 left-0 border-t-2 border-l-2 transition-colors z-10 tech-corner-tl", anim, sizeClass, colors.base, hoverColor)} />
+            <div className={cn("absolute bottom-0 right-0 border-b-2 border-r-2 transition-colors z-10 tech-corner-br", anim, sizeClass, colors.base, hoverColor)} />
 
             {/* Hover only: top-right and bottom-left - invisible until hover */}
             {hoverExpand && (
                 <>
-                    <div className={cn("absolute top-0 right-0 border-t-2 border-r-2 transition-colors z-10", sizeClass, colors.hidden, hiddenHover)} />
-                    <div className={cn("absolute bottom-0 left-0 border-b-2 border-l-2 transition-colors z-10", sizeClass, colors.hidden, hiddenHover)} />
+                    <div className={cn("absolute top-0 right-0 border-t-2 border-r-2 transition-colors z-10 tech-corner-tr", anim, sizeClass, colors.hidden, hiddenHover)} />
+                    <div className={cn("absolute bottom-0 left-0 border-b-2 border-l-2 transition-colors z-10 tech-corner-bl", anim, sizeClass, colors.hidden, hiddenHover)} />
                 </>
             )}
         </>

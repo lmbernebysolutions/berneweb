@@ -17,16 +17,12 @@ interface CtaSectionProps {
 
 export function CtaSection({ headline, subline, ctas }: CtaSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-brand-navy py-32 text-brand-navy-foreground border-t border-brand-cyan/20">
+    <section className="relative overflow-hidden bg-brand-navy py-32 text-brand-navy-foreground">
 
       <BackdropNumber number="GO" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 text-[20vw]" />
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center md:px-6">
-        <div className="inline-block border border-brand-cyan/30 bg-brand-cyan/10 px-4 py-1 text-xs font-bold text-brand-cyan uppercase tracking-[0.2em] mb-8">
-          System Ready
-        </div>
-
-        <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-6 drop-shadow-2xl">
+        <h2 className="font-display text-6xl md:text-8xl font-extrabold uppercase tracking-tighter text-white mb-6 drop-shadow-2xl text-balance">
           {headline}
         </h2>
 

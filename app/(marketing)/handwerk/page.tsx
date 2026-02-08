@@ -26,8 +26,6 @@ import {
   REFERENZEN_BRANCHEN,
   HANDWERK_GARANTIEN,
 } from "@/lib/constants";
-
-import { SchweinDivider } from "@/components/ui/schweinchen-divider";
 import { TestimonialGrid } from "@/components/sections/TestimonialGrid";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { ReferenzenStrip } from "@/components/sections/ReferenzenStrip";
@@ -111,7 +109,7 @@ export default function HandwerkPage() {
       </Section>
 
       {/* 03: MODULES */}
-      <Section bg="transparent">
+      <Section bg="subtle">
         <SectionHeading
           number="03"
           overline="Ihr Werkzeugkasten"
@@ -136,7 +134,7 @@ export default function HandwerkPage() {
       </Section>
 
       {/* Garantien */}
-      <Section bg="transparent">
+      <Section bg="subtle">
         <SectionHeading
           number="05"
           overline="Sicherheit"
@@ -151,11 +149,11 @@ export default function HandwerkPage() {
               key={item.title}
               data-animate="fade-up"
               data-animate-delay={String(i * 80)}
-              className="group relative flex flex-col overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20"
+              className="group relative flex flex-col overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
             >
               <TechCorners pattern="diagonal" variant="cyan" size="lg" />
               <div className="relative z-10 flex flex-1 flex-col items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10" aria-hidden="true">
                   <IconCheck className="size-5 text-brand-cyan" stroke={2.5} />
                 </div>
                 <div className="min-h-[4.5rem] flex-1">
@@ -229,7 +227,7 @@ export default function HandwerkPage() {
       </Section>
 
       {/* 07: TESTIMONIALS */}
-      <Section bg="transparent">
+      <Section bg="subtle">
         <SectionHeading
           number="07"
           overline="Baustellentalk"
@@ -254,7 +252,7 @@ export default function HandwerkPage() {
       </Section>
 
       {/* 09: PROCESS */}
-      <Section bg="transparent">
+      <Section bg="subtle">
         <SectionHeading
           number="09"
           overline="Bauplan"
@@ -265,19 +263,22 @@ export default function HandwerkPage() {
         <ProcessSteps steps={PROCESS_STEPS} />
       </Section>
 
-      {/* 10: FAQ */}
-      <Section bg="transparent">
-        <SectionHeading
-          number="10"
-          overline="Support"
-          title="Häufige Fragen"
-          align="left"
-          light
-        />
-        <FaqAccordion items={FAQ_ITEMS} />
-      </Section>
-
-      <SchweinDivider />
+      {/* 10: FAQ – Subtle nur im Beam; Wave darin eingeschlossen; nur Trennlinie volle Breite */}
+      <div className="relative">
+        <div className="relative mx-auto max-w-6xl px-4 md:px-6 overflow-hidden">
+          <div className="relative py-20 md:py-28 lg:py-32 bg-white/[0.015] overflow-hidden">
+            <SectionHeading
+              number="10"
+              overline="Support"
+              title="Häufige Fragen"
+              align="left"
+              light
+            />
+            <FaqAccordion items={FAQ_ITEMS} />
+          </div>
+        </div>
+        <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
+      </div>
 
       {/* CTA */}
       <CtaSection

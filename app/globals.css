@@ -10,11 +10,14 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
 
   /* Brand Tokens - Heavy Industrial */
   --color-brand-navy: #283569;
   --color-brand-cyan: #03f9f9;
   --color-brand-cyan-dim: color-mix(in srgb, #03f9f9 20%, transparent);
+  --color-brand-warm: #FFB547;
+  --color-brand-warm-dim: color-mix(in srgb, #FFB547 20%, transparent);
 
   /* Animation Easings - Machine Precision */
   --ease-mechanical: cubic-bezier(0.16, 1, 0.3, 1);
@@ -48,6 +51,11 @@
   --radius: 0;
 }
 
+/* Display font (Syne) – applied via .font-display; variable set by next/font on html */
+.font-display {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+}
+
 /* ==========================================================================
    GLOBAL BLUEPRINT GRID
    ========================================================================== */
@@ -64,6 +72,31 @@ body {
   background-attachment: fixed;
   /* Parallax effect by fixing grid */
   position: relative;
+}
+
+/* ==========================================================================
+   VISUAL DEPTH: Grain + Tech Grid
+   ========================================================================== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
 /* Heavy Shadow Utility */
@@ -114,7 +147,10 @@ h6 {
 
 /* "Power On" Hover Effect */
 .hover-power {
-  transition: all 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.1s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.1s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hover-power:hover {
@@ -123,6 +159,122 @@ h6 {
   box-shadow: 0 0 20px rgba(3, 249, 249, 0.5);
   transform: translateY(-2px);
 }
+
+/* ==========================================================================
+   HERO STAGGERED LINE REVEAL
+   ========================================================================== */
+@keyframes hero-line-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) skewY(2deg);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) skewY(0);
+    filter: blur(0);
+  }
+}
+
+.hero-line-reveal > * {
+  opacity: 0;
+  animation: hero-line-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-line-reveal > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-line-reveal > *:nth-child(2) { animation-delay: 0.25s; }
+.hero-line-reveal > *:nth-child(3) { animation-delay: 0.4s; }
+.hero-line-reveal > *:nth-child(4) { animation-delay: 0.55s; }
+.hero-line-reveal > *:nth-child(5) { animation-delay: 0.7s; }
+
+/* ==========================================================================
+   FADE DIRECTION VARIANTS
+   ========================================================================== */
+@keyframes fade-left {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-right {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ==========================================================================
+   CARD HOVER GLOW
+   ========================================================================== */
+.card-hover-glow {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover-glow:hover {
+  box-shadow: 0 0 25px rgba(3, 249, 249, 0.12);
+}
+
+/* ==========================================================================
+   FAQ SPRING HOVER
+   ========================================================================== */
+.faq-spring-hover {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.faq-spring-hover:hover {
+  transform: scale(1.005);
+  box-shadow: 0 0 20px rgba(3, 249, 249, 0.08);
+}
+
+/* ==========================================================================
+   FORM INPUT FOCUS GLOW
+   ========================================================================== */
+.input-focus-glow:focus-visible {
+  box-shadow: 0 0 0 3px rgba(3, 249, 249, 0.25),
+              0 0 20px rgba(3, 249, 249, 0.15);
+}
+
+/* ==========================================================================
+   TECH CORNERS DRAW-ON ANIMATION
+   Runs only when parent gets .is-visible (scroll-into-view via ScrollAnimator).
+   More visible: longer duration, longer stagger, slight overshoot.
+   ========================================================================== */
+@keyframes corner-draw-on {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tech-corner-tl { transform-origin: top left; }
+.tech-corner-tr { transform-origin: top right; }
+.tech-corner-bl { transform-origin: bottom left; }
+.tech-corner-br { transform-origin: bottom right; }
+
+/* Paused until parent is in view – then ScrollAnimator adds .is-visible */
+.tech-corner-animate {
+  opacity: 0;
+  transform: scale(0.3);
+  animation: corner-draw-on 0.9s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+  animation-play-state: paused;
+}
+
+.is-visible .tech-corner-animate {
+  animation-play-state: running;
+}
+
+/* Stagger: corners draw in sequence (tl → br → tr → bl), clearly spaced */
+.tech-corner-tl.tech-corner-animate { animation-delay: 0s; }
+.tech-corner-br.tech-corner-animate { animation-delay: 0.2s; }
+.tech-corner-tr.tech-corner-animate { animation-delay: 0.4s; }
+.tech-corner-bl.tech-corner-animate { animation-delay: 0.6s; }
 
 /* Clip-Path Containers */
 .clip-corner {
@@ -160,22 +312,6 @@ h6 {
 .wave-animate {
   animation: wave-pulse 6s ease-in-out infinite, wave-flow 12s ease-in-out infinite;
   will-change: opacity, transform;
-}
-
-/* SchweinDivider wave animations */
-@keyframes schwein-wave-pulse {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
-
-@keyframes schwein-wave-flow {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(-15px); }
-  100% { transform: translateX(0); }
-}
-
-.schwein-wave-svg {
-  animation: schwein-wave-pulse 6s ease-in-out infinite, schwein-wave-flow 10s ease-in-out infinite;
 }
 
 /* Schweinchen Wiggle Animation - for 404 page */
@@ -266,9 +402,15 @@ h6 {
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .wave-animate,
-  .schwein-wave-svg,
   .animate-spin-slow,
-  .animate-referenzen-marquee {
+  .animate-referenzen-marquee,
+  .hero-line-reveal > *,
+  .faq-spring-hover,
+  .tech-corner-animate {
     animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
   }
 }

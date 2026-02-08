@@ -61,10 +61,10 @@ export function SectionHeading({
           </div>
         )}
         <div className={cn("relative w-fit inline-block", align === "center" && "mx-auto")}>
-          <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+          <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
           <Tag
             className={cn(
-              "block text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight px-6 py-2 w-fit",
+              "block font-display text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight px-6 py-2 w-fit text-balance",
               light ? "text-brand-navy-foreground" : "text-foreground"
             )}
           >

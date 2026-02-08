@@ -53,15 +53,15 @@ export function Hero({
       <div className="relative z-10">
         {/* Headline Container (Wide) */}
         <div className="container mx-auto px-6 mb-8">
-          <div className="lg:col-span-12">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black uppercase leading-[0.9] tracking-tighter text-white drop-shadow-xl max-w-[95%]">
+          <div className="lg:col-span-12 hero-line-reveal">
+            <h1 className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-extrabold uppercase leading-[0.9] tracking-tighter text-white drop-shadow-xl max-w-[95%] text-balance">
               {headlineParts}
             </h1>
           </div>
         </div>
 
         {/* Subline & Buttons Container (Beam Restricted) */}
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
+        <div className="mx-auto max-w-6xl px-4 md:px-6 hero-line-reveal">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
             <div className="lg:col-span-8">
               <div className="mt-0 border-l-4 border-cyan pl-6">
@@ -100,10 +100,10 @@ export function Hero({
         </div>
       </div>
 
-      {/* 3. BOTTOM DECORATION */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-cyan/20"></div>
-      <div className="absolute bottom-0 left-10 w-px h-20 bg-cyan/20"></div>
-      <div className="absolute bottom-0 right-10 w-px h-20 bg-cyan/20"></div>
+      {/* 3. BOTTOM DECORATION – Linie bündig unten (bottom-0, keine Anhebung) */}
+      <div className="absolute left-0 right-0 bottom-0 h-px bg-cyan/20" aria-hidden="true" />
+      <div className="absolute left-10 bottom-0 h-20 w-px bg-cyan/20" aria-hidden="true" />
+      <div className="absolute right-10 bottom-0 h-20 w-px bg-cyan/20" aria-hidden="true" />
 
     </section>
   );

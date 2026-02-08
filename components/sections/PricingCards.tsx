@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { IconCheck, IconArrowRight } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { TechCorners } from "@/components/ui/tech-corners";
+import { SchweinOutline } from "@/components/brand/SchweinOutline";
 
 interface Package {
   name: string;
@@ -47,7 +48,8 @@ export function PricingCards({ packages }: PricingCardsProps) {
 
           {/* Badge */}
           {pkg.badge && (
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-cyan px-2 py-0.5 text-xs font-bold text-brand-navy uppercase tracking-widest border border-brand-cyan">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 bg-brand-cyan px-2 py-0.5 text-xs font-bold text-brand-navy uppercase tracking-widest border border-brand-cyan">
+              <SchweinOutline size="sm" className="!w-4 !h-3 brightness-50" />
               {pkg.badge}
             </div>
           )}

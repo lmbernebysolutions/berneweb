@@ -14,9 +14,7 @@ import {
   PAGE_META,
   COMPANY,
   FAQ_ITEMS,
-  UEBER_UNS_STATS,
 } from "@/lib/constants";
-import { SchweinDivider } from "@/components/ui/schweinchen-divider";
 import { TechCorners } from "@/components/ui/tech-corners";
 
 export const metadata: Metadata = {
@@ -78,9 +76,6 @@ export default function UeberUnsPage() {
         compact
       />
 
-      {/* 02: Kennzahlen */}
-      <TrustBar items={UEBER_UNS_STATS} />
-
       {/* 02: Intro-Statement (Zitat) */}
       <Section bg="transparent">
         <SectionHeading
@@ -112,7 +107,7 @@ export default function UeberUnsPage() {
       </Section>
 
       {/* 03: Team */}
-      <Section bg="transparent">
+      <Section bg="subtle">
         <SectionHeading
           number="03"
           overline="Das Team"
@@ -124,10 +119,10 @@ export default function UeberUnsPage() {
         <TeamSection members={TEAM} variant="navy" />
       </Section>
 
-      {/* 05: Vision / Mission */}
+      {/* 04: Vision / Mission */}
       <Section bg="transparent">
         <SectionHeading
-          number="05"
+          number="04"
           overline="Vision & Mission"
           title="Wo wir hinwollen. Was wir tun."
           align="left"
@@ -138,7 +133,7 @@ export default function UeberUnsPage() {
             data-animate="fade-left"
             className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20"
           >
-            <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+            <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
             <div className="relative z-10 p-8 md:p-10">
               <div className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-brand-cyan">
                 Vision
@@ -159,7 +154,7 @@ export default function UeberUnsPage() {
             data-animate="fade-right"
             className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20"
           >
-            <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+            <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
             <div className="relative z-10 p-8 md:p-10">
               <div className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-brand-cyan">
                 Mission
@@ -178,7 +173,7 @@ export default function UeberUnsPage() {
       </Section>
 
       {/* 05: Timeline */}
-      <Section bg="transparent">
+      <Section bg="subtle">
         <SectionHeading
           number="05"
           overline="Unsere Geschichte"
@@ -209,15 +204,15 @@ export default function UeberUnsPage() {
               </div>
 
               <div
-                className={`relative overflow-hidden border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm ${
+                className={`group relative overflow-hidden border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm card-hover-glow ${
                   i % 2 === 0
                     ? "md:mr-auto md:w-[calc(50%-3rem)]"
                     : "md:ml-auto md:w-[calc(50%-3rem)]"
                 }`}
               >
-                <div className="absolute top-0 left-0 h-2 w-2 border-t border-l border-brand-cyan/30" />
-                <h3 className="font-bold text-white">{item.event}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-white/50">
+                <TechCorners pattern="diagonal" variant="cyan" size="sm" />
+                <h3 className="relative z-10 font-bold text-white">{item.event}</h3>
+                <p className="relative z-10 mt-1.5 text-sm leading-relaxed text-white/50">
                   {item.description}
                 </p>
               </div>
@@ -239,10 +234,10 @@ export default function UeberUnsPage() {
         <FeatureGrid features={VALUES} cols={4} light />
       </Section>
 
-      {/* 08: Warum Berneby – nummeriert (Option B) */}
-      <Section bg="transparent">
+      {/* 07: Warum Berneby */}
+      <Section bg="subtle">
         <SectionHeading
-          number="08"
+          number="07"
           overline="Der Unterschied"
           title="Warum Berneby?"
           align="left"
@@ -254,9 +249,9 @@ export default function UeberUnsPage() {
               key={item.point}
               data-animate="fade-up"
               data-animate-delay={String(i * 80)}
-              className="group relative flex gap-6 overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20"
+              className="group relative flex gap-6 overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
             >
-              <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+              <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
               <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10 font-mono text-xl font-bold text-brand-cyan">
                 {String(i + 1).padStart(2, "0")}
               </div>
@@ -273,19 +268,22 @@ export default function UeberUnsPage() {
         </div>
       </Section>
 
-      {/* 08: FAQ */}
-      <Section bg="transparent">
-        <SectionHeading
-          number="08"
-          overline="FAQ"
-          title="Fragen über uns"
-          align="left"
-          light
-        />
-        <FaqAccordion items={FAQ_ITEMS.filter((_, i) => [1, 4, 9].includes(i))} />
-      </Section>
-
-      <SchweinDivider />
+      {/* 08: FAQ – Subtle nur im Beam; Wave darin eingeschlossen; nur Trennlinie volle Breite */}
+      <div className="relative">
+        <div className="relative mx-auto max-w-6xl px-4 md:px-6 overflow-hidden">
+          <div className="relative py-20 md:py-28 lg:py-32 bg-white/[0.015] overflow-hidden">
+            <SectionHeading
+              number="08"
+              overline="FAQ"
+              title="Fragen über uns"
+              align="left"
+              light
+            />
+            <FaqAccordion items={FAQ_ITEMS.filter((_, i) => [1, 4, 9].includes(i))} />
+          </div>
+        </div>
+        <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
+      </div>
 
       <CtaSection
         headline="Lernen Sie uns kennen."

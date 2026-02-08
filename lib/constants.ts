@@ -89,6 +89,14 @@ export const TECH_STACK = [
   "KI-Integration",
 ] as const;
 
+/** Tech-Seite: TrustBar-Kennzahlen (1:1 wie Über-uns, Inhalt angepasst) */
+export const TECH_STATS = [
+  { value: "Webseiten", label: "& Shops" },
+  { value: "24/7", label: "IT-Support" },
+  { value: "100%", label: "Erzgebirge" },
+  { value: "2", label: "Macher" },
+] as const;
+
 // =============================================================================
 // REFERENZEN – BRANCHEN / FÜR WEN WIR ARBEITEN (Home, Handwerk)
 // =============================================================================

@@ -14,7 +14,6 @@ import {
 import { COMPANY, PAGE_META, EINZUGSGEBIET_ORTE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { SectionCard } from "@/components/ui/section-card";
-import { SchweinDivider } from "@/components/ui/schweinchen-divider";
 import { Button } from "@/components/ui/button";
 import { TechCorners } from "@/components/ui/tech-corners";
 import Link from "next/link";
@@ -58,7 +57,7 @@ export default function KontaktPage() {
 
 
 
-      {/* Contact Info + Form Grid – gleiche Höhe links/rechts */}
+      {/* Contact Info + Form Grid – keine Variant (nur 02 hat subtle) */}
       <Section bg="transparent">
         <div className="grid gap-8 lg:grid-cols-5 lg:items-stretch">
           {/* Left: Contact Info + Map + Städte */}
@@ -254,7 +253,7 @@ export default function KontaktPage() {
       </Section>
 
       {/* Trust-Bar */}
-      <Section bg="alt" narrow>
+      <Section bg="transparent" narrow>
         <SectionCard
           variant="default"
           data-animate="fade-up"
@@ -281,35 +280,38 @@ export default function KontaktPage() {
         </SectionCard>
       </Section>
 
-      {/* FAQ – wie auf anderen Seiten: transparent, number, light, linksbündig */}
-      <Section bg="transparent">
-        <SectionHeading
-          number="02"
-          overline="FAQ"
-          title="Häufige Fragen zum Erstgespräch"
-          align="left"
-          light
-        />
-        <FaqAccordion
-          number="?"
-          items={[
-            {
-              question: "Kostet das Erstgespräch etwas?",
-              answer: "Nein. Das Erstgespräch ist zu 100% kostenlos and unverbindlich. Wir nutzen die 30 Minuten, um Ihr Anliegen zu verstehen und eine erste Einschätzung zu geben.",
-            },
-            {
-              question: "Wie schnell meldet ihr euch?",
-              answer: "Innerhalb von 24 Stunden – meistens deutlich schneller. Wenn Sie es eilig haben, rufen Sie uns direkt an.",
-            },
-            {
-              question: "Muss ich mich vorbereiten?",
-              answer: "Nein. Erzählen Sie uns einfach, wo der Schuh drückt. Wir stellen die richtigen Fragen.",
-            },
-          ]}
-        />
-      </Section>
-
-      <SchweinDivider />
+      {/* FAQ – Subtle nur im Beam; nur Trennlinie volle Breite */}
+      <div className="relative">
+        <div className="relative mx-auto max-w-6xl px-4 md:px-6 overflow-hidden">
+          <div className="relative py-20 md:py-28 lg:py-32 bg-white/[0.015] overflow-hidden">
+            <SectionHeading
+              number="02"
+              overline="FAQ"
+              title="Häufige Fragen zum Erstgespräch"
+              align="left"
+              light
+            />
+            <FaqAccordion
+              number="?"
+              items={[
+                {
+                  question: "Kostet das Erstgespräch etwas?",
+                  answer: "Nein. Das Erstgespräch ist zu 100% kostenlos and unverbindlich. Wir nutzen die 30 Minuten, um Ihr Anliegen zu verstehen und eine erste Einschätzung zu geben.",
+                },
+                {
+                  question: "Wie schnell meldet ihr euch?",
+                  answer: "Innerhalb von 24 Stunden – meistens deutlich schneller. Wenn Sie es eilig haben, rufen Sie uns direkt an.",
+                },
+                {
+                  question: "Muss ich mich vorbereiten?",
+                  answer: "Nein. Erzählen Sie uns einfach, wo der Schuh drückt. Wir stellen die richtigen Fragen.",
+                },
+              ]}
+            />
+          </div>
+        </div>
+        <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
+      </div>
 
       {/* Schema.org */}
       <script

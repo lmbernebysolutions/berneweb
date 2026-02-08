@@ -32,7 +32,6 @@ import {
   REFERENZEN_HOME,
   HOME_MINI_FAQ,
 } from "@/lib/constants";
-import { SchweinDivider } from "@/components/ui/schweinchen-divider";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { TestimonialGrid } from "@/components/sections/TestimonialGrid";
 import { ReferenzenStrip } from "@/components/sections/ReferenzenStrip";
@@ -83,9 +82,9 @@ export default function Home() {
             className="group relative flex flex-col overflow-hidden border border-brand-cyan/30 bg-brand-navy/60 backdrop-blur-md p-8 transition-colors"
           >
             {/* Tech Corners - 2→4 diagonal pattern */}
-            <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+            <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
 
-            <div className="mb-6 flex h-14 w-14 items-center justify-center bg-brand-navy shadow-[4px_4px_0_0_rgba(3,249,249,0.2)]">
+            <div className="mb-6 flex h-14 w-14 items-center justify-center bg-brand-navy shadow-[4px_4px_0_0_rgba(3,249,249,0.2)]" aria-hidden="true">
               <IconHammer className="size-8 text-brand-cyan" stroke={1.5} />
             </div>
 
@@ -116,9 +115,9 @@ export default function Home() {
             className="group relative flex flex-col overflow-hidden border border-brand-cyan/30 bg-brand-navy/60 backdrop-blur-md p-8 transition-colors"
           >
             {/* Tech Corners - 2→4 diagonal pattern */}
-            <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+            <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
 
-            <div className="mb-6 flex h-14 w-14 items-center justify-center bg-brand-navy shadow-[4px_4px_0_0_rgba(3,249,249,0.2)]">
+            <div className="mb-6 flex h-14 w-14 items-center justify-center bg-brand-navy shadow-[4px_4px_0_0_rgba(3,249,249,0.2)]" aria-hidden="true">
               <IconDeviceDesktop className="size-8 text-brand-cyan" stroke={1.5} />
             </div>
 
@@ -198,7 +197,7 @@ export default function Home() {
           {/* Optimized System: Mit Uns */}
           <div className="group relative border-2 border-brand-cyan/30 bg-brand-cyan/5 p-8 backdrop-blur-sm shadow-[0_0_60px_rgba(3,249,249,0.15)] overflow-hidden transition-all hover:shadow-[0_0_80px_rgba(3,249,249,0.25)] hover:border-brand-cyan/50" data-animate="fade-right">
             {/* Tech Corners - all 4 corners pattern */}
-            <TechCorners pattern="all" variant="cyan" size="lg" />
+            <TechCorners pattern="all" variant="cyan" size="lg" animate />
 
             {/* Animated grid background */}
             <div className="absolute inset-0 opacity-5 pointer-events-none" style={{
@@ -213,7 +212,7 @@ export default function Home() {
 
             <div className="mb-10 flex items-center justify-between relative z-10">
               <h3 className="text-3xl font-bold uppercase tracking-tighter text-brand-cyan drop-shadow-[0_0_10px_rgba(3,249,249,0.5)]">Mit Uns</h3>
-              <div className="flex h-10 w-10 items-center justify-center border-2 border-brand-cyan bg-brand-cyan/20 shadow-[0_0_20px_rgba(3,249,249,0.4)]">
+              <div className="flex h-10 w-10 items-center justify-center border-2 border-brand-cyan bg-brand-cyan/20 shadow-[0_0_20px_rgba(3,249,249,0.4)]" aria-hidden="true">
                 <IconCheck className="size-6 text-brand-cyan" stroke={3} />
               </div>
             </div>
@@ -242,7 +241,7 @@ export default function Home() {
       </Section>
 
       {/* 04: PROCESS */}
-      <Section bg="transparent">
+      <Section bg="subtle">
         <SectionHeading
           number="04"
           overline="Prozess"
@@ -272,7 +271,7 @@ export default function Home() {
       </Section>
 
       {/* 06: Partner / Technologien */}
-      <Section bg="transparent">
+      <Section bg="subtle">
         <SectionHeading
           number="06"
           overline="Womit wir arbeiten"
@@ -287,9 +286,9 @@ export default function Home() {
               key={item}
               data-animate="fade-up"
               data-animate-delay={String(i * 60)}
-              className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20"
+              className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
             >
-              <TechCorners pattern="diagonal" variant="cyan" size="md" />
+              <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
               <p className="relative z-10 text-center text-sm font-bold uppercase tracking-wider text-white">
                 {item}
               </p>
@@ -312,20 +311,22 @@ export default function Home() {
         <ReferenzenStrip items={REFERENZEN_HOME} />
       </Section>
 
-      {/* 08: Mini-FAQ */}
-      <Section bg="transparent">
-        <SectionHeading
-          number="08"
-          overline="FAQ"
-          title="Kurz gefragt"
-          align="left"
-          light
-        />
-        <FaqAccordion items={HOME_MINI_FAQ} />
-      </Section>
-
-      {/* Organic Divider - Schweinchen DNA */}
-      <SchweinDivider />
+      {/* 08: Mini-FAQ – Subtle nur im Beam; Wave darin eingeschlossen; nur Trennlinie volle Breite */}
+      <div className="relative">
+        <div className="relative mx-auto max-w-6xl px-4 md:px-6 overflow-hidden">
+          <div className="relative py-20 md:py-28 lg:py-32 bg-white/[0.015] overflow-hidden">
+            <SectionHeading
+              number="08"
+              overline="FAQ"
+              title="Kurz gefragt"
+              align="left"
+              light
+            />
+            <FaqAccordion items={HOME_MINI_FAQ} />
+          </div>
+        </div>
+        <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
+      </div>
 
       {/* CTA Section */}
       <CtaSection

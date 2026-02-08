@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 interface SectionProps {
   children: React.ReactNode;
-  bg?: "white" | "alt" | "dark" | "navy" | "transparent";
+  bg?: "white" | "alt" | "dark" | "navy" | "transparent" | "subtle";
   narrow?: boolean;
   id?: string;
   className?: string;
@@ -13,7 +13,8 @@ const bgClasses: Record<NonNullable<SectionProps["bg"]>, string> = {
   alt: "bg-section-alt text-foreground",
   dark: "bg-brand-navy text-brand-navy-foreground",
   navy: "bg-brand-navy text-brand-navy-foreground",
-  transparent: "bg-transparent text-foreground", // Let the global grid show
+  transparent: "bg-transparent text-foreground",
+  subtle: "bg-white/[0.015] text-foreground",
 };
 
 export function Section({
@@ -23,12 +24,17 @@ export function Section({
   id,
   className,
 }: SectionProps) {
+  const isSubtle = bg === "subtle";
+  const sectionPadding = "py-20 md:py-28 lg:py-32";
+  const contentWidth = narrow ? "max-w-3xl" : "max-w-6xl";
+  const contentPadding = "px-4 md:px-6";
+
   return (
     <section
       id={id}
       className={cn(
-        "relative py-20 md:py-28 lg:py-32",
-        bgClasses[bg],
+        "relative",
+        isSubtle ? "bg-transparent text-foreground" : cn(sectionPadding, bgClasses[bg]),
         className
       )}
     >
@@ -45,14 +51,24 @@ export function Section({
         <div className="noise-overlay pointer-events-none absolute inset-0" aria-hidden="true" />
       )}
 
-      <div
-        className={cn(
-          "relative mx-auto px-4 md:px-6",
-          narrow ? "max-w-3xl" : "max-w-6xl"
-        )}
-      >
-        {children}
-      </div>
+      {/* Subtle: Padding außen, dann Hintergrund nur in der Fläche zwischen den Beams (kein Überlappen) */}
+      {isSubtle ? (
+        <div className={cn("relative mx-auto", contentWidth, contentPadding)}>
+          <div className={cn("relative bg-white/[0.015]", sectionPadding)}>
+            {children}
+          </div>
+        </div>
+      ) : (
+        <div
+          className={cn(
+            "relative mx-auto",
+            contentPadding,
+            contentWidth
+          )}
+        >
+          {children}
+        </div>
+      )}
     </section>
   );
 }

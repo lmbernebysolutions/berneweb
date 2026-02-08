@@ -87,6 +87,7 @@ export default function DatenschutzPage() {
           </p>
         </div>
       </div>
+      <div className="w-full h-px bg-brand-cyan/20 shrink-0 mt-16" role="presentation" aria-hidden="true" />
     </Section>
   );
 }

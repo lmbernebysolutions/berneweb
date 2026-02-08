@@ -20,6 +20,8 @@ interface SectionCardProps extends React.HTMLAttributes<HTMLDivElement> {
   cornersGroupName?: string;
   /** Hover: show all 4 corners (diagonal only) */
   cornersHoverExpand?: boolean;
+  /** Animate corners drawing on */
+  cornersAnimate?: boolean;
 }
 
 const variantStyles = {
@@ -42,6 +44,7 @@ export function SectionCard({
   cornersPattern = "diagonal",
   cornersGroupName,
   cornersHoverExpand = true,
+  cornersAnimate = false,
   className,
   children,
   ...props
@@ -49,7 +52,7 @@ export function SectionCard({
   const styles = variantStyles[variant];
   return (
     <div
-      className={cn("group relative overflow-hidden transition-all", styles.card, className)}
+      className={cn("group relative overflow-hidden transition-all card-hover-glow", styles.card, className)}
       {...props}
     >
       <TechCorners
@@ -58,6 +61,7 @@ export function SectionCard({
         size={styles.cornersSize}
         hoverExpand={cornersHoverExpand}
         groupName={cornersGroupName}
+        animate={cornersAnimate}
       />
       {children}
     </div>
