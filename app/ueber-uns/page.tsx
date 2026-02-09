@@ -48,7 +48,7 @@ const TIMELINE = [
 const WARUM_BERNEBY = [
   {
     point: "Persönlich",
-    detail: "Keine Ticketnummer. Sie sprechen direkt mit den Machern.",
+    detail: "Keine Ticketnummer. Sie sprechen direkt mit Ihren Ansprechpartnern.",
   },
   {
     point: "Lokal",
@@ -71,12 +71,14 @@ export default function UeberUnsPage() {
     <>
       <Hero
         bergVariant="ueber-uns"
-        headline="Zwei Macher. Ein Ziel."
+        headline="Ein Team. Ein Ziel."
         accentText="Ein Ziel"
         subline="Wir machen lokale Betriebe digital erfolgreich. Persönlich, pragmatisch, aus dem Erzgebirge."
         variant="navy"
         compact
       />
+      {/* TrustBar-Linie: Berg steht darauf */}
+      <div className="w-full border-t border-brand-cyan/20" aria-hidden="true" />
 
       {/* 02: Intro-Statement (Zitat) */}
       <Section bg="transparent">
@@ -276,10 +278,10 @@ export default function UeberUnsPage() {
         </div>
       </Section>
 
-      {/* 08: FAQ – Subtle nur im Beam; Wave darin eingeschlossen; nur Trennlinie volle Breite */}
+      {/* 08: FAQ – kein eigener Hintergrund (Sektion davor hat bereits subtle) */}
       <div className="relative">
         <div className="relative mx-auto max-w-6xl px-4 md:px-6 overflow-hidden">
-          <div className="relative py-20 md:py-28 lg:py-32 bg-white/[0.015] overflow-hidden">
+          <div className="relative py-20 md:py-28 lg:py-32 overflow-hidden">
             <SectionHeading
               number="08"
               overline="FAQ"

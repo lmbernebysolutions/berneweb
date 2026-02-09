@@ -74,7 +74,7 @@ export function Hero({
       </div>
 
       {/* 1. THE MASSIVE SHADOW NUMBER */}
-      <BackdropNumber number="01" className="top-[10%] left-[-5%] opacity-100" />
+      <BackdropNumber number="01" className="top-[10%] left-[5%] opacity-100" />
 
       {/* 2. THE CONTENT FRAME */}
       <div className="relative z-[2]">

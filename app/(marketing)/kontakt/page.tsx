@@ -55,8 +55,8 @@ export default function KontaktPage() {
         variant="navy"
         compact
       />
-
-
+      {/* TrustBar-Linie: Berg steht darauf */}
+      <div className="w-full border-t border-brand-cyan/20" aria-hidden="true" />
 
       {/* Contact Info + Form Grid – keine Variant (nur 02 hat subtle) */}
       <Section bg="transparent">

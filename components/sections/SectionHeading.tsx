@@ -60,11 +60,11 @@ export function SectionHeading({
             {overline}
           </div>
         )}
-        <div className={cn("relative w-fit max-w-full", align === "center" && "mx-auto")}>
+        <div className={cn("relative inline-block max-w-full", align === "center" && "mx-auto")}>
           <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
           <Tag
             className={cn(
-              "relative block font-display text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight px-6 py-2 text-balance w-fit",
+              "relative block font-display text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight px-6 py-2 text-balance",
               light ? "text-brand-navy-foreground" : "text-foreground"
             )}
           >

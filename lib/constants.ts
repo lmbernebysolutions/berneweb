@@ -73,7 +73,7 @@ export const TRUST_BAR = [
   { value: "100%", label: "Lokal" },
   { value: "24/7", label: "KI-Telefon" },
   { value: "50+", label: "Landingpages" },
-  { value: "2", label: "Macher" },
+  { value: "2", label: "Ansprechpartner" },
 ] as const;
 
 // =============================================================================
@@ -91,10 +91,10 @@ export const TECH_STACK = [
 
 /** Tech-Seite: TrustBar-Kennzahlen (1:1 wie Über-uns, Inhalt angepasst) */
 export const TECH_STATS = [
-  { value: "Web & Shops", label: "" },
+  { value: "50+", label: "Web & Shops" },
   { value: "24/7", label: "IT-Support" },
   { value: "100%", label: "Erzgebirge" },
-  { value: "2", label: "Macher" },
+  { value: "2", label: "Ansprechpartner" },
 ] as const;
 
 // =============================================================================
@@ -607,7 +607,7 @@ export const VALUES = [
 
 export const UEBER_UNS_STATS = [
   { value: "2026", label: "Gegründet" },
-  { value: "2", label: "Macher" },
+  { value: "2", label: "Ansprechpartner" },
   { value: "100%", label: "Erzgebirge" },
   { value: "24/7", label: "KI-Telefon" },
 ] as const;
@@ -660,7 +660,7 @@ export const PAGE_META = {
       "Mehr Aufträge, weniger Aufwand: Handwerks-Pakete mit Website, KI-Telefonassistent und Google-Sichtbarkeit. Ab 950 \u20AC.",
   },
   ueberUns: {
-    title: "Über uns – Zwei Macher, ein Ziel",
+    title: "Über uns – Ein Team, ein Ziel",
     description:
       "Lennard Meyer (Tech) und Daniel Hamburg (Strategie) – wir machen lokale Betriebe digital erfolgreich. Aus Aue-Bad Schlema im Erzgebirge.",
   },
