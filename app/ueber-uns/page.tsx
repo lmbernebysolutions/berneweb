@@ -16,6 +16,7 @@ import {
   FAQ_ITEMS,
 } from "@/lib/constants";
 import { TechCorners } from "@/components/ui/tech-corners";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: PAGE_META.ueberUns.title,
@@ -69,6 +70,7 @@ export default function UeberUnsPage() {
   return (
     <>
       <Hero
+        bergVariant="ueber-uns"
         headline="Zwei Macher. Ein Ziel."
         accentText="Ein Ziel"
         subline="Wir machen lokale Betriebe digital erfolgreich. Persönlich, pragmatisch, aus dem Erzgebirge."
@@ -92,7 +94,7 @@ export default function UeberUnsPage() {
           <TechCorners pattern="diagonal" variant="cyan" size="lg" />
           <div className="relative z-10 flex flex-col items-center text-center">
             <div className="mb-6 flex h-14 w-14 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10">
-              <IconQuote className="size-7 text-brand-cyan" stroke={1.5} />
+              <IconQuote className="size-7 text-brand-warm" stroke={1.5} />
             </div>
             <blockquote className="text-xl font-semibold leading-relaxed text-white md:text-2xl">
               &ldquo;Wir glauben, dass jeder lokale Betrieb eine digitale
@@ -185,7 +187,13 @@ export default function UeberUnsPage() {
           <div
             className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-brand-cyan/50 via-white/20 to-transparent md:left-1/2 md:-translate-x-px"
             aria-hidden="true"
-          />
+          >
+            {/* Light dots: je 1 pro Zwischenlinie (2024–2025 und 2025–2026), keiner nach 2026 */}
+            {/* Light 1: Mitte zwischen 2024 und 2025 = 25% */}
+            <div className="absolute left-1/2 top-[25%] -translate-x-1/2 w-1 h-1 rounded-full bg-brand-warm shadow-[0_0_6px_rgba(255,181,71,0.6)]" />
+            {/* Light 2: Mitte zwischen 2025 und 2026 = 75% */}
+            <div className="absolute left-1/2 top-[75%] -translate-x-1/2 w-1 h-1 rounded-full bg-brand-warm shadow-[0_0_6px_rgba(255,181,71,0.6)]" />
+          </div>
 
           {TIMELINE.map((item, i) => (
             <div
@@ -227,7 +235,7 @@ export default function UeberUnsPage() {
           number="06"
           overline="Unsere Werte"
           title="Wofür wir stehen"
-          subtitle="Vier Prinzipien, die unsere Arbeit leiten – jeden Tag."
+          subtitle="Vier Prinzipien, die unsere Arbeit leiten – jeden Tag. Verwurzelt im Erzgebirge."
           align="left"
           light
         />

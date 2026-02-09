@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans, JetBrains_Mono, Bebas_Neue } from "next/font/google";
+import { Noto_Sans, JetBrains_Mono, Barlow } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
@@ -18,11 +18,11 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const bebasNeue = Bebas_Neue({
+const barlow = Barlow({
   variable: "--font-display",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   display: "swap",
-  weight: "400",
+  weight: ["700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -54,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${notoSans.variable} ${jetbrainsMono.variable} ${bebasNeue.variable}`} style={{ colorScheme: "dark" }}>
+    <html lang="de" className={`${notoSans.variable} ${jetbrainsMono.variable} ${barlow.variable}`} style={{ colorScheme: "dark" }}>
       <body className="font-sans antialiased">
         <a
           href="#main-content"

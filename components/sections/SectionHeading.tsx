@@ -47,8 +47,8 @@ export function SectionHeading({
         />
       )}
 
-      {/* Content Container (z-index check) – w-fit so Tech Corners sit at title end */}
-      <div className={cn("relative z-10 w-fit", align === "center" && "mx-auto")}>
+      {/* Content Container (z-index check) */}
+      <div className={cn("relative z-10", align === "center" && "mx-auto")}>
         {overline && (
           <div
             className={cn(
@@ -60,11 +60,11 @@ export function SectionHeading({
             {overline}
           </div>
         )}
-        <div className={cn("relative w-fit inline-block", align === "center" && "mx-auto")}>
+        <div className={cn("relative w-fit max-w-full", align === "center" && "mx-auto")}>
           <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
           <Tag
             className={cn(
-              "block font-display text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight px-6 py-2 w-fit text-balance",
+              "relative block font-display text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight px-6 py-2 text-balance w-fit",
               light ? "text-brand-navy-foreground" : "text-foreground"
             )}
           >

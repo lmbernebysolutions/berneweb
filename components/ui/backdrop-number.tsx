@@ -16,15 +16,15 @@ export function BackdropNumber({ number, className, color }: BackdropNumberProps
         <div
             className={cn(
                 "pointer-events-none absolute -top-8 -left-4 z-0 select-none font-black leading-none",
-                "text-[10rem] md:text-[16rem] lg:text-[20rem]",
+                "text-[8rem] md:text-[12rem] lg:text-[16rem]",
                 className
             )}
             style={{
-                // Using text-stroke for the "Blueprint" feeling
-                WebkitTextStroke: "2px rgba(3, 249, 249, 0.1)",
+                // Using text-stroke for the "Blueprint" feeling - GOLD for regional quality signal
+                WebkitTextStroke: "1.5px rgba(255, 181, 71, 0.4)",
                 color: "transparent",
                 // Heavy shadow logic
-                filter: "drop-shadow(4px 4px 0px rgba(0,0,0,0.5))"
+                filter: "drop-shadow(3px 3px 0px rgba(0,0,0,0.5))"
             }}
             aria-hidden="true"
         >

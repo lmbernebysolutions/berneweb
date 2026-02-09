@@ -80,6 +80,7 @@ export default function HandwerkPage() {
   return (
     <>
       <Hero
+        bergVariant="handwerk"
         headline="AUFTRAG VOLL? BÜRO LEER."
         accentText="BÜRO LEER."
         subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
@@ -137,7 +138,7 @@ export default function HandwerkPage() {
       <Section bg="subtle">
         <SectionHeading
           number="05"
-          overline="Sicherheit"
+          overline="Handschlag aus dem Erzgebirge"
           title="Garantien & Transparenz"
           subtitle="Festpreis, inkludierter Support, kein Kleingedrucktes."
           align="left"
@@ -184,7 +185,7 @@ export default function HandwerkPage() {
           <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
 
           <div className="relative z-10">
-            <div className="mb-6 inline-flex items-center border border-brand-cyan bg-brand-cyan/20 px-4 py-1 text-xs font-bold text-brand-cyan uppercase tracking-widest">
+            <div className="mb-6 inline-flex items-center border border-brand-warm bg-brand-warm px-4 py-1 text-xs font-bold text-brand-navy uppercase tracking-widest">
               Best Seller
             </div>
             <h2 className="text-3xl md:text-5xl font-black text-white uppercase leading-none mb-6">
@@ -204,7 +205,7 @@ export default function HandwerkPage() {
               ))}
             </ul>
             <div className="flex items-baseline gap-4 mb-8">
-              <span className="text-4xl font-bold text-brand-cyan">850 €</span>
+              <span className="text-4xl font-bold text-brand-warm">850 €</span>
               <span className="text-sm font-mono text-white/50">netto / Paket</span>
             </div>
             <Button asChild size="lg" className="bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90 w-full md:w-auto">
@@ -255,7 +256,7 @@ export default function HandwerkPage() {
       <Section bg="subtle">
         <SectionHeading
           number="09"
-          overline="Bauplan"
+          overline="Ihr Bauplan – vom Fundament bis zum First"
           title="In 4 Wochen fertig"
           align="left"
           light

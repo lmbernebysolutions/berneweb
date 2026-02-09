@@ -15,7 +15,7 @@
 - „Ohne uns vs. Mit uns“ (Vergleich)
 - Prozess „In 5 Schritten zum Ziel“
 - Testimonials „Das sagt das Erzgebirge“
-- SchweinDivider
+- Trennlinie (volle Breite) vor CTA
 - CTA „Bereit für das Upgrade?“
 
 ### Vorschläge (fehlend / ergänzend)

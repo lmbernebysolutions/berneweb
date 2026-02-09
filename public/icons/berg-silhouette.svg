@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" fill="none" preserveAspectRatio="none">
+  <path
+    d="M 0,80 L 150,65 L 280,45 L 380,58 L 480,35 L 620,50 L 750,28 L 880,42 L 1020,55 L 1200,70 L 1200,120 L 0,120 Z"
+    fill="currentColor"
+    opacity="0.08"
+  />
+  <path
+    d="M 0,80 L 150,65 L 280,45 L 380,58 L 480,35 L 620,50 L 750,28 L 880,42 L 1020,55 L 1200,70"
+    stroke="currentColor"
+    stroke-width="1"
+    fill="none"
+    opacity="0.15"
+  />
+</svg>

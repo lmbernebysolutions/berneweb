@@ -48,9 +48,10 @@ export default function KontaktPage() {
     <>
       {/* 1. Hero */}
       <Hero
+        bergVariant="kontakt"
         headline="Sprechen Sie mit uns."
         accentText="mit uns"
-        subline="Kostenloses Erstgespräch, unverbindlich – wir freuen uns auf Ihre Nachricht."
+        subline="Kostenloses Erstgespräch, unverbindlich – wir freuen uns auf Ihre Nachricht. Persönlich, unkompliziert, verbindlich. Glück auf!"
         variant="navy"
         compact
       />
@@ -292,7 +293,6 @@ export default function KontaktPage() {
               light
             />
             <FaqAccordion
-              number="?"
               items={[
                 {
                   question: "Kostet das Erstgespräch etwas?",

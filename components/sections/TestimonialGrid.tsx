@@ -33,7 +33,7 @@ export function TestimonialGrid({
                     {/* Tech corners - 2→4 diagonal pattern */}
                     <TechCorners pattern="diagonal" variant="cyan" size="md" />
 
-                    <div className="flex gap-1 text-brand-cyan mb-4" aria-hidden="true">
+                    <div className="flex gap-1 mb-4 text-brand-warm" aria-hidden="true">
                         {[1, 2, 3, 4, 5].map(s => <IconStarFilled key={s} className="size-4" />)}
                     </div>
                     <p className="text-lg text-white mb-4 min-h-[5.25rem]">&ldquo;{t.text}&rdquo;</p>

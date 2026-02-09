@@ -79,7 +79,7 @@ export function PricingCards({ packages }: PricingCardsProps) {
             <span
               className={cn(
                 "text-5xl font-black tracking-tighter",
-                pkg.highlighted ? "text-brand-cyan" : "text-white"
+                pkg.highlighted ? "text-brand-warm" : "text-white"
               )}
             >
               {pkg.price} €

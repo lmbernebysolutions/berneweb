@@ -76,18 +76,11 @@ export function CraftToolboxGrid({ modules }: CraftToolboxGridProps) {
               </h3>
             </div>
 
-            {/* Body: description + optional price */}
+            {/* Body: description */}
             <div className="p-6 flex flex-col grow relative z-10">
               <p className="text-[0.9375rem] leading-relaxed text-white/80">
                 {module.description}
               </p>
-              {module.price && (
-                <p className="mt-3 text-[10px] font-mono text-brand-cyan">
-                  {module.price === "inkl."
-                    ? "Preis inklusive"
-                    : `ab ${module.price} €`}
-                </p>
-              )}
             </div>
 
             {/* Footer: CTA wie Tech-Katalog */}

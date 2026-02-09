@@ -91,7 +91,7 @@ export const TECH_STACK = [
 
 /** Tech-Seite: TrustBar-Kennzahlen (1:1 wie Über-uns, Inhalt angepasst) */
 export const TECH_STATS = [
-  { value: "Webseiten", label: "& Shops" },
+  { value: "Web & Shops", label: "" },
   { value: "24/7", label: "IT-Support" },
   { value: "100%", label: "Erzgebirge" },
   { value: "2", label: "Macher" },
@@ -135,7 +135,7 @@ export const HOME_MINI_FAQ = [
   {
     question: "Arbeitet ihr nur im Erzgebirge?",
     answer:
-      "Unser Fokus liegt auf dem Erzgebirge – wir kommen vor Ort. Für reine Online-Projekte arbeiten wir auch überregional.",
+      "Unser Fokus liegt auf dem Erzgebirge – wir kommen vor Ort. Unsere Wurzeln liegen tief im Erzgebirge, wie ein guter Stollen. Für reine Online-Projekte arbeiten wir auch überregional.",
   },
 ] as const;
 

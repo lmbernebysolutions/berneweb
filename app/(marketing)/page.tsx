@@ -53,6 +53,7 @@ export default function Home() {
   return (
     <>
       <Hero
+        bergVariant="home"
         headline="DEIN DIGITALER WERKZEUGKASTEN."
         accentText="WERKZEUGKASTEN."
         subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
@@ -148,7 +149,7 @@ export default function Home() {
       <Section bg="transparent">
         <SectionHeading
           number="03"
-          overline="Der Unterschied"
+          overline="Die Brücke zwischen Handwerk und Digital"
           title="Ohne uns vs. Mit uns"
           align="left"
           light

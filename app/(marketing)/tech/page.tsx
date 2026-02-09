@@ -44,6 +44,7 @@ export default function TechPage() {
     return (
         <>
             <Hero
+                bergVariant="tech"
                 headline="IHRE EXTERNE IT-ABTEILUNG."
                 accentText="IT-ABTEILUNG."
                 subline="Flexibel. Auf Abruf. Ohne Festanstellung. Von der neuen Webseite über Shops bis IT-Support – wir bauen und betreuen."
@@ -108,9 +109,6 @@ export default function TechPage() {
                                             <TechCorners pattern="all" variant="cyan" size="sm" />
                                             <div className="flex justify-between items-baseline px-4 py-2 transition-colors group-hover/item:bg-brand-cyan/5">
                                                 <h4 className="font-medium text-xs text-white/90 uppercase tracking-wider">{item.title}</h4>
-                                                <span className="text-[10px] font-mono text-brand-cyan">
-                                                    {item.price.includes("Monat") ? item.price : `€ ${item.price}`}
-                                                </span>
                                             </div>
                                         </div>
                                     ))}
@@ -141,7 +139,7 @@ export default function TechPage() {
                     <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none" />
 
                     <div className="relative z-10">
-                        <div className="mb-6 inline-flex items-center border border-brand-cyan bg-brand-cyan/20 px-4 py-1 text-xs font-bold text-brand-cyan uppercase tracking-widest">
+                        <div className="mb-6 inline-flex items-center border border-brand-warm bg-brand-warm px-4 py-1 text-xs font-bold text-brand-navy uppercase tracking-widest">
                             Best Seller
                         </div>
                         <h2 className="text-3xl md:text-5xl font-black text-white uppercase leading-none mb-6">
@@ -161,7 +159,7 @@ export default function TechPage() {
                             ))}
                         </ul>
                         <div className="flex items-baseline gap-4 mb-8">
-                            <span className="text-4xl font-bold text-brand-cyan">850 €</span>
+                            <span className="text-4xl font-bold text-brand-warm">850 €</span>
                             <span className="text-sm font-mono text-white/50">netto / Paket</span>
                         </div>
                         <Button asChild size="lg" className="bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90 w-full md:w-auto">
@@ -213,7 +211,7 @@ export default function TechPage() {
             <Section bg="subtle">
                 <SectionHeading
                     number="07"
-                    overline="Womit wir bauen"
+                    overline="Unser digitaler Werkzeugstollen"
                     title="Tech-Stack"
                     align="left"
                     light
@@ -287,7 +285,7 @@ export default function TechPage() {
             </div>
 
             <CtaSection
-                headline="Welches Problem dürfen wir lösen?"
+                headline="Wie können wir helfen?"
                 subline="Egal ob neue Webseite, Shop oder IT-Support. Wir machen das."
                 ctas={[
                     { label: "Anfrage senden", href: "/kontakt" },

@@ -41,7 +41,7 @@ export function ContactForm() {
         <TechCorners pattern="all" variant="cyan" size="md" />
 
         <AnimatedMascot size="lg" animation="float" />
-        <div className="mt-2 font-mono text-[0.6rem] text-brand-warm/80 uppercase tracking-widest">
+        <div className="mt-2 font-mono text-[0.6rem] text-brand-cyan/80 uppercase tracking-widest">
           STATUS: GESENDET
         </div>
         <h3 className="mt-4 text-xl font-extrabold uppercase tracking-wide">Nachricht gesendet</h3>

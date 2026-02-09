@@ -44,8 +44,8 @@ export function TeamSection({ members, variant = "default" }: TeamSectionProps) 
                 className={cn(
                   "flex h-20 w-20 items-center justify-center text-xl font-bold shadow-lg rounded-full",
                   isNavy
-                    ? "bg-brand-navy text-brand-navy-foreground ring-4 ring-white/10"
-                    : "bg-brand-navy text-brand-navy-foreground ring-4 ring-background shadow-brand-navy/15"
+                    ? "bg-brand-navy text-brand-navy-foreground ring-4 ring-brand-warm/70"
+                    : "bg-brand-navy text-brand-navy-foreground ring-4 ring-brand-warm/70 shadow-brand-navy/15"
                 )}
               >
                 {member.initials}

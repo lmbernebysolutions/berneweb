@@ -67,28 +67,12 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 
-  /* FLUID GRID BACKGROUND REMOVED */
-  background-size: 60px 60px;
-  background-attachment: fixed;
-  /* Parallax effect by fixing grid */
   position: relative;
 }
 
 /* ==========================================================================
-   VISUAL DEPTH: Grain + Tech Grid
+   VISUAL DEPTH: Grain (Grid + Beams werden in GridBeams.tsx per JS ausgerichtet)
    ========================================================================== */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-  z-index: 0;
-}
-
 body::after {
   content: '';
   position: fixed;
@@ -186,6 +170,45 @@ h6 {
 .hero-line-reveal > *:nth-child(3) { animation-delay: 0.4s; }
 .hero-line-reveal > *:nth-child(4) { animation-delay: 0.55s; }
 .hero-line-reveal > *:nth-child(5) { animation-delay: 0.7s; }
+
+/* Berg-Silhouette: sofort sichtbar, optional sanfte Einblendung (kein opacity:0 – sonst bei reduced-motion/Fehler unsichtbar) */
+@keyframes hero-berg-reveal {
+  from {
+    transform: translateX(-24px);
+    filter: blur(4px);
+  }
+  to {
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+.hero-berg-reveal {
+  animation: hero-berg-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+/* Berg-Layer „Wachsen“: von unten nach oben (nur Home, Reihenfolge 4→2→3→1) */
+@keyframes berg-grow {
+  from {
+    transform: scaleY(0);
+    opacity: 1;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.berg-layer-grow {
+  transform-origin: bottom center;
+  transform: scaleY(0);
+  animation: berg-grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.berg-layer-grow-delay-0 { animation-delay: 0s; }
+.berg-layer-grow-delay-1 { animation-delay: 0.18s; }
+.berg-layer-grow-delay-2 { animation-delay: 0.36s; }
+.berg-layer-grow-delay-3 { animation-delay: 0.54s; }
 
 /* ==========================================================================
    FADE DIRECTION VARIANTS

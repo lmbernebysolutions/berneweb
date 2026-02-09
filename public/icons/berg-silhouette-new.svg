@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" fill="none" preserveAspectRatio="xMidYMid meet">
+  <!-- Echte Bergsilhouette - Mittelgebirge mit B-Form in der Mitte -->
+
+  <!-- Linke Seite: Sanfte Hügel aufbauend -->
+  <path
+    d="M 0,140 Q 60,110 120,125 T 240,105 Q 280,95 320,110 L 320,200 L 0,200 Z"
+    fill="currentColor"
+    opacity="0.12"
+  />
+  <path
+    d="M 0,140 Q 60,110 120,125 T 240,105"
+    stroke="currentColor"
+    stroke-width="1.5"
+    fill="none"
+    opacity="0.2"
+  />
+
+  <!-- Mitte-Links: Anstieg zur Zentralspitze -->
+  <path
+    d="M 320,110 Q 380,85 440,95 Q 480,85 500,60 L 500,200 L 320,200 Z"
+    fill="currentColor"
+    opacity="0.14"
+  />
+  <path
+    d="M 320,110 Q 380,85 440,95 Q 480,85 500,60"
+    stroke="currentColor"
+    stroke-width="1.5"
+    fill="none"
+    opacity="0.22"
+  />
+
+  <!-- ZENTRAL: B-FORM (vereinfacht als Bergspitze) -->
+  <!-- Die "B"-Silhouette wird als zentrale Spitze interpretiert -->
+  <path
+    d="M 500,60 L 520,35 Q 540,50 550,70 L 545,100 Q 560,95 570,110 L 550,130 Q 535,120 520,130 L 500,200 Z"
+    fill="currentColor"
+    opacity="0.18"
+  />
+  <path
+    d="M 500,60 L 520,35 Q 540,50 550,70 L 545,100 Q 560,95 570,110 L 550,130 Q 535,120 520,130"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    opacity="0.3"
+  />
+
+  <!-- Mitte-Rechts: Abstieg nach Zentralspitze -->
+  <path
+    d="M 570,110 Q 600,90 640,105 Q 680,85 700,100 L 700,200 L 570,200 Z"
+    fill="currentColor"
+    opacity="0.14"
+  />
+  <path
+    d="M 570,110 Q 600,90 640,105 Q 680,85 700,100"
+    stroke="currentColor"
+    stroke-width="1.5"
+    fill="none"
+    opacity="0.22"
+  />
+
+  <!-- Rechte Seite: Hügel abfallend -->
+  <path
+    d="M 700,100 Q 760,110 820,95 Q 880,105 940,120 T 1200,140 L 1200,200 L 700,200 Z"
+    fill="currentColor"
+    opacity="0.12"
+  />
+  <path
+    d="M 700,100 Q 760,110 820,95 Q 880,105 940,120 T 1200,140"
+    stroke="currentColor"
+    stroke-width="1.5"
+    fill="none"
+    opacity="0.2"
+  />
+
+  <!-- Basis-Linie -->
+  <line x1="0" y1="200" x2="1200" y2="200" stroke="currentColor" stroke-width="1" opacity="0.1" />
+</svg>

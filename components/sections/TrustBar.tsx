@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 interface TrustBarItem {
   value: string;
-  label: string;
+  label?: string;
 }
 
 interface TrustBarProps {
@@ -53,7 +53,7 @@ function AnimatedValue({ value }: { value: string }) {
   }, [value]);
 
   return (
-    <div ref={ref} className="text-4xl font-black tracking-tighter text-brand-cyan md:text-5xl tabular-nums">
+    <div ref={ref} className="text-4xl font-black tracking-tighter text-brand-warm md:text-5xl tabular-nums">
       {display}
     </div>
   );
@@ -66,7 +66,7 @@ export function TrustBar({ items }: TrustBarProps) {
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
           {items.map((item, i) => (
             <div
-              key={item.label}
+              key={item.value + (item.label || "")}
               data-animate="fade-up"
               data-animate-delay={String(i * 100)}
               className="group relative text-center"
@@ -89,9 +89,11 @@ export function TrustBar({ items }: TrustBarProps) {
 
               <div className="relative">
                 <AnimatedValue value={item.value} />
-                <div className="mt-1.5 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                  {item.label}
-                </div>
+                {item.label ? (
+                  <div className="mt-1.5 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                    {item.label}
+                  </div>
+                ) : null}
               </div>
 
               {/* Separator on non-last items (desktop) */}

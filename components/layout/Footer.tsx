@@ -3,10 +3,30 @@ import { TextLogo } from "@/components/brand/TextLogo";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { COMPANY, FOOTER_NAV } from "@/lib/constants";
 import { IconPhone, IconMail, IconMapPin, IconArrowUpRight, IconArrowRight } from "@tabler/icons-react";
+import Image from "next/image";
 
 export function Footer() {
   return (
     <footer className="relative z-20 overflow-hidden border-t border-brand-cyan/20 bg-brand-navy text-brand-navy-foreground">
+      {/* Bergsilhouette: 1:1 wie Hero (ganz rechts), nur kopfüber + ohne Berg1 */}
+      <div className="absolute top-0 left-0 right-0 flex justify-end items-start pointer-events-none z-0" aria-hidden="true">
+        <div className="relative w-full max-w-6xl pl-4 md:pl-6 min-h-[14rem] h-56 shrink-0 scale-y-[-1]">
+          {["/icons/Berg2.svg", "/icons/Berg3.svg", "/icons/Berg4.svg"].map((src) => (
+            <Image
+              key={src}
+              src={src}
+              alt=""
+              fill
+              sizes="(max-width: 1280px) 100vw, 1152px"
+              className="object-cover object-bottom select-none"
+              style={{ transformOrigin: "bottom center" }}
+              unoptimized
+              aria-hidden
+            />
+          ))}
+        </div>
+      </div>
+
       {/* Atmospheric background */}
       <div className="noise-overlay pointer-events-none absolute inset-0" aria-hidden="true" />
       <div
@@ -14,7 +34,7 @@ export function Footer() {
         aria-hidden="true"
       />
 
-      {/* Inhalt in Beam-Breite (wie Rest der Seite), Beams im Footer nicht sichtbar (z-20 + Hintergrund) */}
+      {/* Inhalt in Beam-Breite (wie Rest der Seite), Beams im Footer nicht sichtbar; Berg kann oben leicht überdecken */}
       <div className="relative mx-auto max-w-6xl px-4 pt-16 pb-8 md:px-6 md:pt-20">
         {/* Main grid */}
         <div className="grid gap-10 md:grid-cols-12 md:gap-8">
@@ -110,8 +130,15 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Regional greeting */}
+        <div className="mt-12 text-center">
+          <p className="text-sm text-white/40 font-medium">
+            Herzliche Grüße aus Aue-Bad Schlema im Erzgebirge. <span className="text-brand-warm">Glück auf!</span>
+          </p>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-6 sm:flex-row">
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-6 sm:flex-row">
           <p className="text-xs text-white/30">
             &copy; {new Date().getFullYear()} {COMPANY.legal}
           </p>

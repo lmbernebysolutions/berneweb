@@ -27,9 +27,16 @@ export function Header() {
         "fixed top-0 right-0 left-0 z-50 transition-all duration-500",
         scrolled
           ? "bg-background/80 shadow-[0_1px_0_0_rgba(3,249,249,0.15)] backdrop-blur-xl"
-          : "bg-transparent"
+          : "bg-background"
       )}
     >
+      {/* Standard-Modus: fester Navy-Block deckt Grid+Grain ab */}
+      {!scrolled && (
+        <div
+          className="absolute inset-0 -z-10 bg-[var(--background)]"
+          aria-hidden
+        />
+      )}
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-cyan/30 to-transparent" />
 
