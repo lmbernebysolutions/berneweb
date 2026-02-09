@@ -8,17 +8,25 @@ import Image from "next/image";
 export function Footer() {
   return (
     <footer className="relative z-20 overflow-hidden border-t border-brand-cyan/20 bg-brand-navy text-brand-navy-foreground">
-      {/* Bergsilhouette: 1:1 wie Hero (ganz rechts), nur kopfüber + ohne Berg1 */}
-      <div className="absolute top-0 left-0 right-0 flex justify-end items-start pointer-events-none z-0" aria-hidden="true">
+      {/* Bergsilhouette: 1:1 wie Hero (ganz rechts), kopfüber, ohne Berg1 – rauswachsen wenn im Viewport */}
+      <div
+        className="footer-berg absolute top-0 left-0 right-0 flex justify-end items-start pointer-events-none z-0"
+        data-animate
+        aria-hidden="true"
+      >
         <div className="relative w-full max-w-6xl pl-4 md:pl-6 min-h-[14rem] h-56 shrink-0 scale-y-[-1]">
-          {["/icons/Berg2.svg", "/icons/Berg3.svg", "/icons/Berg4.svg"].map((src) => (
+          {[
+            { src: "/icons/Berg2.svg", delay: "berg-layer-grow-on-view-delay-0" },
+            { src: "/icons/Berg3.svg", delay: "berg-layer-grow-on-view-delay-1" },
+            { src: "/icons/Berg4.svg", delay: "berg-layer-grow-on-view-delay-2" },
+          ].map(({ src, delay }) => (
             <Image
               key={src}
               src={src}
               alt=""
               fill
               sizes="(max-width: 1280px) 100vw, 1152px"
-              className="object-cover object-bottom select-none"
+              className={`object-cover object-bottom select-none berg-layer-grow-on-view ${delay}`}
               style={{ transformOrigin: "bottom center" }}
               unoptimized
               aria-hidden

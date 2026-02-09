@@ -210,6 +210,20 @@ h6 {
 .berg-layer-grow-delay-2 { animation-delay: 0.36s; }
 .berg-layer-grow-delay-3 { animation-delay: 0.54s; }
 
+/* Footer-Berg: gleiche Rauswachsen-Animation, startet wenn Footer in den Viewport scrollt */
+.footer-berg .berg-layer-grow-on-view {
+  transform-origin: bottom center;
+  transform: scaleY(0);
+  animation: berg-grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-play-state: paused;
+}
+.footer-berg.is-visible .berg-layer-grow-on-view {
+  animation-play-state: running;
+}
+.berg-layer-grow-on-view-delay-0 { animation-delay: 0.18s; }
+.berg-layer-grow-on-view-delay-1 { animation-delay: 0.36s; }
+.berg-layer-grow-on-view-delay-2 { animation-delay: 0.54s; }
+
 /* ==========================================================================
    FADE DIRECTION VARIANTS
    ========================================================================== */
