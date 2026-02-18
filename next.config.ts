@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["@tabler/icons-react"],
+    inlineCss: true,
   },
   async redirects() {
     return [

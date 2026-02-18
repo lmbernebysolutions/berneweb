@@ -116,6 +116,11 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${notoSans.variable} ${jetbrainsMono.variable} ${barlow.variable}`} style={{ colorScheme: "dark" }}>
       <body className="font-sans antialiased">
+        <style
+          dangerouslySetInnerHTML={{
+            __html: "body{background-color:#283569;color:#fff}",
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_SCHEMA) }}
