@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className="relative z-20 overflow-hidden border-t border-brand-cyan/20 bg-brand-navy text-brand-navy-foreground">
+    <footer className="relative z-20 overflow-hidden border-t border-brand-cyan/20 bg-brand-navy text-brand-navy-foreground min-h-[28rem]">
       {/* Bergsilhouette: 1:1 wie Hero (ganz rechts), kopfüber, ohne Berg1 – rauswachsen wenn im Viewport */}
       <div
         className="footer-berg absolute top-0 left-0 right-0 flex justify-end items-start pointer-events-none z-0"
