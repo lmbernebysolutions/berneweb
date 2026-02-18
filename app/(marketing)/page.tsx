@@ -31,15 +31,16 @@ import {
   TECH_STACK,
   REFERENZEN_HOME,
   HOME_MINI_FAQ,
+  PAGE_META,
 } from "@/lib/constants";
+import { generateFaqSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { TestimonialGrid } from "@/components/sections/TestimonialGrid";
 import { ReferenzenStrip } from "@/components/sections/ReferenzenStrip";
 
 export const metadata: Metadata = {
-  title: "Berneby Solutions – Ihr Digital-Partner im Erzgebirge",
-  description:
-    "Berneby Solutions macht lokale Betriebe im Erzgebirge online sichtbar und automatisiert das, was Zeit frisst. Webseiten, KI-Telefon, SEO – alles aus einer Hand.",
+  title: PAGE_META.home.title,
+  description: PAGE_META.home.description,
   alternates: { canonical: "/" },
 };
 
@@ -103,11 +104,18 @@ export default function Home() {
               ))}
             </ul>
 
-            <Button asChild className="w-full">
-              <Link href={TWO_PILLARS.handwerk.cta.href}>
-                {TWO_PILLARS.handwerk.cta.label}
-              </Link>
-            </Button>
+            <div className="space-y-3">
+              <Button asChild className="w-full">
+                <Link href={TWO_PILLARS.handwerk.cta.href}>
+                  {TWO_PILLARS.handwerk.cta.label}
+                </Link>
+              </Button>
+              <p className="text-xs text-white/50">
+                <Link href="/ratgeber/digitalisierung-handwerk" className="text-brand-cyan/80 hover:text-brand-cyan">
+                  Ratgeber: Digitalisierung im Handwerk →
+                </Link>
+              </p>
+            </div>
           </div>
 
           {/* General Tech */}
@@ -136,11 +144,18 @@ export default function Home() {
               ))}
             </ul>
 
-            <Button asChild variant="outline" className="w-full border-brand-cyan text-brand-cyan hover:bg-brand-cyan hover:text-brand-navy">
-              <Link href={TWO_PILLARS.general.cta.href}>
-                {TWO_PILLARS.general.cta.label}
-              </Link>
-            </Button>
+            <div className="space-y-3">
+              <Button asChild variant="outline" className="w-full border-brand-cyan text-brand-cyan hover:bg-brand-cyan hover:text-brand-navy">
+                <Link href={TWO_PILLARS.general.cta.href}>
+                  {TWO_PILLARS.general.cta.label}
+                </Link>
+              </Button>
+              <p className="text-xs text-white/50">
+                <Link href="/ratgeber/microsoft-365-fuer-handwerker" className="text-brand-cyan/80 hover:text-brand-cyan">
+                  Microsoft 365 für Ihren Betrieb →
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </Section>
@@ -328,6 +343,13 @@ export default function Home() {
         </div>
         <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
       </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateFaqSchema(HOME_MINI_FAQ)),
+        }}
+      />
 
       {/* CTA Section */}
       <CtaSection

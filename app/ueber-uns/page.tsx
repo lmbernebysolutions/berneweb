@@ -15,6 +15,7 @@ import {
   COMPANY,
   FAQ_ITEMS,
 } from "@/lib/constants";
+import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
 import Image from "next/image";
 
@@ -80,7 +81,7 @@ export default function UeberUnsPage() {
       {/* TrustBar-Linie: Berg steht darauf */}
       <div className="w-full border-t border-brand-cyan/20" aria-hidden="true" />
 
-      {/* 02: Intro-Statement (Zitat) */}
+      {/* 02: Intro-Statement (Zitat) – GEO-Zitat integriert */}
       <Section bg="transparent">
         <SectionHeading
           number="02"
@@ -103,6 +104,9 @@ export default function UeberUnsPage() {
               Präsenz verdient, die funktioniert. Nicht in zehn Jahren &ndash;{" "}
               <span className="text-brand-cyan">jetzt.</span>&rdquo;
             </blockquote>
+            <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-xl">
+              Wie die Deutsche Handwerks-Zeitung berichtet: &ldquo;SEO für Handwerker ist in Zeiten von KI wichtiger denn je.&rdquo; Genau das ist unser Spezialgebiet.
+            </p>
             <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
               &mdash; Lennard &amp; Daniel, Gründer von Berneby Solutions
             </p>
@@ -304,6 +308,21 @@ export default function UeberUnsPage() {
         ]}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateFaqSchema(FAQ_ITEMS.filter((_, i) => [1, 4, 9].includes(i)))),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Über uns", url: "/ueber-uns" },
+          ])),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

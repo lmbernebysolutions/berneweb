@@ -14,6 +14,8 @@ const buttonVariants = cva(
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 clip-corner",
         outline:
           "border-2 border-brand-cyan bg-transparent text-brand-cyan hover:bg-brand-cyan hover:text-brand-navy clip-corner hover:shadow-[4px_4px_0_0_rgba(3,249,249,0.2)]",
+        "outline-light":
+          "border-2 border-white bg-transparent text-white hover:bg-brand-cyan hover:border-brand-cyan hover:text-brand-navy clip-corner hover:shadow-[4px_4px_0_0_rgba(3,249,249,0.3)] transition-all hover:translate-y-[-2px]",
         secondary:
           "bg-brand-navy border border-brand-cyan/30 text-brand-cyan hover:bg-brand-navy/80 clip-corner",
         ghost: "hover:bg-brand-cyan/10 hover:text-brand-cyan",

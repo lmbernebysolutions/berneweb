@@ -4,7 +4,58 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
 import { GridBeams } from "@/components/layout/GridBeams";
+import { COMPANY } from "@/lib/constants";
 import "./globals.css";
+
+const ORGANIZATION_SCHEMA = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "LocalBusiness"],
+      "@id": "https://berneby.de/#organization",
+      name: COMPANY.name,
+      legalName: COMPANY.legal,
+      url: "https://berneby.de",
+      logo: "https://berneby.de/B.svg",
+      telephone: "+4915511960927",
+      email: COMPANY.email,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: COMPANY.location,
+        addressRegion: COMPANY.state,
+        addressCountry: "DE",
+      },
+      areaServed: {
+        "@type": "AdministrativeArea",
+        name: COMPANY.region,
+      },
+      founder: COMPANY.founders.map((f) => ({
+        "@type": "Person",
+        name: f.name,
+        jobTitle: f.role === "Tech" ? "Tech & Entwicklung" : "Strategie & Kundenbeziehung",
+      })),
+      foundingDate: COMPANY.founded,
+      dateModified: "2026-02-13",
+      knowsAbout: [
+        "Webdesign",
+        "Suchmaschinenoptimierung",
+        "KI-Integration",
+        "IT-Support",
+        "E-Commerce",
+      ],
+      sameAs: [],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://berneby.de/#website",
+      name: COMPANY.name,
+      url: "https://berneby.de",
+      publisher: { "@id": "https://berneby.de/#organization" },
+      inLanguage: "de-DE",
+      dateModified: "2026-02-13",
+    },
+  ],
+};
 
 const notoSans = Noto_Sans({
   variable: "--font-sans",
@@ -37,6 +88,11 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     siteName: "Berneby Solutions",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -56,6 +112,10 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${notoSans.variable} ${jetbrainsMono.variable} ${barlow.variable}`} style={{ colorScheme: "dark" }}>
       <body className="font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_SCHEMA) }}
+        />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-brand-cyan focus:text-brand-navy focus:p-4 focus:font-bold"

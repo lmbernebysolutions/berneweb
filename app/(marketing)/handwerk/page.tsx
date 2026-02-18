@@ -26,6 +26,7 @@ import {
   REFERENZEN_BRANCHEN,
   HANDWERK_GARANTIEN,
 } from "@/lib/constants";
+import { generateFaqSchema, generateBreadcrumbSchema, generateHowToSchema } from "@/lib/seo/schema";
 import { TestimonialGrid } from "@/components/sections/TestimonialGrid";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { ReferenzenStrip } from "@/components/sections/ReferenzenStrip";
@@ -93,12 +94,13 @@ export default function HandwerkPage() {
 
       <TrustBar items={HANDWERK_STATS} />
 
-      {/* 02: PROBLEM */}
+      {/* 02: PROBLEM – 76%-Statistik im Subtitle, Karten ausgeglichen */}
       <Section bg="transparent">
         <SectionHeading
           number="02"
           overline="Das Problem"
           title="Risiko: Stillstand"
+          subtitle="Laut Google besuchen 76% der Nutzer, die lokal suchen, innerhalb von 24 Stunden ein Geschäft. Mit unseren 50+ Landingpages sorgen wir dafür, dass SIE gefunden werden."
           align="left"
           light
         />
@@ -107,6 +109,15 @@ export default function HandwerkPage() {
           problems={PAIN_POINTS}
           variant="red"
         />
+        <p className="mt-6 text-sm text-white/60">
+          <Link href="/ratgeber/seo-fuer-handwerker" className="text-brand-cyan hover:underline">
+            Wie lokale SEO funktioniert
+          </Link>
+          {" · "}
+          <Link href="/ratgeber/ki-telefonassistent-handwerk" className="text-brand-cyan hover:underline">
+            So funktioniert der KI-Telefonassistent
+          </Link>
+        </p>
       </Section>
 
       {/* 03: MODULES */}
@@ -249,7 +260,14 @@ export default function HandwerkPage() {
           align="left"
           light
         />
-        <PricingCards packages={CRAFT_PACKAGES} />
+        <PricingCards
+          packages={CRAFT_PACKAGES}
+          comparisonRows={[
+            { label: "Professionelle Website", inPackages: ["Geselle", "Meisterbetrieb", "Marktführer"] },
+            { label: "50+ Landingpages", inPackages: ["Meisterbetrieb", "Marktführer"] },
+            { label: "KI-Telefonassistent", inPackages: ["Marktführer"] },
+          ]}
+        />
       </Section>
 
       {/* 09: PROCESS */}
@@ -291,29 +309,53 @@ export default function HandwerkPage() {
         ]}
       />
 
-      {/* Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateFaqSchema(FAQ_ITEMS)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Handwerk", url: "/handwerk" },
+          ])),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateHowToSchema(
+              PROCESS_STEPS.map((s) => ({ step: s.step, title: s.title, description: s.description })),
+              "In 5 Schritten zum Ziel – Berneby Solutions"
+            )
+          ),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "ItemList",
-            name: "Handwerks-Pakete von Berneby Solutions",
-            itemListElement: CRAFT_PACKAGES.map((pkg, i) => ({
-              "@type": "ListItem",
-              position: i + 1,
-              item: {
-                "@type": "Product",
+            "@type": "Service",
+            provider: { "@id": "https://berneby.de/#organization" },
+            name: "Webseiten & Digitalisierung für Handwerker",
+            description:
+              "Mehr Aufträge, weniger Aufwand: Handwerks-Pakete mit Website, KI-Telefonassistent und Google-Sichtbarkeit.",
+            areaServed: { "@type": "AdministrativeArea", name: "Erzgebirgskreis" },
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: "Handwerks-Pakete",
+              itemListElement: CRAFT_PACKAGES.map((pkg) => ({
+                "@type": "Offer",
                 name: pkg.name,
-                description: pkg.description,
-                offers: {
-                  "@type": "Offer",
-                  price: pkg.price.replace(".", ""),
-                  priceCurrency: "EUR",
-                  availability: "https://schema.org/InStock",
-                },
-              },
-            })),
+                price: pkg.price.replace(/\./g, ""),
+                priceCurrency: "EUR",
+              })),
+            },
           }),
         }}
       />

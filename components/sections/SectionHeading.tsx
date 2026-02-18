@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import { BackdropNumber } from "@/components/ui/backdrop-number";
-import { TechCorners } from "@/components/ui/tech-corners";
 
 interface SectionHeadingProps {
   title: string;
@@ -60,14 +59,19 @@ export function SectionHeading({
             {overline}
           </div>
         )}
-        <div className={cn("relative inline-block max-w-full", align === "center" && "mx-auto")}>
-          <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
+        {/* TechCorners: TL absolut am Heading-Box-Rand, BR inline am Ende der Textzeile */}
+        <div className={cn(align === "center" && "text-center")}>
           <Tag
             className={cn(
-              "relative block font-display text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight px-6 py-2 text-balance",
+              "relative inline-block max-w-full font-display text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight px-6 py-2 text-balance",
               light ? "text-brand-navy-foreground" : "text-foreground"
             )}
           >
+            {/* Top-left corner: absolut positioniert am Heading-Box-Rand */}
+            <span
+              className="absolute top-0 left-0 h-4 w-4 border-t-2 border-l-2 border-brand-cyan/40 transition-colors z-10 tech-corner-tl tech-corner-animate"
+              aria-hidden="true"
+            />
             {title}
             {titleLine2 != null && titleLine2 !== "" && (
               <>
@@ -75,6 +79,11 @@ export function SectionHeading({
                 {titleLine2}
               </>
             )}
+            {/* Bottom-right corner: näher am Text (ml-4) */}
+            <span
+              className="inline-block h-4 w-4 shrink-0 border-b-2 border-r-2 border-brand-cyan/40 transition-colors align-middle ml-1 mt-20 tech-corner-br tech-corner-animate"
+              aria-hidden="true"
+            />
           </Tag>
         </div>
         {subtitle && (

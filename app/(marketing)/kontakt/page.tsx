@@ -12,6 +12,7 @@ import {
   IconCheck,
 } from "@tabler/icons-react";
 import { COMPANY, PAGE_META, EINZUGSGEBIET_ORTE } from "@/lib/constants";
+import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { cn } from "@/lib/utils";
 import { SectionCard } from "@/components/ui/section-card";
 import { Button } from "@/components/ui/button";
@@ -296,7 +297,7 @@ export default function KontaktPage() {
               items={[
                 {
                   question: "Kostet das Erstgespräch etwas?",
-                  answer: "Nein. Das Erstgespräch ist zu 100% kostenlos and unverbindlich. Wir nutzen die 30 Minuten, um Ihr Anliegen zu verstehen und eine erste Einschätzung zu geben.",
+                  answer: "Nein. Das Erstgespräch ist zu 100% kostenlos und unverbindlich. Wir nutzen die 30 Minuten, um Ihr Anliegen zu verstehen und eine erste Einschätzung zu geben.",
                 },
                 {
                   question: "Wie schnell meldet ihr euch?",
@@ -313,7 +314,37 @@ export default function KontaktPage() {
         <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
       </div>
 
-      {/* Schema.org */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateFaqSchema([
+            {
+              question: "Kostet das Erstgespräch etwas?",
+              answer:
+                "Nein. Das Erstgespräch ist zu 100% kostenlos und unverbindlich. Wir nutzen die 30 Minuten, um Ihr Anliegen zu verstehen und eine erste Einschätzung zu geben.",
+            },
+            {
+              question: "Wie schnell meldet ihr euch?",
+              answer:
+                "Innerhalb von 24 Stunden – meistens deutlich schneller. Wenn Sie es eilig haben, rufen Sie uns direkt an.",
+            },
+            {
+              question: "Muss ich mich vorbereiten?",
+              answer:
+                "Nein. Erzählen Sie uns einfach, wo der Schuh drückt. Wir stellen die richtigen Fragen.",
+            },
+          ])),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Kontakt", url: "/kontakt" },
+          ])),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

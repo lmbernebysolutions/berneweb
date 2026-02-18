@@ -43,6 +43,9 @@ export const FOOTER_NAV = {
   ],
   unternehmen: [
     { label: "Über uns", href: "/ueber-uns" },
+    { label: "Ratgeber", href: "/ratgeber" },
+    { label: "Standorte", href: "/standorte" },
+    { label: "Branchen", href: "/branchen" },
     { label: "Kontakt", href: "/kontakt" },
   ],
   legal: [
@@ -650,23 +653,33 @@ export const CONTACT_SUBJECTS = [
 
 export const PAGE_META = {
   home: {
-    title: "Berneby Solutions – Ihr Digital-Partner im Erzgebirge",
+    title: "Webdesign & IT-Service Erzgebirge | Berneby Solutions",
     description:
-      "Berneby Solutions macht lokale Betriebe im Erzgebirge online sichtbar und automatisiert das, was Zeit frisst. Webseiten, KI-Telefon, SEO – alles aus einer Hand.",
+      "Websites, KI-Telefon & lokale SEO für Handwerker im Erzgebirge. Ab 950 € – Festpreis, 4 Wochen bis Go-Live. Kostenloses Erstgespräch.",
   },
   handwerk: {
-    title: "Webseiten & Digitalisierung für Handwerker",
+    title: "Website für Handwerker ab 950 € | Berneby Solutions Erzgebirge",
     description:
-      "Mehr Aufträge, weniger Aufwand: Handwerks-Pakete mit Website, KI-Telefonassistent und Google-Sichtbarkeit. Ab 950 \u20AC.",
+      "Handwerker-Websites mit 50+ lokalen Landingpages, KI-Telefonassistent & Google Ads. Festpreis, 4 Wochen bis Go-Live. Jetzt Erstgespräch buchen.",
+  },
+  tech: {
+    title: "IT-Service & Webentwicklung Erzgebirge | Berneby Solutions",
+    description:
+      "Webseiten, Online-Shops, Microsoft 365, KI-Schulung & IT-Support für KMU im Erzgebirge. Digitaler Hausmeister ab 850 €. Jetzt beraten lassen.",
   },
   ueberUns: {
-    title: "Über uns – Ein Team, ein Ziel",
+    title: "Über Berneby Solutions – Lennard Meyer & Daniel Hamburg | Erzgebirge",
     description:
       "Lennard Meyer (Tech) und Daniel Hamburg (Strategie) – wir machen lokale Betriebe digital erfolgreich. Aus Aue-Bad Schlema im Erzgebirge.",
   },
   kontakt: {
-    title: "Kontakt – Sprechen Sie mit uns",
+    title: "Kontakt & Erstgespräch | Berneby Solutions Erzgebirge",
     description:
       "Kostenloses Erstgespräch vereinbaren. Rufen Sie an oder schreiben Sie uns – wir melden uns innerhalb von 24 Stunden.",
+  },
+  ratgeber: {
+    title: "Ratgeber: Digitalisierung & IT für Handwerker | Berneby Solutions",
+    description:
+      "Praxis-Leitfäden zu SEO, KI-Telefonassistent, Microsoft 365, lokaler Sichtbarkeit & mehr. Aus dem Erzgebirge für Handwerker und KMU.",
   },
 } as const;

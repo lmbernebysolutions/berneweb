@@ -15,7 +15,8 @@ import {
     IconShield,
     IconArrowRight,
 } from "@tabler/icons-react";
-import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK, TECH_STATS, TECH_TESTIMONIALS, TECH_REFERENCES } from "@/lib/constants";
+import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK, TECH_STATS, TECH_TESTIMONIALS, TECH_REFERENCES, PAGE_META } from "@/lib/constants";
+import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { MissionSection } from "@/components/sections/MissionSection";
@@ -24,9 +25,9 @@ import { TestimonialGrid } from "@/components/sections/TestimonialGrid";
 import { TechCorners } from "@/components/ui/tech-corners";
 
 export const metadata: Metadata = {
-    title: "General Tech Solutions – Ihre externe IT-Abteilung im Erzgebirge",
-    description: "Webseiten, Shops, Office-Makros und IT-Support auf Abruf. Berneby Solutions hilft KMU bei digitalen Problemen. Schnell und flexibel.",
-    alternates: { canonical: "/tech" },
+  title: PAGE_META.tech.title,
+  description: PAGE_META.tech.description,
+  alternates: { canonical: "/tech" },
 };
 
 const TECH_ICONS: Record<string, (typeof IconDeviceDesktop)> = {
@@ -57,7 +58,7 @@ export default function TechPage() {
 
             <TrustBar items={TECH_STATS} />
 
-            {/* 02: Mission – Überschrift + Untertitel unverändert, Inhalt in 3 Varianten (a|b|c) */}
+            {/* 02: Mission – GEO-Statistik in Subtitle integriert */}
             <Section bg="transparent">
                 <SectionHeading
                     number="02"
@@ -68,6 +69,11 @@ export default function TechPage() {
                     align="left"
                     light
                 />
+                <p className="mb-8 text-sm text-white/60">
+                    <Link href="/ratgeber/microsoft-365-fuer-handwerker" className="text-brand-cyan hover:underline">
+                        Microsoft 365 für Ihren Betrieb →
+                    </Link>
+                </p>
                 <MissionSection variant="a" />
             </Section>
 
@@ -207,12 +213,13 @@ export default function TechPage() {
                 <ProcessSteps steps={PROCESS_STEPS} />
             </Section>
 
-            {/* 07: Technologien */}
+            {/* 07: Technologien – 53%-Statistik im Subtitle (SEO ↔ Tech-Zusammenhang) */}
             <Section bg="subtle">
                 <SectionHeading
                     number="07"
                     overline="Unser digitaler Werkzeugstollen"
                     title="Tech-Stack"
+                    subtitle="53% des Website-Traffics kommt über organische Suche. Ohne professionelle SEO verschenken Sie die Hälfte Ihrer Kunden – wir bauen mit Technologien, die Suchmaschinen und Nutzer gleichermaßen überzeugen."
                     align="left"
                     light
                 />
@@ -283,6 +290,45 @@ export default function TechPage() {
                 </div>
                 <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
             </div>
+
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(generateFaqSchema(FAQ_ITEMS)),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(generateBreadcrumbSchema([
+                        { name: "Home", url: "/" },
+                        { name: "Tech Solutions", url: "/tech" },
+                    ])),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Service",
+                        provider: { "@id": "https://berneby.de/#organization" },
+                        name: "IT-Service & Webentwicklung Erzgebirge",
+                        description:
+                            "Webseiten, Online-Shops, Microsoft 365, KI-Schulung & IT-Support für KMU im Erzgebirge. Digitaler Hausmeister ab 850 €.",
+                        areaServed: { "@type": "AdministrativeArea", name: "Erzgebirgskreis" },
+                        hasOfferCatalog: {
+                            "@type": "OfferCatalog",
+                            name: "Tech-Leistungen",
+                            itemListElement: [
+                                { "@type": "Offer", name: "One-Pager", price: "950", priceCurrency: "EUR" },
+                                { "@type": "Offer", name: "Mehrseitige Website", price: "1950", priceCurrency: "EUR" },
+                                { "@type": "Offer", name: "Digitaler Hausmeister", price: "850", priceCurrency: "EUR" },
+                            ],
+                        },
+                    }),
+                }}
+            />
 
             <CtaSection
                 headline="Wie können wir helfen?"

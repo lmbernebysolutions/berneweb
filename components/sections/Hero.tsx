@@ -7,7 +7,7 @@ import { BackdropNumber } from "@/components/ui/backdrop-number";
 interface HeroCta {
   label: string;
   href: string;
-  variant: "default" | "outline";
+  variant: "default" | "outline" | "outline-light";
 }
 
 /** Überall 4 Berg-Layer wie auf Home; hinten→vorne: Berg1, Berg2, Berg3, Berg4 (Berg4 ganz vorn); Animation 4→2→3→1 */
@@ -103,12 +103,8 @@ export function Hero({
                     <Button
                       key={cta.label}
                       asChild
-                      variant={cta.variant === "default" || i === 0 ? "default" : "outline"}
+                      variant={cta.variant === "default" || i === 0 ? "default" : "outline-light"}
                       size="lg"
-                      className={cn(
-                        "h-14 px-8 text-lg font-bold uppercase tracking-widest clip-corner hover-power",
-                        cta.variant === "outline" && "border-2 border-white text-white hover:border-cyan hover:text-brand-navy"
-                      )}
                     >
                       <Link href={cta.href}>
                         {cta.label}

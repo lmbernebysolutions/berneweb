@@ -18,11 +18,18 @@ interface Package {
   badge?: string;
 }
 
-interface PricingCardsProps {
-  packages: readonly Package[];
+interface ComparisonRow {
+  label: string;
+  inPackages: readonly string[];
 }
 
-export function PricingCards({ packages }: PricingCardsProps) {
+interface PricingCardsProps {
+  packages: readonly Package[];
+  /** Optional: Zeigt Kernunterschiede zwischen Paketen direkt in jeder Karte */
+  comparisonRows?: readonly ComparisonRow[];
+}
+
+export function PricingCards({ packages, comparisonRows }: PricingCardsProps) {
   return (
     <div className="grid gap-6 md:grid-cols-3 md:gap-5">
       {packages.map((pkg, i) => (
@@ -90,7 +97,7 @@ export function PricingCards({ packages }: PricingCardsProps) {
           </div>
 
           {/* Features */}
-          <ul className="relative grow space-y-4 mb-8">
+          <ul className="relative grow space-y-4 mb-6">
             {pkg.features.map((feature) => (
               <li key={feature} className="flex items-start gap-3 text-sm">
                 <div className={cn("mt-1 w-1.5 h-1.5 shrink-0", pkg.highlighted ? "bg-brand-cyan" : "bg-white/30")} />
@@ -100,6 +107,28 @@ export function PricingCards({ packages }: PricingCardsProps) {
               </li>
             ))}
           </ul>
+
+          {/* Vergleich: Kernfeatures – zeigt Unterschiede auf einen Blick */}
+          {comparisonRows && comparisonRows.length > 0 && (
+            <div className="relative mb-8 border-t border-white/10 pt-6">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-cyan/60 mb-3">Kernfeatures im Vergleich</p>
+              <ul className="space-y-2">
+                {comparisonRows.map((row) => {
+                  const included = row.inPackages.includes(pkg.name);
+                  return (
+                    <li key={row.label} className="flex items-center justify-between gap-3 text-sm">
+                      <span className="text-white/70">{row.label}</span>
+                      {included ? (
+                        <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded border border-brand-cyan/50 bg-brand-cyan/10 text-brand-cyan text-xs">✓</span>
+                      ) : (
+                        <span className="text-white/30 text-xs">—</span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
 
           {/* CTA */}
           <Button

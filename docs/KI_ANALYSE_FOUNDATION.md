@@ -15,8 +15,8 @@
 | `/handwerk` | `app/(marketing)/handwerk/page.tsx` | Handwerk |
 | `/tech` | `app/(marketing)/tech/page.tsx` | Tech Solutions |
 | `/kontakt` | `app/(marketing)/kontakt/page.tsx` | Kontakt |
-| `/impressum` | `app/(marketing)/legal/impressum/page.tsx` | Impressum |
-| `/datenschutz` | `app/(marketing)/legal/datenschutz/page.tsx` | Datenschutz |
+| `/impressum` | `app/(marketing)/impressum/page.tsx` | Impressum |
+| `/datenschutz` | `app/(marketing)/datenschutz/page.tsx` | Datenschutz |
 | 404 | `app/not-found.tsx` | Nicht gefunden |
 | 500 | `app/error.tsx` | Fehlerseite |
 | Loading | `app/loading.tsx` | Ladezustand |
