@@ -5,8 +5,17 @@ import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
-import { FaqAccordion } from "@/components/sections/FaqAccordion";
+import dynamic from "next/dynamic";
 import { CtaSection } from "@/components/sections/CtaSection";
+
+const FaqAccordion = dynamic(
+  () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
+  { ssr: true }
+);
+const TestimonialGrid = dynamic(
+  () => import("@/components/sections/TestimonialGrid").then((m) => ({ default: m.TestimonialGrid })),
+  { ssr: true }
+);
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
@@ -35,7 +44,6 @@ import {
 } from "@/lib/constants";
 import { generateFaqSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
-import { TestimonialGrid } from "@/components/sections/TestimonialGrid";
 import { ReferenzenStrip } from "@/components/sections/ReferenzenStrip";
 
 export const metadata: Metadata = {
@@ -110,7 +118,7 @@ export default function Home() {
                   {TWO_PILLARS.handwerk.cta.label}
                 </Link>
               </Button>
-              <p className="text-xs text-white/50">
+              <p className="text-xs text-brand-navy-muted">
                 <Link href="/ratgeber/digitalisierung-handwerk" className="text-brand-cyan/80 hover:text-brand-cyan">
                   Ratgeber: Digitalisierung im Handwerk →
                 </Link>
@@ -150,7 +158,7 @@ export default function Home() {
                   {TWO_PILLARS.general.cta.label}
                 </Link>
               </Button>
-              <p className="text-xs text-white/50">
+              <p className="text-xs text-brand-navy-muted">
                 <Link href="/ratgeber/microsoft-365-fuer-handwerker" className="text-brand-cyan/80 hover:text-brand-cyan">
                   Microsoft 365 für Ihren Betrieb →
                 </Link>
@@ -204,7 +212,7 @@ export default function Home() {
                     <span>{item.label}</span>
                     <span className="text-white/20">PROBLEM: {item.risk}</span>
                   </div>
-                  <p className="mt-1 font-medium text-white/50">{item.val}</p>
+                  <p className="mt-1 font-medium text-brand-navy-muted">{item.val}</p>
                 </div>
               ))}
             </div>
@@ -327,18 +335,21 @@ export default function Home() {
         <ReferenzenStrip items={REFERENZEN_HOME} />
       </Section>
 
-      {/* 08: Mini-FAQ – Subtle nur im Beam; Wave darin eingeschlossen; nur Trennlinie volle Breite */}
+      {/* 08: Mini-FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
       <div className="relative">
-        <div className="relative mx-auto max-w-6xl px-4 md:px-6 overflow-hidden">
-          <div className="relative py-20 md:py-28 lg:py-32 bg-white/[0.015] overflow-hidden">
-            <SectionHeading
-              number="08"
-              overline="FAQ"
-              title="Kurz gefragt"
-              align="left"
-              light
-            />
-            <FaqAccordion items={HOME_MINI_FAQ} />
+        <div className="relative mx-auto max-w-6xl overflow-hidden">
+          <div className="relative">
+            <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
+            <div className="relative z-10 px-4 md:px-6 py-20 md:py-28 lg:py-32">
+              <SectionHeading
+                number="08"
+                overline="FAQ"
+                title="Kurz gefragt"
+                align="left"
+                light
+              />
+              <FaqAccordion items={HOME_MINI_FAQ} />
+            </div>
           </div>
         </div>
         <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />

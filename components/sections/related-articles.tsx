@@ -34,7 +34,7 @@ export function RelatedArticles({ slugs, max = 4 }: RelatedArticlesProps) {
               <span className="relative z-10 font-medium text-white group-hover:text-brand-cyan transition-colors">
                 {article.title}
               </span>
-              <span className="relative z-10 mt-1 flex items-center gap-1 text-xs text-white/50 group-hover:text-brand-cyan/80">
+              <span className="relative z-10 mt-1 flex items-center gap-1 text-xs text-brand-navy-muted group-hover:text-brand-cyan/80">
                 Weiterlesen <IconArrowRight className="size-3" />
               </span>
             </Link>

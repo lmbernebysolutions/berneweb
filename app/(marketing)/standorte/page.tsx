@@ -48,13 +48,13 @@ export default function StandortePage() {
                   <span className="font-bold text-white group-hover:text-brand-cyan transition-colors">
                     {loc.name}
                   </span>
-                  <span className="ml-2 text-sm text-white/50">
+                  <span className="ml-2 text-sm text-brand-navy-muted">
                     {loc.population.toLocaleString("de-DE")} EW
                   </span>
                 </div>
                 <IconArrowRight className="size-4 shrink-0 text-white/40 group-hover:text-brand-cyan transition-colors" />
               </div>
-              <p className="relative z-10 mt-2 text-xs text-white/50 line-clamp-2">
+              <p className="relative z-10 mt-2 text-xs text-brand-navy-muted line-clamp-2">
                 {loc.description}
               </p>
             </Link>

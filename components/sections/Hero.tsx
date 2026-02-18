@@ -65,7 +65,8 @@ export function Hero({
                 BERG_LAYER_DELAYS[i]
               )}
               style={{ transformOrigin: "bottom center" }}
-              priority={i === 1}
+              priority={i >= 1 && i <= 3}
+              fetchPriority={i >= 1 && i <= 3 ? "high" : undefined}
               unoptimized
               aria-hidden
             />

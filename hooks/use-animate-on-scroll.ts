@@ -44,25 +44,12 @@ export function useAnimateOnScroll() {
       { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
     );
 
-    elements.forEach((el) => {
-      observer.observe(el);
+    elements.forEach((el) => observer.observe(el));
 
-      // Immediately trigger animation for elements already in viewport
-      const rect = el.getBoundingClientRect();
-      const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
-      if (isInViewport) {
-        const htmlEl = el as HTMLElement;
-        const delay = htmlEl.dataset.animateDelay;
-        if (delay) {
-          htmlEl.style.transitionDelay = `${delay}ms`;
-        }
-        // Small delay to ensure DOM is ready
-        requestAnimationFrame(() => {
-          htmlEl.classList.add("is-visible");
-        });
-      }
-    });
-
+    // Do not mutate "already in viewport" here: that can run before React hydrates (e.g. TrustBar),
+    // causing "server HTML didn't match client" (we'd add is-visible to DOM before hydration).
+    // Above-the-fold sections that need immediate reveal (e.g. TrustBar) use their own state;
+    // everything else gets is-visible from the IntersectionObserver when it enters view.
     return () => observer.disconnect();
   }, [pathname]); // Re-run when pathname changes
 }

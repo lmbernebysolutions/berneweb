@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
+import dynamic from "next/dynamic";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import {
   IconPhone,
   IconMail,
@@ -11,6 +11,11 @@ import {
   IconClock,
   IconCheck,
 } from "@tabler/icons-react";
+
+const FaqAccordion = dynamic(
+  () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
+  { ssr: true }
+);
 import { COMPANY, PAGE_META, EINZUGSGEBIET_ORTE } from "@/lib/constants";
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { cn } from "@/lib/utils";
@@ -282,19 +287,21 @@ export default function KontaktPage() {
         </SectionCard>
       </Section>
 
-      {/* FAQ – Subtle nur im Beam; nur Trennlinie volle Breite */}
+      {/* FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
       <div className="relative">
-        <div className="relative mx-auto max-w-6xl px-4 md:px-6 overflow-hidden">
-          <div className="relative py-20 md:py-28 lg:py-32 bg-white/[0.015] overflow-hidden">
-            <SectionHeading
-              number="02"
-              overline="FAQ"
-              title="Häufige Fragen zum Erstgespräch"
-              align="left"
-              light
-            />
-            <FaqAccordion
-              items={[
+        <div className="relative mx-auto max-w-6xl overflow-hidden">
+          <div className="relative">
+            <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
+            <div className="relative z-10 px-4 md:px-6 py-20 md:py-28 lg:py-32">
+              <SectionHeading
+                number="02"
+                overline="FAQ"
+                title="Häufige Fragen zum Erstgespräch"
+                align="left"
+                light
+              />
+              <FaqAccordion
+                items={[
                 {
                   question: "Kostet das Erstgespräch etwas?",
                   answer: "Nein. Das Erstgespräch ist zu 100% kostenlos und unverbindlich. Wir nutzen die 30 Minuten, um Ihr Anliegen zu verstehen und eine erste Einschätzung zu geben.",
@@ -309,6 +316,7 @@ export default function KontaktPage() {
                 },
               ]}
             />
+            </div>
           </div>
         </div>
         <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />

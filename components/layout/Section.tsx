@@ -51,11 +51,14 @@ export function Section({
         <div className="noise-overlay pointer-events-none absolute inset-0" aria-hidden="true" />
       )}
 
-      {/* Subtle: Padding außen, dann Hintergrund nur in der Fläche zwischen den Beams (kein Überlappen) */}
+      {/* Subtle: Hintergrund füllt volle Beam-Breite (max-w-6xl); Inhalt mit Padding innen */}
       {isSubtle ? (
-        <div className={cn("relative mx-auto", contentWidth, contentPadding)}>
-          <div className={cn("relative bg-white/[0.015]", sectionPadding)}>
-            {children}
+        <div className={cn("relative mx-auto", contentWidth)}>
+          <div className="relative">
+            <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
+            <div className={cn("relative z-10", contentPadding, sectionPadding)}>
+              {children}
+            </div>
           </div>
         </div>
       ) : (

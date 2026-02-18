@@ -49,7 +49,7 @@ export function Footer() {
           {/* Brand - takes more space */}
           <div className="md:col-span-4">
             <TextLogo variant="light" />
-            <p className="mt-5 max-w-xs text-[0.9375rem] leading-relaxed text-white/50">
+            <p className="mt-5 max-w-xs text-[0.9375rem] leading-relaxed text-brand-navy-muted">
               Ihr Digital-Partner im Erzgebirge. Webseiten, KI-Telefon,
               Online-Sichtbarkeit – alles aus einer Hand.
             </p>
@@ -57,19 +57,19 @@ export function Footer() {
             <div className="mt-6 space-y-2.5">
               <a
                 href={`tel:${COMPANY.phone}`}
-                className="flex items-center gap-2.5 text-sm text-white/50 transition-colors hover:text-brand-cyan"
+                className="flex items-center gap-2.5 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
               >
                 <IconPhone className="size-4 shrink-0" stroke={1.5} />
                 {COMPANY.phoneDisplay}
               </a>
               <a
                 href={`mailto:${COMPANY.email}`}
-                className="flex items-center gap-2.5 text-sm text-white/50 transition-colors hover:text-brand-cyan"
+                className="flex items-center gap-2.5 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
               >
                 <IconMail className="size-4 shrink-0" stroke={1.5} />
                 {COMPANY.email}
               </a>
-              <span className="flex items-center gap-2.5 text-sm text-white/50">
+              <span className="flex items-center gap-2.5 text-sm text-brand-navy-muted">
                 <IconMapPin className="size-4 shrink-0" stroke={1.5} />
                 {COMPANY.location}, {COMPANY.region}
               </span>
@@ -78,7 +78,7 @@ export function Footer() {
 
           {/* Leistungen */}
           <div className="md:col-span-3">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/50">
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/80">
               Leistungen
             </h3>
             <ul className="space-y-2.5">
@@ -86,7 +86,7 @@ export function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="group flex items-center gap-1 text-sm text-white/50 transition-colors hover:text-brand-cyan"
+                    className="group flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
                   >
                     {item.label}
                     <IconArrowUpRight className="size-3 opacity-0 transition-all group-hover:opacity-100" stroke={2} />
@@ -98,7 +98,7 @@ export function Footer() {
 
           {/* Unternehmen */}
           <div className="md:col-span-2">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/50">
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/80">
               Unternehmen
             </h3>
             <ul className="space-y-2.5">
@@ -106,7 +106,7 @@ export function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="group flex items-center gap-1 text-sm text-white/50 transition-colors hover:text-brand-cyan"
+                    className="group flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
                   >
                     {item.label}
                     <IconArrowUpRight className="size-3 opacity-0 transition-all group-hover:opacity-100" stroke={2} />
@@ -121,7 +121,7 @@ export function Footer() {
             <div className="group relative overflow-hidden border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm">
               <TechCorners pattern="diagonal" variant="cyan" size="sm" />
 
-              <p className="relative z-10 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/60">
+              <p className="relative z-10 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan">
                 Projekt starten
               </p>
               <p className="relative z-10 mt-2 text-sm font-semibold text-white/80">
@@ -140,14 +140,14 @@ export function Footer() {
 
         {/* Regional greeting */}
         <div className="mt-12 text-center">
-          <p className="text-sm text-white/40 font-medium">
+          <p className="text-sm text-brand-navy-muted font-medium">
             Herzliche Grüße aus Aue-Bad Schlema im Erzgebirge. <span className="text-brand-warm">Glück auf!</span>
           </p>
         </div>
 
         {/* Bottom Bar */}
         <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-6 sm:flex-row">
-          <p className="text-xs text-white/30">
+          <p className="text-xs text-brand-navy-muted">
             &copy; {new Date().getFullYear()} {COMPANY.legal}
           </p>
           <nav className="flex gap-6" aria-label="Rechtliches">
@@ -155,7 +155,7 @@ export function Footer() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-xs text-white/30 transition-colors hover:text-white/60"
+                className="text-xs text-brand-navy-muted transition-colors hover:text-brand-cyan"
               >
                 {item.label}
               </Link>

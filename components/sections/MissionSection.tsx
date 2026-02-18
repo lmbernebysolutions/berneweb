@@ -69,7 +69,7 @@ function MissionVariantB() {
           <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/80 mb-3">
             Was wir nicht tun
           </h3>
-          <ul className="space-y-2 text-sm text-white/50">
+          <ul className="space-y-2 text-sm text-brand-navy-muted">
             {[
               "Keine langen Mindestlaufzeiten",
               "Kein generisches Bla-Bla",

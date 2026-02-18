@@ -50,7 +50,7 @@ export function TestimonialGrid({
                         </div>
                         <div>
                             <div className="font-bold text-white">{t.name}</div>
-                            <div className="text-xs text-white/50 uppercase tracking-wider">{t.role}</div>
+                            <div className="text-xs text-brand-navy-muted uppercase tracking-wider">{t.role}</div>
                         </div>
                     </div>
                 </div>

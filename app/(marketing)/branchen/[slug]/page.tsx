@@ -6,9 +6,14 @@ import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { ProblemSection } from "@/components/sections/ProblemSection";
+import dynamic from "next/dynamic";
 import { PricingCards } from "@/components/sections/PricingCards";
-import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { CtaSection } from "@/components/sections/CtaSection";
+
+const FaqAccordion = dynamic(
+  () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
+  { ssr: true }
+);
 import { Button } from "@/components/ui/button";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { IconCheck, IconCurrencyEuro, IconPhone } from "@tabler/icons-react";

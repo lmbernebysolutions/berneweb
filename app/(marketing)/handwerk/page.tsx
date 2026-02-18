@@ -5,9 +5,18 @@ import { SectionHeading } from "@/components/sections/SectionHeading";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { CraftToolboxGrid } from "@/components/sections/CraftToolboxGrid";
 import { PricingCards } from "@/components/sections/PricingCards";
+import dynamic from "next/dynamic";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
-import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { CtaSection } from "@/components/sections/CtaSection";
+
+const FaqAccordion = dynamic(
+  () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
+  { ssr: true }
+);
+const TestimonialGrid = dynamic(
+  () => import("@/components/sections/TestimonialGrid").then((m) => ({ default: m.TestimonialGrid })),
+  { ssr: true }
+);
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
@@ -27,7 +36,6 @@ import {
   HANDWERK_GARANTIEN,
 } from "@/lib/constants";
 import { generateFaqSchema, generateBreadcrumbSchema, generateHowToSchema } from "@/lib/seo/schema";
-import { TestimonialGrid } from "@/components/sections/TestimonialGrid";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { ReferenzenStrip } from "@/components/sections/ReferenzenStrip";
 import { TechCorners } from "@/components/ui/tech-corners";
@@ -217,7 +225,7 @@ export default function HandwerkPage() {
             </ul>
             <div className="flex items-baseline gap-4 mb-8">
               <span className="text-4xl font-bold text-brand-warm">850 €</span>
-              <span className="text-sm font-mono text-white/50">netto / Paket</span>
+              <span className="text-sm font-mono text-brand-navy-muted">netto / Paket</span>
             </div>
             <Button asChild size="lg" className="bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90 w-full md:w-auto">
               <Link href="/kontakt">Karte sichern</Link>
@@ -282,18 +290,21 @@ export default function HandwerkPage() {
         <ProcessSteps steps={PROCESS_STEPS} />
       </Section>
 
-      {/* 10: FAQ – Subtle nur im Beam; Wave darin eingeschlossen; nur Trennlinie volle Breite */}
+      {/* 10: FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
       <div className="relative">
-        <div className="relative mx-auto max-w-6xl px-4 md:px-6 overflow-hidden">
-          <div className="relative py-20 md:py-28 lg:py-32 bg-white/[0.015] overflow-hidden">
-            <SectionHeading
-              number="10"
-              overline="Support"
-              title="Häufige Fragen"
-              align="left"
-              light
-            />
-            <FaqAccordion items={FAQ_ITEMS} />
+        <div className="relative mx-auto max-w-6xl overflow-hidden">
+          <div className="relative">
+            <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
+            <div className="relative z-10 px-4 md:px-6 py-20 md:py-28 lg:py-32">
+              <SectionHeading
+                number="10"
+                overline="Support"
+                title="Häufige Fragen"
+                align="left"
+                light
+              />
+              <FaqAccordion items={FAQ_ITEMS} />
+            </div>
           </div>
         </div>
         <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />

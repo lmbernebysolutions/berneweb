@@ -74,7 +74,7 @@ export function PricingCards({ packages, comparisonRows }: PricingCardsProps) {
             <p
               className={cn(
                 "mt-2 text-sm",
-                pkg.highlighted ? "text-brand-cyan/80" : "text-white/50"
+                pkg.highlighted ? "text-brand-cyan/80" : "text-brand-navy-muted"
               )}
             >
               {pkg.description}

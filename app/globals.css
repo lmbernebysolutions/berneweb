@@ -14,6 +14,8 @@
 
   /* Brand Tokens - Heavy Industrial */
   --color-brand-navy: #283569;
+  /* WCAG AA compliant muted text on navy (~4.5:1 on #283569) */
+  --color-brand-navy-muted: #9caec9;
   --color-brand-cyan: #03f9f9;
   --color-brand-cyan-dim: color-mix(in srgb, #03f9f9 20%, transparent);
   --color-brand-warm: #FFB547;
@@ -66,6 +68,8 @@ body {
   font-family: var(--font-sans);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  /* Reduce CLS on font swap: match x-height of common fallback (e.g. Arial) to Noto Sans */
+  font-size-adjust: 0.48;
 
   position: relative;
 }

@@ -88,7 +88,7 @@ export function CraftToolboxGrid({ modules }: CraftToolboxGridProps) {
               <Button
                 asChild
                 variant="ghost"
-                className="w-full justify-between text-white/50 hover:text-brand-cyan hover:bg-transparent px-0 uppercase tracking-widest text-xs"
+                className="w-full justify-between text-brand-navy-muted hover:text-brand-cyan hover:bg-transparent px-0 uppercase tracking-widest text-xs"
               >
                 <Link href="/kontakt">
                   Jetzt anfragen <IconArrowRight className="size-4" />

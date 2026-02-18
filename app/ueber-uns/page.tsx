@@ -4,9 +4,14 @@ import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { TeamSection } from "@/components/sections/TeamSection";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
+import dynamic from "next/dynamic";
 import { CtaSection } from "@/components/sections/CtaSection";
-import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { TrustBar } from "@/components/sections/TrustBar";
+
+const FaqAccordion = dynamic(
+  () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
+  { ssr: true }
+);
 import { IconQuote } from "@tabler/icons-react";
 import {
   TEAM,
@@ -226,7 +231,7 @@ export default function UeberUnsPage() {
               >
                 <TechCorners pattern="diagonal" variant="cyan" size="sm" />
                 <h3 className="relative z-10 font-bold text-white">{item.event}</h3>
-                <p className="relative z-10 mt-1.5 text-sm leading-relaxed text-white/50">
+                <p className="relative z-10 mt-1.5 text-sm leading-relaxed text-brand-navy-muted">
                   {item.description}
                 </p>
               </div>

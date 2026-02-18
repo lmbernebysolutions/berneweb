@@ -107,7 +107,7 @@ export default async function RatgeberArticlePage({
             <p className="mt-4 text-lg text-white/70">
               {article.description}
             </p>
-            <p className="mt-4 text-sm text-white/50">
+            <p className="mt-4 text-sm text-brand-navy-muted">
               Zuletzt aktualisiert: {formatDate(article.dateModified)}
             </p>
           </header>

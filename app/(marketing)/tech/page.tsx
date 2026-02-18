@@ -16,13 +16,21 @@ import {
     IconArrowRight,
 } from "@tabler/icons-react";
 import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK, TECH_STATS, TECH_TESTIMONIALS, TECH_REFERENCES, PAGE_META } from "@/lib/constants";
+import dynamic from "next/dynamic";
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TrustBar } from "@/components/sections/TrustBar";
-import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { MissionSection } from "@/components/sections/MissionSection";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
-import { TestimonialGrid } from "@/components/sections/TestimonialGrid";
 import { TechCorners } from "@/components/ui/tech-corners";
+
+const FaqAccordion = dynamic(
+  () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
+  { ssr: true }
+);
+const TestimonialGrid = dynamic(
+  () => import("@/components/sections/TestimonialGrid").then((m) => ({ default: m.TestimonialGrid })),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: PAGE_META.tech.title,
@@ -120,7 +128,7 @@ export default function TechPage() {
                                     ))}
                                 </div>
                                 <div className="mt-auto p-6 pt-0 relative z-10">
-                                    <Button asChild variant="ghost" className="w-full justify-between text-white/50 hover:text-brand-cyan hover:bg-transparent px-0 uppercase tracking-widest text-xs">
+                                    <Button asChild variant="ghost" className="w-full justify-between text-brand-navy-muted hover:text-brand-cyan hover:bg-transparent px-0 uppercase tracking-widest text-xs">
                                         <Link href="/kontakt">
                                             Jetzt anfragen <IconArrowRight className="size-4" />
                                         </Link>
@@ -166,7 +174,7 @@ export default function TechPage() {
                         </ul>
                         <div className="flex items-baseline gap-4 mb-8">
                             <span className="text-4xl font-bold text-brand-warm">850 €</span>
-                            <span className="text-sm font-mono text-white/50">netto / Paket</span>
+                            <span className="text-sm font-mono text-brand-navy-muted">netto / Paket</span>
                         </div>
                         <Button asChild size="lg" className="bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90 w-full md:w-auto">
                             <Link href="/kontakt">Karte sichern</Link>
@@ -274,18 +282,21 @@ export default function TechPage() {
                 </div>
             </Section>
 
-            {/* 09: FAQ – Subtle nur im Beam; Wave darin eingeschlossen; nur Trennlinie volle Breite */}
+            {/* 09: FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
             <div className="relative">
-                <div className="relative mx-auto max-w-6xl px-4 md:px-6 overflow-hidden">
-                    <div className="relative py-20 md:py-28 lg:py-32 bg-white/[0.015] overflow-hidden">
-                        <SectionHeading
-                            number="09"
-                            overline="Support"
-                            title="Häufige Fragen"
-                            align="left"
-                            light
-                        />
-                        <FaqAccordion items={FAQ_ITEMS} />
+                <div className="relative mx-auto max-w-6xl overflow-hidden">
+                    <div className="relative">
+                        <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
+                        <div className="relative z-10 px-4 md:px-6 py-20 md:py-28 lg:py-32">
+                            <SectionHeading
+                                number="09"
+                                overline="Support"
+                                title="Häufige Fragen"
+                                align="left"
+                                light
+                            />
+                            <FaqAccordion items={FAQ_ITEMS} />
+                        </div>
                     </div>
                 </div>
                 <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />

@@ -276,7 +276,7 @@ export const PROCESS_STEPS = [
     step: 1,
     title: "Erstgespräch",
     description:
-      "Wir lernen Ihr Geschäft kennen – kostenlos, unverbindlich, 30 Minuten. Bei Ihnen.",
+      "Kostenloses Erstgespräch, 30 Min., bei Ihnen – unverbindlich.",
   },
   {
     step: 2,
