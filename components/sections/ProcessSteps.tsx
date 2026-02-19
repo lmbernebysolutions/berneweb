@@ -31,27 +31,9 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
             >
               {/* Connection line segment with light dots: centered on step number (pt-6 + half of h-16 = 56px) */}
               <div className="absolute top-14 left-0 right-0 flex items-center pointer-events-none" aria-hidden="true">
-                <div className={cn("h-px flex-1 relative", i === 0 ? "bg-transparent" : "bg-brand-cyan/20")}>
-                  {i !== 0 && (
-                    <>
-                      {/* Light dots on the line - representing Erzgebirge light tradition */}
-                      <div className="absolute left-[25%] top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-brand-warm shadow-[0_0_6px_rgba(255,181,71,0.6)]" />
-                      <div className="absolute left-[50%] top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-brand-warm shadow-[0_0_6px_rgba(255,181,71,0.6)]" />
-                      <div className="absolute left-[75%] top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-brand-warm shadow-[0_0_6px_rgba(255,181,71,0.6)]" />
-                    </>
-                  )}
-                </div>
+                <div className={cn("h-px flex-1", i === 0 ? "bg-transparent" : "bg-brand-cyan/20")} />
                 <div className="w-16 shrink-0" />
-                <div className={cn("h-px flex-1 relative", i === steps.length - 1 ? "bg-transparent" : "bg-brand-cyan/20")}>
-                  {i !== steps.length - 1 && (
-                    <>
-                      {/* Light dots on the line */}
-                      <div className="absolute left-[25%] top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-brand-warm shadow-[0_0_6px_rgba(255,181,71,0.6)]" />
-                      <div className="absolute left-[50%] top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-brand-warm shadow-[0_0_6px_rgba(255,181,71,0.6)]" />
-                      <div className="absolute left-[75%] top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-brand-warm shadow-[0_0_6px_rgba(255,181,71,0.6)]" />
-                    </>
-                  )}
-                </div>
+                <div className={cn("h-px flex-1", i === steps.length - 1 ? "bg-transparent" : "bg-brand-cyan/20")} />
               </div>
 
               {/* Card: FAQ/Kontakt style */}

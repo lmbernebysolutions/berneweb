@@ -128,8 +128,8 @@ export default async function StandortPage({
           </p>
         </div>
 
-        {/* Zwei Karten: Warum Berneby + Besonderheiten / Leistungen */}
-        <div className="grid gap-8 md:grid-cols-2 md:gap-12">
+        {/* Zwei Karten: Warum Berneby + Besonderheiten – rechte Karte vertikal zur linken zentriert */}
+        <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-center">
           <div
             data-animate="fade-left"
             className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
@@ -151,20 +151,20 @@ export default async function StandortPage({
 
           <div
             data-animate="fade-right"
-            className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
+            className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow flex flex-col items-center justify-center"
           >
             <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
-            <div className="relative z-10 p-8 md:p-10">
-              <h3 className="text-xl font-bold text-white md:text-2xl">
+            <div className="relative z-10 p-5 md:p-6 w-full flex flex-col items-center text-center">
+              <h3 className="text-base font-bold text-white md:text-lg uppercase tracking-wide">
                 Besonderheiten von {location.name}
               </h3>
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-3 flex flex-wrap gap-1.5 justify-center">
                 {location.besonderheiten.map((b) => (
                   <span
                     key={b}
-                    className="inline-flex items-center gap-1.5 rounded border border-brand-cyan/30 bg-brand-cyan/5 px-3 py-1.5 text-sm font-medium text-brand-cyan"
+                    className="inline-flex items-center gap-1 rounded border border-brand-cyan/30 bg-brand-cyan/5 px-2.5 py-1 text-xs font-medium text-brand-cyan"
                   >
-                    <IconStar className="size-3.5 shrink-0" stroke={2} />
+                    <IconStar className="size-3 shrink-0" stroke={2} />
                     {b}
                   </span>
                 ))}

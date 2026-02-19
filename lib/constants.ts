@@ -30,6 +30,7 @@ export const NAV_ITEMS = [
   { label: "Über uns", href: "/ueber-uns" },
   { label: "Handwerk", href: "/handwerk" },
   { label: "Tech Solutions", href: "/tech" },
+  { label: "Referenzen", href: "/referenzen" },
   { label: "Kontakt", href: "/kontakt" },
 ] as const;
 
@@ -43,6 +44,7 @@ export const FOOTER_NAV = {
   ],
   unternehmen: [
     { label: "Über uns", href: "/ueber-uns" },
+    { label: "Referenzen", href: "/referenzen" },
     { label: "Ratgeber", href: "/ratgeber" },
     { label: "Standorte", href: "/standorte" },
     { label: "Branchen", href: "/branchen" },

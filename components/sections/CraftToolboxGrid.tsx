@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import {
   IconMapPin,
@@ -50,18 +49,6 @@ export function CraftToolboxGrid({ modules }: CraftToolboxGridProps) {
               aria-hidden="true"
             >
               ID.{String(i + 1).padStart(2, "0")}
-            </div>
-
-            {/* Schweinchen im Hintergrund (bei jedem Service) */}
-            <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-              <Image
-                src="/Schweinchen.svg"
-                alt=""
-                width={96}
-                height={77}
-                className="size-24 object-contain"
-                aria-hidden
-              />
             </div>
 
             {/* Header: Icon-Box + Titel (Icon bleibt immer) */}

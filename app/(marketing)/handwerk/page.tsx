@@ -32,12 +32,10 @@ import {
   PAGE_META,
   COMPANY,
   HANDWERK_STATS,
-  REFERENZEN_BRANCHEN,
   HANDWERK_GARANTIEN,
 } from "@/lib/constants";
 import { generateFaqSchema, generateBreadcrumbSchema, generateHowToSchema } from "@/lib/seo/schema";
 import { ProblemSection } from "@/components/sections/ProblemSection";
-import { ReferenzenStrip } from "@/components/sections/ReferenzenStrip";
 import { TechCorners } from "@/components/ui/tech-corners";
 
 export const metadata: Metadata = {
@@ -138,19 +136,6 @@ export default function HandwerkPage() {
           light
         />
         <CraftToolboxGrid modules={CRAFT_MODULES} />
-      </Section>
-
-      {/* Referenzen – Für wen wir arbeiten */}
-      <Section bg="transparent">
-        <SectionHeading
-          number="04"
-          overline="Vertrauen"
-          title="Für wen wir arbeiten"
-          subtitle="Elektriker, Dachdecker, Sanitär und mehr – aus dem Erzgebirge."
-          align="left"
-          light
-        />
-        <ReferenzenStrip items={REFERENZEN_BRANCHEN} />
       </Section>
 
       {/* Garantien */}

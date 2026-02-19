@@ -38,13 +38,13 @@ import {
   FAQ_ITEMS,
   COMPANY,
   TECH_STACK,
-  REFERENZEN_HOME,
   HOME_MINI_FAQ,
   PAGE_META,
 } from "@/lib/constants";
 import { generateFaqSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
-import { ReferenzenStrip } from "@/components/sections/ReferenzenStrip";
+import { ReferenzenGrid } from "@/components/sections/ReferenzenCarousel";
+import { REFERENZEN } from "@/lib/data/referenzen";
 
 export const metadata: Metadata = {
   title: PAGE_META.home.title,
@@ -321,18 +321,26 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* 07: Referenzen – Für wen wir arbeiten */}
+      {/* 07: Referenzen – 1:1 wie /referenzen */}
       <Section bg="transparent">
         <SectionHeading
           number="07"
-          overline="Vertrauen"
-          title="Handwerker & Betriebe,"
-          titleLine2="die uns vertrauen"
-          subtitle="Von Handwerk über Einzelhandel bis Dienstleistung – aus dem Erzgebirge."
+          overline="Case Studies"
+          title="Projekte &"
+          titleLine2="Ergebnisse"
+          subtitle="Von der ersten Idee bis zur messbaren Wirkung – transparent und direkt."
           align="left"
           light
         />
-        <ReferenzenStrip items={REFERENZEN_HOME} />
+        <ReferenzenGrid referenzen={REFERENZEN} limit={2} />
+        <p className="mt-6 text-center">
+          <Link
+            href="/referenzen"
+            className="text-sm font-mono uppercase tracking-widest text-brand-cyan hover:text-brand-cyan/80 transition-colors"
+          >
+            Alle Referenzen ansehen →
+          </Link>
+        </p>
       </Section>
 
       {/* 08: Mini-FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}

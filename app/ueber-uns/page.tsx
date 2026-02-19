@@ -30,27 +30,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/ueber-uns" },
 };
 
-const TIMELINE = [
-  {
-    year: "2024",
-    event: "Erste gemeinsame Projekte",
-    description:
-      "Lennard und Daniel starten erste Kundenprojekte nebenberuflich.",
-  },
-  {
-    year: "2025",
-    event: "Die Idee nimmt Form an",
-    description:
-      "Aus Einzelprojekten wird ein System – die Module werden entwickelt.",
-  },
-  {
-    year: "2026",
-    event: "Berneby Solutions GbR",
-    description:
-      "Offizielle Gründung. Alles aus einer Hand für lokale Betriebe.",
-  },
-];
-
 const WARUM_BERNEBY = [
   {
     point: "Persönlich",
@@ -182,61 +161,6 @@ export default function UeberUnsPage() {
               </p>
             </div>
           </div>
-        </div>
-      </Section>
-
-      {/* 05: Timeline */}
-      <Section bg="subtle">
-        <SectionHeading
-          number="05"
-          overline="Unsere Geschichte"
-          title="Von der Idee zum Unternehmen"
-          align="left"
-          light
-        />
-        <div className="relative mx-auto max-w-2xl">
-          <div
-            className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-brand-cyan/50 via-white/20 to-transparent md:left-1/2 md:-translate-x-px"
-            aria-hidden="true"
-          >
-            {/* Light dots: je 1 pro Zwischenlinie (2024–2025 und 2025–2026), keiner nach 2026 */}
-            {/* Light 1: Mitte zwischen 2024 und 2025 = 25% */}
-            <div className="absolute left-1/2 top-[25%] -translate-x-1/2 w-1 h-1 rounded-full bg-brand-warm shadow-[0_0_6px_rgba(255,181,71,0.6)]" />
-            {/* Light 2: Mitte zwischen 2025 und 2026 = 75% */}
-            <div className="absolute left-1/2 top-[75%] -translate-x-1/2 w-1 h-1 rounded-full bg-brand-warm shadow-[0_0_6px_rgba(255,181,71,0.6)]" />
-          </div>
-
-          {TIMELINE.map((item, i) => (
-            <div
-              key={item.year}
-              data-animate="fade-up"
-              data-animate-delay={String(i * 150)}
-              className={`relative mb-10 flex items-start gap-6 last:mb-0 ${
-                i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
-            >
-              <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center border-2 border-brand-cyan/40 bg-brand-navy shadow-lg shadow-brand-cyan/10 md:absolute md:left-1/2 md:-translate-x-1/2">
-                <TechCorners pattern="diagonal" variant="cyan" size="sm" />
-                <span className="text-xs font-mono font-extrabold text-brand-cyan">
-                  {item.year}
-                </span>
-              </div>
-
-              <div
-                className={`group relative overflow-hidden border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm card-hover-glow ${
-                  i % 2 === 0
-                    ? "md:mr-auto md:w-[calc(50%-3rem)]"
-                    : "md:ml-auto md:w-[calc(50%-3rem)]"
-                }`}
-              >
-                <TechCorners pattern="diagonal" variant="cyan" size="sm" />
-                <h3 className="relative z-10 font-bold text-white">{item.event}</h3>
-                <p className="relative z-10 mt-1.5 text-sm leading-relaxed text-brand-navy-muted">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          ))}
         </div>
       </Section>
 

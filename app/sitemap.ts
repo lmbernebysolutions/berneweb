@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tech`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
     { url: `${baseUrl}/ratgeber`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
     { url: `${baseUrl}/standorte`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 },
+    { url: `${baseUrl}/referenzen`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 },
     { url: `${baseUrl}/branchen`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 },
     { url: `${baseUrl}/ueber-uns`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 },
     { url: `${baseUrl}/kontakt`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 },
