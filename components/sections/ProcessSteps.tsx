@@ -37,7 +37,7 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
               </div>
 
               {/* Card: FAQ/Kontakt style */}
-              <div className="relative z-10 w-full overflow-hidden border border-white/10 bg-white/[0.03] px-5 pt-6 pb-5 transition-all hover:border-brand-cyan/20">
+              <div className="relative z-10 w-full max-w-xs mx-auto overflow-hidden border border-white/10 bg-white/[0.03] px-4 sm:px-5 pt-5 sm:pt-6 pb-4 sm:pb-5 transition-all hover:border-brand-cyan/20">
                 <TechCorners pattern="diagonal" variant="cyan" size="md" />
 
                 {/* Step number - unchanged */}
@@ -77,13 +77,13 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
       </div>
 
       {/* Mobile: Vertical timeline, same card + reduced typo */}
-      <div className="md:hidden space-y-4">
+      <div className="md:hidden space-y-3 sm:space-y-4">
         {steps.map((s, i) => (
           <div
             key={s.step}
             data-animate="fade-up"
             data-animate-delay={String(i * 80)}
-            className="group relative flex gap-4 overflow-hidden border border-white/10 bg-white/[0.03] p-4 transition-all"
+            className="group relative flex gap-3 sm:gap-4 overflow-hidden border border-white/10 bg-white/[0.03] p-3 sm:p-4 transition-all"
           >
             <TechCorners pattern="diagonal" variant="cyan" size="md" />
 

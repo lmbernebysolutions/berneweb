@@ -1,8 +1,11 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+import { BEAM_CONTAINER_CLASS } from "@/lib/constants";
+
 /**
- * Grid and beams aligned with main content via CSS only (same max-w-6xl mx-auto px-4 md:px-6).
- * No JS-driven position so first paint matches layout – avoids CLS from post-hydration shift.
+ * Grid and beams – gleiche Breite wie Header (BEAM_CONTAINER_CLASS).
+ * Logo und Header-Button schließen mit den vertikalen Beams ab.
  */
 const GRID_IMAGE = `linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px)`;
 
@@ -12,7 +15,7 @@ const HEADER_GRID_OFFSET_Y = 24;
 export function GridBeams() {
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-0 mx-auto max-w-6xl bg-repeat px-4 md:px-6 bg-[length:40px_40px] md:bg-[length:48px_48px]"
+      className={cn("pointer-events-none fixed inset-0 z-0 bg-repeat bg-[length:40px_40px] md:bg-[length:48px_48px]", BEAM_CONTAINER_CLASS)}
       aria-hidden
       style={{
         backgroundImage: GRID_IMAGE,

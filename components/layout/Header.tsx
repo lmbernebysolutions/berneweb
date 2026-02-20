@@ -11,7 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { NAV_ITEMS } from "@/lib/constants";
+import { NAV_ITEMS, BEAM_CONTAINER_CLASS } from "@/lib/constants";
 import { useScroll } from "@/hooks/use-scroll";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -40,10 +40,11 @@ export function Header() {
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-cyan/30 to-transparent" />
 
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:h-[4.5rem] md:px-6">
-        <TextLogo variant="dark" />
+      {/* Gleiche Breite wie GridBeams – Logo und Button schließen mit den Beams ab, Nav dazwischen */}
+      <div className={cn(BEAM_CONTAINER_CLASS, "flex h-14 sm:h-16 md:h-18 lg:h-20 items-center justify-between")}>
+        <TextLogo variant="dark" className="shrink-0" />
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation (zwischen Logo und Button) */}
         <nav className="hidden items-center gap-0.5 md:flex" aria-label="Hauptnavigation">
           {NAV_ITEMS.map((item) => (
             <Link
@@ -63,7 +64,7 @@ export function Header() {
               )}
             </Link>
           ))}
-          <Button asChild size="sm" className="group ml-3 cursor-pointer">
+          <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer">
             <Link href="/kontakt">
               Erstgespräch
               <IconArrowRight

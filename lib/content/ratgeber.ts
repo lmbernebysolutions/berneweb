@@ -194,7 +194,7 @@ const CLUSTER_1_ARTICLES: RatgeberArticle[] = [
 <p>Organische Suche kostet nichts pro Klick. Eine gut optimierte Website mit <a href="/ratgeber/seo-fuer-handwerker">lokalen Landingpages</a> bringt dauerhaft Traffic. Google Ads ergänzt – nicht ersetzt – SEO.</p>
 
 <h2>Budget-Empfehlung</h2>
-<p>Starten Sie mit 500–1.000 € für Website + SEO. Wer mehr Budget hat: Google Ads ab 200 €/Monat testen. Wir beraten Sie im <a href="/kontakt">Erstgespräch</a> zu Ihren Optionen.</p>
+<p>Für Website und lokale SEO bieten wir feste Handwerks-Pakete mit transparenten Preisen. Für Google Ads und weitere Kanäle beraten wir Sie im <a href="/kontakt">Erstgespräch</a> zu Ihren Optionen.</p>
 `,
     relatedSlugs: ["digitalisierung-handwerk", "seo-fuer-handwerker", "bewertungsmanagement-handwerker"],
     datePublished: "2026-01-21",

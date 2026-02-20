@@ -2,6 +2,10 @@
 // BERNEBY SOLUTIONS – CENTRAL DATA CONSTANTS
 // =============================================================================
 
+/** Gleiche Breite/Padding wie GridBeams – Logo und Header-Button bündig mit den Beams */
+export const BEAM_CONTAINER_CLASS =
+  "mx-auto w-full max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8";
+
 export const COMPANY = {
   name: "Berneby Solutions",
   nameShort: "Berneby",
@@ -77,7 +81,7 @@ export const HOME_HERO = {
 export const TRUST_BAR = [
   { value: "100%", label: "Lokal" },
   { value: "24/7", label: "KI-Telefon" },
-  { value: "50+", label: "Landingpages" },
+  { value: "50+", label: "Orte" },
   { value: "2", label: "Ansprechpartner" },
 ] as const;
 
@@ -96,7 +100,7 @@ export const TECH_STACK = [
 
 /** Tech-Seite: TrustBar-Kennzahlen (1:1 wie Über-uns, Inhalt angepasst) */
 export const TECH_STATS = [
-  { value: "50+", label: "Web & Shops" },
+  { value: "50+", label: "Projekte" },
   { value: "24/7", label: "IT-Support" },
   { value: "100%", label: "Erzgebirge" },
   { value: "2", label: "Ansprechpartner" },
@@ -194,7 +198,7 @@ export const TECH_REFERENCES = [
 export const HANDWERK_STATS = [
   { value: "4", label: "Wochen bis Go-Live" },
   { value: "24/7", label: "KI-Telefon" },
-  { value: "50+", label: "Landingpages" },
+  { value: "50+", label: "Orte" },
   { value: "100%", label: "Lokal" },
 ] as const;
 
@@ -314,7 +318,7 @@ export const FAQ_ITEMS = [
   {
     question: "Was kostet eine Website bei Berneby Solutions?",
     answer:
-      "Unsere Webseiten starten bei 950 \u20AC für einen professionellen One-Pager. Umfangreichere Projekte mit Suchmaschinen-Optimierung beginnen bei 1.950 \u20AC. Alle Preise verstehen sich netto zzgl. MwSt.",
+      "Für Handwerker bieten wir feste Pakete mit transparenten Preisen – vom One-Pager bis zum Komplettpaket mit KI-Telefon. Alle Details finden Sie auf unserer Handwerk-Seite. Für individuelle Webprojekte erstellen wir ein unverbindliches Angebot im Erstgespräch.",
   },
   {
     question: "Arbeitet ihr nur mit Handwerkern?",
@@ -349,12 +353,12 @@ export const FAQ_ITEMS = [
   {
     question: "Bietet ihr auch Wartung an?",
     answer:
-      "Ja. Ab 45 \u20AC/Monat halten wir Ihre Website sicher und aktuell. Oder ab 180 \u20AC/Monat inklusive 2 Stunden Support.",
+      "Ja. Wir bieten Wartung und Support in verschiedenen Varianten – von der reinen Absicherung bis inklusive Support-Stunden. Die genauen Optionen besprechen wir im Erstgespräch.",
   },
   {
     question: "Könnt ihr auch einen Online-Shop einrichten?",
     answer:
-      "Ja. Wir arbeiten mit Shopify und WooCommerce. Ein Basis-Shop startet bei 1.200 \u20AC.",
+      "Ja. Wir arbeiten mit Shopify und WooCommerce. Den Umfang und die Kosten legen wir gemeinsam im Angebot fest.",
   },
   {
     question: "Wo sitzt ihr?",

@@ -24,6 +24,24 @@
   /* Animation Easings - Machine Precision */
   --ease-mechanical: cubic-bezier(0.16, 1, 0.3, 1);
 
+  /* Fluid Typography Scale - Responsive font sizes */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);
+  --font-size-xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+  --font-size-2xl: clamp(1.875rem, 1.5rem + 1.875vw, 3rem);
+  --font-size-3xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);
+  --font-size-hero: clamp(2.5rem, 4vw + 1rem, 7rem);
+
+  /* Fluid Spacing Scale - Responsive spacing */
+  --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
+  --space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+  --space-xl: clamp(2rem, 1.5rem + 2.5vw, 4rem);
+  --space-2xl: clamp(3rem, 2rem + 5vw, 6rem);
+
   --radius-sm: 0px;
   /* Brutalist corners */
   --radius-md: 2px;
@@ -457,4 +475,44 @@ h6 {
     filter: none !important;
     transition: none !important;
   }
+}
+
+/* ==========================================================================
+   COOKIE BANNER (react-cookie-manager) – Brand-Farben erzwingen
+   Die Library nutzt eigenes Tailwind; unsere Klassen werden nicht gerendert.
+   ========================================================================== */
+.cookie-manager-berneby .cookie-manager [class*="bottom-0"] {
+  background-color: #283569 !important;
+  color: #fff !important;
+  border-top: 1px solid rgba(3, 249, 249, 0.3);
+}
+.cookie-manager-berneby .cookie-manager [class*="bottom-0"] a {
+  color: #03f9f9 !important;
+}
+.cookie-manager-berneby .cookie-manager [class*="bottom-0"] button:first-of-type {
+  background-color: #03f9f9 !important;
+  color: #283569 !important;
+}
+.cookie-manager-berneby .cookie-manager [class*="bottom-0"] button:not(:first-of-type) {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+/* Modal/Popup (Einstellungen) */
+.cookie-manager-berneby .cookie-manager [class*="rounded-lg"][class*="shadow-xl"] {
+  background-color: #283569 !important;
+  color: #fff !important;
+  border: 1px solid rgba(3, 249, 249, 0.3);
+}
+.cookie-manager-berneby .cookie-manager [class*="rounded-lg"] a {
+  color: #03f9f9 !important;
+}
+.cookie-manager-berneby .cookie-manager button[class*="rounded-md"]:last-of-type {
+  background-color: #03f9f9 !important;
+  color: #283569 !important;
+}
+/* Floating-Button */
+.cookie-manager-berneby .cookie-manager [class*="fixed"][class*="bottom-6"][class*="left-6"] {
+  background-color: #283569 !important;
+  color: #fff !important;
+  border-color: rgba(3, 249, 249, 0.3);
 }

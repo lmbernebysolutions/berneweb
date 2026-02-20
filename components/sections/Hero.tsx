@@ -48,25 +48,26 @@ export function Hero({
   }
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden pt-32 pb-20">
+    <section className="relative min-h-[90dvh] flex flex-col justify-center overflow-hidden pt-32 pb-20">
 
       {/* Bergsilhouette: überall 1:1 wie Home – 4 Layer, Animation, bis ganz rechts */}
       <div className="absolute bottom-0 left-0 right-0 flex justify-end items-end pointer-events-none z-[1]" aria-hidden="true">
-        <div className="relative w-full max-w-6xl pl-4 md:pl-6 min-h-[14rem] h-56 shrink-0">
+        <div className="relative w-full max-w-6xl pl-4 md:pl-6 h-32 sm:h-40 md:h-48 lg:h-56 xl:h-64 shrink-0">
           {BERG_LAYERS.map((src, i) => (
             <Image
               key={src}
               src={src}
               alt=""
               fill
-              sizes="(max-width: 1280px) 100vw, 1152px"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1152px"
               className={cn(
                 "object-cover object-bottom select-none berg-layer-grow",
                 BERG_LAYER_DELAYS[i]
               )}
               style={{ transformOrigin: "bottom center" }}
-              priority={i >= 1 && i <= 3}
-              fetchPriority={i >= 1 && i <= 3 ? "high" : undefined}
+              priority={i >= 1 && i <= 2}
+              fetchPriority={i >= 1 && i <= 2 ? "high" : undefined}
+              loading={i === 0 || i === 3 ? "lazy" : "eager"}
               unoptimized
               aria-hidden
             />
@@ -80,7 +81,7 @@ export function Hero({
       {/* 2. THE CONTENT FRAME */}
       <div className="relative z-[2]">
         {/* Headline Container (Wide) */}
-        <div className="container mx-auto px-6 mb-8">
+        <div className="container mx-auto px-4 sm:px-5 md:px-6 mb-6 sm:mb-8">
           <div className="lg:col-span-12 hero-line-reveal">
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-extrabold uppercase leading-[0.9] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-[95%] text-balance">
               {headlineParts}
@@ -89,17 +90,17 @@ export function Hero({
         </div>
 
         {/* Subline & Buttons Container (Beam Restricted) */}
-        <div className="mx-auto max-w-6xl px-4 md:px-6 hero-line-reveal">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+        <div className="mx-auto max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8 hero-line-reveal">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-end">
             <div className="lg:col-span-8">
-              <div className="mt-0 border-l-4 border-cyan pl-6">
-                <p className="text-lg md:text-xl font-medium text-blue-100 leading-relaxed">
+              <div className="mt-0 border-l-4 border-cyan pl-4 sm:pl-6">
+                <p className="text-base sm:text-lg md:text-xl font-medium text-blue-100 leading-relaxed">
                   {subline}
                 </p>
               </div>
 
               {ctas && ctas.length > 0 && (
-                <div className="mt-12 flex flex-wrap gap-4">
+                <div className="mt-8 sm:mt-10 lg:mt-12 flex flex-wrap gap-3 sm:gap-4">
                   {ctas.map((cta, i) => (
                     <Button
                       key={cta.label}

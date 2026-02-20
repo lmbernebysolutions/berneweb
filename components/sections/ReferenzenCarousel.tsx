@@ -136,7 +136,10 @@ export function ReferenzCard({ referenz, featured = false }: { referenz: Referen
       }`}
       data-animate="fade-up"
     >
-      <TechCorners pattern="all" variant="cyan" size="lg" animate />
+      {/* Tech Corners wie CraftToolboxGrid/Design-System – diagonal, sichtbar über dem Inhalt */}
+      <div className="pointer-events-none absolute inset-0 z-20">
+        <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
+      </div>
       {featured && (
         <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 border-b border-x border-brand-cyan/40 bg-brand-cyan/10 px-6 py-1">
           <span className="font-mono text-[10px] uppercase tracking-widest text-brand-cyan">
@@ -299,7 +302,7 @@ export function ReferenzenCarousel({ referenzen }: { referenzen: Referenz[] }) {
   }, [emblaApi]);
 
   useEffect(() => {
-    if (!emblaApi) return;
+    if (!emblaApi) return undefined;
     onSelect();
     emblaApi.on("select", onSelect);
     return () => {

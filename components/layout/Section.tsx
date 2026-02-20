@@ -25,9 +25,9 @@ export function Section({
   className,
 }: SectionProps) {
   const isSubtle = bg === "subtle";
-  const sectionPadding = "py-20 md:py-28 lg:py-32";
+  const sectionPadding = "py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32";
   const contentWidth = narrow ? "max-w-3xl" : "max-w-6xl";
-  const contentPadding = "px-4 md:px-6";
+  const contentPadding = "px-4 sm:px-5 md:px-6 lg:px-8";
 
   return (
     <section

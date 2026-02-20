@@ -53,7 +53,7 @@ function AnimatedValue({ value }: { value: string }) {
   }, [value]);
 
   return (
-    <div ref={ref} className="text-4xl font-black tracking-tighter text-brand-warm md:text-5xl tabular-nums">
+    <div ref={ref} className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-brand-warm tabular-nums">
       {display}
     </div>
   );
@@ -64,9 +64,9 @@ export function TrustBar({ items }: TrustBarProps) {
   useEffect(() => setRevealed(true), []);
 
   return (
-    <section className="relative overflow-hidden border-y border-brand-cyan/20 bg-background py-8 md:py-10">
-      <div className="mx-auto max-w-6xl px-4 md:px-6">
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
+    <section className="relative overflow-hidden border-y border-brand-cyan/20 bg-background py-6 sm:py-8 md:py-10">
+      <div className="mx-auto max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4 md:gap-8 lg:gap-10">
           {items.map((item, i) => (
             <div
               key={item.value + (item.label || "")}
@@ -81,7 +81,7 @@ export function TrustBar({ items }: TrustBarProps) {
                 aria-hidden="true"
               >
                 <span
-                  className="font-black text-[5rem] leading-none md:text-[6rem] tabular-nums"
+                  className="font-black text-[4rem] sm:text-[5rem] md:text-[6rem] leading-none tabular-nums"
                   style={{
                     WebkitTextStroke: "1px rgba(3, 249, 249, 0.06)",
                     color: "transparent",
@@ -94,7 +94,7 @@ export function TrustBar({ items }: TrustBarProps) {
               <div className="relative">
                 <AnimatedValue value={item.value} />
                 {item.label ? (
-                  <div className="mt-1.5 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                  <div className="mt-1 sm:mt-1.5 text-[0.625rem] sm:text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
                     {item.label}
                   </div>
                 ) : null}

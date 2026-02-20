@@ -45,6 +45,10 @@ import { generateFaqSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { ReferenzenGrid } from "@/components/sections/ReferenzenCarousel";
 import { REFERENZEN } from "@/lib/data/referenzen";
+const MatchWizardSection = dynamic(
+  () => import("@/components/sections/MatchWizardSection").then((m) => ({ default: m.MatchWizardSection })),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: PAGE_META.home.title,
@@ -85,11 +89,11 @@ export default function Home() {
           align="left"
           light // Because background is navy (transparent on body)
         />
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:gap-12">
           {/* Handwerk */}
           <div
             data-animate="fade-left"
-            className="group relative flex flex-col overflow-hidden border border-brand-cyan/30 bg-brand-navy/60 backdrop-blur-md p-8 transition-colors"
+            className="group relative flex flex-col overflow-hidden border border-brand-cyan/30 bg-brand-navy/60 backdrop-blur-md p-6 sm:p-8 transition-colors"
           >
             {/* Tech Corners - 2→4 diagonal pattern */}
             <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
@@ -129,7 +133,7 @@ export default function Home() {
           {/* General Tech */}
           <div
             data-animate="fade-right"
-            className="group relative flex flex-col overflow-hidden border border-brand-cyan/30 bg-brand-navy/60 backdrop-blur-md p-8 transition-colors"
+            className="group relative flex flex-col overflow-hidden border border-brand-cyan/30 bg-brand-navy/60 backdrop-blur-md p-6 sm:p-8 transition-colors"
           >
             {/* Tech Corners - 2→4 diagonal pattern */}
             <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
@@ -177,9 +181,9 @@ export default function Home() {
           align="left"
           light
         />
-        <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:gap-12">
           {/* Legacy System: Ohne Uns */}
-          <div className="group relative border-2 border-white/5 bg-black/30 p-8 backdrop-blur-sm overflow-hidden transition-colors hover:border-white/10" data-animate="fade-left">
+          <div className="group relative border-2 border-white/5 bg-black/30 p-6 sm:p-8 backdrop-blur-sm overflow-hidden transition-colors hover:border-white/10" data-animate="fade-left">
             {/* Tech Corners - all 4 corners pattern */}
             <TechCorners pattern="all" variant="navy" size="lg" />
 
@@ -219,7 +223,7 @@ export default function Home() {
           </div>
 
           {/* Optimized System: Mit Uns */}
-          <div className="group relative border-2 border-brand-cyan/30 bg-brand-cyan/5 p-8 backdrop-blur-sm shadow-[0_0_60px_rgba(3,249,249,0.15)] overflow-hidden transition-all hover:shadow-[0_0_80px_rgba(3,249,249,0.25)] hover:border-brand-cyan/50" data-animate="fade-right">
+          <div className="group relative border-2 border-brand-cyan/30 bg-brand-cyan/5 p-6 sm:p-8 backdrop-blur-sm shadow-[0_0_60px_rgba(3,249,249,0.15)] overflow-hidden transition-all hover:shadow-[0_0_80px_rgba(3,249,249,0.25)] hover:border-brand-cyan/50" data-animate="fade-right">
             {/* Tech Corners - all 4 corners pattern */}
             <TechCorners pattern="all" variant="cyan" size="lg" animate />
 
@@ -304,13 +308,13 @@ export default function Home() {
           align="left"
           light
         />
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:gap-8">
           {TECH_STACK.map((item, i) => (
             <div
               key={item}
               data-animate="fade-up"
               data-animate-delay={String(i * 60)}
-              className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
+              className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-4 sm:p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
             >
               <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
               <p className="relative z-10 text-center text-sm font-bold uppercase tracking-wider text-white">
@@ -343,14 +347,24 @@ export default function Home() {
         </p>
       </Section>
 
-      {/* 08: Mini-FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
+      {/* 08: Match-Wizard – alle Bereiche (nach Referenzen) */}
+      <MatchWizardSection
+        variant="home"
+        sectionNumber="08"
+        overline="Ihr Match"
+        title="Was passt zu Ihnen?"
+        subtitle="In wenigen Klicks zum passenden Angebot – Handwerk, Tech oder beides."
+        bg="subtle"
+      />
+
+      {/* 09: Mini-FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
       <div className="relative">
         <div className="relative mx-auto max-w-6xl overflow-hidden">
           <div className="relative">
             <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
             <div className="relative z-10 px-4 md:px-6 py-20 md:py-28 lg:py-32">
               <SectionHeading
-                number="08"
+                number="09"
                 overline="FAQ"
                 title="Kurz gefragt"
                 align="left"

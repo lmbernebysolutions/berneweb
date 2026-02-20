@@ -17,6 +17,10 @@ const TestimonialGrid = dynamic(
   () => import("@/components/sections/TestimonialGrid").then((m) => ({ default: m.TestimonialGrid })),
   { ssr: true }
 );
+const MatchWizardSection = dynamic(
+  () => import("@/components/sections/MatchWizardSection").then((m) => ({ default: m.MatchWizardSection })),
+  { ssr: true }
+);
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
@@ -137,6 +141,16 @@ export default function HandwerkPage() {
         />
         <CraftToolboxGrid modules={CRAFT_MODULES} />
       </Section>
+
+      {/* 04: Match-Wizard – nur Handwerk */}
+      <MatchWizardSection
+        variant="handwerk"
+        sectionNumber="04"
+        overline="Ihr Paket-Match"
+        title="Welches Paket passt?"
+        subtitle="Zwei kurze Fragen – wir empfehlen Ihr passendes Handwerks-Paket."
+        bg="transparent"
+      />
 
       {/* Garantien */}
       <Section bg="subtle">
@@ -275,25 +289,17 @@ export default function HandwerkPage() {
         <ProcessSteps steps={PROCESS_STEPS} />
       </Section>
 
-      {/* 10: FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
-      <div className="relative">
-        <div className="relative mx-auto max-w-6xl overflow-hidden">
-          <div className="relative">
-            <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
-            <div className="relative z-10 px-4 md:px-6 py-20 md:py-28 lg:py-32">
-              <SectionHeading
-                number="10"
-                overline="Support"
-                title="Häufige Fragen"
-                align="left"
-                light
-              />
-              <FaqAccordion items={FAQ_ITEMS} />
-            </div>
-          </div>
-        </div>
-        <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
-      </div>
+      {/* 10: FAQ – Hintergrund abwechselnd (transparent nach subtle) */}
+      <Section bg="transparent">
+        <SectionHeading
+          number="10"
+          overline="Support"
+          title="Häufige Fragen"
+          align="left"
+          light
+        />
+        <FaqAccordion items={FAQ_ITEMS} />
+      </Section>
 
       {/* CTA */}
       <CtaSection

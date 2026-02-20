@@ -211,10 +211,10 @@ export default function UeberUnsPage() {
         </div>
       </Section>
 
-      {/* 08: FAQ – kein eigener Hintergrund (Sektion davor hat bereits subtle) */}
+      {/* 08: FAQ – overflow-visible damit Backdrop „08“ nicht abgeschnitten wird */}
       <div className="relative">
-        <div className="relative mx-auto max-w-6xl px-4 md:px-6 overflow-hidden">
-          <div className="relative py-20 md:py-28 lg:py-32 overflow-hidden">
+        <div className="relative mx-auto max-w-6xl px-4 md:px-6 overflow-visible">
+          <div className="relative py-20 md:py-28 lg:py-32 overflow-visible">
             <SectionHeading
               number="08"
               overline="FAQ"

@@ -30,7 +30,7 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "relative mb-12 md:mb-24", // Increased margin for the huge number
+        "relative mb-8 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24", // Responsive margin
         align === "center" && "text-center"
       )}
       data-animate="fade-up"
@@ -51,7 +51,7 @@ export function SectionHeading({
         {overline && (
           <div
             className={cn(
-              "mb-3 text-sm font-bold uppercase tracking-[0.2em]",
+              "mb-2 sm:mb-3 text-xs sm:text-sm font-bold uppercase tracking-[0.2em]",
               light ? "text-brand-cyan" : "text-brand-cyan",
               align === "center" && "mx-auto"
             )}
@@ -63,7 +63,7 @@ export function SectionHeading({
         <div className={cn(align === "center" && "text-center")}>
           <Tag
             className={cn(
-              "relative inline-block max-w-full font-display text-6xl md:text-7xl lg:text-8xl uppercase tracking-tight px-6 py-2 text-balance",
+              "relative inline-block max-w-full font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight px-4 sm:px-6 py-1.5 sm:py-2 text-balance",
               light ? "text-brand-navy-foreground" : "text-foreground"
             )}
           >
@@ -89,7 +89,7 @@ export function SectionHeading({
         {subtitle && (
           <p
             className={cn(
-              "mt-6 text-lg md:text-xl font-medium leading-relaxed",
+              "mt-4 sm:mt-5 md:mt-6 text-base sm:text-lg md:text-xl font-medium leading-relaxed",
               light ? "text-white/60" : "text-muted-foreground",
               align === "center" && "mx-auto max-w-2xl"
             )}

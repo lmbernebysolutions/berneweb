@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans, JetBrains_Mono, Barlow } from "next/font/google";
+import { CookieProviders } from "@/components/providers/CookieProviders";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
@@ -125,17 +126,19 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_SCHEMA) }}
         />
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-brand-cyan focus:text-brand-navy focus:p-4 focus:font-bold"
-        >
-          Zum Inhalt springen
-        </a>
-        <Header />
-        <GridBeams />
-        <main id="main-content" className="relative z-10">{children}</main>
-        <Footer />
-        <ScrollAnimator />
+        <CookieProviders>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-brand-cyan focus:text-brand-navy focus:p-4 focus:font-bold"
+          >
+            Zum Inhalt springen
+          </a>
+          <Header />
+          <GridBeams />
+          <main id="main-content" className="relative z-10">{children}</main>
+          <Footer />
+          <ScrollAnimator />
+        </CookieProviders>
       </body>
     </html>
   );

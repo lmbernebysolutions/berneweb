@@ -31,6 +31,10 @@ const TestimonialGrid = dynamic(
   () => import("@/components/sections/TestimonialGrid").then((m) => ({ default: m.TestimonialGrid })),
   { ssr: true }
 );
+const MatchWizardSection = dynamic(
+  () => import("@/components/sections/MatchWizardSection").then((m) => ({ default: m.MatchWizardSection })),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: PAGE_META.tech.title,
@@ -140,10 +144,20 @@ export default function TechPage() {
                 </div>
             </Section>
 
-            {/* 04: Retainer / Hausmeister Special */}
+            {/* 04: Match-Wizard – nur Tech Solutions (nach Katalog) */}
+            <MatchWizardSection
+                variant="tech"
+                sectionNumber="04"
+                overline="Ihr Match"
+                title="Was brauchen Sie?"
+                subtitle="Eine Frage – wir empfehlen Ihr passendes Angebot."
+                bg="transparent"
+            />
+
+            {/* 05: Retainer / Hausmeister Special */}
             <Section bg="transparent">
                 <SectionHeading
-                    number="04"
+                    number="05"
                     overline="Flatrate"
                     title="Der Digitale Hausmeister"
                     align="left"
@@ -196,10 +210,10 @@ export default function TechPage() {
                 </div>
             </Section>
 
-            {/* 05: Testimonials */}
+            {/* 06: Testimonials */}
             <Section bg="subtle">
                 <SectionHeading
-                    number="05"
+                    number="06"
                     overline="Stimmen"
                     title="Das sagen unsere Kunden"
                     align="left"
@@ -208,10 +222,10 @@ export default function TechPage() {
                 <TestimonialGrid testimonials={[...TECH_TESTIMONIALS]} />
             </Section>
 
-            {/* 06: Prozess */}
+            {/* 07: Prozess */}
             <Section bg="transparent">
                 <SectionHeading
-                    number="06"
+                    number="07"
                     overline="Ablauf"
                     title="So arbeiten wir"
                     subtitle="Von der Anfrage bis zur Umsetzung – transparent und auf Augenhöhe."
@@ -221,10 +235,10 @@ export default function TechPage() {
                 <ProcessSteps steps={PROCESS_STEPS} />
             </Section>
 
-            {/* 07: Technologien – 53%-Statistik im Subtitle (SEO ↔ Tech-Zusammenhang) */}
+            {/* 08: Technologien – 53%-Statistik im Subtitle (SEO ↔ Tech-Zusammenhang) */}
             <Section bg="subtle">
                 <SectionHeading
-                    number="07"
+                    number="08"
                     overline="Unser digitaler Werkzeugstollen"
                     title="Tech-Stack"
                     subtitle="53% des Website-Traffics kommt über organische Suche. Ohne professionelle SEO verschenken Sie die Hälfte Ihrer Kunden – wir bauen mit Technologien, die Suchmaschinen und Nutzer gleichermaßen überzeugen."
@@ -248,10 +262,10 @@ export default function TechPage() {
                 </div>
             </Section>
 
-            {/* 08: Referenzen / Case Studies */}
+            {/* 09: Referenzen / Case Studies */}
             <Section bg="transparent">
                 <SectionHeading
-                    number="08"
+                    number="09"
                     overline="Referenzen"
                     title="Projekte mit Ergebnis"
                     align="left"
@@ -282,14 +296,14 @@ export default function TechPage() {
                 </div>
             </Section>
 
-            {/* 09: FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
+            {/* 10: FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
             <div className="relative">
                 <div className="relative mx-auto max-w-6xl overflow-hidden">
                     <div className="relative">
                         <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
                         <div className="relative z-10 px-4 md:px-6 py-20 md:py-28 lg:py-32">
                             <SectionHeading
-                                number="09"
+                                number="10"
                                 overline="Support"
                                 title="Häufige Fragen"
                                 align="left"

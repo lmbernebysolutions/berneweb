@@ -5,17 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { CONTACT_SUBJECTS } from "@/lib/constants";
-import { IconCheck, IconLoader2, IconSend } from "@tabler/icons-react";
+import { IconLoader2, IconSend } from "@tabler/icons-react";
 import { TechCorners } from "@/components/ui/tech-corners";
-import { AnimatedMascot } from "@/components/brand/AnimatedMascot";
+import { BLogo } from "@/components/brand/BLogo";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -40,7 +32,7 @@ export function ContactForm() {
       <div className="relative flex flex-col items-center border border-brand-cyan/30 bg-brand-cyan/5 p-10 text-center overflow-hidden">
         <TechCorners pattern="all" variant="cyan" size="md" />
 
-        <AnimatedMascot size="lg" animation="float" />
+        <BLogo size={64} className="opacity-90" />
         <div className="mt-2 font-mono text-[0.6rem] text-brand-cyan/80 uppercase tracking-widest">
           STATUS: GESENDET
         </div>
@@ -94,37 +86,19 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="phone" className="text-xs font-bold uppercase tracking-[0.15em]">
-            Telefon
-          </Label>
-          <Input
-            id="phone"
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            placeholder="+49…"
-            disabled={state === "sending"}
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="subject" className="text-xs font-bold uppercase tracking-[0.15em]">
-            Betreff *
-          </Label>
-          <Select name="subject" required disabled={state === "sending"}>
-            <SelectTrigger id="subject">
-              <SelectValue placeholder="Bitte wählen" />
-            </SelectTrigger>
-            <SelectContent>
-              {CONTACT_SUBJECTS.map((subject) => (
-                <SelectItem key={subject} value={subject}>
-                  {subject}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+      <div className="space-y-2">
+        <Label htmlFor="phone" className="text-xs font-bold uppercase tracking-[0.15em]">
+          Telefon
+        </Label>
+        <Input
+          id="phone"
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+          placeholder="+49…"
+          disabled={state === "sending"}
+          className="input-focus-glow"
+        />
       </div>
 
       <div className="space-y-2">

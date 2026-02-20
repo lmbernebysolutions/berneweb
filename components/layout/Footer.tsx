@@ -14,7 +14,7 @@ export function Footer() {
         data-animate
         aria-hidden="true"
       >
-        <div className="relative w-full max-w-6xl pl-4 md:pl-6 min-h-[14rem] h-56 shrink-0 scale-y-[-1]">
+        <div className="relative w-full max-w-6xl pl-4 md:pl-6 h-32 sm:h-40 md:h-48 lg:h-56 xl:h-64 shrink-0 scale-y-[-1]">
           {[
             { src: "/icons/Berg2.svg", delay: "berg-layer-grow-on-view-delay-0" },
             { src: "/icons/Berg3.svg", delay: "berg-layer-grow-on-view-delay-1" },
@@ -43,9 +43,9 @@ export function Footer() {
       />
 
       {/* Inhalt in Beam-Breite (wie Rest der Seite), Beams im Footer nicht sichtbar; Berg kann oben leicht überdecken */}
-      <div className="relative mx-auto max-w-6xl px-4 pt-16 pb-8 md:px-6 md:pt-20">
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8 pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8">
         {/* Main grid */}
-        <div className="grid gap-10 md:grid-cols-12 md:gap-8">
+        <div className="grid gap-8 sm:gap-10 md:grid-cols-12 md:gap-8 lg:gap-10">
           {/* Brand - takes more space */}
           <div className="md:col-span-4">
             <TextLogo variant="light" />
