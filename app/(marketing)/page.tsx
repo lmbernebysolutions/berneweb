@@ -43,7 +43,8 @@ import {
 } from "@/lib/constants";
 import { generateFaqSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
-import { ReferenzenGrid } from "@/components/sections/ReferenzenCarousel";
+import { ReferenzCard } from "@/components/sections/ReferenzenCarousel";
+import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
 import { REFERENZEN } from "@/lib/data/referenzen";
 const MatchWizardSection = dynamic(
   () => import("@/components/sections/MatchWizardSection").then((m) => ({ default: m.MatchWizardSection })),
@@ -67,8 +68,8 @@ export default function Home() {
     <>
       <Hero
         bergVariant="home"
-        headline="DEIN DIGITALER WERKZEUGKASTEN."
-        accentText="WERKZEUGKASTEN."
+        headline="DEIN DIGITALER WERKZEUGKASTEN"
+        accentText="WERKZEUGKASTEN"
         subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
         ctas={[
           { label: "Für Handwerker", href: "/handwerk", variant: "default" },
@@ -336,7 +337,11 @@ export default function Home() {
           align="left"
           light
         />
-        <ReferenzenGrid referenzen={REFERENZEN} limit={2} />
+        <MobileSwipeGrid gridClassName="grid gap-6 md:grid-cols-2" slideMinWidth="min-w-[90%] sm:min-w-[75%]">
+          {REFERENZEN.slice(0, 2).map((ref) => (
+            <ReferenzCard key={ref.id} referenz={ref} featured={false} compact />
+          ))}
+        </MobileSwipeGrid>
         <p className="mt-6 text-center">
           <Link
             href="/referenzen"
