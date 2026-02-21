@@ -81,7 +81,7 @@ function SinglePricingCard({
       <div className="relative flex flex-col sm:flex-row items-center justify-center gap-0 sm:gap-1 mb-3 sm:mb-6 md:mb-8 border-y border-white/10 py-3 sm:py-4 md:py-6 bg-black/20 text-center">
         <span
           className={cn(
-            "text-xl sm:text-3xl md:text-5xl font-black tracking-tighter",
+            "text-stat-mobile md:text-5xl font-black tracking-tighter",
             pkg.highlighted ? "text-brand-warm" : "text-white"
           )}
         >

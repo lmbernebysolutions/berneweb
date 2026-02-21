@@ -22,7 +22,7 @@ export function CtaSection({ headline, subline, ctas }: CtaSectionProps) {
       <BackdropNumber number="GO" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 text-[20vw]" />
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center md:px-6 min-w-0 overflow-hidden">
-        <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold uppercase tracking-tighter text-white mb-6 drop-shadow-2xl text-balance break-words max-w-full">
+        <h2 className="font-display text-h2-mobile md:text-6xl lg:text-8xl font-extrabold uppercase tracking-tighter text-white mb-6 drop-shadow-2xl text-balance break-words max-w-full">
           {headline}
         </h2>
 
