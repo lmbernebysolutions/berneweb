@@ -48,7 +48,7 @@ export function Hero({
   }
 
   return (
-    <section className="relative min-h-[90dvh] flex flex-col justify-center overflow-hidden pt-32 pb-20 isolate">
+    <section className="relative min-h-[90svh] flex flex-col justify-center overflow-hidden pt-32 pb-20 isolate">
 
       {/* Bergsilhouette: FESTE Höhe verhindert Layout Shift während Animation */}
       <div
