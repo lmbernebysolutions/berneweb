@@ -10,11 +10,11 @@ export function Footer() {
     <footer className="relative z-20 overflow-hidden border-t border-brand-cyan/20 bg-brand-navy text-brand-navy-foreground min-h-[28rem]">
       {/* Bergsilhouette: 1:1 wie Hero (ganz rechts), kopfüber, ohne Berg1 – rauswachsen wenn im Viewport */}
       <div
-        className="footer-berg absolute top-0 left-0 right-0 flex justify-end items-start pointer-events-none z-0"
+        className="footer-berg absolute top-0 left-0 right-0 flex justify-end items-start pointer-events-none z-0 will-change-auto"
         data-animate
         aria-hidden="true"
       >
-        <div className="relative w-full max-w-6xl pl-4 md:pl-6 h-32 sm:h-40 md:h-48 lg:h-56 xl:h-64 shrink-0 scale-y-[-1]">
+        <div className="relative w-full max-w-6xl pl-4 md:pl-6 h-48 sm:h-52 md:h-56 lg:h-64 xl:h-72 shrink-0 scale-y-[-1] transform-gpu">
           {[
             { src: "/icons/Berg2.svg", delay: "berg-layer-grow-on-view-delay-0" },
             { src: "/icons/Berg3.svg", delay: "berg-layer-grow-on-view-delay-1" },
@@ -140,8 +140,9 @@ export function Footer() {
 
         {/* Regional greeting */}
         <div className="mt-12 text-center">
-          <p className="text-sm text-brand-navy-muted font-medium">
-            Herzliche Grüße aus Aue-Bad Schlema im Erzgebirge. <span className="text-brand-warm">Glück auf!</span>
+          <p className="text-sm text-brand-navy-muted font-medium flex flex-wrap items-center justify-center gap-1">
+            <span>Herzliche Grüße aus Aue-Bad Schlema im Erzgebirge.</span>
+            <span className="text-brand-warm whitespace-nowrap">Glück auf!</span>
           </p>
         </div>
 

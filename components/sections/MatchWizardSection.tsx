@@ -142,10 +142,10 @@ export function MatchWizardSection({
                     type="button"
                     variant="outline-light"
                     size="lg"
-                    className="w-full justify-between gap-4 py-4 h-auto text-left"
+                    className="w-full justify-between gap-2 sm:gap-4 py-3 sm:py-4 h-auto text-left min-h-14"
                     onClick={() => handleChoice(currentStep.id, choice.value)}
                   >
-                    <span className="font-medium uppercase tracking-wide">
+                    <span className="font-medium uppercase tracking-wide text-xs sm:text-sm break-words">
                       {choice.label}
                     </span>
                     <IconArrowRight className="size-5 shrink-0" stroke={2} />

@@ -24,9 +24,9 @@ const ORGANIZATION_SCHEMA = {
       priceRange: "€€",
       address: {
         "@type": "PostalAddress",
-        streetAddress: COMPANY.location,
+        streetAddress: COMPANY.streetAddress,
         addressLocality: COMPANY.location,
-        postalCode: "08280",
+        postalCode: COMPANY.postalCode,
         addressRegion: COMPANY.state,
         addressCountry: "DE",
       },

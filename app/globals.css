@@ -205,7 +205,6 @@ h6 {
 
 .hero-berg-reveal {
   animation: hero-berg-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
-  will-change: transform;
 }
 
 /* Berg-Layer „Wachsen“: von unten nach oben (nur Home, Reihenfolge 4→2→3→1) */
@@ -224,7 +223,8 @@ h6 {
   transform-origin: bottom center;
   transform: scaleY(0);
   animation: berg-grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .berg-layer-grow-delay-0 { animation-delay: 0s; }
@@ -238,7 +238,8 @@ h6 {
   transform: scaleY(0);
   animation: berg-grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-play-state: paused;
-  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .footer-berg.is-visible .berg-layer-grow-on-view {
   animation-play-state: running;
@@ -497,22 +498,65 @@ h6 {
   color: rgba(255, 255, 255, 0.9);
   border-color: rgba(255, 255, 255, 0.3);
 }
-/* Modal/Popup (Einstellungen) */
-.cookie-manager-berneby .cookie-manager [class*="rounded-lg"][class*="shadow-xl"] {
+
+/* Modal „Cookie-Einstellungen“: gesamter sichtbarer Kasten Navy (Library setzt Schwarz) – hohe Spezifität */
+.cookie-manager-berneby.cookie-manager-berneby .cookie-manager > div > div,
+.cookie-manager-berneby.cookie-manager-berneby .cookie-manager > div > div > div,
+.cookie-manager-berneby .cookie-manager [class*="rounded-lg"],
+.cookie-manager-berneby .cookie-manager [class*="shadow-xl"],
+.cookie-manager-berneby .cookie-manager [class*="flex"][class*="gap-6"],
+.cookie-manager-berneby .cookie-manager div[class*="max-w-md"],
+.cookie-manager-berneby .cookie-manager div[class*="max-w-lg"],
+.cookie-manager-berneby .cookie-manager > div[class*="inset-0"] > div {
   background-color: #283569 !important;
   color: #fff !important;
-  border: 1px solid rgba(3, 249, 249, 0.3);
+  border-color: rgba(3, 249, 249, 0.3) !important;
 }
-.cookie-manager-berneby .cookie-manager [class*="rounded-lg"] a {
+/* Innere Wrapper transparent, damit Navy durchkommt */
+.cookie-manager-berneby .cookie-manager > div > div [class*="flex"][class*="flex-col"] {
+  background-color: transparent !important;
+}
+.cookie-manager-berneby .cookie-manager a {
   color: #03f9f9 !important;
 }
-.cookie-manager-berneby .cookie-manager button[class*="rounded-md"]:last-of-type {
+/* Buttons: Abbrechen = Rahmen, Einstellungen speichern = Cyan */
+.cookie-manager-berneby .cookie-manager > div > div button:first-of-type {
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+.cookie-manager-berneby.cookie-manager-berneby .cookie-manager > div > div button:last-of-type,
+.cookie-manager-berneby .cookie-manager > div > div button:last-of-type,
+.cookie-manager-berneby .cookie-manager button[class*="rounded-md"]:last-of-type,
+.cookie-manager-berneby .cookie-manager button.font-semibold {
   background-color: #03f9f9 !important;
   color: #283569 !important;
+  border: none !important;
 }
+.cookie-manager-berneby .cookie-manager button:not([class*="font-semibold"]) {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+/* Toggle/Switch aktiv = Cyan */
+.cookie-manager-berneby .cookie-manager [role="switch"][aria-checked="true"],
+.cookie-manager-berneby .cookie-manager [data-state="checked"],
+.cookie-manager-berneby .cookie-manager input:checked + .rounded-full {
+  background-color: #03f9f9 !important;
+  border-color: #03f9f9 !important;
+}
+/* Status-Pill „Immer an“ / Toggle-Knopf */
+.cookie-manager-berneby .cookie-manager .rounded-full {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+.cookie-manager-berneby .cookie-manager .px-3.py-1.rounded-full,
+.cookie-manager-berneby .cookie-manager [class*="text-xs"][class*="rounded-full"] {
+  background-color: rgba(3, 249, 249, 0.2) !important;
+  color: #03f9f9 !important;
+}
+
 /* Floating-Button */
 .cookie-manager-berneby .cookie-manager [class*="fixed"][class*="bottom-6"][class*="left-6"] {
   background-color: #283569 !important;
   color: #fff !important;
-  border-color: rgba(3, 249, 249, 0.3);
+  border-color: rgba(3, 249, 249, 0.3) !important;
 }

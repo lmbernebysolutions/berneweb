@@ -19,9 +19,9 @@ export default function ImpressumPage() {
         <p>
           {COMPANY.legal}
           <br />
-          Aue-Bad Schlema
+          {COMPANY.address}
           <br />
-          Erzgebirgskreis, Sachsen
+          {COMPANY.region}, {COMPANY.state}
         </p>
 
         <h2>Vertreten durch</h2>
@@ -38,11 +38,10 @@ export default function ImpressumPage() {
           E-Mail: {COMPANY.email}
         </p>
 
-        <h2>Umsatzsteuer-ID</h2>
+        <h2>Umsatzsteuer</h2>
         <p>
-          Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:
-          <br />
-          [Wird nachgetragen]
+          Wir wenden die Kleinunternehmerregelung gemäß § 19 UStG an.
+          Es wird keine Umsatzsteuer-Identifikationsnummer geführt.
         </p>
 
         <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>

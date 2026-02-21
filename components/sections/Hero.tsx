@@ -51,8 +51,8 @@ export function Hero({
     <section className="relative min-h-[90dvh] flex flex-col justify-center overflow-hidden pt-32 pb-20">
 
       {/* Bergsilhouette: überall 1:1 wie Home – 4 Layer, Animation, bis ganz rechts */}
-      <div className="absolute bottom-0 left-0 right-0 flex justify-end items-end pointer-events-none z-[1]" aria-hidden="true">
-        <div className="relative w-full max-w-6xl pl-4 md:pl-6 h-32 sm:h-40 md:h-48 lg:h-56 xl:h-64 shrink-0">
+      <div className="absolute bottom-0 left-0 right-0 flex justify-end items-end pointer-events-none z-[1] will-change-auto" aria-hidden="true">
+        <div className="relative w-full max-w-6xl pl-4 md:pl-6 h-48 sm:h-52 md:h-56 lg:h-64 xl:h-72 shrink-0 transform-gpu">
           {BERG_LAYERS.map((src, i) => (
             <Image
               key={src}
@@ -82,8 +82,8 @@ export function Hero({
       <div className="relative z-[2]">
         {/* Headline Container (Wide) */}
         <div className="container mx-auto px-4 sm:px-5 md:px-6 mb-6 sm:mb-8">
-          <div className="lg:col-span-12 hero-line-reveal">
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-extrabold uppercase leading-[0.9] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-[95%] text-balance">
+          <div className="lg:col-span-12 hero-line-reveal overflow-hidden">
+            <h1 className="font-display text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[7rem] 2xl:text-[8rem] font-extrabold uppercase leading-[0.9] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words">
               {headlineParts}
             </h1>
           </div>

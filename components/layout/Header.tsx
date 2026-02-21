@@ -87,15 +87,15 @@ export function Header() {
               <IconMenu2 className="size-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-80 border-l border-brand-cyan/20 bg-brand-navy">
+          <SheetContent side="right" className="w-80 border-l border-brand-cyan/20 bg-brand-navy pt-16">
             <SheetTitle className="sr-only">Navigation</SheetTitle>
 
             {/* Tech decoration */}
-            <div className="absolute top-4 right-4 font-mono text-[0.6rem] text-brand-cyan/30 uppercase tracking-widest">
+            <div className="absolute top-4 left-4 font-mono text-[0.6rem] text-brand-cyan/30 uppercase tracking-widest">
               NAV.SYS
             </div>
 
-            <nav className="mt-8 flex flex-col gap-1" aria-label="Mobile Navigation">
+            <nav className="flex flex-col gap-1" aria-label="Mobile Navigation">
               {NAV_ITEMS.map((item, i) => (
                 <Link
                   key={item.href}

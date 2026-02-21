@@ -36,8 +36,8 @@ export function ProblemSection({
                 >
                     {/* Caution Stripes */}
                     <div className={`absolute top-0 right-0 w-16 h-16 opacity-10 ${isRed
-                        ? "bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#ef4444_10px,#ef4444_20px)]"
-                        : "bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#03f9f9_10px,#03f9f9_20px)]"
+                        ? "bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(239,68,68,1)_10px,rgba(239,68,68,1)_20px)]"
+                        : "bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(3,249,249,1)_10px,rgba(3,249,249,1)_20px)]"
                         }`} />
 
                     {/* Tech Corners - red for problem section, cyan for solutions */}

@@ -32,15 +32,26 @@ export default function DatenschutzPage() {
           </strong>
           <br />
           Die Datenverarbeitung auf dieser Website erfolgt durch den
-          Websitebetreiber: {COMPANY.legal}, Aue-Bad Schlema. Kontakt:{" "}
+          Websitebetreiber: {COMPANY.legal}, {COMPANY.address}. Kontakt:{" "}
           {COMPANY.email}, Tel.: {COMPANY.phoneDisplay}.
         </p>
 
         <h2>2. Hosting</h2>
         <p>
-          Diese Website wird bei einem externen Dienstleister gehostet
-          (Hoster). Die personenbezogenen Daten, die auf dieser Website erfasst
-          werden, werden auf den Servern des Hosters gespeichert.
+          Diese Website wird bei Vercel Inc. (340 S Lemon Ave #4133, Walnut,
+          CA 91789, USA) gehostet. Die personenbezogenen Daten, die auf dieser
+          Website erfasst werden, werden auf Servern von Vercel (bzw. deren
+          Rechenzentren) verarbeitet. Mit Vercel besteht eine Vereinbarung zur
+          Auftragsverarbeitung (Art. 28 DSGVO). Weitere Informationen:
+          <a
+            href="https://vercel.com/legal/privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            Vercel Privacy Policy
+          </a>
+          .
         </p>
 
         <h2>3. Allgemeine Hinweise und Pflichtinformationen</h2>
@@ -84,9 +95,20 @@ export default function DatenschutzPage() {
         <h3>Kontaktformular</h3>
         <p>
           Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden
-          Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort
-          angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den
-          Fall von Anschlussfragen bei uns gespeichert.
+          Ihre Angaben ausschließlich per E-Mail an uns übermittelt und bei uns
+          zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen
+          gespeichert. Es wird kein externer Formulardienst genutzt; die
+          Übermittlung erfolgt nur per E-Mail.
+        </p>
+
+        <h3>Eingebundene Karten (Kontaktseite)</h3>
+        <p>
+          Auf der Seite „Kontakt“ (/kontakt) ist eine Karte eingebunden
+          (OpenStreetMap). Beim Aufruf der Seite können dabei Daten an den
+          Anbieter der Karte (z. B. Aufruf der Karteninhalte) übermittelt
+          werden. Rechtsgrundlage ist Ihr Interesse an der Darstellung
+          (Art. 6 Abs. 1 lit. f DSGVO). Weitere Informationen entnehmen Sie der
+          Datenschutzerklärung des jeweiligen Anbieters.
         </p>
 
         <h3>Google Analytics</h3>
