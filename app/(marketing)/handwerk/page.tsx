@@ -40,7 +40,7 @@ import {
   HANDWERK_GARANTIEN,
 } from "@/lib/constants";
 import { generateFaqSchema, generateBreadcrumbSchema, generateHowToSchema } from "@/lib/seo/schema";
-import { ProblemSection } from "@/components/sections/ProblemSection";
+import { HandwerkProblemWithRevealSection } from "@/components/sections/HandwerkProblemWithRevealSection";
 import { TechCorners } from "@/components/ui/tech-corners";
 
 export const metadata: Metadata = {
@@ -48,24 +48,6 @@ export const metadata: Metadata = {
   description: PAGE_META.handwerk.description,
   alternates: { canonical: "/handwerk" },
 };
-
-const PAIN_POINTS = [
-  {
-    problem: "Die Baustelle ruft. Das Telefon auch.",
-    description:
-      "Sie können nicht gleichzeitig Schlitze klopfen und Termine vergeben. Das kostet Umsatz.",
-  },
-  {
-    problem: "Google kennt nur die Konkurrenz.",
-    description:
-      "Ohne Website existieren Sie für Neukunden unter 40 quasi nicht.",
-  },
-  {
-    problem: "Bürokram am Wochenende.",
-    description:
-      "Angebote schreiben, Rechnungen prüfen... statt Erholung nur Papierkram.",
-  },
-];
 
 const HANDWERK_TESTIMONIALS = [
   {
@@ -115,11 +97,7 @@ export default function HandwerkPage() {
           align="left"
           light
         />
-        <ProblemSection
-          title="Risiko: Stillstand"
-          problems={PAIN_POINTS}
-          variant="red"
-        />
+        <HandwerkProblemWithRevealSection />
         <p className="mt-6 text-sm text-white/60">
           <Link href="/ratgeber/seo-fuer-handwerker" className="text-brand-cyan hover:underline">
             Wie lokale SEO funktioniert
@@ -157,7 +135,7 @@ export default function HandwerkPage() {
       <Section bg="subtle">
         <SectionHeading
           number="05"
-          overline="Handschlag aus dem Erzgebirge"
+          overline="Handschlag ausm Erzgebirge"
           title="Garantien & Transparenz"
           subtitle="Festpreis, inkludierter Support, kein Kleingedrucktes."
           align="left"
@@ -282,7 +260,7 @@ export default function HandwerkPage() {
       <Section bg="subtle">
         <SectionHeading
           number="09"
-          overline="Ihr Bauplan – vom Fundament bis zum First"
+          overline="Ihr Bauplan"
           title="In 4 Wochen fertig"
           align="left"
           light

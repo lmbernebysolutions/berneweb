@@ -26,7 +26,7 @@ export default function RatgeberPage() {
 
   return (
     <>
-      <Section bg="transparent">
+      <Section bg="transparent" className="pt-24 sm:pt-28 md:pt-32">
         <SectionHeading
           number="01"
           overline="Ratgeber"
@@ -70,7 +70,7 @@ export default function RatgeberPage() {
       <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
 
       <CtaSection
-        headline="Jetzt Erstgespräch vereinbaren"
+        headline="Erstgespräch vereinbaren"
         subline="30 Minuten, unverbindlich – wir besprechen Ihre Digitalisierung."
         ctas={[
           { label: "Termin sichern", href: "/kontakt" },

@@ -59,11 +59,11 @@ export function SectionHeading({
             {overline}
           </div>
         )}
-        {/* TechCorners: Beide inline mit margin für gleichen Abstand */}
-        <div className={cn(align === "center" && "text-center")}>
+        {/* TechCorners: Platz rechts reservieren, damit rechter Corner nicht umbricht */}
+        <div className={cn(align === "center" && "text-center", "pr-12 sm:pr-14 md:pr-16")}>
           <Tag
             className={cn(
-              "relative inline font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight text-balance leading-[1.1] max-w-full",
+              "relative inline font-display text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl uppercase tracking-tight text-balance leading-[1.1] max-w-full",
               light ? "text-brand-navy-foreground" : "text-foreground"
             )}
           >

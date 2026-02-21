@@ -40,11 +40,14 @@ import {
   TECH_STACK,
   HOME_MINI_FAQ,
   PAGE_META,
+  OHNE_UNS_ROWS,
+  MIT_UNS_ROWS,
 } from "@/lib/constants";
 import { generateFaqSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { ReferenzCard } from "@/components/sections/ReferenzenCarousel";
 import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
+import { ProblemToSolutionScrollSection } from "@/components/sections/ProblemToSolutionScrollSection";
 import { REFERENZEN } from "@/lib/data/referenzen";
 const MatchWizardSection = dynamic(
   () => import("@/components/sections/MatchWizardSection").then((m) => ({ default: m.MatchWizardSection })),
@@ -177,12 +180,16 @@ export default function Home() {
       <Section bg="transparent">
         <SectionHeading
           number="03"
-          overline="Die Brücke zwischen Handwerk und Digital"
+          overline="Handwerk & Digital"
           title="Ohne uns vs. Mit uns"
           align="left"
           light
         />
-        <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:gap-12">
+        {/* Mobile: scroll-driven Problem → Solution morph */}
+        <div className="md:hidden">
+          <ProblemToSolutionScrollSection />
+        </div>
+        <div className="max-md:hidden grid gap-6 sm:gap-8 md:grid-cols-2 lg:gap-12">
           {/* Legacy System: Ohne Uns */}
           <div className="group relative border-2 border-white/5 bg-black/30 p-6 sm:p-8 backdrop-blur-sm overflow-hidden transition-colors hover:border-white/10" data-animate="fade-left">
             {/* Tech Corners - all 4 corners pattern */}
@@ -206,12 +213,7 @@ export default function Home() {
             </div>
 
             <div className="space-y-4 relative z-10">
-              {[
-                { label: "Sichtbarkeit", val: "Unsichtbar im Netz", risk: "Hoch" },
-                { label: "Kundenkontakt", val: "Verpasste Anrufe = verlorenes Geld", risk: "Kritisch" },
-                { label: "Online Reputation", val: "Keine Kontrolle über Bewertungen", risk: "Neutral" },
-                { label: "Außendarstellung", val: "Baukasten-Design von 2010", risk: "Mittel" },
-              ].map((item) => (
+              {OHNE_UNS_ROWS.map((item) => (
                 <div key={item.label} className="border-l-2 border-white/10 bg-white/[0.02] p-4">
                   <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-white/30">
                     <span>{item.label}</span>
@@ -247,12 +249,7 @@ export default function Home() {
             </div>
 
             <div className="space-y-4 relative z-10">
-              {[
-                { label: "Sichtbarkeit", val: "Top-Platzierung & Seite 1 Fokus", gain: "+300%" },
-                { label: "Kundenkontakt", val: "KI-Empfang nimmt 24/7 Anrufe an", gain: "100%" },
-                { label: "Online Reputation", val: "Automatisierte 5-Sterne-Systeme", gain: "Max" },
-                { label: "Außendarstellung", val: "Premium Design & Branding", gain: "High" },
-              ].map((item) => (
+              {MIT_UNS_ROWS.map((item) => (
                 <div key={item.label} className="relative border-l-2 border-brand-cyan bg-brand-cyan/10 p-4">
                   <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-brand-cyan">
                     <span>{item.label}</span>
@@ -303,7 +300,7 @@ export default function Home() {
       <Section bg="subtle">
         <SectionHeading
           number="06"
-          overline="Womit wir arbeiten"
+          overline="Tech & Werkzeuge"
           title="Technologien & Werkzeuge"
           subtitle="Moderne Stacks, klare Ergebnisse."
           align="left"

@@ -9,6 +9,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { Button } from "@/components/ui/button";
+import { SectionCard } from "@/components/ui/section-card";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { IconMapPin, IconCheck, IconCurrencyEuro, IconStar } from "@tabler/icons-react";
 import {
@@ -264,7 +265,7 @@ export default async function StandortPage({
                   Kostenloses Erstgespräch, 30 Minuten, unverbindlich.
                 </p>
                 <Button asChild size="lg" className="mt-4 w-full sm:w-auto bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90 text-center text-sm sm:text-base">
-                  <Link href="#kontakt">Jetzt Erstgespräch vereinbaren</Link>
+                  <Link href="#kontakt">Erstgespräch vereinbaren</Link>
                 </Button>
               </div>
             </div>
@@ -290,7 +291,7 @@ export default async function StandortPage({
         <SectionHeading
           number="04"
           overline="Kontakt"
-          title="Jetzt Erstgespräch vereinbaren"
+          title="Erstgespräch vereinbaren"
           subtitle="Kostenlos, unverbindlich – wir melden uns innerhalb von 24 Stunden."
           align="left"
           light
@@ -316,7 +317,20 @@ export default async function StandortPage({
               </p>
             </div>
           </div>
-          <ContactForm />
+          <SectionCard variant="default" className="flex-1 p-6 md:p-8">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-xl font-extrabold uppercase tracking-wide">Nachricht schreiben</h2>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Alle Felder mit * sind Pflichtfelder.
+                </p>
+              </div>
+              <div className="hidden font-mono text-[0.6rem] text-brand-cyan/30 uppercase tracking-widest sm:block">
+                FORM.SYS
+              </div>
+            </div>
+            <ContactForm />
+          </SectionCard>
         </div>
       </Section>
 

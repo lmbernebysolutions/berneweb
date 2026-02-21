@@ -69,7 +69,7 @@ export default async function BranchePage({
         accentText={branche.name}
         subline={`Wir unterstützen ${branche.name} im Erzgebirge mit professionellen Websites, 50+ lokalen Landingpages, KI-Telefonassistent und IT-Service. Festpreis, 4 Wochen bis Go-Live. Jetzt Erstgespräch vereinbaren.`}
         ctas={[
-          { label: "Jetzt Erstgespräch buchen", href: "#pakete", variant: "default" },
+          { label: "Erstgespräch vereinbaren", href: "#pakete", variant: "default" },
           { label: "Alle Handwerks-Pakete", href: "/handwerk", variant: "outline" },
         ]}
         variant="navy"
@@ -81,7 +81,7 @@ export default async function BranchePage({
       <Section bg="transparent">
         <SectionHeading
           number="02"
-          overline={`${branche.name} – Die Herausforderung`}
+          overline="Die Herausforderung"
           title="Typische Probleme"
           subtitle="76% der Nutzer, die lokal suchen, besuchen innerhalb von 24 Stunden ein Geschäft. Ohne professionelle Website und lokale SEO existieren Sie für diese Kunden praktisch nicht."
           align="left"

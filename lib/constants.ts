@@ -246,6 +246,24 @@ export const PROBLEMS_SOLUTIONS = [
 ] as const;
 
 // =============================================================================
+// OHNE UNS / MIT UNS – Home & Handwerk (4 Zeilen, Problem + Solution)
+// =============================================================================
+
+export const OHNE_UNS_ROWS = [
+  { label: "Sichtbarkeit", val: "Unsichtbar im Netz", risk: "Hoch" },
+  { label: "Kundenkontakt", val: "Verpasste Anrufe = verlorenes Geld", risk: "Kritisch" },
+  { label: "Online Reputation", val: "Keine Kontrolle über Bewertungen", risk: "Neutral" },
+  { label: "Außendarstellung", val: "Baukasten-Design von 2010", risk: "Mittel" },
+] as const;
+
+export const MIT_UNS_ROWS = [
+  { label: "Sichtbarkeit", val: "Top-Platzierung & Seite 1 Fokus", gain: "+300%" },
+  { label: "Kundenkontakt", val: "KI-Empfang nimmt 24/7 Anrufe an", gain: "100%" },
+  { label: "Online Reputation", val: "Automatisierte 5-Sterne-Systeme", gain: "Max" },
+  { label: "Außendarstellung", val: "Premium Design & Branding", gain: "High" },
+] as const;
+
+// =============================================================================
 // ZWEI SÄULEN
 // =============================================================================
 

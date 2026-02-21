@@ -23,7 +23,7 @@ export default function StandortePage() {
 
   return (
     <>
-      <Section bg="transparent">
+      <Section bg="transparent" className="pt-24 sm:pt-28 md:pt-32">
         <SectionHeading
           number="01"
           overline="Standorte"
