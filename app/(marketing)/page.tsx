@@ -348,7 +348,7 @@ export default function Home() {
       <ChatSection
         sectionNumber="08"
         overline="Fragen & Match"
-        title="Kurz gefragt – oder Ihr passendes Angebot"
+        title="FAQ & Ihr Match"
         subtitle="Stellen Sie eine Frage oder finden Sie in wenigen Klicks Ihr passendes Paket."
         wizardVariant="home"
         suggestedFaq={HOME_MINI_FAQ}

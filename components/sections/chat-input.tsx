@@ -33,15 +33,18 @@ export function ChatInput({
   };
 
   return (
-    <form onSubmit={handleSubmit} className={cn("flex flex-col gap-2", className)}>
+    <form
+      onSubmit={handleSubmit}
+      className={cn("flex items-end gap-2", className)}
+    >
       <textarea
         ref={textareaRef}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         disabled={disabled}
-        rows={2}
-        className="w-full resize-none rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-brand-cyan/30 focus:outline-none focus:ring-1 focus:ring-brand-cyan/20 disabled:opacity-50"
+        rows={1}
+        className="min-h-[44px] w-full min-w-0 flex-1 resize-none rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-brand-cyan/30 focus:outline-none focus:ring-1 focus:ring-brand-cyan/20 disabled:opacity-50"
         onKeyDown={(e) => {
           if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
@@ -54,9 +57,9 @@ export function ChatInput({
         variant="outline-light"
         size="sm"
         disabled={isSubmitDisabled}
-        className="self-end"
+        className="shrink-0"
       >
-        {isLoading ? "Wird gesendet…" : "Senden"}
+        {isLoading ? "…" : "Senden"}
       </Button>
     </form>
   );

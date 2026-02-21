@@ -121,10 +121,11 @@ export default function HandwerkPage() {
       <ChatSection
         sectionNumber="04"
         overline="Fragen & Match"
-        title="Kurz gefragt – oder Ihr passendes Paket"
+        title="FAQ & Ihr Match"
         subtitle="Stellen Sie eine Frage oder finden Sie in zwei Klicks Ihr Handwerks-Paket."
         wizardVariant="handwerk"
         suggestedFaq={FAQ_ITEMS}
+        sectionBg="transparent"
       />
 
       {/* Garantien */}

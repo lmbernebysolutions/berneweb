@@ -144,14 +144,15 @@ export default function TechPage() {
             <ChatSection
                 sectionNumber="04"
                 overline="Fragen & Match"
-                title="Kurz gefragt – oder Ihr passendes Angebot"
+                title="FAQ & Ihr Match"
                 subtitle="Stellen Sie eine Frage oder finden Sie in einer Klick Ihr Tech-Angebot."
                 wizardVariant="tech"
                 suggestedFaq={FAQ_ITEMS}
+                sectionBg="transparent"
             />
 
             {/* 05: Retainer / Hausmeister Special */}
-            <Section bg="transparent">
+            <Section bg="subtle">
                 <SectionHeading
                     number="05"
                     overline="Flatrate"

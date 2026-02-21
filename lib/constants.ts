@@ -421,7 +421,7 @@ export const CRAFT_PACKAGES = [
       "3 Monate Betreuung",
     ],
     highlighted: true,
-    badge: "Bestseller",
+    badge: "Bestseller".trim(),
   },
   {
     name: "Marktführer",

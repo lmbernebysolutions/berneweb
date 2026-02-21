@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, useMemo } from "react";
+import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
@@ -17,7 +17,12 @@ import {
   type WizardChatOutput,
 } from "@/lib/chat/wizard-chat";
 import { MAX_INPUT_CHARS } from "@/lib/chat/constants";
-import type { WizardVariant } from "@/lib/wizard-config";
+import {
+  type WizardVariant,
+  getHomeStepSequence,
+  getHandwerkStepSequence,
+  getTechStepSequence,
+} from "@/lib/wizard-config";
 import { IconArrowRight } from "@tabler/icons-react";
 
 function getMessageText(msg: { parts?: { type: string; text?: string }[] }): string {
@@ -40,6 +45,8 @@ interface ChatSectionProps {
   subtitle?: string;
   wizardVariant: WizardVariant;
   suggestedFaq: readonly FaqSuggestion[];
+  /** Hintergrund der Section für Wechsel mit vorheriger Sektion (transparent | subtle) */
+  sectionBg?: "subtle" | "transparent";
 }
 
 type ChatMode = "faq" | "match";
@@ -51,6 +58,7 @@ export function ChatSection({
   subtitle,
   wizardVariant,
   suggestedFaq,
+  sectionBg = "subtle",
 }: ChatSectionProps) {
   const [mounted, setMounted] = useState(false);
   const { hasConsent, openPreferences } = useChatConsent();
@@ -76,8 +84,26 @@ export function ChatSection({
     getInitialWizardState(wizardVariant)
   );
   const [matchAnswers, setMatchAnswers] = useState<Record<string, string>>({});
+  const faqScrollRef = useRef<HTMLDivElement>(null);
+  const matchScrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setMounted(true), []);
+
+  const scrollFaqToBottom = useCallback(() => {
+    const el = faqScrollRef.current;
+    if (!el) return;
+    el.scrollTo({ top: el.scrollHeight, behavior: "auto" });
+  }, []);
+
+  useEffect(() => {
+    scrollFaqToBottom();
+  }, [faqMessages.length, faqLoading, scrollFaqToBottom]);
+
+  useEffect(() => {
+    if (!faqLoading) return;
+    const id = setInterval(scrollFaqToBottom, 150);
+    return () => clearInterval(id);
+  }, [faqLoading, scrollFaqToBottom]);
 
   const handleFaqSubmit = useCallback(() => {
     const text = faqInput.slice(0, MAX_INPUT_CHARS).trim();
@@ -96,13 +122,15 @@ export function ChatSection({
   const handleMatchChoice = useCallback(
     (choice: string) => {
       if (matchState.type !== "step") return;
-      const newAnswers = { ...matchAnswers, [matchState.step.id]: choice };
+      const value = choice.trim();
+      if (!value) return;
+      const newAnswers = { ...matchAnswers, [matchState.step.id]: value };
       setMatchAnswers(newAnswers);
       const next = getWizardChatState(
         wizardVariant,
         matchState.stepIndex,
         newAnswers,
-        choice
+        value
       );
       setMatchState(next);
     },
@@ -114,10 +142,26 @@ export function ChatSection({
     setMatchAnswers({});
   }, [wizardVariant]);
 
+  const matchStepSequence =
+    wizardVariant === "home"
+      ? getHomeStepSequence(matchAnswers)
+      : wizardVariant === "handwerk"
+        ? getHandwerkStepSequence()
+        : getTechStepSequence();
+  const matchTotalSteps = matchStepSequence.length;
+  const matchCurrentStep =
+    matchState.type === "step" ? matchState.stepIndex + 1 : matchTotalSteps;
+
+  useEffect(() => {
+    const el = matchScrollRef.current;
+    if (!el || mode !== "match") return;
+    el.scrollTo({ top: el.scrollHeight, behavior: "auto" });
+  }, [mode, matchState, matchCurrentStep]);
+
   // Server und erster Client-Render: gleiches Markup wie No-Consent, damit kein Hydration-Mismatch
   if (!mounted || !hasConsent) {
     return (
-      <Section bg="subtle">
+      <Section bg={sectionBg}>
         <SectionHeading
           number={sectionNumber}
           overline={overline}
@@ -126,9 +170,9 @@ export function ChatSection({
           align="left"
           light
         />
-        <div className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md">
+        <div className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md max-h-[min(70vh,720px)] flex flex-col">
           <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
-          <div className="relative z-10 p-8 md:p-10">
+          <div className="relative z-10 flex min-h-0 flex-1 flex-col p-8 md:p-10">
             <p className="text-white/80 mb-4">
               Um den Chat zu nutzen, bestätigen Sie bitte die Cookie-Einstellungen.
             </p>
@@ -142,7 +186,7 @@ export function ChatSection({
   }
 
   return (
-    <Section bg="subtle">
+    <Section bg={sectionBg}>
       <SectionHeading
         number={sectionNumber}
         overline={overline}
@@ -151,11 +195,11 @@ export function ChatSection({
         align="left"
         light
       />
-      <div className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow">
+      <div className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow max-h-[min(70vh,720px)] flex flex-col">
         <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
-        <div className="relative z-10 p-6 md:p-8 lg:p-10">
+        <div className="relative z-10 flex min-h-0 flex-1 flex-col p-6 md:p-8 lg:p-10">
           {/* Modus-Umschaltung */}
-          <div className="mb-6 flex flex-wrap gap-2">
+          <div className="mb-4 flex shrink-0 flex-wrap gap-2">
             <Button
               type="button"
               variant={mode === "faq" ? "default" : "outline-light"}
@@ -180,42 +224,49 @@ export function ChatSection({
 
           {mode === "faq" && (
             <>
-              {suggestedFaq.length > 0 && faqMessages.length === 0 && (
-                <p className="mb-3 text-xs font-bold uppercase tracking-wider text-white/60">
-                  Vorgeschlagene Fragen
-                </p>
-              )}
-              {suggestedFaq.length > 0 && faqMessages.length === 0 && (
-                <div className="mb-6 flex flex-wrap gap-2">
-                  {suggestedFaq.map((item, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => handleFaqSuggestionClick(item.question)}
-                      className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/90 hover:border-brand-cyan/30 hover:bg-brand-cyan/5"
-                    >
-                      {item.question}
-                      <IconArrowRight className="size-4 shrink-0" stroke={2} />
-                    </button>
+              <div
+                ref={faqScrollRef}
+                className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden"
+              >
+                {suggestedFaq.length > 0 && faqMessages.length === 0 && (
+                  <p className="mb-3 text-xs font-bold uppercase tracking-wider text-white/60">
+                    Vorgeschlagene Fragen
+                  </p>
+                )}
+                {suggestedFaq.length > 0 && faqMessages.length === 0 && (
+                  <div className="mb-6 flex flex-wrap gap-2">
+                    {suggestedFaq.map((item, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => handleFaqSuggestionClick(item.question)}
+                        className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/90 hover:border-brand-cyan/30 hover:bg-brand-cyan/5"
+                      >
+                        {item.question}
+                        <IconArrowRight className="size-4 shrink-0" stroke={2} />
+                      </button>
+                    ))}
+                  </div>
+                )}
+                <div className="mb-6 flex flex-col gap-3">
+                  {faqMessages.map((msg) => (
+                    <ChatMessage
+                      key={msg.id}
+                      role={msg.role as "user" | "assistant"}
+                      content={getMessageText(msg)}
+                    />
                   ))}
                 </div>
-              )}
-              <div className="mb-6 flex flex-col gap-3">
-                {faqMessages.map((msg) => (
-                  <ChatMessage
-                    key={msg.id}
-                    role={msg.role as "user" | "assistant"}
-                    content={getMessageText(msg)}
-                  />
-                ))}
               </div>
-              <ChatInput
-                value={faqInput}
-                onChange={setFaqInput}
-                onSubmit={handleFaqSubmit}
-                isLoading={faqLoading}
-                placeholder="Offene Frage stellen…"
-              />
+              <div className="shrink-0">
+                <ChatInput
+                  value={faqInput}
+                  onChange={setFaqInput}
+                  onSubmit={handleFaqSubmit}
+                  isLoading={faqLoading}
+                  placeholder="Offene Frage stellen…"
+                />
+              </div>
             </>
           )}
 
@@ -223,36 +274,64 @@ export function ChatSection({
             <>
               {matchState.type === "step" && (
                 <>
-                  <div className="mb-6">
-                    <ChatMessage
-                      role="assistant"
-                      content={
-                        matchState.step.subline
-                          ? `${matchState.step.question}\n\n${matchState.step.subline}`
-                          : matchState.step.question
-                      }
-                    />
+                  <div className="mb-4 shrink-0">
+                    <div className="flex items-center justify-between gap-2 text-xs text-white/60">
+                      <span>
+                        Frage {matchCurrentStep} von {matchTotalSteps}
+                      </span>
+                    </div>
+                    <div
+                      className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-white/10"
+                      role="progressbar"
+                      aria-valuenow={matchCurrentStep}
+                      aria-valuemin={1}
+                      aria-valuemax={matchTotalSteps}
+                      aria-label={`Frage ${matchCurrentStep} von ${matchTotalSteps}`}
+                    >
+                      <div
+                        className="h-full rounded-full bg-brand-cyan transition-all duration-300"
+                        style={{
+                          width: `${(matchCurrentStep / matchTotalSteps) * 100}%`,
+                        }}
+                      />
+                    </div>
                   </div>
-                  <div className="flex flex-col gap-3">
-                    {matchState.step.choices.map((choice) => (
-                      <Button
-                        key={choice.value}
-                        type="button"
-                        variant="outline-light"
-                        size="lg"
-                        className="w-full justify-between gap-2 py-3 h-auto text-left min-h-14"
-                        onClick={() => handleMatchChoice(choice.value)}
-                      >
-                        <span className="font-medium uppercase tracking-wide text-xs sm:text-sm">
-                          {choice.label}
-                        </span>
-                        <IconArrowRight className="size-5 shrink-0" stroke={2} />
-                      </Button>
-                    ))}
+                  <div
+                    ref={matchScrollRef}
+                    className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden"
+                  >
+                    {matchState.step.question &&
+                      matchState.step.id !== "orte" &&
+                      matchState.step.id !== "handwerk_orte" && (
+                        <div className="mb-6">
+                          <ChatMessage
+                            role="assistant"
+                            content={matchState.step.question}
+                          />
+                        </div>
+                      )}
+                    <div className="flex flex-col gap-3">
+                      {matchState.step.choices.slice(0, 3).map((choice) => (
+                        <Button
+                          key={choice.value}
+                          type="button"
+                          variant="outline-light"
+                          size="lg"
+                          className="w-full justify-between gap-2 py-3 h-auto text-left min-h-14"
+                          onClick={() => handleMatchChoice(choice.value)}
+                        >
+                          <span className="font-medium uppercase tracking-wide text-xs sm:text-sm">
+                            {choice.label}
+                          </span>
+                          <IconArrowRight className="size-5 shrink-0" stroke={2} />
+                        </Button>
+                      ))}
+                    </div>
                   </div>
                 </>
               )}
               {matchState.type === "result" && (
+                <div className="min-h-0 flex-1 overflow-y-auto">
                 <div className="flex flex-col items-center text-center">
                   <div className="mb-6 inline-flex items-center border border-brand-cyan bg-brand-cyan/10 px-4 py-1 text-xs font-bold text-brand-cyan uppercase tracking-widest">
                     Ihr Match
@@ -284,6 +363,7 @@ export function ChatSection({
                       Nochmal von vorn
                     </Button>
                   </div>
+                </div>
                 </div>
               )}
             </>

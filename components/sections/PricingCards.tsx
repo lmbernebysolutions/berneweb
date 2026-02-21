@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { IconChevronDown } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { TechCorners } from "@/components/ui/tech-corners";
-import { BLogo } from "@/components/brand/BLogo";
 
 interface Package {
   name: string;
@@ -43,8 +42,9 @@ function SinglePricingCard({
   return (
     <div
       className={cn(
-        "group relative flex flex-col border transition-colors min-w-0 h-full",
+        "group relative flex flex-col border transition-colors min-w-0 h-full overflow-visible",
         mobileCard ? "p-4 sm:p-5 md:p-8" : "p-3 sm:p-5 md:p-8",
+        pkg.badge && "pt-5 sm:pt-6 md:pt-7",
         "rounded-none",
         pkg.highlighted
           ? "bg-brand-navy border-brand-cyan shadow-[0_0_30px_rgba(3,249,249,0.1)] hover:shadow-[0_0_40px_rgba(3,249,249,0.15)]"
@@ -54,9 +54,8 @@ function SinglePricingCard({
       <TechCorners pattern="diagonal" variant="cyan" size="lg" hoverExpand />
 
       {pkg.badge && (
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 bg-brand-cyan px-1.5 py-0.5 text-[10px] font-bold text-brand-navy uppercase tracking-widest border border-brand-cyan md:text-xs md:px-2 md:py-0.5 md:top-4">
-          <BLogo size={12} className="opacity-80 md:w-4 md:h-4" />
-          {pkg.badge}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center bg-brand-cyan py-1 px-2 text-[10px] font-bold text-brand-navy uppercase tracking-widest border border-brand-cyan md:text-xs md:py-1 md:px-2.5">
+          Bestseller
         </div>
       )}
 
@@ -161,17 +160,19 @@ function SinglePricingCard({
         </div>
       )}
 
-      <Button
-        asChild
-        variant={pkg.highlighted ? "default" : "outline"}
-        size="sm"
-        className={cn(
-          "w-full uppercase tracking-widest font-bold text-[10px] sm:text-xs py-2 md:py-0 md:text-sm md:h-10 mt-auto",
-          !pkg.highlighted && "border-white/20 text-white hover:bg-white/10"
-        )}
-      >
-        <Link href="/kontakt">Paket wählen</Link>
-      </Button>
+      <div className="mt-auto pt-6">
+        <Button
+          asChild
+          variant={pkg.highlighted ? "default" : "outline"}
+          size="sm"
+          className={cn(
+            "w-full uppercase tracking-widest font-bold text-[10px] sm:text-xs py-2 md:py-0 md:text-sm md:h-10",
+            !pkg.highlighted && "border-white/20 text-white hover:bg-white/10"
+          )}
+        >
+          <Link href="/kontakt">Paket wählen</Link>
+        </Button>
+      </div>
     </div>
   );
 }
@@ -240,9 +241,9 @@ export function PricingCards({ packages, comparisonRows }: PricingCardsProps) {
 
   return (
     <>
-      {/* Mobile: Carousel – Mitte = Highlight, links/rechts sichtbar, Swipe-Buttons */}
+      {/* Mobile: Carousel – pt-6 am Viewport, damit Badge nicht abgeschnitten wird */}
       <div className="md:hidden relative px-1">
-        <div className="overflow-hidden" ref={emblaRef}>
+        <div className="overflow-hidden pt-6" ref={emblaRef}>
           <div className="flex gap-4 touch-pan-y">
             {packages.map((pkg) => (
               <div key={pkg.name} className="flex-[0_0_78%] min-w-0 shrink-0 px-1">

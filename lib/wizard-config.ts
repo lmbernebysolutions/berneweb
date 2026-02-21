@@ -45,8 +45,7 @@ const HOME_STEPS: WizardStep[] = [
   },
   {
     id: "handwerk_orte",
-    question: "Wie viele Orte bedienen Sie?",
-    subline: "Für lokale Sichtbarkeit bei Google.",
+    question: "Ihr Einsatzgebiet?",
     choices: [
       { value: "ein", label: "Ein Ort / kleine Region" },
       { value: "mehrere", label: "Mehrere Orte" },
@@ -80,9 +79,19 @@ const HOME_STEPS: WizardStep[] = [
 
 const HANDWERK_STEPS: WizardStep[] = [
   {
+    id: "start",
+    question: "Worum geht es Ihnen?",
+    choices: [
+      { value: "ein_ort", label: "Ein Ort / kleine Region" },
+      { value: "mehrere_orte", label: "Mehrere Orte" },
+      { value: "erzgebirge", label: "Ganz Erzgebirge" },
+      { value: "ki_telefon", label: "KI-Telefonassistent" },
+      { value: "info", label: "Erstmal nur informieren" },
+    ],
+  },
+  {
     id: "orte",
-    question: "Wie viele Orte bedienen Sie?",
-    subline: "Für maximale Sichtbarkeit bei Google.",
+    question: "Ihr Einsatzgebiet?",
     choices: [
       { value: "ein", label: "Ein Ort / kleine Region" },
       { value: "mehrere", label: "Mehrere Orte" },
@@ -98,6 +107,11 @@ const HANDWERK_STEPS: WizardStep[] = [
       { value: "nein", label: "Nein / erstmal nicht" },
     ],
   },
+  { id: "q4", question: "Geplanter Start?", choices: [{ value: "bald", label: "In den nächsten 3 Monaten" }, { value: "spaeter", label: "Später" }] },
+  { id: "q5", question: "Branche?", choices: [{ value: "handwerk", label: "Handwerk" }, { value: "dienst", label: "Dienstleistung" }] },
+  { id: "q6", question: "Bereits Webpräsenz?", choices: [{ value: "ja", label: "Ja" }, { value: "nein", label: "Nein" }] },
+  { id: "q7", question: "Wunsch nach Bewertungsmanagement?", choices: [{ value: "ja", label: "Ja" }, { value: "nein", label: "Nein" }] },
+  { id: "q8", question: "Noch etwas wichtig?", choices: [{ value: "ja", label: "Ja, habe Fragen" }, { value: "nein", label: "Nein, passt" }] },
 ];
 
 // =============================================================================
@@ -213,8 +227,13 @@ function homeAnswersToMatch(answers: Record<string, string>): string {
 // =============================================================================
 
 function handwerkAnswersToMatch(answers: Record<string, string>): string {
-  const ki = answers["ki"];
-  const orte = answers["orte"];
+  const start = answers["start"];
+  const orte =
+    answers["orte"] ??
+    (start === "ein_ort" ? "ein" : start === "mehrere_orte" ? "mehrere" : start === "erzgebirge" ? "erzgebirge" : undefined);
+  const ki =
+    answers["ki"] ??
+    (start === "ki_telefon" ? "ja" : start === "info" ? "nein" : undefined);
   if (ki === "ja") return "marktfuehrer";
   if (orte === "ein") return "geselle";
   if (orte === "mehrere" || orte === "erzgebirge") return "meisterbetrieb";
