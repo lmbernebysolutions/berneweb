@@ -1,0 +1,31 @@
+---
+description: Projektstruktur – Berneby-Website, wo was hingehört
+globs: "berneby-website/**/*"
+alwaysApply: false
+---
+
+# Projektstruktur (Berneby-Website)
+
+Die **Haupt-App** liegt in `berneby-website/` (Next.js 14+, App Router, pnpm).
+
+## Ordner
+
+| Pfad | Inhalt |
+|------|--------|
+| `app/` | Routen, `layout.tsx`, `page.tsx`, `globals.css` |
+| `app/(marketing)/` | Marketing-Routen (Home, Handwerk, Tech, Kontakt, Legal) |
+| `components/brand/` | Logo, Mascotte, Marken-Assets |
+| `components/layout/` | Header, Footer, Container, Section, GridBeams |
+| `components/sections/` | Seiten-Bausteine (Hero, CtaSection, ContactForm, …) |
+| `components/ui/` | Wiederverwendbare UI (shadcn-Style), Buttons, Cards, … |
+| `hooks/` | Custom Hooks (z. B. use-animate-on-scroll, use-scroll) |
+| `lib/` | Utils, Konstanten |
+| `public/` | Statische Dateien (SVGs, Bilder) |
+
+## Konventionen
+
+- **Neue Seite**: `app/…/page.tsx` anlegen; gemeinsame Layouts in `layout.tsx`.
+- **Neue Sektion**: Komponente in `components/sections/`, dann in Page einbinden.
+- **Neues UI-Element**: In `components/ui/` (klein geschrieben, kebab-case).
+- **Package-Manager**: `pnpm` (nicht npm/yarn).
+- **Build/Dev**: `pnpm dev`, `pnpm build` im Ordner `berneby-website/`.

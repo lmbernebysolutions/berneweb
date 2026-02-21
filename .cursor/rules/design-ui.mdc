@@ -1,0 +1,21 @@
+---
+description: UI/UX und Design – Skills nutzen, konsistente Oberflächen
+globs: "**/*.tsx,**/*.css,**/globals.css"
+alwaysApply: false
+---
+
+# Design & UI/UX
+
+Bei Änderungen an Komponenten, Seiten oder Styles **zuerst** den passenden Skill nutzen:
+
+- **Allgemeines UI/UX**: `ui-ux-pro-max` (Stile, Paletten, Typo, Accessibility)
+- **Hochwertiges Design**: `frontend-design`, `top-design`
+- **Landing/Marketing**: `landing-page-design`
+- **Design prüfen**: `web-design-reviewer`, `ux-heuristics`
+- **Typografie**: `web-typography`
+
+## Projekt (Berneby-Website)
+
+- Next.js + React, Tailwind, ggf. shadcn/ui
+- Komponenten in `berneby-website/components/`, klare Trennung layout / sections / ui
+- Kein generisches „AI-Slop“-Design; bewusste ästhetische Entscheidungen

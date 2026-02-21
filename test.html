@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landesverband Sächsischer Fahrlehrer e.V. - Prototyp</title>
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#178d30',      // Sachsen-Grün
+                        primaryHover: '#137a28', // Etwas dunkler für Hover
+                        surface: '#f9f9f9',      // Heller Hintergrund
+                        textDark: '#111827',     // Fast Schwarz
+                        metaGray: '#9d9d9d',     // Grau für Footer/Meta
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Zusätzliche Custom Styles für Smooth Transitions */
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sticky Badge Style */
+        .prototype-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #dc2626; /* Rot */
+            color: white;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+            pointer-events: none; /* Klickt durch */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body class="font-sans text-textDark bg-white flex flex-col min-h-screen">
+
+    <!-- Sticky Badge -->
+    <div class="prototype-badge">
+        Technischer Prototyp
+    </div>
+
+    <!-- GLOBAL HEADER -->
+    <header class="fixed w-full top-0 z-40 bg-white shadow-md">
+        <!-- Top Bar -->
+        <div class="bg-gray-100 border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-end space-x-6 text-sm text-gray-600">
+                <a href="#" class="hover:text-primary transition-colors"><i class="fa-solid fa-phone mr-2"></i>Kontakt</a>
+                <a href="#" onclick="navigateTo('admin-view')" class="font-semibold text-primary hover:text-primaryHover transition-colors cursor-pointer">
+                    <i class="fa-solid fa-lock mr-2"></i>Mitgliederbereich
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Nav -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo Platzhalter -->
+            <div class="flex items-center cursor-pointer" onclick="navigateTo('home-view')">
+                <div class="w-10 h-10 bg-primary rounded flex items-center justify-center text-white text-xl font-bold mr-3">
+                    <i class="fa-solid fa-car-side"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold leading-none text-gray-800">Landesverband</h1>
+                    <span class="text-xs text-metaGray uppercase tracking-wider">Sächsischer Fahrlehrer e.V.</span>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" onclick="navigateTo('home-view')" class="text-gray-700 hover:text-primary font-semibold text-lg transition-colors px-3 py-2">Der Verband</a>
+                <a href="#" onclick="navigateTo('dates-view')" class="text-gray-700 hover:text-primary font-semibold text-lg transition-colors px-3 py-2">Für Fahrschulen</a>
+                <a href="#" onclick="navigateTo('news-view')" class="text-gray-700 hover:text-primary font-semibold text-lg transition-colors px-3 py-2">Aktuelles</a>
+            </nav>
+
+            <!-- Mobile Menu Icon (Dummy) -->
+            <div class="md:hidden text-2xl text-gray-600">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- SPACER for fixed header -->
+    <div class="h-32"></div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+        <!-- VIEW 1: HOME (Startseite) -->
+        <div id="home-view" class="fade-in block">
+            <!-- Hero Section -->
+            <div class="bg-primary rounded-xl shadow-lg overflow-hidden mb-12 relative">
+                <div class="absolute inset-0 bg-black opacity-10"></div> <!-- Overlay pattern -->
+                <div class="relative p-8 md:p-16 text-center md:text-left">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">35 Jahre Qualität in der<br>Fahrschulausbildung.</h2>
+                    <p class="text-white text-lg md:text-xl mb-8 max-w-2xl opacity-90">
+                        Wir vertreten die Interessen der sächsischen Fahrschulen und setzen uns für eine moderne, sichere Verkehrsausbildung ein.
+                    </p>
+                    <button onclick="navigateTo('news-view')" class="bg-white text-primary font-bold py-3 px-8 rounded shadow hover:bg-gray-100 transition transform hover:-translate-y-0.5">
+                        Mehr erfahren
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Aktuelle Meldungen Teaser -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fa-regular fa-newspaper text-primary mr-3"></i> Aktuelle Meldungen
+                    </h3>
+                    <div class="space-y-4">
+                        <!-- Card 1 -->
+                        <div class="bg-white border border-gray-200 p-5 rounded-lg shadow-sm hover:shadow-md transition cursor-pointer" onclick="navigateTo('news-view')">
+                            <span class="text-xs font-semibold text-primary uppercase">Recht</span>
+                            <h4 class="text-lg font-bold mt-1">Änderung der Prüfungsrichtlinie 2026</h4>
+                            <p class="text-gray-500 text-sm mt-2">Das Verkehrsministerium hat neue Vorgaben für die praktische Prüfung...</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="bg-white border border-gray-200 p-5 rounded-lg shadow-sm hover:shadow-md transition cursor-pointer" onclick="navigateTo('news-view')">
+                            <span class="text-xs font-semibold text-primary uppercase">Verband</span>
+                            <h4 class="text-lg font-bold mt-1">Einladung zur Jahreshauptversammlung</h4>
+                            <p class="text-gray-500 text-sm mt-2">Wir laden alle Mitglieder herzlich nach Dresden ein.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Termine Teaser -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fa-regular fa-calendar-check text-primary mr-3"></i> Nächste Fortbildungen
+                    </h3>
+                    <div class="bg-surface rounded-lg border border-gray-200 overflow-hidden">
+                        <div class="divide-y divide-gray-200">
+                            <!-- Item 1 -->
+                            <div class="p-4 hover:bg-white transition flex items-center justify-between">
+                                <div>
+                                    <div class="text-sm font-bold text-primary">12.03.2026</div>
+                                    <div class="font-semibold text-gray-800">Fahrlehrerfortbildung §53(1)</div>
+                                    <div class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Chemnitz</div>
+                                </div>
+                                <button onclick="navigateTo('dates-view')" class="text-gray-400 hover:text-primary"><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="p-4 hover:bg-white transition flex items-center justify-between">
+                                <div>
+                                    <div class="text-sm font-bold text-primary">24.03.2026</div>
+                                    <div class="font-semibold text-gray-800">Seminarleiter ASF</div>
+                                    <div class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Leipzig</div>
+                                </div>
+                                <button onclick="navigateTo('dates-view')" class="text-gray-400 hover:text-primary"><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-50 text-center border-t border-gray-200">
+                            <button onclick="navigateTo('dates-view')" class="text-sm font-bold text-primary hover:underline">Alle Termine anzeigen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: NEWS (Aktuelles) -->
+        <div id="news-view" class="fade-in hidden">
+            <div class="border-b border-gray-200 pb-4 mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Aktuelles</h2>
+                <p class="text-gray-500 mt-2">Neuigkeiten für Mitglieder und Fahrschüler.</p>
+            </div>
+
+            <div class="space-y-8 max-w-4xl">
+                <!-- News Item 1 -->
+                <article class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm flex flex-col md:flex-row gap-6">
+                    <div class="md:w-32 flex-shrink-0 flex flex-col items-center justify-center bg-surface rounded p-4 text-center border border-gray-200">
+                        <span class="block text-2xl font-bold text-gray-700">15</span>
+                        <span class="block text-sm text-gray-500 uppercase">Feb 2026</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded">Recht</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Neue Gebührenordnung ab März 2026</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Das Bundesministerium hat die Anpassung der Gebührenordnung beschlossen. Für Fahrschulen ergeben sich dadurch Änderungen in der Abrechnung der Prüfungsgebühren. Die detaillierte Tabelle finden Sie im internen Mitgliederbereich zum Download.
+                        </p>
+                        <a href="#" class="text-primary font-bold hover:underline">Weiterlesen &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News Item 2 -->
+                <article class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm flex flex-col md:flex-row gap-6">
+                    <div class="md:w-32 flex-shrink-0 flex flex-col items-center justify-center bg-surface rounded p-4 text-center border border-gray-200">
+                        <span class="block text-2xl font-bold text-gray-700">02</span>
+                        <span class="block text-sm text-gray-500 uppercase">Feb 2026</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded">Verband</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Rückblick: Fahrlehrertag in Dresden</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Über 200 Teilnehmer besuchten unseren diesjährigen Fahrlehrertag. Highlights waren die Vorträge zur E-Mobilität in der Ausbildung und die Diskussion mit Vertretern der DEKRA.
+                        </p>
+                        <a href="#" class="text-primary font-bold hover:underline">Weiterlesen &rarr;</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- VIEW 3: TERMINE (Fortbildung) -->
+        <div id="dates-view" class="fade-in hidden">
+            <div class="border-b border-gray-200 pb-4 mb-8 flex justify-between items-end">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800">Fortbildungsangebote</h2>
+                    <p class="text-gray-500 mt-2">Buchen Sie Ihre gesetzlich vorgeschriebenen Fortbildungen direkt hier.</p>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-sm rounded-lg overflow-hidden border border-gray-200">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Datum</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Seminar / Thema</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Ort</th>
+                                <th scope="col" class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">Aktion</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- Row 1 -->
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">12.03.2026</td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm font-medium text-gray-900">Fahrlehrerfortbildung § 53 (1)</div>
+                                    <div class="text-xs text-gray-500">Pädagogischer Schwerpunkt</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Chemnitz, Stadthalle</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Freie Plätze</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-primary hover:text-primaryHover font-bold border border-primary rounded px-3 py-1 hover:bg-green-50">Anmelden</button>
+                                </td>
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">24.03.2026</td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm font-medium text-gray-900">Kursleiter ASF</div>
+                                    <div class="text-xs text-gray-500">Seminarerlaubnis</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Leipzig, Verbandszentrale</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Wenige Plätze</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-primary hover:text-primaryHover font-bold border border-primary rounded px-3 py-1 hover:bg-green-50">Anmelden</button>
+                                </td>
+                            </tr>
+                             <!-- Row 3 -->
+                             <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">10.04.2026</td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm font-medium text-gray-900">BWL für Fahrschulen</div>
+                                    <div class="text-xs text-gray-500">Kaufmännische Grundlagen</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Dresden, Hotel Elbflorenz</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Freie Plätze</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button class="text-primary hover:text-primaryHover font-bold border border-primary rounded px-3 py-1 hover:bg-green-50">Anmelden</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 4: ADMIN (Dashboard) -->
+        <div id="admin-view" class="fade-in hidden">
+            <!-- Header for Admin -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fa-solid fa-triangle-exclamation text-yellow-400"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-yellow-700">
+                            Sie befinden sich im geschützten <strong>Mitgliederbereich</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-10 text-center">
+                <h2 class="text-4xl font-bold text-gray-800 mb-2">Verwaltung</h2>
+                <p class="text-xl text-gray-500">Was möchten Sie heute tun, Herr Fahrlehrer?</p>
+            </div>
+
+            <!-- Giant Buttons -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Button 1 -->
+                <button class="bg-white border-2 border-gray-200 hover:border-primary hover:bg-green-50 rounded-2xl p-10 shadow-sm flex flex-col items-center justify-center transition-all duration-300 group text-left">
+                    <div class="bg-gray-100 group-hover:bg-white rounded-full p-6 mb-6 transition">
+                        <i class="fa-solid fa-newspaper text-5xl text-gray-400 group-hover:text-primary transition"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 group-hover:text-primary mb-2">1. Neue News erstellen</h3>
+                    <p class="text-gray-500 text-center">Verfassen Sie einen Bericht für die Website.</p>
+                </button>
+
+                <!-- Button 2 (Triggers Form) -->
+                <button onclick="toggleAdminForm()" class="bg-white border-2 border-gray-200 hover:border-primary hover:bg-green-50 rounded-2xl p-10 shadow-sm flex flex-col items-center justify-center transition-all duration-300 group text-left">
+                    <div class="bg-gray-100 group-hover:bg-white rounded-full p-6 mb-6 transition">
+                        <i class="fa-solid fa-calendar-plus text-5xl text-gray-400 group-hover:text-primary transition"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 group-hover:text-primary mb-2">2. Neuen Termin anlegen</h3>
+                    <p class="text-gray-500 text-center">Planen Sie eine neue Fortbildung.</p>
+                </button>
+            </div>
+
+            <!-- Hidden Form -->
+            <div id="admin-event-form" class="hidden max-w-3xl mx-auto mt-12 bg-white rounded-xl shadow-lg border border-gray-200 p-8 border-t-4 border-t-primary fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-800">Neuen Termin eintragen</h3>
+                    <button onclick="toggleAdminForm()" class="text-gray-400 hover:text-red-500"><i class="fa-solid fa-times text-xl"></i></button>
+                </div>
+
+                <form onsubmit="saveEvent(event)" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Titel der Veranstaltung</label>
+                        <input type="text" class="w-full rounded border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 p-3 border text-lg" placeholder="z.B. ASF Seminarleiter">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Datum</label>
+                            <input type="date" class="w-full rounded border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 p-3 border text-lg">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Kategorie</label>
+                            <select class="w-full rounded border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 p-3 border text-lg bg-white">
+                                <option>Fahrlehrerfortbildung</option>
+                                <option>ASF / FES</option>
+                                <option>Sonstige</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex justify-end gap-4">
+                        <button type="button" onclick="toggleAdminForm()" class="px-6 py-3 border border-gray-300 rounded text-gray-700 font-bold hover:bg-gray-100">Abbrechen</button>
+                        <button type="submit" class="px-8 py-3 bg-primary text-white rounded font-bold hover:bg-primaryHover shadow-lg transform hover:-translate-y-0.5 transition">
+                            <i class="fa-solid fa-save mr-2"></i>Speichern
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-surface border-t border-gray-200 pt-12 pb-8 text-metaGray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <!-- Column 1 -->
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-wider mb-4 text-gray-500">Kontakt</h4>
+                    <p class="mb-2">Landesverband Sächsischer Fahrlehrer e.V.</p>
+                    <p class="mb-2"><i class="fa-solid fa-location-arrow w-5"></i> Bernhardstr. 35, 01187 Dresden</p>
+                    <p class="mb-2"><i class="fa-solid fa-phone w-5"></i> 0351 / 123 456 78</p>
+                    <p class="mb-2"><i class="fa-solid fa-envelope w-5"></i> info@lvsf-dummy.de</p>
+                </div>
+                <!-- Column 2 -->
+                <div class="md:text-right">
+                    <h4 class="text-sm font-bold uppercase tracking-wider mb-4 text-gray-500">Rechtliches</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary transition">Impressum</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Datenschutz</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Satzung</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 pt-8 text-center text-sm">
+                &copy; 2026 Landesverband Sächsischer Fahrlehrer e.V.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Views Configuration
+        const views = ['home-view', 'news-view', 'dates-view', 'admin-view'];
+
+        // Navigation Function
+        function navigateTo(viewId) {
+            // 1. Hide all views
+            views.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+                document.getElementById(id).classList.remove('block');
+            });
+
+            // 2. Show target view
+            const target = document.getElementById(viewId);
+            if (target) {
+                target.classList.remove('hidden');
+                target.classList.add('block');
+
+                // Trigger subtle fade animation restart
+                target.classList.remove('fade-in');
+                void target.offsetWidth; // trigger reflow
+                target.classList.add('fade-in');
+            }
+
+            // 3. Special Logic for Admin View
+            if (viewId === 'admin-view') {
+                // Short timeout to let the view render before alert
+                setTimeout(() => {
+                    // Custom overlay "Alert" using Tailwind classes creation on the fly would be complex,
+                    // so we use a stylized standard alert for simplicity in this file context,
+                    // BUT formatted nicely as requested by "Vorschau...".
+                    alert("Vorschau: Hier testen Sie die zukünftige kinderleichte Verwaltung Ihrer Inhalte.");
+                }, 100);
+            }
+
+            // 4. Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Admin: Toggle Form
+        function toggleAdminForm() {
+            const form = document.getElementById('admin-event-form');
+            if (form.classList.contains('hidden')) {
+                form.classList.remove('hidden');
+                // Scroll to form
+                form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                form.classList.add('hidden');
+            }
+        }
+
+        // Admin: Save Event (Mock)
+        function saveEvent(e) {
+            e.preventDefault(); // Stop page reload
+
+            // Success Feedback
+            alert("Termin erfolgreich gespeichert!");
+
+            // Reset UI
+            e.target.reset();
+            toggleAdminForm();
+        }
+
+        // Initialize: Start on Home
+        // (Already set in HTML structure, but good for robustness)
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure only home is visible initially
+            navigateTo('home-view');
+        });
+
+    </script>
+</body>
+</html>

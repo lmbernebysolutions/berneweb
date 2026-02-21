@@ -44,17 +44,17 @@ const COOKIE_TRANSLATIONS: Record<string, string> = {
 /* Keine Tailwind-Arbitrary-Werte mit # – die führen beim Build zu ungültigen CSS-Selektoren. Farben kommen aus globals.css (.cookie-manager-berneby). */
 const cookieClassNames = {
   bannerContainer:
-    "fixed bottom-0 left-0 right-0 z-[100] border-t border-white/30 shadow-lg font-sans",
+    "fixed bottom-0 left-0 right-0 z-[100] flex justify-center p-3 sm:p-4 font-sans",
   bannerContent:
-    "mx-auto max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8 py-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between",
-  bannerTitle: "font-bold text-white text-lg uppercase tracking-tight",
-  bannerMessage: "text-sm text-white/90",
+    "w-full max-w-md sm:max-w-2xl md:max-w-6xl mx-auto px-3 py-3 sm:px-5 sm:py-4 flex flex-col gap-3 sm:gap-4 sm:flex-row sm:items-center sm:justify-between rounded-lg border border-white/30 shadow-xl bg-[#283569]",
+  bannerTitle: "font-bold text-white text-xs sm:text-lg uppercase tracking-tight",
+  bannerMessage: "text-[0.7rem] sm:text-sm text-white/90 leading-snug",
   acceptButton:
-    "inline-flex items-center justify-center rounded-md px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2",
+    "inline-flex items-center justify-center rounded-md px-3 py-2 text-xs sm:px-4 sm:py-2.5 sm:text-sm font-semibold hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2",
   declineButton:
-    "inline-flex items-center justify-center rounded-md px-4 py-2.5 text-sm font-medium border border-white/30 text-white/90 hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2",
+    "inline-flex items-center justify-center rounded-md px-3 py-2 text-xs sm:px-4 sm:py-2.5 sm:text-sm font-medium border border-white/30 text-white/90 hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2",
   manageButton:
-    "inline-flex items-center justify-center rounded-md px-4 py-2.5 text-sm font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2",
+    "inline-flex items-center justify-center rounded-md px-3 py-2 text-xs sm:px-4 sm:py-2.5 sm:text-sm font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2",
   privacyPolicyLink: "underline hover:no-underline",
 
   popupContainer:
