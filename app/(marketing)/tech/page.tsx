@@ -23,16 +23,12 @@ import { MissionSection } from "@/components/sections/MissionSection";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { TechCorners } from "@/components/ui/tech-corners";
 
-const FaqAccordion = dynamic(
-  () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
+const ChatSection = dynamic(
+  () => import("@/components/sections/chat-section").then((m) => ({ default: m.ChatSection })),
   { ssr: true }
 );
 const TestimonialGrid = dynamic(
   () => import("@/components/sections/TestimonialGrid").then((m) => ({ default: m.TestimonialGrid })),
-  { ssr: true }
-);
-const MatchWizardSection = dynamic(
-  () => import("@/components/sections/MatchWizardSection").then((m) => ({ default: m.MatchWizardSection })),
   { ssr: true }
 );
 
@@ -144,14 +140,14 @@ export default function TechPage() {
                 </div>
             </Section>
 
-            {/* 04: Match-Wizard – nur Tech Solutions (nach Katalog) */}
-            <MatchWizardSection
-                variant="tech"
+            {/* 04: Chat – FAQ + Ihr Match (Tech) */}
+            <ChatSection
                 sectionNumber="04"
-                overline="Ihr Match"
-                title="Was brauchen Sie?"
-                subtitle="Eine Frage – wir empfehlen Ihr passendes Angebot."
-                bg="transparent"
+                overline="Fragen & Match"
+                title="Kurz gefragt – oder Ihr passendes Angebot"
+                subtitle="Stellen Sie eine Frage oder finden Sie in einer Klick Ihr Tech-Angebot."
+                wizardVariant="tech"
+                suggestedFaq={FAQ_ITEMS}
             />
 
             {/* 05: Retainer / Hausmeister Special */}
@@ -262,25 +258,7 @@ export default function TechPage() {
                 </div>
             </Section>
 
-            {/* 09: FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
-            <div className="relative">
-                <div className="relative mx-auto max-w-6xl overflow-hidden">
-                    <div className="relative">
-                        <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
-                        <div className="relative z-10 px-4 md:px-6 py-20 md:py-28 lg:py-32">
-                            <SectionHeading
-                                number="09"
-                                overline="Support"
-                                title="Häufige Fragen"
-                                align="left"
-                                light
-                            />
-                            <FaqAccordion items={FAQ_ITEMS} />
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
-            </div>
+            <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
 
             <script
                 type="application/ld+json"

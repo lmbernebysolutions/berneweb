@@ -111,6 +111,21 @@ export default function DatenschutzPage() {
           Datenschutzerklärung des jeweiligen Anbieters.
         </p>
 
+        <h3>Chat / Assistent (FAQ &amp; Ihr Match)</h3>
+        <p>
+          Auf unserer Website steht ein Chat zur Verfügung („Fragen &amp; Match“),
+          mit dem Sie häufig gestellte Fragen stellen oder ein passendes Angebot
+          (Paket-Match) ermitteln können. <strong>Zweck:</strong> Beantwortung von
+          Anfragen und Unterstützung bei der Angebotsauswahl (Vertragsvorbereitung).
+          Die Nutzung des Chats ist nur möglich, nachdem Sie eine Cookie-Entscheidung
+          getroffen haben („Alle akzeptieren“ oder „Nur notwendige“). Wir speichern
+          <strong> keine personenbezogenen Chat-Verläufe</strong>; eine Auswertung
+          erfolgt allenfalls in anonymisierter Form mit kurzer Speicherdauer (z. B.
+          7 Tage). Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsvorbereitung)
+          bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der
+          Bereitstellung des Dienstes).
+        </p>
+
         <h3>Google Analytics</h3>
         <p>
           Diese Website nutzt – <strong>nur bei Ihrer Einwilligung</strong> –

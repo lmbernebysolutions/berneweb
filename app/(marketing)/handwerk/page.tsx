@@ -10,16 +10,12 @@ import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
 
-const FaqAccordion = dynamic(
-  () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
+const ChatSection = dynamic(
+  () => import("@/components/sections/chat-section").then((m) => ({ default: m.ChatSection })),
   { ssr: true }
 );
 const TestimonialGrid = dynamic(
   () => import("@/components/sections/TestimonialGrid").then((m) => ({ default: m.TestimonialGrid })),
-  { ssr: true }
-);
-const MatchWizardSection = dynamic(
-  () => import("@/components/sections/MatchWizardSection").then((m) => ({ default: m.MatchWizardSection })),
   { ssr: true }
 );
 import { Button } from "@/components/ui/button";
@@ -121,14 +117,14 @@ export default function HandwerkPage() {
         <CraftToolboxGrid modules={CRAFT_MODULES} />
       </Section>
 
-      {/* 04: Match-Wizard – nur Handwerk */}
-      <MatchWizardSection
-        variant="handwerk"
+      {/* 04: Chat – FAQ + Ihr Match (Handwerk) */}
+      <ChatSection
         sectionNumber="04"
-        overline="Ihr Paket-Match"
-        title="Welches Paket passt?"
-        subtitle="Zwei kurze Fragen – wir empfehlen Ihr passendes Handwerks-Paket."
-        bg="transparent"
+        overline="Fragen & Match"
+        title="Kurz gefragt – oder Ihr passendes Paket"
+        subtitle="Stellen Sie eine Frage oder finden Sie in zwei Klicks Ihr Handwerks-Paket."
+        wizardVariant="handwerk"
+        suggestedFaq={FAQ_ITEMS}
       />
 
       {/* Garantien */}
@@ -266,18 +262,6 @@ export default function HandwerkPage() {
           light
         />
         <ProcessSteps steps={PROCESS_STEPS} />
-      </Section>
-
-      {/* 10: FAQ – Hintergrund abwechselnd (transparent nach subtle) */}
-      <Section bg="transparent">
-        <SectionHeading
-          number="10"
-          overline="Support"
-          title="Häufige Fragen"
-          align="left"
-          light
-        />
-        <FaqAccordion items={FAQ_ITEMS} />
       </Section>
 
       <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />

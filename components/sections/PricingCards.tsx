@@ -33,15 +33,18 @@ function SinglePricingCard({
   pkg,
   comparisonRows,
   compact = false,
+  mobileCard = false,
 }: {
   pkg: Package;
   comparisonRows?: readonly ComparisonRow[];
   compact?: boolean;
+  mobileCard?: boolean;
 }) {
   return (
     <div
       className={cn(
-        "group relative flex flex-col border p-3 sm:p-5 md:p-8 transition-colors min-w-0 h-full",
+        "group relative flex flex-col border transition-colors min-w-0 h-full",
+        mobileCard ? "p-4 sm:p-5 md:p-8" : "p-3 sm:p-5 md:p-8",
         "rounded-none",
         pkg.highlighted
           ? "bg-brand-navy border-brand-cyan shadow-[0_0_30px_rgba(3,249,249,0.1)] hover:shadow-[0_0_40px_rgba(3,249,249,0.15)]"
@@ -51,7 +54,7 @@ function SinglePricingCard({
       <TechCorners pattern="diagonal" variant="cyan" size="lg" hoverExpand />
 
       {pkg.badge && (
-        <div className="absolute -top-2 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 bg-brand-cyan px-1.5 py-0.5 text-[10px] font-bold text-brand-navy uppercase tracking-widest border border-brand-cyan md:text-xs md:px-2 md:py-0.5">
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 bg-brand-cyan px-1.5 py-0.5 text-[10px] font-bold text-brand-navy uppercase tracking-widest border border-brand-cyan md:text-xs md:px-2 md:py-0.5 md:top-4">
           <BLogo size={12} className="opacity-80 md:w-4 md:h-4" />
           {pkg.badge}
         </div>
@@ -76,7 +79,7 @@ function SinglePricingCard({
         </p>
       </div>
 
-      <div className="relative flex flex-col sm:flex-row items-baseline justify-center gap-0 sm:gap-1 mb-3 sm:mb-6 md:mb-8 border-y border-white/10 py-3 sm:py-4 md:py-6 bg-black/20">
+      <div className="relative flex flex-col sm:flex-row items-center justify-center gap-0 sm:gap-1 mb-3 sm:mb-6 md:mb-8 border-y border-white/10 py-3 sm:py-4 md:py-6 bg-black/20 text-center">
         <span
           className={cn(
             "text-xl sm:text-3xl md:text-5xl font-black tracking-tighter",
@@ -242,8 +245,8 @@ export function PricingCards({ packages, comparisonRows }: PricingCardsProps) {
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex gap-4 touch-pan-y">
             {packages.map((pkg) => (
-              <div key={pkg.name} className="flex-[0_0_78%] min-w-0 shrink-0">
-                <SinglePricingCard pkg={pkg} comparisonRows={comparisonRows} compact />
+              <div key={pkg.name} className="flex-[0_0_78%] min-w-0 shrink-0 px-1">
+                <SinglePricingCard pkg={pkg} comparisonRows={comparisonRows} compact={false} mobileCard />
               </div>
             ))}
           </div>

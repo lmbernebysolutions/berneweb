@@ -8,10 +8,6 @@ import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import dynamic from "next/dynamic";
 import { CtaSection } from "@/components/sections/CtaSection";
 
-const FaqAccordion = dynamic(
-  () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
-  { ssr: true }
-);
 const TestimonialGrid = dynamic(
   () => import("@/components/sections/TestimonialGrid").then((m) => ({ default: m.TestimonialGrid })),
   { ssr: true }
@@ -35,7 +31,6 @@ import {
   PROBLEMS_SOLUTIONS,
   TWO_PILLARS,
   PROCESS_STEPS,
-  FAQ_ITEMS,
   COMPANY,
   TECH_STACK,
   HOME_MINI_FAQ,
@@ -49,8 +44,8 @@ import { ReferenzCard } from "@/components/sections/ReferenzenCarousel";
 import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
 import { ProblemToSolutionScrollSection } from "@/components/sections/ProblemToSolutionScrollSection";
 import { REFERENZEN } from "@/lib/data/referenzen";
-const MatchWizardSection = dynamic(
-  () => import("@/components/sections/MatchWizardSection").then((m) => ({ default: m.MatchWizardSection })),
+const ChatSection = dynamic(
+  () => import("@/components/sections/chat-section").then((m) => ({ default: m.ChatSection })),
   { ssr: true }
 );
 
@@ -349,35 +344,17 @@ export default function Home() {
         </p>
       </Section>
 
-      {/* 08: Match-Wizard – alle Bereiche (nach Referenzen) */}
-      <MatchWizardSection
-        variant="home"
+      {/* 08: Chat – FAQ + Ihr Match (ersetzt Match-Wizard + Mini-FAQ) */}
+      <ChatSection
         sectionNumber="08"
-        overline="Ihr Match"
-        title="Was passt zu Ihnen?"
-        subtitle="In wenigen Klicks zum passenden Angebot – Handwerk, Tech oder beides."
-        bg="subtle"
+        overline="Fragen & Match"
+        title="Kurz gefragt – oder Ihr passendes Angebot"
+        subtitle="Stellen Sie eine Frage oder finden Sie in wenigen Klicks Ihr passendes Paket."
+        wizardVariant="home"
+        suggestedFaq={HOME_MINI_FAQ}
       />
 
-      {/* 09: Mini-FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
-      <div className="relative">
-        <div className="relative mx-auto max-w-6xl overflow-hidden">
-          <div className="relative">
-            <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
-            <div className="relative z-10 px-4 md:px-6 py-20 md:py-28 lg:py-32">
-              <SectionHeading
-                number="09"
-                overline="FAQ"
-                title="Kurz gefragt"
-                align="left"
-                light
-              />
-              <FaqAccordion items={HOME_MINI_FAQ} />
-            </div>
-          </div>
-        </div>
-        <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
-      </div>
+      <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
 
       <script
         type="application/ld+json"

@@ -28,7 +28,7 @@ export default function StandortePage() {
           number="01"
           overline="Standorte"
           title="Webdesign & IT im Erzgebirgskreis"
-          titleLine2="59 Orte. Eine Lösung."
+          titleLine2="Eine Lösung."
           subtitle="Wir unterstützen Handwerker und KMU in allen Gemeinden und Städten des Erzgebirgskreises – mit professionellen Websites, lokaler SEO und IT-Service. Aus Aue-Bad Schlema für die ganze Region."
           align="left"
           light
