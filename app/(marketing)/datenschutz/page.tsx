@@ -117,13 +117,19 @@ export default function DatenschutzPage() {
           mit dem Sie häufig gestellte Fragen stellen oder ein passendes Angebot
           (Paket-Match) ermitteln können. <strong>Zweck:</strong> Beantwortung von
           Anfragen und Unterstützung bei der Angebotsauswahl (Vertragsvorbereitung).
-          Die Nutzung des Chats ist nur möglich, nachdem Sie eine Cookie-Entscheidung
-          getroffen haben („Alle akzeptieren“ oder „Nur notwendige“). Wir speichern
-          <strong> keine personenbezogenen Chat-Verläufe</strong>; eine Auswertung
-          erfolgt allenfalls in anonymisierter Form mit kurzer Speicherdauer (z. B.
-          7 Tage). Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsvorbereitung)
+          Die Verarbeitung ist im Verzeichnis der Verarbeitungstätigkeiten
+          dokumentiert. Die Nutzung des Chats ist nur möglich, nachdem Sie eine
+          Cookie-Entscheidung getroffen haben („Alle akzeptieren“ oder „Nur
+          notwendige“). Wir speichern <strong>keine personenbezogenen
+          Chat-Verläufe</strong>; eine Auswertung erfolgt allenfalls in
+          anonymisierter Form mit kurzer Speicherdauer (z. B. 7 Tage).
+          Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsvorbereitung)
           bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der
-          Bereitstellung des Dienstes).
+          Bereitstellung des Dienstes). Zur Beantwortung von Freitextfragen kann
+          ein externer KI-Dienst (z. B. in den USA) genutzt werden; dabei kommen
+          geeignete Garantien (z. B. Standardvertragsklauseln) zum Einsatz.
+          Ihre Rechte (Auskunft, Löschung, Widerspruch etc.) können Sie über die
+          im Impressum genannten Kontaktwege geltend machen.
         </p>
 
         <h3>Google Analytics</h3>

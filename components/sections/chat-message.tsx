@@ -19,6 +19,8 @@ export function ChatMessage({ role, content, sources }: ChatMessageProps) {
   const isUser = role === "user";
   return (
     <div
+      role="article"
+      aria-label={isUser ? "Ihre Nachricht" : "Antwort des Assistenten"}
       className={cn(
         "group/msg relative overflow-hidden border border-white/10 bg-white/[0.03] px-4 py-3 shadow-sm",
         isUser ? "ml-0 mr-auto max-w-[85%]" : "mr-0 ml-auto max-w-[85%]"

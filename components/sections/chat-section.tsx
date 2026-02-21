@@ -221,11 +221,19 @@ export function ChatSection({
               Ihr Match
             </Button>
           </div>
+          <p className="mb-4 text-xs text-white/60" role="status">
+            Hinweis: Antworten nur auf Basis unserer Wissensbasis; keine verbindliche Beratung.{" "}
+            <Link href="/datenschutz" className="text-brand-cyan hover:underline">
+              Datenschutz
+            </Link>
+          </p>
 
           {mode === "faq" && (
             <>
               <div
                 ref={faqScrollRef}
+                role="log"
+                aria-label="Chat-Verlauf"
                 className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden"
               >
                 {suggestedFaq.length > 0 && faqMessages.length === 0 && (
@@ -298,6 +306,8 @@ export function ChatSection({
                   </div>
                   <div
                     ref={matchScrollRef}
+                    role="region"
+                    aria-label="Match-Fragen und Auswahl"
                     className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden"
                   >
                     {matchState.step.question &&

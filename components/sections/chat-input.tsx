@@ -44,6 +44,7 @@ export function ChatInput({
         placeholder={placeholder}
         disabled={disabled}
         rows={1}
+        aria-label="Ihre Nachricht an den Assistenten"
         className="min-h-[44px] w-full min-w-0 flex-1 resize-none rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-brand-cyan/30 focus:outline-none focus:ring-1 focus:ring-brand-cyan/20 disabled:opacity-50"
         onKeyDown={(e) => {
           if (e.key === "Enter" && !e.shiftKey) {
@@ -58,6 +59,7 @@ export function ChatInput({
         size="sm"
         disabled={isSubmitDisabled}
         className="shrink-0"
+        aria-label={isLoading ? "Wird gesendet" : "Nachricht senden"}
       >
         {isLoading ? "…" : "Senden"}
       </Button>
