@@ -59,35 +59,21 @@ export function SectionHeading({
             {overline}
           </div>
         )}
-        {/* TechCorners: beide inline für gleichen Abstand zum Text */}
+        {/* TechCorners via CSS pseudo-elements für perfekt symmetrische Positionierung */}
         <div className={cn(align === "center" && "text-center")}>
           <Tag
             className={cn(
-              "inline-block max-w-full font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight text-balance leading-[1.1]",
+              "heading-with-corners relative inline-block max-w-full font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight text-balance leading-[1.1]",
               light ? "text-brand-navy-foreground" : "text-foreground"
             )}
           >
-            {/* Top-left corner - inline VOR dem Text */}
-            <span
-              className="inline-block h-3 w-3 sm:h-4 sm:w-4 border-t-2 border-l-2 border-brand-cyan/40 transition-colors align-top mr-1 sm:mr-1.5 -mt-0.5 sm:-mt-1 tech-corner-tl tech-corner-animate"
-              aria-hidden="true"
-            />
             {title}
             {titleLine2 != null && titleLine2 !== "" && (
               <>
                 <br />
-                <span
-                  className="inline-block h-3 w-3 sm:h-4 sm:w-4 opacity-0 pointer-events-none mr-1 sm:mr-1.5"
-                  aria-hidden="true"
-                />
                 {titleLine2}
               </>
             )}
-            {/* Bottom-right corner - inline NACH dem Text, gleicher Abstand */}
-            <span
-              className="inline-block h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-r-2 border-brand-cyan/40 transition-colors align-bottom ml-1 sm:ml-1.5 -mb-0.5 sm:-mb-1 tech-corner-br tech-corner-animate"
-              aria-hidden="true"
-            />
           </Tag>
         </div>
         {subtitle && (
