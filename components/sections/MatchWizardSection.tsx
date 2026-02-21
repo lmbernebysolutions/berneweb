@@ -125,11 +125,11 @@ export function MatchWizardSection({
               </div>
 
               {/* Frage */}
-              <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white mb-2">
+              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold uppercase tracking-tight text-white mb-2 break-words">
                 {currentStep.question}
               </h3>
               {currentStep.subline && (
-                <p className="text-white/60 text-sm md:text-base mb-8">
+                <p className="text-white/60 text-xs sm:text-sm md:text-base mb-6 sm:mb-8">
                   {currentStep.subline}
                 </p>
               )}

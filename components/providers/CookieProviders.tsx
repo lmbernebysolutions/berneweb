@@ -1,42 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import { CookieManager } from "react-cookie-manager";
 import { initGA, revokeGA } from "@/lib/ga";
-
-const COOKIE_MODAL_OVERRIDES = `
-.cookie-manager-berneby .cookie-manager > div > div,
-.cookie-manager-berneby .cookie-manager > div > div > div,
-.cookie-manager > div > div,
-.cookie-manager > div > div > div,
-.cookie-manager-berneby .cookie-manager [class*="rounded-lg"],
-.cookie-manager-berneby .cookie-manager [class*="shadow-xl"],
-.cookie-manager-berneby .cookie-manager [class*="flex"][class*="gap-6"],
-.cookie-manager-berneby .cookie-manager div[class*="max-w-md"],
-.cookie-manager-berneby .cookie-manager div[class*="max-w-lg"],
-.cookie-manager-berneby .cookie-manager > div[class*="inset-0"] > div,
-.cookie-manager > div[class*="inset-0"] > div {
-  background-color: #283569 !important;
-  color: #fff !important;
-  border-color: rgba(3, 249, 249, 0.3) !important;
-}
-.cookie-manager-berneby .cookie-manager > div > div button:last-of-type,
-.cookie-manager > div > div button:last-of-type,
-.cookie-manager-berneby .cookie-manager button.font-semibold,
-.cookie-manager button.font-semibold {
-  background-color: #03f9f9 !important;
-  color: #283569 !important;
-  border: none !important;
-}
-.cookie-manager-berneby .cookie-manager > div > div button:first-of-type,
-.cookie-manager > div > div button:first-of-type {
-  background-color: transparent !important;
-  border: 1px solid rgba(255,255,255,0.3) !important;
-  color: rgba(255,255,255,0.9) !important;
-}
-.cookie-manager-berneby .cookie-manager a,
-.cookie-manager a { color: #03f9f9 !important; }
-`;
 
 type CookieCategories = { Analytics: boolean; Social: boolean; Advertising: boolean };
 
@@ -129,16 +94,6 @@ const cookieClassNames = {
 };
 
 export function CookieProviders({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    const id = "cookie-manager-berneby-overrides";
-    if (document.getElementById(id)) return;
-    const style = document.createElement("style");
-    style.id = id;
-    style.textContent = COOKIE_MODAL_OVERRIDES;
-    document.head.appendChild(style);
-    return () => style.remove();
-  }, []);
-
   const handleAccept = () => {
     initGA();
   };
@@ -161,6 +116,7 @@ export function CookieProviders({ children }: { children: React.ReactNode }) {
       privacyPolicyUrl="/datenschutz"
       displayType="banner"
       theme="dark"
+      disableGeolocation
       initialPreferences={{ Analytics: false, Social: false, Advertising: false }}
       cookieCategories={{ Analytics: true, Social: false, Advertising: false }}
       enableFloatingButton={true}

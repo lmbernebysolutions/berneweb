@@ -48,11 +48,11 @@ export function Hero({
   }
 
   return (
-    <section className="relative min-h-[90dvh] flex flex-col justify-center overflow-hidden pt-32 pb-20">
+    <section className="relative min-h-[90dvh] flex flex-col justify-center overflow-hidden pt-32 pb-20 isolate">
 
       {/* Bergsilhouette: überall 1:1 wie Home – 4 Layer, Animation, bis ganz rechts */}
-      <div className="absolute bottom-0 left-0 right-0 flex justify-end items-end pointer-events-none z-[1] will-change-auto" aria-hidden="true">
-        <div className="relative w-full max-w-6xl pl-4 md:pl-6 h-48 sm:h-52 md:h-56 lg:h-64 xl:h-72 shrink-0 transform-gpu">
+      <div className="absolute bottom-0 left-0 right-0 flex justify-end items-end pointer-events-none z-[1]" aria-hidden="true" style={{ transform: 'translateZ(0)' }}>
+        <div className="relative w-full max-w-6xl pl-4 md:pl-6 h-48 sm:h-52 md:h-56 lg:h-64 xl:h-72 shrink-0">
           {BERG_LAYERS.map((src, i) => (
             <Image
               key={src}

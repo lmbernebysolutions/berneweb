@@ -15,15 +15,18 @@ const HEADER_GRID_OFFSET_Y = 24;
 export function GridBeams() {
   return (
     <div
-      className={cn("pointer-events-none fixed inset-0 z-0 bg-repeat bg-[length:40px_40px] md:bg-[length:48px_48px]", BEAM_CONTAINER_CLASS)}
+      className="pointer-events-none fixed inset-0 z-0 bg-repeat bg-[length:40px_40px] md:bg-[length:48px_48px]"
       aria-hidden
       style={{
         backgroundImage: GRID_IMAGE,
         backgroundPosition: `0 ${HEADER_GRID_OFFSET_Y}px`,
       }}
     >
-      <div className="absolute left-0 top-0 bottom-0 w-px bg-brand-cyan/20" />
-      <div className="absolute right-0 top-0 bottom-0 w-px bg-brand-cyan/20" />
+      {/* Inner container für Beams - mehr Abstand zum Viewport */}
+      <div className={cn("relative h-full", BEAM_CONTAINER_CLASS)}>
+        <div className="absolute left-0 top-0 bottom-0 w-px bg-brand-cyan/20" />
+        <div className="absolute right-0 top-0 bottom-0 w-px bg-brand-cyan/20" />
+      </div>
     </div>
   );
 }

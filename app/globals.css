@@ -479,24 +479,31 @@ h6 {
 }
 
 /* ==========================================================================
-   COOKIE BANNER (react-cookie-manager) – Brand-Farben erzwingen
-   Die Library nutzt eigenes Tailwind; unsere Klassen werden nicht gerendert.
+   COOKIE BANNER (react-cookie-manager) – gleiche Farbeinstellungen wie Modal
+   Navy #283569, Cyan #03f9f9. Library nutzt bottom-4 / max-w-2xl für Banner.
    ========================================================================== */
-.cookie-manager-berneby .cookie-manager [class*="bottom-0"] {
+.cookie-manager-berneby .cookie-manager [class*="bottom-0"],
+.cookie-manager-berneby .cookie-manager [class*="bottom-4"] {
   background-color: #283569 !important;
   color: #fff !important;
-  border-top: 1px solid rgba(3, 249, 249, 0.3);
+  border: 1px solid rgba(3, 249, 249, 0.3) !important;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
 }
-.cookie-manager-berneby .cookie-manager [class*="bottom-0"] a {
+.cookie-manager-berneby .cookie-manager [class*="bottom-0"] a,
+.cookie-manager-berneby .cookie-manager [class*="bottom-4"] a {
   color: #03f9f9 !important;
 }
-.cookie-manager-berneby .cookie-manager [class*="bottom-0"] button:first-of-type {
+.cookie-manager-berneby .cookie-manager [class*="bottom-0"] button:first-of-type,
+.cookie-manager-berneby .cookie-manager [class*="bottom-4"] button:first-of-type {
   background-color: #03f9f9 !important;
   color: #283569 !important;
+  border: none !important;
 }
-.cookie-manager-berneby .cookie-manager [class*="bottom-0"] button:not(:first-of-type) {
-  color: rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 255, 255, 0.3);
+.cookie-manager-berneby .cookie-manager [class*="bottom-0"] button:not(:first-of-type),
+.cookie-manager-berneby .cookie-manager [class*="bottom-4"] button:not(:first-of-type) {
+  background-color: transparent !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
 /* Modal „Cookie-Einstellungen“: gesamter sichtbarer Kasten Navy (Library setzt Schwarz) – hohe Spezifität */
@@ -559,4 +566,62 @@ h6 {
   background-color: #283569 !important;
   color: #fff !important;
   border-color: rgba(3, 249, 249, 0.3) !important;
+}
+
+/* ==========================================================================
+   Manage-Modal (Cookie-Einstellungen): wird per createPortal in document.body
+   gerendert – NICHT in .cookie-manager-berneby. Library setzt hardcoded
+   bg-black/95 bei theme="dark". Nur so greifen die Overrides.
+   ========================================================================== */
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] {
+  background-color: #283569 !important;
+  color: #fff !important;
+  border: 1px solid rgba(3, 249, 249, 0.3) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] a {
+  color: #03f9f9 !important;
+}
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] button:first-of-type {
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] button:last-of-type,
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] button.font-semibold {
+  background-color: #03f9f9 !important;
+  color: #283569 !important;
+  border: none !important;
+}
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] [class*="rounded-full"] {
+  border: 2px solid rgba(255, 255, 255, 0.4) !important;
+}
+/* Toggle-Switcher (Analyse etc.): Track sichtbar auf Navy – nicht bg-gray-700 */
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] input.sr-only + [class*="rounded-full"],
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] input[type="checkbox"].peer + [class*="rounded-full"],
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] label [class*="w-11"][class*="h-6"][class*="rounded-full"],
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] label [class*="h-6"][class*="rounded-full"] {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  border: 2px solid rgba(255, 255, 255, 0.5) !important;
+  min-width: 2.75rem !important;
+  min-height: 1.5rem !important;
+}
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] input[type="checkbox"]:checked + [class*="rounded-full"],
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] input[type="checkbox"]:checked + *,
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] [role="switch"][aria-checked="true"],
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] [data-state="checked"] {
+  background-color: #03f9f9 !important;
+  border-color: #03f9f9 !important;
+}
+/* Slider-Knopf im Toggle (::after) sichtbar */
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] input[type="checkbox"] + [class*="rounded-full"]::after,
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] label [class*="w-11"][class*="h-6"]::after {
+  background-color: #fff !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] .px-3,
+.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] [class*="text-xs"][class*="rounded"] {
+  background-color: rgba(3, 249, 249, 0.2) !important;
+  color: #03f9f9 !important;
 }
