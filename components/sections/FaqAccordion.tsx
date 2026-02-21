@@ -25,7 +25,7 @@ export function FaqAccordion({ items, number }: FaqAccordionProps) {
       {number && (
         <BackdropNumber
           number={number}
-          className="-top-16 -left-8 opacity-50"
+          className="-top-16 left-2 sm:left-4 md:left-6 opacity-50"
         />
       )}
 

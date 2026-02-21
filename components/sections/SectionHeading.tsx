@@ -41,7 +41,7 @@ export function SectionHeading({
           number={number}
           className={cn(
             "-top-20 z-0 opacity-50",
-            align === "center" ? "left-1/2 -translate-x-1/2" : "-left-10"
+            align === "center" ? "left-1/2 -translate-x-1/2" : "left-2 sm:left-4 md:left-6"
           )}
         />
       )}

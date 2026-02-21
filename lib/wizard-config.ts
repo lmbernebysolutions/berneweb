@@ -38,9 +38,9 @@ const HOME_STEPS: WizardStep[] = [
     question: "Worum geht es Ihnen?",
     subline: "Wir leiten Sie zum passenden Angebot.",
     choices: [
-      { value: "handwerk", label: "Handwerk – Website, Sichtbarkeit, KI-Telefon" },
-      { value: "tech", label: "Tech/IT – Webseite, Shop, IT-Support" },
-      { value: "both", label: "Beides – Handwerk & IT" },
+      { value: "handwerk", label: "Website, Sichtbarkeit, KI-Telefon" },
+      { value: "tech", label: "Webseite, Shop, IT-Support" },
+      { value: "both", label: "Handwerk & IT" },
     ],
   },
   {

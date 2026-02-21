@@ -48,19 +48,20 @@ export function Hero({
   }
 
   return (
-    <section className="relative min-h-[90svh] flex flex-col justify-center overflow-hidden pt-32 pb-20 isolate">
+    <section className="relative min-h-[70svh] sm:min-h-[80svh] lg:min-h-[90svh] flex flex-col justify-center overflow-x-hidden pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 isolate">
+      {/* overflow-x-hidden statt overflow-hidden, damit der Berg unten nicht abgeschnitten wird */}
 
-      {/* Bergsilhouette: FESTE Höhe verhindert Layout Shift während Animation */}
+      {/* Bergsilhouette: höher + overflow-visible, damit nichts abgeschnitten wird */}
       <div
-        className="absolute bottom-0 left-0 right-0 flex justify-end items-end pointer-events-none z-[1]"
+        className="absolute bottom-0 left-0 right-0 flex justify-end items-end pointer-events-none z-[2] overflow-visible"
         aria-hidden="true"
         style={{
-          transform: 'translateZ(0)',
-          height: '12rem', // 192px - sm Höhe fest
+          transform: "translateZ(0)",
+          height: "clamp(10rem, 24vw, 18rem)",
         }}
       >
-        <div className="absolute bottom-0 left-0 right-0 flex justify-end items-end h-full">
-          <div className="relative w-full max-w-6xl pl-4 md:pl-6 h-full shrink-0">
+        <div className="absolute bottom-0 left-0 right-0 flex justify-end items-end h-full overflow-visible">
+          <div className="relative w-full max-w-6xl pl-4 md:pl-6 h-full shrink-0 overflow-visible">
             {BERG_LAYERS.map((src, i) => (
               <Image
                 key={src}
@@ -87,35 +88,36 @@ export function Hero({
       {/* 1. THE MASSIVE SHADOW NUMBER */}
       <BackdropNumber number="01" className="top-[10%] left-[5%] opacity-100" />
 
-      {/* 2. THE CONTENT FRAME */}
-      <div className="relative z-[2]">
-        {/* Headline Container (Wide) */}
-        <div className="container mx-auto px-4 sm:px-5 md:px-6 mb-6 sm:mb-8">
-          <div className="lg:col-span-12 hero-line-reveal overflow-hidden">
-            <h1 className="font-display text-[2.5rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[7rem] 2xl:text-[8rem] font-extrabold uppercase leading-[0.9] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words">
+      {/* 2. THE CONTENT FRAME – unter dem Berg (z-[1]), damit die Silhouette sichtbar bleibt */}
+      <div className="relative z-[1]">
+        {/* Headline: Mobile und Desktop größer, nie rechts abgeschnitten */}
+        <div className="container mx-auto px-4 sm:px-5 md:px-6 mb-4 sm:mb-6 md:mb-8 min-w-0">
+          <div className="hero-line-reveal overflow-hidden min-w-0">
+            <h1 className="font-display text-[2.5rem] sm:text-5xl md:text-8xl lg:text-[7rem] xl:text-[8rem] 2xl:text-[9rem] font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0">
               {headlineParts}
             </h1>
           </div>
         </div>
 
-        {/* Subline & Buttons Container (Beam Restricted) */}
+        {/* Subline & Buttons – etwas größer Mobile + Desktop */}
         <div className="mx-auto max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8 hero-line-reveal">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-end">
-            <div className="lg:col-span-8">
-              <div className="mt-0 border-l-4 border-cyan pl-4 sm:pl-6">
-                <p className="text-base sm:text-lg md:text-xl font-medium text-blue-100 leading-relaxed">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-end">
+            <div className="lg:col-span-8 min-w-0">
+              <div className="mt-0 border-l-4 border-cyan pl-3 sm:pl-6">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-blue-100 leading-relaxed max-w-full">
                   {subline}
                 </p>
               </div>
 
               {ctas && ctas.length > 0 && (
-                <div className="mt-8 sm:mt-10 lg:mt-12 flex flex-wrap gap-3 sm:gap-4">
+                <div className="mt-6 sm:mt-8 lg:mt-12 flex flex-wrap gap-2 sm:gap-4">
                   {ctas.map((cta, i) => (
                     <Button
                       key={cta.label}
                       asChild
                       variant={cta.variant === "default" || i === 0 ? "default" : "outline-light"}
                       size="lg"
+                      className="text-sm sm:text-base"
                     >
                       <Link href={cta.href}>
                         {cta.label}

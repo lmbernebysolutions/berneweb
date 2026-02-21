@@ -15,7 +15,7 @@ import {
     IconShield,
     IconArrowRight,
 } from "@tabler/icons-react";
-import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK, TECH_STATS, TECH_TESTIMONIALS, TECH_REFERENCES, PAGE_META } from "@/lib/constants";
+import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK, TECH_STATS, TECH_TESTIMONIALS, PAGE_META } from "@/lib/constants";
 import dynamic from "next/dynamic";
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TrustBar } from "@/components/sections/TrustBar";
@@ -262,48 +262,14 @@ export default function TechPage() {
                 </div>
             </Section>
 
-            {/* 09: Referenzen / Case Studies */}
-            <Section bg="transparent">
-                <SectionHeading
-                    number="09"
-                    overline="Referenzen"
-                    title="Projekte mit Ergebnis"
-                    align="left"
-                    light
-                />
-                <div className="grid gap-6 md:grid-cols-3">
-                    {TECH_REFERENCES.map((ref, i) => (
-                        <div
-                            key={ref.title}
-                            data-animate="fade-up"
-                            data-animate-delay={String(i * 80)}
-                            className="group relative flex flex-col overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
-                        >
-                            <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
-                            <h3 className="relative z-10 text-lg font-bold uppercase tracking-wider text-white">
-                                {ref.title}
-                            </h3>
-                            <p className="relative z-10 mt-2 text-sm leading-relaxed text-white/70">
-                                {ref.description}
-                            </p>
-                            <div className="relative z-10 mt-4 inline-flex items-center gap-2 border border-brand-cyan/20 bg-brand-cyan/5 px-3 py-1.5">
-                                <span className="text-xs font-bold uppercase tracking-wider text-brand-cyan">
-                                    {ref.result}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </Section>
-
-            {/* 10: FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
+            {/* 09: FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
             <div className="relative">
                 <div className="relative mx-auto max-w-6xl overflow-hidden">
                     <div className="relative">
                         <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
                         <div className="relative z-10 px-4 md:px-6 py-20 md:py-28 lg:py-32">
                             <SectionHeading
-                                number="10"
+                                number="09"
                                 overline="Support"
                                 title="Häufige Fragen"
                                 align="left"

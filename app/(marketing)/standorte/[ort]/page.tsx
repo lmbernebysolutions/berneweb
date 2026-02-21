@@ -211,7 +211,7 @@ export default async function StandortPage({
         </div>
 
         {/* Umgebung + CTA */}
-        <div className="mt-8 md:mt-12 grid gap-8 md:grid-cols-2 md:gap-12">
+        <div className="mt-8 md:mt-12 grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-12 min-w-0">
           {nearbySlugs.length > 0 && (
             <div
               data-animate="fade-left"
@@ -247,23 +247,23 @@ export default async function StandortPage({
 
           <div
             data-animate="fade-right"
-            className={`group relative overflow-hidden border border-brand-cyan/30 bg-brand-cyan/5 backdrop-blur-md p-8 md:p-10 transition-all hover:border-brand-cyan/40 card-hover-glow ${nearbySlugs.length === 0 ? "md:col-span-2" : ""}`}
+            className={`group relative overflow-hidden border border-brand-cyan/30 bg-brand-cyan/5 backdrop-blur-md p-5 sm:p-6 md:p-10 transition-all hover:border-brand-cyan/40 card-hover-glow min-w-0 ${nearbySlugs.length === 0 ? "md:col-span-2" : ""}`}
           >
             <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
-            <div className="relative z-10 flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10" aria-hidden="true">
-                <IconMapPin className="size-6 text-brand-cyan" stroke={2} />
+            <div className="relative z-10 flex flex-col sm:flex-row sm:items-start gap-4 min-w-0">
+              <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10" aria-hidden="true">
+                <IconMapPin className="size-5 sm:size-6 text-brand-cyan" stroke={2} />
               </div>
-              <div>
-                <p className="font-bold text-white">
+              <div className="min-w-0 flex-1">
+                <p className="font-bold text-white text-sm sm:text-base">
                   {location.entfernung === 0
                     ? "Sitz von Berneby Solutions – wir sind vor Ort."
                     : `Nur ${location.entfernung} km von Aue-Bad Schlema.`}
                 </p>
-                <p className="text-sm text-white/70 mt-1">
+                <p className="text-xs sm:text-sm text-white/70 mt-1">
                   Kostenloses Erstgespräch, 30 Minuten, unverbindlich.
                 </p>
-                <Button asChild size="lg" className="mt-4 bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90">
+                <Button asChild size="lg" className="mt-4 w-full sm:w-auto bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90 text-center text-sm sm:text-base">
                   <Link href="#kontakt">Jetzt Erstgespräch vereinbaren</Link>
                 </Button>
               </div>

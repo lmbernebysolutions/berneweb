@@ -44,8 +44,8 @@ export function Footer() {
 
       {/* Inhalt in Beam-Breite (wie Rest der Seite), Beams im Footer nicht sichtbar; Berg kann oben leicht überdecken */}
       <div className="relative mx-auto max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8 pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8">
-        {/* Main grid */}
-        <div className="grid gap-8 sm:gap-10 md:grid-cols-12 md:gap-8 lg:gap-10">
+        {/* Main grid: Mobile = Brand, dann Leistungen+Unternehmen nebeneinander, dann CTA; ab md 12 Spalten */}
+        <div className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-12 md:gap-8 lg:gap-10">
           {/* Brand - takes more space */}
           <div className="md:col-span-4">
             <TextLogo variant="light" />
@@ -76,44 +76,47 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Leistungen */}
-          <div className="md:col-span-3">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/80">
-              Leistungen
-            </h3>
-            <ul className="space-y-2.5">
-              {FOOTER_NAV.leistungen.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="group flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
-                  >
-                    {item.label}
-                    <IconArrowUpRight className="size-3 opacity-0 transition-all group-hover:opacity-100" stroke={2} />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Leistungen + Unternehmen auf Mobile nebeneinander */}
+          <div className="grid grid-cols-2 gap-6 sm:gap-8 md:contents">
+            {/* Leistungen */}
+            <div className="md:col-span-3">
+              <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/80">
+                Leistungen
+              </h3>
+              <ul className="space-y-2.5">
+                {FOOTER_NAV.leistungen.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className="group flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
+                    >
+                      {item.label}
+                      <IconArrowUpRight className="size-3 opacity-0 transition-all group-hover:opacity-100" stroke={2} />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Unternehmen */}
-          <div className="md:col-span-2">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/80">
-              Unternehmen
-            </h3>
-            <ul className="space-y-2.5">
-              {FOOTER_NAV.unternehmen.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="group flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
-                  >
-                    {item.label}
-                    <IconArrowUpRight className="size-3 opacity-0 transition-all group-hover:opacity-100" stroke={2} />
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {/* Unternehmen */}
+            <div className="md:col-span-2">
+              <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/80">
+                Unternehmen
+              </h3>
+              <ul className="space-y-2.5">
+                {FOOTER_NAV.unternehmen.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className="group flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
+                    >
+                      {item.label}
+                      <IconArrowUpRight className="size-3 opacity-0 transition-all group-hover:opacity-100" stroke={2} />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* CTA card – SectionCard-Style, TechCorners (V2) */}

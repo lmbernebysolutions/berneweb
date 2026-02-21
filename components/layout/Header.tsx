@@ -40,9 +40,11 @@ export function Header() {
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-cyan/30 to-transparent" />
 
-      {/* Gleiche Breite wie GridBeams – Logo und Button schließen mit den Beams ab, Nav dazwischen */}
-      <div className={cn(BEAM_CONTAINER_CLASS, "flex h-14 sm:h-16 md:h-18 lg:h-20 items-center justify-between")}>
-        <TextLogo variant="dark" className="shrink-0" />
+      {/* Gleiche Breite wie GridBeams – auf Mobile deutlich größer (Bar + Logo) */}
+      <div className={cn(BEAM_CONTAINER_CLASS, "flex h-16 sm:h-[4.5rem] md:h-20 lg:h-20 items-center justify-between")}>
+        <div className="shrink-0 origin-left scale-110 sm:scale-100">
+          <TextLogo variant="dark" size="lg" />
+        </div>
 
         {/* Desktop Navigation (zwischen Logo und Button) */}
         <nav className="hidden items-center gap-0.5 md:flex" aria-label="Hauptnavigation">
@@ -117,7 +119,7 @@ export function Header() {
                   )}
                 </Link>
               ))}
-              <div className="mt-4 border-t border-white/10 pt-4">
+              <div className="mt-4 border-t border-white/10 pt-4 px-4">
                 <Button asChild className="w-full" size="lg">
                   <Link href="/kontakt" onClick={() => setOpen(false)}>
                     <span className="hidden xs:inline">Erstgespräch vereinbaren</span>

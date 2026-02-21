@@ -110,18 +110,18 @@ export function MatchWizardSection({
         <div className="relative z-10 p-8 md:p-10 lg:p-12">
           {phase === "wizard" && currentStep && (
             <>
-              {/* Fortschritt */}
-              <div className="mb-8 flex items-center gap-2">
-                {stepSequence.map((id, i) => (
-                  <div
-                    key={id}
-                    className={cn(
-                      "h-1 flex-1 rounded-full transition-colors",
-                      i <= currentIndex ? "bg-brand-cyan/60" : "bg-white/10"
-                    )}
-                    aria-hidden
-                  />
-                ))}
+              {/* Fortschritt: gefüllt = bereits absolvierte Schritte (currentIndex), nicht „aktueller Schritt“ – sonst 1 Schritt = 100% */}
+              <div className="mb-8 h-1.5 w-full overflow-hidden rounded-full bg-white/10" aria-hidden>
+                <div
+                  className="h-full rounded-full bg-brand-cyan/60 transition-[width] duration-300 ease-out"
+                  style={{
+                    width: `${
+                      stepSequence.length > 0
+                        ? (currentIndex / stepSequence.length) * 100
+                        : 0
+                    }%`,
+                  }}
+                />
               </div>
 
               {/* Frage */}

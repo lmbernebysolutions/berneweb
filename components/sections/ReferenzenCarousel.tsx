@@ -13,6 +13,7 @@ import {
   IconChevronRight,
 } from "@tabler/icons-react";
 import type { Referenz } from "@/lib/data/referenzen";
+import { cn } from "@/lib/utils";
 
 // =============================================================================
 // DEVICE MOCKUPS
@@ -128,10 +129,19 @@ function ErgebnisBadge({ result }: { result: { wert: string; metrik: string; pos
   );
 }
 
-export function ReferenzCard({ referenz, featured = false }: { referenz: Referenz; featured?: boolean }) {
+export function ReferenzCard({
+  referenz,
+  featured = false,
+  compact = false,
+}: {
+  referenz: Referenz;
+  featured?: boolean;
+  /** Für Home-Swipe: Beschreibung und 4 Ergebnis-Boxen ausblenden */
+  compact?: boolean;
+}) {
   return (
     <article
-      className={`group relative overflow-hidden border border-brand-cyan/20 bg-brand-navy/40 backdrop-blur-md transition-all hover:border-brand-cyan/40 hover:shadow-[0_0_60px_rgba(3,249,249,0.1)] ${
+      className={`group relative overflow-hidden border border-brand-cyan/20 bg-brand-navy/40 backdrop-blur-md transition-all hover:border-brand-cyan/40 hover:shadow-[0_0_60px_rgba(3,249,249,0.1)] min-w-0 max-w-full w-full ${
         featured ? "col-span-full" : ""
       }`}
       data-animate="fade-up"
@@ -210,15 +220,17 @@ export function ReferenzCard({ referenz, featured = false }: { referenz: Referen
               {referenz.dauer}
             </div>
           </div>
-          <blockquote className="mb-6 border-l-2 border-brand-cyan pl-4">
+          <blockquote className={cn("border-l-2 border-brand-cyan pl-4", compact ? "mb-4" : "mb-6")}>
             <p className="text-base font-medium italic text-white/80 leading-relaxed">
               &ldquo;{referenz.tagline}&rdquo;
             </p>
           </blockquote>
-          <p className="mb-4 text-sm text-white/60 leading-relaxed">
-            {referenz.beschreibung}
-          </p>
-          {featured && (
+          {!compact && (
+            <p className="mb-4 text-sm text-white/60 leading-relaxed">
+              {referenz.beschreibung}
+            </p>
+          )}
+          {featured && !compact && (
             <div className="mb-6 space-y-3">
               <div className="border border-white/5 bg-white/[0.03] p-3">
                 <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-red-400/70">
@@ -234,12 +246,14 @@ export function ReferenzCard({ referenz, featured = false }: { referenz: Referen
               </div>
             </div>
           )}
-          <div className="mb-6 grid grid-cols-2 gap-2">
-            {referenz.ergebnisse.map((r) => (
-              <ErgebnisBadge key={r.metrik} result={r} />
-            ))}
-          </div>
-          <div className="mt-auto flex flex-wrap gap-3">
+          {!compact && (
+            <div className="mb-6 grid grid-cols-2 gap-2">
+              {referenz.ergebnisse.map((r) => (
+                <ErgebnisBadge key={r.metrik} result={r} />
+              ))}
+            </div>
+          )}
+          <div className={compact ? "mt-4 flex flex-wrap gap-3" : "mt-auto flex flex-wrap gap-3"}>
             {referenz.url && referenz.url !== "#" ? (
               <Button asChild size="sm">
                 <Link href={referenz.url} target="_blank" rel="noopener noreferrer">

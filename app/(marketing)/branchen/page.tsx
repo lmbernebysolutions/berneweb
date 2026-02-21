@@ -32,7 +32,7 @@ export default function BranchenPage() {
           align="left"
           light
         />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 min-w-0">
           {branchen.map((b, i) => (
             <Link
               key={b.slug}

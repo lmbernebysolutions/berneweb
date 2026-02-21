@@ -15,7 +15,7 @@ export function BackdropNumber({ number, className, color }: BackdropNumberProps
     return (
         <div
             className={cn(
-                "pointer-events-none absolute -top-8 -left-4 z-0 select-none font-black leading-none",
+                "pointer-events-none absolute -top-8 left-0 z-0 select-none font-black leading-none",
                 "text-[8rem] md:text-[12rem] lg:text-[16rem]",
                 className
             )}

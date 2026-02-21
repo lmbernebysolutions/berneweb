@@ -2,6 +2,7 @@
 
 import { IconStarFilled, IconCheck } from "@tabler/icons-react";
 import { TechCorners } from "@/components/ui/tech-corners";
+import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
 
 interface Testimonial {
     name: string;
@@ -16,45 +17,46 @@ interface TestimonialGridProps {
     overline?: string;
 }
 
+function TestimonialCard({ t, i }: { t: Testimonial; i: number }) {
+    return (
+        <div
+            key={i}
+            data-animate="fade-up"
+            data-animate-delay={String(i * 120)}
+            className="group relative border border-white/10 bg-white/[0.03] p-4 sm:p-6 transition-all h-full min-w-0 w-full overflow-hidden"
+        >
+            <TechCorners pattern="diagonal" variant="cyan" size="md" />
+            <div className="flex gap-1 mb-3 sm:mb-4 text-brand-warm" aria-hidden="true">
+                {[1, 2, 3, 4, 5].map(s => <IconStarFilled key={s} className="size-3.5 sm:size-4" />)}
+            </div>
+            <p className="text-sm sm:text-lg text-white mb-3 sm:mb-4 min-h-[4rem] sm:min-h-[5.25rem] break-words">&ldquo;{t.text}&rdquo;</p>
+            <div className="mb-4 sm:mb-6 inline-flex items-center gap-2 border border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 sm:px-3 sm:py-1.5 max-w-full flex-wrap">
+                <IconCheck className="size-3 sm:size-3.5 text-brand-cyan shrink-0" stroke={2} aria-hidden="true" />
+                <span className="text-[0.65rem] sm:text-xs font-bold text-brand-cyan uppercase tracking-wider break-words">{t.result}</span>
+            </div>
+            <div className="flex items-center gap-3 border-t border-white/10 pt-3 sm:pt-4 min-w-0">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 bg-brand-cyan text-brand-navy font-bold flex items-center justify-center shrink-0 text-sm sm:text-base">
+                    {t.name[0]}
+                </div>
+                <div className="min-w-0">
+                    <div className="font-bold text-white text-sm sm:text-base truncate">{t.name}</div>
+                    <div className="text-[0.65rem] sm:text-xs text-brand-navy-muted uppercase tracking-wider truncate">{t.role}</div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export function TestimonialGrid({
     testimonials,
     title = "Das sagt das Erzgebirge",
     overline = "Success Stories",
 }: TestimonialGridProps) {
     return (
-        <div className="grid gap-6 md:grid-cols-3">
+        <MobileSwipeGrid gridClassName="grid gap-6 md:grid-cols-3">
             {testimonials.map((t, i) => (
-                <div
-                    key={i}
-                    data-animate="fade-up"
-                    data-animate-delay={String(i * 120)}
-                    className="group relative border border-white/10 bg-white/[0.03] p-6 transition-all"
-                >
-                    {/* Tech corners - 2→4 diagonal pattern */}
-                    <TechCorners pattern="diagonal" variant="cyan" size="md" />
-
-                    <div className="flex gap-1 mb-4 text-brand-warm" aria-hidden="true">
-                        {[1, 2, 3, 4, 5].map(s => <IconStarFilled key={s} className="size-4" />)}
-                    </div>
-                    <p className="text-lg text-white mb-4 min-h-[5.25rem]">&ldquo;{t.text}&rdquo;</p>
-
-                    {/* Result badge */}
-                    <div className="mb-6 inline-flex items-center gap-2 border border-brand-cyan/20 bg-brand-cyan/5 px-3 py-1.5">
-                        <IconCheck className="size-3.5 text-brand-cyan" stroke={2} aria-hidden="true" />
-                        <span className="text-xs font-bold text-brand-cyan uppercase tracking-wider">{t.result}</span>
-                    </div>
-
-                    <div className="flex items-center gap-3 border-t border-white/10 pt-4">
-                        <div className="w-10 h-10 bg-brand-cyan text-brand-navy font-bold flex items-center justify-center">
-                            {t.name[0]}
-                        </div>
-                        <div>
-                            <div className="font-bold text-white">{t.name}</div>
-                            <div className="text-xs text-brand-navy-muted uppercase tracking-wider">{t.role}</div>
-                        </div>
-                    </div>
-                </div>
+                <TestimonialCard key={i} t={t} i={i} />
             ))}
-        </div>
+        </MobileSwipeGrid>
     );
 }

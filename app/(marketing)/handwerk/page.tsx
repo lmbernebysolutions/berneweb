@@ -8,6 +8,7 @@ import { PricingCards } from "@/components/sections/PricingCards";
 import dynamic from "next/dynamic";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { CtaSection } from "@/components/sections/CtaSection";
+import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
 
 const FaqAccordion = dynamic(
   () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
@@ -162,13 +163,13 @@ export default function HandwerkPage() {
           align="left"
           light
         />
-        <div className="grid gap-6 md:grid-cols-3 md:items-stretch">
+        <MobileSwipeGrid gridClassName="grid gap-6 md:grid-cols-3 md:items-stretch" slideMinWidth="min-w-[88%] sm:min-w-[70%]">
           {HANDWERK_GARANTIEN.map((item, i) => (
             <div
               key={item.title}
               data-animate="fade-up"
               data-animate-delay={String(i * 80)}
-              className="group relative flex flex-col overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
+              className="group relative flex flex-col overflow-hidden border border-white/10 bg-brand-navy/60 p-4 sm:p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow h-full min-w-0 w-full"
             >
               <TechCorners pattern="diagonal" variant="cyan" size="lg" />
               <div className="relative z-10 flex flex-1 flex-col items-start gap-4">
@@ -186,7 +187,7 @@ export default function HandwerkPage() {
               </div>
             </div>
           ))}
-        </div>
+        </MobileSwipeGrid>
       </Section>
 
       {/* 06: Flatrate – Der Digitale Hausmeister (Angebot) */}
@@ -300,6 +301,8 @@ export default function HandwerkPage() {
         />
         <FaqAccordion items={FAQ_ITEMS} />
       </Section>
+
+      <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
 
       {/* CTA */}
       <CtaSection

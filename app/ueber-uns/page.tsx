@@ -174,7 +174,7 @@ export default function UeberUnsPage() {
           align="left"
           light
         />
-        <FeatureGrid features={VALUES} cols={4} light />
+        <FeatureGrid features={VALUES} cols={4} light swipeOnMobile />
       </Section>
 
       {/* 07: Warum Berneby */}

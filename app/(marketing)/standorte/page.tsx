@@ -33,7 +33,7 @@ export default function StandortePage() {
           align="left"
           light
         />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 min-w-0">
           {locations.map((loc, i) => (
             <Link
               key={loc.slug}

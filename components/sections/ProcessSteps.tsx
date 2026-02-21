@@ -76,7 +76,7 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
         </div>
       </div>
 
-      {/* Mobile: Vertical timeline, same card + reduced typo */}
+      {/* Mobile: Vertikale Liste ohne Verbindungslinie */}
       <div className="md:hidden space-y-3 sm:space-y-4">
         {steps.map((s, i) => (
           <div
@@ -87,7 +87,6 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
           >
             <TechCorners pattern="diagonal" variant="cyan" size="md" />
 
-            {/* Timeline rail + number */}
             <div className="flex flex-col items-center shrink-0">
               <div className="relative flex h-12 w-12 items-center justify-center border border-brand-cyan/30 bg-brand-navy">
                 <TechCorners pattern="all" variant="cyan" size="sm" />
@@ -95,13 +94,9 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
                   {String(s.step).padStart(2, "0")}
                 </span>
               </div>
-              {i < steps.length - 1 && (
-                <div className="w-px grow min-h-2 bg-gradient-to-b from-brand-cyan/30 to-brand-cyan/5" aria-hidden="true" />
-              )}
             </div>
 
-            {/* Content: reduced typo */}
-            <div className={cn("min-w-0 pb-2", i === steps.length - 1 && "pb-0")}>
+            <div className="min-w-0 flex-1 pb-0">
               <h3 className="text-xs font-semibold uppercase tracking-tight text-white">
                 {s.title}
               </h3>

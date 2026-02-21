@@ -7,6 +7,7 @@ import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { ReferenzenCarousel } from "@/components/sections/ReferenzenCarousel";
+import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
 import { TechCorners } from "@/components/ui/tech-corners";
 import {
   IconCircleCheck,
@@ -109,7 +110,7 @@ export default function ReferenzenPage() {
           align="left"
           light
         />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <MobileSwipeGrid gridClassName="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" slideMinWidth="min-w-[88%] sm:min-w-[60%]">
           {[
             {
               icon: IconClock,
@@ -136,7 +137,7 @@ export default function ReferenzenPage() {
               key={item.title}
               data-animate="fade-up"
               data-animate-delay={String(i * 80)}
-              className="group relative overflow-hidden border border-brand-cyan/20 bg-brand-navy/60 p-6 transition-all hover:border-brand-cyan/40 hover:shadow-[0_0_40px_rgba(3,249,249,0.08)]"
+              className="group relative overflow-hidden border border-brand-cyan/20 bg-brand-navy/60 p-4 sm:p-6 transition-all hover:border-brand-cyan/40 hover:shadow-[0_0_40px_rgba(3,249,249,0.08)] h-full min-w-0 w-full"
             >
               <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
 
@@ -152,7 +153,7 @@ export default function ReferenzenPage() {
               </p>
             </div>
           ))}
-        </div>
+        </MobileSwipeGrid>
       </Section>
 
       <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
