@@ -116,7 +116,8 @@ export default function UeberUnsPage() {
         <SectionHeading
           number="04"
           overline="Vision & Mission"
-          title="Wo wir hinwollen. Was wir tun."
+          title="Wo wir hinwollen"
+          titleLine2="Was wir tun."
           align="left"
           light
         />
@@ -169,7 +170,8 @@ export default function UeberUnsPage() {
         <SectionHeading
           number="06"
           overline="Unsere Werte"
-          title="Wofür wir stehen"
+          title="Wofür wir"
+          titleLine2="stehen"
           subtitle="Vier Prinzipien, die unsere Arbeit leiten – jeden Tag. Verwurzelt im Erzgebirge."
           align="left"
           light

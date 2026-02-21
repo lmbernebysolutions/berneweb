@@ -16,6 +16,8 @@ const BERG_LAYER_DELAYS = ["berg-layer-grow-delay-3", "berg-layer-grow-delay-1",
 
 interface HeroProps {
   headline: string;
+  /** Zweite Zeile der Headline (wie SectionHeading titleLine2) – für kontrollierten Umbruch z. B. Ratgeber/Standort/Branchen */
+  headlineLine2?: string;
   subline: string;
   ctas?: HeroCta[];
   variant?: "navy" | "cyan"; // 'light' is deprecated/removed
@@ -27,6 +29,7 @@ interface HeroProps {
 
 export function Hero({
   headline,
+  headlineLine2,
   subline,
   ctas,
   variant = "navy",
@@ -34,7 +37,7 @@ export function Hero({
   accentText,
   bergVariant,
 }: HeroProps) {
-  // Split headline
+  // Split headline (wie SectionHeading: optional zweite Zeile für kontrollierten Umbruch)
   let headlineParts: React.ReactNode = headline;
   if (accentText && headline.includes(accentText)) {
     const [before, after] = headline.split(accentText);
@@ -43,6 +46,25 @@ export function Hero({
         {before}
         <span className="text-cyan whitespace-normal sm:whitespace-nowrap">{accentText}</span>
         {after}
+      </>
+    );
+  }
+  if (headlineLine2 != null && headlineLine2 !== "") {
+    const line2Content =
+      accentText && headlineLine2.includes(accentText) ? (
+        <>
+          {headlineLine2.split(accentText)[0]}
+          <span className="text-cyan whitespace-normal sm:whitespace-nowrap">{accentText}</span>
+          {headlineLine2.split(accentText)[1]}
+        </>
+      ) : (
+        headlineLine2
+      );
+    headlineParts = (
+      <>
+        {headlineParts}
+        <br />
+        {line2Content}
       </>
     );
   }
@@ -93,7 +115,7 @@ export function Hero({
         {/* Headline: overflow-hidden für sauberen Zeilenumbruch; Accent auf Mobile umbruchfähig damit nichts abgeschnitten wird */}
         <div className="container mx-auto px-4 sm:px-5 md:px-6 mb-4 sm:mb-6 md:mb-8 min-w-0 pr-12 sm:pr-14 md:pr-16">
           <div className="hero-line-reveal overflow-hidden min-w-0">
-            <h1 className="font-display text-[2.5rem] sm:text-5xl md:text-8xl lg:text-[7rem] xl:text-[8rem] 2xl:text-[9rem] font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0">
+            <h1 className="font-display text-[2rem] sm:text-5xl md:text-8xl lg:text-[7rem] xl:text-[8rem] 2xl:text-[9rem] font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0">
               {headlineParts}
             </h1>
           </div>

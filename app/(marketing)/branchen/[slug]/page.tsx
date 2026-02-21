@@ -65,7 +65,8 @@ export default async function BranchePage({
     <>
       <Hero
         bergVariant="branchen"
-        headline={`Website & Digitalisierung für ${branche.name}.`}
+        headline="Website & Digitalisierung für"
+        headlineLine2={`${branche.name}.`}
         accentText={branche.name}
         subline={`Wir unterstützen ${branche.name} im Erzgebirge mit professionellen Websites, 50+ lokalen Landingpages, KI-Telefonassistent und IT-Service. Festpreis, 4 Wochen bis Go-Live. Jetzt Erstgespräch vereinbaren.`}
         ctas={[

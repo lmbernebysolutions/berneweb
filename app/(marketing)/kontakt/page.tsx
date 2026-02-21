@@ -296,7 +296,7 @@ export default function KontaktPage() {
               <SectionHeading
                 number="02"
                 overline="FAQ"
-                title="Häufige Fragen zum Erstgespräch"
+                title="Häufige Fragen"
                 align="left"
                 light
               />

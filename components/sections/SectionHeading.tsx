@@ -63,7 +63,7 @@ export function SectionHeading({
         <div className={cn(align === "center" && "text-center", "pr-16 sm:pr-14 md:pr-16")}>
           <Tag
             className={cn(
-              "relative inline font-display text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl uppercase tracking-tight text-balance leading-[1.1] max-w-full",
+              "relative inline font-display text-2xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl uppercase tracking-tight text-balance leading-[1.1] max-w-full",
               light ? "text-brand-navy-foreground" : "text-foreground"
             )}
           >

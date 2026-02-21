@@ -93,7 +93,7 @@ export default async function RatgeberArticlePage({
 
   return (
     <>
-      <Section bg="transparent">
+      <Section bg="transparent" className="pt-28 sm:pt-32">
         <div className="mb-8">
           <BreadcrumbNav items={breadcrumbItems} />
         </div>

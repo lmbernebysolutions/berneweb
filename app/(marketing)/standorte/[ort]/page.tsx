@@ -95,7 +95,8 @@ export default async function StandortPage({
     <>
       <Hero
         bergVariant="standorte"
-        headline={`Webdesign & IT in ${location.name}.`}
+        headline="Webdesign & IT in"
+        headlineLine2={`${location.name}.`}
         accentText={location.name}
         subline={`Wir unterstützen Handwerker und Betriebe in ${location.name} (${location.population.toLocaleString("de-DE")} Einwohner) mit professionellen Websites, lokaler SEO und IT-Service. Aus Aue-Bad Schlema – ${location.entfernung === 0 ? "direkt vor Ort" : `nur ${location.entfernung} km entfernt`}.`}
         ctas={[

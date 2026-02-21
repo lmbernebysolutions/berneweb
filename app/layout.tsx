@@ -4,6 +4,7 @@ import { CookieProviders } from "@/components/providers/CookieProviders";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
+import { BackToTop } from "@/components/ui/back-to-top";
 import { GridBeams } from "@/components/layout/GridBeams";
 import { COMPANY } from "@/lib/constants";
 import "./globals.css";
@@ -137,6 +138,7 @@ export default function RootLayout({
           <GridBeams />
           <main id="main-content" className="relative z-10">{children}</main>
           <Footer />
+          <BackToTop />
           <ScrollAnimator />
         </CookieProviders>
       </body>

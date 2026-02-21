@@ -48,6 +48,7 @@ export function ChatSection({
   const [mounted, setMounted] = useState(false);
   const { hasConsent, openPreferences } = useChatConsent();
   const [faqInput, setFaqInput] = useState("");
+  const [showSuggestedFaq, setShowSuggestedFaq] = useState(false);
 
   const faqTransport = useMemo(
     () =>
@@ -151,25 +152,45 @@ export function ChatSection({
                 aria-label="Chat-Verlauf"
                 className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden"
               >
-                {suggestedFaq.length > 0 && faqMessages.length === 0 && (
+                {suggestedFaq.length > 0 && (faqMessages.length === 0 || showSuggestedFaq) && (
                   <p className="mb-3 text-xs font-bold uppercase tracking-wider text-white/60">
                     Vorgeschlagene Fragen
                   </p>
                 )}
-                {suggestedFaq.length > 0 && faqMessages.length === 0 && (
-                  <div className="mb-6 flex flex-wrap gap-2">
-                    {suggestedFaq.map((item, i) => (
+                {suggestedFaq.length > 0 && (faqMessages.length === 0 || showSuggestedFaq) && (
+                  <div className="mb-6">
+                    <div className="flex flex-wrap gap-2">
+                      {suggestedFaq.map((item, i) => (
+                        <button
+                          key={i}
+                          type="button"
+                          onClick={() => handleFaqSuggestionClick(item.question)}
+                          className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/90 hover:border-brand-cyan/30 hover:bg-brand-cyan/5"
+                        >
+                          {item.question}
+                          <IconArrowRight className="size-4 shrink-0" stroke={2} />
+                        </button>
+                      ))}
+                    </div>
+                    {faqMessages.length > 0 && (
                       <button
-                        key={i}
                         type="button"
-                        onClick={() => handleFaqSuggestionClick(item.question)}
-                        className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/90 hover:border-brand-cyan/30 hover:bg-brand-cyan/5"
+                        onClick={() => setShowSuggestedFaq(false)}
+                        className="mt-2 text-xs text-white/50 hover:text-brand-cyan"
                       >
-                        {item.question}
-                        <IconArrowRight className="size-4 shrink-0" stroke={2} />
+                        Vorgeschlagene Fragen ausblenden
                       </button>
-                    ))}
+                    )}
                   </div>
+                )}
+                {suggestedFaq.length > 0 && faqMessages.length > 0 && !showSuggestedFaq && (
+                  <button
+                    type="button"
+                    onClick={() => setShowSuggestedFaq(true)}
+                    className="mb-4 text-xs text-brand-cyan hover:underline"
+                  >
+                    Vorgeschlagene Fragen anzeigen
+                  </button>
                 )}
                 <div className="mb-6 flex flex-col gap-3">
                   {faqMessages.map((msg) => (
