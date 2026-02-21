@@ -284,9 +284,8 @@ export default function Home() {
         />
         <TestimonialGrid
           testimonials={[
-            { name: "Thomas M.", role: "Elektrikermeister", text: "Endlich werde ich gefunden. Die KI am Telefon ist der Wahnsinn. Wirklich top!", result: "3x mehr Anfragen in 4 Wochen" },
-            { name: "Stefan K.", role: "Heizungsbau", text: "Kein generisches Bla-Bla. Berneby liefert ab. Genau das, was wir brauchten. Danke!", result: "Website live in 2 Wochen" },
-            { name: "Sandra L.", role: "Friseursalon", text: "Sieht top aus und bringt neue Kunden. Genau das, was ich mir vorgestellt habe. Danke!", result: "40% mehr Online-Buchungen" },
+            { name: "Anne-Karen Voigt", role: "Ergotherapie", text: "Professionelles, nettes Team – zügig und unkompliziert. Moderne, patientenfreundliche Website. Immer wieder gerne!", result: "Website für Praxis" },
+            { name: "Sylvia Schirmer", role: "Arztpraxis", text: "Hervorragende Arbeit: moderne, intuitive und patientenfreundliche Website. Unkomplizierte Zusammenarbeit, Änderungen umgehend. Wärmstens weiterempfehlen!", result: "Website-Relaunch" },
           ]}
         />
       </Section>
@@ -344,13 +343,12 @@ export default function Home() {
         </p>
       </Section>
 
-      {/* 08: Chat – FAQ + Ihr Match (ersetzt Match-Wizard + Mini-FAQ) */}
+      {/* 08: Chat – FAQ */}
       <ChatSection
         sectionNumber="08"
-        overline="Fragen & Match"
-        title="FAQ & Ihr Match"
-        subtitle="Stellen Sie eine Frage oder finden Sie in wenigen Klicks Ihr passendes Paket."
-        wizardVariant="home"
+        overline="Fragen"
+        title="FAQ"
+        subtitle="Stellen Sie eine Frage – wir antworten auf Basis unserer Wissensbasis."
         suggestedFaq={HOME_MINI_FAQ}
       />
 

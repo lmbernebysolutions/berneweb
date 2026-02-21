@@ -20,13 +20,9 @@ import {
   IDEMPOTENCY_TTL_SECONDS,
 } from "@/lib/chat/constants";
 import { getFaqEntries, getRatgeberLinks, matchFaqQuery } from "@/lib/chat/knowledge";
-import { getWizardChatState } from "@/lib/chat/wizard-chat";
-import type { WizardVariant } from "@/lib/wizard-config";
-
-const WIZARD_VARIANTS: WizardVariant[] = ["home", "handwerk", "tech"];
 
 const chatBodySchema = z.object({
-  mode: z.enum(["faq", "match"]).optional().default("faq"),
+  mode: z.literal("faq").optional().default("faq"),
   messages: z
     .array(
       z.object({
@@ -38,14 +34,7 @@ const chatBodySchema = z.object({
     .max(MAX_MESSAGES_PER_REQUEST)
     .optional()
     .default([]),
-  wizardState: z
-    .object({
-      stepIndex: z.number().int().min(0),
-      answers: z.record(z.string(), z.string()),
-    })
-    .optional(),
   idempotencyKey: z.string().max(128).optional(),
-  choice: z.string().max(500).optional(),
 });
 
 type ChatBody = z.infer<typeof chatBodySchema>;
@@ -159,21 +148,7 @@ export async function POST(request: NextRequest) {
     );
     return withCors(res, request);
   }
-  const { mode, messages: rawMessages, idempotencyKey } = parsed.data as ChatBody;
-  const wizardVariant = (
-    WIZARD_VARIANTS.includes(request.nextUrl.searchParams.get("variant") as WizardVariant)
-      ? request.nextUrl.searchParams.get("variant")
-      : "home"
-  ) as WizardVariant;
-
-  if (mode === "match") {
-    const { wizardState, choice } = parsed.data as ChatBody;
-    const stepIndex = wizardState?.stepIndex ?? 0;
-    const answers = wizardState?.answers ?? {};
-    const next = getWizardChatState(wizardVariant, stepIndex, answers, choice ?? "");
-    const res = NextResponse.json(next);
-    return withCors(res, request);
-  }
+  const { messages: rawMessages, idempotencyKey } = parsed.data as ChatBody;
 
   const messages = rawMessages.slice(-MAX_MESSAGES_PER_REQUEST);
   const lastUser = [...messages].reverse().find((m) => m.role === "user");

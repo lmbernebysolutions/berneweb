@@ -59,7 +59,7 @@ export function SectionHeading({
             {overline}
           </div>
         )}
-        {/* TechCorners: Platz rechts reservieren, damit rechter Corner nicht umbricht */}
+        {/* TechCorners: Platz rechts reservieren; relative z-10 damit rechter Corner nicht unter dem Heading-Text liegt */}
         <div className={cn(align === "center" && "text-center", "pr-16 sm:pr-14 md:pr-16")}>
           <Tag
             className={cn(
@@ -68,7 +68,7 @@ export function SectionHeading({
             )}
           >
             <span
-              className="inline-block h-3 w-3 sm:h-4 sm:w-4 border-t-2 border-l-2 border-brand-cyan/40 transition-colors mr-1 sm:mr-1.5 -mt-0.5 sm:-mt-1 align-top tech-corner-tl tech-corner-animate"
+              className="relative z-10 inline-block h-3 w-3 sm:h-4 sm:w-4 border-t-2 border-l-2 border-brand-cyan/40 transition-colors mr-1 sm:mr-1.5 -mt-0.5 sm:-mt-1 align-top tech-corner-tl tech-corner-animate"
               aria-hidden="true"
             />
             {title}
@@ -79,7 +79,7 @@ export function SectionHeading({
               </>
             )}
             <span
-              className="inline-block h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-r-2 border-brand-cyan/40 transition-colors ml-1 sm:ml-1.5 -mb-0.5 sm:-mb-1 align-bottom tech-corner-br tech-corner-animate"
+              className="relative z-10 inline-block h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-r-2 border-brand-cyan/40 transition-colors ml-1 sm:ml-1.5 -mb-0.5 sm:-mb-1 align-bottom tech-corner-br tech-corner-animate"
               aria-hidden="true"
             />
           </Tag>

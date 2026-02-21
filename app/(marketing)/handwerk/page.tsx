@@ -117,13 +117,12 @@ export default function HandwerkPage() {
         <CraftToolboxGrid modules={CRAFT_MODULES} />
       </Section>
 
-      {/* 04: Chat – FAQ + Ihr Match (Handwerk) */}
+      {/* 04: Chat – FAQ (Handwerk) */}
       <ChatSection
         sectionNumber="04"
-        overline="Fragen & Match"
-        title="FAQ & Ihr Match"
-        subtitle="Stellen Sie eine Frage oder finden Sie in zwei Klicks Ihr Handwerks-Paket."
-        wizardVariant="handwerk"
+        overline="Fragen"
+        title="FAQ"
+        subtitle="Stellen Sie eine Frage – wir antworten auf Basis unserer Wissensbasis."
         suggestedFaq={FAQ_ITEMS}
         sectionBg="transparent"
       />

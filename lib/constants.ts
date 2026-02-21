@@ -157,22 +157,16 @@ export const HOME_MINI_FAQ = [
 
 export const TECH_TESTIMONIALS = [
   {
-    name: "Stefan K.",
-    role: "Heizungsbau",
-    text: "Schnell, unkompliziert, faire Preise. Genau das, was wir als kleiner Betrieb brauchen.",
-    result: "Website + Shop in 3 Wochen",
+    name: "Anne-Karen Voigt",
+    role: "Ergotherapie",
+    text: "Professionelles, nettes Team – zügig und unkompliziert. Moderne, patientenfreundliche Website. Immer wieder gerne!",
+    result: "Website für Praxis",
   },
   {
-    name: "Sandra L.",
-    role: "Friseursalon",
-    text: "Die 10er-Karte ist Gold wert. Immer jemand erreichbar, der sich auskennt.",
-    result: "Keine IT-Stress mehr",
-  },
-  {
-    name: "Thomas M.",
-    role: "Elektrikermeister",
-    text: "Endlich eine IT, die versteht, was Handwerker brauchen. Kein Bullshit.",
-    result: "3x mehr Anfragen",
+    name: "Sylvia Schirmer",
+    role: "Arztpraxis",
+    text: "Hervorragende Arbeit: moderne, intuitive und patientenfreundliche Website. Unkomplizierte Zusammenarbeit, Änderungen umgehend. Wärmstens weiterempfehlen!",
+    result: "Website-Relaunch",
   },
 ] as const;
 

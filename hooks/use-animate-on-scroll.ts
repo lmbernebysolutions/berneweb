@@ -12,15 +12,13 @@ export function useAnimateOnScroll() {
     previouslyVisible.forEach((el) => {
       el.classList.remove("is-visible");
 
-      // Reset all child tech-corner-animate elements
-      const corners = el.querySelectorAll(".tech-corner-animate");
+      // Reset all child tech-corner-animate elements so they can animate again on the new page
+      const corners = el.querySelectorAll<HTMLElement>(".tech-corner-animate");
       corners.forEach((corner) => {
-        const htmlCorner = corner as HTMLElement;
-        // Force animation reset by removing and re-adding the class
-        htmlCorner.style.animation = "none";
-        // Trigger reflow to reset animation
-        void htmlCorner.offsetHeight;
-        htmlCorner.style.animation = "";
+        corner.classList.remove("tech-corner-done");
+        corner.style.animation = "none";
+        void corner.offsetHeight;
+        corner.style.animation = "";
       });
     });
 
@@ -37,7 +35,17 @@ export function useAnimateOnScroll() {
               el.style.transitionDelay = `${delay}ms`;
             }
             el.classList.add("is-visible");
-            // Don't unobserve so animations can retrigger on route changes
+
+            // Freeze tech corners after animation ends so they never disappear (stable on long sessions)
+            const corners = el.querySelectorAll<HTMLElement>(".tech-corner-animate");
+            corners.forEach((corner) => {
+              if (corner.classList.contains("tech-corner-done")) return;
+              const onEnd = () => {
+                corner.classList.add("tech-corner-done");
+                corner.removeEventListener("animationend", onEnd);
+              };
+              corner.addEventListener("animationend", onEnd, { once: true });
+            });
           }
         });
       },

@@ -140,13 +140,12 @@ export default function TechPage() {
                 </div>
             </Section>
 
-            {/* 04: Chat – FAQ + Ihr Match (Tech) */}
+            {/* 04: Chat – FAQ (Tech) */}
             <ChatSection
                 sectionNumber="04"
-                overline="Fragen & Match"
-                title="FAQ & Ihr Match"
-                subtitle="Stellen Sie eine Frage oder finden Sie in einer Klick Ihr Tech-Angebot."
-                wizardVariant="tech"
+                overline="Fragen"
+                title="FAQ"
+                subtitle="Stellen Sie eine Frage – wir antworten auf Basis unserer Wissensbasis."
                 suggestedFaq={FAQ_ITEMS}
                 sectionBg="transparent"
             />

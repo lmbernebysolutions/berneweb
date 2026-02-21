@@ -83,28 +83,6 @@ describe("POST /api/chat", () => {
     expect(json.error).toMatch(/Wiederholung|warten/i);
   });
 
-  it("returns 200 for match mode with valid wizardState (no LLM)", async () => {
-    const req = postRequest(
-      {
-        mode: "match",
-        wizardState: { stepIndex: 0, answers: {} },
-        choice: "handwerk",
-      },
-      "variant=home"
-    );
-    const res = await POST(req);
-    expect(res.status).toBe(200);
-    const json = await res.json();
-    expect(json).toHaveProperty("type");
-    expect(["step", "result"]).toContain(json.type);
-    if (json.type === "step") {
-      expect(json).toHaveProperty("step");
-      expect(json).toHaveProperty("stepIndex");
-    } else {
-      expect(json).toHaveProperty("match");
-    }
-  });
-
   it("returns fallback answer when no LLM keys are set (FAQ mode)", async () => {
     delete process.env.GOOGLE_GENERATIVE_AI_API_KEY;
     delete process.env.GEMINI_API_KEY;

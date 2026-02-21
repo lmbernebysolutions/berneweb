@@ -332,6 +332,13 @@ h6 {
   animation-play-state: running;
 }
 
+/* Once animation has run, freeze final state so corners never disappear (e.g. after long time on page or re-renders) */
+.tech-corner-animate.tech-corner-done {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
 /* Stagger: corners draw in sequence (tl → br → tr → bl), clearly spaced */
 .tech-corner-tl.tech-corner-animate { animation-delay: 0s; }
 .tech-corner-br.tech-corner-animate { animation-delay: 0.2s; }
@@ -475,6 +482,10 @@ h6 {
     transform: none !important;
     filter: none !important;
     transition: none !important;
+  }
+  .tech-corner-animate.tech-corner-done {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 

@@ -4,7 +4,7 @@ import { BLogo } from "@/components/brand/BLogo";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 text-center">
+    <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 pt-24 sm:pt-28 text-center">
       <div className="relative mb-8 inline-flex animate-[wiggle_1s_ease-in-out_infinite]">
         <BLogo size={72} className="drop-shadow-[0_0_12px_rgba(3,249,249,0.4)] opacity-90" />
         <span className="absolute -top-6 -left-4 text-4xl opacity-30 animate-bounce">?</span>

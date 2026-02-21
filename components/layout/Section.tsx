@@ -51,11 +51,18 @@ export function Section({
         <div className="noise-overlay pointer-events-none absolute inset-0" aria-hidden="true" />
       )}
 
-      {/* Subtle: Hintergrund füllt volle Beam-Breite (max-w-6xl); Inhalt mit Padding innen */}
+      {/* Subtle: Hintergrund mit weichem Ein- und Ausblenden oben/unten (kein harter Kontrast) */}
       {isSubtle ? (
         <div className={cn("relative mx-auto", contentWidth)}>
           <div className="relative">
-            <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
+            <div
+              className="absolute inset-0"
+              aria-hidden
+              style={{
+                background:
+                  "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.015) 10%, rgba(255,255,255,0.015) 90%, transparent 100%)",
+              }}
+            />
             <div className={cn("relative z-10", contentPadding, sectionPadding)}>
               {children}
             </div>

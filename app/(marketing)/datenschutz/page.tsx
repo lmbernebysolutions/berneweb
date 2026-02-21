@@ -111,7 +111,7 @@ export default function DatenschutzPage() {
           Datenschutzerklärung des jeweiligen Anbieters.
         </p>
 
-        <h3>Chat / Assistent (FAQ &amp; Ihr Match)</h3>
+        <h3>Chat / Assistent (FAQ)</h3>
         <p>
           Auf unserer Website steht ein Chat zur Verfügung („Fragen &amp; Match“),
           mit dem Sie häufig gestellte Fragen stellen oder ein passendes Angebot
