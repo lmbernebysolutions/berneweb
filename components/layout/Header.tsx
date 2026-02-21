@@ -120,8 +120,9 @@ export function Header() {
               <div className="mt-4 border-t border-white/10 pt-4">
                 <Button asChild className="w-full" size="lg">
                   <Link href="/kontakt" onClick={() => setOpen(false)}>
-                    Erstgespräch vereinbaren
-                    <IconArrowRight className="ml-1 size-4" stroke={2} />
+                    <span className="hidden xs:inline">Erstgespräch vereinbaren</span>
+                    <span className="xs:hidden">Erstgespräch</span>
+                    <IconArrowRight className="ml-2 size-4" stroke={2} />
                   </Link>
                 </Button>
               </div>

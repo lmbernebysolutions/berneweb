@@ -59,14 +59,18 @@ export function SectionHeading({
             {overline}
           </div>
         )}
-        {/* TechCorners via CSS pseudo-elements für perfekt symmetrische Positionierung */}
+        {/* TechCorners: Beide inline mit margin für gleichen Abstand */}
         <div className={cn(align === "center" && "text-center")}>
           <Tag
             className={cn(
-              "heading-with-corners relative inline-block max-w-full font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight text-balance leading-[1.1]",
+              "relative inline font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight text-balance leading-[1.1] max-w-full",
               light ? "text-brand-navy-foreground" : "text-foreground"
             )}
           >
+            <span
+              className="inline-block h-3 w-3 sm:h-4 sm:w-4 border-t-2 border-l-2 border-brand-cyan/40 transition-colors mr-1 sm:mr-1.5 -mt-0.5 sm:-mt-1 align-top tech-corner-tl tech-corner-animate"
+              aria-hidden="true"
+            />
             {title}
             {titleLine2 != null && titleLine2 !== "" && (
               <>
@@ -74,6 +78,10 @@ export function SectionHeading({
                 {titleLine2}
               </>
             )}
+            <span
+              className="inline-block h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-r-2 border-brand-cyan/40 transition-colors ml-1 sm:ml-1.5 -mb-0.5 sm:-mb-1 align-bottom tech-corner-br tech-corner-animate"
+              aria-hidden="true"
+            />
           </Tag>
         </div>
         {subtitle && (
