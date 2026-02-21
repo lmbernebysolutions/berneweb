@@ -90,10 +90,10 @@ export function Hero({
 
       {/* 2. THE CONTENT FRAME – unter dem Berg (z-[1]), damit die Silhouette sichtbar bleibt */}
       <div className="relative z-[1]">
-        {/* Headline: Mobile und Desktop – overflow-visible damit letzter Buchstabe auf Mobile nie abgeschnitten wird */}
+        {/* Headline: overflow-hidden für sauberen Zeilenumbruch; Accent auf Mobile umbruchfähig damit nichts abgeschnitten wird */}
         <div className="container mx-auto px-4 sm:px-5 md:px-6 mb-4 sm:mb-6 md:mb-8 min-w-0 pr-12 sm:pr-14 md:pr-16">
-          <div className="hero-line-reveal min-w-0 overflow-visible">
-            <h1 className="font-display text-[2.5rem] sm:text-5xl md:text-8xl lg:text-[7rem] xl:text-[8rem] 2xl:text-[9rem] font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0 overflow-visible">
+          <div className="hero-line-reveal overflow-hidden min-w-0">
+            <h1 className="font-display text-[2.5rem] sm:text-5xl md:text-8xl lg:text-[7rem] xl:text-[8rem] 2xl:text-[9rem] font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0">
               {headlineParts}
             </h1>
           </div>
