@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
-import { streamText } from "ai";
+import {
+  streamText,
+  convertToModelMessages,
+  createUIMessageStreamResponse,
+} from "ai";
 import { openai } from "@ai-sdk/openai";
 import { google } from "@ai-sdk/google";
 import {
@@ -48,7 +52,7 @@ export async function POST(request: NextRequest) {
 
   let body: {
     mode?: "faq" | "match";
-    messages?: { role: string; content: string }[];
+    messages?: Array<{ role: string; content?: string; parts?: unknown[] }>;
     wizardState?: { stepIndex: number; answers: Record<string, string> };
     idempotencyKey?: string;
     choice?: string;
@@ -71,15 +75,21 @@ export async function POST(request: NextRequest) {
   }
 
   const messages = body.messages ?? [];
-  const userMessages = messages.filter((m) => m.role === "user").map((m) => m.content?.trim() ?? "");
   const lastUser = [...messages].reverse().find((m) => m.role === "user");
-  const userText = (lastUser?.content ?? "").slice(0, MAX_INPUT_CHARS).trim();
+  const userTextRaw =
+    lastUser?.content ??
+    (lastUser?.parts as { type: string; text?: string }[] | undefined)?.find((p) => p.type === "text")?.text ??
+    "";
+  const userText = String(userTextRaw).slice(0, MAX_INPUT_CHARS).trim();
   if (userText.length < MIN_INPUT_CHARS) {
     return NextResponse.json(
       { error: "Bitte mindestens 2 Zeichen eingeben." },
       { status: 400 }
     );
   }
+  const userMessages = messages
+    .filter((m) => m.role === "user")
+    .map((m) => (m.content ?? (m.parts as { text?: string }[])?.[0]?.text ?? "").trim());
   const lastThree = userMessages.slice(-3);
   const allSame = lastThree.length >= 2 && lastThree.every((t) => t === lastThree[0]);
   if (allSame) {
@@ -95,20 +105,28 @@ export async function POST(request: NextRequest) {
   const openAiKey = process.env.OPENAI_API_KEY;
   const hasLLM = Boolean(geminiKey || openAiKey);
 
+  const fallbackAnswer =
+    faqMatch?.answer ??
+    "Dazu habe ich leider keine passende Antwort in unserer Wissensbasis. Stellen Sie gern eine andere Frage oder schauen Sie in unseren Ratgeber-Artikeln.";
+
   if (!hasLLM) {
-    if (faqMatch) {
-      return NextResponse.json({ answer: faqMatch.answer, question: faqMatch.question });
-    }
-    return NextResponse.json({
-      answer:
-        "Dazu habe ich leider keine passende Antwort in unserer Wissensbasis. Stellen Sie gern eine andere Frage oder schauen Sie in unseren Ratgeber-Artikeln.",
+    const id = crypto.randomUUID();
+    const stream = new ReadableStream({
+      start(controller) {
+        controller.enqueue({ type: "text-start" as const, id });
+        controller.enqueue({ type: "text-delta" as const, id, delta: fallbackAnswer });
+        controller.enqueue({ type: "text-end" as const, id });
+        controller.enqueue({ type: "finish" as const });
+        controller.close();
+      },
     });
+    return createUIMessageStreamResponse({ stream });
   }
 
   const faqEntries = getFaqEntries();
   const ratgeber = getRatgeberLinks();
   const contextParts = [
-    "Antworte ausschließlich auf Basis der folgenden Wissensbasis. Erfinde nichts.",
+    "Antworte ausschließlich auf Basis der folgenden Wissensbasis. Erfinde nichts. Erfinde keine Fakten.",
     "--- FAQ ---",
     ...faqEntries.map((e) => `F: ${e.question}\nA: ${e.answer}`),
     "--- Ratgeber (nur als Weiterlesen-Link nennen) ---",
@@ -123,15 +141,18 @@ export async function POST(request: NextRequest) {
     : openai("gpt-4o-mini");
 
   try {
+    const modelMessages = await convertToModelMessages(
+      messages as import("ai").UIMessage[]
+    );
     const result = streamText({
       model,
       system: systemPrompt,
-      prompt: userText,
+      messages: modelMessages,
       maxOutputTokens: MAX_OUTPUT_TOKENS,
       abortSignal: controller.signal,
     });
     clearTimeout(timeoutId);
-    return result.toTextStreamResponse();
+    return result.toUIMessageStreamResponse();
   } catch (err) {
     clearTimeout(timeoutId);
     if (err instanceof Error && err.name === "AbortError") {

@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
 import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { TechCorners } from "@/components/ui/tech-corners";
@@ -14,10 +16,17 @@ import {
   getInitialWizardState,
   type WizardChatOutput,
 } from "@/lib/chat/wizard-chat";
-import { matchFaqQuery } from "@/lib/chat/knowledge";
 import { MAX_INPUT_CHARS } from "@/lib/chat/constants";
 import type { WizardVariant } from "@/lib/wizard-config";
 import { IconArrowRight } from "@tabler/icons-react";
+
+function getMessageText(msg: { parts?: { type: string; text?: string }[] }): string {
+  if (!msg.parts?.length) return "";
+  return msg.parts
+    .filter((p): p is { type: "text"; text: string } => p.type === "text" && "text" in p)
+    .map((p) => p.text)
+    .join("");
+}
 
 export interface FaqSuggestion {
   question: string;
@@ -35,12 +44,6 @@ interface ChatSectionProps {
 
 type ChatMode = "faq" | "match";
 
-interface FaqMessage {
-  role: "user" | "assistant";
-  content: string;
-  sources?: { title: string; slug: string }[];
-}
-
 export function ChatSection({
   sectionNumber,
   overline,
@@ -52,9 +55,22 @@ export function ChatSection({
   const [mounted, setMounted] = useState(false);
   const { hasConsent, openPreferences } = useChatConsent();
   const [mode, setMode] = useState<ChatMode>("faq");
-  const [faqMessages, setFaqMessages] = useState<FaqMessage[]>([]);
   const [faqInput, setFaqInput] = useState("");
-  const [faqLoading, setFaqLoading] = useState(false);
+
+  const faqTransport = useMemo(
+    () =>
+      new DefaultChatTransport({
+        api: "/api/chat",
+        body: { mode: "faq" },
+      }),
+    []
+  );
+  const {
+    messages: faqMessages,
+    sendMessage,
+    status: faqStatus,
+  } = useChat({ transport: faqTransport });
+  const faqLoading = faqStatus === "submitted" || faqStatus === "streaming";
 
   const [matchState, setMatchState] = useState<WizardChatOutput>(() =>
     getInitialWizardState(wizardVariant)
@@ -67,40 +83,15 @@ export function ChatSection({
     const text = faqInput.slice(0, MAX_INPUT_CHARS).trim();
     if (!text || text.length < 2) return;
     setFaqInput("");
-    setFaqMessages((prev) => [...prev, { role: "user", content: text }]);
-    setFaqLoading(true);
-    const match = matchFaqQuery(text);
-    setFaqLoading(false);
-    if (match) {
-      setFaqMessages((prev) => [...prev, { role: "assistant", content: match.answer }]);
-    } else {
-      setFaqMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content:
-            "Dazu habe ich leider keine passende Antwort in unserer Wissensbasis. Stellen Sie gern eine andere Frage oder schauen Sie in unseren Ratgeber-Artikeln.",
-        },
-      ]);
-    }
-  }, [faqInput]);
+    sendMessage({ text });
+  }, [faqInput, sendMessage]);
 
-  const handleFaqSuggestionClick = useCallback((question: string) => {
-    setFaqMessages((prev) => [...prev, { role: "user", content: question }]);
-    const match = matchFaqQuery(question);
-    if (match) {
-      setFaqMessages((prev) => [...prev, { role: "assistant", content: match.answer }]);
-    } else {
-      setFaqMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content:
-            "Dazu habe ich leider keine passende Antwort in unserer Wissensbasis.",
-        },
-      ]);
-    }
-  }, []);
+  const handleFaqSuggestionClick = useCallback(
+    (question: string) => {
+      sendMessage({ text: question });
+    },
+    [sendMessage]
+  );
 
   const handleMatchChoice = useCallback(
     (choice: string) => {
@@ -210,12 +201,11 @@ export function ChatSection({
                 </div>
               )}
               <div className="mb-6 flex flex-col gap-3">
-                {faqMessages.map((msg, i) => (
+                {faqMessages.map((msg) => (
                   <ChatMessage
-                    key={i}
-                    role={msg.role}
-                    content={msg.content}
-                    sources={msg.sources}
+                    key={msg.id}
+                    role={msg.role as "user" | "assistant"}
+                    content={getMessageText(msg)}
                   />
                 ))}
               </div>
