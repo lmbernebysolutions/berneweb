@@ -154,11 +154,6 @@ export function ChatSection({
                 className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden"
               >
                 {suggestedFaq.length > 0 && (faqMessages.length === 0 || showSuggestedFaq) && (
-                  <p className="mb-3 text-xs font-bold uppercase tracking-wider text-white/60">
-                    Vorgeschlagene Fragen
-                  </p>
-                )}
-                {suggestedFaq.length > 0 && (faqMessages.length === 0 || showSuggestedFaq) && (
                   <div className="mb-6 space-y-3">
                     <p className="mb-3 text-xs font-bold uppercase tracking-wider text-white/60">
                       Vorgeschlagene Fragen
