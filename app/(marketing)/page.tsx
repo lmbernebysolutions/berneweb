@@ -21,9 +21,15 @@ import {
   IconCheck,
   IconX,
   IconPhone,
-  IconSearch,
   IconCurrencyEuro,
   IconStarFilled,
+  IconBrandGoogle,
+  IconBrandNextjs,
+  IconBrandReact,
+  IconShoppingBag,
+  IconBrandWindows,
+  IconRobot,
+  IconSearch,
 } from "@tabler/icons-react";
 import {
   HOME_HERO,
@@ -37,6 +43,7 @@ import {
   PAGE_META,
   OHNE_UNS_ROWS,
   MIT_UNS_ROWS,
+  SOCIAL_LINKS,
 } from "@/lib/constants";
 import { generateFaqSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
@@ -196,6 +203,7 @@ export default function Home() {
           number="03"
           overline="Handwerk & Digital"
           title="Ohne uns vs. Mit uns"
+          subtitle="Ein direkter Vergleich: was sich ändert, wenn wir Ihren digitalen Auftritt übernehmen."
           align="left"
           light
         />
@@ -286,6 +294,7 @@ export default function Home() {
           number="04"
           overline="Prozess"
           title="In 5 Schritten zum Ziel"
+          subtitle="Von der ersten Anfrage bis zur fertigen Website – strukturiert, verbindlich und ohne Überraschungen."
           align="left"
           light
         />
@@ -298,6 +307,7 @@ export default function Home() {
           number="05"
           overline="Success Stories"
           title="Das sagt das Erzgebirge"
+          subtitle="Echte Rückmeldungen von Betrieben aus der Region, die wir begleiten durften."
           align="left"
           light
         />
@@ -307,6 +317,21 @@ export default function Home() {
             { name: "Sylvia Schirmer", role: "Arztpraxis", text: "Hervorragende Arbeit: moderne, intuitive und patientenfreundliche Website. Unkomplizierte Zusammenarbeit, Änderungen umgehend. Wärmstens weiterempfehlen!", result: "Website-Relaunch" },
           ]}
         />
+        <div className="mt-6 flex justify-center">
+          <a
+            href={SOCIAL_LINKS[3].href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={SOCIAL_LINKS[3].ariaLabel}
+            className="group relative overflow-hidden border border-white/10 bg-white/[0.03] px-4 py-2.5 flex items-center gap-2.5 transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 hover:shadow-[0_0_10px_rgba(3,249,249,0.1)] cursor-pointer"
+          >
+            <TechCorners pattern="diagonal" variant="cyan" size="sm" />
+            <IconBrandGoogle className="size-4 text-brand-cyan shrink-0 relative z-10" stroke={1.5} />
+            <span className="text-xs font-semibold uppercase tracking-widest text-white relative z-10">
+              Bewertungen ansehen
+            </span>
+          </a>
+        </div>
       </Section>
 
       {/* 06: Partner / Technologien */}
@@ -320,19 +345,33 @@ export default function Home() {
           light
         />
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:gap-8">
-          {TECH_STACK.map((item, i) => (
-            <div
-              key={item}
-              data-animate="fade-up"
-              data-animate-delay={String(i * 60)}
-              className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-4 sm:p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
-            >
-              <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
-              <p className="relative z-10 text-center text-sm font-bold uppercase tracking-wider text-white">
-                {item}
-              </p>
-            </div>
-          ))}
+          {TECH_STACK.map((item, i) => {
+            const Icon = {
+              "Next.js": IconBrandNextjs,
+              "React": IconBrandReact,
+              "Shopware": IconShoppingBag,
+              "Microsoft 365": IconBrandWindows,
+              "SEO & GEO": IconSearch,
+              "KI-Integration": IconRobot,
+            }[item] || IconDeviceDesktop;
+
+            return (
+              <div
+                key={item}
+                data-animate="fade-up"
+                data-animate-delay={String(i * 60)}
+                className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-4 sm:p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
+              >
+                <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
+                <div className="relative z-10 flex items-center justify-center gap-3">
+                  <Icon className="size-5 text-brand-cyan shrink-0" stroke={1.5} />
+                  <p className="text-sm font-bold uppercase tracking-wider text-white whitespace-nowrap">
+                    {item}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </Section>
 
@@ -366,8 +405,9 @@ export default function Home() {
       <ChatSection
         sectionNumber="08"
         overline="Fragen"
-        title="FAQ"
-        subtitle="Stellen Sie eine Frage – wir antworten auf Basis unserer Wissensbasis."
+        title="Unser"
+        titleLine2="Experte"
+        subtitle="Unser KI-Chatbot antwortet sofort – stellen Sie Ihre Frage auf Basis unserer Wissensbasis."
         suggestedFaq={HOME_MINI_FAQ}
         sectionBg="transparent"
       />

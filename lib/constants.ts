@@ -6,6 +6,32 @@
 export const BEAM_CONTAINER_CLASS =
   "mx-auto w-full max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8";
 
+// =============================================================================
+// SOCIAL MEDIA LINKS – URLs hier zentral pflegen
+// =============================================================================
+export const SOCIAL_LINKS = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/bernebysolutions",
+    ariaLabel: "Berneby Solutions auf Instagram",
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/bernebysolutions",
+    ariaLabel: "Berneby Solutions auf Facebook",
+  },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/4915511960927",
+    ariaLabel: "Berneby Solutions per WhatsApp Business kontaktieren",
+  },
+  {
+    label: "Google",
+    href: "https://g.page/r/bernebysolutions",
+    ariaLabel: "Berneby Solutions Google Unternehmensprofil",
+  },
+] as const;
+
 export const COMPANY = {
   name: "Berneby Solutions",
   nameShort: "Berneby",

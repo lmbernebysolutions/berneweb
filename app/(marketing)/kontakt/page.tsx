@@ -10,13 +10,17 @@ import {
   IconMapPin,
   IconClock,
   IconCheck,
+  IconBrandInstagram,
+  IconBrandFacebook,
+  IconBrandWhatsapp,
+  IconBrandGoogle,
 } from "@tabler/icons-react";
 
 const FaqAccordion = dynamic(
   () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
   { ssr: true }
 );
-import { COMPANY, PAGE_META, EINZUGSGEBIET_ORTE } from "@/lib/constants";
+import { COMPANY, PAGE_META, EINZUGSGEBIET_ORTE, SOCIAL_LINKS } from "@/lib/constants";
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { cn } from "@/lib/utils";
 import { SectionCard } from "@/components/ui/section-card";
@@ -29,6 +33,13 @@ export const metadata: Metadata = {
   description: PAGE_META.kontakt.description,
   alternates: { canonical: "/kontakt" },
 };
+
+const KONTAKT_SOCIAL_ICONS = {
+  Instagram: IconBrandInstagram,
+  Facebook: IconBrandFacebook,
+  WhatsApp: IconBrandWhatsapp,
+  Google: IconBrandGoogle,
+} as const;
 
 const CONTACT_INFO = [
   {
@@ -240,20 +251,54 @@ export default function KontaktPage() {
             </ul>
           </SectionCard>
 
-          {/* Erreichbarkeit */}
+          {/* Erreichbarkeit + Social Media */}
           <SectionCard
             variant="default"
             data-animate="fade-up"
             data-animate-delay="200"
             className="p-5"
           >
-            <div className="flex items-center gap-2.5 text-sm font-semibold">
-              <IconClock className="size-4 text-brand-cyan" stroke={2} />
-              <span className="uppercase tracking-wide">Erreichbarkeit</span>
-            </div>
-            <div className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-              <p>Mo – Fr: 9:00 – 18:00 Uhr</p>
-              <p>Sa – So: Nach Vereinbarung</p>
+            {/* Mobile: nebeneinander; sm+: übereinander */}
+            <div className="flex flex-row gap-4 sm:flex-col sm:gap-0">
+              {/* Öffnungszeiten */}
+              <div className="flex-1 min-w-0 sm:flex-none flex flex-col items-center sm:items-start text-center sm:text-left">
+                <div className="flex items-center gap-2.5 text-sm font-semibold">
+                  <span className="uppercase tracking-wide">Erreichbarkeit</span>
+                </div>
+                <div className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+                  <p>Mo – Fr: 9:00 – 18:00 Uhr</p>
+                  <p>Sa – So: Nach Vereinbarung</p>
+                </div>
+              </div>
+
+              {/* Trennlinie: vertikal auf Mobile, horizontal auf sm+ */}
+              <div
+                className="self-stretch w-px bg-white/10 sm:w-auto sm:h-px sm:self-auto sm:my-4"
+                aria-hidden="true"
+              />
+
+              {/* Social Media Grid 2×2 */}
+              <div className="grid grid-cols-2 gap-2 shrink-0 sm:shrink sm:w-full">
+                {SOCIAL_LINKS.map((link) => {
+                  const Icon = KONTAKT_SOCIAL_ICONS[link.label as keyof typeof KONTAKT_SOCIAL_ICONS];
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={link.ariaLabel}
+                      className="group relative overflow-hidden border border-white/10 bg-white/[0.03] p-2 sm:p-3 flex flex-col items-center justify-center gap-1 sm:gap-1.5 transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 hover:shadow-[0_0_12px_rgba(3,249,249,0.1)] cursor-pointer"
+                    >
+                      <TechCorners pattern="diagonal" variant="cyan" size="sm" />
+                      <Icon className="size-5 sm:size-7 text-brand-cyan relative z-10" stroke={1.5} />
+                      <span className="text-[0.6rem] font-bold uppercase tracking-widest text-brand-navy-muted relative z-10 text-center leading-tight">
+                        {link.label}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </SectionCard>
         </div>
@@ -263,9 +308,10 @@ export default function KontaktPage() {
       <Section bg="subtle">
         <SectionHeading
           number="02"
-          overline="FAQ"
+          overline="Fragen"
           title="HÄUFIGE"
           titleLine2="FRAGEN"
+          subtitle="Alles, was Sie vor dem ersten Gespräch wissen müssen."
           align="left"
           light
         />

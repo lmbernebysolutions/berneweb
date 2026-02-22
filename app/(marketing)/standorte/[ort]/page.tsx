@@ -11,14 +11,14 @@ import { CtaSection } from "@/components/sections/CtaSection";
 import { Button } from "@/components/ui/button";
 import { SectionCard } from "@/components/ui/section-card";
 import { TechCorners } from "@/components/ui/tech-corners";
-import { IconMapPin, IconCheck, IconCurrencyEuro, IconStar } from "@tabler/icons-react";
+import { IconMapPin, IconCheck, IconCurrencyEuro, IconStar, IconBrandWhatsapp, IconBrandGoogle } from "@tabler/icons-react";
 import {
   getLocationBySlug,
   getAllLocationSlugs,
   getNearbyLocationSlugs,
 } from "@/lib/data/locations";
 import { generateLocalBusinessSchema } from "@/lib/seo/schema";
-import { COMPANY, HANDWERK_STATS } from "@/lib/constants";
+import { COMPANY, HANDWERK_STATS, SOCIAL_LINKS } from "@/lib/constants";
 
 const BASE_URL = "https://berneby.de";
 
@@ -316,6 +316,33 @@ export default async function StandortPage({
                   {COMPANY.email}
                 </a>
               </p>
+            </div>
+
+            {/* Direkt-Kanäle: WhatsApp + Google (lokal relevant) */}
+            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
+              <span className="text-xs font-mono uppercase tracking-widest text-white/40 shrink-0">
+                Oder direkt:
+              </span>
+              <div className="flex gap-2">
+                {[SOCIAL_LINKS[2], SOCIAL_LINKS[3]].map((link) => {
+                  const Icon = link.label === "WhatsApp" ? IconBrandWhatsapp : IconBrandGoogle;
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={link.ariaLabel}
+                      className="group relative overflow-hidden border border-white/10 bg-white/[0.03] px-3 py-2 flex items-center gap-2 transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 cursor-pointer"
+                    >
+                      <Icon className="size-4 text-brand-cyan relative z-10 shrink-0" stroke={1.5} />
+                      <span className="text-xs font-semibold text-brand-navy-muted relative z-10">
+                        {link.label}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
           <SectionCard variant="default" className="flex-1 p-6 md:p-8">

@@ -19,11 +19,12 @@ function AnimatedValue({ value }: { value: string }) {
   useEffect(() => {
     if (!ref.current || hasAnimated.current) return;
 
-    const numericMatch = value.match(/^(\d+)/);
+    const numericMatch = value.match(/^(\d+(?:\.\d+)?)/);
     if (!numericMatch) return;
 
-    const target = parseInt(numericMatch[1], 10);
+    const target = parseFloat(numericMatch[1]);
     const suffix = value.slice(numericMatch[1].length);
+    const isFloat = numericMatch[1].includes(".");
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -36,8 +37,9 @@ function AnimatedValue({ value }: { value: string }) {
             const elapsed = now - start;
             const progress = Math.min(elapsed / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
-            const current = Math.round(eased * target);
-            setDisplay(`${current}${suffix}`);
+            const current = eased * target;
+            const formatted = isFloat ? current.toFixed(1) : Math.round(current);
+            setDisplay(`${formatted}${suffix}`);
             if (progress < 1) requestAnimationFrame(tick);
           }
 

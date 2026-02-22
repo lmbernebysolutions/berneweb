@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { IconArrowUp } from "@tabler/icons-react";
 
 export function BackToTop() {
   const [visible, setVisible] = useState(false);
@@ -20,13 +19,19 @@ export function BackToTop() {
   return (
     <a
       href="#main-content"
-      className="fixed bottom-8 right-6 z-50 flex size-12 items-center justify-center rounded-full text-brand-cyan no-underline opacity-90 transition hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-brand-cyan/50"
-      style={{
-        boxShadow: "0 0 20px rgba(3, 249, 249, 0.35)",
-      }}
+      className="fixed bottom-8 right-6 z-50 flex items-center justify-center text-brand-cyan no-underline opacity-90 transition-opacity hover:opacity-100 focus:opacity-100 focus:outline-none"
       aria-label="Nach oben scrollen"
     >
-      <IconArrowUp className="size-6" stroke={2.5} aria-hidden />
+      <span
+        className="font-sans text-5xl font-semibold leading-none select-none"
+        style={{
+          filter:
+            "drop-shadow(0 0 8px rgba(3,249,249,0.9)) drop-shadow(0 0 20px rgba(3,249,249,0.5))",
+        }}
+        aria-hidden
+      >
+        ^
+      </span>
     </a>
   );
 }

@@ -5,12 +5,14 @@ const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === "tr
 
 const cspHeader = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  // unsafe-eval: Next.js dev mode + einige Build-Tools benötigen dies; in Production prüfen ob entfernbar
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https:",
   "font-src 'self'",
   "frame-src 'self' https://www.openstreetmap.org",
-  "connect-src 'self'",
+  // GA4 Measurement + Notion API (server-side, aber CORS-Header für Preflight)
+  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://api.notion.com",
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'self'",

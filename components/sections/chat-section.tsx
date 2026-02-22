@@ -31,6 +31,8 @@ interface ChatSectionProps {
   sectionNumber: string;
   overline: string;
   title: string;
+  /** Zweite Titelzeile – bricht auf Mobile um, bleibt Desktop in einer Zeile */
+  titleLine2?: string;
   subtitle?: string;
   suggestedFaq: readonly FaqSuggestion[];
   /** Hintergrund der Section für Wechsel mit vorheriger Sektion (transparent | subtle) */
@@ -41,6 +43,7 @@ export function ChatSection({
   sectionNumber,
   overline,
   title,
+  titleLine2,
   subtitle,
   suggestedFaq,
   sectionBg = "subtle",
@@ -108,6 +111,7 @@ export function ChatSection({
           number={sectionNumber}
           overline={overline}
           title={title}
+          titleLine2={titleLine2}
           subtitle={subtitle}
           align="left"
           light
@@ -133,6 +137,7 @@ export function ChatSection({
         number={sectionNumber}
         overline={overline}
         title={title}
+        titleLine2={titleLine2}
         subtitle={subtitle}
         align="left"
         light

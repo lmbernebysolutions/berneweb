@@ -1,9 +1,19 @@
 import Link from "next/link";
 import { TextLogo } from "@/components/brand/TextLogo";
 import { TechCorners } from "@/components/ui/tech-corners";
-import { COMPANY, FOOTER_NAV } from "@/lib/constants";
-import { IconPhone, IconMail, IconMapPin, IconArrowUpRight, IconArrowRight } from "@tabler/icons-react";
+import { COMPANY, FOOTER_NAV, SOCIAL_LINKS } from "@/lib/constants";
+import {
+  IconPhone, IconMail, IconMapPin, IconArrowUpRight, IconArrowRight,
+  IconBrandInstagram, IconBrandFacebook, IconBrandWhatsapp, IconBrandGoogle,
+} from "@tabler/icons-react";
 import Image from "next/image";
+
+const SOCIAL_ICONS = {
+  Instagram: IconBrandInstagram,
+  Facebook: IconBrandFacebook,
+  WhatsApp: IconBrandWhatsapp,
+  Google: IconBrandGoogle,
+} as const;
 
 export function Footer() {
   return (
@@ -55,8 +65,55 @@ export function Footer() {
               Ihr Digital-Partner im Erzgebirge. Webseiten, KI-Telefon,
               Online-Sichtbarkeit – alles aus einer Hand.
             </p>
-            {/* Contact info inline */}
-            <div className="mt-6 space-y-2.5">
+
+            {/* Mobile: Kontakt links + Social-Grid 2×2 rechts (hidden ab md) */}
+            <div className="mt-6 flex flex-row items-start gap-3 md:hidden">
+              <div className="flex-1 min-w-0 space-y-2.5">
+                <a
+                  href={`tel:${COMPANY.phone}`}
+                  className="flex items-center gap-2.5 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
+                >
+                  <IconPhone className="size-4 shrink-0" stroke={1.5} />
+                  {COMPANY.phoneDisplay}
+                </a>
+                <a
+                  href={`mailto:${COMPANY.email}`}
+                  className="flex items-center gap-2.5 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
+                >
+                  <IconMail className="size-4 shrink-0" stroke={1.5} />
+                  {COMPANY.email}
+                </a>
+                <span className="flex items-center gap-2.5 text-sm text-brand-navy-muted">
+                  <IconMapPin className="size-4 shrink-0" stroke={1.5} />
+                  {COMPANY.location}, {COMPANY.region}
+                </span>
+              </div>
+              {/* Social 2×2 */}
+              <div className="grid grid-cols-2 gap-1.5 shrink-0">
+                {SOCIAL_LINKS.map((link) => {
+                  const Icon = SOCIAL_ICONS[link.label as keyof typeof SOCIAL_ICONS];
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={link.ariaLabel}
+                      className="group tap-target relative overflow-hidden border border-white/10 bg-white/[0.03] p-2 flex flex-col items-center justify-center gap-1 transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 cursor-pointer"
+                    >
+                      <TechCorners pattern="diagonal" variant="cyan" size="sm" />
+                      <Icon className="size-4 text-brand-cyan relative z-10" stroke={1.5} />
+                      <span className="text-[0.48rem] font-bold uppercase tracking-widest text-brand-navy-muted relative z-10 text-center leading-tight">
+                        {link.label}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Desktop: nur Kontaktinfo, Social Icons sind in der Bottom Bar */}
+            <div className="hidden md:block mt-6 space-y-2.5">
               <a
                 href={`tel:${COMPANY.phone}`}
                 className="flex items-center gap-2.5 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
@@ -90,7 +147,7 @@ export function Footer() {
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="group flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
+                      className="group link-draw flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
                     >
                       {item.label}
                       <IconArrowUpRight className="size-3 opacity-0 transition-all group-hover:opacity-100" stroke={2} />
@@ -110,7 +167,7 @@ export function Footer() {
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="group flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
+                      className="group link-draw flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
                     >
                       {item.label}
                       <IconArrowUpRight className="size-3 opacity-0 transition-all group-hover:opacity-100" stroke={2} />
@@ -134,7 +191,7 @@ export function Footer() {
               </p>
               <Link
                 href="/kontakt"
-                className="relative z-10 mt-4 inline-flex items-center gap-1.5 border border-brand-cyan/30 bg-brand-cyan/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-brand-cyan transition-all hover:border-brand-cyan hover:bg-brand-cyan/20 hover:shadow-[0_0_15px_rgba(3,249,249,0.15)]"
+                className="relative z-10 mt-4 inline-flex items-center gap-1.5 border border-brand-cyan/30 bg-brand-cyan/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-brand-cyan transition-all hover:border-brand-cyan hover:bg-brand-cyan/20 hover:shadow-[0_0_15px_rgba(3,249,249,0.15)] tap-target"
               >
                 Kontakt
                 <IconArrowRight className="size-3.5" stroke={2} />
@@ -151,22 +208,46 @@ export function Footer() {
           </p>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-6 sm:flex-row">
-          <p className="text-xs text-brand-navy-muted">
-            &copy; {new Date().getFullYear()} {COMPANY.legal}
-          </p>
-          <nav className="flex gap-6" aria-label="Rechtliches">
-            {FOOTER_NAV.legal.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="text-xs text-brand-navy-muted transition-colors hover:text-brand-cyan"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+        {/* Bottom Bar: Mobile = Copyright + Legal | Desktop = 3-Spalten-Grid mit Social zentriert */}
+        <div className="mt-6 border-t border-white/8 pt-6">
+          {/* Mobile: flex-col, kein Social (ist oben in Brand-Spalte) */}
+          <div className="flex flex-col items-center gap-3 md:grid md:grid-cols-3 md:items-center">
+            <p className="text-xs text-brand-navy-muted">
+              &copy; {new Date().getFullYear()} {COMPANY.legal}
+            </p>
+
+            {/* Social Icons – nur auf Desktop sichtbar, pagewide zentriert */}
+            <div className="hidden md:flex justify-center gap-2">
+              {SOCIAL_LINKS.map((link) => {
+                const Icon = SOCIAL_ICONS[link.label as keyof typeof SOCIAL_ICONS];
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.ariaLabel}
+                    className="group tap-target relative overflow-hidden border border-white/10 bg-white/[0.03] p-2 flex items-center justify-center transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 hover:shadow-[0_0_8px_rgba(3,249,249,0.12)] cursor-pointer"
+                  >
+                    <TechCorners pattern="diagonal" variant="cyan" size="sm" />
+                    <Icon className="size-4 text-brand-cyan relative z-10" stroke={1.5} />
+                  </a>
+                );
+              })}
+            </div>
+
+            <nav className="flex gap-6 md:justify-end" aria-label="Rechtliches">
+              {FOOTER_NAV.legal.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-xs md:text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan link-draw"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
         </div>
 
       </div>

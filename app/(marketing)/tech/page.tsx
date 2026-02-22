@@ -14,8 +14,15 @@ import {
     IconChartBar,
     IconShield,
     IconArrowRight,
+    IconBrandGoogle,
+    IconBrandNextjs,
+    IconBrandReact,
+    IconShoppingBag,
+    IconBrandWindows,
+    IconRobot,
+    IconSearch,
 } from "@tabler/icons-react";
-import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK, TECH_STATS, TECH_TESTIMONIALS, PAGE_META } from "@/lib/constants";
+import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK, TECH_STATS, TECH_TESTIMONIALS, PAGE_META, SOCIAL_LINKS } from "@/lib/constants";
 import dynamic from "next/dynamic";
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TrustBar } from "@/components/sections/TrustBar";
@@ -93,6 +100,7 @@ export default function TechPage() {
                     title="DIGITALER"
                     titleLine2="WERKZEUG-"
                     titleLine3="KASTEN"
+                    subtitle="Von der Webseite über Shop-Systeme bis zum digitalen Hausmeister – unser Katalog für Ihren Erfolg."
                     align="left"
                     light
                 />
@@ -146,8 +154,9 @@ export default function TechPage() {
             <ChatSection
                 sectionNumber="04"
                 overline="Fragen"
-                title="FAQ"
-                subtitle="Stellen Sie eine Frage – wir antworten auf Basis unserer Wissensbasis."
+                title="Unser"
+                titleLine2="Experte"
+                subtitle="Unser KI-Chatbot antwortet sofort – stellen Sie Ihre Frage auf Basis unserer Wissensbasis."
                 suggestedFaq={FAQ_ITEMS}
                 sectionBg="transparent"
             />
@@ -158,6 +167,7 @@ export default function TechPage() {
                     number="05"
                     overline="Flatrate"
                     title="Der Digitale Hausmeister"
+                    subtitle="10 Stunden Tech-Support für 850 € – flexibel einsetzbar für Web, Office und Notfälle."
                     align="left"
                     light
                 />
@@ -214,10 +224,26 @@ export default function TechPage() {
                     number="06"
                     overline="Stimmen"
                     title="Das sagen unsere Kunden"
+                    subtitle="Echte Erfahrungen von Betrieben, die wir digital unterstützen dürfen."
                     align="left"
                     light
                 />
                 <TestimonialGrid testimonials={[...TECH_TESTIMONIALS]} />
+                <div className="mt-6 flex justify-center">
+                  <a
+                    href={SOCIAL_LINKS[3].href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={SOCIAL_LINKS[3].ariaLabel}
+                    className="group relative overflow-hidden border border-white/10 bg-white/[0.03] px-4 py-2.5 flex items-center gap-2.5 transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 hover:shadow-[0_0_10px_rgba(3,249,249,0.1)] cursor-pointer"
+                  >
+                    <TechCorners pattern="diagonal" variant="cyan" size="sm" />
+                    <IconBrandGoogle className="size-4 text-brand-cyan shrink-0 relative z-10" stroke={1.5} />
+                    <span className="text-xs font-semibold uppercase tracking-widest text-white relative z-10">
+                      Bewertungen ansehen
+                    </span>
+                  </a>
+                </div>
             </Section>
 
             {/* 07: Prozess */}
@@ -238,26 +264,40 @@ export default function TechPage() {
             <Section bg="transparent">
                 <SectionHeading
                     number="08"
-                    overline="Unser digitaler Werkzeugstollen"
+                    overline="Werkzeuge"
                     title="Tech-Stack"
                     subtitle="53% des Website-Traffics kommt über organische Suche. Ohne professionelle SEO verschenken Sie die Hälfte Ihrer Kunden – wir bauen mit Technologien, die Suchmaschinen und Nutzer gleichermaßen überzeugen."
                     align="left"
                     light
                 />
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
-                    {TECH_STACK.map((item, i) => (
-                        <div
-                            key={item}
-                            data-animate="fade-up"
-                            data-animate-delay={String(i * 60)}
-                            className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20"
-                        >
-                            <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
-                            <p className="relative z-10 text-center text-sm font-bold uppercase tracking-wider text-white">
-                                {item}
-                            </p>
-                        </div>
-                    ))}
+                    {TECH_STACK.map((item, i) => {
+                        const Icon = {
+                            "Next.js": IconBrandNextjs,
+                            "React": IconBrandReact,
+                            "Shopware": IconShoppingBag,
+                            "Microsoft 365": IconBrandWindows,
+                            "SEO & GEO": IconSearch,
+                            "KI-Integration": IconRobot,
+                        }[item] || IconDeviceDesktop;
+
+                        return (
+                            <div
+                                key={item}
+                                data-animate="fade-up"
+                                data-animate-delay={String(i * 60)}
+                                className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
+                            >
+                                <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
+                                <div className="relative z-10 flex items-center justify-center gap-3">
+                                    <Icon className="size-5 text-brand-cyan shrink-0" stroke={1.5} />
+                                    <p className="text-sm font-bold uppercase tracking-wider text-white whitespace-nowrap">
+                                        {item}
+                                    </p>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </Section>
 

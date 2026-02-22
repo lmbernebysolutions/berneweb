@@ -18,10 +18,26 @@ export function ContactForm() {
     e.preventDefault();
     setState("sending");
 
-    // Simulate form submission (replace with actual endpoint)
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value.trim(),
+      email: (form.elements.namedItem("email") as HTMLInputElement).value.trim(),
+      phone: (form.elements.namedItem("phone") as HTMLInputElement).value.trim() || undefined,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim(),
+    };
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setState("success");
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setState("success");
+      } else {
+        setState("error");
+      }
     } catch {
       setState("error");
     }
@@ -114,6 +130,31 @@ export function ContactForm() {
           disabled={state === "sending"}
           className="input-focus-glow"
         />
+      </div>
+
+      {/* DSGVO-Pflichtfeld: Einwilligung / Hinweis Art. 13 DSGVO */}
+      <div className="flex items-start gap-3 border border-white/10 bg-white/[0.02] p-4">
+        <input
+          id="privacy"
+          name="privacy"
+          type="checkbox"
+          required
+          disabled={state === "sending"}
+          className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-brand-cyan"
+        />
+        <label htmlFor="privacy" className="text-xs leading-relaxed text-white/60 cursor-pointer">
+          Ich habe die{" "}
+          <a
+            href="/datenschutz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand-cyan underline underline-offset-2 hover:text-brand-cyan/80"
+          >
+            Datenschutzerklärung
+          </a>{" "}
+          gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu.{" "}
+          <span className="text-white/40">(Pflichtfeld)</span>
+        </label>
       </div>
 
       {state === "error" && (

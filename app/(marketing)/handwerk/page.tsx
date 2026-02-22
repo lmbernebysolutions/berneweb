@@ -24,6 +24,7 @@ import {
   IconArrowRight,
   IconCheck,
   IconStarFilled,
+  IconBrandGoogle,
 } from "@tabler/icons-react";
 import {
   CRAFT_PACKAGES,
@@ -34,6 +35,7 @@ import {
   COMPANY,
   HANDWERK_STATS,
   HANDWERK_GARANTIEN,
+  SOCIAL_LINKS,
 } from "@/lib/constants";
 import { generateFaqSchema, generateBreadcrumbSchema, generateHowToSchema } from "@/lib/seo/schema";
 import { HandwerkProblemWithRevealSection } from "@/components/sections/HandwerkProblemWithRevealSection";
@@ -111,6 +113,7 @@ export default function HandwerkPage() {
           number="03"
           overline="Ihr Werkzeugkasten"
           title="Digitales Rüsten"
+          subtitle="Alles, was Ihr Betrieb digital braucht – in einem verständlichen Paket zusammengefasst."
           align="left"
           light
         />
@@ -121,8 +124,9 @@ export default function HandwerkPage() {
       <ChatSection
         sectionNumber="04"
         overline="Fragen"
-        title="FAQ"
-        subtitle="Stellen Sie eine Frage – wir antworten auf Basis unserer Wissensbasis."
+        title="Unser"
+        titleLine2="Experte"
+        subtitle="Unser KI-Chatbot antwortet sofort – stellen Sie Ihre Frage auf Basis unserer Wissensbasis."
         suggestedFaq={FAQ_ITEMS}
         sectionBg="transparent"
       />
@@ -225,11 +229,31 @@ export default function HandwerkPage() {
         <SectionHeading
           number="07"
           overline="Baustellentalk"
-          title="Handwerker vertrauen uns"
+          title="Handwerker"
+          titleLine2="vertrauen"
+          titleLine3="uns"
+          subtitle="Was Betriebe aus dem Erzgebirge über die Zusammenarbeit mit uns sagen."
           align="left"
           light
         />
         <TestimonialGrid testimonials={HANDWERK_TESTIMONIALS} />
+
+        {/* Google-Profil – ein einziger Link, Peak-Trust-Moment */}
+        <div className="mt-6 flex justify-center">
+          <a
+            href={SOCIAL_LINKS[3].href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={SOCIAL_LINKS[3].ariaLabel}
+            className="group relative overflow-hidden border border-white/10 bg-white/[0.03] px-4 py-2.5 flex items-center gap-2.5 transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 hover:shadow-[0_0_10px_rgba(3,249,249,0.1)] cursor-pointer"
+          >
+            <TechCorners pattern="diagonal" variant="cyan" size="sm" />
+            <IconBrandGoogle className="size-4 text-brand-cyan shrink-0 relative z-10" stroke={1.5} />
+            <span className="text-xs font-semibold uppercase tracking-widest text-white relative z-10">
+              Bewertungen ansehen
+            </span>
+          </a>
+        </div>
       </Section>
 
       {/* 08: PRICING */}
@@ -259,6 +283,7 @@ export default function HandwerkPage() {
           number="09"
           overline="Ihr Bauplan"
           title="In 4 Wochen fertig"
+          subtitle="Klarer Ablauf, verbindlicher Zeitplan – von der Anfrage bis zur fertigen Website."
           align="left"
           light
         />

@@ -132,8 +132,8 @@ export function Hero({
         </div>
       </div>
 
-      {/* 2. THE CONTENT FRAME – unter dem Berg (z-[1]), damit die Silhouette sichtbar bleibt */}
-      <div className="relative z-[1] mx-auto max-w-6xl w-full">
+      {/* 2. THE CONTENT FRAME – z-[3] damit Subline vor dem Berg-SVG (z-[2]) liegt; Berg bleibt vollständig sichtbar */}
+      <div className="relative z-[3] mx-auto max-w-6xl w-full">
         {/* 1. THE MASSIVE SHADOW NUMBER – remain inside beams < 1290px, blueprint overlap ab 1290px */}
         <BackdropNumber number="01" className="hero-backdrop-overlap top-[-10%] sm:top-[-15%] lg:top-[-20%] left-2 sm:left-4 md:left-6 lg:left-8 opacity-100" />
 
@@ -164,7 +164,10 @@ export function Hero({
                       asChild
                       variant={cta.variant === "default" || i === 0 ? "default" : "outline-light"}
                       size="lg"
-                      className="text-sm sm:text-base"
+                      className={cn(
+                        "text-sm sm:text-base",
+                        (cta.variant === "default" || i === 0) && "animate-cta-pulse"
+                      )}
                     >
                       <Link href={cta.href}>
                         {cta.label}

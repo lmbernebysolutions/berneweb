@@ -4,12 +4,12 @@ import { Slot } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap text-sm font-bold uppercase tracking-widest transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap text-sm font-bold uppercase tracking-widest transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 tap-target",
   {
     variants: {
       variant: {
         default:
-          "bg-brand-cyan text-brand-navy hover:bg-brand-warm hover:text-brand-navy clip-corner shadow-[4px_4px_0_0_rgba(0,0,0,0.3)] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_0_rgba(255,181,71,0.4)] active:translate-y-[0px] active:shadow-none",
+          "bg-brand-cyan text-brand-navy hover:bg-brand-warm hover:text-brand-navy clip-corner shadow-[4px_4px_0_0_rgba(0,0,0,0.3)] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_0_rgba(255,181,71,0.4)] active:translate-y-[2px] active:shadow-none",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 clip-corner",
         outline:

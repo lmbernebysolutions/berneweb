@@ -252,7 +252,7 @@ export default async function BranchePage({
       <Section bg="transparent">
         <SectionHeading
           number="06"
-          overline="FAQ"
+          overline="Fragen"
           title="HÄUFIGE"
           titleLine2="FRAGEN"
           subtitle={`Antworten für ${branche.name}`}

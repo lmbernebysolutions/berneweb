@@ -11,7 +11,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { NAV_ITEMS, BEAM_CONTAINER_CLASS } from "@/lib/constants";
+import { NAV_ITEMS, BEAM_CONTAINER_CLASS, SOCIAL_LINKS } from "@/lib/constants";
+import { IconBrandInstagram, IconBrandFacebook, IconBrandWhatsapp, IconBrandGoogle } from "@tabler/icons-react";
+
+const HEADER_SOCIAL_ICONS = {
+  Instagram: IconBrandInstagram,
+  Facebook: IconBrandFacebook,
+  WhatsApp: IconBrandWhatsapp,
+  Google: IconBrandGoogle,
+} as const;
 import { useScroll } from "@/hooks/use-scroll";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -26,8 +34,8 @@ export function Header() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-background/80 shadow-[0_1px_0_0_rgba(3,249,249,0.15)] backdrop-blur-xl"
-          : "bg-background"
+          ? "bg-background/80 backdrop-blur-xl"
+          : "bg-background shadow-[0_1px_0_0_rgba(3,249,249,0.15)]"
       )}
     >
       {/* Standard-Modus: fester Navy-Block deckt Grid+Grain ab */}
@@ -66,7 +74,7 @@ export function Header() {
               )}
             </Link>
           ))}
-          <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer px-4 py-2 min-[1920px]:px-5 min-[1920px]:py-2.5 min-[1920px]:text-sm min-[1920px]:ml-6">
+          <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer px-4 py-2 min-[1920px]:px-5 min-[1920px]:py-2.5 min-[1920px]:text-sm min-[1920px]:ml-6 animate-cta-pulse">
             <Link href="/kontakt">
               Erstgespräch
               <IconArrowRight
@@ -127,6 +135,26 @@ export function Header() {
                     <IconArrowRight className="ml-2 size-4" stroke={2} />
                   </Link>
                 </Button>
+
+                {/* Social Icons – immer erreichbar im mobilen Menü */}
+                <div className="mt-4 border-t border-white/10 pt-4 flex justify-center gap-2">
+                  {SOCIAL_LINKS.map((link) => {
+                    const Icon = HEADER_SOCIAL_ICONS[link.label as keyof typeof HEADER_SOCIAL_ICONS];
+                    return (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={link.ariaLabel}
+                        onClick={() => setOpen(false)}
+                        className="group tap-target relative overflow-hidden border border-white/10 bg-white/[0.03] p-2 flex items-center justify-center transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 cursor-pointer"
+                      >
+                        <Icon className="size-4 text-brand-cyan" stroke={1.5} />
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
             </nav>
           </SheetContent>

@@ -56,9 +56,8 @@ function FeatureCard({
   return (
     <div
       data-animate="fade-up"
-      data-animate-delay={String(i * 80)}
       className={cn(
-        "group relative overflow-hidden border p-4 sm:p-6 md:p-8 transition-all duration-300 h-full min-w-0 w-full",
+        "stagger-item group relative overflow-hidden border p-4 sm:p-6 md:p-8 transition-all duration-300 h-full min-w-0 w-full",
         light
           ? "border-brand-cyan/20 bg-brand-navy/40 backdrop-blur-sm"
           : "border-border bg-card"
@@ -118,5 +117,5 @@ export function FeatureGrid({
     );
   }
 
-  return <div className={gridClassName}>{cards}</div>;
+  return <div className={cn(gridClassName, "stagger-container")}>{cards}</div>;
 }

@@ -12,14 +12,22 @@ const FaqAccordion = dynamic(
   () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
   { ssr: true }
 );
-import { IconQuote } from "@tabler/icons-react";
+import { IconQuote, IconBrandInstagram, IconBrandFacebook, IconBrandWhatsapp, IconBrandGoogle } from "@tabler/icons-react";
 import {
   TEAM,
   VALUES,
   PAGE_META,
   COMPANY,
   FAQ_ITEMS,
+  SOCIAL_LINKS,
 } from "@/lib/constants";
+
+const UEBER_UNS_SOCIAL_ICONS = {
+  Instagram: IconBrandInstagram,
+  Facebook: IconBrandFacebook,
+  WhatsApp: IconBrandWhatsapp,
+  Google: IconBrandGoogle,
+} as const;
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
 import Image from "next/image";
@@ -72,6 +80,7 @@ export default function UeberUnsPage() {
           number="02"
           overline="Unser Versprechen"
           title="DIGITALE PRÄSENZ"
+          subtitle="Unsere Philosophie für Ihren Erfolg – lokal verwurzelt, digital visionär."
           align="left"
           light
         />
@@ -109,6 +118,32 @@ export default function UeberUnsPage() {
           align="left"
           light
         />
+
+        {/* Soziale Kanäle – direkt unter SectionHeading-Unterschrift, vor TeamSection */}
+        <div className="-mt-8 sm:-mt-10 md:-mt-12 lg:-mt-14 xl:-mt-16 mb-8 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/10 pt-4">
+          <span className="text-xs font-mono uppercase tracking-widest text-brand-navy-muted">
+            Folgen Sie uns
+          </span>
+          <div className="flex gap-2">
+            {SOCIAL_LINKS.map((link) => {
+              const Icon = UEBER_UNS_SOCIAL_ICONS[link.label as keyof typeof UEBER_UNS_SOCIAL_ICONS];
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.ariaLabel}
+                  className="group relative overflow-hidden border border-white/10 bg-white/[0.03] p-2 flex items-center justify-center transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 hover:shadow-[0_0_8px_rgba(3,249,249,0.1)] cursor-pointer"
+                >
+                  <TechCorners pattern="diagonal" variant="cyan" size="sm" />
+                  <Icon className="size-4 text-brand-cyan relative z-10" stroke={1.5} />
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
         <TeamSection members={TEAM} variant="navy" />
       </Section>
 
@@ -119,6 +154,7 @@ export default function UeberUnsPage() {
           overline="Vision & Mission"
           title="Wo wir hinwollen"
           titleLine2="Was wir tun."
+          subtitle="Klare Ziele für die Digitalisierung unserer Region – heute und morgen."
           align="left"
           light
         />
@@ -186,6 +222,7 @@ export default function UeberUnsPage() {
           number="07"
           overline="Der Unterschied"
           title="Warum Berneby?"
+          subtitle="Was uns von anderen unterscheidet und warum wir der richtige Partner für Sie sind."
           align="left"
           light
         />
@@ -220,8 +257,9 @@ export default function UeberUnsPage() {
           <div className="relative py-20 md:py-28 lg:py-32 overflow-visible">
             <SectionHeading
               number="08"
-              overline="FAQ"
+              overline="Fragen"
               title="Fragen über uns"
+              subtitle="Antworten auf die häufigsten Fragen zu unserer Arbeitsweise und unserem Team."
               align="left"
               light
             />

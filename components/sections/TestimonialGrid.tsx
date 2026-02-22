@@ -53,10 +53,12 @@ export function TestimonialGrid({
     overline = "Success Stories",
 }: TestimonialGridProps) {
     return (
-        <MobileSwipeGrid gridClassName="grid gap-6 md:grid-cols-3">
+        <div className="flex flex-wrap justify-center gap-6">
             {testimonials.map((t, i) => (
-                <TestimonialCard key={i} t={t} i={i} />
+                <div key={i} className="w-full md:w-[calc(33.333%-1.5rem)] max-w-sm md:max-w-none">
+                    <TestimonialCard t={t} i={i} />
+                </div>
             ))}
-        </MobileSwipeGrid>
+        </div>
     );
 }

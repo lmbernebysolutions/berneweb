@@ -108,6 +108,7 @@ export default function ReferenzenPage() {
           overline="Unser Versprechen"
           title="Was jedes Projekt"
           titleLine2="auszeichnet"
+          subtitle="Qualität, Transparenz und lokale Verbundenheit sind der Kern unserer Arbeit."
           forceBreak
           align="left"
           light

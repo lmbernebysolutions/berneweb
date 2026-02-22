@@ -180,6 +180,74 @@ h6 {
 }
 
 /* ==========================================================================
+   TOUCH & TAP FEEDBACK (Mobile-First)
+   Replaces hover-only logic for immediate tactile response
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .tap-target {
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.1s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.2s ease;
+  }
+
+  .tap-target:active {
+    transform: scale(0.975);
+    opacity: 0.9;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ==========================================================================
+   LINK UNDERLINE DRAW
+   Draws underline on :active (tap) or :hover
+   ========================================================================== */
+.link-draw {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-draw::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-mechanical);
+}
+
+.link-draw:active::after,
+.link-draw:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ==========================================================================
+   CTA BREATHING PULSE
+   Subtle guide for primary actions
+   ========================================================================== */
+@keyframes cta-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(3, 249, 249, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(3, 249, 249, 0);
+  }
+}
+
+.animate-cta-pulse {
+  animation: cta-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-cta-pulse:active,
+.animate-cta-pulse:focus {
+  animation: none;
+}
+
+/* ==========================================================================
    HERO STAGGERED LINE REVEAL
    ========================================================================== */
 /* Nur transform + opacity = compositor-only, kein Layout/Paint (bessere Performance) */
@@ -272,6 +340,43 @@ h6 {
 @keyframes fade-right {
   from { opacity: 0; transform: translateX(30px); }
   to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ==========================================================================
+   CLIP-PATH SECTION ENTRY
+   Wipe-reveal from bottom for dominant visual elements
+   ================================================= */
+.clip-reveal {
+  clip-path: inset(100% 0 0 0);
+  opacity: 1;
+}
+
+.clip-reveal.is-visible {
+  animation: clip-bottom-reveal 1.2s var(--ease-mechanical) forwards;
+}
+
+@keyframes clip-bottom-reveal {
+  from { clip-path: inset(100% 0 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* ==========================================================================
+   STAGGER REFINEMENT (CSS-Variable driven)
+   Quadratic timing (0, 0.2, 0.5, 0.9, 1.4...) feels more organic than linear
+   ========================================================================== */
+.stagger-container {
+  --stagger-base: 80ms;
+}
+
+.stagger-item:nth-child(1) { --stagger-delay: calc(0 * var(--stagger-base)); }
+.stagger-item:nth-child(2) { --stagger-delay: calc(1.5 * var(--stagger-base)); }
+.stagger-item:nth-child(3) { --stagger-delay: calc(3.5 * var(--stagger-base)); }
+.stagger-item:nth-child(4) { --stagger-delay: calc(6 * var(--stagger-base)); }
+.stagger-item:nth-child(5) { --stagger-delay: calc(9 * var(--stagger-base)); }
+.stagger-item:nth-child(6) { --stagger-delay: calc(12.5 * var(--stagger-base)); }
+
+.stagger-item[data-animate].is-visible {
+  animation-delay: var(--stagger-delay);
 }
 
 /* ==========================================================================
@@ -677,14 +782,34 @@ h6 {
 
 @media (min-width: 1290px) {
   .hero-heading-overlap {
-    /* 2rem matches padding-left. 0.6em splits the letter 'D' (or any first letter). */
-    margin-left: calc(-2rem - 0.6em) !important;
+    /* 2rem matches padding-left. 0.3em leicht reduziert für weniger Überlappung mit dem linken Beam. */
+    margin-left: calc(-2rem - 0.3em) !important;
   }
   .hero-backdrop-overlap {
     /* Negate padding (2rem) and add clear overflow offset.
        Refined to -5.5rem for perfect visual balance with the beams. */
     left: -5.5rem !important;
   }
+}
+
+/* ==========================================================================
+   MOBILE SWIPE REFINEMENT
+   ========================================================================== */
+.swipe-grid-refined {
+  display: flex !important;
+  overflow-x: auto !important;
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-x: contain !important;
+}
+
+.swipe-grid-refined::-webkit-scrollbar {
+  display: none !important; /* Hide scrollbar for cleaner mobile look */
+}
+
+.swipe-item-refined {
+  scroll-snap-align: start !important;
+  flex-shrink: 0 !important;
 }
 
 @layer utilities {

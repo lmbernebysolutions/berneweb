@@ -42,7 +42,7 @@ export function TextLogo({
           src="/B.svg"
           alt=""
           fill
-          className="object-contain"
+          className="object-contain drop-shadow-[0_0_8px_rgba(3,249,249,0.45)]"
           aria-hidden
         />
       </div>

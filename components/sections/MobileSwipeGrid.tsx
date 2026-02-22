@@ -96,7 +96,7 @@ export function MobileSwipeGrid({
       </div>
 
       {/* Desktop: Grid – auf Mobile komplett ausblenden (max-md:hidden), sonst doppelte Darstellung unter dem Swipe */}
-      <div className={cn("max-md:hidden md:grid", gridClassName)}>{children}</div>
+      <div className={cn("max-md:hidden", gridClassName)}>{children}</div>
     </div>
   );
 }
