@@ -314,7 +314,7 @@ export default function Home() {
         <SectionHeading
           number="06"
           overline="Tech & Werkzeuge"
-          title="Technologien & Werkzeuge"
+          title="TECH - STACK"
           subtitle="Moderne Stacks, klare Ergebnisse."
           align="left"
           light

@@ -140,7 +140,7 @@ export function Hero({
         {/* Headline: overflow-hidden für sauberen Zeilenumbruch; Accent auf Mobile umbruchfähig damit nichts abgeschnitten wird */}
         <div className="container mx-auto px-4 sm:px-5 md:px-6 mb-4 sm:mb-6 md:mb-8 min-w-0 pr-12 sm:pr-14 md:pr-16">
           <div className="hero-line-reveal overflow-hidden min-w-0">
-            <h1 className="font-display text-[3.125rem] sm:text-5xl md:text-6xl lg:text-[5.625rem] xl:text-[7rem] 2xl:text-8xl font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0">
+            <h1 className="font-display text-[2.5rem] min-[360px]:text-[2.75rem] min-[400px]:text-[3.125rem] sm:text-5xl md:text-6xl lg:text-[5.625rem] xl:text-[7rem] 2xl:text-8xl font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0">
               {headlineParts}
             </h1>
           </div>

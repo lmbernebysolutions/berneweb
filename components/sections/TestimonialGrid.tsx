@@ -23,14 +23,14 @@ function TestimonialCard({ t, i }: { t: Testimonial; i: number }) {
             key={i}
             data-animate="fade-up"
             data-animate-delay={String(i * 120)}
-            className="group relative border border-white/10 bg-white/[0.03] p-4 sm:p-6 transition-all h-full min-w-0 w-full overflow-hidden"
+            className="group relative border border-white/10 bg-white/[0.03] p-4 sm:p-6 transition-all h-full min-w-0 w-full overflow-hidden flex flex-col"
         >
             <TechCorners pattern="diagonal" variant="cyan" size="md" />
             <div className="flex gap-1 mb-3 sm:mb-4 text-brand-warm" aria-hidden="true">
                 {[1, 2, 3, 4, 5].map(s => <IconStarFilled key={s} className="size-3.5 sm:size-4" />)}
             </div>
-            <p className="text-sm sm:text-lg text-white mb-3 sm:mb-4 min-h-[4rem] sm:min-h-[5.25rem] break-words">&ldquo;{t.text}&rdquo;</p>
-            <div className="mb-4 sm:mb-6 inline-flex items-center gap-2 border border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 sm:px-3 sm:py-1.5 max-w-full flex-wrap">
+            <p className="text-sm sm:text-lg text-white mb-3 sm:mb-4 min-h-[4rem] sm:min-h-[5.25rem] break-words flex-1">&ldquo;{t.text}&rdquo;</p>
+            <div className="mb-4 sm:mb-6 mt-auto self-start inline-flex items-center gap-2 border border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 sm:px-3 sm:py-1.5 max-w-full flex-wrap">
                 <IconCheck className="size-3 sm:size-3.5 text-brand-cyan shrink-0" stroke={2} aria-hidden="true" />
                 <span className="text-[0.65rem] sm:text-xs font-bold text-brand-cyan uppercase tracking-wider break-words">{t.result}</span>
             </div>

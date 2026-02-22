@@ -116,16 +116,16 @@ export default function KontaktPage() {
                       {item.href ? (
                         <a
                           href={item.href}
-                          className="font-semibold transition-colors hover:text-brand-cyan"
+                          className="font-semibold transition-colors hover:text-brand-cyan break-all"
                         >
                           {item.value}
                         </a>
                       ) : (
-                        <p className="font-semibold">{item.value}</p>
+                        <p className="font-semibold break-all">{item.value}</p>
                       )}
                     </div>
                   </div>
-                  <p className="mt-2.5 text-xs text-muted-foreground">
+                  <p className="mt-2.5 text-xs text-muted-foreground break-words">
                     {item.description}
                   </p>
                 </div>

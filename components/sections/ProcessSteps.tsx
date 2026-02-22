@@ -27,7 +27,7 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
               key={s.step}
               data-animate="fade-up"
               data-animate-delay={String(i * 120)}
-              className="group relative flex flex-col items-center text-center"
+              className="group relative flex flex-col items-center text-center h-full"
             >
               {/* Connection line segment with light dots: centered on step number (pt-6 + half of h-16 = 56px) */}
               <div className="absolute top-14 left-0 right-0 flex items-center pointer-events-none" aria-hidden="true">
@@ -37,7 +37,7 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
               </div>
 
               {/* Card: FAQ/Kontakt style */}
-              <div className="relative z-10 w-full max-w-xs mx-auto overflow-hidden border border-white/10 bg-white/[0.03] px-4 sm:px-5 pt-5 sm:pt-6 pb-4 sm:pb-5 transition-all hover:border-brand-cyan/20">
+              <div className="relative z-10 w-full max-w-xs mx-auto overflow-hidden border border-white/10 bg-white/[0.03] px-4 sm:px-5 pt-5 sm:pt-6 pb-4 sm:pb-5 transition-all hover:border-brand-cyan/20 flex flex-col h-full">
                 <TechCorners pattern="diagonal" variant="cyan" size="md" />
 
                 {/* Step number - unchanged */}
