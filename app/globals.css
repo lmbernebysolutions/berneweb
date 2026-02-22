@@ -60,8 +60,8 @@
 }
 @media (min-width: 2560px) {
   html {
-    /* divisor 85 means 72rem (content) = 85% of width (up from 72%), further reducing side margins */
-    font-size: calc(100vw / 85);
+    /* divisor 78 means 72rem (content) = ~92% of width, almost filling the screen */
+    font-size: calc(100vw / 78);
   }
 }
 

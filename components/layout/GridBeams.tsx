@@ -25,7 +25,7 @@ export function GridBeams() {
       }}
     >
       {/* Beam-Container: exakt gleiche Breite wie Sections und Header */}
-      <div className="relative h-full mx-auto w-full max-w-6xl min-[1920px]:max-w-[60vw] px-4 sm:px-5 md:px-6 lg:px-8">
+      <div className="relative h-full mx-auto w-full max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8">
         <div className="absolute left-0 top-0 bottom-0 w-px bg-brand-cyan/20" />
         <div className="absolute right-0 top-0 bottom-0 w-px bg-brand-cyan/20" />
       </div>

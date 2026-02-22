@@ -41,7 +41,7 @@ export function Header() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-cyan/30 to-transparent" />
 
       {/* Gleiche Breite wie GridBeams – auf Mobile deutlich größer (Bar + Logo) */}
-      <div className={cn(BEAM_CONTAINER_CLASS, "flex h-16 sm:h-[4.5rem] md:h-20 lg:h-20 min-[1920px]:h-32 items-center justify-between")}>
+      <div className={cn(BEAM_CONTAINER_CLASS, "flex h-16 sm:h-[4.5rem] md:h-20 lg:h-20 min-[1920px]:h-28 items-center justify-between")}>
         <div className="shrink-0 origin-left scale-110 sm:scale-100">
           <TextLogo variant="dark" size="lg" />
         </div>
@@ -66,7 +66,7 @@ export function Header() {
               )}
             </Link>
           ))}
-          <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer min-[1920px]:text-lg min-[1920px]:px-10 min-[1920px]:py-7 min-[1920px]:ml-8">
+          <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer min-[1920px]:text-base min-[1920px]:px-8 min-[1920px]:py-5 min-[1920px]:ml-6">
             <Link href="/kontakt">
               Erstgespräch
               <IconArrowRight
