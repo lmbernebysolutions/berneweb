@@ -47,7 +47,7 @@ export function Header() {
         </div>
 
         {/* Desktop Navigation (zwischen Logo und Button) */}
-        <nav className="hidden items-center gap-0.5 md:flex" aria-label="Hauptnavigation">
+        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Hauptnavigation">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
@@ -83,7 +83,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="lg:hidden"
               aria-label="Navigation öffnen"
             >
               <IconMenu2 className="size-5" />
