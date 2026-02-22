@@ -357,7 +357,8 @@ h6 {
   opacity: 1;
 }
 
-.clip-reveal.is-visible {
+.clip-reveal.is-visible,
+.is-visible > .clip-reveal {
   animation: clip-bottom-reveal 1.0s var(--ease-mechanical) forwards;
 }
 

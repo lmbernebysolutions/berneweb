@@ -23,8 +23,8 @@ export function CtaSection({ headline, subline, ctas }: CtaSectionProps) {
 
       {/* overflow-hidden removed: combining overflow-hidden + clip-path animation on the same
           element causes Safari to never render the animation. Use a wrapper instead. */}
-      <div className="relative z-10 mx-auto max-w-4xl min-w-0 overflow-hidden">
-      <div className="px-4 text-center md:px-6 clip-reveal" data-animate>
+      <div className="relative z-10 mx-auto max-w-4xl min-w-0 overflow-hidden" data-animate>
+      <div className="px-4 text-center md:px-6 clip-reveal">
         <h2 className="font-display text-4xl md:text-6xl lg:text-8xl font-extrabold uppercase tracking-tighter text-white mb-6 drop-shadow-2xl text-balance break-words max-w-full">
           {headline}
         </h2>

@@ -75,13 +75,8 @@ export function useAnimateOnScroll() {
       }
     });
 
-    return () => {
-      // Explicit cleanup: remove is-visible so Strict Mode remount starts clean
-      document.querySelectorAll<HTMLElement>("[data-animate].is-visible").forEach((el) => {
-        el.classList.remove("is-visible");
-        el.style.transitionDelay = "";
-      });
-    };
+    // Cleanup phase removed: Do not globally revert 'is-visible' on unmount.
+    // This previously caused hydration mismatches / missing elements on iOS reload.
   }, [pathname]);
 
   // PHASE 2: Effect — sets up IntersectionObserver for below-fold elements

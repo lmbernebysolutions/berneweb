@@ -79,7 +79,7 @@ function PhoneMockup({
   return (
     <div
       className="relative overflow-hidden border-2 border-brand-cyan/30 bg-black shadow-[0_0_30px_rgba(3,249,249,0.12)]"
-      style={{ borderRadius: "16px", width: "100%", maxWidth: "193px" }}
+      style={{ borderRadius: "16px", width: "100%", maxWidth: "240px" }}
     >
       {/* Status bar: only time, original visual height restored */}
       <div
@@ -95,7 +95,7 @@ function PhoneMockup({
             alt="Mobile-Ansicht der Referenz"
             fill
             className="object-cover object-top"
-            sizes="193px"
+            sizes="240px"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center px-2 text-center">
