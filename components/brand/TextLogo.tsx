@@ -10,8 +10,8 @@ interface TextLogoProps {
 }
 
 const SIZE = {
-  default: { iconW: 13, iconH: 28, text: "text-lg", gap: "gap-0.5" },
-  lg: { iconW: 16, iconH: 32, text: "text-base sm:text-lg md:text-xl lg:text-2xl", gap: "gap-1 sm:gap-1.5" },
+  default: { iconW: 16, iconH: 34, text: "text-lg", gap: "gap-1" },
+  lg: { iconW: 22, iconH: 44, text: "text-base sm:text-lg md:text-xl lg:text-2xl", gap: "gap-1.5 sm:gap-2" },
 } as const;
 
 /**
@@ -40,7 +40,7 @@ export function TextLogo({
         alt=""
         width={s.iconW}
         height={s.iconH}
-        className="relative top-px shrink-0"
+        className="relative shrink-0"
         aria-hidden
       />
       <span
