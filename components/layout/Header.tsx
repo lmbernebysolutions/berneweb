@@ -24,11 +24,15 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 right-0 left-0 z-50 transition-all duration-500",
+        "fixed top-0 z-50 transition-all duration-500",
         scrolled
           ? "bg-background/80 shadow-[0_1px_0_0_rgba(3,249,249,0.15)] backdrop-blur-xl"
           : "bg-background"
       )}
+      style={{
+        left: "max(0px, calc(50vw - 960px))",
+        right: "max(0px, calc(50vw - 960px))",
+      }}
     >
       {/* Standard-Modus: fester Navy-Block deckt Grid+Grain ab */}
       {!scrolled && (

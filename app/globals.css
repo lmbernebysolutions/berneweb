@@ -84,11 +84,6 @@
 /* ==========================================================================
    GLOBAL BLUEPRINT GRID
    ========================================================================== */
-/* html gets the same navy background so areas beyond the 1920px body cap aren't white */
-html {
-  background-color: var(--background);
-}
-
 body {
   background-color: var(--background);
   /* Fixed: Was undefined var(--brand-navy) */
@@ -100,19 +95,6 @@ body {
   font-size-adjust: 0.48;
 
   position: relative;
-
-  /* Cap page at 1920px and center it */
-  max-width: 1920px;
-  margin-left: auto;
-  margin-right: auto;
-
-  /*
-   * CRITICAL: transform creates a new containing block for position:fixed children.
-   * Without this, fixed elements (Header, GridBeams) always anchor to the full viewport.
-   * With translateZ(0), they anchor to this element instead, staying within 1920px.
-   */
-  transform: translateZ(0);
-  will-change: transform;
 }
 
 /* ==========================================================================
