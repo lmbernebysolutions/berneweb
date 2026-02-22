@@ -107,15 +107,15 @@ export function ChatSection({
   if (!mounted || !hasConsent) {
     return (
       <Section bg={sectionBg}>
-        <SectionHeading
-          number={sectionNumber}
-          overline={overline}
-          title={title}
-          titleLine2={titleLine2}
-          subtitle={subtitle}
-          align="left"
-          light
-        />
+            <SectionHeading
+              number={sectionNumber}
+              overline={overline}
+              title={title}
+              titleLine2={titleLine2}
+              subtitle={subtitle}
+              align="left"
+              light
+            />
         <div className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md max-h-[min(70vh,720px)] flex flex-col">
           <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
           <div className="relative z-10 flex min-h-0 flex-1 flex-col p-8 md:p-10">
@@ -133,15 +133,15 @@ export function ChatSection({
 
   return (
     <Section bg={sectionBg}>
-      <SectionHeading
-        number={sectionNumber}
-        overline={overline}
-        title={title}
-        titleLine2={titleLine2}
-        subtitle={subtitle}
-        align="left"
-        light
-      />
+          <SectionHeading
+            number={sectionNumber}
+            overline={overline}
+            title={title}
+            titleLine2={titleLine2}
+            subtitle={subtitle}
+            align="left"
+            light
+          />
       <div className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow max-h-[min(70vh,720px)] flex flex-col">
         <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
         <div className="relative z-10 flex min-h-0 flex-1 flex-col p-6 md:p-8 lg:p-10">

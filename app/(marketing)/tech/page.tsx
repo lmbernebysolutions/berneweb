@@ -289,9 +289,9 @@ export default function TechPage() {
                                 className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
                             >
                                 <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
-                                <div className="relative z-10 flex items-center justify-center gap-3">
-                                    <Icon className="size-5 text-brand-cyan shrink-0" stroke={1.5} />
-                                    <p className="text-sm font-bold uppercase tracking-wider text-white whitespace-nowrap">
+                                <div className="relative z-10 flex items-center justify-center gap-1 sm:gap-3">
+                                    <Icon className="size-4 sm:size-5 text-brand-cyan shrink-0" stroke={1.5} />
+                                    <p className="text-[9px] sm:text-xs md:text-sm font-bold uppercase tracking-wider text-white whitespace-nowrap">
                                         {item}
                                     </p>
                                 </div>
