@@ -1,18 +1,56 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
 
+// SSR-safe: useLayoutEffect on client, useEffect on server
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+// Helper: attach corner-freeze listeners
+function freezeCornersOnEnd(parent: HTMLElement) {
+  parent.querySelectorAll<HTMLElement>(".tech-corner-animate").forEach((corner) => {
+    if (corner.classList.contains("tech-corner-done")) return;
+    corner.addEventListener(
+      "animationend",
+      () => corner.classList.add("tech-corner-done"),
+      { once: true }
+    );
+  });
+}
+
+// Helper: reveal one element (apply delay + is-visible)
+function revealElement(el: HTMLElement, delay?: string) {
+  if (el.classList.contains("is-visible")) return;
+
+  // Force clip-reveal animation restart (CSS animation replay quirk)
+  if (el.classList.contains("clip-reveal")) {
+    el.style.animation = "none";
+    void el.offsetHeight; // reflow
+    el.style.animation = "";
+  }
+
+  if (delay) el.style.transitionDelay = `${delay}ms`;
+  el.classList.add("is-visible");
+  freezeCornersOnEnd(el);
+}
+
 export function useAnimateOnScroll() {
-  const pathname = usePathname(); // Trigger re-run on route change
+  const pathname = usePathname();
 
-  useEffect(() => {
-    // Reset all animations on route change
-    const previouslyVisible = document.querySelectorAll(".is-visible[data-animate]");
-    previouslyVisible.forEach((el) => {
+  // PHASE 1: Layout effect — synchronous before paint
+  // Reveals in-viewport elements immediately with no FOUC
+  useIsomorphicLayoutEffect(() => {
+    const elements = document.querySelectorAll<HTMLElement>("[data-animate]");
+    if (!elements.length) return;
+
+    // Reset on route change
+    elements.forEach((el) => {
+      if (!el.classList.contains("is-visible")) return;
+
       el.classList.remove("is-visible");
+      el.style.transitionDelay = "";
 
-      // Reset TechCorner animations so they replay on the new page
+      // Reset TechCorner animations for replaying on new page
       const corners = el.querySelectorAll<HTMLElement>(".tech-corner-animate");
       corners.forEach((corner) => {
         corner.classList.remove("tech-corner-done");
@@ -21,57 +59,36 @@ export function useAnimateOnScroll() {
         corner.style.animation = "";
       });
 
-      // Reset clip-reveal animations (force browser to restart keyframe)
-      if ((el as HTMLElement).classList.contains("clip-reveal")) {
-        (el as HTMLElement).style.animation = "none";
-        void (el as HTMLElement).offsetHeight;
-        (el as HTMLElement).style.animation = "";
-      }
-    });
-
-    const elements = document.querySelectorAll("[data-animate]");
-    if (!elements.length) return;
-
-    // Helper: attach corner-freeze listeners
-    const freezeCornersOnEnd = (parent: HTMLElement) => {
-      parent.querySelectorAll<HTMLElement>(".tech-corner-animate").forEach((corner) => {
-        if (corner.classList.contains("tech-corner-done")) return;
-        corner.addEventListener(
-          "animationend",
-          () => corner.classList.add("tech-corner-done"),
-          { once: true }
-        );
-      });
-    };
-
-    // Helper: reveal one element (apply delay + is-visible)
-    const revealElement = (el: HTMLElement, delay?: string) => {
-      if (el.classList.contains("is-visible")) return;
-
-      // Force clip-reveal animation restart (CSS animation replay quirk)
+      // Reset clip-reveal animations
       if (el.classList.contains("clip-reveal")) {
         el.style.animation = "none";
-        void el.offsetHeight; // reflow
+        void el.offsetHeight;
         el.style.animation = "";
-      }
-
-      if (delay) el.style.transitionDelay = `${delay}ms`;
-      el.classList.add("is-visible");
-      freezeCornersOnEnd(el);
-    };
-
-    // ─── IMMEDIATE: reveal elements already in viewport ──────────────────────
-    // Runs synchronously in useEffect (after React hydration) to prevent
-    // flash of invisible content — root fix for "animations only on page switch".
-    elements.forEach((el) => {
-      const htmlEl = el as HTMLElement;
-      const rect = htmlEl.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        revealElement(htmlEl, htmlEl.dataset.animateDelay);
       }
     });
 
-    // ─── SCROLL: IntersectionObserver for below-fold elements ────────────────
+    // Immediately reveal in-viewport elements (synchronous, before paint)
+    elements.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        revealElement(el, el.dataset.animateDelay);
+      }
+    });
+
+    return () => {
+      // Explicit cleanup: remove is-visible so Strict Mode remount starts clean
+      document.querySelectorAll<HTMLElement>("[data-animate].is-visible").forEach((el) => {
+        el.classList.remove("is-visible");
+        el.style.transitionDelay = "";
+      });
+    };
+  }, [pathname]);
+
+  // PHASE 2: Effect — sets up IntersectionObserver for below-fold elements
+  useEffect(() => {
+    const elements = document.querySelectorAll<HTMLElement>("[data-animate]");
+    if (!elements.length) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -86,25 +103,20 @@ export function useAnimateOnScroll() {
 
     elements.forEach((el) => observer.observe(el));
 
-    // ─── PAGE RESTORE: re-apply is-visible after tab switch / phone lock ─────
-    // On iOS, backgrounded pages can lose compositor layers (will-change removed
-    // from CSS to mitigate, but this listener adds a belt-and-suspenders safety net).
+    // Page restore handler (iOS/bfcache)
     const restoreVisibility = () => {
       if (document.hidden) return;
-      document.querySelectorAll("[data-animate]").forEach((el) => {
-        const htmlEl = el as HTMLElement;
-        const rect = htmlEl.getBoundingClientRect();
-        // Re-apply is-visible to all elements currently in/above viewport
+      document.querySelectorAll<HTMLElement>("[data-animate]").forEach((el) => {
+        const rect = el.getBoundingClientRect();
         if (rect.bottom > 0 && rect.top < window.innerHeight * 1.2) {
-          if (!htmlEl.classList.contains("is-visible")) {
-            revealElement(htmlEl, htmlEl.dataset.animateDelay);
+          if (!el.classList.contains("is-visible")) {
+            revealElement(el, el.dataset.animateDelay);
           }
         }
       });
     };
 
     document.addEventListener("visibilitychange", restoreVisibility);
-    // pageshow fires on bfcache restore (back/forward navigation)
     window.addEventListener("pageshow", restoreVisibility);
 
     return () => {
