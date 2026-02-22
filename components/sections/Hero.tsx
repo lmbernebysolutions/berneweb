@@ -134,8 +134,8 @@ export function Hero({
 
       {/* 2. THE CONTENT FRAME – unter dem Berg (z-[1]), damit die Silhouette sichtbar bleibt */}
       <div className="relative z-[1] mx-auto max-w-6xl w-full">
-        {/* 1. THE MASSIVE SHADOW NUMBER – remain inside beams under 1290px, blueprint overflow above */}
-        <BackdropNumber number="01" className="top-[-10%] sm:top-[-15%] lg:top-[-20%] left-2 sm:left-4 md:left-6 lg:left-8 min-[1290px]:left-[-8%] opacity-100" />
+        {/* 1. THE MASSIVE SHADOW NUMBER – remain inside beams < 1290px, blueprint overflow above */}
+        <BackdropNumber number="01" className="top-[-10%] sm:top-[-15%] lg:top-[-20%] left-2 sm:left-4 md:left-6 lg:left-8 min-[1290px]:left-[-55%] opacity-100" />
 
         {/* Headline: Accent auf Mobile umbruchfähig damit nichts abgeschnitten wird */}
         <div className="px-4 sm:px-5 md:px-6 lg:px-8 mb-4 sm:mb-6 md:mb-8 min-w-0 pr-12 sm:pr-14 md:pr-16">

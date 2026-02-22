@@ -11,7 +11,7 @@ interface TextLogoProps {
 
 const SIZE = {
   default: { iconW: 14, iconH: 30, text: "text-lg", gap: "gap-1" },
-  lg: { iconW: 18, iconH: 38, text: "text-base sm:text-lg md:text-xl lg:text-2xl", gap: "gap-1.5 sm:gap-2" },
+  lg: { iconW: 24, iconH: 50, text: "text-base sm:text-lg md:text-xl lg:text-2xl", gap: "gap-1.5 sm:gap-2.5" },
 } as const;
 
 /**
