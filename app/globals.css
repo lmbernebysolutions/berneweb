@@ -57,7 +57,7 @@
   html {
     /* Base: 16px @ 1280px. Consistently balanced content width.
        Divisor 83 provides slightly more side margin than 80, resolving 'zoomed-in' feel. */
-    font-size: calc(100vw / 83);
+    font-size: calc(100vw / 85);
   }
 }
 
