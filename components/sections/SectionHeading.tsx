@@ -8,6 +8,8 @@ interface SectionHeadingProps {
   /** Optional second line (renders after <br />). Use for explicit line break, e.g. "Nur Lösungen." */
   titleLine2?: string;
   titleLine3?: string;
+  /** If true, forces line breaks (titleLine2, titleLine3) on desktop as well */
+  forceBreak?: boolean;
   subtitle?: string;
   align?: "left" | "center";
   as?: "h1" | "h2" | "h3";
@@ -22,6 +24,7 @@ export function SectionHeading({
   title,
   titleLine2,
   titleLine3,
+  forceBreak,
   subtitle,
   align = "left",
   as: Tag = "h2",
@@ -75,18 +78,32 @@ export function SectionHeading({
             />
             {title}
             {titleLine2 != null && titleLine2 !== "" && (
-              <>
-                <span className="md:hidden"><br /></span>
-                <span className="hidden md:inline"> </span>
-                {titleLine2}
-              </>
+              forceBreak ? (
+                <>
+                  <br />
+                  {titleLine2}
+                </>
+              ) : (
+                <>
+                  <span className="md:hidden"><br /></span>
+                  <span className="hidden md:inline"> </span>
+                  {titleLine2}
+                </>
+              )
             )}
             {titleLine3 != null && titleLine3 !== "" && (
-              <>
-                <span className="md:hidden"><br /></span>
-                <span className="hidden md:inline"> </span>
-                {titleLine3}
-              </>
+              forceBreak ? (
+                <>
+                  <br />
+                  {titleLine3}
+                </>
+              ) : (
+                <>
+                  <span className="md:hidden"><br /></span>
+                  <span className="hidden md:inline"> </span>
+                  {titleLine3}
+                </>
+              )
             )}
             <span
               className="relative z-10 inline-block h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-r-2 border-brand-cyan/40 transition-colors ml-1 sm:ml-1.5 -mb-0.5 sm:-mb-1 align-bottom tech-corner-br tech-corner-animate"

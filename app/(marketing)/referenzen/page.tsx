@@ -108,6 +108,7 @@ export default function ReferenzenPage() {
           overline="Unser Versprechen"
           title="Was jedes Projekt"
           titleLine2="auszeichnet"
+          forceBreak
           align="left"
           light
         />
