@@ -53,7 +53,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               className={cn(
-                "relative px-3.5 py-2 text-sm font-medium transition-colors",
+                "relative px-3.5 py-2 text-sm min-[1920px]:text-lg min-[1920px]:px-5 font-medium transition-colors",
                 pathname === item.href
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -66,7 +66,7 @@ export function Header() {
               )}
             </Link>
           ))}
-          <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer">
+          <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer min-[1920px]:text-lg min-[1920px]:px-8 min-[1920px]:py-6 min-[1920px]:ml-6">
             <Link href="/kontakt">
               Erstgespräch
               <IconArrowRight

@@ -4,7 +4,7 @@
 
 /** Gleiche Breite/Padding wie GridBeams – Logo und Header-Button bündig mit den Beams */
 export const BEAM_CONTAINER_CLASS =
-  "mx-auto w-full max-w-6xl min-[1920px]:max-w-[60vw] px-4 sm:px-5 md:px-6 lg:px-8";
+  "mx-auto w-full max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8";
 
 export const COMPANY = {
   name: "Berneby Solutions",

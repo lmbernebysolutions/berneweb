@@ -117,7 +117,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className={`${notoSans.variable} ${jetbrainsMono.variable} ${barlow.variable}`} style={{ colorScheme: "dark" }}>
-      <body className="font-sans antialiased mx-auto max-w-[1920px] relative overflow-x-hidden">
+      <body className="font-sans antialiased relative overflow-x-hidden">
         <style
           dangerouslySetInnerHTML={{
             __html: "body{background-color:#283569;color:#fff}",

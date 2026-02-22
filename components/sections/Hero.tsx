@@ -133,21 +133,21 @@ export function Hero({
       </div>
 
       {/* 2. THE CONTENT FRAME – unter dem Berg (z-[1]), damit die Silhouette sichtbar bleibt */}
-      <div className="relative z-[1] mx-auto max-w-6xl min-[1920px]:max-w-[60vw] w-full">
-        {/* 1. THE MASSIVE SHADOW NUMBER – on mobile: inside content area like section numbers; on tablet: no beam overlap; on lg+: slight beam overlap */}
-        <BackdropNumber number="01" className="top-[-10%] sm:top-[-15%] lg:top-[-20%] left-[0] sm:left-[0] md:left-[0] lg:left-[-5%] opacity-100" />
+      <div className="relative z-[1] mx-auto max-w-6xl w-full">
+        {/* 1. THE MASSIVE SHADOW NUMBER – matches section backdrop positioning */}
+        <BackdropNumber number="01" className="top-[-10%] sm:top-[-15%] lg:top-[-20%] left-0 opacity-100" />
 
         {/* Headline: Accent auf Mobile umbruchfähig damit nichts abgeschnitten wird */}
         <div className="px-4 sm:px-5 md:px-6 lg:px-8 mb-4 sm:mb-6 md:mb-8 min-w-0 pr-12 sm:pr-14 md:pr-16">
           <div className="hero-line-reveal min-w-0">
-            <h1 className="font-display text-[2.5rem] min-[360px]:text-[2.75rem] min-[400px]:text-[3.125rem] sm:text-5xl md:text-6xl lg:text-[5.625rem] xl:text-[7rem] 2xl:text-8xl font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0 pb-4 ml-[-0.05em] sm:ml-[-0.1em] md:ml-0 lg:ml-0 xl:ml-[-0.66em]">
+            <h1 className="font-display text-[2.5rem] min-[360px]:text-[2.75rem] min-[400px]:text-[3.125rem] sm:text-5xl md:text-6xl lg:text-[5.625rem] xl:text-[7rem] 2xl:text-8xl font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0 pb-4 ml-[-0.05em] sm:ml-[-0.1em] md:ml-0 lg:ml-0 min-[1290px]:ml-[-0.66em]">
               {headlineParts}
             </h1>
           </div>
         </div>
 
         {/* Subline & Buttons – etwas größer Mobile + Desktop */}
-        <div className="mx-auto max-w-6xl min-[1920px]:max-w-[60vw] w-full px-4 sm:px-5 md:px-6 lg:px-8 hero-line-reveal">
+        <div className="mx-auto max-w-6xl w-full px-4 sm:px-5 md:px-6 lg:px-8 hero-line-reveal">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-end">
             <div className="lg:col-span-8 min-w-0">
               <div className="mt-0 border-l-4 border-cyan pl-3 sm:pl-6">
