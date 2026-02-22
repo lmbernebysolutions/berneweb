@@ -191,9 +191,9 @@ h6 {
   }
 
   .tap-target:active {
+    /* scale only — inset box-shadow is invisible behind clip-path (clip-corner) */
     transform: scale(0.975);
-    opacity: 0.9;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    opacity: 0.88;
   }
 }
 
@@ -231,17 +231,22 @@ h6 {
    ========================================================================== */
 @keyframes cta-pulse {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(3, 249, 249, 0.4);
+    /* Preserves the button's 4px industrial drop shadow + adds subtle glow ring */
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.3),
+                0 0 0 0 rgba(3, 249, 249, 0.35);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(3, 249, 249, 0);
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.3),
+                0 0 0 8px rgba(3, 249, 249, 0);
   }
 }
 
 .animate-cta-pulse {
-  animation: cta-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  /* 2s total, starts after 3s idle — won't feel spammy */
+  animation: cta-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 3s infinite;
 }
 
+.animate-cta-pulse:hover,
 .animate-cta-pulse:active,
 .animate-cta-pulse:focus {
   animation: none;
@@ -347,37 +352,56 @@ h6 {
    Wipe-reveal from bottom for dominant visual elements
    ================================================= */
 .clip-reveal {
-  clip-path: inset(100% 0 0 0);
+  /* inset(0 0 100% 0): clips 100% from bottom → element invisible, reveals bottom-up */
+  clip-path: inset(0 0 100% 0);
   opacity: 1;
 }
 
 .clip-reveal.is-visible {
-  animation: clip-bottom-reveal 1.2s var(--ease-mechanical) forwards;
+  animation: clip-bottom-reveal 1.0s var(--ease-mechanical) forwards;
 }
 
 @keyframes clip-bottom-reveal {
-  from { clip-path: inset(100% 0 0 0); }
+  from { clip-path: inset(0 0 100% 0); }
   to   { clip-path: inset(0 0 0 0); }
 }
 
 /* ==========================================================================
-   STAGGER REFINEMENT (CSS-Variable driven)
-   Quadratic timing (0, 0.2, 0.5, 0.9, 1.4...) feels more organic than linear
+   SCROLL-TRIGGERED FADE-UP REVEAL
+   Applied via data-animate="fade-up". transitionDelay set inline by hook.
+   CSS variables from .stagger-item override delay automatically (no JS needed).
+   ========================================================================== */
+[data-animate="fade-up"] {
+  opacity: 0;
+  transform: translateY(20px);
+  /* transition-delay is set inline by the hook (data-animate-delay),
+     or via --stagger-delay CSS var from .stagger-item */
+  transition: opacity 0.55s var(--ease-mechanical),
+              transform 0.55s var(--ease-mechanical);
+  transition-delay: var(--stagger-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-animate="fade-up"].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ==========================================================================
+   STAGGER REFINEMENT (CSS-Variable driven, ease-out spacing)
+   Max spread ~400ms. transition-delay (not animation-delay) to match fade-up.
    ========================================================================== */
 .stagger-container {
-  --stagger-base: 80ms;
+  --stagger-base: 70ms;
 }
 
-.stagger-item:nth-child(1) { --stagger-delay: calc(0 * var(--stagger-base)); }
-.stagger-item:nth-child(2) { --stagger-delay: calc(1.5 * var(--stagger-base)); }
-.stagger-item:nth-child(3) { --stagger-delay: calc(3.5 * var(--stagger-base)); }
-.stagger-item:nth-child(4) { --stagger-delay: calc(6 * var(--stagger-base)); }
-.stagger-item:nth-child(5) { --stagger-delay: calc(9 * var(--stagger-base)); }
-.stagger-item:nth-child(6) { --stagger-delay: calc(12.5 * var(--stagger-base)); }
-
-.stagger-item[data-animate].is-visible {
-  animation-delay: var(--stagger-delay);
-}
+/* Ease-out inspired: gaps grow slightly, then plateau — natural deceleration */
+.stagger-item:nth-child(1) { --stagger-delay: 0ms; }
+.stagger-item:nth-child(2) { --stagger-delay: calc(1.2 * var(--stagger-base)); }
+.stagger-item:nth-child(3) { --stagger-delay: calc(2.4 * var(--stagger-base)); }
+.stagger-item:nth-child(4) { --stagger-delay: calc(3.5 * var(--stagger-base)); }
+.stagger-item:nth-child(5) { --stagger-delay: calc(4.5 * var(--stagger-base)); }
+.stagger-item:nth-child(6) { --stagger-delay: calc(5.5 * var(--stagger-base)); }
 
 /* ==========================================================================
    CARD HOVER GLOW
@@ -594,16 +618,29 @@ h6 {
   .animate-referenzen-marquee,
   .hero-line-reveal > *,
   .faq-spring-hover,
-  .tech-corner-animate {
+  .tech-corner-animate,
+  .animate-cta-pulse,
+  .clip-reveal {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+    clip-path: none !important;
     filter: none !important;
+    transition: none !important;
+  }
+  /* Immediately show fade-up elements — no invisible flash for reduced-motion users */
+  [data-animate="fade-up"] {
+    opacity: 1 !important;
+    transform: none !important;
     transition: none !important;
   }
   .tech-corner-animate.tech-corner-done {
     opacity: 1 !important;
     transform: none !important;
+  }
+  /* No tap feedback animation for reduced motion */
+  .tap-target {
+    transition: none !important;
   }
 }
 
