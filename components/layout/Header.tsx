@@ -66,7 +66,7 @@ export function Header() {
               )}
             </Link>
           ))}
-          <Button asChild className="group ml-3 shrink-0 cursor-pointer min-[1920px]:text-base min-[1920px]:px-10 min-[1920px]:py-5 min-[1920px]:h-auto min-[1920px]:ml-6">
+          <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer min-[1920px]:text-sm min-[1920px]:px-8 min-[1920px]:py-4 min-[1920px]:ml-6">
             <Link href="/kontakt">
               Erstgespräch
               <IconArrowRight
