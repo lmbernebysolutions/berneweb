@@ -44,7 +44,8 @@ export default function ReferenzenPage() {
     <>
       <Hero
         bergVariant="referenzen"
-        headline="UNSERE REFERENZEN."
+        headline="UNSERE"
+        headlineLine2="REFERENZEN."
         accentText="REFERENZEN."
         subline="Echte Projekte. Echte Ergebnisse. Für Betriebe aus dem Erzgebirge und darüber hinaus."
         ctas={[
