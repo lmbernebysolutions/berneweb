@@ -81,12 +81,12 @@ function PhoneMockup({
       className="relative overflow-hidden border-2 border-brand-cyan/30 bg-black shadow-[0_0_30px_rgba(3,249,249,0.12)]"
       style={{ borderRadius: "16px", width: "100%", maxWidth: "161px" }}
     >
-      {/* Status bar: only time, no notch/signal/battery clutter */}
+      {/* Status bar: only time, minimal height so it doesn't visually dominate */}
       <div
-        className="flex items-center justify-center px-3 py-1.5"
+        className="flex items-center justify-center px-3 py-1"
         style={{ background: `${theme.primary}ee` }}
       >
-        <span className="text-[7px] font-mono opacity-60" style={{ color: theme.text }}>09:41</span>
+        <span className="text-[6px] font-mono opacity-50" style={{ color: theme.text }}>09:41</span>
       </div>
       <div className="relative aspect-[9/19] w-full overflow-hidden" style={{ background: theme.bg }}>
         {imageSrc ? (
