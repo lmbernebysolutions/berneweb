@@ -24,7 +24,7 @@ interface HeroProps {
   ctas?: HeroCta[];
   variant?: "navy" | "cyan";
   compact?: boolean;
-  accentText?: string;
+  accentText?: string | string[];
   bergVariant?: string;
 }
 
@@ -39,59 +39,63 @@ export function Hero({
   accentText,
   bergVariant,
 }: HeroProps) {
-  // Split headline (optional zweite/dritte Zeile für kontrollierten Umbruch)
-  let headlineParts: React.ReactNode = headline;
-  if (accentText && headline.includes(accentText)) {
-    const [before, after] = headline.split(accentText);
-    headlineParts = (
-      <>
-        {before}
-        <span className="text-cyan text-[1.06em] whitespace-normal sm:whitespace-nowrap">{accentText}</span>
-        {after}
-      </>
-    );
-  }
+  const accents = Array.isArray(accentText) ? accentText : [accentText].filter(Boolean) as string[];
+
+  const applyAccents = (text: string) => {
+    if (!text) return text;
+    if (!accents.length) return text;
+
+    let result: React.ReactNode[] = [text];
+
+    for (const accent of accents) {
+      if (!accent) continue;
+      result = result.flatMap(chunk => {
+        if (typeof chunk === 'string' && chunk.includes(accent)) {
+          const parts = chunk.split(accent);
+          return parts.reduce((acc: React.ReactNode[], part, i) => {
+            acc.push(part);
+            if (i < parts.length - 1) {
+              acc.push(
+                <span key={`${accent}-${i}`} className="text-cyan text-[1.06em] whitespace-normal sm:whitespace-nowrap">
+                  {accent}
+                </span>
+              );
+            }
+            return acc;
+          }, []);
+        }
+        return [chunk];
+      });
+    }
+    return result.length === 1 && typeof result[0] === 'string' ? result[0] : result;
+  };
+
+  let headlineParts: React.ReactNode = applyAccents(headline);
+
   if (headlineLine2 != null && headlineLine2 !== "") {
-    const line2Content =
-      accentText && headlineLine2.includes(accentText) ? (
-        <>
-          {headlineLine2.split(accentText)[0]}
-          <span className="text-cyan text-[1.06em] whitespace-normal sm:whitespace-nowrap">{accentText}</span>
-          {headlineLine2.split(accentText)[1]}
-        </>
-      ) : (
-        headlineLine2
-      );
     headlineParts = (
       <>
         {headlineParts}
         <br />
-        {line2Content}
+        {applyAccents(headlineLine2)}
       </>
     );
   }
   if (headlineLine3 != null && headlineLine3 !== "") {
-    const line3Content =
-      accentText && headlineLine3.includes(accentText) ? (
-        <>
-          {headlineLine3.split(accentText)[0]}
-          <span className="text-cyan text-[1.06em] whitespace-normal sm:whitespace-nowrap">{accentText}</span>
-          {headlineLine3.split(accentText)[1]}
-        </>
-      ) : (
-        headlineLine3
-      );
     headlineParts = (
       <>
         {headlineParts}
         <br />
-        {line3Content}
+        {applyAccents(headlineLine3)}
       </>
     );
   }
 
   return (
-    <section className="relative min-h-[70svh] sm:min-h-[80svh] lg:min-h-[90svh] flex flex-col justify-center overflow-x-hidden pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-36 md:pb-20 isolate">
+    <section className={cn(
+      "relative flex flex-col justify-center overflow-x-hidden pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-36 md:pb-20 isolate",
+      compact ? "min-h-[50svh] sm:min-h-[60svh] lg:min-h-[70svh]" : "min-h-[70svh] sm:min-h-[80svh] lg:min-h-[90svh]"
+    )}>
       {/* overflow-x-hidden statt overflow-hidden, damit der Berg unten nicht abgeschnitten wird */}
 
       {/* Bergsilhouette: höher + overflow-visible, damit nichts abgeschnitten wird */}

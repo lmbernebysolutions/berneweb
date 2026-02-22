@@ -7,6 +7,7 @@ interface SectionHeadingProps {
   title: string;
   /** Optional second line (renders after <br />). Use for explicit line break, e.g. "Nur Lösungen." */
   titleLine2?: string;
+  titleLine3?: string;
   subtitle?: string;
   align?: "left" | "center";
   as?: "h1" | "h2" | "h3";
@@ -20,6 +21,7 @@ interface SectionHeadingProps {
 export function SectionHeading({
   title,
   titleLine2,
+  titleLine3,
   subtitle,
   align = "left",
   as: Tag = "h2",
@@ -76,6 +78,12 @@ export function SectionHeading({
               <>
                 <br />
                 {titleLine2}
+              </>
+            )}
+            {titleLine3 != null && titleLine3 !== "" && (
+              <>
+                <br />
+                {titleLine3}
               </>
             )}
             <span

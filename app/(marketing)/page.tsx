@@ -70,8 +70,8 @@ export default function Home() {
           bergVariant="home"
           headline="DEIN DIGITALER"
           headlineLine2="WERKZEUG-"
-          headlineLine3="KASTEN"
-          accentText=""
+          headlineLine3="KASTEN."
+          accentText={["WERKZEUG-", "KASTEN."]}
           subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
           ctas={[
             { label: "Für Handwerker", href: "/handwerk", variant: "default" },
@@ -191,7 +191,7 @@ export default function Home() {
       </Section>
 
       {/* 03: COMPARISON */}
-      <Section bg="transparent">
+      <Section bg="subtle">
         <SectionHeading
           number="03"
           overline="Handwerk & Digital"
@@ -281,7 +281,7 @@ export default function Home() {
       </Section>
 
       {/* 04: PROCESS */}
-      <Section bg="subtle">
+      <Section bg="transparent">
         <SectionHeading
           number="04"
           overline="Prozess"
@@ -293,7 +293,7 @@ export default function Home() {
       </Section>
 
       {/* 05: TESTIMONIALS */}
-      <Section bg="transparent">
+      <Section bg="subtle">
         <SectionHeading
           number="05"
           overline="Success Stories"
@@ -310,7 +310,7 @@ export default function Home() {
       </Section>
 
       {/* 06: Partner / Technologien */}
-      <Section bg="subtle">
+      <Section bg="transparent">
         <SectionHeading
           number="06"
           overline="Tech & Werkzeuge"
@@ -337,7 +337,7 @@ export default function Home() {
       </Section>
 
       {/* 07: Referenzen – 1:1 wie /referenzen */}
-      <Section bg="transparent">
+      <Section bg="subtle">
         <SectionHeading
           number="07"
           overline="Case Studies"
@@ -369,6 +369,7 @@ export default function Home() {
         title="FAQ"
         subtitle="Stellen Sie eine Frage – wir antworten auf Basis unserer Wissensbasis."
         suggestedFaq={HOME_MINI_FAQ}
+        sectionBg="transparent"
       />
 
       <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />

@@ -209,7 +209,7 @@ export default function TechPage() {
             </Section>
 
             {/* 06: Testimonials */}
-            <Section bg="subtle">
+            <Section bg="transparent">
                 <SectionHeading
                     number="06"
                     overline="Stimmen"
@@ -221,7 +221,7 @@ export default function TechPage() {
             </Section>
 
             {/* 07: Prozess */}
-            <Section bg="transparent">
+            <Section bg="subtle">
                 <SectionHeading
                     number="07"
                     overline="Ablauf"
@@ -235,7 +235,7 @@ export default function TechPage() {
             </Section>
 
             {/* 08: Technologien – 53%-Statistik im Subtitle (SEO ↔ Tech-Zusammenhang) */}
-            <Section bg="subtle">
+            <Section bg="transparent">
                 <SectionHeading
                     number="08"
                     overline="Unser digitaler Werkzeugstollen"
