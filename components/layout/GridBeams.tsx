@@ -15,7 +15,7 @@ const HEADER_GRID_OFFSET_Y = 24;
 export function GridBeams() {
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-0 bg-repeat bg-[length:40px_40px] md:bg-[length:48px_48px]"
+      className="pointer-events-none fixed inset-y-0 left-1/2 -translate-x-1/2 z-0 w-full max-w-[1920px] bg-repeat bg-[length:40px_40px] md:bg-[length:48px_48px]"
       aria-hidden
       style={{
         backgroundImage: GRID_IMAGE,
