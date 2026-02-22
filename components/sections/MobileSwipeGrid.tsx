@@ -58,7 +58,9 @@ export function MobileSwipeGrid({
               <div
                 key={i}
                 className={cn(
-                  "flex-[0_0_auto] min-w-0 max-w-[calc(100vw-2rem)] w-[82vw] sm:w-[78vw]",
+                  // flex-basis in % of the Embla container → peek is always 18%/22% of container,
+                  // regardless of viewport width. Consistent teaser on all screen sizes.
+                  "flex-[0_0_82%] sm:flex-[0_0_78%] min-w-0",
                   "overflow-hidden [&>*]:min-w-0 [&>*]:max-w-full"
                 )}
               >
