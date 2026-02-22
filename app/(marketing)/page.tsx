@@ -64,17 +64,36 @@ const ICON_MAP: Record<string, React.ElementType> = {
 export default function Home() {
   return (
     <>
-      <Hero
-        bergVariant="home"
-        headline="DEIN DIGITALER WERKZEUGKASTEN"
-        accentText="WERKZEUGKASTEN"
-        subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
-        ctas={[
-          { label: "Für Handwerker", href: "/handwerk", variant: "default" },
-          { label: "Für Tech-Probleme", href: "/tech", variant: "outline" },
-        ]}
-        variant="navy"
-      />
+      {/* Mobile */}
+      <div className="sm:hidden">
+        <Hero
+          bergVariant="home"
+          headline="DEIN DIGITALER"
+          headlineLine2="WERKZEUG-"
+          headlineLine3="KASTEN"
+          accentText=""
+          subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
+          ctas={[
+            { label: "Für Handwerker", href: "/handwerk", variant: "default" },
+            { label: "Für Tech-Probleme", href: "/tech", variant: "outline" },
+          ]}
+          variant="navy"
+        />
+      </div>
+      {/* Desktop */}
+      <div className="hidden sm:block">
+        <Hero
+          bergVariant="home"
+          headline="DEIN DIGITALER WERKZEUGKASTEN."
+          accentText="WERKZEUGKASTEN."
+          subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
+          ctas={[
+            { label: "Für Handwerker", href: "/handwerk", variant: "default" },
+            { label: "Für Tech-Probleme", href: "/tech", variant: "outline" },
+          ]}
+          variant="navy"
+        />
+      </div>
 
       <TrustBar items={TRUST_BAR} />
 

@@ -53,7 +53,7 @@ function AnimatedValue({ value }: { value: string }) {
   }, [value]);
 
   return (
-    <div ref={ref} className="text-stat-mobile md:text-5xl font-black tracking-tighter text-brand-warm tabular-nums">
+    <div ref={ref} className="text-4xl md:text-5xl font-black tracking-tighter text-brand-warm tabular-nums">
       {display}
     </div>
   );

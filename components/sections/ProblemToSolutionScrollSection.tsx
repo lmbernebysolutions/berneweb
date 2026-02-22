@@ -87,7 +87,7 @@ export function ProblemToSolutionScrollSection() {
           <div className="mb-10 flex items-center justify-between">
             <h3
               className={cn(
-                "text-h3-mobile sm:text-3xl font-bold uppercase tracking-tighter transition-colors duration-300",
+                "text-3xl sm:text-3xl font-bold uppercase tracking-tighter transition-colors duration-300",
                 progress > 0.5 ? "text-brand-cyan drop-shadow-[0_0_10px_rgba(3,249,249,0.5)]" : "text-white/60"
               )}
             >

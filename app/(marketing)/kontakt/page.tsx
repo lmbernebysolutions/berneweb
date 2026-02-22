@@ -56,7 +56,7 @@ export default function KontaktPage() {
       <Hero
         bergVariant="kontakt"
         headline="Sprechen Sie mit uns."
-        accentText="mit uns"
+        accentText="mit uns."
         subline="Kostenloses Erstgespräch, unverbindlich – wir freuen uns auf Ihre Nachricht. Persönlich, unkompliziert, verbindlich. Glück auf!"
         variant="navy"
         compact
@@ -259,68 +259,33 @@ export default function KontaktPage() {
         </div>
       </Section>
 
-      {/* Trust-Bar */}
-      <Section bg="transparent" narrow>
-        <SectionCard
-          variant="default"
-          data-animate="fade-up"
-          className="flex flex-col sm:flex-row"
-        >
-          {[
-            { icon: IconCheck, text: "Kostenlos & unverbindlich" },
-            { icon: IconClock, text: "Antwort in 24 Stunden" },
-            { icon: IconMapPin, text: "Persönlich aus dem Erzgebirge" },
-          ].map((item, i) => (
-            <div
-              key={item.text}
-              className={cn(
-                "relative z-10 flex flex-1 items-center justify-center gap-3 px-6 py-5",
-                i > 0 && "border-t border-white/10 sm:border-t-0 sm:border-l border-white/10"
-              )}
-            >
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10">
-                <item.icon className="size-4 text-brand-cyan" stroke={2} />
-              </div>
-              <span className="text-sm font-semibold text-center">{item.text}</span>
-            </div>
-          ))}
-        </SectionCard>
-      </Section>
-
       {/* FAQ – Subtle füllt bis zu den Beams; Inhalt mit Padding */}
-      <div className="relative">
-        <div className="relative mx-auto max-w-6xl overflow-hidden">
-          <div className="relative">
-            <div className="absolute inset-0 bg-white/[0.015]" aria-hidden />
-            <div className="relative z-10 px-4 md:px-6 py-20 md:py-28 lg:py-32">
-              <SectionHeading
-                number="02"
-                overline="FAQ"
-                title="Häufige Fragen"
-                align="left"
-                light
-              />
-              <FaqAccordion
-                items={[
-                {
-                  question: "Kostet das Erstgespräch etwas?",
-                  answer: "Nein. Das Erstgespräch ist zu 100% kostenlos und unverbindlich. Wir nutzen die 30 Minuten, um Ihr Anliegen zu verstehen und eine erste Einschätzung zu geben.",
-                },
-                {
-                  question: "Wie schnell meldet ihr euch?",
-                  answer: "Innerhalb von 24 Stunden – meistens deutlich schneller. Wenn Sie es eilig haben, rufen Sie uns direkt an.",
-                },
-                {
-                  question: "Muss ich mich vorbereiten?",
-                  answer: "Nein. Erzählen Sie uns einfach, wo der Schuh drückt. Wir stellen die richtigen Fragen.",
-                },
-              ]}
-            />
-            </div>
-          </div>
-        </div>
-        <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
-      </div>
+      <Section bg="subtle">
+        <SectionHeading
+          number="02"
+          overline="FAQ"
+          title="HÄUFIGE"
+          titleLine2="FRAGEN"
+          align="left"
+          light
+        />
+        <FaqAccordion
+          items={[
+            {
+              question: "Kostet das Erstgespräch etwas?",
+              answer: "Nein. Das Erstgespräch ist zu 100% kostenlos und unverbindlich. Wir nutzen die 30 Minuten, um Ihr Anliegen zu verstehen und eine erste Einschätzung zu geben.",
+            },
+            {
+              question: "Wie schnell meldet ihr euch?",
+              answer: "Innerhalb von 24 Stunden – meistens deutlich schneller. Wenn Sie es eilig haben, rufen Sie uns direkt an.",
+            },
+            {
+              question: "Muss ich mich vorbereiten?",
+              answer: "Nein. Erzählen Sie uns einfach, wo der Schuh drückt. Wir stellen die richtigen Fragen.",
+            },
+          ]}
+        />
+      </Section>
 
       <script
         type="application/ld+json"

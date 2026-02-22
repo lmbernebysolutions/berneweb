@@ -16,20 +16,22 @@ const BERG_LAYER_DELAYS = ["berg-layer-grow-delay-3", "berg-layer-grow-delay-1",
 
 interface HeroProps {
   headline: string;
-  /** Zweite Zeile der Headline (wie SectionHeading titleLine2) – für kontrollierten Umbruch z. B. Ratgeber/Standort/Branchen */
+  /** Zweite Zeile der Headline – für kontrollierten Umbruch */
   headlineLine2?: string;
+  /** Dritte Zeile der Headline – für kontrollierten Umbruch auf Mobile */
+  headlineLine3?: string;
   subline: string;
   ctas?: HeroCta[];
-  variant?: "navy" | "cyan"; // 'light' is deprecated/removed
+  variant?: "navy" | "cyan";
   compact?: boolean;
   accentText?: string;
-  /** Nicht mehr genutzt – Berg ist überall 1:1 wie auf Home (4 Layer + Animation) */
   bergVariant?: string;
 }
 
 export function Hero({
   headline,
   headlineLine2,
+  headlineLine3,
   subline,
   ctas,
   variant = "navy",
@@ -37,14 +39,14 @@ export function Hero({
   accentText,
   bergVariant,
 }: HeroProps) {
-  // Split headline (wie SectionHeading: optional zweite Zeile für kontrollierten Umbruch)
+  // Split headline (optional zweite/dritte Zeile für kontrollierten Umbruch)
   let headlineParts: React.ReactNode = headline;
   if (accentText && headline.includes(accentText)) {
     const [before, after] = headline.split(accentText);
     headlineParts = (
       <>
         {before}
-        <span className="text-cyan whitespace-normal sm:whitespace-nowrap">{accentText}</span>
+        <span className="text-cyan text-[1.06em] whitespace-normal sm:whitespace-nowrap">{accentText}</span>
         {after}
       </>
     );
@@ -54,7 +56,7 @@ export function Hero({
       accentText && headlineLine2.includes(accentText) ? (
         <>
           {headlineLine2.split(accentText)[0]}
-          <span className="text-cyan whitespace-normal sm:whitespace-nowrap">{accentText}</span>
+          <span className="text-cyan text-[1.06em] whitespace-normal sm:whitespace-nowrap">{accentText}</span>
           {headlineLine2.split(accentText)[1]}
         </>
       ) : (
@@ -65,6 +67,25 @@ export function Hero({
         {headlineParts}
         <br />
         {line2Content}
+      </>
+    );
+  }
+  if (headlineLine3 != null && headlineLine3 !== "") {
+    const line3Content =
+      accentText && headlineLine3.includes(accentText) ? (
+        <>
+          {headlineLine3.split(accentText)[0]}
+          <span className="text-cyan text-[1.06em] whitespace-normal sm:whitespace-nowrap">{accentText}</span>
+          {headlineLine3.split(accentText)[1]}
+        </>
+      ) : (
+        headlineLine3
+      );
+    headlineParts = (
+      <>
+        {headlineParts}
+        <br />
+        {line3Content}
       </>
     );
   }
@@ -115,7 +136,7 @@ export function Hero({
         {/* Headline: overflow-hidden für sauberen Zeilenumbruch; Accent auf Mobile umbruchfähig damit nichts abgeschnitten wird */}
         <div className="container mx-auto px-4 sm:px-5 md:px-6 mb-4 sm:mb-6 md:mb-8 min-w-0 pr-12 sm:pr-14 md:pr-16">
           <div className="hero-line-reveal overflow-hidden min-w-0">
-            <h1 className="font-display text-[2rem] sm:text-5xl md:text-8xl lg:text-[7rem] xl:text-[8rem] 2xl:text-[9rem] font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0">
+            <h1 className="font-display text-[3.125rem] sm:text-5xl md:text-6xl lg:text-[5.625rem] xl:text-[7rem] 2xl:text-8xl font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0">
               {headlineParts}
             </h1>
           </div>
@@ -161,4 +182,3 @@ export function Hero({
     </section>
   );
 }
-

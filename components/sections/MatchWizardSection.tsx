@@ -173,7 +173,7 @@ export function MatchWizardSection({
               <div className="mb-6 inline-flex items-center border border-brand-cyan bg-brand-cyan/10 px-4 py-1 text-xs font-bold text-brand-cyan uppercase tracking-widest">
                 Ihr Match
               </div>
-              <h3 className="text-h2-mobile md:text-4xl font-black uppercase tracking-tight text-white mb-4">
+              <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white mb-4">
                 {match.title}
               </h3>
               <p className="text-white/80 leading-relaxed mb-6 max-w-2xl">

@@ -35,9 +35,9 @@
   --font-size-hero: clamp(2.5rem, 4vw + 1rem, 7rem);
 
   /* Semantic Mobile Heading Tokens */
-  --font-size-h2-mobile: 1.5rem;    /* 24px = text-2xl  — SectionHeading, CtaSection h2 */
-  --font-size-h3-mobile: 1.25rem;   /* 20px = text-xl   — Subsection headings */
-  --font-size-stat-mobile: 1.25rem; /* 20px = text-xl   — TrustBar, PricingCards stats */
+  --font-size-h2-mobile: 3.25rem;   /* 52px              — SectionHeading, CtaSection h2 */
+  --font-size-h3-mobile: 1.5rem;    /* 24px = text-2xl  — Subsection headings */
+  --font-size-stat-mobile: 3rem;    /* 48px              — TrustBar, PricingCards stats */
 
   /* Fluid Spacing Scale - Responsive spacing */
   --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);

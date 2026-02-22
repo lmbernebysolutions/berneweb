@@ -90,7 +90,9 @@ export default function TechPage() {
                 <SectionHeading
                     number="03"
                     overline="Katalog"
-                    title="Digitaler Werkzeugkasten"
+                    title="DIGITALER"
+                    titleLine2="WERKZEUG-"
+                    titleLine3="KASTEN"
                     align="left"
                     light
                 />
@@ -223,7 +225,8 @@ export default function TechPage() {
                 <SectionHeading
                     number="07"
                     overline="Ablauf"
-                    title="So arbeiten wir"
+                    title="SO ARBEITEN"
+                    titleLine2="WIR"
                     subtitle="Von der Anfrage bis zur Umsetzung – transparent und auf Augenhöhe."
                     align="left"
                     light

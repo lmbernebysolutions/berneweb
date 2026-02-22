@@ -56,8 +56,9 @@ export default function UeberUnsPage() {
     <>
       <Hero
         bergVariant="ueber-uns"
-        headline="Ein Team. Ein Ziel."
-        accentText="Ein Ziel"
+        headline="EIN TEAM"
+        headlineLine2="EIN ZIEL."
+        accentText="EIN ZIEL."
         subline="Wir machen lokale Betriebe digital erfolgreich. Persönlich, pragmatisch, aus dem Erzgebirge."
         variant="navy"
         compact
@@ -70,7 +71,7 @@ export default function UeberUnsPage() {
         <SectionHeading
           number="02"
           overline="Unser Versprechen"
-          title="Digitale Präsenz. Jetzt."
+          title="DIGITALE PRÄSENZ"
           align="left"
           light
         />

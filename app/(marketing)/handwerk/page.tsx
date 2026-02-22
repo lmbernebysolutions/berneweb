@@ -237,7 +237,8 @@ export default function HandwerkPage() {
         <SectionHeading
           number="08"
           overline="Investition"
-          title="Pakete & Preise"
+          title="PAKETE"
+          titleLine2="& PREISE"
           subtitle="Netto. Transparent. Ohne versteckte Kosten."
           align="left"
           light

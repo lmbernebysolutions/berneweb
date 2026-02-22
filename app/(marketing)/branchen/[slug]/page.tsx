@@ -232,7 +232,8 @@ export default async function BranchePage({
         <SectionHeading
           number="05"
           overline="Investition"
-          title="Pakete & Preise"
+          title="Pakete"
+          titleLine2="& Preise"
           subtitle="Netto. Transparent. Ohne versteckte Kosten."
           align="left"
           light
@@ -252,7 +253,8 @@ export default async function BranchePage({
         <SectionHeading
           number="06"
           overline="FAQ"
-          title="Häufige Fragen"
+          title="HÄUFIGE"
+          titleLine2="FRAGEN"
           subtitle={`Antworten für ${branche.name}`}
           align="left"
           light

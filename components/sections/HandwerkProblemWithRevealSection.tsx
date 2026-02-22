@@ -72,7 +72,7 @@ export function HandwerkProblemWithRevealSection() {
         )}
       >
         <div className="mb-10 flex items-center justify-between">
-          <h3 className="text-h3-mobile sm:text-3xl font-bold uppercase tracking-tighter text-white/60">
+          <h3 className="text-3xl sm:text-3xl font-bold uppercase tracking-tighter text-white/60">
             Ohne Uns
           </h3>
           <div className="flex h-10 w-10 items-center justify-center border-2 border-white/20 bg-white/5">

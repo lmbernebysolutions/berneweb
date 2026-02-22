@@ -49,6 +49,7 @@ export function ChatSection({
   const { hasConsent, openPreferences } = useChatConsent();
   const [faqInput, setFaqInput] = useState("");
   const [showSuggestedFaq, setShowSuggestedFaq] = useState(false);
+  const [showAllFaq, setShowAllFaq] = useState(false);
 
   const faqTransport = useMemo(
     () =>
@@ -158,9 +159,12 @@ export function ChatSection({
                   </p>
                 )}
                 {suggestedFaq.length > 0 && (faqMessages.length === 0 || showSuggestedFaq) && (
-                  <div className="mb-6">
+                  <div className="mb-6 space-y-3">
+                    <p className="mb-3 text-xs font-bold uppercase tracking-wider text-white/60">
+                      Vorgeschlagene Fragen
+                    </p>
                     <div className="flex flex-wrap gap-2">
-                      {suggestedFaq.map((item, i) => (
+                      {suggestedFaq.slice(0, 3).map((item, i) => (
                         <button
                           key={i}
                           type="button"
@@ -172,11 +176,31 @@ export function ChatSection({
                         </button>
                       ))}
                     </div>
+                    {suggestedFaq.length > 3 && (
+                      <details className="open:space-y-2">
+                        <summary className="cursor-pointer text-xs text-brand-cyan hover:underline">
+                          + {suggestedFaq.length - 3} weitere Fragen
+                        </summary>
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          {suggestedFaq.slice(3).map((item, i) => (
+                            <button
+                              key={i + 3}
+                              type="button"
+                              onClick={() => handleFaqSuggestionClick(item.question)}
+                              className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/90 hover:border-brand-cyan/30 hover:bg-brand-cyan/5"
+                            >
+                              {item.question}
+                              <IconArrowRight className="size-4 shrink-0" stroke={2} />
+                            </button>
+                          ))}
+                        </div>
+                      </details>
+                    )}
                     {faqMessages.length > 0 && (
                       <button
                         type="button"
                         onClick={() => setShowSuggestedFaq(false)}
-                        className="mt-2 text-xs text-white/50 hover:text-brand-cyan"
+                        className="block text-xs text-white/50 hover:text-brand-cyan"
                       >
                         Vorgeschlagene Fragen ausblenden
                       </button>
