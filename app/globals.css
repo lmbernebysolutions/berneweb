@@ -677,7 +677,20 @@ h6 {
 
 @media (min-width: 1290px) {
   .hero-heading-overlap {
-    /* 2rem matches padding-left (px-8). 0.6em splits the first letter. */
+    /* 2rem matches padding-left. 0.6em splits the letter 'D' (or any first letter). */
     margin-left: calc(-2rem - 0.6em) !important;
+  }
+  .hero-backdrop-overlap {
+    /* Negate padding (2rem) and add clear overflow offset.
+       Refined to -5.5rem for perfect visual balance with the beams. */
+    left: -5.5rem !important;
+  }
+}
+
+@layer utilities {
+  /* Ensure header links never wrap and scale slightly to fit */
+  .nav-link-responsive {
+    white-space: nowrap;
+    font-size: clamp(0.75rem, 0.85vw + 0.1rem, 1rem);
   }
 }

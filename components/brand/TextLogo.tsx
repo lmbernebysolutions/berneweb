@@ -10,8 +10,10 @@ interface TextLogoProps {
 }
 
 const SIZE = {
-  default: { iconW: 14, iconH: 30, text: "text-lg", gap: "gap-1" },
-  lg: { iconW: 24, iconH: 50, text: "text-base sm:text-lg md:text-xl lg:text-2xl", gap: "gap-1.5 sm:gap-2.5" },
+  /* Fixed pixel sizes for mobile to ensure it's not too large */
+  default: { iconW: 12, iconH: 26, text: "text-lg", gap: "gap-1" },
+  /* Using rem for lg so it scales proportionally with the root font-size ab 1290px */
+  lg: { iconW: "1.125rem", iconH: "3.75rem", text: "text-base sm:text-lg md:text-xl lg:text-2xl", gap: "gap-1.5 sm:gap-2.5" },
 } as const;
 
 /**
@@ -35,14 +37,15 @@ export function TextLogo({
         className
       )}
     >
-      <Image
-        src="/B.svg"
-        alt=""
-        width={s.iconW}
-        height={s.iconH}
-        className="relative shrink-0 -mt-0.5"
-        aria-hidden
-      />
+      <div className="relative shrink-0 -mt-0.5" style={{ width: s.iconW, height: s.iconH }}>
+        <Image
+          src="/B.svg"
+          alt=""
+          fill
+          className="object-contain"
+          aria-hidden
+        />
+      </div>
       <span
         className={cn(
           "font-bold tracking-tight",
