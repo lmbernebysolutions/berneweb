@@ -55,10 +55,13 @@
 
 @media (min-width: 1920px) {
   html {
-    /* Scale root font size proportionally to viewport width above 1920px.
-       Calculation: 100vw / 120 (since 1920 / 120 = 16px).
-       This makes 1rem dynamic, scaling the entire UI (max-widths, paddings, fonts). */
     font-size: calc(100vw / 120);
+  }
+}
+@media (min-width: 2560px) {
+  html {
+    /* divisor 100 means 72rem (content) = 72% of width (up from 60%), reducing side margins */
+    font-size: calc(100vw / 100);
   }
 }
 
