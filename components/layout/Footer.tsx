@@ -10,11 +10,12 @@ export function Footer() {
     <footer className="relative z-20 overflow-hidden border-t border-brand-cyan/20 bg-brand-navy text-brand-navy-foreground min-h-[28rem]">
       {/* Bergsilhouette: 1:1 wie Hero (ganz rechts), kopfüber, ohne Berg1 – rauswachsen wenn im Viewport */}
       <div
-        className="footer-berg absolute top-0 left-0 right-0 flex justify-end items-start pointer-events-none z-0 will-change-auto"
+        className="footer-berg absolute top-0 left-0 right-0 pointer-events-none z-0 will-change-auto"
         data-animate
         aria-hidden="true"
       >
-        <div className="relative w-full max-w-6xl pl-4 md:pl-6 h-48 sm:h-52 md:h-56 lg:h-64 xl:h-72 shrink-0 scale-y-[-1] transform-gpu">
+        <div className="mx-auto max-w-6xl pl-4 md:pl-6 flex justify-end items-start h-48 sm:h-52 md:h-56 lg:h-64 xl:h-72">
+          <div className="relative w-full h-full shrink-0 scale-y-[-1] transform-gpu">
           {[
             { src: "/icons/Berg2.svg", delay: "berg-layer-grow-on-view-delay-0" },
             { src: "/icons/Berg3.svg", delay: "berg-layer-grow-on-view-delay-1" },
@@ -32,6 +33,7 @@ export function Footer() {
               aria-hidden
             />
           ))}
+          </div>
         </div>
       </div>
 
