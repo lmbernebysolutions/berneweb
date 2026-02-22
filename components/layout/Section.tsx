@@ -26,7 +26,11 @@ export function Section({
 }: SectionProps) {
   const isSubtle = bg === "subtle";
   const sectionPadding = "py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32";
-  const contentWidth = narrow ? "max-w-3xl" : "max-w-6xl";
+  // 1152px = max-w-6xl = 60% of 1920px.
+  // On screens >1920px, use 60vw so proportion stays identical.
+  const contentWidth = narrow
+    ? "max-w-3xl"
+    : "max-w-6xl min-[1920px]:max-w-[60vw]";
   const contentPadding = "px-4 sm:px-5 md:px-6 lg:px-8";
 
   return (

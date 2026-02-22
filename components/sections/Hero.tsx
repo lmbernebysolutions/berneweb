@@ -133,7 +133,7 @@ export function Hero({
       </div>
 
       {/* 2. THE CONTENT FRAME – unter dem Berg (z-[1]), damit die Silhouette sichtbar bleibt */}
-      <div className="relative z-[1] mx-auto max-w-6xl w-full">
+      <div className="relative z-[1] mx-auto max-w-6xl min-[1920px]:max-w-[60vw] w-full">
         {/* 1. THE MASSIVE SHADOW NUMBER – on mobile: inside content area like section numbers; on tablet: no beam overlap; on lg+: slight beam overlap */}
         <BackdropNumber number="01" className="top-[-10%] sm:top-[-15%] lg:top-[-20%] left-[0] sm:left-[0] md:left-[0] lg:left-[-5%] opacity-100" />
 
@@ -147,7 +147,7 @@ export function Hero({
         </div>
 
         {/* Subline & Buttons – etwas größer Mobile + Desktop */}
-        <div className="mx-auto max-w-6xl w-full px-4 sm:px-5 md:px-6 lg:px-8 hero-line-reveal">
+        <div className="mx-auto max-w-6xl min-[1920px]:max-w-[60vw] w-full px-4 sm:px-5 md:px-6 lg:px-8 hero-line-reveal">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-end">
             <div className="lg:col-span-8 min-w-0">
               <div className="mt-0 border-l-4 border-cyan pl-3 sm:pl-6">
