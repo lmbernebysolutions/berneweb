@@ -55,8 +55,8 @@ export default function KontaktPage() {
       {/* 1. Hero */}
       <Hero
         bergVariant="kontakt"
-        headline="Sprechen Sie mit uns."
-        accentText="mit uns."
+        headline="Sprechen Sie mit uns"
+        accentText="mit uns"
         subline="Kostenloses Erstgespräch, unverbindlich – wir freuen uns auf Ihre Nachricht. Persönlich, unkompliziert, verbindlich. Glück auf!"
         variant="navy"
         compact

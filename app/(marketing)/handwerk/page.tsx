@@ -71,8 +71,8 @@ export default function HandwerkPage() {
     <>
       <Hero
         bergVariant="handwerk"
-        headline="AUFTRAG VOLL? BÜRO LEER."
-        accentText="BÜRO LEER."
+        headline="AUFTRAG VOLL? BÜRO LEER"
+        accentText="BÜRO LEER"
         subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
         ctas={[
           { label: "Pakete ansehen", href: "#pakete", variant: "default" },

@@ -54,8 +54,8 @@ export default function TechPage() {
         <>
             <Hero
                 bergVariant="tech"
-                headline="IHRE EXTERNE IT-ABTEILUNG."
-                accentText="IT-ABTEILUNG."
+                headline="IHRE EXTERNE IT-ABTEILUNG"
+                accentText="IT-ABTEILUNG"
                 subline="Flexibel. Auf Abruf. Ohne Festanstellung. Von der neuen Webseite über Shops bis IT-Support – wir bauen und betreuen."
                 ctas={[
                     { label: "Webseite anfragen", href: "/kontakt", variant: "default" },

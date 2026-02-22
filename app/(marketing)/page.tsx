@@ -70,8 +70,8 @@ export default function Home() {
           bergVariant="home"
           headline="DEIN DIGITALER"
           headlineLine2="WERKZEUG-"
-          headlineLine3="KASTEN."
-          accentText={["WERKZEUG-", "KASTEN."]}
+          headlineLine3="KASTEN"
+          accentText={["WERKZEUG-", "KASTEN"]}
           subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
           ctas={[
             { label: "Für Handwerker", href: "/handwerk", variant: "default" },
@@ -84,8 +84,8 @@ export default function Home() {
       <div className="hidden sm:block">
         <Hero
           bergVariant="home"
-          headline="DEIN DIGITALER WERKZEUGKASTEN."
-          accentText="WERKZEUGKASTEN."
+          headline="DEIN DIGITALER WERKZEUGKASTEN"
+          accentText="WERKZEUGKASTEN"
           subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
           ctas={[
             { label: "Für Handwerker", href: "/handwerk", variant: "default" },
