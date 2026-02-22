@@ -13,7 +13,7 @@ const SIZE = {
   /* Fixed pixel sizes for mobile to ensure it's not too large */
   default: { iconW: 12, iconH: 26, text: "text-lg", gap: "gap-1" },
   /* Using rem for lg so it scales proportionally with the root font-size ab 1290px */
-  lg: { iconW: "1.125rem", iconH: "3.75rem", text: "text-base sm:text-lg md:text-xl lg:text-2xl", gap: "gap-1.5 sm:gap-2.5" },
+  lg: { iconW: "1.125rem", iconH: "3.75rem", text: "text-base sm:text-lg md:text-xl lg:text-2xl", gap: "gap-1.5 sm:gap-1.5" },
 } as const;
 
 /**
