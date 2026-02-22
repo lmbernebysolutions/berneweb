@@ -52,8 +52,13 @@ export function TestimonialGrid({
     title = "Das sagt das Erzgebirge",
     overline = "Success Stories",
 }: TestimonialGridProps) {
+    const isDual = testimonials.length === 2;
+    const gridClass = isDual
+        ? "grid gap-6 md:grid-cols-2 justify-center max-w-4xl mx-auto"
+        : "grid gap-6 md:grid-cols-3";
+
     return (
-        <MobileSwipeGrid gridClassName="grid gap-6 md:grid-cols-3">
+        <MobileSwipeGrid gridClassName={gridClass}>
             {testimonials.map((t, i) => (
                 <TestimonialCard key={i} t={t} i={i} />
             ))}
