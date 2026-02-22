@@ -62,9 +62,6 @@ function AnimatedValue({ value }: { value: string }) {
 }
 
 export function TrustBar({ items }: TrustBarProps) {
-  const [revealed, setRevealed] = useState(false);
-  useEffect(() => setRevealed(true), []);
-
   return (
     <section className="relative overflow-hidden border-y border-brand-cyan/20 bg-background py-6 sm:py-8 md:py-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8">
@@ -74,8 +71,7 @@ export function TrustBar({ items }: TrustBarProps) {
               key={item.value + (item.label || "")}
               data-animate="fade-up"
               data-animate-delay={String(i * 100)}
-              className={revealed ? "group relative text-center is-visible" : "group relative text-center"}
-              style={revealed ? { transitionDelay: `${i * 100}ms` } : undefined}
+              className="group relative text-center"
             >
               {/* Large background ghost number */}
               <div
