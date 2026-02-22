@@ -53,15 +53,11 @@
   --radius-lg: 4px;
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1290px) {
   html {
-    font-size: calc(100vw / 120);
-  }
-}
-@media (min-width: 2560px) {
-  html {
-    /* divisor 78 means 72rem (content) = ~92% of width, almost filling the screen */
-    font-size: calc(100vw / 78);
+    /* Base: 16px @ 1280px. Consistently balanced content width.
+       Divisor 83 provides slightly more side margin than 80, resolving 'zoomed-in' feel. */
+    font-size: calc(100vw / 83);
   }
 }
 
@@ -678,8 +674,10 @@ h6 {
   border-radius: 9999px !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
 }
-.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] .px-3,
-.cookie-manager > div[class*="inset-0"] > div[class*="max-w-lg"] [class*="text-xs"][class*="rounded"] {
-  background-color: rgba(3, 249, 249, 0.2) !important;
-  color: #03f9f9 !important;
+
+@media (min-width: 1290px) {
+  .hero-heading-overlap {
+    /* 2rem matches padding-left (px-8). 0.6em splits the first letter. */
+    margin-left: calc(-2rem - 0.6em) !important;
+  }
 }

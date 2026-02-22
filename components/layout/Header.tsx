@@ -42,7 +42,7 @@ export function Header() {
 
       {/* Gleiche Breite wie GridBeams – auf Mobile deutlich größer (Bar + Logo) */}
       <div className={cn(BEAM_CONTAINER_CLASS, "flex h-16 sm:h-[4.5rem] md:h-20 lg:h-20 min-[1920px]:h-28 items-center justify-between")}>
-        <div className="shrink-0 origin-left scale-110 sm:scale-100">
+        <div className="shrink-0 origin-left">
           <TextLogo variant="dark" size="lg" />
         </div>
 
@@ -66,7 +66,7 @@ export function Header() {
               )}
             </Link>
           ))}
-          <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer min-[1920px]:text-sm min-[1920px]:px-8 min-[1920px]:py-4 min-[1920px]:ml-6">
+          <Button asChild className="group ml-3 shrink-0 cursor-pointer min-[1920px]:text-base min-[1920px]:px-10 min-[1920px]:py-5 min-[1920px]:h-auto min-[1920px]:ml-6">
             <Link href="/kontakt">
               Erstgespräch
               <IconArrowRight

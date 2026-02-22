@@ -134,13 +134,13 @@ export function Hero({
 
       {/* 2. THE CONTENT FRAME – unter dem Berg (z-[1]), damit die Silhouette sichtbar bleibt */}
       <div className="relative z-[1] mx-auto max-w-6xl w-full">
-        {/* 1. THE MASSIVE SHADOW NUMBER – restored blueprint offset for desktop, matches section style on mobile/tablet */}
-        <BackdropNumber number="01" className="top-[-10%] sm:top-[-15%] lg:top-[-20%] left-2 sm:left-4 md:left-6 lg:left-[-5%] opacity-100" />
+        {/* 1. THE MASSIVE SHADOW NUMBER – remain inside beams under 1290px, overlap above */}
+        <BackdropNumber number="01" className="top-[-10%] sm:top-[-15%] lg:top-[-20%] left-2 sm:left-4 md:left-6 lg:left-8 min-[1290px]:left-[-5%] opacity-100" />
 
         {/* Headline: Accent auf Mobile umbruchfähig damit nichts abgeschnitten wird */}
         <div className="px-4 sm:px-5 md:px-6 lg:px-8 mb-4 sm:mb-6 md:mb-8 min-w-0 pr-12 sm:pr-14 md:pr-16">
           <div className="hero-line-reveal min-w-0">
-            <h1 className="font-display text-[2.5rem] min-[360px]:text-[2.75rem] min-[400px]:text-[3.125rem] sm:text-5xl md:text-6xl lg:text-[5.625rem] xl:text-[7rem] 2xl:text-8xl font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0 pb-4 ml-[-0.05em] sm:ml-[-0.1em] md:ml-0 lg:ml-0 min-[1290px]:-ml-[calc(2rem+0.45em)]">
+            <h1 className="hero-heading-overlap font-display text-[2.5rem] min-[360px]:text-[2.75rem] min-[400px]:text-[3.125rem] sm:text-5xl md:text-6xl lg:text-[5.625rem] xl:text-[7rem] 2xl:text-8xl font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0 pb-4 ml-[-0.05em] sm:ml-[-0.1em] md:ml-0 lg:ml-0">
               {headlineParts}
             </h1>
           </div>
