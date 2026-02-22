@@ -77,8 +77,8 @@ export default function HandwerkPage() {
         accentText="BÜRO LEER"
         subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
         ctas={[
-          { label: "Pakete ansehen", href: "#pakete", variant: "default" },
-          { label: "Kostenlos beraten lassen", href: "/kontakt", variant: "outline" },
+          { label: "Projekt anfragen", href: "/kontakt", variant: "default" },
+          { label: "Pakete ansehen", href: "#pakete", variant: "outline" },
         ]}
         variant="navy"
       />

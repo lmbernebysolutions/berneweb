@@ -379,7 +379,8 @@ h6 {
   transition: opacity 0.55s var(--ease-mechanical),
               transform 0.55s var(--ease-mechanical);
   transition-delay: var(--stagger-delay, 0ms);
-  will-change: opacity, transform;
+  /* No will-change: iOS Safari discards GPU layers on tab switch/lock,
+     causing all animated elements to show at opacity:0 on restore. */
 }
 
 [data-animate="fade-up"].is-visible {

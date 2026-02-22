@@ -147,9 +147,9 @@ export function Footer() {
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="group link-draw flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
+                      className="group flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
                     >
-                      {item.label}
+                      <span className="link-draw">{item.label}</span>
                       <IconArrowUpRight className="size-3 opacity-0 transition-all group-hover:opacity-100" stroke={2} />
                     </Link>
                   </li>
@@ -167,9 +167,9 @@ export function Footer() {
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="group link-draw flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
+                      className="group flex items-center gap-1 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
                     >
-                      {item.label}
+                      <span className="link-draw">{item.label}</span>
                       <IconArrowUpRight className="size-3 opacity-0 transition-all group-hover:opacity-100" stroke={2} />
                     </Link>
                   </li>

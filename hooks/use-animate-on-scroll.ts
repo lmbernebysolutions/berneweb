@@ -12,7 +12,7 @@ export function useAnimateOnScroll() {
     previouslyVisible.forEach((el) => {
       el.classList.remove("is-visible");
 
-      // Reset all child tech-corner-animate elements so they can animate again on the new page
+      // Reset TechCorner animations so they replay on the new page
       const corners = el.querySelectorAll<HTMLElement>(".tech-corner-animate");
       corners.forEach((corner) => {
         corner.classList.remove("tech-corner-done");
@@ -20,6 +20,13 @@ export function useAnimateOnScroll() {
         void corner.offsetHeight;
         corner.style.animation = "";
       });
+
+      // Reset clip-reveal animations (force browser to restart keyframe)
+      if ((el as HTMLElement).classList.contains("clip-reveal")) {
+        (el as HTMLElement).style.animation = "none";
+        void (el as HTMLElement).offsetHeight;
+        (el as HTMLElement).style.animation = "";
+      }
     });
 
     const elements = document.querySelectorAll("[data-animate]");
@@ -40,20 +47,26 @@ export function useAnimateOnScroll() {
     // Helper: reveal one element (apply delay + is-visible)
     const revealElement = (el: HTMLElement, delay?: string) => {
       if (el.classList.contains("is-visible")) return;
+
+      // Force clip-reveal animation restart (CSS animation replay quirk)
+      if (el.classList.contains("clip-reveal")) {
+        el.style.animation = "none";
+        void el.offsetHeight; // reflow
+        el.style.animation = "";
+      }
+
       if (delay) el.style.transitionDelay = `${delay}ms`;
       el.classList.add("is-visible");
       freezeCornersOnEnd(el);
     };
 
     // ─── IMMEDIATE: reveal elements already in viewport ──────────────────────
-    // Runs synchronously in useEffect (after React hydration) to avoid a flash
-    // of invisible content that the async IntersectionObserver would otherwise cause.
-    // This is the root fix for "animations only visible on page switch".
+    // Runs synchronously in useEffect (after React hydration) to prevent
+    // flash of invisible content — root fix for "animations only on page switch".
     elements.forEach((el) => {
       const htmlEl = el as HTMLElement;
       const rect = htmlEl.getBoundingClientRect();
-      const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
-      if (inViewport) {
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
         revealElement(htmlEl, htmlEl.dataset.animateDelay);
       }
     });
@@ -68,12 +81,36 @@ export function useAnimateOnScroll() {
           }
         });
       },
-      // Slightly more lenient threshold + smaller dead-zone for fast mobile scrollers
       { threshold: 0.12, rootMargin: "0px 0px -20px 0px" }
     );
 
     elements.forEach((el) => observer.observe(el));
 
-    return () => observer.disconnect();
-  }, [pathname]); // Re-run when pathname changes
+    // ─── PAGE RESTORE: re-apply is-visible after tab switch / phone lock ─────
+    // On iOS, backgrounded pages can lose compositor layers (will-change removed
+    // from CSS to mitigate, but this listener adds a belt-and-suspenders safety net).
+    const restoreVisibility = () => {
+      if (document.hidden) return;
+      document.querySelectorAll("[data-animate]").forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        const rect = htmlEl.getBoundingClientRect();
+        // Re-apply is-visible to all elements currently in/above viewport
+        if (rect.bottom > 0 && rect.top < window.innerHeight * 1.2) {
+          if (!htmlEl.classList.contains("is-visible")) {
+            revealElement(htmlEl, htmlEl.dataset.animateDelay);
+          }
+        }
+      });
+    };
+
+    document.addEventListener("visibilitychange", restoreVisibility);
+    // pageshow fires on bfcache restore (back/forward navigation)
+    window.addEventListener("pageshow", restoreVisibility);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", restoreVisibility);
+      window.removeEventListener("pageshow", restoreVisibility);
+    };
+  }, [pathname]);
 }
