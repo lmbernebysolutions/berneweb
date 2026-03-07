@@ -6,6 +6,7 @@ import Link from "next/link";
 import { IconArrowRight } from "@tabler/icons-react";
 import { getAllLocationSlugs, getLocationBySlug } from "@/lib/data/locations";
 import { TechCorners } from "@/components/ui/tech-corners";
+import { CONTAINER_A } from "@/lib/container-styles";
 
 export const metadata: Metadata = {
   title: "Standorte – Webdesign & IT-Service im Erzgebirgskreis | Berneby Solutions",
@@ -40,7 +41,7 @@ export default function StandortePage() {
               href={`/standorte/${loc.slug}`}
               data-animate="fade-up"
               data-animate-delay={String(i % 20 === 0 ? 0 : (i % 20) * 40)}
-              className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow block"
+              className={`group relative overflow-hidden p-5 backdrop-blur-md transition-all block ${CONTAINER_A}`}
             >
               <TechCorners pattern="diagonal" variant="cyan" size="sm" />
               <div className="relative z-10 flex items-center justify-between">

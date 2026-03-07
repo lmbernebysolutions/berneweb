@@ -2,9 +2,9 @@
 
 import { useRef, useState, useEffect } from "react";
 import { IconX } from "@tabler/icons-react";
-import { TechCorners } from "@/components/ui/tech-corners";
 import { OHNE_UNS_ROWS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { CONTAINER_A_STATIC } from "@/lib/container-styles";
 
 /**
  * Handwerk Problem-Sektion: 1:1 Home "Ohne Uns"-Karte.
@@ -50,9 +50,12 @@ export function HandwerkProblemWithRevealSection() {
   return (
     <div
       ref={cardRef}
-      className="group relative border-2 border-white/5 bg-black/30 p-6 sm:p-8 backdrop-blur-sm overflow-hidden transition-colors hover:border-white/10"
+      className={cn(
+        "relative backdrop-blur-sm overflow-hidden",
+        CONTAINER_A_STATIC,
+        "p-6 sm:p-8"
+      )}
     >
-      <TechCorners pattern="all" variant="navy" size="lg" />
       <div
         className="absolute inset-0 opacity-5 pointer-events-none"
         style={{

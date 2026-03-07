@@ -3,7 +3,7 @@
 import { SectionCard } from "@/components/ui/section-card";
 import { IconDeviceDesktop, IconTool, IconHeart } from "@tabler/icons-react";
 
-/** Variante A: Drei Säulen (Webseiten | Support | Fair) */
+/** Variante A: Drei Säulen (Webseiten | Support | Fair) – Text-Layout wie Vision & Mission, kein Karten-Container */
 function MissionVariantA() {
   const pillars = [
     {
@@ -23,22 +23,20 @@ function MissionVariantA() {
     },
   ];
   return (
-    <SectionCard variant="highlight" className="p-6 md:p-8">
-      <div className="grid gap-6 md:grid-cols-3">
-        {pillars.map((p, i) => {
-          const Icon = p.icon;
-          return (
-          <div key={i} className="relative z-10 border-l-2 border-brand-cyan/40 pl-4">
-            <Icon className="mb-2 size-5 text-brand-cyan" stroke={1.5} aria-hidden="true" />
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">
+    <div className="grid gap-10 sm:gap-14 md:grid-cols-3" data-animate="fade-up">
+      {pillars.map((p) => {
+        const Icon = p.icon;
+        return (
+          <div key={p.title} className="pl-6 border-l-4 border-white">
+            <Icon className="mb-3 size-5 text-brand-cyan" stroke={1.5} aria-hidden="true" />
+            <h3 className="font-display text-xl sm:text-2xl font-extrabold uppercase tracking-tight text-white mb-2">
               {p.title}
             </h3>
-            <p className="mt-1 text-sm leading-relaxed text-white/70">{p.text}</p>
+            <p className="text-sm leading-relaxed text-white/70">{p.text}</p>
           </div>
-          );
-        })}
-      </div>
-    </SectionCard>
+        );
+      })}
+    </div>
   );
 }
 

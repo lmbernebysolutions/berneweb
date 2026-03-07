@@ -14,6 +14,8 @@ interface SectionHeadingProps {
   align?: "left" | "center";
   as?: "h1" | "h2" | "h3";
   light?: boolean;
+  /** V3: wenn true, optimiert Farben für brand-light Hintergrund */
+  onLight?: boolean;
   /** Optional overline text displayed above the heading */
   overline?: string;
   /** Massive background number for the section (e.g. "02") */
@@ -29,6 +31,7 @@ export function SectionHeading({
   align = "left",
   as: Tag = "h2",
   light = false,
+  onLight = false,
   overline,
   number,
 }: SectionHeadingProps) {
@@ -69,11 +72,14 @@ export function SectionHeading({
           <Tag
             className={cn(
               "relative inline font-display text-4xl lg:text-5xl xl:text-6xl uppercase tracking-tight text-balance leading-[1.1] max-w-full",
-              light ? "text-brand-navy-foreground" : "text-foreground"
+              onLight ? "text-brand-navy" : (light ? "text-brand-navy-foreground" : "text-foreground")
             )}
           >
             <span
-              className="relative z-10 inline-block h-3 w-3 sm:h-4 sm:w-4 border-t-2 border-l-2 border-brand-cyan/40 transition-colors mr-1 sm:mr-1.5 -mt-0.5 sm:-mt-1 align-top tech-corner-tl tech-corner-animate"
+              className={cn(
+                "relative z-10 inline-block h-3 w-3 sm:h-4 sm:w-4 border-t-2 border-l-2 transition-colors mr-1 sm:mr-1.5 -mt-0.5 sm:-mt-1 align-top tech-corner-tl tech-corner-animate",
+                onLight ? "border-brand-navy/30" : "border-brand-cyan/40"
+              )}
               aria-hidden="true"
             />
             {title}
@@ -106,7 +112,10 @@ export function SectionHeading({
               )
             )}
             <span
-              className="relative z-10 inline-block h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-r-2 border-brand-cyan/40 transition-colors ml-1 sm:ml-1.5 -mb-0.5 sm:-mb-1 align-bottom tech-corner-br tech-corner-animate"
+              className={cn(
+                "relative z-10 inline-block h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-r-2 transition-colors ml-1 sm:ml-1.5 -mb-0.5 sm:-mb-1 align-bottom tech-corner-br tech-corner-animate",
+                onLight ? "border-brand-navy/30" : "border-brand-cyan/40"
+              )}
               aria-hidden="true"
             />
           </Tag>
@@ -115,7 +124,7 @@ export function SectionHeading({
           <p
             className={cn(
               "mt-4 sm:mt-5 md:mt-6 text-base sm:text-lg md:text-xl font-medium leading-relaxed",
-              light ? "text-white/60" : "text-muted-foreground",
+              onLight ? "text-brand-navy/60" : (light ? "text-white/60" : "text-muted-foreground"),
               align === "center" && "mx-auto max-w-2xl"
             )}
           >

@@ -8,6 +8,7 @@ import { IconArrowRight } from "@tabler/icons-react";
 import { PAGE_META } from "@/lib/constants";
 import { getClusterOverview } from "@/lib/content/ratgeber";
 import { TechCorners } from "@/components/ui/tech-corners";
+import { CONTAINER_A } from "@/lib/container-styles";
 
 export const metadata: Metadata = {
   title: PAGE_META.ratgeber.title,
@@ -42,7 +43,7 @@ export default function RatgeberPage() {
               key={cluster.slug}
               data-animate="fade-up"
               data-animate-delay={String(i * 80)}
-              className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
+              className={`group relative overflow-hidden transition-all ${CONTAINER_A}`}
             >
               <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
               <div className="relative z-10 flex flex-col p-6">

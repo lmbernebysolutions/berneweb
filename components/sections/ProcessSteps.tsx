@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { TechCorners } from "@/components/ui/tech-corners";
+import { CONTAINER_A_NO_GLOW } from "@/lib/container-styles";
 
 interface Step {
   step: number;
@@ -31,19 +31,16 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
             >
               {/* Connection line segment with light dots: centered on step number (pt-6 + half of h-16 = 56px) */}
               <div className="absolute top-14 left-0 right-0 flex items-center pointer-events-none" aria-hidden="true">
-                <div className={cn("h-px flex-1", i === 0 ? "bg-transparent" : "bg-brand-cyan/20")} />
+                <div className={cn("h-px flex-1", i === 0 ? "bg-transparent" : "bg-white/15")} />
                 <div className="w-16 shrink-0" />
-                <div className={cn("h-px flex-1", i === steps.length - 1 ? "bg-transparent" : "bg-brand-cyan/20")} />
+                <div className={cn("h-px flex-1", i === steps.length - 1 ? "bg-transparent" : "bg-white/15")} />
               </div>
 
               {/* Card: FAQ/Kontakt style */}
-              <div className="relative z-10 w-full max-w-xs mx-auto overflow-hidden border border-white/10 bg-white/[0.03] px-4 sm:px-5 pt-5 sm:pt-6 pb-4 sm:pb-5 transition-all hover:border-brand-cyan/20 flex flex-col h-full">
-                <TechCorners pattern="diagonal" variant="cyan" size="md" />
-
+              <div className={cn("relative z-10 w-full max-w-xs mx-auto overflow-hidden px-4 sm:px-5 pt-5 sm:pt-6 pb-4 sm:pb-5 flex flex-col h-full", CONTAINER_A_NO_GLOW)}>
                 {/* Step number - unchanged */}
-                <div className="relative flex h-16 w-16 mx-auto items-center justify-center border border-brand-cyan/30 bg-brand-navy transition-all">
-                  <TechCorners pattern="all" variant="cyan" size="sm" />
-                  <span className="font-mono text-xl font-bold text-brand-cyan">
+                <div className="relative flex h-16 w-16 mx-auto items-center justify-center border border-white/25 bg-brand-navy transition-all">
+                  <span className="font-mono text-xl font-bold text-white">
                     {String(s.step).padStart(2, "0")}
                   </span>
                 </div>
@@ -54,7 +51,7 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
                 </h3>
                 {/* Description: cyan accent, less blocky */}
                 {s.description && (
-                  <p className="mt-2 border-l-2 border-brand-cyan/50 pl-3 text-left text-[0.8125rem] leading-snug text-white/80">
+                  <p className="mt-2 border-l-2 border-white/25 pl-3 text-left text-[0.8125rem] leading-snug text-white/80">
                     {s.description}
                   </p>
                 )}
@@ -67,8 +64,8 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
                   style={{ width: "calc(100% - 64px)" }}
                   aria-hidden="true"
                 >
-                  <div className="h-px flex-1 bg-brand-cyan/40" />
-                  <div className="h-1.5 w-1.5 rotate-45 border-t border-r border-brand-cyan/60" />
+                  <div className="h-px flex-1 bg-white/20" />
+                  <div className="h-1.5 w-1.5 rotate-45 border-t border-r border-white/25" />
                 </div>
               )}
             </div>
@@ -83,14 +80,11 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
             key={s.step}
             data-animate="fade-up"
             data-animate-delay={String(i * 80)}
-            className="group relative flex gap-3 sm:gap-4 overflow-hidden border border-white/10 bg-white/[0.03] p-3 sm:p-4 transition-all"
+            className={cn("group relative flex gap-3 sm:gap-4 overflow-hidden p-3 sm:p-4 transition-all", CONTAINER_A_NO_GLOW)}
           >
-            <TechCorners pattern="diagonal" variant="cyan" size="md" />
-
             <div className="flex flex-col items-center shrink-0">
-              <div className="relative flex h-12 w-12 items-center justify-center border border-brand-cyan/30 bg-brand-navy">
-                <TechCorners pattern="all" variant="cyan" size="sm" />
-                <span className="font-mono text-base font-bold text-brand-cyan">
+              <div className="relative flex h-12 w-12 items-center justify-center border border-white/25 bg-brand-navy">
+                <span className="font-mono text-base font-bold text-white">
                   {String(s.step).padStart(2, "0")}
                 </span>
               </div>
@@ -101,7 +95,7 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
                 {s.title}
               </h3>
               {s.description && (
-                <p className="mt-1.5 border-l-2 border-brand-cyan/50 pl-3 text-[0.8125rem] leading-snug text-white/80">
+                <p className="mt-1.5 border-l-2 border-white/25 pl-3 text-[0.8125rem] leading-snug text-white/80">
                   {s.description}
                 </p>
               )}

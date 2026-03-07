@@ -15,6 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
+import { CONTAINER_A_NO_GLOW } from "@/lib/container-styles";
 
 const iconMap: Record<string, React.ElementType> = {
   IconSearch,
@@ -59,11 +60,11 @@ function FeatureCard({
       className={cn(
         "stagger-item group relative overflow-hidden border p-4 sm:p-6 md:p-8 transition-all duration-300 h-full min-w-0 w-full",
         light
-          ? "border-brand-cyan/20 bg-brand-navy/40 backdrop-blur-sm"
+          ? CONTAINER_A_NO_GLOW
           : "border-border bg-card"
       )}
     >
-      <TechCorners pattern="diagonal" variant={light ? "cyan" : "navy"} size="lg" />
+      {!light && <TechCorners pattern="diagonal" variant="navy" size="lg" />}
       <div
         className={cn(
           "pointer-events-none absolute top-4 right-6 font-mono text-sm font-bold select-none tracking-tighter opacity-10",

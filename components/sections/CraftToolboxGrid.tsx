@@ -10,6 +10,9 @@ import {
 import { TechCorners } from "@/components/ui/tech-corners";
 import { Button } from "@/components/ui/button";
 import { IconArrowRight } from "@tabler/icons-react";
+import { CONTAINER_B } from "@/lib/container-styles";
+import { cn } from "@/lib/utils";
+
 const CRAFT_ICON_MAP = {
   IconMapPin,
   IconPhoneCall,
@@ -39,16 +42,19 @@ export function CraftToolboxGrid({ modules }: CraftToolboxGridProps) {
             key={module.name}
             data-animate="fade-up"
             data-animate-delay={String(i * 80)}
-            className="group relative flex flex-col border border-white/10 bg-brand-navy/60 backdrop-blur-md overflow-hidden transition-all hover:bg-brand-navy/80"
+            className={cn(
+              "group relative flex flex-col overflow-hidden",
+              CONTAINER_B
+            )}
           >
-            <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+            <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
 
-            {/* ID.01, ID.02 … top right, light grey */}
+            {/* 01, 02 … top right, light grey */}
             <div
               className="absolute top-0 right-0 p-4 font-mono text-[10px] font-bold uppercase tracking-tighter text-white/40 select-none pointer-events-none z-10"
               aria-hidden="true"
             >
-              ID.{String(i + 1).padStart(2, "0")}
+              {String(i + 1).padStart(2, "0")}
             </div>
 
             {/* Header: Icon-Box + Titel (Icon bleibt immer) */}

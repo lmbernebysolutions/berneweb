@@ -35,13 +35,26 @@ export function CtaSection({ headline, subline, ctas }: CtaSectionProps) {
           </p>
         )}
 
+        {/* Founder-Element (Phase 1: Placeholder, Phase 2: echtes Foto) */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-center sm:text-left">
+          <div
+            className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white/5 border-2 border-white/20 flex items-center justify-center text-white/60 font-display text-2xl font-bold uppercase"
+            aria-hidden="true"
+          >
+            LM
+          </div>
+          <div>
+            <p className="text-sm sm:text-base text-white/80 italic">&ldquo;Wir bauen keine Luftschlösser – wir bauen, was funktioniert.&rdquo;</p>
+            <p className="mt-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-brand-cyan">Lennard Meyer · Berneby Solutions</p>
+          </div>
+        </div>
+
         <div className="mt-12 flex flex-wrap justify-center gap-6">
           {ctas.map((cta, i) => (
             <Button
               key={cta.label}
               variant={i === 0 ? "default" : "outline"}
               size="lg"
-              className={i === 0 ? "animate-cta-pulse" : undefined}
               asChild
             >
               <Link href={cta.href}>
@@ -52,9 +65,6 @@ export function CtaSection({ headline, subline, ctas }: CtaSectionProps) {
         </div>
       </div>
       </div>
-
-      {/* Decorative Grid Floor */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-[linear-gradient(to_bottom,transparent,rgba(3,249,249,0.05)_1px,transparent_1px)] bg-[length:100%_4px] [transform:perspective(500px)_rotateX(60deg)_scale(2)] origin-bottom opacity-50 pointer-events-none" />
 
     </section>
   );

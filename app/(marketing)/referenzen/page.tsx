@@ -7,16 +7,11 @@ import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { ReferenzenCarousel } from "@/components/sections/ReferenzenCarousel";
-import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
-import { TechCorners } from "@/components/ui/tech-corners";
-import {
-  IconCircleCheck,
-  IconTrendingUp,
-  IconClock,
-  IconBuildingStore,
-} from "@tabler/icons-react";
+import { WarumBernebyV3 } from "@/components/v3/WarumBernebyV3";
 import { TRUST_BAR } from "@/lib/constants";
 import { REFERENZEN, type ReferenzKategorie } from "@/lib/data/referenzen";
+import { CONTAINER_A_NO_GLOW } from "@/lib/container-styles";
+import { cn } from "@/lib/utils";
 
 // =============================================================================
 // FILTER TABS
@@ -91,13 +86,15 @@ export default function ReferenzenPage() {
           ))}
         </div>
 
-        {/* Case Studies Carousel */}
+        {/* Case Studies Carousel – Desktop: schmalere Anzeige */}
         {gefilterteReferenzen.length === 0 ? (
-          <div className="border border-brand-cyan/10 bg-brand-cyan/5 px-8 py-16 text-center">
+          <div className={cn("px-8 py-16 text-center", CONTAINER_A_NO_GLOW)}>
             <p className="text-white/40 font-mono text-sm">Keine Projekte in dieser Kategorie vorhanden.</p>
           </div>
         ) : (
-          <ReferenzenCarousel referenzen={gefilterteReferenzen} />
+          <div className="md:max-w-2xl lg:max-w-3xl md:mx-auto">
+            <ReferenzenCarousel referenzen={gefilterteReferenzen} />
+          </div>
         )}
       </Section>
 
@@ -113,50 +110,14 @@ export default function ReferenzenPage() {
           align="left"
           light
         />
-        <MobileSwipeGrid gridClassName="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" slideMinWidth="min-w-[88%] sm:min-w-[60%]">
-          {[
-            {
-              icon: IconClock,
-              title: "Termingerecht",
-              text: "Jedes Projekt wird zum vereinbarten Termin geliefert – kein Wenn und Aber. Unser Festpreismodell schützt Sie vor Überraschungen.",
-            },
-            {
-              icon: IconTrendingUp,
-              title: "Messbar",
-              text: "Wir liefern keine Webseiten ins Nirgendwo. Jedes Projekt hat klare KPIs – wir tracken den Erfolg gemeinsam mit Ihnen.",
-            },
-            {
-              icon: IconCircleCheck,
-              title: "Transparent",
-              text: "Kein Fachjargon, keine versteckten Kosten. Sie wissen zu jedem Zeitpunkt, was gemacht wird und warum – ehrlich und klar.",
-            },
-            {
-              icon: IconBuildingStore,
-              title: "Lokal verankert",
-              text: "Wir kennen das Erzgebirge. Regionale Suchbegriffe, lokales Kaufverhalten, Kundschaft aus der Nachbarschaft – Ihr Vorteil.",
-            },
-          ].map((item, i) => (
-            <div
-              key={item.title}
-              data-animate="fade-up"
-              data-animate-delay={String(i * 80)}
-              className="group relative overflow-hidden border border-brand-cyan/20 bg-brand-navy/60 p-4 sm:p-6 transition-all hover:border-brand-cyan/40 hover:shadow-[0_0_40px_rgba(3,249,249,0.08)] h-full min-w-0 w-full"
-            >
-              <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
-
-              <div className="mb-4 flex h-10 w-10 shrink-0 items-center justify-center border border-brand-cyan/20 bg-brand-cyan/10">
-                <item.icon className="size-5 text-brand-cyan" stroke={1.5} />
-              </div>
-
-              <h3 className="mb-2 text-base font-bold uppercase tracking-tight text-white">
-                {item.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-white/55">
-                {item.text}
-              </p>
-            </div>
-          ))}
-        </MobileSwipeGrid>
+        <WarumBernebyV3
+          items={[
+            { point: "Termingerecht", detail: "Jedes Projekt wird zum vereinbarten Termin geliefert – kein Wenn und Aber. Unser Festpreismodell schützt Sie vor Überraschungen." },
+            { point: "Messbar", detail: "Wir liefern keine Webseiten ins Nirgendwo. Jedes Projekt hat klare KPIs – wir tracken den Erfolg gemeinsam mit Ihnen." },
+            { point: "Transparent", detail: "Kein Fachjargon, keine versteckten Kosten. Sie wissen zu jedem Zeitpunkt, was gemacht wird und warum – ehrlich und klar." },
+            { point: "Lokal verankert", detail: "Wir kennen das Erzgebirge. Regionale Suchbegriffe, lokales Kaufverhalten, Kundschaft aus der Nachbarschaft – Ihr Vorteil." },
+          ]}
+        />
       </Section>
 
       <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />

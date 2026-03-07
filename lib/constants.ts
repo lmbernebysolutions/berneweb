@@ -127,6 +127,16 @@ export const TECH_STACK = [
   "KI-Integration",
 ] as const;
 
+/** Mit Kundennutzen für Nicht-Techniker (V3: Nutzenzeile unter Tech-Namen) */
+export const TECH_STACK_WITH_BENEFIT = [
+  { name: "Next.js", benefit: "Blitzschnelle Ladezeiten" },
+  { name: "React", benefit: "Moderne, wartbare Oberflächen" },
+  { name: "Shopware", benefit: "Professionelle Online-Shops" },
+  { name: "Microsoft 365", benefit: "Office & E-Mail aus einer Hand" },
+  { name: "SEO & GEO", benefit: "Gefunden werden – lokal & in KI-Suchen" },
+  { name: "KI-Integration", benefit: "Telefon, Chat, Automatisierung" },
+] as const;
+
 /** Tech-Seite: TrustBar-Kennzahlen (1:1 wie Über-uns, Inhalt angepasst) */
 export const TECH_STATS = [
   { value: "50+", label: "Projekte" },
@@ -228,15 +238,15 @@ export const HANDWERK_STATS = [
 export const HANDWERK_GARANTIEN = [
   {
     title: "Festpreis bis Abnahme",
-    description: "Keine versteckten Kosten. Was im Angebot steht, zahlen Sie.",
+    description: "Der Preis, den wir nennen, ist der Preis, den Sie zahlen. Keine versteckten Kosten, keine Nachforderungen – was im Angebot steht, gilt.",
   },
   {
     title: "12 Monate Support inklusive",
-    description: "Nach dem Launch sind wir für Sie da – im Paket bereits enthalten.",
+    description: "Nach dem Launch sind wir für Sie da. Updates, kleine Anpassungen und Support sind im Paket bereits enthalten – ohne Aufpreis.",
   },
   {
     title: "Kein Kleingedrucktes",
-    description: "Transparente Verträge. Sie wissen immer, wofür Sie zahlen.",
+    description: "Transparente Verträge. Sie wissen immer, wofür Sie zahlen und was Sie bekommen. Keine Überraschungen.",
   },
 ] as const;
 
@@ -602,6 +612,30 @@ export const SERVICES = {
     ],
   },
 } as const;
+
+// =============================================================================
+// ÜBER UNS – WARUM BERNEBY & VISION/MISSION (V3-Statement-Layout)
+// =============================================================================
+
+export const WARUM_BERNEBY = [
+  { point: "Persönlich", detail: "Keine Ticketnummer. Sie sprechen direkt mit Ihren Ansprechpartnern." },
+  { point: "Lokal", detail: "Aus dem Erzgebirge, für das Erzgebirge. Kurze Wege, echtes Verständnis." },
+  { point: "Fair", detail: "Transparente Preise. Kein Kleingedrucktes, keine Überraschungen." },
+  { point: "Ganzheitlich", detail: "Von der Website über SEO bis zum KI-Telefon – alles aus einer Hand." },
+] as const;
+
+export const VISION_MISSION = [
+  {
+    label: "Vision",
+    headline: "Das Erzgebirge digital stark machen",
+    body: "Jeder lokale Betrieb im Erzgebirge verdient eine digitale Präsenz, die funktioniert. Wir glauben, dass Technologie nicht kompliziert sein muss, und dass persönlicher Kontakt den Unterschied macht.",
+  },
+  {
+    label: "Mission",
+    headline: "Handfeste Lösungen. Kein Agentur-Blabla.",
+    body: "Wir bringen lokale Betriebe ins Netz – mit ehrlicher Beratung, sauberer Technik und Lösungen, die sich rechnen. Ohne Fachchinesisch, ohne Vertragsfallen.",
+  },
+] as const;
 
 // =============================================================================
 // TEAM

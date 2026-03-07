@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { TextLogo } from "@/components/brand/TextLogo";
-import { TechCorners } from "@/components/ui/tech-corners";
 import { COMPANY, FOOTER_NAV, SOCIAL_LINKS } from "@/lib/constants";
 import {
   IconPhone, IconMail, IconMapPin, IconArrowUpRight, IconArrowRight,
   IconBrandInstagram, IconBrandFacebook, IconBrandWhatsapp, IconBrandGoogle,
 } from "@tabler/icons-react";
 import Image from "next/image";
+import { CONTAINER_A } from "@/lib/container-styles";
+import { cn } from "@/lib/utils";
 
 const SOCIAL_ICONS = {
   Instagram: IconBrandInstagram,
@@ -99,9 +100,8 @@ export function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={link.ariaLabel}
-                      className="group tap-target relative overflow-hidden border border-white/10 bg-white/[0.03] p-2 flex flex-col items-center justify-center gap-1 transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 cursor-pointer"
+                      className={cn("group tap-target relative overflow-hidden p-2 flex flex-col items-center justify-center gap-1 cursor-pointer", CONTAINER_A)}
                     >
-                      <TechCorners pattern="diagonal" variant="cyan" size="sm" />
                       <Icon className="size-4 text-brand-cyan relative z-10" stroke={1.5} />
                       <span className="text-[0.48rem] font-bold uppercase tracking-widest text-brand-navy-muted relative z-10 text-center leading-tight">
                         {link.label}
@@ -180,9 +180,7 @@ export function Footer() {
 
           {/* CTA card – SectionCard-Style, TechCorners (V2) */}
           <div className="md:col-span-3">
-            <div className="group relative overflow-hidden border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm">
-              <TechCorners pattern="diagonal" variant="cyan" size="sm" />
-
+            <div className={cn("group relative overflow-hidden p-5 backdrop-blur-sm", CONTAINER_A)}>
               <p className="relative z-10 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan">
                 Projekt starten
               </p>
@@ -227,9 +225,8 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.ariaLabel}
-                    className="group tap-target relative overflow-hidden border border-white/10 bg-white/[0.03] p-2 flex items-center justify-center transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 hover:shadow-[0_0_8px_rgba(3,249,249,0.12)] cursor-pointer"
+                    className={cn("group tap-target relative overflow-hidden p-2 flex items-center justify-center cursor-pointer", CONTAINER_A)}
                   >
-                    <TechCorners pattern="diagonal" variant="cyan" size="sm" />
                     <Icon className="size-4 text-brand-cyan relative z-10" stroke={1.5} />
                   </a>
                 );

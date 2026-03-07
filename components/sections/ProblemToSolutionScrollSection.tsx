@@ -5,6 +5,7 @@ import { TechCorners } from "@/components/ui/tech-corners";
 import { IconCheck, IconX } from "@tabler/icons-react";
 import { OHNE_UNS_ROWS, MIT_UNS_ROWS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { CONTAINER_A_STATIC, CONTAINER_B } from "@/lib/container-styles";
 
 /**
  * Mobile-only: Ein Block, der beim Scroll von "Ohne Uns" (Problem) in "Mit Uns" (Solution) überblendet.
@@ -42,16 +43,16 @@ export function ProblemToSolutionScrollSection() {
       <div
         className={cn(
           "sticky top-24 left-0 right-0 transition-all duration-300",
-          progress > 0.5
-            ? "border-2 border-brand-cyan/30 bg-brand-cyan/5 shadow-[0_0_60px_rgba(3,249,249,0.15)]"
-            : "border-2 border-white/5 bg-black/30"
+          progress > 0.5 ? CONTAINER_B : CONTAINER_A_STATIC
         )}
       >
-        <TechCorners
-          pattern="all"
-          variant={progress > 0.5 ? "cyan" : "navy"}
-          size="lg"
-        />
+        {progress > 0.5 && (
+          <TechCorners
+            pattern="all"
+            variant="cyan"
+            size="lg"
+          />
+        )}
         {progress <= 0.5 && (
           <div
             className="absolute inset-0 opacity-5 pointer-events-none"
@@ -66,29 +67,18 @@ export function ProblemToSolutionScrollSection() {
             className="absolute inset-0 opacity-5 pointer-events-none"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(3,249,249,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(3,249,249,0.1) 1px, transparent 1px)",
+                "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
               backgroundSize: "20px 20px",
             }}
           />
         )}
-
-        <div
-          className={cn(
-            "absolute top-0 right-0 border-b-2 border-l-2 px-3 py-1 font-mono text-[10px] uppercase tracking-widest z-20 transition-colors duration-300",
-            progress > 0.5
-              ? "border-brand-cyan/40 bg-brand-cyan/20 text-brand-cyan shadow-[0_0_10px_rgba(3,249,249,0.3)]"
-              : "border-white/10 bg-black/40 text-white/40"
-          )}
-        >
-          {progress > 0.5 ? "SYSTEM_ONLINE" : "STATUS_OFFLINE"}
-        </div>
 
         <div className="relative z-10 p-6 sm:p-8">
           <div className="mb-10 flex items-center justify-between">
             <h3
               className={cn(
                 "text-3xl sm:text-3xl font-bold uppercase tracking-tighter transition-colors duration-300",
-                progress > 0.5 ? "text-brand-cyan drop-shadow-[0_0_10px_rgba(3,249,249,0.5)]" : "text-white/60"
+                progress > 0.5 ? "text-brand-cyan" : "text-white/60"
               )}
             >
               {progress > 0.5 ? "Mit Uns" : "Ohne Uns"}
@@ -127,7 +117,7 @@ export function ProblemToSolutionScrollSection() {
                   >
                     <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-white/30">
                       <span>{item.label}</span>
-                      <span className="text-white/20">PROBLEM: {item.risk}</span>
+                      <span className="text-white/20">— {item.risk}</span>
                     </div>
                     <p className="mt-1 font-medium text-brand-navy-muted">{item.val}</p>
                   </div>
@@ -142,7 +132,7 @@ export function ProblemToSolutionScrollSection() {
                       <span>{sol.label}</span>
                       <span className="flex items-center gap-1.5">
                         <div className="h-1.5 w-1.5 animate-pulse bg-brand-cyan rounded-full shadow-[0_0_6px_rgba(3,249,249,0.8)]" />
-                        BOOST: {sol.gain}
+                        ↑ {sol.gain}
                       </span>
                     </div>
                     <p className="mt-1 font-bold text-white">{sol.val}</p>

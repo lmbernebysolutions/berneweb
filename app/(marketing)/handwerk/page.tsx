@@ -8,7 +8,6 @@ import { PricingCards } from "@/components/sections/PricingCards";
 import dynamic from "next/dynamic";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { CtaSection } from "@/components/sections/CtaSection";
-import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
 
 const ChatSection = dynamic(
   () => import("@/components/sections/chat-section").then((m) => ({ default: m.ChatSection })),
@@ -22,7 +21,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
   IconArrowRight,
-  IconCheck,
   IconStarFilled,
   IconBrandGoogle,
 } from "@tabler/icons-react";
@@ -39,7 +37,9 @@ import {
 } from "@/lib/constants";
 import { generateFaqSchema, generateBreadcrumbSchema, generateHowToSchema } from "@/lib/seo/schema";
 import { HandwerkProblemWithRevealSection } from "@/components/sections/HandwerkProblemWithRevealSection";
-import { TechCorners } from "@/components/ui/tech-corners";
+import { WarumBernebyV3 } from "@/components/v3/WarumBernebyV3";
+import { CONTAINER_A } from "@/lib/container-styles";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: PAGE_META.handwerk.title,
@@ -131,7 +131,7 @@ export default function HandwerkPage() {
         sectionBg="transparent"
       />
 
-      {/* Garantien */}
+      {/* Garantien – Text-Sektion wie Vision & Mission (keine Karten) */}
       <Section bg="subtle">
         <SectionHeading
           number="05"
@@ -141,31 +141,12 @@ export default function HandwerkPage() {
           align="left"
           light
         />
-        <MobileSwipeGrid gridClassName="grid gap-6 md:grid-cols-3 md:items-stretch" slideMinWidth="min-w-[88%] sm:min-w-[70%]">
-          {HANDWERK_GARANTIEN.map((item, i) => (
-            <div
-              key={item.title}
-              data-animate="fade-up"
-              data-animate-delay={String(i * 80)}
-              className="group relative flex flex-col overflow-hidden border border-white/10 bg-brand-navy/60 p-4 sm:p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow h-full min-w-0 w-full"
-            >
-              <TechCorners pattern="diagonal" variant="cyan" size="lg" />
-              <div className="relative z-10 flex flex-1 flex-col items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10" aria-hidden="true">
-                  <IconCheck className="size-5 text-brand-cyan" stroke={2.5} />
-                </div>
-                <div className="min-h-[4.5rem] flex-1">
-                  <h3 className="font-bold uppercase tracking-wider text-white">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/70">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </MobileSwipeGrid>
+        <WarumBernebyV3
+          items={HANDWERK_GARANTIEN.map((item) => ({
+            point: item.title,
+            detail: item.description,
+          }))}
+        />
       </Section>
 
       {/* 06: Flatrate – Der Digitale Hausmeister (Angebot) */}
@@ -245,9 +226,11 @@ export default function HandwerkPage() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={SOCIAL_LINKS[3].ariaLabel}
-            className="group relative overflow-hidden border border-white/10 bg-white/[0.03] px-4 py-2.5 flex items-center gap-2.5 transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 hover:shadow-[0_0_10px_rgba(3,249,249,0.1)] cursor-pointer"
+            className={cn(
+              "group relative overflow-hidden px-4 py-2.5 flex items-center gap-2.5 cursor-pointer",
+              CONTAINER_A
+            )}
           >
-            <TechCorners pattern="diagonal" variant="cyan" size="sm" />
             <IconBrandGoogle className="size-4 text-brand-cyan shrink-0 relative z-10" stroke={1.5} />
             <span className="text-xs font-semibold uppercase tracking-widest text-white relative z-10">
               Bewertungen ansehen

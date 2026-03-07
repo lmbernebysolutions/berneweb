@@ -56,7 +56,7 @@ export function Hero({
             acc.push(part);
             if (i < parts.length - 1) {
               acc.push(
-                <span key={`${accent}-${i}`} className="text-cyan text-[1.06em] whitespace-normal sm:whitespace-nowrap">
+                <span key={`${accent}-${i}`} className="text-brand-cyan text-[1.06em] whitespace-normal sm:whitespace-nowrap">
                   {accent}
                 </span>
               );
@@ -150,7 +150,7 @@ export function Hero({
         <div className="mx-auto max-w-6xl w-full px-4 sm:px-5 md:px-6 lg:px-8 hero-line-reveal">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-end">
             <div className="lg:col-span-8 min-w-0">
-              <div className="mt-0 border-l-4 border-cyan pl-3 sm:pl-6">
+              <div className="mt-0 border-l-2 border-white/25 pl-3 sm:pl-6">
                 <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-blue-100 leading-relaxed max-w-full">
                   {subline}
                 </p>
@@ -165,8 +165,7 @@ export function Hero({
                       variant={cta.variant === "default" || i === 0 ? "default" : "outline-light"}
                       size="lg"
                       className={cn(
-                        "text-sm sm:text-base",
-                        (cta.variant === "default" || i === 0) && "animate-cta-pulse"
+                        "text-sm sm:text-base"
                       )}
                     >
                       <Link href={cta.href}>
@@ -181,10 +180,8 @@ export function Hero({
         </div>
       </div>
 
-      {/* 3. BOTTOM DECORATION – Linie bündig unten (bottom-0, keine Anhebung) */}
-      <div className="absolute left-0 right-0 bottom-0 h-px bg-cyan/20" aria-hidden="true" />
-      <div className="absolute left-10 bottom-0 h-20 w-px bg-cyan/20" aria-hidden="true" />
-      <div className="absolute right-10 bottom-0 h-20 w-px bg-cyan/20" aria-hidden="true" />
+      {/* 3. BOTTOM DECORATION – Linie bündig unten (bottom-0) */}
+      <div className="absolute left-0 right-0 bottom-0 h-px bg-white/10" aria-hidden="true" />
 
     </section>
   );

@@ -6,6 +6,8 @@ import { TeamSection } from "@/components/sections/TeamSection";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import dynamic from "next/dynamic";
 import { CtaSection } from "@/components/sections/CtaSection";
+import { StatementSectionV3 } from "@/components/v3/StatementSectionV3";
+import { WarumBernebyV3 } from "@/components/v3/WarumBernebyV3";
 import { TrustBar } from "@/components/sections/TrustBar";
 
 const FaqAccordion = dynamic(
@@ -17,9 +19,10 @@ import {
   TEAM,
   VALUES,
   PAGE_META,
-  COMPANY,
   FAQ_ITEMS,
   SOCIAL_LINKS,
+  WARUM_BERNEBY,
+  VISION_MISSION,
 } from "@/lib/constants";
 
 const UEBER_UNS_SOCIAL_ICONS = {
@@ -31,33 +34,14 @@ const UEBER_UNS_SOCIAL_ICONS = {
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
 import Image from "next/image";
+import { CONTAINER_A, CONTAINER_B } from "@/lib/container-styles";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: PAGE_META.ueberUns.title,
   description: PAGE_META.ueberUns.description,
   alternates: { canonical: "/ueber-uns" },
 };
-
-const WARUM_BERNEBY = [
-  {
-    point: "Persönlich",
-    detail: "Keine Ticketnummer. Sie sprechen direkt mit Ihren Ansprechpartnern.",
-  },
-  {
-    point: "Lokal",
-    detail:
-      "Aus dem Erzgebirge, für das Erzgebirge. Kurze Wege, echtes Verständnis.",
-  },
-  {
-    point: "Fair",
-    detail: "Transparente Preise. Kein Kleingedrucktes, keine Überraschungen.",
-  },
-  {
-    point: "Ganzheitlich",
-    detail:
-      "Von der Website über SEO bis zum KI-Telefon – alles aus einer Hand.",
-  },
-];
 
 export default function UeberUnsPage() {
   return (
@@ -86,9 +70,12 @@ export default function UeberUnsPage() {
         />
         <div
           data-animate="fade-up"
-          className="relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md p-8 md:p-10"
+          className={cn(
+            "group relative overflow-hidden p-8 md:p-10",
+            CONTAINER_B
+          )}
         >
-          <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+          <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
           <div className="relative z-10 flex flex-col items-center text-center">
             <div className="mb-6 flex h-14 w-14 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10">
               <IconQuote className="size-7 text-brand-warm" stroke={1.5} />
@@ -119,7 +106,7 @@ export default function UeberUnsPage() {
           light
         />
 
-        {/* Soziale Kanäle – direkt unter SectionHeading-Unterschrift, vor TeamSection */}
+        {/* Soziale Kanäle – wie im Footer (CONTAINER_A, nur Icon, keine TechCorners) */}
         <div className="-mt-8 sm:-mt-10 md:-mt-12 lg:-mt-14 xl:-mt-16 mb-8 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/10 pt-4">
           <span className="text-xs font-mono uppercase tracking-widest text-brand-navy-muted">
             Folgen Sie uns
@@ -134,9 +121,11 @@ export default function UeberUnsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.ariaLabel}
-                  className="group relative overflow-hidden border border-white/10 bg-white/[0.03] p-2 flex items-center justify-center transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 hover:shadow-[0_0_8px_rgba(3,249,249,0.1)] cursor-pointer"
+                  className={cn(
+                    "group tap-target relative overflow-hidden p-2 flex items-center justify-center cursor-pointer",
+                    CONTAINER_A
+                  )}
                 >
-                  <TechCorners pattern="diagonal" variant="cyan" size="sm" />
                   <Icon className="size-4 text-brand-cyan relative z-10" stroke={1.5} />
                 </a>
               );
@@ -147,7 +136,7 @@ export default function UeberUnsPage() {
         <TeamSection members={TEAM} variant="navy" />
       </Section>
 
-      {/* 04: Vision / Mission */}
+      {/* 04: Vision / Mission – Statement ohne Karten (V3-Layout) */}
       <Section bg="transparent">
         <SectionHeading
           number="04"
@@ -158,48 +147,7 @@ export default function UeberUnsPage() {
           align="left"
           light
         />
-        <div className="grid gap-8 md:grid-cols-2 md:gap-12">
-          <div
-            data-animate="fade-left"
-            className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20"
-          >
-            <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
-            <div className="relative z-10 p-8 md:p-10">
-              <div className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-brand-cyan">
-                Vision
-              </div>
-              <h2 className="text-2xl font-extrabold text-white md:text-3xl">
-                Wo wir hinwollen
-              </h2>
-              <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/80">
-                Jeder lokale Betrieb im Erzgebirge verdient eine digitale
-                Präsenz, die funktioniert. Wir glauben, dass Technologie nicht
-                kompliziert sein muss, und dass persönlicher Kontakt den
-                Unterschied macht.
-              </p>
-            </div>
-          </div>
-
-          <div
-            data-animate="fade-right"
-            className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20"
-          >
-            <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
-            <div className="relative z-10 p-8 md:p-10">
-              <div className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-brand-cyan">
-                Mission
-              </div>
-              <h2 className="text-2xl font-extrabold text-white md:text-3xl">
-                Was wir tun
-              </h2>
-              <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/80">
-                Wir bringen lokale Betriebe ins Netz – mit ehrlicher Beratung,
-                sauberer Technik und Lösungen, die sich rechnen. Ohne
-                Fachchinesisch, ohne Vertragsfallen.
-              </p>
-            </div>
-          </div>
-        </div>
+        <StatementSectionV3 items={VISION_MISSION} />
       </Section>
 
       {/* 06: Werte */}
@@ -216,7 +164,7 @@ export default function UeberUnsPage() {
         <FeatureGrid features={VALUES} cols={4} light swipeOnMobile />
       </Section>
 
-      {/* 07: Warum Berneby */}
+      {/* 07: Warum Berneby – horizontal (V3-Layout) */}
       <Section bg="subtle">
         <SectionHeading
           number="07"
@@ -225,30 +173,9 @@ export default function UeberUnsPage() {
           subtitle="Was uns von anderen unterscheidet und warum wir der richtige Partner für Sie sind."
           align="left"
           light
+
         />
-        <div className="grid gap-6 sm:grid-cols-2">
-          {WARUM_BERNEBY.map((item, i) => (
-            <div
-              key={item.point}
-              data-animate="fade-up"
-              data-animate-delay={String(i * 80)}
-              className="group relative flex gap-6 overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
-            >
-              <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
-              <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10 font-mono text-xl font-bold text-brand-cyan">
-                {String(i + 1).padStart(2, "0")}
-              </div>
-              <div className="relative z-10 min-w-0">
-                <p className="font-bold uppercase tracking-tight text-white">
-                  {item.point}
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-white/70">
-                  {item.detail}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <WarumBernebyV3 items={WARUM_BERNEBY} />
       </Section>
 
       {/* 08: FAQ – overflow-visible damit Backdrop „08“ nicht abgeschnitten wird */}

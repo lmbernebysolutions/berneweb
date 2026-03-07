@@ -14,12 +14,17 @@
 
   /* Brand Tokens - Heavy Industrial */
   --color-brand-navy: #283569;
+  --color-brand-navy-dark: #1a2342;
   /* WCAG AA compliant muted text on navy (~4.5:1 on #283569) */
   --color-brand-navy-muted: #9caec9;
   --color-brand-cyan: #03f9f9;
   --color-brand-cyan-dim: color-mix(in srgb, #03f9f9 20%, transparent);
   --color-brand-warm: #FFB547;
   --color-brand-warm-dim: color-mix(in srgb, #FFB547 20%, transparent);
+
+  /* V3 Light Section Tokens */
+  --color-brand-light: #e8ecf4;
+  --color-brand-light-subtle: #f0f3f8;
 
   /* Animation Easings - Machine Precision */
   --ease-mechanical: cubic-bezier(0.16, 1, 0.3, 1);

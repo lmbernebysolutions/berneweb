@@ -6,6 +6,7 @@ import Link from "next/link";
 import { IconArrowRight } from "@tabler/icons-react";
 import { getAllBranchenSlugs, getBrancheBySlug } from "@/lib/data/branchen";
 import { TechCorners } from "@/components/ui/tech-corners";
+import { CONTAINER_A } from "@/lib/container-styles";
 
 export const metadata: Metadata = {
   title: "Branchen – Website & Digitalisierung für Handwerk & KMU | Berneby Solutions",
@@ -39,7 +40,7 @@ export default function BranchenPage() {
               href={`/branchen/${b.slug}`}
               data-animate="fade-up"
               data-animate-delay={String(i * 60)}
-              className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow block"
+              className={`group relative overflow-hidden p-6 backdrop-blur-md transition-all block ${CONTAINER_A}`}
             >
               <TechCorners pattern="diagonal" variant="cyan" size="sm" />
               <div className="relative z-10 flex items-center justify-between">

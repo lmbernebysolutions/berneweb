@@ -13,6 +13,8 @@ import { ChatInput } from "@/components/sections/chat-input";
 import { useChatConsent } from "@/hooks/use-chat-consent";
 import { MAX_INPUT_CHARS } from "@/lib/chat/constants";
 import { IconArrowRight } from "@tabler/icons-react";
+import { CONTAINER_B_STATIC } from "@/lib/container-styles";
+import { cn } from "@/lib/utils";
 
 function getMessageText(msg: { parts?: { type: string; text?: string }[] }): string {
   if (!msg.parts?.length) return "";
@@ -116,7 +118,7 @@ export function ChatSection({
               align="left"
               light
             />
-        <div className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md max-h-[min(70vh,720px)] flex flex-col">
+        <div className={cn("group relative overflow-hidden max-h-[min(70vh,720px)] flex flex-col", CONTAINER_B_STATIC)}>
           <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
           <div className="relative z-10 flex min-h-0 flex-1 flex-col p-8 md:p-10">
             <p className="text-white/80 mb-4">
@@ -142,7 +144,7 @@ export function ChatSection({
             align="left"
             light
           />
-      <div className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow max-h-[min(70vh,720px)] flex flex-col">
+      <div className={cn("group relative overflow-hidden max-h-[min(70vh,720px)] flex flex-col", CONTAINER_B_STATIC)}>
         <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
         <div className="relative z-10 flex min-h-0 flex-1 flex-col p-6 md:p-8 lg:p-10">
           <p className="mb-4 text-xs text-white/60" role="status">

@@ -23,6 +23,7 @@ const HEADER_SOCIAL_ICONS = {
 import { useScroll } from "@/hooks/use-scroll";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { CONTAINER_A } from "@/lib/container-styles";
 
 export function Header() {
   const scrolled = useScroll(20);
@@ -74,7 +75,7 @@ export function Header() {
               )}
             </Link>
           ))}
-          <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer px-4 py-2 min-[1920px]:px-5 min-[1920px]:py-2.5 min-[1920px]:text-sm min-[1920px]:ml-6 animate-cta-pulse">
+          <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer px-4 py-2 min-[1920px]:px-5 min-[1920px]:py-2.5 min-[1920px]:text-sm min-[1920px]:ml-6">
             <Link href="/kontakt">
               Erstgespräch
               <IconArrowRight
@@ -97,13 +98,8 @@ export function Header() {
               <IconMenu2 className="size-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-80 border-l border-brand-cyan/20 bg-brand-navy pt-16">
+          <SheetContent side="right" className="w-80 border-l border-white/15 bg-brand-navy pt-16">
             <SheetTitle className="sr-only">Navigation</SheetTitle>
-
-            {/* Tech decoration */}
-            <div className="absolute top-4 left-4 font-mono text-[0.6rem] text-brand-cyan/30 uppercase tracking-widest">
-              NAV.SYS
-            </div>
 
             <nav className="flex flex-col gap-1" aria-label="Mobile Navigation">
               {NAV_ITEMS.map((item, i) => (
@@ -148,7 +144,7 @@ export function Header() {
                         rel="noopener noreferrer"
                         aria-label={link.ariaLabel}
                         onClick={() => setOpen(false)}
-                        className="group tap-target relative overflow-hidden border border-white/10 bg-white/[0.03] p-2 flex items-center justify-center transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 cursor-pointer"
+                        className={cn("group tap-target relative overflow-hidden p-2 flex items-center justify-center cursor-pointer", CONTAINER_A)}
                       >
                         <Icon className="size-4 text-brand-cyan" stroke={1.5} />
                       </a>

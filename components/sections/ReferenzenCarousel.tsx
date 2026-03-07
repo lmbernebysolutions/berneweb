@@ -14,6 +14,7 @@ import {
 } from "@tabler/icons-react";
 import type { Referenz } from "@/lib/data/referenzen";
 import { cn } from "@/lib/utils";
+import { CONTAINER_B } from "@/lib/container-styles";
 
 // =============================================================================
 // DEVICE MOCKUPS
@@ -22,19 +23,26 @@ function BrowserMockup({
   theme,
   url = "www.example.de",
   imageSrc,
+  compact = false,
 }: {
   theme: Referenz["mockupTheme"];
   url?: string;
   imageSrc?: string;
+  /** Home: kleineres Browser-Fenster; Referenzen: etwas größer aber begrenzt */
+  compact?: boolean;
 }) {
   return (
-    <div className="relative overflow-hidden border border-brand-cyan/30 shadow-[0_0_40px_rgba(3,249,249,0.08)]">
-      <TechCorners pattern="all" variant="cyan" size="sm" />
-      <div className="flex items-center gap-2 px-3 py-2 bg-black/50 border-b border-brand-cyan/20 backdrop-blur-sm">
+    <div
+      className={cn(
+        "relative overflow-hidden border border-white/15",
+        compact ? "max-w-[440px] md:max-w-[520px]" : "max-w-full"
+      )}
+    >
+      <div className="flex items-center gap-2 px-3 py-2 bg-black/50 border-b border-white/10 backdrop-blur-sm">
         <div className="flex gap-1.5 shrink-0">
-          <div className="h-2 w-2 rounded-full bg-red-400/70" />
-          <div className="h-2 w-2 rounded-full bg-yellow-400/70" />
-          <div className="h-2 w-2 rounded-full bg-green-400/70" />
+          <div className="h-2 w-2 rounded-full bg-white/20" />
+          <div className="h-2 w-2 rounded-full bg-white/30" />
+          <div className="h-2 w-2 rounded-full bg-white/40" />
         </div>
         <div className="flex flex-1 items-center gap-1.5 mx-2 px-2.5 py-1 bg-white/5 border border-white/10 min-w-0">
           <div className="h-1.5 w-1.5 rounded-full bg-brand-cyan/60 shrink-0" />
@@ -52,7 +60,7 @@ function BrowserMockup({
             alt="Desktop-Ansicht der Referenz"
             fill
             className="object-cover object-top"
-            sizes="(max-width: 768px) 100vw, 600px"
+            sizes={compact ? "520px" : "896px"}
           />
         ) : (
           <div
@@ -72,14 +80,18 @@ function BrowserMockup({
 function PhoneMockup({
   theme,
   imageSrc,
+  compact = false,
 }: {
   theme: Referenz["mockupTheme"];
   imageSrc?: string;
+  /** Home: etwas kleiner; Referenzen: größer, gut sichtbar */
+  compact?: boolean;
 }) {
+  const widthPx = compact ? 100 : 155;
   return (
     <div
-      className="relative overflow-hidden border-2 border-brand-cyan/30 bg-black shadow-[0_0_30px_rgba(3,249,249,0.12)]"
-      style={{ borderRadius: "16px", width: "100%", maxWidth: "240px" }}
+      className="relative overflow-hidden border-2 border-white/15 bg-black shrink-0"
+      style={{ borderRadius: "16px", width: widthPx }}
     >
       {/* Status bar: only time, original visual height restored */}
       <div
@@ -114,8 +126,8 @@ function PhoneMockup({
 
 function ErgebnisBadge({ result }: { result: { wert: string; metrik: string; positiv: boolean } }) {
   return (
-    <div className="flex flex-col items-center justify-center border border-brand-cyan/20 bg-brand-cyan/5 p-3 text-center">
-      <span className="font-display text-xl font-extrabold text-brand-cyan leading-none">
+    <div className="flex flex-col items-center justify-center border border-brand-warm/30 bg-brand-warm/5 p-3 text-center">
+      <span className="font-display text-2xl font-extrabold text-brand-warm leading-none tabular-nums">
         {result.wert}
       </span>
       <span className="mt-1 text-[10px] font-mono uppercase tracking-wider text-white/50 leading-tight">
@@ -137,9 +149,11 @@ export function ReferenzCard({
 }) {
   return (
     <article
-      className={`group relative overflow-hidden border border-brand-cyan/20 bg-brand-navy/40 backdrop-blur-md transition-all hover:border-brand-cyan/40 hover:shadow-[0_0_60px_rgba(3,249,249,0.1)] min-w-0 max-w-full w-full ${
+      className={cn(
+        "group relative overflow-hidden min-w-0 max-w-full w-full",
+        CONTAINER_B,
         featured ? "col-span-full" : ""
-      }`}
+      )}
       data-animate="fade-up"
     >
       {/* Tech Corners wie CraftToolboxGrid/Design-System – diagonal, sichtbar über dem Inhalt */}
@@ -161,13 +175,14 @@ export function ReferenzCard({
             className="absolute inset-0 opacity-[0.03] pointer-events-none"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(3,249,249,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(3,249,249,0.5) 1px, transparent 1px)",
+                "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
               backgroundSize: "24px 24px",
             }}
           />
           <div className="relative flex items-end justify-center gap-0 md:gap-4">
-            <div className="w-full max-w-sm md:max-w-none">
+            <div className="w-full min-w-0 flex justify-center md:justify-end">
               <BrowserMockup
+                compact={compact}
                 theme={referenz.mockupTheme}
                 url={
                   referenz.url === "#"
@@ -183,7 +198,7 @@ export function ReferenzCard({
               }`}
               style={{ transform: "translateY(1rem)" }}
             >
-              <PhoneMockup theme={referenz.mockupTheme} imageSrc={referenz.phoneImage} />
+              <PhoneMockup compact={compact} theme={referenz.mockupTheme} imageSrc={referenz.phoneImage} />
             </div>
           </div>
           <div className="relative z-10 mt-6 flex flex-wrap gap-2">

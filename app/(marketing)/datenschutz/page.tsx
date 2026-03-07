@@ -3,6 +3,8 @@ import { Section } from "@/components/layout/Section";
 import { COMPANY } from "@/lib/constants";
 import { generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
+import { cn } from "@/lib/utils";
+import { CONTAINER_A_NO_GLOW, CONTAINER_B_STATIC } from "@/lib/container-styles";
 import {
   IconShield,
   IconServer,
@@ -39,7 +41,7 @@ function SectionCard({
   variant?: "default" | "highlight";
 }) {
   return (
-    <div className={`relative overflow-hidden border p-6 sm:p-8 ${variant === "highlight" ? "border-brand-cyan/40 bg-brand-cyan/5" : "border-white/10 bg-white/[0.03]"}`}>
+    <div className={cn("relative overflow-hidden border p-6 sm:p-8", variant === "highlight" ? CONTAINER_B_STATIC : CONTAINER_A_NO_GLOW)}>
       <TechCorners pattern="diagonal" variant="cyan" size="md" />
       <div className="absolute top-0 right-0 border-b border-l border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-widest text-brand-cyan/70">
         §{number}
@@ -68,7 +70,7 @@ function InfoRow({ label, value }: { label: string; value: React.ReactNode }) {
 
 function RightCard({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) {
   return (
-    <div className="relative flex flex-col gap-2 border border-white/10 bg-white/[0.02] p-4 overflow-hidden">
+    <div className={cn("relative flex flex-col gap-2 border p-4 overflow-hidden", CONTAINER_A_NO_GLOW)}>
       <TechCorners pattern="diagonal" variant="cyan" size="sm" />
       <div className="flex items-center gap-2">
         <Icon className="size-4 text-brand-cyan/60" stroke={1.5} />
@@ -116,7 +118,7 @@ export default function DatenschutzPage() {
           </SectionCard>
 
           {/* Überblick Verarbeitungen */}
-          <div className="relative overflow-hidden border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+          <div className={cn("relative overflow-hidden p-6 sm:p-8", CONTAINER_A_NO_GLOW)}>
             <TechCorners pattern="all" variant="cyan" size="md" />
             <div className="absolute top-0 right-0 border-b border-l border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-widest text-brand-cyan/70">
               VERARBEITUNGSÜBERSICHT
@@ -310,7 +312,7 @@ export default function DatenschutzPage() {
           </SectionCard>
 
           {/* ── 9. Betroffenenrechte ─────────────────────────────────────── */}
-          <div className="relative overflow-hidden border border-brand-cyan/30 bg-brand-cyan/5 p-6 sm:p-8">
+          <div className={cn("relative overflow-hidden p-6 sm:p-8", CONTAINER_B_STATIC)}>
             <TechCorners pattern="all" variant="cyan" size="md" animate />
             <div className="flex items-center gap-3 mb-6">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10">

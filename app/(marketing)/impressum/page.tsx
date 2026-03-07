@@ -3,6 +3,8 @@ import { Section } from "@/components/layout/Section";
 import { COMPANY } from "@/lib/constants";
 import { generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
+import { cn } from "@/lib/utils";
+import { CONTAINER_A_NO_GLOW, CONTAINER_B_STATIC } from "@/lib/container-styles";
 import {
   IconBuilding,
   IconPhone,
@@ -37,11 +39,7 @@ function ImpressumCard({
 }) {
   return (
     <div
-      className={`relative overflow-hidden border p-6 sm:p-8 ${
-        variant === "highlight"
-          ? "border-brand-cyan/40 bg-brand-cyan/5"
-          : "border-white/10 bg-white/[0.03]"
-      }`}
+      className={cn("relative overflow-hidden border p-6 sm:p-8", variant === "highlight" ? CONTAINER_B_STATIC : CONTAINER_A_NO_GLOW)}
     >
       <TechCorners pattern="diagonal" variant="cyan" size="md" />
       <div className="absolute top-0 right-0 border-b border-l border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-widest text-brand-cyan/70">
@@ -219,7 +217,7 @@ export default function ImpressumPage() {
           </ImpressumCard>
 
           {/* Haftungshinweis */}
-          <div className="relative overflow-hidden border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+          <div className={cn("relative overflow-hidden p-6 sm:p-8", CONTAINER_A_NO_GLOW)}>
             <TechCorners pattern="diagonal" variant="cyan" size="sm" />
             <div className="absolute top-0 right-0 border-b border-l border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-widest text-brand-cyan/70">
               HAFTUNGSAUSSCHLUSS

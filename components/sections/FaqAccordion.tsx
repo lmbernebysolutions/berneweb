@@ -8,6 +8,8 @@ import {
 } from "@/components/ui/accordion";
 import { BackdropNumber } from "@/components/ui/backdrop-number";
 import { TechCorners } from "@/components/ui/tech-corners";
+import { CONTAINER_A_NO_GLOW } from "@/lib/container-styles";
+import { cn } from "@/lib/utils";
 
 interface FaqItem {
   question: string;
@@ -36,7 +38,10 @@ export function FaqAccordion({ items, number }: FaqAccordionProps) {
             value={`faq-${i}`}
             data-animate="fade-up"
             data-animate-delay={String(i * 60)}
-            className="group/faq relative overflow-hidden border border-white/10 bg-white/[0.03] px-6 shadow-sm transition-colors data-[state=open]:border-brand-cyan/30 data-[state=open]:bg-brand-cyan/5"
+            className={cn(
+              "group/faq relative overflow-hidden px-6 shadow-sm transition-colors data-[state=open]:border-brand-cyan/20 data-[state=open]:bg-brand-cyan/5",
+              CONTAINER_A_NO_GLOW
+            )}
           >
             {/* Tech corners - diagonal pattern, expands to all 4 on hover */}
             <TechCorners pattern="diagonal" variant="cyan" size="md" hoverExpand groupName="faq" />

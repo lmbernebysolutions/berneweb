@@ -22,13 +22,15 @@ import {
     IconRobot,
     IconSearch,
 } from "@tabler/icons-react";
-import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK, TECH_STATS, TECH_TESTIMONIALS, PAGE_META, SOCIAL_LINKS } from "@/lib/constants";
+import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK_WITH_BENEFIT, TECH_STATS, TECH_TESTIMONIALS, PAGE_META, SOCIAL_LINKS } from "@/lib/constants";
 import dynamic from "next/dynamic";
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { MissionSection } from "@/components/sections/MissionSection";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { TechCorners } from "@/components/ui/tech-corners";
+import { CONTAINER_A, CONTAINER_B } from "@/lib/container-styles";
+import { cn } from "@/lib/utils";
 
 const ChatSection = dynamic(
   () => import("@/components/sections/chat-section").then((m) => ({ default: m.ChatSection })),
@@ -113,7 +115,10 @@ export default function TechPage() {
                                 key={key}
                                 data-animate="fade-up"
                                 data-animate-delay={String(i * 80)}
-                                className="group relative flex flex-col border border-white/10 bg-brand-navy/60 backdrop-blur-md overflow-hidden transition-all hover:bg-brand-navy/80 card-hover-glow"
+                                className={cn(
+                                "group relative flex flex-col overflow-hidden",
+                                CONTAINER_B
+                              )}
                             >
                                 <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
 
@@ -235,9 +240,11 @@ export default function TechPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={SOCIAL_LINKS[3].ariaLabel}
-                    className="group relative overflow-hidden border border-white/10 bg-white/[0.03] px-4 py-2.5 flex items-center gap-2.5 transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 hover:shadow-[0_0_10px_rgba(3,249,249,0.1)] cursor-pointer"
+                    className={cn(
+                      "group relative overflow-hidden px-4 py-2.5 flex items-center gap-2.5 cursor-pointer",
+                      CONTAINER_A
+                    )}
                   >
-                    <TechCorners pattern="diagonal" variant="cyan" size="sm" />
                     <IconBrandGoogle className="size-4 text-brand-cyan shrink-0 relative z-10" stroke={1.5} />
                     <span className="text-xs font-semibold uppercase tracking-widest text-white relative z-10">
                       Bewertungen ansehen
@@ -271,7 +278,7 @@ export default function TechPage() {
                     light
                 />
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
-                    {TECH_STACK.map((item, i) => {
+                    {TECH_STACK_WITH_BENEFIT.map((item, i) => {
                         const Icon = {
                             "Next.js": IconBrandNextjs,
                             "React": IconBrandReact,
@@ -279,20 +286,27 @@ export default function TechPage() {
                             "Microsoft 365": IconBrandWindows,
                             "SEO & GEO": IconSearch,
                             "KI-Integration": IconRobot,
-                        }[item] || IconDeviceDesktop;
+                        }[item.name] || IconDeviceDesktop;
 
                         return (
                             <div
-                                key={item}
+                                key={item.name}
                                 data-animate="fade-up"
                                 data-animate-delay={String(i * 60)}
-                                className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow"
+                                className={cn(
+                                    "group relative overflow-hidden p-4 sm:p-5 backdrop-blur-md",
+                                    CONTAINER_A
+                                )}
                             >
-                                <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
-                                <div className="relative z-10 flex items-center justify-center gap-3">
-                                    <Icon className="size-5 text-brand-cyan shrink-0" stroke={1.5} />
-                                    <p className="text-sm font-bold uppercase tracking-wider text-white whitespace-nowrap">
-                                        {item}
+                                <div className="relative z-10 flex flex-col gap-1">
+                                    <div className="flex items-center justify-center gap-3">
+                                        <Icon className="size-5 text-brand-cyan shrink-0" stroke={1.5} />
+                                        <p className="text-sm font-bold uppercase tracking-wider text-white whitespace-nowrap">
+                                            {item.name}
+                                        </p>
+                                    </div>
+                                    <p className="text-xs text-brand-navy-muted text-center leading-tight">
+                                        {item.benefit}
                                     </p>
                                 </div>
                             </div>

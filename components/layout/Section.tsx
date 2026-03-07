@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 interface SectionProps {
   children: React.ReactNode;
-  bg?: "white" | "alt" | "dark" | "navy" | "transparent" | "subtle";
+  bg?: "white" | "alt" | "dark" | "navy" | "transparent" | "subtle" | "light";
   narrow?: boolean;
   id?: string;
   className?: string;
@@ -15,6 +15,7 @@ const bgClasses: Record<NonNullable<SectionProps["bg"]>, string> = {
   navy: "bg-brand-navy text-brand-navy-foreground",
   transparent: "bg-transparent text-foreground",
   subtle: "bg-white/[0.015] text-foreground",
+  light: "bg-brand-light text-brand-navy",
 };
 
 export function Section({

@@ -6,7 +6,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
 import { IconChevronDown } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
-import { TechCorners } from "@/components/ui/tech-corners";
 
 interface Package {
   name: string;
@@ -47,12 +46,10 @@ function SinglePricingCard({
         pkg.badge && "pt-5 sm:pt-6 md:pt-7",
         "rounded-none",
         pkg.highlighted
-          ? "bg-brand-navy border-brand-cyan shadow-[0_0_30px_rgba(3,249,249,0.1)] hover:shadow-[0_0_40px_rgba(3,249,249,0.15)]"
-          : "bg-brand-navy/60 backdrop-blur-md border-white/10"
+          ? "border-brand-cyan/20 bg-brand-navy/60 backdrop-blur-md hover:border-brand-cyan/40 hover:shadow-[0_0_40px_rgba(3,249,249,0.12)]"
+          : "border border-white/10 bg-white/[0.03] transition-all hover:border-brand-cyan/20"
       )}
     >
-      <TechCorners pattern="diagonal" variant="cyan" size="lg" hoverExpand />
-
       {pkg.badge && (
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center bg-brand-cyan py-1 px-2 text-[10px] font-bold text-brand-navy uppercase tracking-widest border border-brand-cyan md:text-xs md:py-1 md:px-2.5">
           Bestseller

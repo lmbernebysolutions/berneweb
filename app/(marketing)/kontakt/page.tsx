@@ -27,6 +27,7 @@ import { SectionCard } from "@/components/ui/section-card";
 import { Button } from "@/components/ui/button";
 import { TechCorners } from "@/components/ui/tech-corners";
 import Link from "next/link";
+import { CONTAINER_A } from "@/lib/container-styles";
 
 export const metadata: Metadata = {
   title: PAGE_META.kontakt.title,
@@ -170,8 +171,8 @@ export default function KontaktPage() {
             </SectionCard>
           </div>
 
-          {/* Right: Form – Höhe durch Formularinhalt */}
-          <div data-animate="fade-right" className="flex lg:col-span-3">
+          {/* Right: Form */}
+          <div data-animate="fade-right" className="flex flex-col lg:col-span-3">
             <SectionCard variant="default" className="flex-1 p-6 md:p-8">
               <div className="flex items-center justify-between mb-6">
                 <div>
@@ -179,9 +180,6 @@ export default function KontaktPage() {
                   <p className="mt-1 text-sm text-muted-foreground">
                     Alle Felder mit * sind Pflichtfelder.
                   </p>
-                </div>
-                <div className="hidden font-mono text-[0.6rem] text-brand-cyan/30 uppercase tracking-widest sm:block">
-                  FORM.SYS
                 </div>
               </div>
               <ContactForm />
@@ -277,7 +275,7 @@ export default function KontaktPage() {
                 aria-hidden="true"
               />
 
-              {/* Social Media Grid 2×2 */}
+              {/* Social Media Grid 2×2 – wie Footer (CONTAINER_A, kein TechCorners) */}
               <div className="grid grid-cols-2 gap-2 shrink-0 sm:shrink sm:w-full">
                 {SOCIAL_LINKS.map((link) => {
                   const Icon = KONTAKT_SOCIAL_ICONS[link.label as keyof typeof KONTAKT_SOCIAL_ICONS];
@@ -288,9 +286,11 @@ export default function KontaktPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={link.ariaLabel}
-                      className="group relative overflow-hidden border border-white/10 bg-white/[0.03] p-2 sm:p-3 flex flex-col items-center justify-center gap-1 sm:gap-1.5 transition-all hover:border-brand-cyan/40 hover:bg-brand-cyan/5 hover:shadow-[0_0_12px_rgba(3,249,249,0.1)] cursor-pointer"
+                      className={cn(
+                        "group relative overflow-hidden p-2 sm:p-3 flex flex-col items-center justify-center gap-1 sm:gap-1.5 cursor-pointer",
+                        CONTAINER_A
+                      )}
                     >
-                      <TechCorners pattern="diagonal" variant="cyan" size="sm" />
                       <Icon className="size-5 sm:size-7 text-brand-cyan relative z-10" stroke={1.5} />
                       <span className="text-[0.6rem] font-bold uppercase tracking-widest text-brand-navy-muted relative z-10 text-center leading-tight">
                         {link.label}

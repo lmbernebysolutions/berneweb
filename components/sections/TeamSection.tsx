@@ -1,7 +1,7 @@
 "use client";
 
-import { TechCorners } from "@/components/ui/tech-corners";
 import { cn } from "@/lib/utils";
+import { CONTAINER_B_STATIC } from "@/lib/container-styles";
 
 interface TeamMember {
   name: string;
@@ -28,12 +28,12 @@ export function TeamSection({ members, variant = "default" }: TeamSectionProps) 
           className={cn(
             "group relative overflow-hidden transition-all",
             isNavy
-              ? "border border-white/10 bg-brand-navy/60 backdrop-blur-md"
+              ? CONTAINER_B_STATIC
               : "card-hover-glow rounded-2xl border border-border bg-card"
           )}
         >
           {isNavy ? (
-            <TechCorners pattern="diagonal" variant="cyan" size="lg" />
+            null
           ) : (
             <div className="h-1.5 w-full bg-gradient-to-r from-brand-navy via-brand-navy to-brand-cyan/40" />
           )}
@@ -42,23 +42,22 @@ export function TeamSection({ members, variant = "default" }: TeamSectionProps) 
             <div className="relative inline-block">
               <div
                 className={cn(
-                  "flex h-20 w-20 items-center justify-center text-xl font-bold shadow-lg rounded-full",
+                  "flex h-20 w-20 items-center justify-center text-xl font-bold font-display uppercase shadow-lg rounded-[2px]",
                   isNavy
-                    ? "bg-brand-navy text-brand-navy-foreground ring-4 ring-brand-warm/70"
+                    ? "bg-white/5 border-2 border-white/20 text-white"
                     : "bg-brand-navy text-brand-navy-foreground ring-4 ring-brand-warm/70 shadow-brand-navy/15"
                 )}
               >
                 {member.initials}
               </div>
-              <div className="absolute -right-0.5 -bottom-0.5 h-4 w-4 rounded-full border-2 border-background bg-brand-cyan" />
             </div>
 
-            <h3 className={cn("mt-6 text-xl font-bold", isNavy && "text-white")}>
+            <h3 className={cn("mt-6 text-xl font-bold font-display uppercase", isNavy && "text-white")}>
               {member.name}
             </h3>
             <p
               className={cn(
-                "mt-1 text-sm font-semibold text-brand-cyan"
+                "mt-1 text-sm font-semibold text-brand-warm"
               )}
             >
               {member.role}
