@@ -27,7 +27,7 @@ function MissionVariantA() {
       {pillars.map((p) => {
         const Icon = p.icon;
         return (
-          <div key={p.title} className="pl-6 border-l-4 border-white">
+          <div key={p.title} className="pl-6 border-l-4 border-white/10">
             <Icon className="mb-3 size-5 text-brand-cyan" stroke={1.5} aria-hidden="true" />
             <h3 className="font-display text-xl sm:text-2xl font-extrabold uppercase tracking-tight text-white mb-2">
               {p.title}

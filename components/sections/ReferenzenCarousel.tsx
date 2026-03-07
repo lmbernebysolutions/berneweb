@@ -24,18 +24,25 @@ function BrowserMockup({
   url = "www.example.de",
   imageSrc,
   compact = false,
+  smallMockups = false,
 }: {
   theme: Referenz["mockupTheme"];
   url?: string;
   imageSrc?: string;
-  /** Home: kleineres Browser-Fenster; Referenzen: etwas größer aber begrenzt */
+  /** Home: kleineres Browser-Fenster; Referenzen: groß, dominiert gegenüber Handy */
   compact?: boolean;
+  /** Referenzen-Seite: Desktop und Handy gemeinsam etwas kleiner */
+  smallMockups?: boolean;
 }) {
   return (
     <div
       className={cn(
         "relative overflow-hidden border border-white/15",
-        compact ? "max-w-[440px] md:max-w-[520px]" : "max-w-full"
+        compact
+          ? "w-[360px] max-w-full md:w-[420px] shrink-0"
+          : smallMockups
+            ? "min-w-[240px] sm:min-w-[300px] md:min-w-[360px] max-w-full w-full"
+            : "min-w-[280px] sm:min-w-[360px] md:min-w-[420px] max-w-full w-full"
       )}
     >
       <div className="flex items-center gap-2 px-3 py-2 bg-black/50 border-b border-white/10 backdrop-blur-sm">
@@ -60,7 +67,7 @@ function BrowserMockup({
             alt="Desktop-Ansicht der Referenz"
             fill
             className="object-cover object-top"
-            sizes={compact ? "520px" : "896px"}
+            sizes={compact ? "420px" : "896px"}
           />
         ) : (
           <div
@@ -81,13 +88,16 @@ function PhoneMockup({
   theme,
   imageSrc,
   compact = false,
+  smallMockups = false,
 }: {
   theme: Referenz["mockupTheme"];
   imageSrc?: string;
-  /** Home: etwas kleiner; Referenzen: größer, gut sichtbar */
+  /** Home: etwas kleiner; Referenzen: sichtbar, aber Desktop bleibt dominant */
   compact?: boolean;
+  /** Referenzen-Seite: gemeinsam mit Desktop etwas kleiner */
+  smallMockups?: boolean;
 }) {
-  const widthPx = compact ? 100 : 155;
+  const widthPx = compact ? 100 : smallMockups ? 110 : 130;
   return (
     <div
       className="relative overflow-hidden border-2 border-white/15 bg-black shrink-0"
@@ -141,11 +151,14 @@ export function ReferenzCard({
   referenz,
   featured = false,
   compact = false,
+  smallMockups = false,
 }: {
   referenz: Referenz;
   featured?: boolean;
   /** Für Home-Swipe: Beschreibung und 4 Ergebnis-Boxen ausblenden */
   compact?: boolean;
+  /** Referenzen-Seite: Desktop- und Handy-Mockup gemeinsam etwas kleiner */
+  smallMockups?: boolean;
 }) {
   return (
     <article
@@ -183,6 +196,7 @@ export function ReferenzCard({
             <div className="w-full min-w-0 flex justify-center md:justify-end">
               <BrowserMockup
                 compact={compact}
+                smallMockups={smallMockups}
                 theme={referenz.mockupTheme}
                 url={
                   referenz.url === "#"
@@ -198,7 +212,7 @@ export function ReferenzCard({
               }`}
               style={{ transform: "translateY(1rem)" }}
             >
-              <PhoneMockup compact={compact} theme={referenz.mockupTheme} imageSrc={referenz.phoneImage} />
+              <PhoneMockup compact={compact} smallMockups={smallMockups} theme={referenz.mockupTheme} imageSrc={referenz.phoneImage} />
             </div>
           </div>
           <div className="relative z-10 mt-6 flex flex-wrap gap-2">
@@ -278,7 +292,7 @@ export function ReferenzCard({
                 Projekt abgeschlossen
               </Button>
             )}
-            <Button asChild variant="outline" size="sm">
+            <Button asChild variant="outline-light" size="sm">
               <Link href="/kontakt">Ähnliches Projekt anfragen</Link>
             </Button>
           </div>
@@ -344,7 +358,7 @@ export function ReferenzenCarousel({ referenzen }: { referenzen: Referenz[] }) {
               key={ref.id}
               className="min-w-0 flex-[0_0_100%] md:flex-[0_0_100%] lg:flex-[0_0_100%]"
             >
-              <ReferenzCard referenz={ref} featured={false} />
+              <ReferenzCard referenz={ref} featured={false} smallMockups />
             </div>
           ))}
         </div>

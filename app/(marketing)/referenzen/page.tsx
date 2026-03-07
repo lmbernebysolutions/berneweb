@@ -92,7 +92,7 @@ export default function ReferenzenPage() {
             <p className="text-white/40 font-mono text-sm">Keine Projekte in dieser Kategorie vorhanden.</p>
           </div>
         ) : (
-          <div className="md:max-w-2xl lg:max-w-3xl md:mx-auto">
+          <div className="md:max-w-3xl lg:max-w-4xl md:mx-auto">
             <ReferenzenCarousel referenzen={gefilterteReferenzen} />
           </div>
         )}

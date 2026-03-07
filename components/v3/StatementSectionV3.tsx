@@ -23,7 +23,7 @@ export function StatementSectionV3({ items, onLight = false }: StatementSectionV
       {items.map((item) => (
         <div
           key={item.label}
-          className={`pl-6 border-l-4 ${onLight ? "border-brand-navy/30" : "border-white"}`}
+          className={`pl-6 border-l-4 ${onLight ? "border-brand-navy/30" : "border-white/10"}`}
         >
           {/* Label — mono, tertiär */}
           <span

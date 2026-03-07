@@ -55,8 +55,8 @@ export default function UeberUnsPage() {
         variant="navy"
         compact
       />
-      {/* TrustBar-Linie: Berg steht darauf */}
-      <div className="w-full border-t border-brand-cyan/20" aria-hidden="true" />
+      {/* TrustBar-Linie: wie Header-Pre-Text-Strich (neutrales Grau) */}
+      <div className="w-full border-t border-white/10" aria-hidden="true" />
 
       {/* 02: Intro-Statement (Zitat) – GEO-Zitat integriert */}
       <Section bg="transparent">
@@ -193,7 +193,7 @@ export default function UeberUnsPage() {
             <FaqAccordion items={FAQ_ITEMS.filter((_, i) => [1, 4, 9].includes(i))} />
           </div>
         </div>
-        <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />
+        <div className="w-full h-px bg-white/10 shrink-0" role="presentation" aria-hidden="true" />
       </div>
 
       <CtaSection

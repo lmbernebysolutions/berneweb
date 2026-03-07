@@ -15,7 +15,7 @@ interface WarumBernebyV3Props {
 }
 
 export function WarumBernebyV3({ items, onLight = false }: WarumBernebyV3Props) {
-  const borderClass = onLight ? "border-brand-navy/30" : "border-white";
+  const borderClass = onLight ? "border-brand-navy/30" : "border-white/10";
   return (
     <div className="flex flex-col sm:flex-row">
       {items.map((item, i) => (
