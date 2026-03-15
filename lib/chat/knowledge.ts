@@ -41,19 +41,44 @@ export function getRatgeberLinks(): RatgeberLink[] {
     .map((a) => ({ title: a.title, slug: a.slug, description: a.description }));
 }
 
+const STOP_WORDS = new Set(
+  "und der die das dem den des ein eine einer eines ist sind war waren wird werden kann könnte soll sollte was wie wo wann wer welcher welche".split(/\s+/)
+);
+
+function tokenize(text: string): string[] {
+  return text
+    .replace(/[^\wäöüß\s]/gi, " ")
+    .split(/\s+/)
+    .filter((w) => w.length >= 2 && !STOP_WORDS.has(w.toLowerCase()));
+}
+
 /**
- * Einfaches FAQ-Match: User-Text mit Fragen abgleichen (Kleinbuchstaben, Trim).
+ * FAQ-Match: zuerst exakt/Teilstring, dann Wort-Überlappung (mehr Formulierungen treffen).
  * Gibt passende Antwort oder null.
  */
 export function matchFaqQuery(userText: string): { answer: string; question: string } | null {
   const normalized = userText.trim().toLowerCase();
   if (normalized.length < 2) return null;
   const entries = getFaqEntries();
+
   for (const entry of entries) {
     const q = entry.question.trim().toLowerCase();
     if (q === normalized || q.includes(normalized) || normalized.includes(q)) {
       return { answer: entry.answer, question: entry.question };
     }
   }
-  return null;
+
+  const userWords = tokenize(normalized);
+  if (userWords.length < 2) return null;
+
+  let best: { entry: (typeof entries)[0]; score: number } | null = null;
+  for (const entry of entries) {
+    const qWords = tokenize(entry.question);
+    const overlap = userWords.filter((w) => qWords.some((qw) => qw === w || qw.includes(w) || w.includes(qw))).length;
+    const ratio = qWords.length > 0 ? overlap / qWords.length : 0;
+    if (overlap >= 2 && ratio >= 0.4 && (!best || overlap > best.score)) {
+      best = { entry, score: overlap };
+    }
+  }
+  return best ? { answer: best.entry.answer, question: best.entry.question } : null;
 }

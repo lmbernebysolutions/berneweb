@@ -20,6 +20,8 @@ const FaqAccordion = dynamic(
   () => import("@/components/sections/FaqAccordion").then((m) => ({ default: m.FaqAccordion })),
   { ssr: true }
 );
+
+import { ConsentMapCard } from "@/components/sections/consent-map-card";
 import { COMPANY, PAGE_META, EINZUGSGEBIET_ORTE, SOCIAL_LINKS } from "@/lib/constants";
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { cn } from "@/lib/utils";
@@ -190,42 +192,12 @@ export default function KontaktPage() {
 
         {/* Ort-Elemente unter Form: Map, Einzugsgebiet, Erreichbarkeit – Tablet: Map volle Breite wie Form */}
         <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-3">
-          {/* Map */}
-          <SectionCard
-            variant="default"
-            data-animate="fade-up"
-            data-animate-delay="100"
+          {/* Map – nur nach Cookie-Zustimmung (Alle akzeptieren) */}
+          <ConsentMapCard
+            locationLabel={`${COMPANY.location}, ${COMPANY.region}`}
+            googleMapsHref={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY.location + " " + COMPANY.region)}`}
             className="overflow-hidden p-0"
-          >
-            <TechCorners pattern="diagonal" variant="cyan" size="sm" />
-            <div className="relative z-10">
-              <div className="border-b border-white/10 px-4 py-3">
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/60">
-                  Standort
-                </p>
-                <p className="font-semibold">{COMPANY.location}, {COMPANY.region}</p>
-              </div>
-              <div className="relative h-[180px] w-full overflow-hidden">
-                <iframe
-                  title="Karte Aue-Bad Schlema"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=12.678%2C50.575%2C12.708%2C50.595&layer=mapnik&marker=50.585,12.693"
-                  className="absolute inset-0 h-full w-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-              <div className="p-3">
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY.location + " " + COMPANY.region)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-semibold text-brand-cyan underline underline-offset-2 hover:text-brand-cyan/80"
-                >
-                  In Google Maps öffnen
-                </a>
-              </div>
-            </div>
-          </SectionCard>
+          />
 
           {/* Einzugsgebiet */}
           <SectionCard

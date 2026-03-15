@@ -8,7 +8,7 @@ import {
   createUIMessageStreamResponse,
 } from "ai";
 import { openai } from "@ai-sdk/openai";
-import { google } from "@ai-sdk/google";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import {
   MAX_INPUT_CHARS,
   MAX_OUTPUT_TOKENS,
@@ -18,6 +18,7 @@ import {
   STREAM_TIMEOUT_MS,
   MIN_INPUT_CHARS,
   IDEMPOTENCY_TTL_SECONDS,
+  FALLBACK_ANSWER_EXACT,
 } from "@/lib/chat/constants";
 import { getFaqEntries, getRatgeberLinks, matchFaqQuery } from "@/lib/chat/knowledge";
 
@@ -206,16 +207,13 @@ export async function POST(request: NextRequest) {
   const openAiKey = process.env.OPENAI_API_KEY;
   const hasLLM = Boolean(geminiKey || openAiKey);
 
-  const fallbackAnswer =
-    faqMatch?.answer ??
-    "Dazu habe ich leider keine passende Antwort in unserer Wissensbasis. Stellen Sie gern eine andere Frage oder schauen Sie in unseren Ratgeber-Artikeln.";
-
   if (!hasLLM) {
+    const answer = faqMatch?.answer ?? FALLBACK_ANSWER_EXACT;
     const id = crypto.randomUUID();
     const stream = new ReadableStream({
       start(controller) {
         controller.enqueue({ type: "text-start" as const, id });
-        controller.enqueue({ type: "text-delta" as const, id, delta: fallbackAnswer });
+        controller.enqueue({ type: "text-delta" as const, id, delta: answer });
         controller.enqueue({ type: "text-end" as const, id });
         controller.enqueue({ type: "finish" as const });
         controller.close();
@@ -228,18 +226,26 @@ export async function POST(request: NextRequest) {
   const faqEntries = getFaqEntries();
   const ratgeber = getRatgeberLinks();
   const contextParts = [
-    "Antworte ausschließlich auf Basis der folgenden Wissensbasis. Erfinde nichts. Erfinde keine Fakten. Bei Themen außerhalb unserer Angebote (Handwerk, Web, IT, Erzgebirge) verweise auf Kontakt oder Impressum.",
-    "--- FAQ ---",
+    "Du bist ein FAQ-Assistent für Berneby Solutions (Handwerk, Web, IT, Erzgebirge). Du antwortest immer – aber nur mit Inhalten aus der folgenden Wissensbasis.",
+    "Regeln: Antworte ausschließlich aus dem Kontext unten. Nutze kein externes Wissen. Erfinde keine Fakten. Wenn die Frage im Kontext beantwortbar ist, antworte kurz und sachlich (FAQ-Antworten, ggf. Ratgeber-Links /ratgeber/[slug]).",
+    "Nur wenn die Frage aus dem Kontext wirklich nicht beantwortet werden kann, antworte ausschließlich mit genau diesem Satz:",
+    `"${FALLBACK_ANSWER_EXACT}"`,
+    ...(faqMatch
+      ? [`Hinweis – zur aktuellen Nutzerfrage passt vermutlich:\nF: ${faqMatch.question}\nA: ${faqMatch.answer}`]
+      : []),
+    "--- BEGIN CONTEXT (FAQ) ---",
     ...faqEntries.map((e) => `F: ${e.question}\nA: ${e.answer}`),
-    "--- Ratgeber (nur als Weiterlesen-Link nennen) ---",
+    "--- END FAQ ---",
+    "--- Ratgeber (nur als Weiterlesen nennen) ---",
     ...ratgeber.map((r) => `${r.title}: /ratgeber/${r.slug} – ${r.description}`),
+    "--- END CONTEXT ---",
   ];
   const systemPrompt = contextParts.join("\n\n");
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), STREAM_TIMEOUT_MS);
 
   const model = geminiKey
-    ? google("gemini-2.0-flash")
+    ? createGoogleGenerativeAI({ apiKey: geminiKey })("gemini-2.0-flash")
     : openai("gpt-4o-mini");
 
   try {
@@ -251,6 +257,7 @@ export async function POST(request: NextRequest) {
       system: systemPrompt,
       messages: modelMessages,
       maxOutputTokens: MAX_OUTPUT_TOKENS,
+      temperature: 0,
       abortSignal: controller.signal,
     });
     clearTimeout(timeoutId);

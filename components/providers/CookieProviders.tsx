@@ -27,8 +27,8 @@ const COOKIE_TRANSLATIONS: Record<string, string> = {
   manageAnalyticsSubtitle:
     "Hilft uns zu verstehen, wie Besucher die Website nutzen (z. B. Google Analytics).",
 
-  manageSocialTitle: "Social",
-  manageSocialSubtitle: "Soziale Funktionen und Teilen",
+  manageSocialTitle: "KI-Chat / Chatbot",
+  manageSocialSubtitle: "Nutzt Google Gemini zur Beantwortung von Fragen (opt-in). Der Chat wird erst nach Zustimmung aktiv.",
 
   manageAdvertTitle: "Werbung",
   manageAdvertSubtitle: "Personalisierte Werbung und Messung",
@@ -118,7 +118,7 @@ export function CookieProviders({ children }: { children: React.ReactNode }) {
       theme="dark"
       disableGeolocation
       initialPreferences={{ Analytics: false, Social: false, Advertising: false }}
-      cookieCategories={{ Analytics: true, Social: false, Advertising: false }}
+      cookieCategories={{ Analytics: true, Social: true, Advertising: false }}
       enableFloatingButton={true}
       expirationDays={365}
       translations={COOKIE_TRANSLATIONS}

@@ -258,9 +258,8 @@ export default function DatenschutzPage() {
           {/* ── 6. KI-Chat ──────────────────────────────────────────────── */}
           <SectionCard icon={IconRobot} label="KI-Chat-Assistent — Google Gemini" number="6">
             <p>
-              Auf dieser Website steht ein KI-gestützter Chat-Assistent zur Verfügung. Wenn Sie Freitextfragen stellen, kann Ihr eingegebener
-              Text zur Beantwortung an <strong className="text-white/90">Google Gemini</strong> (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland
-              bzw. Google LLC, USA) übermittelt werden. Wir übermitteln ausschließlich den anonymisierten Fragetext – keine Kontaktdaten
+              Auf dieser Website steht ein KI-gestützter Chat-Assistent zur Verfügung. <strong className="text-white/90">Wir nutzen dafür den Dienst Google Gemini</strong> (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland
+              bzw. Google LLC, USA). Wenn Sie Freitextfragen stellen, kann Ihr eingegebener Text zur Beantwortung an Gemini übermittelt werden. Wir übermitteln ausschließlich den anonymisierten Fragetext – keine Kontaktdaten
               oder personenbezogenen Informationen.
             </p>
             <p>

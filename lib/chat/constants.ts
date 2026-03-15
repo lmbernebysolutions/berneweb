@@ -26,3 +26,10 @@ export const MAX_MESSAGES_PER_REQUEST = 50;
 
 /** Mindestlänge User-Input (Zeichen) – kürzer = ignorieren/Fehler. */
 export const MIN_INPUT_CHARS = 2;
+
+/**
+ * Exakter Satz, den das Modell antworten muss, wenn die Frage nicht aus der Wissensbasis
+ * beantwortet werden kann. Wird im System-Prompt referenziert (Anti-Halluzination).
+ */
+export const FALLBACK_ANSWER_EXACT =
+  "Dazu habe ich leider keine passende Antwort in unserer Wissensbasis. Stellen Sie gern eine andere Frage oder schauen Sie in unseren Ratgeber-Artikeln.";
