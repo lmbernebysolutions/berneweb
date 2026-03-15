@@ -40,31 +40,35 @@ export function TeamSection({ members, variant = "default" }: TeamSectionProps) 
             <div className="h-1.5 w-full bg-gradient-to-r from-brand-navy via-brand-navy to-brand-cyan/40" />
           )}
 
-          <div className="relative z-10 p-8 md:p-10">
-            <div className="relative inline-block">
+          <div
+            className={cn(
+              "relative z-10 p-8 md:p-10",
+              isNavy && "flex flex-row gap-6 md:gap-8 items-start"
+            )}
+          >
+            <div className={cn("relative shrink-0", isNavy ? "h-28 w-28 sm:h-32 sm:w-32 md:h-36 md:w-36" : "inline-block")}>
               {member.image ? (
                 <div
                   className={cn(
-                    "relative h-20 w-20 overflow-hidden rounded-[2px] shadow-lg",
-                    isNavy ? "border-2 border-white/20" : "ring-4 ring-brand-warm/70 shadow-brand-navy/15"
+                    "relative overflow-hidden rounded-[2px] shadow-lg h-full w-full",
+                    isNavy ? "border-2 border-white/20" : "ring-4 ring-brand-warm/70 shadow-brand-navy/15 h-20 w-20"
                   )}
                 >
                   <Image
                     src={member.image}
                     alt={`Porträt ${member.name}`}
-                    width={80}
-                    height={80}
+                    width={isNavy ? 144 : 80}
+                    height={isNavy ? 144 : 80}
                     className="h-full w-full object-cover"
-                    sizes="80px"
+                    sizes={isNavy ? "(max-width: 640px) 112px, (max-width: 768px) 128px, 144px" : "80px"}
                   />
                 </div>
               ) : (
                 <div
                   className={cn(
-                    "flex h-20 w-20 items-center justify-center text-xl font-bold font-display uppercase shadow-lg rounded-[2px]",
-                    isNavy
-                      ? "bg-white/5 border-2 border-white/20 text-white"
-                      : "bg-brand-navy text-brand-navy-foreground ring-4 ring-brand-warm/70 shadow-brand-navy/15"
+                    "flex items-center justify-center text-xl font-bold font-display uppercase shadow-lg rounded-[2px] h-full w-full",
+                    isNavy ? "h-28 w-28 sm:h-32 sm:w-32 md:h-36 md:w-36 bg-white/5 border-2 border-white/20 text-white" : "h-20 w-20",
+                    !isNavy && "bg-brand-navy text-brand-navy-foreground ring-4 ring-brand-warm/70 shadow-brand-navy/15"
                   )}
                 >
                   {member.initials}
@@ -72,24 +76,22 @@ export function TeamSection({ members, variant = "default" }: TeamSectionProps) 
               )}
             </div>
 
-            <h3 className={cn("mt-6 text-xl font-bold font-display uppercase", isNavy && "text-white")}>
-              {member.name}
-            </h3>
-            <p
-              className={cn(
-                "mt-1 text-sm font-semibold text-brand-warm"
-              )}
-            >
-              {member.role}
-            </p>
-            <p
-              className={cn(
-                "mt-4 text-[0.9375rem] leading-relaxed",
-                isNavy ? "text-white/80" : "text-muted-foreground"
-              )}
-            >
-              {member.description}
-            </p>
+            <div className={cn("min-w-0 flex-1", isNavy && "pt-0")}>
+              <h3 className={cn("text-xl font-bold font-display uppercase", isNavy ? "text-white mt-0" : "mt-6")}>
+                {member.name}
+              </h3>
+              <p className={cn("mt-1 text-sm font-semibold text-brand-warm")}>
+                {member.role}
+              </p>
+              <p
+                className={cn(
+                  "mt-4 text-[0.9375rem] leading-relaxed",
+                  isNavy ? "text-white/80" : "text-muted-foreground"
+                )}
+              >
+                {member.description}
+              </p>
+            </div>
           </div>
         </div>
       ))}
