@@ -35,7 +35,7 @@ export const SOCIAL_LINKS = [
 export const COMPANY = {
   name: "Berneby Solutions",
   nameShort: "Berneby",
-  legal: "Lennard Meyer und Daniel Hamburg Solutions GbR",
+  legal: "Lennard Meyer & Daniel Hamburg Solutions GbR",
   rechtsform: "GbR",
   phone: "+49 15511 960927",
   phoneDisplay: "+49 15511 960927",
@@ -48,10 +48,12 @@ export const COMPANY = {
   state: "Sachsen",
   country: "Deutschland",
   founders: [
-    { name: "Lennard Meyer", role: "Tech", share: "51%" },
-    { name: "Daniel Hamburg", role: "Strategie", share: "49%" },
+    { name: "Lennard Meyer", role: "Technische Leitung (51%)", share: "51%" },
+    { name: "Daniel Hamburg", role: "Strategie & Vertrieb (49%)", share: "49%" },
   ],
-  founded: "2026",
+  founded: "2025",
+  representation: "Jeder Gesellschafter ist einzeln vertretungsberechtigt.",
+  gewerbeBehoerde: "Gemeinde Aue-Bad Schlema (Gemeindekennzahl 14521035)",
 } as const;
 
 // =============================================================================
@@ -62,9 +64,8 @@ export const NAV_ITEMS = [
   { label: "Home", href: "/" },
   { label: "Über uns", href: "/ueber-uns" },
   { label: "Handwerk", href: "/handwerk" },
-  { label: "Tech Solutions", href: "/tech" },
+  { label: "Tech", href: "/tech" },
   { label: "Referenzen", href: "/referenzen" },
-  { label: "Kontakt", href: "/kontakt" },
 ] as const;
 
 export const FOOTER_NAV = {
@@ -94,7 +95,7 @@ export const FOOTER_NAV = {
 // =============================================================================
 
 export const HOME_HERO = {
-  headline: "Technik, die Ihr Geschäft nach vorne bringt.",
+  headline: "Technik, die dein Geschäft nach vorne bringt.",
   subline:
     "Berneby Solutions macht lokale Betriebe im Erzgebirge online sichtbar und automatisiert das, was Zeit frisst.",
   ctas: [
@@ -331,33 +332,33 @@ export const TWO_PILLARS = {
 export const PROCESS_STEPS = [
   {
     step: 1,
-    title: "Erstgespräch",
+    title: "Discovery",
     description:
-      "Kostenloses Erstgespräch, 30 Min., bei Ihnen – unverbindlich.",
+      "Aufnahme von Ist-Situation, Zielen und Pain Points. Kostenloses Erstgespräch – unverbindlich.",
   },
   {
     step: 2,
-    title: "Analyse & Angebot",
+    title: "Konzeption",
     description:
-      "Wir identifizieren, was Sie brauchen und erstellen ein transparentes Angebot.",
+      "Ausarbeitung eines schlanken Konzepts – z. B. Website-Struktur, Automatisierungs-Ansatz, Leistungsumfang.",
   },
   {
     step: 3,
     title: "Umsetzung",
     description:
-      "Wir bauen. Sie bekommen Zwischenstände und geben Feedback.",
+      "Technische Realisierung (Development, Einrichtung, Integration) und Umsetzung der vereinbarten Maßnahmen.",
   },
   {
     step: 4,
-    title: "Launch",
+    title: "Review",
     description:
-      "Ihre Lösung geht live. Wir prüfen alles und schulen Sie ein. Inkl. Support.",
+      "Gemeinsame Durchsicht mit Ihnen, Feinschliff und Funktionsprüfung. Sie geben Feedback, wir setzen um.",
   },
   {
     step: 5,
-    title: "Betreuung",
+    title: "Übergabe & Betrieb",
     description:
-      "Wir bleiben dran. Updates, Support, Optimierung – so lange Sie möchten.    ",
+      "Go-Live sowie Aktivierung der Services. Bei laufenden Paketen: Übergang in den Regelbetrieb.",
   },
 ] as const;
 
@@ -369,7 +370,7 @@ export const FAQ_ITEMS = [
   {
     question: "Was kostet eine Website bei Berneby Solutions?",
     answer:
-      "Für Handwerker bieten wir feste Pakete mit transparenten Preisen – vom One-Pager bis zum Komplettpaket mit KI-Telefon. Alle Details finden Sie auf unserer Handwerk-Seite. Für individuelle Webprojekte erstellen wir ein unverbindliches Angebot im Erstgespräch.",
+      "Wir bieten die Projektpakete STARTKLAR (ab 600 €), SICHTBAR (1.000 €) und PARTNER (2.000 €) mit transparenten Leistungsinhalten. Alle Details finden Sie auf unserer Handwerk-Seite. Für individuelle Webprojekte erstellen wir ein unverbindliches Angebot im Erstgespräch.",
   },
   {
     question: "Arbeitet ihr nur mit Handwerkern?",
@@ -377,9 +378,9 @@ export const FAQ_ITEMS = [
       "Nein. Handwerk ist unser Spezialgebiet, aber wir unterstützen alle lokalen Betriebe – vom Einzelhändler bis zum Freiberufler.",
   },
   {
-    question: "Was ist der Geo-Net Dominator?",
+    question: "Was ist der Klick-Dominator?",
     answer:
-      "Wir erstellen 50 lokale Landingpages, die Ihren Betrieb für Suchbegriffe wie 'Elektriker Annaberg' oder 'Installateur Marienberg' sichtbar machen.",
+      "Ein Paket zur Steigerung der lokalen Sichtbarkeit: moderne Website, strukturierte Inhalte und gezielte lokale Landingpages, damit Ihr Betrieb im relevanten Umkreis besser gefunden wird.",
   },
   {
     question: "Wie funktioniert die KI-Telefonassistenz?",
@@ -394,7 +395,7 @@ export const FAQ_ITEMS = [
   {
     question: "Wie lange dauert eine Website?",
     answer:
-      "Ein One-Pager ist in 1–2 Wochen fertig. Größere Projekte mit Geo-Net dauern ca. 3–4 Wochen.",
+      "Ein One-Pager ist in 1–2 Wochen fertig. Größere Projekte mit Klick-Dominator (lokale Landingpages) dauern ca. 3–4 Wochen.",
   },
   {
     question: "Was ist der Digitale Hausmeister?",
@@ -424,47 +425,46 @@ export const FAQ_ITEMS = [
 
 export const CRAFT_PACKAGES = [
   {
-    name: "Geselle",
-    price: "950",
+    name: "STARTKLAR",
+    price: "600",
     unit: "einmalig",
-    description: "Der solide Start für Ihren Betrieb ins Netz.",
+    description: "Basis-Webauftritt für lokale Sichtbarkeit.",
     features: [
-      "Professioneller One-Pager",
-      "Mobile-optimiert",
-      "Kontaktformular",
-      "Google Maps Integration",
-      "SSL-Zertifikat",
+      "Basis-Strategie-Workshop",
+      "Individuelles Webdesign (UI)",
+      "Technische Website-Entwicklung",
+      "CMS zur Inhaltspflege",
+      "Google Unternehmensprofil (Setup & Optimierung)",
+      "Anwenderschulung (ca. 60 Min.)",
     ],
     highlighted: false,
   },
   {
-    name: "Meisterbetrieb",
-    price: "1.950",
+    name: "SICHTBAR",
+    price: "1.000",
     unit: "einmalig",
-    description: "Für Betriebe, die bei Google gefunden werden wollen.",
+    description: "Erweiterter Auftritt mit Branding, SEO-Grundlagen & Social.",
     features: [
-      "Mehrseitige Website",
-      "Geo-Net: 50+ lokale Landingpages",
-      "SEO-Optimierung",
-      "Google Business Einrichtung",
-      "Kontaktformular + Rückruf",
-      "3 Monate Betreuung",
+      "Alles aus STARTKLAR",
+      "Logo-Entwicklung & Basis-Markendesign",
+      "Analyse der Online-Sichtbarkeit",
+      "SEO-Grundlagen (z. B. 3 Schlüsselseiten)",
+      "Setup von bis zu 2 Social-Media-Kanälen",
     ],
     highlighted: true,
     badge: "Bestseller".trim(),
   },
   {
-    name: "Marktführer",
-    price: "2.800",
+    name: "PARTNER",
+    price: "2.000",
     unit: "einmalig",
-    description: "Das Komplettpaket für maximale Sichtbarkeit.",
+    description: "Komplettpaket mit Individualfunktionen & Start in die Betreuung.",
     features: [
-      "Alles aus Meisterbetrieb",
-      "KI-Telefonassistent (Voice-Guard)",
-      "Bewertungsmanagement (Review-Radar)",
-      "Live-Dashboard (Live-Pulse)",
-      "Google Ads Setup",
-      "6 Monate Betreuung",
+      "Alles aus SICHTBAR",
+      "Individuelle Funktionen & Logik (Backend)",
+      "Anbindung eines externen Dienstes (z. B. Buchungstool)",
+      "Strategische Inhaltsplanung",
+      "Start mit definiertem Betreuungszeitraum",
     ],
     highlighted: false,
   },
@@ -476,31 +476,31 @@ export const CRAFT_PACKAGES = [
 
 export const CRAFT_MODULES = [
   {
-    name: "Geo-Net Dominator",
+    name: "Klick-Dominator",
     price: "350",
     description:
-      "50+ lokale Landingpages für maximale Google-Sichtbarkeit in Ihrer Region.",
+      "Moderne Website mit gezielten lokalen Landingpages – Ihr Betrieb wird im relevanten Umkreis besser gefunden.",
     icon: "IconMapPin",
   },
   {
-    name: "Voice-Guard 24/7",
+    name: "KI-Empfang",
     price: "690",
     description:
-      "KI-Telefonassistent, der Anrufe entgegennimmt, wenn Sie arbeiten.",
+      "KI-gestützter digitaler Empfang: nimmt Anfragen (Telefon, Formulare) entgegen, vorsortiert und dokumentiert.",
     icon: "IconPhoneCall",
   },
   {
-    name: "Review-Radar",
+    name: "5-Sterne-Plus",
     price: "290",
     description:
-      "Automatisches Bewertungsmanagement – mehr 5-Sterne-Bewertungen, weniger Aufwand.",
+      "Bewertungs- und Reputationsmanagement: strukturierter Umgang mit Online-Bewertungen, Anstoß neuer Bewertungen.",
     icon: "IconStar",
   },
   {
-    name: "Live-Pulse Dashboard",
+    name: "Kennzahlen-Live",
     price: "inkl.",
     description:
-      "Echtzeit-Überblick über Website-Besucher, Anrufe und Bewertungen.",
+      "Einfacher Zugriff auf die wichtigsten Kennzahlen (Website-Besucher, Anfragen, Bewertungen) in einem klaren Dashboard.",
     icon: "IconChartBar",
   },
 ] as const;
@@ -509,6 +509,42 @@ export const CRAFT_MODULES = [
 // LEISTUNGEN – SERVICE TABS
 // =============================================================================
 
+/** Nur Webseiten-Arten und Digitaler Hausmeister fürs Tech-Leistungsgrid (ohne Paketnamen) */
+export const LEISTUNGSGRID_TECH = [
+  {
+    key: "webseiten",
+    title: "Webseiten",
+    items: [
+      {
+        title: "One-Pager",
+        description: "Kompakte Website mit allen wichtigen Infos auf einer Seite.",
+        price: "ab 600",
+      },
+      {
+        title: "Mehrseitige Website",
+        description: "Professioneller Webauftritt mit mehreren Unterseiten und SEO.",
+        price: "ab 1.000",
+      },
+      {
+        title: "Landing Page",
+        description: "Conversion-optimierte Seite für Kampagnen und Aktionen.",
+        price: "ab 690",
+      },
+    ],
+  },
+  {
+    key: "hausmeister",
+    title: "Digitaler Hausmeister",
+    items: [
+      {
+        title: "10er-Karte Support",
+        description: "10 Stunden Tech-Support, flexibel einsetzbar. Web, Office, Notfälle – 12 Monate gültig.",
+        price: "850",
+      },
+    ],
+  },
+] as const;
+
 export const SERVICES = {
   webseiten: {
     title: "Webseiten",
@@ -516,12 +552,12 @@ export const SERVICES = {
       {
         title: "One-Pager",
         description: "Kompakte Website mit allen wichtigen Informationen auf einer Seite.",
-        price: "ab 950",
+        price: "ab 600",
       },
       {
         title: "Mehrseitige Website",
         description: "Professioneller Webauftritt mit mehreren Unterseiten und SEO.",
-        price: "ab 1.950",
+        price: "ab 1.000",
       },
       {
         title: "Landing Page",
@@ -627,13 +663,13 @@ export const WARUM_BERNEBY = [
 export const VISION_MISSION = [
   {
     label: "Vision",
-    headline: "Das Erzgebirge digital stark machen",
-    body: "Jeder lokale Betrieb im Erzgebirge verdient eine digitale Präsenz, die funktioniert. Wir glauben, dass Technologie nicht kompliziert sein muss, und dass persönlicher Kontakt den Unterschied macht.",
+    headline: "Digitalisierung als strategischer Vorteil",
+    body: "Die Digitalisierung des regionalen Mittelstands von einer Hürde in einen strategischen Vorteil verwandeln – durch ehrliche Beratung, messbare Ergebnisse und modernste Technologie.",
   },
   {
     label: "Mission",
-    headline: "Handfeste Lösungen. Kein Agentur-Blabla.",
-    body: "Wir bringen lokale Betriebe ins Netz – mit ehrlicher Beratung, sauberer Technik und Lösungen, die sich rechnen. Ohne Fachchinesisch, ohne Vertragsfallen.",
+    headline: "Sichtbar machen. Zeitfresser automatisieren.",
+    body: "Lokale Betriebe im Erzgebirge online sichtbar machen und zeitfressende Prozesse automatisieren – mit Web, SEO, IT-Service und KI aus einer Hand.",
   },
 ] as const;
 
@@ -644,17 +680,17 @@ export const VISION_MISSION = [
 export const TEAM = [
   {
     name: "Lennard Meyer",
-    role: "Tech & Entwicklung",
+    role: "Technik & Betrieb",
     initials: "LM",
     description:
-      "Full-Stack-Entwickler mit Leidenschaft für sauberen Code und durchdachte Lösungen. Verantwortlich für Webentwicklung, KI-Integration und technische Infrastruktur.",
+      "Full-Stack-Entwicklung, Architektur und Infrastruktur. Operative Projektsteuerung, Qualitätskontrolle, Buchhaltung und Finanzen. Technische Konzeption von Automatisierungen und IT-Services (z. B. KI-Empfang, Digitaler Hausmeister).",
   },
   {
     name: "Daniel Hamburg",
-    role: "Strategie & Kundenbeziehung",
+    role: "Kunden & Markt / Online-Marketing",
     initials: "DH",
     description:
-      "Stratege mit Blick fürs Wesentliche. Verantwortlich für Kundenberatung, Projektplanung und die Verbindung zwischen Technik und Geschäftserfolg.",
+      "Kundenberatung, Anforderungsaufnahme und Projektplanung. Akquise und Beziehungsaufbau zu lokalen Betrieben. Entwicklung und Umsetzung von Online-Marketing-Strategien. Sicherstellung der Kundenzufriedenheit und Ausbau-Potenzial.",
   },
 ] as const;
 
@@ -664,24 +700,24 @@ export const TEAM = [
 
 export const VALUES = [
   {
-    title: "Ehrlichkeit",
-    description: "Wir sagen, was geht – und was nicht. Keine leeren Versprechen.",
-    icon: "IconHeart",
-  },
-  {
-    title: "Pragmatismus",
-    description: "Die beste Lösung ist die, die funktioniert. Nicht die komplizierteste.",
+    title: "Radikale Praxisnähe",
+    description: "Keine Buzzwords, sondern eingesparte Stunden und gewonnene Kunden.",
     icon: "IconTool",
   },
   {
-    title: "Nähe",
-    description: "Wir sind vor Ort, sprechen Ihre Sprache und verstehen Ihre Branche.",
+    title: "Lokale Verbundenheit",
+    description: "Partner auf Augenhöhe – „von hier für hier“ im Erzgebirge.",
     icon: "IconMapPin",
   },
   {
-    title: "Verlässlichkeit",
-    description: "Was wir zusagen, halten wir. Termine, Preise, Ergebnisse.",
+    title: "Maschinelle Präzision",
+    description: "Moderner Tech-Stack, saubere Implementierung, belastbare Ergebnisse.",
     icon: "IconShield",
+  },
+  {
+    title: "Automatisierungs-Fokus",
+    description: "Jede Lösung soll Arbeit abnehmen, nicht neue Arbeit erzeugen.",
+    icon: "IconHeart",
   },
 ] as const;
 
@@ -690,7 +726,7 @@ export const VALUES = [
 // =============================================================================
 
 export const UEBER_UNS_STATS = [
-  { value: "2026", label: "Gegründet" },
+  { value: "2025", label: "Gegründet" },
   { value: "2", label: "Ansprechpartner" },
   { value: "100%", label: "Erzgebirge" },
   { value: "24/7", label: "KI-Telefon" },

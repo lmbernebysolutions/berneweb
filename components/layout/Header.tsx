@@ -62,7 +62,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               className={cn(
-                "nav-link-responsive relative px-2.5 py-1.5 min-[1920px]:px-4 font-medium transition-colors",
+                "nav-link-responsive relative px-2.5 py-1.5 min-[1920px]:px-4 text-base min-[1920px]:text-lg font-medium transition-colors",
                 pathname === item.href
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -77,7 +77,7 @@ export function Header() {
           ))}
           <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer px-4 py-2 min-[1920px]:px-5 min-[1920px]:py-2.5 min-[1920px]:text-sm min-[1920px]:ml-6">
             <Link href="/kontakt">
-              Erstgespräch
+              Kontakt
               <IconArrowRight
                 className="ml-1 size-3.5 transition-transform group-hover:translate-x-0.5"
                 stroke={2}
@@ -108,7 +108,7 @@ export function Header() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "group relative flex items-center gap-4 border-l-2 px-4 py-3.5 text-base font-medium transition-all",
+                    "group relative flex items-center gap-4 border-l-2 px-4 py-3.5 text-lg font-medium transition-all",
                     pathname === item.href
                       ? "border-brand-cyan bg-brand-cyan/5 text-foreground"
                       : "border-transparent text-muted-foreground hover:border-brand-cyan/50 hover:text-foreground"
@@ -126,8 +126,7 @@ export function Header() {
               <div className="mt-4 border-t border-white/10 pt-4 px-4">
                 <Button asChild className="w-full" size="lg">
                   <Link href="/kontakt" onClick={() => setOpen(false)}>
-                    <span className="hidden xs:inline">Erstgespräch vereinbaren</span>
-                    <span className="xs:hidden">Erstgespräch</span>
+                    Kontakt
                     <IconArrowRight className="ml-2 size-4" stroke={2} />
                   </Link>
                 </Button>

@@ -56,7 +56,7 @@ export default function ReferenzenPage() {
       <Section bg="transparent">
         <SectionHeading
           number="02"
-          overline="Case Studies"
+          overline="Fallstudien"
           title="Projekte &"
           titleLine2="Ergebnisse"
           subtitle="Von der ersten Idee bis zur messbaren Wirkung – transparent und direkt."

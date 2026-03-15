@@ -13,6 +13,43 @@ interface HeroCta {
 /** Überall 4 Berg-Layer wie auf Home; hinten→vorne: Berg1, Berg2, Berg3, Berg4 (Berg4 ganz vorn); Animation 4→2→3→1 */
 const BERG_LAYERS = ["/icons/Berg1.svg", "/icons/Berg2.svg", "/icons/Berg3.svg", "/icons/Berg4.svg"] as const;
 const BERG_LAYER_DELAYS = ["berg-layer-grow-delay-3", "berg-layer-grow-delay-1", "berg-layer-grow-delay-2", "berg-layer-grow-delay-0"] as const;
+const BERG_ALL_LAYER_INDICES = [0, 1, 2, 3] as const;
+
+type BergVariantConfig = {
+  layerIndices: readonly number[];
+};
+
+const BERG_VARIANTS: Record<string, BergVariantConfig> = {
+  default: {
+    layerIndices: BERG_ALL_LAYER_INDICES,
+  },
+  home: {
+    layerIndices: BERG_ALL_LAYER_INDICES,
+  },
+  // Hauptseiten: Außer Home wird jeweils genau 1 Layer entfernt.
+  tech: {
+    layerIndices: [1, 2, 3], // gelöscht: Berg1
+  },
+  handwerk: {
+    layerIndices: [0, 2, 3], // gelöscht: Berg2
+  },
+  referenzen: {
+    layerIndices: [0, 1, 3], // gelöscht: Berg3
+  },
+  kontakt: {
+    layerIndices: [0, 2], // gelöscht: Berg2 + Berg4
+  },
+  "ueber-uns": {
+    layerIndices: [1, 2, 3], // gelöscht: Berg1
+  },
+  // Nicht-Hauptseiten behalten alle Layer.
+  branchen: {
+    layerIndices: BERG_ALL_LAYER_INDICES,
+  },
+  standorte: {
+    layerIndices: BERG_ALL_LAYER_INDICES,
+  },
+};
 
 interface HeroProps {
   headline: string;
@@ -39,6 +76,7 @@ export function Hero({
   accentText,
   bergVariant,
 }: HeroProps) {
+  const bergConfig = BERG_VARIANTS[bergVariant ?? "default"] ?? BERG_VARIANTS.default;
   const accents = Array.isArray(accentText) ? accentText : [accentText].filter(Boolean) as string[];
 
   const applyAccents = (text: string) => {
@@ -93,10 +131,10 @@ export function Hero({
 
   return (
     <section className={cn(
-      "relative flex flex-col justify-center overflow-x-hidden pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-36 md:pb-20 isolate",
+      "relative flex flex-col justify-center overflow-x-clip overflow-y-visible pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-36 md:pb-20 isolate",
       compact ? "min-h-[50svh] sm:min-h-[60svh] lg:min-h-[70svh]" : "min-h-[70svh] sm:min-h-[80svh] lg:min-h-[90svh]"
     )}>
-      {/* overflow-x-hidden statt overflow-hidden, damit der Berg unten nicht abgeschnitten wird */}
+      {/* overflow-x-clip: Berg wird abgeschnitten ohne Scroll-Container; overflow-y-visible: keine Scrollleiste im Hero */}
 
       {/* Bergsilhouette: höher + overflow-visible, damit nichts abgeschnitten wird */}
       <div
@@ -109,21 +147,21 @@ export function Hero({
       >
         <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end h-full overflow-visible">
           <div className="relative w-full max-w-6xl h-full shrink-0 overflow-visible px-4 sm:px-5 md:px-6 lg:px-8">
-            {BERG_LAYERS.map((src, i) => (
+            {bergConfig.layerIndices.map((layerIdx) => (
               <Image
-                key={src}
-                src={src}
+                key={BERG_LAYERS[layerIdx]}
+                src={BERG_LAYERS[layerIdx]}
                 alt=""
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1152px"
                 className={cn(
                   "object-cover object-bottom select-none berg-layer-grow",
-                  BERG_LAYER_DELAYS[i]
+                  BERG_LAYER_DELAYS[layerIdx]
                 )}
                 style={{ transformOrigin: "bottom center" }}
-                priority={i >= 1 && i <= 2}
-                fetchPriority={i >= 1 && i <= 2 ? "high" : undefined}
-                loading={i === 0 || i === 3 ? "lazy" : "eager"}
+                priority={layerIdx >= 1 && layerIdx <= 2}
+                fetchPriority={layerIdx >= 1 && layerIdx <= 2 ? "high" : undefined}
+                loading={layerIdx === 0 || layerIdx === 3 ? "lazy" : "eager"}
                 unoptimized
                 aria-hidden
               />
@@ -152,7 +190,15 @@ export function Hero({
             <div className="lg:col-span-8 min-w-0">
               <div className="mt-0 border-l-2 border-white/25 pl-3 sm:pl-6">
                 <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-blue-100 leading-relaxed max-w-full">
-                  {subline}
+                  {subline
+                    .replace(/\\n/g, "\n")
+                    .split("\n")
+                    .map((line, i, arr) => (
+                      <span key={i}>
+                        {line}
+                        {i < arr.length - 1 ? <br /> : null}
+                      </span>
+                    ))}
                 </p>
               </div>
 

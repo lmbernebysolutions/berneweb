@@ -82,7 +82,7 @@ export default function Home() {
           headlineLine2="WERKZEUG-"
           headlineLine3="KASTEN"
           accentText={["WERKZEUG-", "KASTEN"]}
-          subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
+          subline="Wir sind der Digital-Partner fürs Erzgebirge.\nWebseiten, KI-Telefon & IT-Support aus Aue."
           ctas={[
             { label: "Für Handwerker", href: "/handwerk", variant: "default" },
             { label: "Für Tech-Probleme", href: "/tech", variant: "outline" },
@@ -96,7 +96,7 @@ export default function Home() {
           bergVariant="home"
           headline="DEIN DIGITALER WERKZEUGKASTEN"
           accentText="WERKZEUGKASTEN"
-          subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
+          subline="Wir sind der Digital-Partner fürs Erzgebirge.\nWebseiten, KI-Telefon & IT-Support aus Aue."
           ctas={[
             { label: "Für Handwerker", href: "/handwerk", variant: "default" },
             { label: "Für Tech-Probleme", href: "/tech", variant: "outline" },
@@ -296,7 +296,7 @@ export default function Home() {
       <Section bg="subtle">
         <SectionHeading
           number="05"
-          overline="Success Stories"
+          overline="Erfolgsgeschichten"
           title="Das sagt das Erzgebirge"
           subtitle="Echte Rückmeldungen von Betrieben aus der Region, die wir begleiten durften."
           align="left"
@@ -304,7 +304,7 @@ export default function Home() {
         />
         <TestimonialGrid
           testimonials={[
-            { name: "Anne-Karen Voigt", role: "Ergotherapie", text: "Professionelles, nettes Team – zügig und unkompliziert. Moderne, patientenfreundliche Website. Immer wieder gerne!", result: "Website für Praxis" },
+            { name: "Anne-Karen Voigt", role: "Ergotherapie", text: "Junges, motiviertes Team – professionell und zügig. Unkompliziert, Änderungen sofort umgesetzt. Patienten loben die neue Website. Weiterempfehlen, gerne wieder!", result: "Website für Praxis" },
             { name: "Sylvia Schirmer", role: "Arztpraxis", text: "Hervorragende Arbeit: moderne, intuitive und patientenfreundliche Website. Unkomplizierte Zusammenarbeit, Änderungen umgehend. Wärmstens weiterempfehlen!", result: "Website-Relaunch" },
           ]}
         />
@@ -379,7 +379,7 @@ export default function Home() {
       <Section bg="subtle">
         <SectionHeading
           number="07"
-          overline="Case Studies"
+          overline="Fallstudien"
           title="Projekte &"
           titleLine2="Ergebnisse"
           subtitle="Von der ersten Idee bis zur messbaren Wirkung – transparent und direkt."
@@ -433,7 +433,7 @@ export default function Home() {
       {/* CTA Section */}
       <CtaSection
         headline="Bereit für das Upgrade?"
-        subline="Lassen Sie uns Ihr Unternehmen auf das nächste Level heben."
+        subline="Lass uns dein Unternehmen auf das nächste Level heben."
         ctas={[
           { label: "Termin sichern", href: "/kontakt" },
         ]}

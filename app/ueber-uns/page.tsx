@@ -82,8 +82,9 @@ export default function UeberUnsPage() {
             </div>
             <blockquote className="text-xl font-semibold leading-relaxed text-white md:text-2xl">
               &ldquo;Wir glauben, dass jeder lokale Betrieb eine digitale
-              Präsenz verdient, die funktioniert. Nicht in zehn Jahren &ndash;{" "}
-              <span className="text-brand-cyan">jetzt.</span>&rdquo;
+              Präsenz verdient, die funktioniert.
+              <br />
+              Nicht in zehn Jahren &ndash; <span className="text-brand-cyan">jetzt.</span>&rdquo;
             </blockquote>
             <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-xl">
               Wie die Deutsche Handwerks-Zeitung berichtet: &ldquo;SEO für Handwerker ist in Zeiten von KI wichtiger denn je.&rdquo; Genau das ist unser Spezialgebiet.

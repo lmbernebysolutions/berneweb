@@ -61,7 +61,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-12 md:gap-8 lg:gap-10">
           {/* Brand - takes more space */}
           <div className="md:col-span-4">
-            <TextLogo variant="light" />
+            <TextLogo variant="dark" />
             <p className="mt-5 max-w-xs text-[0.9375rem] leading-relaxed text-brand-navy-muted">
               Ihr Digital-Partner im Erzgebirge. Webseiten, KI-Telefon,
               Online-Sichtbarkeit – alles aus einer Hand.

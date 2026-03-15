@@ -75,7 +75,7 @@ export default function HandwerkPage() {
         bergVariant="handwerk"
         headline="AUFTRAG VOLL? BÜRO LEER"
         accentText="BÜRO LEER"
-        subline="Wir digitalisieren das Erzgebirge. Handfest für Handwerker. Clever für alle anderen. Webseiten, KI-Telefon & IT-Support aus Aue."
+        subline="Digital-Partner für Handwerker im Erzgebirge. Website, lokale Landingpages, KI-Telefon – handfest, transparent, aus einer Hand."
         ctas={[
           { label: "Projekt anfragen", href: "/kontakt", variant: "default" },
           { label: "Pakete ansehen", href: "#pakete", variant: "outline" },
@@ -91,7 +91,7 @@ export default function HandwerkPage() {
           number="02"
           overline="Das Problem"
           title="Risiko: Stillstand"
-          subtitle="Laut Google besuchen 76% der Nutzer, die lokal suchen, innerhalb von 24 Stunden ein Geschäft. Mit unseren 50+ Landingpages sorgen wir dafür, dass SIE gefunden werden."
+          subtitle="Laut Google besuchen 76% der Nutzer, die lokal suchen, innerhalb von 24 Stunden ein Geschäft. Mit unseren 50+ Landingpages sorgen wir dafür, dass du gefunden wirst."
           align="left"
           light
         />
@@ -253,9 +253,9 @@ export default function HandwerkPage() {
         <PricingCards
           packages={CRAFT_PACKAGES}
           comparisonRows={[
-            { label: "Professionelle Website", inPackages: ["Geselle", "Meisterbetrieb", "Marktführer"] },
-            { label: "50+ Landingpages", inPackages: ["Meisterbetrieb", "Marktführer"] },
-            { label: "KI-Telefonassistent", inPackages: ["Marktführer"] },
+            { label: "Professionelle Website", inPackages: ["STARTKLAR", "SICHTBAR", "PARTNER"] },
+            { label: "50+ Landingpages", inPackages: ["SICHTBAR", "PARTNER"] },
+            { label: "KI-Telefonassistent", inPackages: ["PARTNER"] },
           ]}
         />
       </Section>
@@ -277,8 +277,8 @@ export default function HandwerkPage() {
 
       {/* CTA */}
       <CtaSection
-        headline="Starten Sie das Upgrade"
-        subline="Lassen Sie uns Ihren Betrieb digitalisieren. Jetzt Termin sichern."
+        headline="Starte dein Upgrade"
+        subline="Lass uns deinen Betrieb digitalisieren. Jetzt Termin sichern."
         ctas={[
           { label: "Jetzt Termin vereinbaren", href: "/kontakt" },
           { label: `Anrufen: ${COMPANY.phoneDisplay}`, href: `tel:${COMPANY.phone}` },

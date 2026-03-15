@@ -104,17 +104,21 @@ export default function DatenschutzPage() {
         </div>
         <div className="grid gap-6 lg:gap-8">
 
-          {/* Verantwortlicher Card */}
-          <SectionCard icon={IconUser} label="Verantwortlicher" number="1" variant="highlight">
+          {/* Verantwortlicher Card – Art. 13 DSGVO */}
+          <SectionCard icon={IconUser} label="1. Verantwortlicher für die Datenverarbeitung" number="1" variant="highlight">
             <p>
-              Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) für diese Website ist:
+              Wir, die {COMPANY.name}, legen größten Wert auf den Schutz Ihrer Daten. Verantwortlicher im Sinne der DSGVO ist:
             </p>
             <div className="grid gap-2 mt-4">
               <InfoRow label="Unternehmen" value={COMPANY.legal} />
-              <InfoRow label="Adresse" value={`${COMPANY.address}, ${COMPANY.region}, ${COMPANY.state}`} />
+              <InfoRow label="Adresse" value={`${COMPANY.streetAddress}, ${COMPANY.postalCode} ${COMPANY.location}`} />
+              <InfoRow label="Vertreten durch" value={`${COMPANY.founders[0].name}, ${COMPANY.founders[1].name}`} />
               <InfoRow label="E-Mail" value={<a href={`mailto:${COMPANY.email}`} className="text-brand-cyan hover:underline">{COMPANY.email}</a>} />
               <InfoRow label="Telefon" value={<a href={`tel:${COMPANY.phone}`} className="text-brand-cyan hover:underline">{COMPANY.phoneDisplay}</a>} />
             </div>
+            <p className="mt-4 text-white/60 text-xs">
+              <strong className="text-white/80">Datenschutzbeauftragter:</strong> Ein Datenschutzbeauftragter ist gemäß § 38 BDSG nicht bestellt, da in unserem Unternehmen weniger als 20 Personen ständig mit der automatisierten Verarbeitung personenbezogener Daten befasst sind.
+            </p>
           </SectionCard>
 
           {/* Überblick Verarbeitungen */}

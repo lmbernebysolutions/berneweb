@@ -85,13 +85,13 @@ export default function ImpressumPage() {
             </h1>
           </div>
           <p className="mt-3 font-mono text-[0.7rem] uppercase tracking-widest text-white/40">
-            Angaben gemäß § 5 TMG / § 5 DDG
+            Angaben gemäß § 5 DDG
           </p>
         </div>
         <div className="grid gap-6 lg:gap-8">
 
           {/* Unternehmen */}
-          <ImpressumCard icon={IconBuilding} label="Unternehmen" tag="§ 5 TMG" variant="highlight">
+          <ImpressumCard icon={IconBuilding} label="Unternehmen" tag="§ 5 DDG" variant="highlight">
             <div className="grid gap-2">
               <DataRow label="Firma" value={COMPANY.legal} />
               <DataRow label="Rechtsform" value="Gesellschaft bürgerlichen Rechts (GbR)" />
@@ -107,16 +107,25 @@ export default function ImpressumPage() {
             </div>
           </ImpressumCard>
 
+          {/* Register */}
+          <ImpressumCard icon={IconBuilding} label="Register" tag="GEWERBEANMELDUNG">
+            <p>
+              Die Gesellschaft ist nicht in einem öffentlichen Register eingetragen.
+              Gewerbeanmeldung bei {COMPANY.gewerbeBehoerde}.
+            </p>
+          </ImpressumCard>
+
           {/* Gesellschafter */}
-          <ImpressumCard icon={IconUser} label="Vertreten durch" tag="GbR-GESELLSCHAFTER">
+          <ImpressumCard icon={IconUser} label="GbR-Gesellschafter" tag="VERTRETUNG">
             <div className="grid gap-2">
               {COMPANY.founders.map((f) => (
                 <DataRow
                   key={f.name}
                   label={f.role}
-                  value={`${f.name} (${f.share})`}
+                  value={f.name}
                 />
               ))}
+              <DataRow label="Vertretung" value={COMPANY.representation} />
             </div>
           </ImpressumCard>
 
@@ -171,7 +180,7 @@ export default function ImpressumPage() {
           </ImpressumCard>
 
           {/* Verantwortlich für den Inhalt */}
-          <ImpressumCard icon={IconMail} label="Inhaltlich verantwortlich" tag="§ 55 ABS. 2 MSTV">
+          <ImpressumCard icon={IconMail} label="Inhaltlich verantwortlich" tag="§ 22 ABS. 1 MSTV">
             <div className="grid gap-2">
               <DataRow label="Person" value="Lennard Meyer" />
               <DataRow label="Anschrift" value={`${COMPANY.streetAddress}, ${COMPANY.postalCode} ${COMPANY.location}`} />
@@ -191,6 +200,9 @@ export default function ImpressumPage() {
           {/* EU-Streitschlichtung */}
           <ImpressumCard icon={IconAlertCircle} label="EU-Streitschlichtung" tag="ODR-VO / VSBG">
             <p>
+              Unsere Leistungen richten sich ausschließlich an Unternehmer (B2B). Eine Teilnahme an Verbraucherschlichtungsverfahren ist daher nicht vorgesehen.
+            </p>
+            <p className="mt-2">
               Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
             </p>
             <div className="mt-3">
@@ -228,7 +240,7 @@ export default function ImpressumPage() {
             <div className="space-y-3 text-xs text-white/50 leading-relaxed">
               <p>
                 Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte
-                können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten
+                können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten
                 nach den allgemeinen Gesetzen verantwortlich.
               </p>
               <p>

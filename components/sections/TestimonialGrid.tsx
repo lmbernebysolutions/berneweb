@@ -24,23 +24,27 @@ function TestimonialCard({ t, i }: { t: Testimonial; i: number }) {
             key={i}
             data-animate="fade-up"
             data-animate-delay={String(i * 120)}
-            className={cn("group relative p-4 sm:p-6 transition-all h-full min-w-0 w-full overflow-hidden flex flex-col", CONTAINER_A_NO_GLOW)}
+            className={cn(
+                "group relative h-full min-h-0 min-w-0 w-full overflow-hidden flex flex-col",
+                "p-3 sm:p-4 md:p-5 lg:p-6 transition-all",
+                CONTAINER_A_NO_GLOW
+            )}
         >
-            <div className="flex gap-1 mb-3 sm:mb-4 text-brand-warm" aria-hidden="true">
-                {[1, 2, 3, 4, 5].map(s => <IconStarFilled key={s} className="size-3.5 sm:size-4" />)}
+            <div className="flex gap-0.5 sm:gap-1 mb-2 sm:mb-3 md:mb-4 text-brand-warm shrink-0" aria-hidden="true">
+                {[1, 2, 3, 4, 5].map(s => <IconStarFilled key={s} className="size-3 sm:size-3.5 md:size-4 shrink-0" />)}
             </div>
-            <p className="text-sm sm:text-lg text-white mb-3 sm:mb-4 min-h-[4rem] sm:min-h-[5.25rem] break-words flex-1">&ldquo;{t.text}&rdquo;</p>
-            <div className="mb-4 sm:mb-6 mt-auto self-start inline-flex items-center gap-2 border border-brand-warm/30 bg-brand-warm/5 px-2.5 py-1 sm:px-3 sm:py-1.5 max-w-full flex-wrap">
-                <IconCheck className="size-3 sm:size-3.5 text-brand-warm shrink-0" stroke={2} aria-hidden="true" />
-                <span className="text-[0.65rem] sm:text-xs font-bold text-brand-warm uppercase tracking-wider break-words">{t.result}</span>
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white mb-2 sm:mb-3 md:mb-4 min-h-[3rem] sm:min-h-[4rem] md:min-h-[5.25rem] break-words flex-1">&ldquo;{t.text}&rdquo;</p>
+            <div className="mb-3 sm:mb-4 md:mb-6 mt-auto self-start inline-flex items-center gap-1.5 sm:gap-2 border border-brand-warm/30 bg-brand-warm/5 px-2 py-0.5 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 max-w-full flex-wrap shrink-0">
+                <IconCheck className="size-2.5 sm:size-3 md:size-3.5 text-brand-warm shrink-0" stroke={2} aria-hidden="true" />
+                <span className="text-[0.6rem] sm:text-[0.65rem] md:text-xs font-bold text-brand-warm uppercase tracking-wider break-words">{t.result}</span>
             </div>
-            <div className="flex items-center gap-3 border-t border-white/10 pt-3 sm:pt-4 min-w-0">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 bg-white/5 border border-white/15 text-white font-bold flex items-center justify-center shrink-0 text-sm sm:text-base">
+            <div className="flex items-center gap-2 sm:gap-3 border-t border-white/10 pt-2 sm:pt-3 md:pt-4 min-w-0 shrink-0">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 bg-white/5 border border-white/15 text-white font-bold flex items-center justify-center shrink-0 text-xs sm:text-sm md:text-base">
                     {t.name[0]}
                 </div>
                 <div className="min-w-0">
-                    <div className="font-bold text-white text-sm sm:text-base truncate">{t.name}</div>
-                    <div className="text-[0.65rem] sm:text-xs text-brand-navy-muted uppercase tracking-wider truncate">{t.role}</div>
+                    <div className="font-bold text-white text-xs sm:text-sm md:text-base truncate">{t.name}</div>
+                    <div className="text-[0.6rem] sm:text-[0.65rem] md:text-xs text-brand-navy-muted uppercase tracking-wider truncate">{t.role}</div>
                 </div>
             </div>
         </div>
@@ -50,12 +54,16 @@ function TestimonialCard({ t, i }: { t: Testimonial; i: number }) {
 export function TestimonialGrid({
     testimonials,
     title = "Das sagt das Erzgebirge",
-    overline = "Success Stories",
+    overline = "Erfolgsgeschichten",
 }: TestimonialGridProps) {
+    const n = testimonials.length || 1;
     return (
-        <div className="flex flex-wrap justify-center gap-6">
+        <div
+            className="grid gap-4 sm:gap-6 items-stretch w-full max-w-6xl mx-auto"
+            style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}
+        >
             {testimonials.map((t, i) => (
-                <div key={i} className="w-full md:w-[calc(33.333%-1.5rem)] max-w-sm md:max-w-none">
+                <div key={i} className="min-w-0 min-h-0 flex">
                     <TestimonialCard t={t} i={i} />
                 </div>
             ))}

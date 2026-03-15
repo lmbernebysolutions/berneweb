@@ -51,19 +51,17 @@ const TECH_ICONS: Record<string, (typeof IconDeviceDesktop)> = {
     webseiten: IconDeviceDesktop,
     ecommerce: IconShoppingCart,
     design: IconBrush,
-    office: IconDeviceLaptop,
+    office: IconTool,
     marketing: IconChartBar,
     wartung: IconShield,
 };
 
 export default function TechPage() {
-    const serviceCategories = Object.entries(SERVICES);
-
     return (
         <>
             <Hero
                 bergVariant="tech"
-                headline="IHRE EXTERNE IT-ABTEILUNG"
+                headline="DEINE EXTERNE IT-ABTEILUNG"
                 accentText="IT-ABTEILUNG"
                 subline="Flexibel. Auf Abruf. Ohne Festanstellung. Von der neuen Webseite über Shops bis IT-Support – wir bauen und betreuen."
                 ctas={[
@@ -82,7 +80,7 @@ export default function TechPage() {
                     overline="Mission"
                     title="Kein Bullshit."
                     titleLine2="Nur Lösungen."
-                    subtitle="Große Systemhäuser sind zu teuer, der Neffe vom Chef hat keine Zeit. Wir sind Ihr digitaler Hausmeister."
+                    subtitle="Große Systemhäuser sind zu teuer, der Neffe vom Chef hat keine Zeit. Wir sind dein digitaler Hausmeister."
                     align="left"
                     light
                 />
@@ -102,14 +100,17 @@ export default function TechPage() {
                     title="DIGITALER"
                     titleLine2="WERKZEUG-"
                     titleLine3="KASTEN"
-                    subtitle="Von der Webseite über Shop-Systeme bis zum digitalen Hausmeister – unser Katalog für Ihren Erfolg."
+                    subtitle="Von der Webseite über Shop-Systeme bis zum digitalen Hausmeister – unser Katalog für deinen Erfolg."
                     align="left"
                     light
                 />
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {serviceCategories.map(([key, category], i) => {
+                    {Object.entries(SERVICES).map(([key, category], i) => {
                         const Icon = TECH_ICONS[key] || IconTool;
+                        const visibleItems = category.items.filter(
+                            (item) => item.title !== "Digitaler Hausmeister"
+                        );
                         return (
                             <div
                                 key={key}
@@ -133,7 +134,7 @@ export default function TechPage() {
                                     <h3 className="font-bold text-lg text-white uppercase tracking-wider">{category.title}</h3>
                                 </div>
                                 <div className="p-6 flex flex-col grow gap-4 relative z-10">
-                                    {category.items.map((item) => (
+                                    {visibleItems.map((item) => (
                                         <div key={item.title} className="group/item relative">
                                             <TechCorners pattern="all" variant="cyan" size="sm" />
                                             <div className="flex justify-between items-baseline px-4 py-2 transition-colors group-hover/item:bg-brand-cyan/5">
