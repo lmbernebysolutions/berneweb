@@ -98,7 +98,7 @@ export function Header() {
               <IconMenu2 className="size-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-80 border-l border-white/15 bg-brand-navy pt-16">
+          <SheetContent side="right" className="w-80 md:w-[22rem] border-l border-white/15 bg-brand-navy pt-16">
             <SheetTitle className="sr-only">Navigation</SheetTitle>
 
             <nav className="flex flex-col gap-1" aria-label="Mobile Navigation">
@@ -108,7 +108,7 @@ export function Header() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "group relative flex items-center gap-4 border-l-2 px-4 py-3.5 text-lg font-medium transition-all",
+                    "group relative flex items-center gap-4 border-l-2 px-4 py-3.5 text-lg font-medium transition-all md:text-xl md:py-4",
                     pathname === item.href
                       ? "border-brand-cyan bg-brand-cyan/5 text-foreground"
                       : "border-transparent text-muted-foreground hover:border-brand-cyan/50 hover:text-foreground"
@@ -124,7 +124,12 @@ export function Header() {
                 </Link>
               ))}
               <div className="mt-4 border-t border-white/10 pt-4 px-4">
-                <Button asChild className="w-full" size="lg">
+                <Button
+                  asChild
+                  className="w-full"
+                  size="lg"
+                  variant={pathname === "/kontakt" ? "outline" : "default"}
+                >
                   <Link href="/kontakt" onClick={() => setOpen(false)}>
                     Kontakt
                     <IconArrowRight className="ml-2 size-4" stroke={2} />

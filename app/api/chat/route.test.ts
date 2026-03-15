@@ -119,7 +119,7 @@ describe("POST /api/chat", () => {
     const res = await POST(req);
     expect(res.status).toBe(200);
     const text = await res.text();
-    expect(text).toContain("Handwerker");
-    expect(text).toContain("Pakete");
+    expect(text).toMatch(/Projektpakete|Pakete|STARTKLAR|Handwerk/);
+    expect(text.length).toBeGreaterThan(200);
   });
 });

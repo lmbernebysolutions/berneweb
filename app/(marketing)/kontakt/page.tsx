@@ -188,8 +188,8 @@ export default function KontaktPage() {
           </div>
         </div>
 
-        {/* Ort-Elemente unter Form: Map, Einzugsgebiet, Erreichbarkeit – gleiche Breite wie oben */}
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Ort-Elemente unter Form: Map, Einzugsgebiet, Erreichbarkeit – Tablet: Map volle Breite wie Form */}
+        <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-3">
           {/* Map */}
           <SectionCard
             variant="default"

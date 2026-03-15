@@ -58,12 +58,11 @@ export function ProcessStepsV2({ steps }: ProcessStepsV2Props) {
                   </span>
                 </div>
 
-                <h3 className="mt-4 text-xs font-semibold uppercase tracking-tight text-white">
+                <h3 className="mt-4 text-xs font-semibold uppercase tracking-tight text-white md:text-[0.5rem] lg:text-[0.6rem] xl:text-xs">
                   {s.title}
                 </h3>
                 {s.description && (
-                  // V2: border-brand-cyan/50 → border-white/20
-                  <p className="mt-2 border-l-2 border-white/20 pl-3 text-left text-[0.8125rem] leading-snug text-white/80">
+                  <p className="mt-2 border-l-2 border-white/20 pl-3 text-left text-[0.8125rem] leading-snug text-white/80 md:text-[0.6rem] lg:text-[0.7rem] xl:text-[0.8125rem]">
                     {s.description}
                   </p>
                 )}

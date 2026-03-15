@@ -85,8 +85,8 @@ function PhoneMockup({
 }) {
   return (
     <div
-      className="relative overflow-hidden border-2 border-brand-cyan/30 bg-black shadow-[0_0_30px_rgba(3,249,249,0.12)]"
-      style={{ borderRadius: "16px", width: "100%", maxWidth: "240px" }}
+      className="relative overflow-hidden border-2 border-brand-cyan/30 bg-black shadow-[0_0_30px_rgba(3,249,249,0.12)] shrink-0 w-[70px] sm:w-[100px] md:w-[140px] lg:w-[180px] xl:w-[240px]"
+      style={{ borderRadius: "16px" }}
     >
       <div
         className="flex items-center justify-center px-3 py-1.5"

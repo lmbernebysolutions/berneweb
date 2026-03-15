@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { BLogo } from "@/components/brand/BLogo";
 
@@ -35,7 +36,7 @@ export default function Error({
           Erneut versuchen
         </Button>
         <Button size="lg" variant="outline" asChild>
-          <a href="/">Zur Startseite</a>
+          <Link href="/">Zur Startseite</Link>
         </Button>
       </div>
     </div>

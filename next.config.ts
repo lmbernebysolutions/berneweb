@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from "node:path";
 import bundleAnalyzer from "@next/bundle-analyzer";
 
 const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === "true" });
@@ -20,7 +21,16 @@ const cspHeader = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  turbopack: { root: path.join(__dirname) },
   productionBrowserSourceMaps: false,
+  // Force module resolution from this app dir so "tailwindcss" etc. resolve when project root is parent (e.g. workspace).
+  webpack: (config, { dir }) => {
+    const appNodeModules = path.join(path.resolve(dir), "node_modules");
+    config.resolve ??= {};
+    const existing = Array.isArray(config.resolve.modules) ? config.resolve.modules : ["node_modules"];
+    config.resolve.modules = [appNodeModules, ...existing];
+    return config;
+  },
   images: {
     formats: ["image/avif", "image/webp"],
   },

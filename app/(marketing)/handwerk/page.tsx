@@ -8,6 +8,7 @@ import { PricingCards } from "@/components/sections/PricingCards";
 import dynamic from "next/dynamic";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { CtaSection } from "@/components/sections/CtaSection";
+import { HausmeisterCardVisual } from "@/components/sections/HausmeisterCardVisual";
 
 const ChatSection = dynamic(
   () => import("@/components/sections/chat-section").then((m) => ({ default: m.ChatSection })),
@@ -193,15 +194,7 @@ export default function HandwerkPage() {
           </div>
 
           <div className="relative z-10 hidden md:flex items-center justify-center">
-            <div className="w-64 h-80 border-2 border-white/10 relative">
-              <div className="absolute top-4 left-4 right-4 h-32 bg-white/5" />
-              <div className="absolute bottom-4 left-4 right-4 h-2 bg-brand-cyan/50" />
-              <div className="absolute bottom-8 left-4 w-12 h-1 bg-white/10" />
-              <div className="absolute bottom-8 left-18 w-12 h-1 bg-white/10" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-15deg] border-4 border-brand-cyan p-4 bg-brand-navy text-brand-cyan font-black text-4xl uppercase tracking-tighter">
-                SOLD
-              </div>
-            </div>
+            <HausmeisterCardVisual />
           </div>
         </div>
       </Section>

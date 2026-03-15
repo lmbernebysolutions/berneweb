@@ -59,7 +59,7 @@ function SinglePricingCard({
       <div className="relative text-center mb-2 sm:mb-4 md:mb-8">
         <h3
           className={cn(
-            "text-xs sm:text-lg md:text-xl lg:text-2xl font-black uppercase tracking-widest leading-tight break-words",
+            "text-xs sm:text-lg md:text-base lg:text-xl xl:text-2xl font-black uppercase tracking-widest leading-tight break-words",
             pkg.highlighted ? "text-white" : "text-white"
           )}
         >
@@ -67,7 +67,7 @@ function SinglePricingCard({
         </h3>
         <p
           className={cn(
-            "mt-1 sm:mt-2 text-[10px] sm:text-xs md:text-sm line-clamp-2 md:line-clamp-none",
+            "mt-1 sm:mt-2 text-[10px] sm:text-xs md:text-xs lg:text-sm line-clamp-2 md:line-clamp-none",
             pkg.highlighted ? "text-brand-cyan/80" : "text-brand-navy-muted"
           )}
         >
@@ -78,7 +78,7 @@ function SinglePricingCard({
       <div className="relative flex flex-col sm:flex-row items-center justify-center gap-0 sm:gap-1 mb-3 sm:mb-6 md:mb-8 border-y border-white/10 py-3 sm:py-4 md:py-6 bg-black/20 text-center">
         <span
           className={cn(
-            "text-3xl sm:text-4xl md:text-3xl lg:text-5xl font-black tracking-tighter",
+            "text-3xl sm:text-4xl md:text-2xl lg:text-4xl xl:text-5xl font-black tracking-tighter",
             pkg.highlighted ? "text-brand-warm" : "text-white"
           )}
         >
@@ -128,7 +128,7 @@ function SinglePricingCard({
         <div className="relative grow">
           <ul className="space-y-4 mb-6">
             {pkg.features.map((feature) => (
-              <li key={feature} className="flex items-start gap-3 text-sm">
+              <li key={feature} className="flex items-start gap-3 text-xs lg:text-sm">
                 <div className={cn("mt-1 w-1.5 h-1.5 shrink-0", pkg.highlighted ? "bg-brand-cyan" : "bg-white/30")} />
                 <span className="text-white/80 leading-snug">{feature}</span>
               </li>

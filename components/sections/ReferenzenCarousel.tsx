@@ -97,11 +97,19 @@ function PhoneMockup({
   /** Referenzen-Seite: gemeinsam mit Desktop etwas kleiner */
   smallMockups?: boolean;
 }) {
-  const widthPx = compact ? 100 : smallMockups ? 110 : 130;
+  /* Home (compact): Phone auf Tablet deutlich kleiner als Browser, skaliert erst ab xl hoch */
+  const widthClass = compact
+    ? "w-[52px] sm:w-[60px] md:w-[65px] lg:w-[72px] xl:w-[95px]"
+    : smallMockups
+      ? "w-[65px] sm:w-[85px] md:w-[100px] lg:w-[110px] xl:w-[120px]"
+      : "w-[70px] sm:w-[90px] md:w-[110px] lg:w-[130px] xl:w-[150px]";
   return (
     <div
-      className="relative overflow-hidden border-2 border-white/15 bg-black shrink-0"
-      style={{ borderRadius: "16px", width: widthPx }}
+      className={cn(
+        "relative overflow-hidden border-2 border-white/15 bg-black shrink-0",
+        widthClass
+      )}
+      style={{ borderRadius: "16px" }}
     >
       {/* Status bar: only time, original visual height restored */}
       <div

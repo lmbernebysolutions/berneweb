@@ -86,7 +86,7 @@ export function ProcessStepsV3({ steps, variant = "dark" }: ProcessStepsV3Props)
 
                 <h3
                   className={cn(
-                    "mt-4 text-xs font-semibold uppercase tracking-tight",
+                    "mt-4 text-xs font-semibold uppercase tracking-tight md:text-[0.5rem] lg:text-[0.6rem] xl:text-xs",
                     isLight ? "text-brand-navy" : "text-white"
                   )}
                 >
@@ -95,7 +95,7 @@ export function ProcessStepsV3({ steps, variant = "dark" }: ProcessStepsV3Props)
                 {s.description && (
                   <p
                     className={cn(
-                      "mt-2 border-l-2 pl-3 text-left text-[0.8125rem] leading-snug",
+                      "mt-2 border-l-2 pl-3 text-left text-[0.8125rem] leading-snug md:text-[0.6rem] lg:text-[0.7rem] xl:text-[0.8125rem]",
                       isLight
                         ? "border-brand-navy/20 text-brand-navy/70"
                         : "border-white/20 text-white/80"

@@ -142,7 +142,7 @@ export default function SocialToolsCanvas() {
             </div>
 
             <div className="mt-auto p-4 border border-brand-cyan border-dashed bg-brand-cyan/5 flex flex-col items-center justify-center min-h-[100px] relative mx-6 mb-2">
-               <span className="font-mono text-[11px] text-brand-cyan uppercase tracking-widest text-center">++ Platzhalter Umfrage ++<br/><br/>"Was nervt mehr?"<br/>[Telefon] vs [Büro]</span>
+               <span className="font-mono text-[11px] text-brand-cyan uppercase tracking-widest text-center">++ Platzhalter Umfrage ++<br/><br/>&quot;Was nervt mehr?&quot;<br/>[Telefon] vs [Büro]</span>
             </div>
           </Slide>
 

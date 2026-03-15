@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-// SSR-safe: useLayoutEffect on client, useEffect on server
-const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+// Use useEffect (not useLayoutEffect) so we run after React hydration. Adding
+// "is-visible" before hydration completes causes a hydration mismatch.
+const useRevealEffect = useEffect;
 
 // Helper: attach corner-freeze listeners
 function freezeCornersOnEnd(parent: HTMLElement) {
@@ -37,9 +38,8 @@ function revealElement(el: HTMLElement, delay?: string) {
 export function useAnimateOnScroll() {
   const pathname = usePathname();
 
-  // PHASE 1: Layout effect — synchronous before paint
-  // Reveals in-viewport elements immediately with no FOUC
-  useIsomorphicLayoutEffect(() => {
+  // PHASE 1: Run after hydration to avoid adding "is-visible" before React commits (hydration mismatch).
+  useRevealEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-animate]");
     if (!elements.length) return;
 
@@ -67,7 +67,7 @@ export function useAnimateOnScroll() {
       }
     });
 
-    // Immediately reveal in-viewport elements (synchronous, before paint)
+    // Reveal in-viewport elements (runs after hydration to avoid mismatch)
     elements.forEach((el) => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
