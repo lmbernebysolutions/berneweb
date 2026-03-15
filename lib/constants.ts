@@ -65,26 +65,31 @@ export const CTA_QUOTES = {
     quote: "Wir bauen keine Luftschlösser – wir bauen, was funktioniert.",
     author: "Lennard Meyer",
     initials: "LM",
+    image: "/team/lennard-meyer.webp",
   },
   handwerk: {
     quote: "Mehr Sichtbarkeit, weniger Zeitfresser – dafür gehen wir ran.",
     author: "Daniel Hamburg",
     initials: "DH",
+    image: "/team/daniel-hamburg.webp",
   },
   tech: {
     quote: "Moderne Technik muss Arbeit abnehmen. Sonst ist sie nutzlos.",
     author: "Lennard Meyer",
     initials: "LM",
+    image: "/team/lennard-meyer.webp",
   },
   referenzen: {
     quote: "Echte Ergebnisse zählen. Was wir versprechen, liefern wir.",
     author: "Daniel Hamburg",
     initials: "DH",
+    image: "/team/daniel-hamburg.webp",
   },
   "ueber-uns": {
     quote: "Digital-Partner von hier für hier – auf Augenhöhe, kein Blabla.",
     author: "Lennard Meyer",
     initials: "LM",
+    image: "/team/lennard-meyer.webp",
   },
 } as const;
 
@@ -714,6 +719,7 @@ export const TEAM = [
     name: "Lennard Meyer",
     role: "Technik & Betrieb",
     initials: "LM",
+    image: "/team/lennard-meyer.webp",
     description:
       "Full-Stack-Entwicklung, Architektur und Infrastruktur. Operative Projektsteuerung, Qualitätskontrolle, Buchhaltung und Finanzen. Technische Konzeption von Automatisierungen und IT-Services (z. B. KI-Empfang, Digitaler Hausmeister).",
   },
@@ -721,6 +727,7 @@ export const TEAM = [
     name: "Daniel Hamburg",
     role: "Kunden & Markt / Online-Marketing",
     initials: "DH",
+    image: "/team/daniel-hamburg.webp",
     description:
       "Kundenberatung, Anforderungsaufnahme und Projektplanung. Akquise und Beziehungsaufbau zu lokalen Betrieben. Entwicklung und Umsetzung von Online-Marketing-Strategien. Sicherstellung der Kundenzufriedenheit und Ausbau-Potenzial.",
   },

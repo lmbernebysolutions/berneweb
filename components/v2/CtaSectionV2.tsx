@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { BackdropNumber } from "@/components/ui/backdrop-number";
 import { COMPANY } from "@/lib/constants";
@@ -67,22 +68,16 @@ export function CtaSectionV2({ headline, subline, ctas }: CtaSectionV2Props) {
       <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6 mt-20">
         <div className="border-t border-white/10 pt-12">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
-            {/* Foto-Placeholder — Phase 2: echtes Foto einfügen */}
+            {/* Gründer-Foto (WebP, optimiert) */}
             <div className="shrink-0">
-              <div
-                className="w-20 h-20 sm:w-24 sm:h-24 bg-white/5 border border-white/15 flex items-center justify-center text-2xl font-bold text-white/40"
-                aria-label={`Foto ${COMPANY.founders[0].name} — folgt nach Fotoshooting`}
-              >
-                LM
-              </div>
-              {/* Phase 2: Ersetze <div> durch:
               <Image
-                src="/team/lennard-meyer.jpg"
+                src="/team/lennard-meyer.webp"
                 alt="Lennard Meyer, Berneby Solutions"
                 width={96}
                 height={96}
-                className="border-2 border-white/20 object-cover"
-              /> */}
+                className="w-20 h-20 sm:w-24 sm:h-24 border-2 border-white/20 object-cover"
+                sizes="96px"
+              />
             </div>
 
             {/* Zitat + Attribution */}

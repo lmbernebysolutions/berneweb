@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { IconArrowRight } from "@tabler/icons-react";
 import { BackdropNumber } from "@/components/ui/backdrop-number";
 
 interface CtaCta {
@@ -13,6 +13,7 @@ export type CtaQuoteBlock = {
   quote: string;
   author: string;
   initials: string;
+  image?: string;
 };
 
 interface CtaSectionProps {
@@ -28,6 +29,7 @@ export function CtaSection({ headline, subline, ctas, quoteBlock }: CtaSectionPr
     quote: "Wir bauen keine Luftschlösser – wir bauen, was funktioniert.",
     author: "Lennard Meyer",
     initials: "LM",
+    image: "/team/lennard-meyer.webp",
   };
 
   return (
@@ -48,12 +50,25 @@ export function CtaSection({ headline, subline, ctas, quoteBlock }: CtaSectionPr
         )}
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-center sm:text-left">
-          <div
-            className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white/5 border-2 border-white/20 flex items-center justify-center text-white/60 font-display text-2xl font-bold uppercase"
-            aria-hidden="true"
-          >
-            {q.initials}
-          </div>
+          {q.image ? (
+            <div className="shrink-0 w-16 h-16 sm:w-20 sm:h-20 relative overflow-hidden border-2 border-white/20">
+              <Image
+                src={q.image}
+                alt={`Porträt ${q.author}`}
+                width={80}
+                height={80}
+                className="h-full w-full object-cover"
+                sizes="80px"
+              />
+            </div>
+          ) : (
+            <div
+              className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white/5 border-2 border-white/20 flex items-center justify-center text-white/60 font-display text-2xl font-bold uppercase"
+              aria-hidden="true"
+            >
+              {q.initials}
+            </div>
+          )}
           <div>
             <p className="text-sm sm:text-base text-white/80 italic">&ldquo;{q.quote}&rdquo;</p>
             <p className="mt-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-brand-cyan">{q.author} · Berneby Solutions</p>

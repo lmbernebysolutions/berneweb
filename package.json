@@ -12,7 +12,8 @@
     "audit": "pnpm audit --audit-level=high",
     "audit:fix": "pnpm audit fix",
     "analyze": "ANALYZE=true next build --webpack",
-    "deploy": "vercel --prod --yes"
+    "deploy": "vercel --prod --yes",
+    "optimize:team": "node scripts/optimize-team-images.mjs"
   },
   "dependencies": {
     "@ai-sdk/google": "^3.0.30",
@@ -47,13 +48,14 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^16.1.6",
     "@playwright/test": "^1.58.2",
-    "playwright": "^1.58.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "playwright": "^1.58.2",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite-tsconfig-paths": "^6.1.1",

@@ -3,7 +3,9 @@
 // - Online-Dot entfernen (kein -right-0.5 -bottom-0.5 Dot)
 // - Rolle text-brand-warm statt text-brand-cyan
 // - Name uppercase
+// - Optionales Team-Foto (WebP) statt Initialen
 
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface TeamMember {
@@ -11,6 +13,7 @@ interface TeamMember {
   role: string;
   initials: string;
   description: string;
+  image?: string;
 }
 
 interface TeamSectionV3Props {
@@ -27,15 +30,24 @@ export function TeamSectionV3({ members }: TeamSectionV3Props) {
           className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md transition-all hover:border-white/20"
         >
           <div className="relative z-10 p-8 md:p-10">
-            {/* Avatar: quadratisch, kein rounded-full, kein Online-Dot */}
+            {/* Avatar: Foto (WebP) oder Initialen, quadratisch */}
             <div className="relative inline-block">
-              <div
-                className="flex h-20 w-20 items-center justify-center text-xl font-bold bg-brand-navy text-brand-navy-foreground border-4 border-brand-warm/70"
-                // V3: kein rounded-full → viereckig
-              >
-                {member.initials}
-              </div>
-              {/* V3: Online-Dot entfernt */}
+              {member.image ? (
+                <div className="relative h-20 w-20 overflow-hidden border-4 border-brand-warm/70">
+                  <Image
+                    src={member.image}
+                    alt={`Porträt ${member.name}`}
+                    width={80}
+                    height={80}
+                    className="h-full w-full object-cover"
+                    sizes="80px"
+                  />
+                </div>
+              ) : (
+                <div className="flex h-20 w-20 items-center justify-center text-xl font-bold bg-brand-navy text-brand-navy-foreground border-4 border-brand-warm/70">
+                  {member.initials}
+                </div>
+              )}
             </div>
 
             {/* V3: Name uppercase */}
