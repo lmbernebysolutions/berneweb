@@ -38,7 +38,7 @@ const ORGANIZATION_SCHEMA = {
       founder: COMPANY.founders.map((f) => ({
         "@type": "Person",
         name: f.name,
-        jobTitle: f.role === "Tech" ? "Tech & Entwicklung" : "Strategie & Kundenbeziehung",
+        jobTitle: f.role.includes("Technische") ? "Tech & Entwicklung" : "Strategie & Kundenbeziehung",
       })),
       foundingDate: COMPANY.founded,
       dateModified: "2026-02-13",
