@@ -22,7 +22,7 @@ import {
     IconRobot,
     IconSearch,
 } from "@tabler/icons-react";
-import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK_WITH_BENEFIT, TECH_STATS, TECH_TESTIMONIALS, PAGE_META, SOCIAL_LINKS } from "@/lib/constants";
+import { SERVICES, COMPANY, CTA_QUOTES, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK_WITH_BENEFIT, TECH_STATS, TECH_TESTIMONIALS, PAGE_META, SOCIAL_LINKS } from "@/lib/constants";
 import dynamic from "next/dynamic";
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TrustBar } from "@/components/sections/TrustBar";
@@ -360,6 +360,7 @@ export default function TechPage() {
             <CtaSection
                 headline="Wie können wir helfen?"
                 subline="Egal ob neue Webseite, Shop oder IT-Support. Wir machen das."
+                quoteBlock={CTA_QUOTES.tech}
                 ctas={[
                     { label: "Anfrage senden", href: "/kontakt" },
                     { label: `Anrufen: ${COMPANY.phoneDisplay}`, href: `tel:${COMPANY.phone}` },

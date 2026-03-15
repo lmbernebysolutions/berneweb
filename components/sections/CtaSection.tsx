@@ -6,23 +6,35 @@ import { BackdropNumber } from "@/components/ui/backdrop-number";
 interface CtaCta {
   label: string;
   href: string;
-  variant?: "default" | "outline"; // Added variant
+  variant?: "default" | "outline";
 }
+
+export type CtaQuoteBlock = {
+  quote: string;
+  author: string;
+  initials: string;
+};
 
 interface CtaSectionProps {
   headline: string;
   subline?: string;
   ctas: CtaCta[];
+  /** Zitat + Autor pro Hauptseite (abwechselnd LM/Daniel), aus CTA_QUOTES */
+  quoteBlock?: CtaQuoteBlock;
 }
 
-export function CtaSection({ headline, subline, ctas }: CtaSectionProps) {
+export function CtaSection({ headline, subline, ctas, quoteBlock }: CtaSectionProps) {
+  const q = quoteBlock ?? {
+    quote: "Wir bauen keine Luftschlösser – wir bauen, was funktioniert.",
+    author: "Lennard Meyer",
+    initials: "LM",
+  };
+
   return (
     <section className="relative overflow-hidden bg-brand-navy py-32 text-brand-navy-foreground">
 
-      <BackdropNumber number="GO" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 text-[20vw]" />
+      <BackdropNumber number="GO" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30" />
 
-      {/* overflow-hidden removed: combining overflow-hidden + clip-path animation on the same
-          element causes Safari to never render the animation. Use a wrapper instead. */}
       <div className="relative z-10 mx-auto max-w-4xl min-w-0 overflow-hidden" data-animate>
       <div className="px-4 text-center md:px-6 clip-reveal">
         <h2 className="font-display text-4xl md:text-6xl lg:text-8xl font-extrabold uppercase tracking-tighter text-white mb-6 drop-shadow-2xl text-balance break-words max-w-full">
@@ -35,17 +47,16 @@ export function CtaSection({ headline, subline, ctas }: CtaSectionProps) {
           </p>
         )}
 
-        {/* Founder-Element (Phase 1: Placeholder, Phase 2: echtes Foto) */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-center sm:text-left">
           <div
             className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white/5 border-2 border-white/20 flex items-center justify-center text-white/60 font-display text-2xl font-bold uppercase"
             aria-hidden="true"
           >
-            LM
+            {q.initials}
           </div>
           <div>
-            <p className="text-sm sm:text-base text-white/80 italic">&ldquo;Wir bauen keine Luftschlösser – wir bauen, was funktioniert.&rdquo;</p>
-            <p className="mt-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-brand-cyan">Lennard Meyer · Berneby Solutions</p>
+            <p className="text-sm sm:text-base text-white/80 italic">&ldquo;{q.quote}&rdquo;</p>
+            <p className="mt-1 text-xs sm:text-sm font-semibold uppercase tracking-wider text-brand-cyan">{q.author} · Berneby Solutions</p>
           </div>
         </div>
 

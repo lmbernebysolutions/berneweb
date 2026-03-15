@@ -31,6 +31,7 @@ import {
   FAQ_ITEMS,
   PAGE_META,
   COMPANY,
+  CTA_QUOTES,
   HANDWERK_STATS,
   HANDWERK_GARANTIEN,
   SOCIAL_LINKS,
@@ -279,6 +280,7 @@ export default function HandwerkPage() {
       <CtaSection
         headline="Starte dein Upgrade"
         subline="Lass uns deinen Betrieb digitalisieren. Jetzt Termin sichern."
+        quoteBlock={CTA_QUOTES.handwerk}
         ctas={[
           { label: "Jetzt Termin vereinbaren", href: "/kontakt" },
           { label: `Anrufen: ${COMPANY.phoneDisplay}`, href: `tel:${COMPANY.phone}` },

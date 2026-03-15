@@ -57,6 +57,38 @@ export const COMPANY = {
 } as const;
 
 // =============================================================================
+// CTA-SECTION – Zitate pro Hauptseite (abwechselnd LM/Daniel, einheitliche Zeichenlänge)
+// =============================================================================
+
+export const CTA_QUOTES = {
+  home: {
+    quote: "Wir bauen keine Luftschlösser – wir bauen, was funktioniert.",
+    author: "Lennard Meyer",
+    initials: "LM",
+  },
+  handwerk: {
+    quote: "Mehr Sichtbarkeit, weniger Zeitfresser – dafür gehen wir ran.",
+    author: "Daniel Hamburg",
+    initials: "DH",
+  },
+  tech: {
+    quote: "Moderne Technik muss Arbeit abnehmen. Sonst ist sie nutzlos.",
+    author: "Lennard Meyer",
+    initials: "LM",
+  },
+  referenzen: {
+    quote: "Echte Ergebnisse zählen. Was wir versprechen, liefern wir.",
+    author: "Daniel Hamburg",
+    initials: "DH",
+  },
+  "ueber-uns": {
+    quote: "Digital-Partner von hier für hier – auf Augenhöhe, kein Blabla.",
+    author: "Lennard Meyer",
+    initials: "LM",
+  },
+} as const;
+
+// =============================================================================
 // NAVIGATION
 // =============================================================================
 

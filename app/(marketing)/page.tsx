@@ -38,6 +38,7 @@ import {
   TWO_PILLARS,
   PROCESS_STEPS,
   COMPANY,
+  CTA_QUOTES,
   TECH_STACK_WITH_BENEFIT,
   HOME_MINI_FAQ,
   PAGE_META,
@@ -434,6 +435,7 @@ export default function Home() {
       <CtaSection
         headline="Bereit für das Upgrade?"
         subline="Lass uns dein Unternehmen auf das nächste Level heben."
+        quoteBlock={CTA_QUOTES.home}
         ctas={[
           { label: "Termin sichern", href: "/kontakt" },
         ]}

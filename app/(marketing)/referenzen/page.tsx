@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/sections/SectionHeading";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { ReferenzenCarousel } from "@/components/sections/ReferenzenCarousel";
 import { WarumBernebyV3 } from "@/components/v3/WarumBernebyV3";
-import { TRUST_BAR } from "@/lib/constants";
+import { CTA_QUOTES, TRUST_BAR } from "@/lib/constants";
 import { REFERENZEN, type ReferenzKategorie } from "@/lib/data/referenzen";
 import { CONTAINER_A_NO_GLOW } from "@/lib/container-styles";
 import { cn } from "@/lib/utils";
@@ -125,6 +125,7 @@ export default function ReferenzenPage() {
       <CtaSection
         headline="Bereit für Ihr Projekt?"
         subline="Erzählen Sie uns von Ihrem Betrieb – wir zeigen Ihnen, was möglich ist."
+        quoteBlock={CTA_QUOTES.referenzen}
         ctas={[
           { label: "Jetzt anfragen", href: "/kontakt" },
           { label: "Handwerk-Pakete", href: "/handwerk" },

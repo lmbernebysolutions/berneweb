@@ -1,7 +1,8 @@
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import { IconStarFilled, IconCheck } from "@tabler/icons-react";
-import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
 import { CONTAINER_A_NO_GLOW } from "@/lib/container-styles";
 import { cn } from "@/lib/utils";
 
@@ -18,12 +19,11 @@ interface TestimonialGridProps {
     overline?: string;
 }
 
-function TestimonialCard({ t, i }: { t: Testimonial; i: number }) {
+function TestimonialCard({ t, i, animate = true }: { t: Testimonial; i: number; animate?: boolean }) {
     return (
         <div
             key={i}
-            data-animate="fade-up"
-            data-animate-delay={String(i * 120)}
+            {...(animate && { "data-animate": "fade-up", "data-animate-delay": String(i * 120) })}
             className={cn(
                 "group relative h-full min-h-0 min-w-0 w-full overflow-hidden flex flex-col",
                 "p-3 sm:p-4 md:p-5 lg:p-6 transition-all",
@@ -51,22 +51,114 @@ function TestimonialCard({ t, i }: { t: Testimonial; i: number }) {
     );
 }
 
+/** Swipe-Nav wie PricingCards / MobileSwipeGrid */
+function CarouselNavButtons({
+    onPrev,
+    onNext,
+    canScrollPrev,
+    canScrollNext,
+}: {
+    onPrev: () => void;
+    onNext: () => void;
+    canScrollPrev: boolean;
+    canScrollNext: boolean;
+}) {
+    const btnClass =
+        "flex h-10 w-10 items-center justify-center rounded border border-brand-cyan/30 bg-brand-cyan/5 text-brand-cyan transition hover:bg-brand-cyan/10 disabled:opacity-30 disabled:pointer-events-none";
+    return (
+        <div className="mt-4 flex items-center justify-center gap-2">
+            <button type="button" onClick={onPrev} className={btnClass} disabled={!canScrollPrev} aria-label="Zurück">
+                <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button type="button" onClick={onNext} className={btnClass} disabled={!canScrollNext} aria-label="Weiter">
+                <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    );
+}
+
 export function TestimonialGrid({
     testimonials,
     title = "Das sagt das Erzgebirge",
     overline = "Erfolgsgeschichten",
 }: TestimonialGridProps) {
     const n = testimonials.length || 1;
+    const useSwipeOnMobile = n >= 3;
+
+    const [emblaRef, emblaApi] = useEmblaCarousel({
+        align: "center",
+        containScroll: "trimSnaps",
+        dragFree: false,
+    });
+    const [canScrollPrev, setCanScrollPrev] = useState(false);
+    const [canScrollNext, setCanScrollNext] = useState(false);
+    const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+    const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+    useEffect(() => {
+        if (!emblaApi || !useSwipeOnMobile) return;
+        const update = () => {
+            setCanScrollPrev(emblaApi.canScrollPrev());
+            setCanScrollNext(emblaApi.canScrollNext());
+        };
+        update();
+        emblaApi.on("select", update);
+        emblaApi.on("reInit", update);
+        return () => {
+            emblaApi.off("select", update);
+            emblaApi.off("reInit", update);
+        };
+    }, [emblaApi, useSwipeOnMobile]);
+
     return (
-        <div
-            className="grid gap-4 sm:gap-6 items-stretch w-full max-w-6xl mx-auto"
-            style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}
-        >
-            {testimonials.map((t, i) => (
-                <div key={i} className="min-w-0 min-h-0 flex">
-                    <TestimonialCard t={t} i={i} />
+        <div className="w-full max-w-6xl mx-auto">
+            {/* Mobile: Swipe-Carousel wie Pakete & Preise, nur bei 3+ Testimonials */}
+            {useSwipeOnMobile && (
+                <div className="md:hidden relative px-1">
+                    <div className="overflow-hidden" ref={emblaRef}>
+                        <div className="flex gap-4 touch-pan-y">
+                            {testimonials.map((t, i) => (
+                                <div key={i} className="flex-[0_0_78%] min-w-0 shrink-0 px-1">
+                                    <TestimonialCard t={t} i={i} animate={false} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <CarouselNavButtons
+                        onPrev={scrollPrev}
+                        onNext={scrollNext}
+                        canScrollPrev={canScrollPrev}
+                        canScrollNext={canScrollNext}
+                    />
                 </div>
-            ))}
+            )}
+
+            {/* Desktop: immer Grid; Mobile: nur wenn < 3 Testimonials */}
+            <div
+                className={cn(
+                    useSwipeOnMobile ? "hidden md:grid" : "grid",
+                    "gap-4 sm:gap-6 items-stretch"
+                )}
+                style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}
+            >
+                {useSwipeOnMobile ? (
+                    testimonials.map((t, i) => (
+                        <div key={i} className="min-w-0 min-h-0 flex" data-animate="fade-up" data-animate-delay={String(i * 120)}>
+                            <TestimonialCard t={t} i={i} animate={false} />
+                        </div>
+                    ))
+                ) : (
+                    testimonials.map((t, i) => (
+                        <div key={i} className="min-w-0 min-h-0 flex">
+                            <TestimonialCard t={t} i={i} />
+                        </div>
+                    ))
+                )}
+            </div>
         </div>
     );
 }
