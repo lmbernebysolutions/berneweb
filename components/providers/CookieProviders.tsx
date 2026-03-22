@@ -23,12 +23,13 @@ const COOKIE_TRANSLATIONS: Record<string, string> = {
   manageEssentialStatus: "Status: Immer aktiv",
   manageEssentialStatusButtonText: "Immer an",
 
-  manageAnalyticsTitle: "Analyse",
+  manageAnalyticsTitle: "Analyse & Karte",
   manageAnalyticsSubtitle:
-    "Hilft uns zu verstehen, wie Besucher die Website nutzen (z. B. Google Analytics).",
+    "Google Analytics (Besuchstatistik) sowie die eingebettete Standortkarte (OpenStreetMap) auf der Kontaktseite – nur nach Zustimmung aktiv.",
 
-  manageSocialTitle: "KI-Chat / Chatbot",
-  manageSocialSubtitle: "Nutzt Google Gemini zur Beantwortung von Fragen (opt-in). Der Chat wird erst nach Zustimmung aktiv.",
+  manageSocialTitle: "KI-Chat",
+  manageSocialSubtitle:
+    "Erlaubt den KI-Chat mit Google Gemini zur Beantwortung von Fragen – erst nach Ihrer Zustimmung aktiv.",
 
   manageAdvertTitle: "Werbung",
   manageAdvertSubtitle: "Personalisierte Werbung und Messung",
@@ -112,23 +113,25 @@ export function CookieProviders({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="cookie-manager-berneby">
-    <CookieManager
-      privacyPolicyUrl="/datenschutz"
-      displayType="banner"
-      theme="dark"
-      disableGeolocation
-      initialPreferences={{ Analytics: false, Social: false, Advertising: false }}
-      cookieCategories={{ Analytics: true, Social: true, Advertising: false }}
-      enableFloatingButton={true}
-      expirationDays={365}
-      translations={COOKIE_TRANSLATIONS}
-      classNames={cookieClassNames}
-      onAccept={handleAccept}
-      onDecline={handleDecline}
-      onManage={handleManage}
-    >
-      {children}
-    </CookieManager>
+      {/* Automatic iframe blocking vom Paket deaktiviert: verursachte fälschlich „Content Blocked“ für OpenStreetMap trotz Zustimmung. GA: initGA/revokeGA. */}
+      <CookieManager
+        privacyPolicyUrl="/datenschutz"
+        displayType="banner"
+        theme="dark"
+        disableGeolocation
+        disableAutomaticBlocking
+        initialPreferences={{ Analytics: false, Social: false, Advertising: false }}
+        cookieCategories={{ Analytics: true, Social: true, Advertising: false }}
+        enableFloatingButton={true}
+        expirationDays={365}
+        translations={COOKIE_TRANSLATIONS}
+        classNames={cookieClassNames}
+        onAccept={handleAccept}
+        onDecline={handleDecline}
+        onManage={handleManage}
+      >
+        {children}
+      </CookieManager>
     </div>
   );
 }

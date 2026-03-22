@@ -1,7 +1,10 @@
 // V3 CHANGES (vs ueber-uns/page.tsx inline):
-// - Horizontales Layout mit border-l-4 wie StatementSectionV3 (gleiche Farbe + Dicke)
+// - Grid + divide-*: gleiche Innenabstände, keine versetzten Top-Borders (Mobile)
+// - Überschriften: gemeinsame Mindesthöhe → Fließtext startet auf einer Linie
+// - Text zentriert; Überschrift im Kopf-Feld vertikal/horizontal zentriert (weniger „Leerraum“)
 // - onLight: bei true → text-brand-navy (heller Hintergrund), bei false → text-white (dunkler Hintergrund)
-// - Texte und Überschriften wie zuvor linksbündig (nicht zentriert)
+
+import { cn } from "@/lib/utils";
 
 interface WarumBernebyItem {
   point: string;
@@ -15,31 +18,49 @@ interface WarumBernebyV3Props {
 }
 
 export function WarumBernebyV3({ items, onLight = false }: WarumBernebyV3Props) {
-  const borderClass = onLight ? "border-brand-navy/30" : "border-white/10";
+  const divideClass = onLight ? "divide-brand-navy/30" : "divide-white/10";
+  const n = items.length;
+
+  /** Volle Breite: z. B. 3 Garantien = 3 Spalten ab md, nicht 4 Spalten mit leerer rechts */
+  const gridCols = cn(
+    "grid grid-cols-1 gap-0",
+    n === 3 && "md:grid-cols-3",
+    n === 4 && "sm:grid-cols-2 lg:grid-cols-4",
+    n === 2 && "sm:grid-cols-2",
+    n === 1 && "max-w-xl mx-auto w-full"
+  );
+
+  const gridDividers = cn(
+    "divide-y-4",
+    n === 3 ? "md:divide-y-0 md:divide-x-4" : "sm:divide-y-0 sm:divide-x-4",
+    divideClass
+  );
+
   return (
-    <div className="flex flex-col sm:flex-row">
+    <div className={cn(gridCols, gridDividers)}>
       {items.map((item, i) => (
         <div
           key={item.point}
           data-animate="fade-up"
           data-animate-delay={String(i * 80)}
-          className={`flex-1 py-6 px-6 sm:py-8 ${
-            i === 0
-              ? ""
-              : `border-t-4 sm:border-t-0 sm:border-l-4 sm:pl-6 ${borderClass}`
-          }`}
+          className="flex min-h-0 min-w-0 flex-col items-center px-6 py-6 text-center sm:px-6 sm:py-8 lg:px-7"
         >
+          {/* Einheitliche Kopfzeile: gleiche Mindesthöhe; Inhalt darin zentriert */}
+          <div className="mb-2 flex min-h-[3.25rem] w-full items-center justify-center sm:min-h-[3.5rem]">
+            <p
+              className={cn(
+                "font-bold uppercase tracking-tight text-base leading-snug",
+                onLight ? "text-brand-navy" : "text-white"
+              )}
+            >
+              {item.point}
+            </p>
+          </div>
           <p
-            className={`font-bold uppercase tracking-tight text-base mb-2 ${
-              onLight ? "text-brand-navy" : "text-white"
-            }`}
-          >
-            {item.point}
-          </p>
-          <p
-            className={`text-sm leading-relaxed ${
+            className={cn(
+              "w-full max-w-prose text-sm leading-relaxed",
               onLight ? "text-brand-navy/70" : "text-white/70"
-            }`}
+            )}
           >
             {item.detail}
           </p>

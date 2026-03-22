@@ -169,9 +169,9 @@ export const TECH_STACK = [
 export const TECH_STACK_WITH_BENEFIT = [
   { name: "Next.js", benefit: "Blitzschnelle Ladezeiten" },
   { name: "React", benefit: "Moderne, wartbare Oberflächen" },
-  { name: "Shopware", benefit: "Professionelle Online-Shops" },
+  { name: "Cursor", benefit: "Schnellere Entwicklung mit AI-Unterstützung" },
   { name: "Microsoft 365", benefit: "Office & E-Mail aus einer Hand" },
-  { name: "SEO & GEO", benefit: "Gefunden werden – lokal & in KI-Suchen" },
+  { name: "Adobe", benefit: "Markenstarkes Design in der Creative Cloud" },
   { name: "KI-Integration", benefit: "Telefon, Chat, Automatisierung" },
 ] as const;
 

@@ -44,6 +44,9 @@ const KONTAKT_SOCIAL_ICONS = {
   Google: IconBrandGoogle,
 } as const;
 
+/** Einheitliche Suchanfrage für Google- und Apple-Maps-Links */
+const MAPS_SEARCH_QUERY = `${COMPANY.address}, ${COMPANY.country}`;
+
 const CONTACT_INFO = [
   {
     icon: IconPhone,
@@ -195,7 +198,8 @@ export default function KontaktPage() {
           {/* Map – nur nach Cookie-Zustimmung (Alle akzeptieren) */}
           <ConsentMapCard
             locationLabel={`${COMPANY.location}, ${COMPANY.region}`}
-            googleMapsHref={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY.location + " " + COMPANY.region)}`}
+            googleMapsHref={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAPS_SEARCH_QUERY)}`}
+            appleMapsHref={`https://maps.apple.com/?q=${encodeURIComponent(MAPS_SEARCH_QUERY)}`}
             className="overflow-hidden p-0"
           />
 

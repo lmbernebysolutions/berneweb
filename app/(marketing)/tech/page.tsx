@@ -18,10 +18,10 @@ import {
     IconBrandGoogle,
     IconBrandNextjs,
     IconBrandReact,
-    IconShoppingBag,
     IconBrandWindows,
     IconRobot,
     IconSearch,
+    IconBrandAdobe,
 } from "@tabler/icons-react";
 import { SERVICES, COMPANY, CTA_QUOTES, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK_WITH_BENEFIT, TECH_STATS, TECH_TESTIMONIALS, PAGE_META, SOCIAL_LINKS } from "@/lib/constants";
 import dynamic from "next/dynamic";
@@ -32,6 +32,7 @@ import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { CONTAINER_A, CONTAINER_B } from "@/lib/container-styles";
 import { cn } from "@/lib/utils";
+import { CursorLogo } from "@/components/ui/cursor-logo";
 
 const ChatSection = dynamic(
   () => import("@/components/sections/chat-section").then((m) => ({ default: m.ChatSection })),
@@ -275,9 +276,9 @@ export default function TechPage() {
                         const Icon = {
                             "Next.js": IconBrandNextjs,
                             "React": IconBrandReact,
-                            "Shopware": IconShoppingBag,
+                            "Cursor": CursorLogo,
                             "Microsoft 365": IconBrandWindows,
-                            "SEO & GEO": IconSearch,
+                            "Adobe": IconBrandAdobe,
                             "KI-Integration": IconRobot,
                         }[item.name] || IconDeviceDesktop;
 

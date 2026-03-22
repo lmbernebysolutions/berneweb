@@ -27,10 +27,10 @@ export function GarantienGridV3({ items }: GarantienGridV3Props) {
           key={item.title}
           data-animate="fade-up"
           data-animate-delay={String(i * 80)}
-          className="group relative flex flex-col h-full min-w-0 w-full overflow-hidden border border-brand-navy/10 bg-white/80 p-4 sm:p-6 transition-all hover:border-brand-navy/20"
+          className="group relative flex flex-col h-full min-w-0 w-full overflow-hidden border border-brand-navy/10 bg-white/80 p-4 text-center sm:p-6 transition-all hover:border-brand-navy/20"
           // V3: keine TechCorners, heller Hintergrund
         >
-          <div className="relative z-10 flex flex-1 flex-col items-start gap-4">
+          <div className="relative z-10 flex flex-1 flex-col items-center gap-4">
             {/* V3: Icon-Box brand-navy/5 statt cyan/10 */}
             <div
               className="flex h-10 w-10 shrink-0 items-center justify-center border border-brand-navy/20 bg-brand-navy/5"
@@ -38,11 +38,13 @@ export function GarantienGridV3({ items }: GarantienGridV3Props) {
             >
               <IconCheck className="size-5 text-brand-navy" stroke={2.5} />
             </div>
-            <div className="min-h-[4.5rem] flex-1">
-              <h3 className="font-bold uppercase tracking-wider text-brand-navy">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-brand-navy/70">
+            <div className="flex w-full max-w-prose flex-1 flex-col">
+              <div className="flex min-h-[4.5rem] w-full flex-col items-center justify-center sm:min-h-[5rem]">
+                <h3 className="font-bold uppercase tracking-wider text-brand-navy">
+                  {item.title}
+                </h3>
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-brand-navy/70 text-center">
                 {item.description}
               </p>
             </div>

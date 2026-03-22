@@ -7,11 +7,12 @@
 import {
   IconBrandNextjs,
   IconBrandReact,
-  IconShoppingBag,
   IconBrandWindows,
   IconSearch,
   IconRobot,
+  IconBrandAdobe,
 } from "@tabler/icons-react";
+import { CursorLogo } from "@/components/ui/cursor-logo";
 
 // Nutzen-Aussagen pro Technologie (Dual-Layer: Technik + Kundennutzen)
 const TECH_ITEMS = [
@@ -26,9 +27,9 @@ const TECH_ITEMS = [
     Icon: IconBrandReact,
   },
   {
-    name: "Shopware",
-    benefit: "Online-Shop, der verkauft — nicht nur existiert",
-    Icon: IconShoppingBag,
+    name: "Cursor",
+    benefit: "Schnellere Entwicklung dank AI-Unterstützung im Code-Editor",
+    Icon: CursorLogo,
   },
   {
     name: "Microsoft 365",
@@ -36,9 +37,9 @@ const TECH_ITEMS = [
     Icon: IconBrandWindows,
   },
   {
-    name: "SEO & GEO",
-    benefit: "Kunden finden Sie bei Google — nicht die Konkurrenz",
-    Icon: IconSearch,
+    name: "Adobe",
+    benefit: "Markenstarkes Design mit der Creative Cloud umgesetzt",
+    Icon: IconBrandAdobe,
   },
   {
     name: "KI-Integration",

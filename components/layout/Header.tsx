@@ -62,7 +62,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               className={cn(
-                "nav-link-responsive relative px-2.5 py-1.5 min-[1920px]:px-4 text-base min-[1920px]:text-lg font-medium transition-colors",
+                "nav-link-responsive relative px-2.5 py-1.5 min-[1920px]:px-4 text-lg min-[1920px]:text-xl font-medium transition-colors",
                 pathname === item.href
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -108,7 +108,7 @@ export function Header() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "group relative flex items-center gap-4 border-l-2 px-4 py-3.5 text-lg font-medium transition-all md:text-xl md:py-4",
+                    "group relative flex items-center gap-4 border-l-2 px-4 py-3.5 text-xl font-medium transition-all md:text-2xl md:py-4",
                     pathname === item.href
                       ? "border-brand-cyan bg-brand-cyan/5 text-foreground"
                       : "border-transparent text-muted-foreground hover:border-brand-cyan/50 hover:text-foreground"

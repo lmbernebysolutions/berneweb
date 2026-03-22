@@ -26,10 +26,10 @@ import {
   IconBrandGoogle,
   IconBrandNextjs,
   IconBrandReact,
-  IconShoppingBag,
   IconBrandWindows,
-  IconRobot,
   IconSearch,
+  IconBrandAdobe,
+  IconRobot,
 } from "@tabler/icons-react";
 import {
   HOME_HERO,
@@ -46,6 +46,7 @@ import {
   MIT_UNS_ROWS,
   SOCIAL_LINKS,
 } from "@/lib/constants";
+import { CursorLogo } from "@/components/ui/cursor-logo";
 import { generateFaqSchema } from "@/lib/seo/schema";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { ReferenzCard } from "@/components/sections/ReferenzenCarousel";
@@ -343,9 +344,9 @@ export default function Home() {
             const Icon = {
               "Next.js": IconBrandNextjs,
               "React": IconBrandReact,
-              "Shopware": IconShoppingBag,
+              "Cursor": CursorLogo,
               "Microsoft 365": IconBrandWindows,
-              "SEO & GEO": IconSearch,
+              "Adobe": IconBrandAdobe,
               "KI-Integration": IconRobot,
             }[item.name] || IconDeviceDesktop;
 
@@ -361,7 +362,7 @@ export default function Home() {
               >
                 <div className="relative z-10 flex flex-col gap-1">
                   <div className="flex items-center justify-center gap-3">
-                    <Icon className="size-5 text-brand-cyan shrink-0" stroke={1.5} />
+                    <Icon className="size-5 text-brand-cyan shrink-0" strokeWidth={1.5} />
                     <p className="text-sm font-bold uppercase tracking-wider text-white whitespace-nowrap">
                       {item.name}
                     </p>

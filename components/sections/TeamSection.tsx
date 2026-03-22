@@ -49,20 +49,20 @@ export function TeamSection({ members, variant = "default" }: TeamSectionProps) 
             {/* Navy: Mobile = Bild links + Name/Role rechts in einer Zeile; ab md = Bild links, Text rechts */}
             {isNavy && (
               <div className="flex flex-row gap-4 items-start md:contents">
-                <div className={cn("relative shrink-0 h-20 w-20 sm:h-24 sm:w-24 md:h-36 md:w-36")}>
+                <div className={cn("relative shrink-0 h-28 w-28 sm:h-32 sm:w-32 md:h-44 md:w-44")}>
                   {member.image ? (
                     <div className="relative overflow-hidden rounded-[2px] shadow-lg h-full w-full border-2 border-white/20">
                       <Image
                         src={member.image}
                         alt={`Porträt ${member.name}`}
-                        width={144}
-                        height={144}
+                        width={176}
+                        height={176}
                         className="h-full w-full object-cover"
-                        sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, 144px"
+                        sizes="(max-width: 640px) 112px, (max-width: 768px) 128px, 176px"
                       />
                     </div>
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center text-lg md:text-xl font-bold font-display uppercase shadow-lg rounded-[2px] bg-white/5 border-2 border-white/20 text-white">
+                    <div className="flex h-full w-full items-center justify-center text-xl md:text-2xl font-bold font-display uppercase shadow-lg rounded-[2px] bg-white/5 border-2 border-white/20 text-white">
                       {member.initials}
                     </div>
                   )}

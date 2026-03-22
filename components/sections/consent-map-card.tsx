@@ -12,12 +12,14 @@ const MAP_EMBED_SRC =
 export interface ConsentMapCardProps {
   locationLabel: string;
   googleMapsHref: string;
+  appleMapsHref: string;
   className?: string;
 }
 
 export function ConsentMapCard({
   locationLabel,
   googleMapsHref,
+  appleMapsHref,
   className,
 }: ConsentMapCardProps) {
   const [mounted, setMounted] = useState(false);
@@ -52,7 +54,9 @@ export function ConsentMapCard({
           ) : (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white/5 p-4 text-center">
               <p className="text-sm text-white/80">
-                Um die Karte anzuzeigen, bestätigen Sie bitte die Cookie-Einstellungen.
+                Die Standortkarte lädt erst nach Zustimmung zu{" "}
+                <strong className="text-white">Analyse &amp; Karte</strong> in den
+                Cookie-Einstellungen (speichern nicht vergessen).
               </p>
               <Button type="button" variant="outline-light" size="sm" onClick={openPreferences}>
                 Cookie-Einstellungen
@@ -60,7 +64,7 @@ export function ConsentMapCard({
             </div>
           )}
         </div>
-        <div className="p-3">
+        <div className="flex flex-col gap-2 p-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4">
           <a
             href={googleMapsHref}
             target="_blank"
@@ -68,6 +72,14 @@ export function ConsentMapCard({
             className="text-xs font-semibold text-brand-cyan underline underline-offset-2 hover:text-brand-cyan/80"
           >
             In Google Maps öffnen
+          </a>
+          <a
+            href={appleMapsHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-semibold text-brand-cyan underline underline-offset-2 hover:text-brand-cyan/80"
+          >
+            In Apple Maps öffnen
           </a>
         </div>
       </div>

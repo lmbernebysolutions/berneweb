@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
+import { SlideStoryBody as StoryBody } from '@/components/socials/slide-story-body';
 import { BackdropNumber } from '@/components/ui/backdrop-number';
 import { TechCorners } from '@/components/ui/tech-corners';
+import { TextLogo } from '@/components/brand/TextLogo';
 import Image from 'next/image';
 import {
   IconSearch, IconRobot, IconDeviceDesktop, IconCheck, IconX,
@@ -8,6 +10,7 @@ import {
   IconTarget, IconBrandGoogle, IconBrandMeta, IconMapPin, IconPhoneCall,
   IconStar, IconChartBar, IconBrandAdobe, IconBrush, IconPalette, IconLayout2
 } from '@tabler/icons-react';
+import { CursorLogo } from '@/components/ui/cursor-logo';
 
 export const metadata: Metadata = { title: 'Socials V2 — Berneby Solutions' };
 
@@ -32,48 +35,53 @@ const BERG_FOOTER = ["/icons/Berg2.svg","/icons/Berg3.svg","/icons/Berg4.svg"];
 
 // ─── Logo ─────────────────────────────────────────────────────────────────────
 const Logo = () => (
-  <div className="absolute top-[40px] left-[48px] z-50">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 48" height="42" width="13">
-      <g transform="matrix(1.3333333,0,0,-1.3333333,0,64)"><g transform="scale(0.1)">
-        <path fill="#03f9f9" fillRule="evenodd" stroke="none" d="m 3.92969,355.926 0.26953,-37.129 0.05469,-0.035 C 31.6406,317.855 53.543,297.043 53.543,271.5 53.543,245.805 31.3867,224.895 3.77734,224.219 L 4.07813,134.316 C 59.6289,138.797 103.988,181.43 104.762,242.109 105.504,300.309 61.9922,354.914 3.92969,355.926"/>
-        <path fill="#03f9f9" fillRule="evenodd" stroke="none" d="M 3.77344,473.934 4.07031,444.773 C 58.0508,437.191 55.3477,367.426 4.14844,360.148 L 4.06641,319.117 C 102.242,325.789 95.7422,470.422 3.77344,473.934"/>
-      </g></g>
-    </svg>
+  <div className="absolute top-[36px] left-[48px] z-50 transform scale-[0.5] origin-top-left pointer-events-none">
+    <TextLogo variant="dark" size="default" />
   </div>
 );
 
 // ─── Slide Shell ──────────────────────────────────────────────────────────────
-const Slide = ({ children, number, invertMount=false, mountBottom=false, footerVariant=false }: {
+// beamOutRight: horizontale Line am rechten Rand, zentriert, nach rechts „raus“
+// beamOutLeft: horizontale Line am linken Rand, zentriert, nach links „raus“
+const Slide = ({ children, number, invertMount=false, mountBottom=false, footerVariant=false, beamOutRight=false, beamOutLeft=false, showLogo=false }: {
   children: React.ReactNode; number: string;
   invertMount?: boolean; mountBottom?: boolean; footerVariant?: boolean;
+  beamOutRight?: boolean; beamOutLeft?: boolean; showLogo?: boolean;
 }) => (
-  <div className="relative w-[360px] h-[640px] bg-brand-navy overflow-hidden shrink-0 shadow-2xl border border-white/10 font-sans">
-    {/* Grid */}
-    <div className="absolute inset-0 pointer-events-none opacity-30" style={{backgroundImage:'linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)',backgroundSize:'40px 40px'}}/>
-    {/* Noise */}
-    <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-[1]" style={{backgroundImage:'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")'}}/>
-    {/* Beams — 32px from edge */}
-    <div className="absolute top-0 bottom-0 left-[32px] w-px bg-brand-cyan/20 z-[2] pointer-events-none"/>
-    <div className="absolute top-0 bottom-0 right-[32px] w-px bg-brand-cyan/20 z-[2] pointer-events-none"/>
-    {/* Mountains */}
-    {invertMount && <div className="absolute top-0 h-[240px] left-[32px] right-[32px] z-[2] pointer-events-none overflow-hidden"><div className="relative w-full h-full scale-y-[-1]">{BERG.map(s=><Image key={s} src={s} alt="" fill className="object-cover object-bottom opacity-80" unoptimized/>)}</div></div>}
-    {mountBottom && <div className="absolute bottom-0 h-[240px] left-[32px] right-[32px] z-[2] pointer-events-none overflow-hidden"><div className="relative w-full h-full">{(footerVariant?BERG_FOOTER:BERG).map(s=><Image key={s} src={s} alt="" fill className="object-cover object-bottom opacity-80" unoptimized/>)}</div></div>}
-    {/* Tech Corners — bottom reduced from 100px to 60px (+40px content area) */}
-    <div className="absolute top-[100px] bottom-[60px] left-[32px] right-[32px] pointer-events-none z-[15]">
-      <div className="absolute top-0 left-0 w-[16px] h-[16px] border-t-2 border-l-2 border-brand-cyan/40"/>
-      <div className="absolute top-0 right-0 w-[16px] h-[16px] border-t-2 border-r-2 border-brand-cyan/40"/>
-      <div className="absolute bottom-0 left-0 w-[16px] h-[16px] border-b-2 border-l-2 border-brand-cyan/40"/>
-      <div className="absolute bottom-0 right-0 w-[16px] h-[16px] border-b-2 border-r-2 border-brand-cyan/40"/>
+  <div className="relative w-[360px] h-[640px] bg-brand-navy overflow-visible shrink-0 shadow-2xl border border-white/10 font-sans">
+    {/* Inner clip — keeps content (mountains, grid) clipped */}
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Grid */}
+      <div className="absolute inset-0 pointer-events-none opacity-30" style={{backgroundImage:'linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)',backgroundSize:'40px 40px'}}/>
+      {/* Noise */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-[1]" style={{backgroundImage:'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")'}}/>
+      {/* Beams — 32px from edge (same line settings as outer beams) */}
+      <div className="absolute top-0 bottom-0 left-[32px] w-px bg-brand-cyan/20 z-[2] pointer-events-none"/>
+      <div className="absolute top-0 bottom-0 right-[32px] w-px bg-brand-cyan/20 z-[2] pointer-events-none"/>
+      {/* Mountains */}
+      {invertMount && <div className="absolute top-0 h-[240px] left-[32px] right-[32px] z-[2] pointer-events-none overflow-hidden"><div className="relative w-full h-full scale-y-[-1]">{BERG.map(s=><Image key={s} src={s} alt="" fill className="object-cover object-bottom opacity-80" unoptimized/>)}</div></div>}
+      {mountBottom && <div className="absolute bottom-0 h-[240px] left-[32px] right-[32px] z-[2] pointer-events-none overflow-hidden"><div className="relative w-full h-full">{(footerVariant?BERG_FOOTER:BERG).map(s=><Image key={s} src={s} alt="" fill className="object-cover object-bottom opacity-80" unoptimized/>)}</div></div>}
+      {/* Tech Corners — bottom reduced from 100px to 60px (+40px content area) */}
+      <div className="absolute top-[100px] bottom-[60px] left-[32px] right-[32px] pointer-events-none z-[15]">
+        <div className="absolute top-0 left-0 w-[16px] h-[16px] border-t-2 border-l-2 border-brand-cyan/40"/>
+        <div className="absolute top-0 right-0 w-[16px] h-[16px] border-t-2 border-r-2 border-brand-cyan/40"/>
+        <div className="absolute bottom-0 left-0 w-[16px] h-[16px] border-b-2 border-l-2 border-brand-cyan/40"/>
+        <div className="absolute bottom-0 right-0 w-[16px] h-[16px] border-b-2 border-r-2 border-brand-cyan/40"/>
+      </div>
+      {showLogo && <Logo />}
+      {/* Backdrop */}
+      <div className="absolute z-[3] overflow-hidden opacity-35 pointer-events-none w-full h-full top-0 left-0">
+        <BackdropNumber number={number} className="top-auto bottom-[-10%] left-1/2 -translate-x-1/2 !text-[280px]"/>
+      </div>
+      {/* Content area — top:100px, bottom:60px (asymmetric: logo needs 100px, bottom only 60px) */}
+      <div style={{position:'absolute',top:'100px',bottom:'60px',left:'32px',right:'32px',zIndex:10,paddingTop:'24px',paddingBottom:'24px',display:'flex',flexDirection:'column'}}>
+        {children}
+      </div>
     </div>
-    <Logo/>
-    {/* Backdrop */}
-    <div className="absolute z-[3] overflow-hidden opacity-35 pointer-events-none w-full h-full top-0 left-0">
-      <BackdropNumber number={number} className="top-auto bottom-[-10%] left-1/2 -translate-x-1/2 !text-[280px]"/>
-    </div>
-    {/* Content area — top:100px, bottom:60px (asymmetric: logo needs 100px, bottom only 60px) */}
-    <div style={{position:'absolute',top:'100px',bottom:'60px',left:'32px',right:'32px',zIndex:10,paddingTop:'24px',paddingBottom:'24px',display:'flex',flexDirection:'column'}}>
-      {children}
-    </div>
+    {/* Out-beams — same line settings (w-px bg-brand-cyan/20), centered, extending out of slide */}
+    {beamOutRight && <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[32px] h-px bg-brand-cyan/20 z-[2] pointer-events-none" aria-hidden/>}
+    {/* Left: from slide left edge (0) to left beam (32px), so it connects beam to edge */}
+    {beamOutLeft && <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[32px] h-px bg-brand-cyan/20 z-[2] pointer-events-none" aria-hidden/>}
   </div>
 );
 
@@ -102,13 +110,7 @@ const BodySlot = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-// ─── StoryBody ────────────────────────────────────────────────────────────────
-// Left cyan bar — px-only insets
-const StoryBody = ({ children }: { children: React.ReactNode }) => (
-  <div style={{borderLeft:'4px solid #03f9f9', paddingLeft:'16px', marginLeft:'24px', marginRight:'16px'}}>
-    <p className="text-[13px] font-medium text-blue-100 leading-[1.6]">{children}</p>
-  </div>
-);
+// ─── StoryBody ─ @/components/socials/slide-story-body (grau + <strong> weiß)
 
 // ─── Instagram Sticker ────────────────────────────────────────────────────────
 // bottom prop: absolute positioning (centered between last element and tech corner)
@@ -130,12 +132,11 @@ const BlockMD = ({ badge, cyan=true, children }: { badge: string; cyan?: boolean
     height:'200px', margin:'0 24px', border:`1px solid ${cyan?'rgba(3,249,249,0.2)':'rgba(255,255,255,0.1)'}`,
     background: cyan?'rgba(3,249,249,0.15)':'rgba(0,0,0,0.3)', position:'relative', overflow:'hidden', flexShrink:0,
   }}>
-    <TechCorners pattern="diagonal" variant={cyan ? "cyan" : "navy"} size="sm" hoverExpand={false} />
     <div style={{
       position:'absolute', top:0, right:0, borderBottom:`1px solid ${cyan?'rgba(3,249,249,0.3)':'rgba(255,255,255,0.1)'}`,
       borderLeft:`1px solid ${cyan?'rgba(3,249,249,0.3)':'rgba(255,255,255,0.1)'}`,
       background: cyan?'rgba(3,249,249,0.2)':'rgba(0,0,0,0.4)',
-      padding:'4px 10px', fontFamily:'monospace', fontSize:'8px', fontWeight:700,
+      padding:'4px 10px', fontFamily:"var(--font-geist-mono, monospace)", fontSize:'8px', fontWeight:700,
       textTransform:'uppercase', letterSpacing:'0.1em', color: cyan?'#03f9f9':'rgba(255,255,255,0.4)', zIndex:20,
     }}>{badge}</div>
     {children}
@@ -159,7 +160,7 @@ const BlockSM = ({ badge, cyan=false, red=false, children }: { badge: string; cy
       borderBottom:`1px solid ${cyan?'rgba(3,249,249,0.3)':red?'rgba(239,68,68,0.3)':'rgba(255,255,255,0.1)'}`,
       borderLeft:`1px solid ${cyan?'rgba(3,249,249,0.3)':red?'rgba(239,68,68,0.3)':'rgba(255,255,255,0.1)'}`,
       background: cyan?'rgba(3,249,249,0.2)':red?'rgba(239,68,68,0.2)':'rgba(0,0,0,0.4)',
-      padding:'3px 10px', fontFamily:'monospace', fontSize:'7px', fontWeight:700,
+      padding:'3px 10px', fontFamily:"var(--font-geist-mono, monospace)", fontSize:'7px', fontWeight:700,
       textTransform:'uppercase', letterSpacing:'0.1em',
       color: cyan?'#03f9f9':red?'rgba(239,68,68,0.9)':'rgba(255,255,255,0.4)', zIndex:20,
     }}>{badge}</div>
@@ -175,7 +176,7 @@ const Grid2x2 = ({ items }: { items: { icon: React.ReactNode; label: string }[] 
       <div key={i} style={{height:'96px', border:'1px solid rgba(255,255,255,0.1)', background:'rgba(26,35,66,0.3)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'8px', position:'relative'}}>
         <TechCorners pattern="diagonal" variant="cyan" size="sm" hoverExpand={false} />
         {item.icon}
-        <span style={{fontFamily:'monospace', fontSize:'11px', fontWeight:700, color:'#03f9f9', textTransform:'uppercase', letterSpacing:'0.08em', textAlign:'center', lineHeight:1.2, padding:'0 4px'}}>{item.label}</span>
+        <span style={{fontFamily:"var(--font-geist-mono, monospace)", fontSize:'11px', fontWeight:700, color:'#03f9f9', textTransform:'uppercase', letterSpacing:'0.08em', textAlign:'center', lineHeight:1.2, padding:'0 4px'}}>{item.label}</span>
       </div>
     ))}
   </div>
@@ -199,7 +200,7 @@ const DualBlock = ({
         backgroundImage:'repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,0.015) 10px,rgba(255,255,255,0.015) 20px)'}}/>
       {/* STATUS_OFFLINE badge */}
       <div style={{position:'absolute',top:0,right:0,borderBottom:'1px solid rgba(255,255,255,0.1)',borderLeft:'1px solid rgba(255,255,255,0.1)',
-        background:'rgba(0,0,0,0.4)',padding:'3px 10px',fontFamily:'monospace',fontSize:'7px',fontWeight:700,
+        background:'rgba(0,0,0,0.4)',padding:'3px 10px',fontFamily:"var(--font-geist-mono, monospace)",fontSize:'7px',fontWeight:700,
         textTransform:'uppercase',letterSpacing:'0.1em',color:'rgba(255,255,255,0.4)',zIndex:20}}>STATUS_OFFLINE</div>
       <ul style={{padding:'20px 10px 4px',display:'flex',flexDirection:'column',gap:'5px'}}>
         {negItems.map((t,i) => (
@@ -225,7 +226,7 @@ const DualBlock = ({
       <TechCorners pattern="diagonal" variant="cyan" size="sm" hoverExpand={false} />
       {/* SYSTEM_ONLINE badge */}
       <div style={{position:'absolute',top:0,right:0,borderBottom:'2px solid rgba(3,249,249,0.4)',borderLeft:'2px solid rgba(3,249,249,0.4)',
-        background:'rgba(3,249,249,0.2)',padding:'3px 10px',fontFamily:'monospace',fontSize:'7px',fontWeight:700,
+        background:'rgba(3,249,249,0.2)',padding:'3px 10px',fontFamily:"var(--font-geist-mono, monospace)",fontSize:'7px',fontWeight:700,
         textTransform:'uppercase',letterSpacing:'0.1em',color:'#03f9f9',zIndex:20,
         boxShadow:'0 0 10px rgba(3,249,249,0.3)'}}>SYSTEM_ONLINE</div>
       <ul style={{padding:'20px 10px 4px',display:'flex',flexDirection:'column',gap:'5px'}}>
@@ -246,7 +247,7 @@ const DualBlock = ({
 const KListItem = ({ icon, label }: { icon: React.ReactNode; label: string }) => (
   <li style={{display:'flex', gap:'8px', alignItems:'center', fontSize:'12px', fontWeight:700, color:'#fff'}}>
     {icon}
-    <span style={{fontFamily:'monospace', textTransform:'uppercase', letterSpacing:'0.08em', lineHeight:1.2}}>{label}</span>
+    <span style={{fontFamily:"var(--font-geist-mono, monospace)", textTransform:'uppercase', letterSpacing:'0.08em', lineHeight:1.2}}>{label}</span>
   </li>
 );
 
@@ -269,7 +270,7 @@ export default function SocialsV2() {
         <div className="flex flex-wrap gap-10 justify-center">
 
           {/* ── 01: Hook ──────────────────────────────────────────────────── */}
-          <Slide number="01" invertMount>
+          <Slide number="01" invertMount beamOutRight showLogo>
             <StoryHeading>
               DAS FRISST<br/>
               <span className="text-brand-cyan drop-shadow-[0_0_12px_rgba(3,249,249,0.5)]">ZU VIEL ZEIT?</span>
@@ -278,9 +279,9 @@ export default function SocialsV2() {
             {/* Mirror Slide 07: StoryBody + CTA both INSIDE ContentZone */}
             <ContentZone>
               <StoryBody>
-                Fehlende Aufträge oder Telefonflut,<br/>
-                veraltete Webseite kostet täglich<br/>
-                Umsatz, Zeit und Nerven.
+                Fehlende <strong>Aufträge</strong> oder <strong>Telefonflut</strong>,<br/>
+                veraltete <strong>Webseite</strong> kostet täglich<br/>
+                <strong>Umsatz</strong>, <strong>Zeit</strong> und <strong>Nerven</strong>.
               </StoryBody>
 
               <div style={{marginTop:'31px', margin:'31px 24px 0 24px'}}>
@@ -295,7 +296,7 @@ export default function SocialsV2() {
           </Slide>
 
           {/* ── 02: WIR MACHEN DIGITAL ────────────────────────────────────── */}
-          <Slide number="02">
+          <Slide number="02" beamOutRight beamOutLeft>
             <StoryHeading>
               WIR MACHEN<br/>
               <span className="text-brand-cyan">DIGITAL</span>
@@ -308,13 +309,12 @@ export default function SocialsV2() {
                 height:'96px', margin:'0 24px', border:'1px solid rgba(3,249,249,0.2)',
                 background:'rgba(3,249,249,0.15)', position:'relative', overflow:'hidden', flexShrink:0,
               }}>
-                <TechCorners pattern="diagonal" variant="cyan" size="sm" hoverExpand={false} />
                 {/* DIGITAL badge */}
                 <div style={{
                   position:'absolute', top:0, right:0,
                   borderBottom:'1px solid rgba(3,249,249,0.3)', borderLeft:'1px solid rgba(3,249,249,0.3)',
                   background:'rgba(3,249,249,0.2)', padding:'3px 10px',
-                  fontFamily:'monospace', fontSize:'7px', fontWeight:700,
+                  fontFamily:"var(--font-geist-mono, monospace)", fontSize:'7px', fontWeight:700,
                   textTransform:'uppercase', letterSpacing:'0.1em', color:'#03f9f9', zIndex:20,
                 }}>DIGITAL</div>
                 <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', height:'100%'}}>
@@ -335,15 +335,15 @@ export default function SocialsV2() {
 
               <div style={{marginTop:'31px'}}>
                 <StoryBody>
-                  Von NET-GEO über den 24/7<br/>
-                  KI-Telefonassistenten bis hin zu<br/>
-                  automatisierten Bewertungen.
+                  Von <strong>NET-GEO</strong> über den <strong>24/7</strong><br/>
+                  <strong>KI-Telefonassistenten</strong> bis hin zu<br/>
+                  <strong>automatisierten Bewertungen</strong>.
                 </StoryBody>
               </div>
               {/* MEHR INFOS als Link — 13px */}
               <div style={{marginTop:'31px', margin:'31px 24px 0 24px'}}>
                 <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', borderBottom:'1px solid rgba(3,249,249,0.3)', paddingBottom:'8px'}}>
-                  <span style={{fontFamily:'monospace', fontSize:'13px', fontWeight:700, color:'#03f9f9', textTransform:'uppercase', letterSpacing:'0.12em'}}>MEHR INFOS</span>
+                  <span style={{fontFamily:"var(--font-geist-mono, monospace)", fontSize:'13px', fontWeight:700, color:'#03f9f9', textTransform:'uppercase', letterSpacing:'0.12em'}}>MEHR INFOS</span>
                   <IconArrowRight style={{width:16,height:16,color:'#03f9f9'}} strokeWidth={2.5}/>
                 </div>
               </div>
@@ -354,7 +354,7 @@ export default function SocialsV2() {
           </Slide>
 
           {/* ── 03: TECH-STACK ────────────────────────────────────────────── */}
-          <Slide number="03">
+          <Slide number="03" beamOutRight beamOutLeft>
             <StoryHeading>
               UNSER<br/>
               <span className="text-brand-cyan">TECH-STACK</span>
@@ -365,26 +365,22 @@ export default function SocialsV2() {
               <Grid2x2 items={[
                 { label:'Next.js', icon:<IconBrandNextjs style={{width:32,height:32,color:'#03f9f9'}} strokeWidth={1.5}/> },
                 { label:'React',       icon:<IconBrandReact  style={{width:32,height:32,color:'#03f9f9'}} strokeWidth={1.5}/> },
-                { label:'Cursor',         icon:
-                  <svg viewBox="0 0 545 545" style={{width:32,height:32,color:'#03f9f9',fill:'currentColor'}} xmlns="http://www.w3.org/2000/svg">
-                    <path d="m466.383 137.073-206.469-119.2034c-6.63-3.8287-14.811-3.8287-21.441 0l-206.4586 119.2034c-5.5734 3.218-9.0144 9.169-9.0144 15.615v240.375c0 6.436 3.441 12.397 9.0144 15.615l206.4686 119.203c6.63 3.829 14.811 3.829 21.441 0l206.468-119.203c5.574-3.218 9.015-9.17 9.015-15.615v-240.375c0-6.436-3.441-12.397-9.015-15.615zm-12.969 25.25-199.316 345.223c-1.347 2.326-4.904 1.376-4.904-1.319v-226.048c0-4.517-2.414-8.695-6.33-10.963l-195.7577-113.019c-2.3263-1.347-1.3764-4.905 1.3182-4.905h398.6305c5.661 0 9.199 6.136 6.368 11.041h-.009z"/>
-                  </svg>
-                },
+                { label:'Cursor', icon:<CursorLogo style={{width:32,height:32,color:'#03f9f9'}} /> },
                 { label:'Adobe', icon:<IconBrandAdobe  style={{width:32,height:32,color:'#03f9f9'}} strokeWidth={1.5}/> },
               ]}/>
             </ContentZone>
 
             <BodySlot>
               <StoryBody>
-                Keine Baukästen, nur saubere Systeme<br/>
-                gebaut für Performance und<br/>
-                langfristige Stabilität.
+                <strong>Keine Baukästen</strong>, nur <strong>saubere Systeme</strong><br/>
+                gebaut für <strong>Performance</strong> und<br/>
+                <strong>langfristige Stabilität</strong>.
               </StoryBody>
             </BodySlot>
           </Slide>
 
           {/* ── 04: OHNE UNS VS. MIT UNS ─────────────────────────────────── */}
-          <Slide number="04">
+          <Slide number="04" beamOutRight beamOutLeft>
             <StoryHeading>
               OHNE UNS<br/>
               <span className="text-brand-cyan whitespace-nowrap">VS. MIT UNS</span>
@@ -400,14 +396,14 @@ export default function SocialsV2() {
 
             <BodySlot>
               <StoryBody>
-                Wir schaffen klare Strukturen und<br/>
-                saubere Lösungen für dein Team.
+                Wir schaffen <strong>klare Strukturen</strong> und<br/>
+                <strong>saubere Lösungen</strong> für dein Team.
               </StoryBody>
             </BodySlot>
           </Slide>
 
           {/* ── 05: LEISTUNGEN ───────────────────────────────────────────── */}
-          <Slide number="05">
+          <Slide number="05" beamOutRight beamOutLeft>
             <StoryHeading>
               UNSERE<br/>
               <span className="text-brand-cyan">LEISTUNGEN</span>
@@ -425,15 +421,15 @@ export default function SocialsV2() {
 
             <BodySlot>
               <StoryBody>
-                Mehr Aufträge, mehr Sichtbarkeit —<br/>
-                wir digitalisieren lokale Betriebe<br/>
-                schnell und nachhaltig.
+                Mehr <strong>Aufträge</strong>, mehr <strong>Sichtbarkeit</strong> —<br/>
+                wir digitalisieren <strong>lokale Betriebe</strong><br/>
+                schnell und <strong>nachhaltig</strong>.
               </StoryBody>
             </BodySlot>
           </Slide>
 
           {/* ── 06: NEXT GEN MARKETING ───────────────────────────────────── */}
-          <Slide number="06">
+          <Slide number="06" beamOutRight beamOutLeft>
             <StoryHeading>
               NEXT GEN<br/>
               <span className="text-brand-cyan">MARKETING</span>
@@ -444,7 +440,7 @@ export default function SocialsV2() {
               <BlockMD badge="KAMPAGNEN" cyan>
                 <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', height:'100%'}}>
                   <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'0'}}>
-                    <span style={{fontFamily:'monospace', fontSize:'13px', fontWeight:700, color:'rgba(3,249,249,0.7)', textTransform:'uppercase', letterSpacing:'0.08em', marginBottom:'8px'}}>PAID</span>
+                    <span style={{fontFamily:"var(--font-geist-mono, monospace)", fontSize:'13px', fontWeight:700, color:'rgba(3,249,249,0.7)', textTransform:'uppercase', letterSpacing:'0.08em', marginBottom:'8px'}}>PAID</span>
                     <ul style={{display:'flex', flexDirection:'column', gap:'12px'}}>
                       <KListItem icon={<IconBrandGoogle style={{width:28,height:28,color:'#03f9f9',flexShrink:0}} strokeWidth={1.5}/>} label="Ads Reach"/>
                       <KListItem icon={<IconBrandMeta   style={{width:28,height:28,color:'#03f9f9',flexShrink:0}} strokeWidth={1.5}/>} label="Recruiting"/>
@@ -452,7 +448,7 @@ export default function SocialsV2() {
                     </ul>
                   </div>
                   <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'0'}}>
-                    <span style={{fontFamily:'monospace', fontSize:'13px', fontWeight:700, color:'rgba(3,249,249,0.7)', textTransform:'uppercase', letterSpacing:'0.08em', marginBottom:'8px'}}>KREATIV</span>
+                    <span style={{fontFamily:"var(--font-geist-mono, monospace)", fontSize:'13px', fontWeight:700, color:'rgba(3,249,249,0.7)', textTransform:'uppercase', letterSpacing:'0.08em', marginBottom:'8px'}}>KREATIV</span>
                     <ul style={{display:'flex', flexDirection:'column', gap:'12px'}}>
                       <KListItem icon={<IconPalette  style={{width:28,height:28,color:'#03f9f9',flexShrink:0}} strokeWidth={1.5}/>} label="Branding"/>
                       <KListItem icon={<IconLayout2  style={{width:28,height:28,color:'#03f9f9',flexShrink:0}} strokeWidth={1.5}/>} label="Assets"/>
@@ -465,15 +461,15 @@ export default function SocialsV2() {
 
             <BodySlot>
               <StoryBody>
-                Google Ads, Social Recruiting,<br/>
-                GEO-Fencing, Branding und<br/>
-                kreative Assets – alles aus einer Hand.
+                <strong>Google Ads</strong>, <strong>Social Recruiting</strong>,<br/>
+                <strong>GEO-Fencing</strong>, <strong>Branding</strong> und<br/>
+                <strong>kreative Assets</strong> – <strong>alles aus einer Hand</strong>.
               </StoryBody>
             </BodySlot>
           </Slide>
 
           {/* ── 07: CTA ───────────────────────────────────────────────────── */}
-          <Slide number="GO" mountBottom footerVariant>
+          <Slide number="GO" mountBottom footerVariant beamOutLeft showLogo>
             <StoryHeading>
               BEREIT FÜR<br/>
               <span className="text-brand-cyan drop-shadow-[0_0_12px_rgba(3,249,249,0.5)]">MEHR ZEIT?</span>
@@ -481,9 +477,9 @@ export default function SocialsV2() {
 
             <ContentZone>
               <StoryBody>
-                Lass uns zeigen, was bei dir sofort<br/>
-                digital mehr bringt — Web, KI und<br/>
-                Marketing aus einer Hand.
+                Lass uns zeigen, was bei dir <strong>sofort</strong><br/>
+                digital mehr bringt — <strong>Web</strong>, <strong>KI</strong> und<br/>
+                <strong>Marketing</strong> <strong>aus einer Hand</strong>.
               </StoryBody>
 
               <div style={{marginTop:'31px', margin:'31px 24px 0 24px'}}>

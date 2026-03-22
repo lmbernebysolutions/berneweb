@@ -25,10 +25,10 @@ export function StatementSectionV3({ items, onLight = false }: StatementSectionV
           key={item.label}
           className={`pl-6 border-l-4 ${onLight ? "border-brand-navy/30" : "border-white/10"}`}
         >
-          {/* Label — mono, tertiär */}
+          {/* Label — mono, Pre-Heading (Vision / Mission) */}
           <span
-            className={`block font-mono text-[10px] uppercase tracking-widest mb-3 ${
-              onLight ? "text-brand-navy/40" : "text-white/40"
+            className={`block font-mono text-sm sm:text-base font-bold uppercase tracking-[0.2em] mb-3 ${
+              onLight ? "text-brand-navy/50" : "text-white/55"
             }`}
           >
             {item.label}
