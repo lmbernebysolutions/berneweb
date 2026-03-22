@@ -64,7 +64,7 @@ export function TechStackSectionV2() {
             <div className="flex items-start gap-4">
               {/* Icon: Cyan nur static weil es ein Icon-Identifier ist, kein ambient decorator */}
               <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center bg-white/5 border border-white/10 group-hover:border-brand-cyan/20 transition-colors">
-                <Icon className="size-4 text-white/60 group-hover:text-brand-cyan transition-colors" stroke={1.5} />
+                <Icon className="size-4 text-white/60 group-hover:text-brand-cyan transition-colors" stroke="1.5" />
               </div>
               <div className="min-w-0">
                 <p className="text-sm font-bold uppercase tracking-wider text-white">

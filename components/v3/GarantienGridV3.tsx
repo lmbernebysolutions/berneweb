@@ -39,12 +39,13 @@ export function GarantienGridV3({ items }: GarantienGridV3Props) {
               <IconCheck className="size-5 text-brand-navy" stroke={2.5} />
             </div>
             <div className="flex w-full max-w-prose flex-1 flex-col">
-              <div className="flex min-h-[4.5rem] w-full flex-col items-center justify-center sm:min-h-[5rem]">
-                <h3 className="font-bold uppercase tracking-wider text-brand-navy">
+              {/* Titel + Body wie WarumBernebyV3 (Handwerk /ueber-uns) */}
+              <div className="mb-1 flex min-h-[3.75rem] w-full flex-col items-center justify-center sm:min-h-[4rem] md:min-h-[4.25rem]">
+                <h3 className="font-display text-lg font-extrabold uppercase tracking-tight leading-snug text-brand-navy sm:text-xl md:text-2xl">
                   {item.title}
                 </h3>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-brand-navy/70 text-center">
+              <p className="mt-2 text-base leading-relaxed text-brand-navy/70 text-center">
                 {item.description}
               </p>
             </div>

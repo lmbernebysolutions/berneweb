@@ -46,10 +46,11 @@ export function WarumBernebyV3({ items, onLight = false }: WarumBernebyV3Props) 
           className="flex min-h-0 min-w-0 flex-col items-center px-6 py-6 text-center sm:px-6 sm:py-8 lg:px-7"
         >
           {/* Einheitliche Kopfzeile: gleiche Mindesthöhe; Inhalt darin zentriert */}
-          <div className="mb-2 flex min-h-[3.25rem] w-full items-center justify-center sm:min-h-[3.5rem]">
+          <div className="mb-2 flex min-h-[3.75rem] w-full items-center justify-center sm:min-h-[4rem] md:min-h-[4.25rem]">
             <p
               className={cn(
-                "font-bold uppercase tracking-tight text-base leading-snug",
+                // Design system: wie Mission-Säulen / Display-Überschriften, etwas größer als zuvor (text-base)
+                "font-display text-lg font-extrabold uppercase tracking-tight leading-snug sm:text-xl md:text-2xl",
                 onLight ? "text-brand-navy" : "text-white"
               )}
             >
@@ -58,7 +59,8 @@ export function WarumBernebyV3({ items, onLight = false }: WarumBernebyV3Props) 
           </div>
           <p
             className={cn(
-              "w-full max-w-prose text-sm leading-relaxed",
+              // Body wie StatementSectionV3 (text-base statt text-sm)
+              "w-full max-w-prose text-base leading-relaxed",
               onLight ? "text-brand-navy/70" : "text-white/70"
             )}
           >

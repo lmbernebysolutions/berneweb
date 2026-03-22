@@ -294,7 +294,7 @@ export default function TechPage() {
                             >
                                 <div className="relative z-10 flex flex-col gap-1">
                                     <div className="flex items-center justify-center gap-3">
-                                        <Icon className="size-5 text-brand-cyan shrink-0" stroke={1.5} />
+                                        <Icon className="size-5 text-brand-cyan shrink-0" stroke="1.5" />
                                         <p className="text-sm font-bold uppercase tracking-wider text-white whitespace-nowrap">
                                             {item.name}
                                         </p>
