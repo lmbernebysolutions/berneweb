@@ -86,7 +86,7 @@ export function ProcessStepsV3({ steps, variant = "dark" }: ProcessStepsV3Props)
 
                 <h3
                   className={cn(
-                    "mt-4 text-xs font-semibold uppercase tracking-tight md:text-[0.5rem] lg:text-[0.6rem] xl:text-xs",
+                    "mt-4 text-sm font-semibold uppercase tracking-tight md:text-xs lg:text-sm xl:text-base",
                     isLight ? "text-brand-navy" : "text-white"
                   )}
                 >
@@ -170,7 +170,7 @@ export function ProcessStepsV3({ steps, variant = "dark" }: ProcessStepsV3Props)
             <div className="min-w-0 flex-1 pb-0">
               <h3
                 className={cn(
-                  "text-xs font-semibold uppercase tracking-tight",
+                  "text-sm font-semibold uppercase tracking-tight sm:text-base",
                   isLight ? "text-brand-navy" : "text-white"
                 )}
               >

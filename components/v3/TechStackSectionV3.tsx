@@ -6,42 +6,42 @@ import {
   IconBrandNextjs,
   IconBrandReact,
   IconBrandWindows,
-  IconSearch,
   IconRobot,
   IconBrandAdobe,
 } from "@tabler/icons-react";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { CursorLogo } from "@/components/ui/cursor-logo";
 
+/** Inhalt 1:1 mit lib/constants TECH_STACK_WITH_BENEFIT */
 const TECH_ITEMS = [
   {
     name: "Next.js",
-    benefit: "Blitzschnelle Ladezeiten — Google honoriert das",
+    benefit: "Blitzschnelle Ladezeiten",
     Icon: IconBrandNextjs,
   },
   {
     name: "React",
-    benefit: "Moderne Oberflächen, die auf jedem Gerät funktionieren",
+    benefit: "Moderne, wartbare Oberflächen",
     Icon: IconBrandReact,
   },
   {
     name: "Cursor",
-    benefit: "Schnellere Entwicklung dank AI-Unterstützung im Code-Editor",
+    benefit: "Schnellere Entwicklung mit AI-Unterstützung",
     Icon: CursorLogo,
   },
   {
     name: "Microsoft 365",
-    benefit: "E-Mail und Büro sauber eingerichtet, kein IT-Chaos",
+    benefit: "Office & E-Mail aus einer Hand",
     Icon: IconBrandWindows,
   },
   {
     name: "Adobe",
-    benefit: "Markenstarkes Design mit der Creative Cloud umgesetzt",
+    benefit: "Markenstarkes Design in der Creative Cloud",
     Icon: IconBrandAdobe,
   },
   {
     name: "KI-Integration",
-    benefit: "Automatisierungen, die Zeit sparen und Fehler reduzieren",
+    benefit: "Telefon, Chat, Automatisierung",
     Icon: IconRobot,
   },
 ] as const;
@@ -64,14 +64,14 @@ export function TechStackSectionV3() {
               <TechCorners pattern="diagonal" variant="cyan" size="sm" />
             )}
             <div className="flex items-start gap-4">
-              <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center bg-white/5 border border-white/10 group-hover:border-brand-cyan/20 transition-colors">
-                <Icon className="size-4 text-white/60 group-hover:text-brand-cyan transition-colors" stroke="1.5" />
+              <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center bg-white/5 border border-white/10 group-hover:border-brand-cyan/20 transition-colors sm:h-11 sm:w-11">
+                <Icon className="size-4 text-white/60 group-hover:text-brand-cyan transition-colors sm:size-5" stroke="1.5" />
               </div>
               <div className="min-w-0">
-                <p className="text-sm font-bold uppercase tracking-wider text-white">
+                <p className="text-base font-bold uppercase tracking-tight text-white sm:text-lg">
                   {item.name}
                 </p>
-                <p className="mt-1 text-[0.8125rem] leading-snug text-white/50">
+                <p className="mt-1.5 text-sm leading-snug text-white/60 sm:text-base sm:leading-relaxed">
                   {item.benefit}
                 </p>
               </div>

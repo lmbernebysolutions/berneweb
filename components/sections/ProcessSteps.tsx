@@ -47,11 +47,11 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
                   </span>
                 </div>
 
-                {/* Title: auf Tablet (md/lg) deutlich kleiner, damit bei 4 Spalten keine Ein-Wort-Zeilen entstehen */}
-                <h3 className="mt-4 text-xs font-semibold uppercase tracking-tight text-white md:text-[0.5rem] lg:text-[0.6rem] xl:text-xs">
+                {/* Titel: lesbar, proportional zu Section-Überschriften; 5 Spalten → moderate Stufen */}
+                <h3 className="mt-4 text-sm font-semibold uppercase tracking-tight text-white md:text-xs lg:text-sm xl:text-base">
                   {s.title}
                 </h3>
-                {/* Description: auf Tablet kleiner, ab xl normal */}
+                {/* Beschreibung bewusst kompakt (nur Überschriften vergrößert) */}
                 {s.description && (
                   <p className="mt-2 border-l-2 border-white/25 pl-3 text-left text-[0.8125rem] leading-snug text-white/80 md:text-[0.6rem] lg:text-[0.7rem] xl:text-[0.8125rem]">
                     {s.description}
@@ -94,7 +94,7 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
             </div>
 
             <div className="min-w-0 flex-1 pb-0">
-              <h3 className="text-xs font-semibold uppercase tracking-tight text-white">
+              <h3 className="text-sm font-semibold uppercase tracking-tight text-white sm:text-base">
                 {s.title}
               </h3>
               {s.description && (
