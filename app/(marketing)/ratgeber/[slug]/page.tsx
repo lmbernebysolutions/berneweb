@@ -7,16 +7,12 @@ import { RelatedArticles } from "@/components/sections/related-articles";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { Button } from "@/components/ui/button";
 import { IconArrowRight } from "@tabler/icons-react";
-import DOMPurify from "isomorphic-dompurify";
 import {
   getArticleBySlug,
   getAllArticleSlugs,
 } from "@/lib/content/ratgeber";
 import { generateBreadcrumbSchema, generateArticleSchema } from "@/lib/seo/schema";
 import { COMPANY } from "@/lib/constants";
-
-const RATGEBER_ALLOWED_TAGS = ["p", "h2", "h3", "h4", "ul", "ol", "li", "a", "strong", "em", "br"];
-const RATGEBER_ALLOWED_ATTR = ["href"];
 
 const BASE_URL = "https://berneby.de";
 
@@ -124,10 +120,8 @@ export default async function RatgeberArticlePage({
               prose-ul:text-white/80 prose-ol:text-white/80
               prose-li:text-white/80"
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(article.content.trim(), {
-                ALLOWED_TAGS: RATGEBER_ALLOWED_TAGS,
-                ALLOWED_ATTR: RATGEBER_ALLOWED_ATTR,
-              }),
+              // Content is sourced from our own curated local content files.
+              __html: article.content.trim(),
             }}
           />
 

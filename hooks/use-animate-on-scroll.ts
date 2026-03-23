@@ -115,8 +115,23 @@ export function useAnimateOnScroll() {
     document.addEventListener("visibilitychange", restoreVisibility);
     window.addEventListener("pageshow", restoreVisibility);
 
+    // Late-mounted nodes (e.g. after client navigation / streaming) still need observation
+    const mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (!(node instanceof HTMLElement)) return;
+          const directAnimated = node.matches?.("[data-animate]") ? [node] : [];
+          const nestedAnimated = Array.from(node.querySelectorAll?.("[data-animate]") ?? []);
+          const animatedNodes = [...directAnimated, ...nestedAnimated] as HTMLElement[];
+          animatedNodes.forEach((el) => observer.observe(el));
+        });
+      });
+    });
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
     return () => {
       observer.disconnect();
+      mutationObserver.disconnect();
       document.removeEventListener("visibilitychange", restoreVisibility);
       window.removeEventListener("pageshow", restoreVisibility);
     };
