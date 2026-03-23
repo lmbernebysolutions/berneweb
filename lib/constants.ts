@@ -17,7 +17,7 @@ export const SOCIAL_LINKS = [
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/bernebysolutions",
+    href: "https://www.facebook.com/bernebysolutions/",
     ariaLabel: "Berneby Solutions auf Facebook",
   },
   {
@@ -27,7 +27,7 @@ export const SOCIAL_LINKS = [
   },
   {
     label: "Google",
-    href: "https://g.page/r/bernebysolutions",
+    href: "https://share.google/8BZjFb7920r2P0ULk",
     ariaLabel: "Berneby Solutions Google Unternehmensprofil",
   },
 ] as const;

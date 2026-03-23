@@ -357,13 +357,18 @@ h6 {
    Wipe-reveal from bottom for dominant visual elements
    ================================================= */
 .clip-reveal {
-  /* inset(0 0 100% 0): clips 100% from bottom → element invisible, reveals bottom-up */
-  clip-path: inset(0 0 100% 0);
+  /* Safe default: visible even if animation JS fails */
+  clip-path: inset(0 0 0 0);
   opacity: 1;
 }
 
-.clip-reveal.is-visible,
-.is-visible > .clip-reveal {
+.js-animate .clip-reveal {
+  /* JS-enhanced mode: start hidden, then reveal on .is-visible */
+  clip-path: inset(0 0 100% 0);
+}
+
+.js-animate .clip-reveal.is-visible,
+.js-animate .is-visible > .clip-reveal {
   animation: clip-bottom-reveal 1.0s var(--ease-mechanical) forwards;
 }
 
@@ -377,7 +382,7 @@ h6 {
    Applied via data-animate="fade-up". transitionDelay set inline by hook.
    CSS variables from .stagger-item override delay automatically (no JS needed).
    ========================================================================== */
-[data-animate="fade-up"] {
+.js-animate [data-animate="fade-up"] {
   opacity: 0;
   transform: translateY(20px);
   /* transition-delay is set inline by the hook (data-animate-delay),
@@ -389,7 +394,13 @@ h6 {
      causing all animated elements to show at opacity:0 on restore. */
 }
 
-[data-animate="fade-up"].is-visible {
+.js-animate [data-animate="fade-up"].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+[data-animate="fade-up"] {
+  /* Safe default: keep content visible without JS/hydration-dependent class toggles */
   opacity: 1;
   transform: none;
 }

@@ -1,25 +1,20 @@
-import { IconArrowDown } from "@tabler/icons-react";
+// (keine Icons nötig) – Directional Cue entfernt
 
 export function FacebookCoverContent() {
   return (
     <>
       {/* Value Proposition */}
       <div className="w-full">
-        {/* Safe-Zone: left/right = 220px, Beams: left/right = 132px -> Headline startet bewusst bei ~132px (Beam-Overlap wie im Home-Hero) */}
-        <h1 className="ml-[-132px] w-full font-display text-[120px] font-extrabold uppercase leading-[0.9] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)]">
-          <span className="whitespace-nowrap">DEIN DIGITAL PARTNER.</span>
-          <br />
-          <span className="text-brand-cyan">IM ERZGEBIRGE.</span>
-        </h1>
-      </div>
-
-      {/* Directional cue (no fake CTA) */}
-      <div className="mt-auto flex w-full items-end justify-center">
-        <div className="flex items-center gap-3 border-b border-brand-cyan/35 pb-2">
-          <span className="font-mono text-[14px] font-semibold uppercase tracking-[0.14em] text-brand-navy-muted">
-            Nachricht senden unter dem Cover
-          </span>
-          <IconArrowDown className="size-5 text-brand-cyan" stroke={2.5} />
+        {/* Safe-Zone: left/right = 220px, Beams: left/right = 132px */}
+        <div className="w-full flex justify-center">
+          <h1
+            className="font-display text-[140px] font-extrabold uppercase leading-[0.86] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)]"
+            style={{ transform: "translateX(-124px)" }}
+          >
+            <span className="whitespace-nowrap">DEIN DIGITALER</span>
+            <br />
+            <span className="whitespace-nowrap text-brand-cyan">WERKZEUGKASTEN</span>
+          </h1>
         </div>
       </div>
     </>

@@ -40,6 +40,7 @@ export function useAnimateOnScroll() {
 
   // PHASE 1: Run after hydration to avoid adding "is-visible" before React commits (hydration mismatch).
   useRevealEffect(() => {
+    document.documentElement.classList.add("js-animate");
     const elements = document.querySelectorAll<HTMLElement>("[data-animate]");
     if (!elements.length) return;
 

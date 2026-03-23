@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { TextLogo } from "@/components/brand/TextLogo";
 
-const BERG_LAYERS = ["/icons/Berg1.svg", "/icons/Berg2.svg", "/icons/Berg3.svg", "/icons/Berg4.svg"] as const;
+// Nur für Facebook-Cover: Berg1 wieder rein, Berg3 bleibt entfernt
+const BERG_LAYERS = ["/icons/Berg1.svg", "/icons/Berg2.svg", "/icons/Berg4.svg"] as const;
 
 interface FacebookCoverShellProps {
   children: React.ReactNode;
@@ -49,11 +49,6 @@ export function FacebookCoverShell({ children }: FacebookCoverShellProps) {
             <Image key={src} src={src} alt="" fill className="object-cover object-bottom opacity-80" unoptimized />
           ))}
         </div>
-      </div>
-
-      {/* Logo */}
-      <div className="absolute left-[156px] top-[26px] z-[20] origin-top-left scale-[0.62]">
-        <TextLogo variant="dark" size="default" />
       </div>
 
       {/* Safe-zone content */}
