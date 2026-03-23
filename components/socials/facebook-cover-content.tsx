@@ -7,7 +7,7 @@ export function FacebookCoverContent() {
       <div className="w-full">
         {/* Safe-Zone: left/right = 220px, Beams: left/right = 132px -> Headline startet bewusst bei ~132px (Beam-Overlap wie im Home-Hero) */}
         <h1 className="ml-[-132px] w-full font-display text-[120px] font-extrabold uppercase leading-[0.9] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)]">
-          DEIN DIGITAL-PARTNER.
+          <span className="whitespace-nowrap">DEIN DIGITAL PARTNER.</span>
           <br />
           <span className="text-brand-cyan">IM ERZGEBIRGE.</span>
         </h1>
