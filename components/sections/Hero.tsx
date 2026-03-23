@@ -131,43 +131,45 @@ export function Hero({
 
   return (
     <section className={cn(
-      "relative flex flex-col justify-center overflow-x-clip overflow-y-visible pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-36 md:pb-20 isolate",
+      "relative flex flex-col overflow-x-clip overflow-y-visible isolate",
+      /* Mobile: Abstand unter Navbar = Abstand Überschrift→Subline (jeweils 1.5rem ab Header h-16); ab sm wie bisher */
+      "justify-start pt-[calc(4rem+1.5rem)] sm:justify-center sm:pt-32 md:pt-36",
+      "pb-12 sm:pb-16 md:pb-20",
       compact ? "min-h-[50svh] sm:min-h-[60svh] lg:min-h-[70svh]" : "min-h-[70svh] sm:min-h-[80svh] lg:min-h-[90svh]"
     )}>
       {/* overflow-x-clip: Berg wird abgeschnitten ohne Scroll-Container; overflow-y-visible: keine Scrollleiste im Hero */}
 
-      {/* Bergsilhouette: höher + overflow-visible, damit nichts abgeschnitten wird */}
+      {/* Bergsilhouette: breit + nach links; Höhe wie Footer-Berge; Sektion clippt mit overflow-x-clip */}
       <div
-        className="absolute bottom-0 left-0 right-0 flex justify-end items-end pointer-events-none z-[2] overflow-visible"
+        className="pointer-events-none absolute bottom-0 left-0 right-0 z-[2] flex justify-center overflow-x-visible overflow-y-visible"
         aria-hidden="true"
         style={{
-          transform: "translateZ(0)",
-          height: "clamp(10rem, 24vw, 18rem)",
+          height: "clamp(28.5rem, 80vw, 54rem)",
         }}
       >
-        <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end h-full overflow-visible">
-          <div className="relative w-full max-w-6xl h-full shrink-0 overflow-visible px-4 sm:px-5 md:px-6 lg:px-8">
-            {bergConfig.layerIndices.map((layerIdx) => (
-              <Image
-                key={BERG_LAYERS[layerIdx]}
-                src={BERG_LAYERS[layerIdx]}
-                alt=""
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1152px"
-                className={cn(
-                  "object-cover object-bottom select-none berg-layer-grow",
-                  BERG_LAYER_DELAYS[layerIdx]
-                )}
-                style={{ transformOrigin: "bottom center" }}
-                /* Berg1 hinten → lazy ok; Berg4 vorn → oft LCP: eager + hohe Priorität */
-                priority={layerIdx >= 1}
-                fetchPriority={layerIdx >= 1 ? "high" : undefined}
-                loading={layerIdx === 0 ? "lazy" : "eager"}
-                unoptimized
-                aria-hidden
-              />
-            ))}
-          </div>
+        <div
+          className="relative h-full w-[169vw] max-w-none shrink-0 overflow-visible"
+          style={{ transform: "translate3d(-28vw, 0, 0)" }}
+        >
+          {bergConfig.layerIndices.map((layerIdx) => (
+            <Image
+              key={BERG_LAYERS[layerIdx]}
+              src={BERG_LAYERS[layerIdx]}
+              alt=""
+              fill
+              sizes="(max-width: 640px) 169vw, (max-width: 1024px) 156vw, 1820px"
+              className={cn(
+                "object-cover object-bottom select-none berg-layer-grow",
+                BERG_LAYER_DELAYS[layerIdx]
+              )}
+              style={{ transformOrigin: "bottom center" }}
+              priority={layerIdx >= 1}
+              fetchPriority={layerIdx >= 1 ? "high" : undefined}
+              loading={layerIdx === 0 ? "lazy" : "eager"}
+              unoptimized
+              aria-hidden
+            />
+          ))}
         </div>
       </div>
 
@@ -176,17 +178,22 @@ export function Hero({
         {/* 1. THE MASSIVE SHADOW NUMBER – remain inside beams < 1290px, blueprint overlap ab 1290px */}
         <BackdropNumber number="01" className="hero-backdrop-overlap top-[-10%] sm:top-[-15%] lg:top-[-20%] left-2 sm:left-4 md:left-6 lg:left-8 opacity-100" />
 
-        {/* Headline: Accent auf Mobile umbruchfähig damit nichts abgeschnitten wird */}
-        <div className="px-4 sm:px-5 md:px-6 lg:px-8 mb-4 sm:mb-6 md:mb-8 min-w-0 pr-12 sm:pr-14 md:pr-16">
-          <div className="hero-line-reveal min-w-0">
-            <h1 className="hero-heading-overlap font-display text-[2.5rem] min-[360px]:text-[2.75rem] min-[400px]:text-[3.125rem] sm:text-5xl md:text-6xl lg:text-[5.625rem] xl:text-[7rem] 2xl:text-8xl font-extrabold uppercase leading-[0.95] tracking-tighter text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0 pb-4 ml-[-0.05em] sm:ml-[-0.1em] md:ml-0 lg:ml-0">
+        {/* Headline: nur max-sm größer (clamp+vw); ab sm wie bisher. px-3 max-sm = etwas mehr Zeilenbreite. */}
+        <div className="px-3 sm:px-5 md:px-6 lg:px-8 mb-6 sm:mb-6 md:mb-8 min-w-0 pr-11 sm:pr-14 md:pr-16">
+          <div className="hero-line-reveal min-w-0 overflow-visible">
+            <h1
+              className={cn(
+                "hero-heading-overlap font-display font-extrabold uppercase leading-[0.95] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-words min-w-0 max-sm:pb-0 pb-4 ml-[-0.05em] sm:ml-[-0.1em] md:ml-0 lg:ml-0 overflow-visible tracking-tighter max-sm:tracking-[-0.04em]",
+                "max-sm:text-[length:clamp(2.8rem,6.1vw+1.68rem,3.75rem)] sm:text-5xl md:text-6xl lg:text-[5.625rem] xl:text-[7rem] 2xl:text-8xl"
+              )}
+            >
               {headlineParts}
             </h1>
           </div>
         </div>
 
         {/* Subline & Buttons – etwas größer Mobile + Desktop */}
-        <div className="mx-auto max-w-6xl w-full px-4 sm:px-5 md:px-6 lg:px-8 hero-line-reveal">
+        <div className="mx-auto max-w-6xl w-full px-3 sm:px-5 md:px-6 lg:px-8 hero-line-reveal">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-end">
             <div className="lg:col-span-8 min-w-0">
               <div className="mt-0 border-l-2 border-white/25 pl-3 sm:pl-6">

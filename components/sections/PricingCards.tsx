@@ -25,6 +25,8 @@ interface ComparisonRow {
 interface PricingCardsProps {
   packages: readonly Package[];
   comparisonRows?: readonly ComparisonRow[];
+  /** Keine Euro-Preise; CTA nach Kontakt (z. B. Handwerk). Mobile: größere Typo nach Design-Tokens. */
+  hidePrices?: boolean;
 }
 
 function SinglePricingCard({
@@ -32,11 +34,13 @@ function SinglePricingCard({
   comparisonRows,
   compact = false,
   mobileCard = false,
+  hidePrices = false,
 }: {
   pkg: Package;
   comparisonRows?: readonly ComparisonRow[];
   compact?: boolean;
   mobileCard?: boolean;
+  hidePrices?: boolean;
 }) {
   return (
     <div
@@ -56,38 +60,52 @@ function SinglePricingCard({
         </div>
       )}
 
-      <div className="relative text-center mb-2 sm:mb-4 md:mb-8">
+      <div
+        className={cn(
+          "relative text-center",
+          hidePrices ? "mb-4 sm:mb-5 md:mb-8" : "mb-2 sm:mb-4 md:mb-8"
+        )}
+      >
         <h3
           className={cn(
-            "text-xs sm:text-lg md:text-base lg:text-xl xl:text-2xl font-black uppercase tracking-widest leading-tight break-words",
-            pkg.highlighted ? "text-white" : "text-white"
+            hidePrices && mobileCard
+              ? "font-display text-[length:var(--font-size-xl)] font-black uppercase tracking-tight leading-[1.05] break-words text-white"
+              : "text-xs sm:text-lg md:text-base lg:text-xl xl:text-2xl font-black uppercase tracking-widest leading-tight break-words text-white"
           )}
         >
           {pkg.name}
         </h3>
         <p
           className={cn(
-            "mt-1 sm:mt-2 text-[10px] sm:text-xs md:text-xs lg:text-sm line-clamp-2 md:line-clamp-none",
-            pkg.highlighted ? "text-brand-cyan/80" : "text-brand-navy-muted"
+            hidePrices && mobileCard
+              ? "mt-2 text-[length:var(--font-size-sm)] sm:text-[length:var(--font-size-base)] line-clamp-3 text-white/80"
+              : "mt-1 sm:mt-2 text-[10px] sm:text-xs md:text-xs lg:text-sm line-clamp-2 md:line-clamp-none",
+            !hidePrices || !mobileCard
+              ? pkg.highlighted
+                ? "text-brand-cyan/80"
+                : "text-brand-navy-muted"
+              : undefined
           )}
         >
           {pkg.description}
         </p>
       </div>
 
-      <div className="relative flex flex-col sm:flex-row items-center justify-center gap-0 sm:gap-1 mb-3 sm:mb-6 md:mb-8 border-y border-white/10 py-3 sm:py-4 md:py-6 bg-black/20 text-center">
-        <span
-          className={cn(
-            "text-3xl sm:text-4xl md:text-2xl lg:text-4xl xl:text-5xl font-black tracking-tighter",
-            pkg.highlighted ? "text-brand-warm" : "text-white"
-          )}
-        >
-          {pkg.price} €
-        </span>
-        <span className="text-[10px] sm:text-xs font-mono text-white/40 uppercase">
-          {pkg.unit}
-        </span>
-      </div>
+      {!hidePrices ? (
+        <div className="relative flex flex-col sm:flex-row items-center justify-center gap-0 sm:gap-1 mb-3 sm:mb-6 md:mb-8 border-y border-white/10 py-3 sm:py-4 md:py-6 bg-black/20 text-center">
+          <span
+            className={cn(
+              "text-3xl sm:text-4xl md:text-2xl lg:text-4xl xl:text-5xl font-black tracking-tighter",
+              pkg.highlighted ? "text-brand-warm" : "text-white"
+            )}
+          >
+            {pkg.price} €
+          </span>
+          <span className="text-[10px] sm:text-xs font-mono text-white/40 uppercase">
+            {pkg.unit}
+          </span>
+        </div>
+      ) : null}
 
       {compact ? (
         <details className="relative md:hidden group/details">
@@ -167,7 +185,7 @@ function SinglePricingCard({
             !pkg.highlighted && "border-white/20 text-white hover:bg-white/10"
           )}
         >
-          <Link href="/kontakt">Paket wählen</Link>
+          <Link href="/kontakt">{hidePrices ? "Unverbindlich anfragen" : "Paket wählen"}</Link>
         </Button>
       </div>
     </div>
@@ -204,7 +222,7 @@ function CarouselNavButtons({
   );
 }
 
-export function PricingCards({ packages, comparisonRows }: PricingCardsProps) {
+export function PricingCards({ packages, comparisonRows, hidePrices = false }: PricingCardsProps) {
   const highlightedIndex = packages.findIndex((p) => p.highlighted);
   const startIndex = highlightedIndex >= 0 ? highlightedIndex : 1;
 
@@ -244,7 +262,13 @@ export function PricingCards({ packages, comparisonRows }: PricingCardsProps) {
           <div className="flex gap-4 touch-pan-y">
             {packages.map((pkg) => (
               <div key={pkg.name} className="flex-[0_0_78%] min-w-0 shrink-0 px-1">
-                <SinglePricingCard pkg={pkg} comparisonRows={comparisonRows} compact={false} mobileCard />
+                <SinglePricingCard
+                  pkg={pkg}
+                  comparisonRows={comparisonRows}
+                  compact={false}
+                  mobileCard
+                  hidePrices={hidePrices}
+                />
               </div>
             ))}
           </div>
@@ -261,7 +285,7 @@ export function PricingCards({ packages, comparisonRows }: PricingCardsProps) {
       <div className="hidden md:grid md:grid-cols-3 md:gap-5 min-w-0">
         {packages.map((pkg, i) => (
           <div key={pkg.name} data-animate="fade-up" data-animate-delay={String(i * 120)} className="min-w-0">
-            <SinglePricingCard pkg={pkg} comparisonRows={comparisonRows} compact={false} />
+            <SinglePricingCard pkg={pkg} comparisonRows={comparisonRows} compact={false} hidePrices={hidePrices} />
           </div>
         ))}
       </div>

@@ -31,11 +31,11 @@ export default function RatgeberPage() {
         <SectionHeading
           number="01"
           overline="Ratgeber"
-          title="Digitalisierung & IT"
-          titleLine2="für Handwerker"
+          title="IT & DIGITALISIERUNG"
           subtitle="Praxis-Leitfäden zu SEO, Website, KI-Telefonassistent, Microsoft 365 und mehr. Aus dem Erzgebirge – für Handwerker und KMU."
           align="left"
           light
+          compactMobileTitle
         />
         <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {clusters.map((cluster, i) => (

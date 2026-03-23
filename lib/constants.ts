@@ -800,7 +800,7 @@ export const PAGE_META = {
       "Kostenloses Erstgespräch vereinbaren. Rufen Sie an oder schreiben Sie uns – wir melden uns innerhalb von 24 Stunden.",
   },
   ratgeber: {
-    title: "Ratgeber: Digitalisierung & IT für Handwerker | Berneby Solutions",
+    title: "Ratgeber: IT & Digitalisierung | Berneby Solutions",
     description:
       "Praxis-Leitfäden zu SEO, KI-Telefonassistent, Microsoft 365, lokaler Sichtbarkeit & mehr. Aus dem Erzgebirge für Handwerker und KMU.",
   },

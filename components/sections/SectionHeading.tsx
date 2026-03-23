@@ -20,6 +20,8 @@ interface SectionHeadingProps {
   overline?: string;
   /** Massive background number for the section (e.g. "02") */
   number?: string;
+  /** Etwas kleinere Display-Typo nur auf sehr schmalen Viewports (ab sm wieder Standard-Stufe). */
+  compactMobileTitle?: boolean;
 }
 
 export function SectionHeading({
@@ -34,6 +36,7 @@ export function SectionHeading({
   onLight = false,
   overline,
   number,
+  compactMobileTitle = false,
 }: SectionHeadingProps) {
   return (
     <div
@@ -71,7 +74,10 @@ export function SectionHeading({
         <div className={cn(align === "center" && "text-center", "pr-16 sm:pr-14 md:pr-16")}>
           <Tag
             className={cn(
-              "relative inline font-display text-4xl lg:text-5xl xl:text-6xl uppercase tracking-tight text-balance leading-[1.1] max-w-full",
+              "relative inline font-display uppercase tracking-tight text-balance leading-[1.1] max-w-full",
+              compactMobileTitle
+                ? "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl"
+                : "text-4xl lg:text-5xl xl:text-6xl",
               onLight ? "text-brand-navy" : (light ? "text-brand-navy-foreground" : "text-foreground")
             )}
           >

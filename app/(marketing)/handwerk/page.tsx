@@ -20,11 +20,7 @@ const TestimonialGrid = dynamic(
 );
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import {
-  IconArrowRight,
-  IconStarFilled,
-  IconBrandGoogle,
-} from "@tabler/icons-react";
+import { IconBrandGoogle } from "@tabler/icons-react";
 import {
   CRAFT_PACKAGES,
   CRAFT_MODULES,
@@ -35,12 +31,19 @@ import {
   HANDWERK_STATS,
   HANDWERK_GARANTIEN,
   SOCIAL_LINKS,
+  SITE_URL,
 } from "@/lib/constants";
 import { generateFaqSchema, generateBreadcrumbSchema, generateHowToSchema } from "@/lib/seo/schema";
 import { HandwerkProblemWithRevealSection } from "@/components/sections/HandwerkProblemWithRevealSection";
 import { WarumBernebyV3 } from "@/components/v3/WarumBernebyV3";
 import { CONTAINER_A } from "@/lib/container-styles";
 import { cn } from "@/lib/utils";
+
+/**
+ * Review-Sektion (Testimonials + Google-Link). Vorerst aus.
+ * Bei `true`: Pakete wieder `number="08"` + `bg="transparent"`, Prozess `09` + `bg="subtle"`.
+ */
+const SHOW_HANDWERK_REVIEWS_SECTION = false;
 
 export const metadata: Metadata = {
   title: PAGE_META.handwerk.title,
@@ -74,8 +77,8 @@ export default function HandwerkPage() {
     <>
       <Hero
         bergVariant="handwerk"
-        headline="AUFTRAG VOLL? BÜRO LEER"
-        accentText="BÜRO LEER"
+        headline="AUFTRÄGE VOLL? BÜRO LEER?"
+        accentText="BÜRO LEER?"
         subline="Digital-Partner für Handwerker im Erzgebirge. Website, lokale Landingpages, KI-Telefon – handfest, transparent, aus einer Hand."
         ctas={[
           { label: "Projekt anfragen", href: "/kontakt", variant: "default" },
@@ -198,52 +201,56 @@ export default function HandwerkPage() {
         </div>
       </Section>
 
-      {/* 07: TESTIMONIALS */}
-      <Section bg="subtle">
+      {SHOW_HANDWERK_REVIEWS_SECTION ? (
+        <>
+          {/* 07: TESTIMONIALS */}
+          <Section bg="subtle">
+            <SectionHeading
+              number="07"
+              overline="Baustellentalk"
+              title="Handwerker"
+              titleLine2="vertrauen"
+              titleLine3="uns"
+              subtitle="Was Betriebe aus dem Erzgebirge über die Zusammenarbeit mit uns sagen."
+              align="left"
+              light
+            />
+            <TestimonialGrid testimonials={HANDWERK_TESTIMONIALS} />
+
+            <div className="mt-6 flex justify-center">
+              <a
+                href={SOCIAL_LINKS[3].href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={SOCIAL_LINKS[3].ariaLabel}
+                className={cn(
+                  "group relative overflow-hidden px-4 py-2.5 flex items-center gap-2.5 cursor-pointer",
+                  CONTAINER_A
+                )}
+              >
+                <IconBrandGoogle className="size-4 text-brand-cyan shrink-0 relative z-10" stroke={1.5} />
+                <span className="text-xs font-semibold uppercase tracking-widest text-white relative z-10">
+                  Bewertungen ansehen
+                </span>
+              </a>
+            </div>
+          </Section>
+        </>
+      ) : null}
+
+      {/* 07: PRICING (ohne Review-Sektion: vorher 08; bg subtle für Wechsel nach 06 transparent) */}
+      <Section id="pakete" bg="subtle">
         <SectionHeading
           number="07"
-          overline="Baustellentalk"
-          title="Handwerker"
-          titleLine2="vertrauen"
-          titleLine3="uns"
-          subtitle="Was Betriebe aus dem Erzgebirge über die Zusammenarbeit mit uns sagen."
-          align="left"
-          light
-        />
-        <TestimonialGrid testimonials={HANDWERK_TESTIMONIALS} />
-
-        {/* Google-Profil – ein einziger Link, Peak-Trust-Moment */}
-        <div className="mt-6 flex justify-center">
-          <a
-            href={SOCIAL_LINKS[3].href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={SOCIAL_LINKS[3].ariaLabel}
-            className={cn(
-              "group relative overflow-hidden px-4 py-2.5 flex items-center gap-2.5 cursor-pointer",
-              CONTAINER_A
-            )}
-          >
-            <IconBrandGoogle className="size-4 text-brand-cyan shrink-0 relative z-10" stroke={1.5} />
-            <span className="text-xs font-semibold uppercase tracking-widest text-white relative z-10">
-              Bewertungen ansehen
-            </span>
-          </a>
-        </div>
-      </Section>
-
-      {/* 08: PRICING */}
-      <Section id="pakete" bg="transparent">
-        <SectionHeading
-          number="08"
           overline="Investition"
           title="PAKETE"
-          titleLine2="& PREISE"
-          subtitle="Netto. Transparent. Ohne versteckte Kosten."
+          titleLine2="& LÖSUNGEN"
+          subtitle="Transparente Leistungen – konkretes Angebot im persönlichen Gespräch."
           align="left"
           light
         />
         <PricingCards
+          hidePrices
           packages={CRAFT_PACKAGES}
           comparisonRows={[
             { label: "Professionelle Website", inPackages: ["STARTKLAR", "SICHTBAR", "PARTNER"] },
@@ -253,10 +260,10 @@ export default function HandwerkPage() {
         />
       </Section>
 
-      {/* 09: PROCESS */}
-      <Section bg="subtle">
+      {/* 08: PROCESS (ohne Reviews: vorher 09; bg transparent für Wechsel nach Pakete subtle) */}
+      <Section bg="transparent">
         <SectionHeading
-          number="09"
+          number="08"
           overline="Ihr Bauplan"
           title="In 4 Wochen fertig"
           subtitle="Klarer Ablauf, verbindlicher Zeitplan – von der Anfrage bis zur fertigen Website."
@@ -310,7 +317,7 @@ export default function HandwerkPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            provider: { "@id": "https://berneby.de/#organization" },
+            provider: { "@id": `${SITE_URL}/#organization` },
             name: "Webseiten & Digitalisierung für Handwerker",
             description:
               "Mehr Aufträge, weniger Aufwand: Handwerks-Pakete mit Website, KI-Telefonassistent und Google-Sichtbarkeit.",
@@ -321,8 +328,8 @@ export default function HandwerkPage() {
               itemListElement: CRAFT_PACKAGES.map((pkg) => ({
                 "@type": "Offer",
                 name: pkg.name,
-                price: pkg.price.replace(/\./g, ""),
-                priceCurrency: "EUR",
+                description: pkg.description,
+                url: `${SITE_URL}/kontakt`,
               })),
             },
           }),

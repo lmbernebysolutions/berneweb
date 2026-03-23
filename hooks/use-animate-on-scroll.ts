@@ -7,6 +7,37 @@ import { usePathname } from "next/navigation";
 // "is-visible" before hydration completes causes a hydration mismatch.
 const useRevealEffect = useEffect;
 
+/**
+ * Defer work until after the current React commit + hydration (incl. concurrent
+ * selective hydration and HMR). Prevents mutating [data-animate] nodes before
+ * their owning Client Components have hydrated → avoids className mismatch.
+ */
+function scheduleAfterHydration(task: () => void | (() => void)): () => void {
+  let innerCleanup: void | (() => void);
+  let cancelled = false;
+  let raf1 = 0;
+  let raf2 = 0;
+
+  const timeoutId = window.setTimeout(() => {
+    if (cancelled) return;
+    raf1 = requestAnimationFrame(() => {
+      if (cancelled) return;
+      raf2 = requestAnimationFrame(() => {
+        if (cancelled) return;
+        innerCleanup = task();
+      });
+    });
+  }, 0);
+
+  return () => {
+    cancelled = true;
+    window.clearTimeout(timeoutId);
+    cancelAnimationFrame(raf1);
+    cancelAnimationFrame(raf2);
+    if (typeof innerCleanup === "function") innerCleanup();
+  };
+}
+
 // Helper: attach corner-freeze listeners
 function freezeCornersOnEnd(parent: HTMLElement) {
   parent.querySelectorAll<HTMLElement>(".tech-corner-animate").forEach((corner) => {
@@ -38,102 +69,98 @@ function revealElement(el: HTMLElement, delay?: string) {
 export function useAnimateOnScroll() {
   const pathname = usePathname();
 
-  // PHASE 1: Run after hydration to avoid adding "is-visible" before React commits (hydration mismatch).
+  // PHASE 1: Deferred so we never add "is-visible" before owning components hydrate.
   useRevealEffect(() => {
-    document.documentElement.classList.add("js-animate");
-    const elements = document.querySelectorAll<HTMLElement>("[data-animate]");
-    if (!elements.length) return;
+    return scheduleAfterHydration(() => {
+      document.documentElement.classList.add("js-animate");
+      const elements = document.querySelectorAll<HTMLElement>("[data-animate]");
+      if (!elements.length) return;
 
-    // Reset on route change
-    elements.forEach((el) => {
-      if (!el.classList.contains("is-visible")) return;
+      // Reset on route change
+      elements.forEach((el) => {
+        if (!el.classList.contains("is-visible")) return;
 
-      el.classList.remove("is-visible");
-      el.style.transitionDelay = "";
+        el.classList.remove("is-visible");
+        el.style.transitionDelay = "";
 
-      // Reset TechCorner animations for replaying on new page
-      const corners = el.querySelectorAll<HTMLElement>(".tech-corner-animate");
-      corners.forEach((corner) => {
-        corner.classList.remove("tech-corner-done");
-        corner.style.animation = "none";
-        void corner.offsetHeight;
-        corner.style.animation = "";
-      });
-
-      // Reset clip-reveal animations
-      if (el.classList.contains("clip-reveal")) {
-        el.style.animation = "none";
-        void el.offsetHeight;
-        el.style.animation = "";
-      }
-    });
-
-    // Reveal in-viewport elements (runs after hydration to avoid mismatch)
-    elements.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        revealElement(el, el.dataset.animateDelay);
-      }
-    });
-
-    // Cleanup phase removed: Do not globally revert 'is-visible' on unmount.
-    // This previously caused hydration mismatches / missing elements on iOS reload.
-  }, [pathname]);
-
-  // PHASE 2: Effect — sets up IntersectionObserver for below-fold elements
-  useEffect(() => {
-    const elements = document.querySelectorAll<HTMLElement>("[data-animate]");
-    if (!elements.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const el = entry.target as HTMLElement;
-            revealElement(el, el.dataset.animateDelay);
-          }
+        const corners = el.querySelectorAll<HTMLElement>(".tech-corner-animate");
+        corners.forEach((corner) => {
+          corner.classList.remove("tech-corner-done");
+          corner.style.animation = "none";
+          void corner.offsetHeight;
+          corner.style.animation = "";
         });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -20px 0px" }
-    );
 
-    elements.forEach((el) => observer.observe(el));
-
-    // Page restore handler (iOS/bfcache)
-    const restoreVisibility = () => {
-      if (document.hidden) return;
-      document.querySelectorAll<HTMLElement>("[data-animate]").forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.bottom > 0 && rect.top < window.innerHeight * 1.2) {
-          if (!el.classList.contains("is-visible")) {
-            revealElement(el, el.dataset.animateDelay);
-          }
+        if (el.classList.contains("clip-reveal")) {
+          el.style.animation = "none";
+          void el.offsetHeight;
+          el.style.animation = "";
         }
       });
-    };
 
-    document.addEventListener("visibilitychange", restoreVisibility);
-    window.addEventListener("pageshow", restoreVisibility);
-
-    // Late-mounted nodes (e.g. after client navigation / streaming) still need observation
-    const mutationObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        mutation.addedNodes.forEach((node) => {
-          if (!(node instanceof HTMLElement)) return;
-          const directAnimated = node.matches?.("[data-animate]") ? [node] : [];
-          const nestedAnimated = Array.from(node.querySelectorAll?.("[data-animate]") ?? []);
-          const animatedNodes = [...directAnimated, ...nestedAnimated] as HTMLElement[];
-          animatedNodes.forEach((el) => observer.observe(el));
-        });
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          revealElement(el, el.dataset.animateDelay);
+        }
       });
     });
-    mutationObserver.observe(document.body, { childList: true, subtree: true });
+  }, [pathname]);
 
-    return () => {
-      observer.disconnect();
-      mutationObserver.disconnect();
-      document.removeEventListener("visibilitychange", restoreVisibility);
-      window.removeEventListener("pageshow", restoreVisibility);
-    };
+  // PHASE 2: IntersectionObserver — also deferred so observe() cannot fire before hydration.
+  useEffect(() => {
+    return scheduleAfterHydration(() => {
+      const elements = document.querySelectorAll<HTMLElement>("[data-animate]");
+      if (!elements.length) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              revealElement(el, el.dataset.animateDelay);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -20px 0px" }
+      );
+
+      elements.forEach((el) => observer.observe(el));
+
+      const restoreVisibility = () => {
+        if (document.hidden) return;
+        document.querySelectorAll<HTMLElement>("[data-animate]").forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.bottom > 0 && rect.top < window.innerHeight * 1.2) {
+            if (!el.classList.contains("is-visible")) {
+              revealElement(el, el.dataset.animateDelay);
+            }
+          }
+        });
+      };
+
+      document.addEventListener("visibilitychange", restoreVisibility);
+      window.addEventListener("pageshow", restoreVisibility);
+
+      const mutationObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (!(node instanceof HTMLElement)) return;
+            const directAnimated = node.matches?.("[data-animate]") ? [node] : [];
+            const nestedAnimated = Array.from(node.querySelectorAll?.("[data-animate]") ?? []);
+            const animatedNodes = [...directAnimated, ...nestedAnimated] as HTMLElement[];
+            animatedNodes.forEach((el) => observer.observe(el));
+          });
+        });
+      });
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+      return () => {
+        observer.disconnect();
+        mutationObserver.disconnect();
+        document.removeEventListener("visibilitychange", restoreVisibility);
+        window.removeEventListener("pageshow", restoreVisibility);
+      };
+    });
   }, [pathname]);
 }
