@@ -1,6 +1,9 @@
 /**
- * GA4 consent-aware loader. Only loads gtag when user has given Analytics consent.
- * IP anonymization enabled for DSGVO compliance.
+ * GA4 consent-aware loader. Only loads gtag when user has given Analytics consent
+ * (Cookie-Banner → initGA). IP-Anonymisierung bei config.
+ *
+ * Kein manuelles Snippet im <head> nötig — doppeltes Laden vermeiden.
+ * Optional: NEXT_PUBLIC_GA_MEASUREMENT_ID in .env.local / Vercel setzen, um die ID zu überschreiben.
  */
 
 declare global {
@@ -14,7 +17,8 @@ declare global {
   }
 }
 
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GA_MEASUREMENT_ID =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-QEVDGDCV9G";
 const SCRIPT_URL = "https://www.googletagmanager.com/gtag/js";
 
 let gaLoaded = false;

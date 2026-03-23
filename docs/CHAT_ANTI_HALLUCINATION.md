@@ -53,7 +53,7 @@ Stand: 2026-03-15
 
 - **Strikter System-Prompt:** Ein einziger erlaubter Fallback-Satz; klare Anweisung „Nur aus dem Kontext; kein Eigenwissen“; Kontext in `--- FAQ ---` / `--- Ratgeber ---` mit klaren Bezeichnern.
 - **FAQ-Match vor LLM:** Wenn ein FAQ-Match existiert, wird **ohne LLM** die getroffene FAQ-Antwort gestreamt (stabil, keine Halluzination für diese Fragen).
-- **Temperature:** `temperature: 0` (bzw. vom Provider unterstützt) für Gemini/OpenAI bei `streamText`.
+- **Temperature:** `temperature: 0` (bzw. vom Provider unterstützt) für Gemini bei `streamText`.
 - **Konstante Fallback-Antwort:** Ein zentraler Satz in `lib/chat/constants.ts`, im Prompt referenziert und bei „kein LLM“ / kein Match genutzt.
 
 ---

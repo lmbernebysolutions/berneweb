@@ -7,7 +7,6 @@ import {
   convertToModelMessages,
   createUIMessageStreamResponse,
 } from "ai";
-import { openai } from "@ai-sdk/openai";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import {
   MAX_INPUT_CHARS,
@@ -21,6 +20,7 @@ import {
   FALLBACK_ANSWER_EXACT,
 } from "@/lib/chat/constants";
 import { getFaqEntries, getRatgeberLinks, matchFaqQuery } from "@/lib/chat/knowledge";
+import { hasKiChatConsentFromCookieHeader } from "@/lib/chat/cookie-consent-server";
 
 const chatBodySchema = z.object({
   mode: z.literal("faq").optional().default("faq"),
@@ -70,7 +70,7 @@ const ratelimit = createRatelimit();
 
 /** Strukturiertes Logging ohne personenbezogene oder nutzererzeugte Inhalte. */
 function logChatEvent(
-  event: "rate_limit" | "spam" | "timeout" | "error" | "validation_error",
+  event: "rate_limit" | "spam" | "timeout" | "error" | "validation_error" | "consent_required",
   detail?: Record<string, unknown>
 ): void {
   const payload = { event, ...detail };
@@ -127,6 +127,18 @@ export async function POST(request: NextRequest) {
       );
       return withCors(res, request);
     }
+  }
+
+  if (!hasKiChatConsentFromCookieHeader(request.headers.get("cookie"))) {
+    logChatEvent("consent_required", {});
+    const res = NextResponse.json(
+      {
+        error:
+          "Für den KI-Chat ist Ihre Einwilligung in den Cookie-Einstellungen (KI-Chat) erforderlich.",
+      },
+      { status: 403 }
+    );
+    return withCors(res, request);
   }
 
   let body: unknown;
@@ -204,10 +216,8 @@ export async function POST(request: NextRequest) {
   const faqMatch = matchFaqQuery(userText);
   const geminiKey =
     process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? process.env.GEMINI_API_KEY;
-  const openAiKey = process.env.OPENAI_API_KEY;
-  const hasLLM = Boolean(geminiKey || openAiKey);
 
-  if (!hasLLM) {
+  if (!geminiKey) {
     const answer = faqMatch?.answer ?? FALLBACK_ANSWER_EXACT;
     const id = crypto.randomUUID();
     const stream = new ReadableStream({
@@ -244,9 +254,7 @@ export async function POST(request: NextRequest) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), STREAM_TIMEOUT_MS);
 
-  const model = geminiKey
-    ? createGoogleGenerativeAI({ apiKey: geminiKey })("gemini-2.0-flash")
-    : openai("gpt-4o-mini");
+  const model = createGoogleGenerativeAI({ apiKey: geminiKey })("gemini-2.0-flash");
 
   try {
     const modelMessages = await convertToModelMessages(

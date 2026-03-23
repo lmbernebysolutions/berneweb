@@ -23,7 +23,7 @@ import {
     IconSearch,
     IconBrandAdobe,
 } from "@tabler/icons-react";
-import { SERVICES, COMPANY, CTA_QUOTES, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK_WITH_BENEFIT, TECH_STATS, TECH_TESTIMONIALS, PAGE_META, SOCIAL_LINKS } from "@/lib/constants";
+import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK_WITH_BENEFIT, TECH_STATS, TECH_TESTIMONIALS, PAGE_META, SOCIAL_LINKS, SITE_URL } from "@/lib/constants";
 import dynamic from "next/dynamic";
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TrustBar } from "@/components/sections/TrustBar";
@@ -261,13 +261,13 @@ export default function TechPage() {
                 <ProcessSteps steps={PROCESS_STEPS} />
             </Section>
 
-            {/* 08: Technologien – 53%-Statistik im Subtitle (SEO ↔ Tech-Zusammenhang) */}
+            {/* 08: Technologien */}
             <Section bg="transparent">
                 <SectionHeading
                     number="08"
-                    overline="Werkzeuge"
-                    title="Tech-Stack"
-                    subtitle="53% des Website-Traffics kommt über organische Suche. Ohne professionelle SEO verschenken Sie die Hälfte Ihrer Kunden – wir bauen mit Technologien, die Suchmaschinen und Nutzer gleichermaßen überzeugen."
+                    overline="Tech & Werkzeuge"
+                    title="TECH - STACK"
+                    subtitle="Moderne Stacks, klare Ergebnisse."
                     align="left"
                     light
                 />
@@ -332,7 +332,7 @@ export default function TechPage() {
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Service",
-                        provider: { "@id": "https://berneby.de/#organization" },
+                        provider: { "@id": `${SITE_URL}/#organization` },
                         name: "IT-Service & Webentwicklung Erzgebirge",
                         description:
                             "Webseiten, Online-Shops, Microsoft 365, KI-Schulung & IT-Support für KMU im Erzgebirge. Digitaler Hausmeister ab 850 €.",
@@ -353,7 +353,6 @@ export default function TechPage() {
             <CtaSection
                 headline="Wie können wir helfen?"
                 subline="Egal ob neue Webseite, Shop oder IT-Support. Wir machen das."
-                quoteBlock={CTA_QUOTES.tech}
                 ctas={[
                     { label: "Anfrage senden", href: "/kontakt" },
                     { label: `Anrufen: ${COMPANY.phoneDisplay}`, href: `tel:${COMPANY.phone}` },

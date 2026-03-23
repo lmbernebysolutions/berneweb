@@ -12,9 +12,7 @@ import {
   getAllArticleSlugs,
 } from "@/lib/content/ratgeber";
 import { generateBreadcrumbSchema, generateArticleSchema } from "@/lib/seo/schema";
-import { COMPANY } from "@/lib/constants";
-
-const BASE_URL = "https://berneby.de";
+import { COMPANY, SITE_URL } from "@/lib/constants";
 
 export async function generateStaticParams() {
   return getAllArticleSlugs().map((slug) => ({ slug }));
@@ -36,7 +34,7 @@ export async function generateMetadata({
     openGraph: {
       title: article.title,
       description: article.description,
-      url: `${BASE_URL}/ratgeber/${article.slug}`,
+      url: `${SITE_URL}/ratgeber/${article.slug}`,
       type: "article",
       publishedTime: article.datePublished,
       modifiedTime: article.dateModified,
@@ -83,8 +81,8 @@ export default async function RatgeberArticlePage({
     datePublished: article.datePublished,
     dateModified: article.dateModified,
     authorName: "Lennard Meyer",
-    authorUrl: `${BASE_URL}/ueber-uns`,
-    articleUrl: `${BASE_URL}/ratgeber/${article.slug}`,
+    authorUrl: `${SITE_URL}/ueber-uns`,
+    articleUrl: `${SITE_URL}/ratgeber/${article.slug}`,
   });
 
   return (
@@ -149,6 +147,7 @@ export default async function RatgeberArticlePage({
       <CtaSection
         headline="Bereit für das Upgrade?"
         subline="Lassen Sie uns Ihre Digitalisierung besprechen."
+        showRatgeberLink={false}
         ctas={[
           { label: "Jetzt Termin vereinbaren", href: "/kontakt" },
           { label: `Anrufen: ${COMPANY.phoneDisplay}`, href: `tel:${COMPANY.phone}` },

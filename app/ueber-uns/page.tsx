@@ -19,7 +19,6 @@ import {
   TEAM,
   VALUES,
   PAGE_META,
-  CTA_QUOTES,
   FAQ_ITEMS,
   SOCIAL_LINKS,
   WARUM_BERNEBY,
@@ -201,7 +200,6 @@ export default function UeberUnsPage() {
       <CtaSection
         headline="Lernen Sie uns kennen."
         subline="30 Minuten, unverbindlich – wir freuen uns auf ein persönliches Gespräch."
-        quoteBlock={CTA_QUOTES["ueber-uns"]}
         ctas={[
           { label: "Kontakt aufnehmen", href: "/kontakt" },
           { label: "Unsere Leistungen", href: "/tech" },

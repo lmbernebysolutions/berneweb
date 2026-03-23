@@ -4,6 +4,7 @@ import { IconArrowRight, IconMapPin, IconWorld, IconStar, IconChartBar, IconTren
 import { BackdropNumber } from '@/components/ui/backdrop-number';
 import { TextLogo } from '@/components/brand/TextLogo';
 import { REFERENZEN, REFERENZEN_STATS } from '@/lib/data/referenzen';
+import { SITE_URL } from '@/lib/constants';
 import { SlideStoryBody as StoryBody, SLIDE_STORY_TEXT_MUTED, SLIDE_STORY_TEXT_STRONG } from '@/components/socials/slide-story-body';
 
 export const metadata: Metadata = { title: 'Socials Referenzen — Berneby Solutions' };
@@ -371,7 +372,7 @@ const PROJECTS: StoryProject[] = [
     kunde: 'Berneby Solutions',
     branche: 'Agentur-Website / Showcase',
     typ: 'Webseite',
-    url: 'https://berneby.website',
+    url: SITE_URL,
     desktopImage: '/screencapture-berneby-website-vercel-app-2026-02-22-23_31_18.png',
     phoneImage: '/screencapture-berneby-website-vercel-app-2026-02-22-23_31_18.png',
     ergebnisse: REFERENZEN_STATS.map((s) => ({

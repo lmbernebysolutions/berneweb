@@ -38,7 +38,6 @@ import {
   TWO_PILLARS,
   PROCESS_STEPS,
   COMPANY,
-  CTA_QUOTES,
   TECH_STACK_WITH_BENEFIT,
   HOME_MINI_FAQ,
   PAGE_META,
@@ -333,13 +332,14 @@ export default function Home() {
       <Section bg="transparent">
         <SectionHeading
           number="06"
-          overline="Tech & Werkzeuge"
-          title="TECH - STACK"
+          overline="Werkzeuge"
+          title="Tech-Stack"
           subtitle="Moderne Stacks, klare Ergebnisse."
           align="left"
           light
         />
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:gap-8">
+        {/* Layout 1:1 wie Sektion Tech-Stack auf /tech (Grid, Padding, Typo) */}
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
           {TECH_STACK_WITH_BENEFIT.map((item, i) => {
             const Icon = {
               "Next.js": IconBrandNextjs,
@@ -360,14 +360,14 @@ export default function Home() {
                   CONTAINER_A
                 )}
               >
-                <div className="relative z-10 flex flex-col gap-1">
-                  <div className="flex items-center justify-center gap-3">
-                    <Icon className="size-5 text-brand-cyan shrink-0" strokeWidth={1.5} />
-                    <p className="text-sm font-bold uppercase tracking-wider text-white whitespace-nowrap">
+                <div className="relative z-10 flex flex-col gap-2">
+                  <div className="flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:gap-3">
+                    <Icon className="size-5 shrink-0 text-brand-cyan sm:size-6" stroke="1.5" />
+                    <p className="text-base font-bold uppercase tracking-tight text-white sm:text-lg">
                       {item.name}
                     </p>
                   </div>
-                  <p className="text-xs text-brand-navy-muted text-center leading-tight">
+                  <p className="text-center text-sm leading-relaxed text-white/70 sm:text-base">
                     {item.benefit}
                   </p>
                 </div>
@@ -436,7 +436,6 @@ export default function Home() {
       <CtaSection
         headline="Bereit für das Upgrade?"
         subline="Lass uns dein Unternehmen auf das nächste Level heben."
-        quoteBlock={CTA_QUOTES.home}
         ctas={[
           { label: "Termin sichern", href: "/kontakt" },
         ]}

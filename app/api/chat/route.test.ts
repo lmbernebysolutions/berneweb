@@ -1,30 +1,52 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, afterEach } from "vitest";
 import { NextRequest } from "next/server";
 import { POST } from "./route";
 
 const BASE = "http://localhost:3000/api/chat";
+
+/** Gleiches Format wie react-cookie-manager unter `cookie-consent` für KI-Chat (Social). */
+const KI_CHAT_CONSENT_COOKIE = `cookie-consent=${encodeURIComponent(
+  JSON.stringify({ Social: { consented: true } })
+)}`;
 
 function postRequest(body: unknown, searchParams?: string): NextRequest {
   const url = searchParams ? `${BASE}?${searchParams}` : BASE;
   return new NextRequest(url, {
     method: "POST",
     body: JSON.stringify(body),
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: KI_CHAT_CONSENT_COOKIE,
+    },
   });
 }
 
 describe("POST /api/chat", () => {
   const origGemini = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
   const origGeminiAlt = process.env.GEMINI_API_KEY;
-  const origOpen = process.env.OPENAI_API_KEY;
 
   afterEach(() => {
     if (origGemini !== undefined) process.env.GOOGLE_GENERATIVE_AI_API_KEY = origGemini;
     else delete process.env.GOOGLE_GENERATIVE_AI_API_KEY;
     if (origGeminiAlt !== undefined) process.env.GEMINI_API_KEY = origGeminiAlt;
     else delete process.env.GEMINI_API_KEY;
-    if (origOpen !== undefined) process.env.OPENAI_API_KEY = origOpen;
-    else delete process.env.OPENAI_API_KEY;
+  });
+
+  it("returns 403 without KI-Chat cookie consent", async () => {
+    delete process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+    delete process.env.GEMINI_API_KEY;
+    const req = new NextRequest(BASE, {
+      method: "POST",
+      body: JSON.stringify({
+        mode: "faq",
+        messages: [{ role: "user", content: "Hallo" }],
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const res = await POST(req);
+    expect(res.status).toBe(403);
+    const json = await res.json();
+    expect(json.error).toMatch(/Einwilligung|Cookie/i);
   });
 
   it("returns 400 for invalid body (invalid structure)", async () => {
@@ -40,7 +62,7 @@ describe("POST /api/chat", () => {
     const req = new NextRequest(BASE, {
       method: "POST",
       body: "not json",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Cookie: KI_CHAT_CONSENT_COOKIE },
     });
     const res = await POST(req);
     expect(res.status).toBe(400);
@@ -51,7 +73,6 @@ describe("POST /api/chat", () => {
   it("returns 400 when user message is shorter than MIN_INPUT_CHARS", async () => {
     delete process.env.GOOGLE_GENERATIVE_AI_API_KEY;
     delete process.env.GEMINI_API_KEY;
-    delete process.env.OPENAI_API_KEY;
     const req = postRequest({
       mode: "faq",
       messages: [{ role: "user", content: "x" }],
@@ -65,7 +86,6 @@ describe("POST /api/chat", () => {
   it("returns 429 for spam (same user message repeated)", async () => {
     delete process.env.GOOGLE_GENERATIVE_AI_API_KEY;
     delete process.env.GEMINI_API_KEY;
-    delete process.env.OPENAI_API_KEY;
     const same = "Was kostet eine Website?";
     const req = postRequest({
       mode: "faq",
@@ -86,7 +106,6 @@ describe("POST /api/chat", () => {
   it("returns fallback answer when no LLM keys are set (FAQ mode)", async () => {
     delete process.env.GOOGLE_GENERATIVE_AI_API_KEY;
     delete process.env.GEMINI_API_KEY;
-    delete process.env.OPENAI_API_KEY;
     const req = postRequest({
       mode: "faq",
       messages: [{ role: "user", content: "Was bietet Berneby?" }],
@@ -111,7 +130,6 @@ describe("POST /api/chat", () => {
   it("FAQ fallback returns knowledge-base answer when query matches FAQ", async () => {
     delete process.env.GOOGLE_GENERATIVE_AI_API_KEY;
     delete process.env.GEMINI_API_KEY;
-    delete process.env.OPENAI_API_KEY;
     const req = postRequest({
       mode: "faq",
       messages: [{ role: "user", content: "Was kostet eine Website bei Berneby Solutions?" }],

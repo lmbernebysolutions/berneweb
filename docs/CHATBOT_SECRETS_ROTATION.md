@@ -5,7 +5,6 @@
 | Secret | Verwendung | Speicherort |
 |--------|------------|-------------|
 | GOOGLE_GENERATIVE_AI_API_KEY / GEMINI_API_KEY | Gemini-LLM (FAQ) | Vercel Environment Variables |
-| OPENAI_API_KEY | Fallback-LLM (FAQ) | Vercel Environment Variables |
 | UPSTASH_REDIS_REST_URL | Upstash Redis | Vercel Environment Variables |
 | UPSTASH_REDIS_REST_TOKEN | Upstash Redis | Vercel Environment Variables |
 

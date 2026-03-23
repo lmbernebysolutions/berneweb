@@ -21,8 +21,8 @@ In Vercel: **Project → Settings → Environment Variables**. Alle Werte für *
 
 | Variable | Beschreibung | Pflicht |
 |----------|--------------|--------|
-| `GEMINI_API_KEY` | Google-Gemini-API-Key für den KI-Chat (alternativ siehe unten) | Für Chat: ja |
-| `GOOGLE_GENERATIVE_AI_API_KEY` | Alternative zu `GEMINI_API_KEY`; das Chat-API nutzt: `GOOGLE_GENERATIVE_AI_API_KEY ?? GEMINI_API_KEY` | Einer von beiden für Chat |
+| `GEMINI_API_KEY` | Google-Gemini-API-Key für den KI-Chat (alternativ siehe unten) | Für Chat mit LLM: ja |
+| `GOOGLE_GENERATIVE_AI_API_KEY` | Alternative zu `GEMINI_API_KEY`; das Chat-API nutzt: `GOOGLE_GENERATIVE_AI_API_KEY ?? GEMINI_API_KEY` | Einer von beiden für Chat mit LLM |
 | `NOTION_API_TOKEN` | Token für das Notion-Kontaktformular (Kontaktanfragen) | Für Kontaktformular: ja |
 | `NOTION_CONTACT_DATABASE_ID` | Notion-Datenbank-ID für Kontakt-Einträge | Für Kontaktformular: ja |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 Measurement ID (z. B. `G-XXXXXXXXXX`) | Optional (Analytics) |

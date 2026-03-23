@@ -139,7 +139,7 @@ export default function DatenschutzPage() {
                 { dienst: "Vercel Inc.", zweck: "Hosting & Serverinfrastruktur", rg: "Art. 6 I lit. f", drittland: "USA (SCCs)" },
                 { dienst: "Notion Labs Inc.", zweck: "Kontaktformular-Einträge", rg: "Art. 6 I lit. b", drittland: "USA (SCCs)" },
                 { dienst: "Google Analytics 4", zweck: "Reichweitenmessung (opt-in)", rg: "Art. 6 I lit. a", drittland: "USA (SCCs)" },
-                { dienst: "Google Gemini AI", zweck: "KI-Chat-Assistent (opt-in)", rg: "Art. 6 I lit. f", drittland: "USA (SCCs)" },
+                { dienst: "Google Gemini AI", zweck: "KI-Chat-Assistent (opt-in)", rg: "Art. 6 I lit. a", drittland: "USA (SCCs)" },
                 { dienst: "Upstash Redis", zweck: "Rate-Limiting (IP, 5 Min.)", rg: "Art. 6 I lit. f", drittland: "USA (SCCs)" },
                 { dienst: "OpenStreetMap", zweck: "Kartenanzeige Kontaktseite", rg: "Art. 6 I lit. f", drittland: "— (EU)" },
               ].map((row) => (
@@ -169,7 +169,7 @@ export default function DatenschutzPage() {
                     { dienst: "Vercel Inc.", zweck: "Hosting & Serverinfrastruktur", rg: "Art. 6 I lit. f", drittland: "USA (SCCs)" },
                     { dienst: "Notion Labs Inc.", zweck: "Kontaktformular-Einträge", rg: "Art. 6 I lit. b", drittland: "USA (SCCs)" },
                     { dienst: "Google Analytics 4", zweck: "Reichweitenmessung (opt-in)", rg: "Art. 6 I lit. a", drittland: "USA (SCCs)" },
-                    { dienst: "Google Gemini AI", zweck: "KI-Chat-Assistent (opt-in)", rg: "Art. 6 I lit. f", drittland: "USA (SCCs)" },
+                    { dienst: "Google Gemini AI", zweck: "KI-Chat-Assistent (opt-in)", rg: "Art. 6 I lit. a", drittland: "USA (SCCs)" },
                     { dienst: "Upstash Redis", zweck: "Rate-Limiting (IP, 5 Min.)", rg: "Art. 6 I lit. f", drittland: "USA (SCCs)" },
                     { dienst: "OpenStreetMap", zweck: "Kartenanzeige Kontaktseite", rg: "Art. 6 I lit. f", drittland: "— (EU)" },
                   ].map((row) => (
@@ -219,6 +219,10 @@ export default function DatenschutzPage() {
                 value="Google Analytics 4 – nur aktiv nach Ihrer Einwilligung"
               />
               <InfoRow
+                label="KI-Chat"
+                value="Google Gemini (Chat) – nur aktiv nach Ihrer Einwilligung in der Kategorie „KI-Chat“"
+              />
+              <InfoRow
                 label="Speicherdauer"
                 value="Einwilligungspräferenz: 12 Monate"
               />
@@ -258,17 +262,18 @@ export default function DatenschutzPage() {
           {/* ── 6. KI-Chat ──────────────────────────────────────────────── */}
           <SectionCard icon={IconRobot} label="KI-Chat-Assistent — Google Gemini" number="6">
             <p>
-              Auf dieser Website steht ein KI-gestützter Chat-Assistent zur Verfügung. <strong className="text-white/90">Wir nutzen dafür den Dienst Google Gemini</strong> (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland
-              bzw. Google LLC, USA). Wenn Sie Freitextfragen stellen, kann Ihr eingegebener Text zur Beantwortung an Gemini übermittelt werden. Wir übermitteln ausschließlich den anonymisierten Fragetext – keine Kontaktdaten
-              oder personenbezogenen Informationen.
+              Auf dieser Website steht ein KI-gestützter Chat-Assistent zur Verfügung. <strong className="text-white/90">Wir setzen ausschließlich Google Gemini</strong> ein (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland
+              bzw. Google LLC, USA) – <strong className="text-white/90">kein OpenAI</strong> oder anderer KI-Anbieter für diesen Chat.
+              Wenn Sie Freitext eingeben, wird dieser Text (ggf. einschließlich mehrerer Nachrichten in einer laufenden Unterhaltung) zur Erzeugung der Antwort an Google übermittelt. Bitte geben Sie keine Daten ein, deren Übermittlung Sie nicht wünschen; Freitext kann personenbezogene Inhalte enthalten.
             </p>
             <p>
-              Es werden <strong className="text-white/90">keine Chat-Verläufe dauerhaft gespeichert</strong>. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO
-              (berechtigtes Interesse an der Bereitstellung des Dienstes). Die Datenübertragung in die USA erfolgt auf Basis von
-              Standardvertragsklauseln.
+              Der Chat wird <strong className="text-white/90">nur angezeigt und technisch genutzt, wenn Sie in den Cookie-Einstellungen der Kategorie „KI-Chat“ zugestimmt haben</strong>. Unser Server prüft diese Einwilligung vor jeder Chat-Anfrage; ohne Zustimmung findet keine Weiterleitung Ihrer Eingaben an Gemini statt.
+            </p>
+            <p>
+              <strong className="text-white/90">Wir speichern keine Chat-Verläufe dauerhaft auf unseren Systemen.</strong> Rechtsgrundlage für die Nutzung von Gemini nach Einwilligung ist Art. 6 Abs. 1 lit. a DSGVO. Die Datenübertragung in die USA erfolgt auf Basis von Standardvertragsklauseln (Art. 46 DSGVO). Einzelheiten zur Verarbeitung durch Google entnehmen Sie der Datenschutzerklärung von Google.
             </p>
             <div className="mt-2">
-              <InfoRow label="Speicherfrist" value="Anonymisierte Nutzungsdaten max. 7 Tage" />
+              <InfoRow label="Speicherfrist" value="Keine dauerhafte Speicherung des Chat-Inhalts durch uns; technische Schutzmaßnahmen (z. B. Rate-Limit) siehe unten" />
               <InfoRow label="Mehr Infos" value={<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-brand-cyan hover:underline">policies.google.com/privacy</a>} />
             </div>
           </SectionCard>
@@ -352,7 +357,7 @@ export default function DatenschutzPage() {
               <InfoRow label="Server-Logs" value="Ca. 30 Tage (Vercel)" />
               <InfoRow label="Cookie-Einwilligung" value="12 Monate" />
               <InfoRow label="Kontaktanfragen" value="90 Tage (kein Vertragsabschluss) / 10 Jahre (Vertragsabschluss)" />
-              <InfoRow label="Chat-Nutzungsdaten" value="Max. 7 Tage (anonymisiert)" />
+              <InfoRow label="Chat-Inhalt" value="Keine dauerhafte Speicherung durch uns; Verarbeitung durch Google gemäß deren Richtlinien" />
               <InfoRow label="Rate-Limit IPs" value="Max. 5 Minuten" />
               <InfoRow label="GA4 Rohdaten" value="26 Monate (Google-Standard)" />
             </div>

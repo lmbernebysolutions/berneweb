@@ -2,9 +2,10 @@ import type { MetadataRoute } from "next";
 import { getAllArticleSlugs } from "@/lib/content/ratgeber";
 import { getAllLocationSlugs } from "@/lib/data/locations";
 import { getAllBranchenSlugs } from "@/lib/data/branchen";
+import { SITE_URL } from "@/lib/constants";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://berneby.de";
+  const baseUrl = SITE_URL;
   const now = new Date();
 
   const staticPages: MetadataRoute.Sitemap = [

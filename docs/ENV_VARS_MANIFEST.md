@@ -35,13 +35,7 @@ Stand: 2026-03-15
   - **Typ**: Secret
   - **Scope**: Server-only
   - **Zweck**: Auth für Gemini/Generative AI
-  - **Hinweis**: Nur nötig, wenn `/api/chat` produktiv aktiv ist
-
-### KI-Chat (OpenAI Fallback) — server-only
-- `OPENAI_API_KEY`
-  - **Typ**: Secret
-  - **Scope**: Server-only
-  - **Zweck**: Fallback-Modell in `app/api/chat/route.ts` (wenn kein Gemini Key gesetzt ist)
+  - **Hinweis**: Nur nötig, wenn `/api/chat` produktiv aktiv ist; ohne Key nutzt die Route nur FAQ/Fallback ohne Gemini.
 
 ### Upstash Redis (Rate limiting / Abuse protection) — server-only
 - `UPSTASH_REDIS_REST_URL`

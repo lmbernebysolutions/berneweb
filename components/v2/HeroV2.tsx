@@ -120,9 +120,9 @@ export function HeroV2({
                   BERG_LAYER_DELAYS[i]
                 )}
                 style={{ transformOrigin: "bottom center" }}
-                priority={i >= 1 && i <= 2}
-                fetchPriority={i >= 1 && i <= 2 ? "high" : undefined}
-                loading={i === 0 || i === 3 ? "lazy" : "eager"}
+                priority={i >= 1}
+                fetchPriority={i >= 1 ? "high" : undefined}
+                loading={i === 0 ? "lazy" : "eager"}
                 unoptimized
                 aria-hidden
               />

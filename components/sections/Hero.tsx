@@ -159,9 +159,10 @@ export function Hero({
                   BERG_LAYER_DELAYS[layerIdx]
                 )}
                 style={{ transformOrigin: "bottom center" }}
-                priority={layerIdx >= 1 && layerIdx <= 2}
-                fetchPriority={layerIdx >= 1 && layerIdx <= 2 ? "high" : undefined}
-                loading={layerIdx === 0 || layerIdx === 3 ? "lazy" : "eager"}
+                /* Berg1 hinten → lazy ok; Berg4 vorn → oft LCP: eager + hohe Priorität */
+                priority={layerIdx >= 1}
+                fetchPriority={layerIdx >= 1 ? "high" : undefined}
+                loading={layerIdx === 0 ? "lazy" : "eager"}
                 unoptimized
                 aria-hidden
               />

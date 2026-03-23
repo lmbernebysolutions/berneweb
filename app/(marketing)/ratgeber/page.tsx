@@ -73,6 +73,7 @@ export default function RatgeberPage() {
       <CtaSection
         headline="Erstgespräch vereinbaren"
         subline="30 Minuten, unverbindlich – wir besprechen Ihre Digitalisierung."
+        showRatgeberLink={false}
         ctas={[
           { label: "Termin sichern", href: "/kontakt" },
           { label: "Handwerks-Pakete", href: "/handwerk" },

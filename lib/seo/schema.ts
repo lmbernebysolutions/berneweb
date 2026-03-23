@@ -1,4 +1,4 @@
-const BASE_URL = "https://berneby.de";
+import { SITE_URL } from "@/lib/constants";
 
 export interface FaqItem {
   readonly question: string;
@@ -33,7 +33,7 @@ export function generateBreadcrumbSchema(items: readonly BreadcrumbItem[]) {
       "@type": "ListItem" as const,
       position: i + 1,
       name: item.name,
-      item: item.url.startsWith("http") ? item.url : `${BASE_URL}${item.url}`,
+      item: item.url.startsWith("http") ? item.url : `${SITE_URL}${item.url}`,
     })),
   };
 }
@@ -74,7 +74,7 @@ export interface ArticleSchemaParams {
 }
 
 export function generateArticleSchema(params: ArticleSchemaParams) {
-  const articleUrl = params.articleUrl ?? `${BASE_URL}/ratgeber`;
+  const articleUrl = params.articleUrl ?? `${SITE_URL}/ratgeber`;
   return {
     "@context": "https://schema.org" as const,
     "@type": "Article" as const,
@@ -89,7 +89,7 @@ export function generateArticleSchema(params: ArticleSchemaParams) {
       ...(params.authorUrl && { url: params.authorUrl }),
     },
     publisher: {
-      "@id": `${BASE_URL}/#organization`,
+      "@id": `${SITE_URL}/#organization`,
     },
     ...(params.imageUrl && { image: params.imageUrl }),
   };
@@ -124,7 +124,7 @@ export function generateLocalBusinessSchema(params: LocalBusinessSchemaParams) {
   return {
     "@context": "https://schema.org" as const,
     "@type": "LocalBusiness" as const,
-    "@id": `${BASE_URL}/#organization`,
+    "@id": `${SITE_URL}/#organization`,
     name: params.name,
     description: params.description,
     areaServed: {
@@ -160,7 +160,7 @@ export function generateProfessionalServiceSchema(params: ProfessionalServiceSch
     description: params.description,
     serviceType: params.serviceType,
     provider: {
-      "@id": `${BASE_URL}/#organization`,
+      "@id": `${SITE_URL}/#organization`,
     },
   };
 }

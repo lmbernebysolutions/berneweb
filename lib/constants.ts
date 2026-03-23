@@ -6,6 +6,9 @@
 export const BEAM_CONTAINER_CLASS =
   "mx-auto w-full max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8";
 
+/** Canonical Production-URL (Sitemap, Open Graph, JSON-LD, Breadcrumbs) */
+export const SITE_URL = "https://www.bernebysolutions.de" as const;
+
 // =============================================================================
 // SOCIAL MEDIA LINKS – URLs hier zentral pflegen
 // =============================================================================
@@ -54,43 +57,6 @@ export const COMPANY = {
   founded: "2025",
   representation: "Jeder Gesellschafter ist einzeln vertretungsberechtigt.",
   gewerbeBehoerde: "Gemeinde Aue-Bad Schlema (Gemeindekennzahl 14521035)",
-} as const;
-
-// =============================================================================
-// CTA-SECTION – Zitate pro Hauptseite (abwechselnd LM/Daniel, einheitliche Zeichenlänge)
-// =============================================================================
-
-export const CTA_QUOTES = {
-  home: {
-    quote: "Wir bauen keine Luftschlösser – wir bauen, was funktioniert.",
-    author: "Lennard Meyer",
-    initials: "LM",
-    image: "/team/lennard-meyer.webp",
-  },
-  handwerk: {
-    quote: "Mehr Sichtbarkeit, weniger Zeitfresser – dafür gehen wir ran.",
-    author: "Daniel Hamburg",
-    initials: "DH",
-    image: "/team/daniel-hamburg.webp",
-  },
-  tech: {
-    quote: "Moderne Technik muss Arbeit abnehmen. Sonst ist sie nutzlos.",
-    author: "Lennard Meyer",
-    initials: "LM",
-    image: "/team/lennard-meyer.webp",
-  },
-  referenzen: {
-    quote: "Echte Ergebnisse zählen. Was wir versprechen, liefern wir.",
-    author: "Daniel Hamburg",
-    initials: "DH",
-    image: "/team/daniel-hamburg.webp",
-  },
-  "ueber-uns": {
-    quote: "Digital-Partner von hier für hier – auf Augenhöhe, kein Blabla.",
-    author: "Lennard Meyer",
-    initials: "LM",
-    image: "/team/lennard-meyer.webp",
-  },
 } as const;
 
 // =============================================================================
