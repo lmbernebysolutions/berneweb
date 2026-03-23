@@ -6,23 +6,11 @@ export function FacebookCoverContent() {
       {/* Value Proposition */}
       <div className="w-full">
         {/* Safe-Zone: left/right = 220px, Beams: left/right = 132px -> Headline startet bewusst bei ~132px (Beam-Overlap wie im Home-Hero) */}
-        <h1 className="ml-[-88px] font-display text-[120px] font-extrabold uppercase leading-[0.9] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-[1320px]">
+        <h1 className="ml-[-132px] w-full font-display text-[120px] font-extrabold uppercase leading-[0.9] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)]">
           MEHR AUFTRAEGE.
           <br />
           <span className="text-brand-cyan">WENIGER STRESS.</span>
         </h1>
-      </div>
-
-      {/* Job-to-be-done */}
-      <p className="mt-5 max-w-[1040px] border-l-2 border-white/25 pl-6 text-[36px] font-medium leading-relaxed text-blue-100">
-        Webseiten, SEO und KI-Telefon fangen Anfragen sauber ab, damit du wieder Zeit fürs Kerngeschäft hast.
-      </p>
-
-      {/* Trust signal */}
-      <div className="mt-8 inline-flex w-fit items-center border border-brand-cyan/35 bg-brand-cyan/10 px-5 py-2">
-        <span className="font-mono text-[15px] font-bold uppercase tracking-[0.16em] text-brand-cyan">
-          Partner fuer den regionalen Mittelstand im Erzgebirge
-        </span>
       </div>
 
       {/* Directional cue (no fake CTA) */}
