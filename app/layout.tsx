@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { GridBeams } from "@/components/layout/GridBeams";
-import { COMPANY } from "@/lib/constants";
+import { COMPANY, SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
 const ORGANIZATION_SCHEMA = {
@@ -14,12 +14,12 @@ const ORGANIZATION_SCHEMA = {
   "@graph": [
     {
       "@type": ["Organization", "LocalBusiness"],
-      "@id": "https://berneby.de/#organization",
+      "@id": `${SITE_URL}/#organization`,
       name: COMPANY.name,
       legalName: COMPANY.legal,
-      url: "https://berneby.de",
-      logo: "https://berneby.de/B.svg",
-      image: "https://berneby.de/og-image.png",
+      url: SITE_URL,
+      logo: `${SITE_URL}/B.svg`,
+      image: `${SITE_URL}/og-image.png`,
       telephone: "+4915511960927",
       email: COMPANY.email,
       priceRange: "€€",
@@ -53,10 +53,10 @@ const ORGANIZATION_SCHEMA = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://berneby.de/#website",
+      "@id": `${SITE_URL}/#website`,
       name: COMPANY.name,
-      url: "https://berneby.de",
-      publisher: { "@id": "https://berneby.de/#organization" },
+      url: SITE_URL,
+      publisher: { "@id": `${SITE_URL}/#organization` },
       inLanguage: "de-DE",
       dateModified: "2026-02-13",
     },
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
   },
   description:
     "Berneby Solutions macht lokale Betriebe im Erzgebirge online sichtbar und automatisiert das, was Zeit frisst. Webseiten, KI-Telefon, SEO – alles aus einer Hand.",
-  metadataBase: new URL("https://berneby.de"),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
     locale: "de_DE",
