@@ -16,7 +16,8 @@
     "optimize:team": "node scripts/optimize-team-images.mjs",
     "capture:slides:v2": "node scripts/capture-slides.mjs /socials-v2 exports/slides",
     "capture:slides:kerngeschaft": "node scripts/capture-slides.mjs /socials-kerngeschaft exports/slides-kerngeschaft",
-    "capture:slides:referenzen": "node scripts/capture-slides.mjs /socials-referenzen exports/slides-referenzen"
+    "capture:slides:referenzen": "node scripts/capture-slides.mjs /socials-referenzen exports/slides-referenzen",
+    "capture:facebook-banner": "node scripts/capture-facebook-banner.mjs /socials-facebook-banner exports/facebook-banner"
   },
   "dependencies": {
     "@ai-sdk/google": "^3.0.30",
