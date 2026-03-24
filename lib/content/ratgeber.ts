@@ -83,7 +83,7 @@ const CLUSTER_1_ARTICLES: RatgeberArticle[] = [
 </ul>
 
 <h2>Wie lange dauert der Aufbau?</h2>
-<p>Ein professioneller One-Pager ist in 1–2 Wochen fertig. Ein Paket mit 50+ Landingpages und SEO dauert etwa 4 Wochen. <a href="/handwerk">Unsere Handwerks-Pakete</a> starten bei 950 € netto.</p>
+<p>Ein professioneller One-Pager ist in 1–2 Wochen fertig. Ein Paket mit 50+ Landingpages und SEO dauert etwa 4 Wochen. <a href="/handwerk">Unsere Handwerks-Pakete</a> planen wir individuell im Erstgespräch.</p>
 `,
     relatedSlugs: ["digitalisierung-handwerk", "seo-fuer-handwerker", "google-business-profil-handwerker"],
     datePublished: "2026-01-16",
@@ -130,8 +130,8 @@ const CLUSTER_1_ARTICLES: RatgeberArticle[] = [
 <h2>Wie funktioniert die Einrichtung?</h2>
 <p>Wir trainieren den Assistenten auf Ihre Leistungen und Ihre Region. Er spricht natürlich, erfasst alle relevanten Daten und leitet Sie per Push-Nachricht weiter. Sie rufen zurück, wenn es passt. Die Einrichtung dauert etwa 1 Woche.</p>
 
-<h2>Kosten und Pakete</h2>
-<p>Der KI-Telefonassistent ist Teil unseres <a href="/handwerk#pakete">Marktführer-Pakets</a> (2.800 €) oder einzeln als Modul buchbar. Mehr Vergleiche: <a href="/ratgeber/ki-telefonassistent-vergleich">KI-Telefonassistent im Vergleich</a>.</p>
+<h2>Pakete und Einsatz</h2>
+<p>Der KI-Telefonassistent ist Teil unseres <a href="/handwerk#pakete">Marktführer-Pakets</a> oder einzeln als Modul buchbar. Details klären wir im Erstgespräch. Mehr Vergleiche: <a href="/ratgeber/ki-telefonassistent-vergleich">KI-Telefonassistent im Vergleich</a>.</p>
 `,
     relatedSlugs: ["digitalisierung-handwerk", "ki-telefonassistent-vergleich", "online-terminbuchung-handwerk"],
     datePublished: "2026-01-18",
@@ -231,7 +231,7 @@ const CLUSTER_2_PILLAR: RatgeberArticle = {
   slug: "it-service-kmu",
   title: "IT-Service für KMU: Der komplette Leitfaden für kleine Betriebe",
   description:
-    "Externe IT, Microsoft 365, Cloud, Sicherheit – was kleine Betriebe wirklich brauchen. Ohne Festanstellung, mit klaren Preisen.",
+    "Externe IT, Microsoft 365, Cloud, Sicherheit – was kleine Betriebe wirklich brauchen. Ohne Festanstellung, mit klaren Konditionen.",
   cluster: "it-service-kmu",
   pillarSlug: "it-service-kmu",
   content: `
@@ -239,7 +239,7 @@ const CLUSTER_2_PILLAR: RatgeberArticle = {
 <p><strong>IT-Service für KMU</strong> umfasst die Betreuung von Hard- und Software, Netzwerken, Cloud-Lösungen und IT-Sicherheit – ohne eigene IT-Abteilung. Kleine Betriebe nutzen externe Partner wie den <a href="/tech">Digitalen Hausmeister</a>, der stundengenau und flexibel arbeitet.</p>
 
 <h2>Warum externe IT statt Festanstellung?</h2>
-<p>Eine Vollzeit-IT-Kraft kostet 50.000 €+ pro Jahr. Für die meisten KMU reicht das nicht. Externe IT: Sie zahlen nur, wenn Sie Hilfe brauchen. 10 Stunden Support für 850 € – 12 Monate gültig. Kein Festgehalt, keine Urlaubsvertretung.</p>
+<p>Eine Vollzeit-IT-Kraft bindet dauerhaft hohe Ressourcen. Für viele KMU ist externe IT sinnvoller: Sie holen gezielt Unterstützung, wenn sie gebraucht wird. Kein Festgehalt, keine Urlaubsvertretung. Umfang und Konditionen klären wir im Erstgespräch.</p>
 
 <h2>Die wichtigsten IT-Themen für KMU</h2>
 <ol>
@@ -250,7 +250,7 @@ const CLUSTER_2_PILLAR: RatgeberArticle = {
 </ol>
 
 <h2>Wie finden Sie den richtigen IT-Partner?</h2>
-<p>Lokal, erreichbar, verständlich. Kein Fachchinesisch. Transparente Preise. Wir sind aus dem Erzgebirge – <a href="/kontakt">Erstgespräch vereinbaren</a>.</p>
+<p>Lokal, erreichbar, verständlich. Kein Fachchinesisch. Transparente Konditionen. Wir sind aus dem Erzgebirge – <a href="/kontakt">Erstgespräch vereinbaren</a>.</p>
 `,
   relatedSlugs: [
     "microsoft-365-fuer-handwerker",
@@ -266,7 +266,7 @@ const CLUSTER_2_ARTICLES: RatgeberArticle[] = [
     slug: "microsoft-365-fuer-handwerker",
     title: "Microsoft 365 für Handwerker: Einstieg und Nutzen",
     description:
-      "E-Mail, Teams, OneDrive – was Microsoft 365 Handwerkern bringt. Lizenzmodelle, Kosten, Einrichtung.",
+      "E-Mail, Teams, OneDrive – was Microsoft 365 Handwerkern bringt. Lizenzmodelle, Einrichtung und Einsatz im Betrieb.",
     cluster: "it-service-kmu",
     pillarSlug: "it-service-kmu",
     content: `
@@ -276,8 +276,8 @@ const CLUSTER_2_ARTICLES: RatgeberArticle[] = [
 <h2>Warum für Handwerker?</h2>
 <p>Professionelle E-Mail (@ihrefirma.de), gemeinsame Dateien im Team, Videocalls mit Kunden. Keine lokalen Server mehr – alles in der Cloud. Ideal für kleine Teams.</p>
 
-<h2>Kosten und Lizenzen</h2>
-<p>Business Basic ab ca. 5 €/User/Monat. Business Standard mit Desktop-Apps ab ca. 12 €. Wir beraten Sie und übernehmen die Einrichtung – inkl. Migration von alten E-Mail-Postfächern.</p>
+<h2>Lizenzen und Einstieg</h2>
+<p>Wir beraten Sie zur passenden Microsoft-365-Lizenz und übernehmen die Einrichtung – inklusive Migration von alten E-Mail-Postfächern. Die genaue Empfehlung erhalten Sie im Erstgespräch.</p>
 
 <p>Mehr: <a href="/ratgeber/digitaler-hausmeister-erklaert">Digitaler Hausmeister</a> – Ihr IT-Partner auf Abruf.</p>
 `,
@@ -289,7 +289,7 @@ const CLUSTER_2_ARTICLES: RatgeberArticle[] = [
     slug: "digitaler-hausmeister-erklaert",
     title: "Digitaler Hausmeister: Was ist das und für wen?",
     description:
-      "10 Stunden IT-Support für 850 € – 12 Monate gültig. So funktioniert der Digitale Hausmeister von Berneby Solutions.",
+      "10 Stunden IT-Support mit 12 Monaten Laufzeit. So funktioniert der Digitale Hausmeister von Berneby Solutions.",
     cluster: "it-service-kmu",
     pillarSlug: "it-service-kmu",
     content: `
@@ -297,10 +297,10 @@ const CLUSTER_2_ARTICLES: RatgeberArticle[] = [
 <p>Der <strong>Digitale Hausmeister</strong> ist eine 10er-Stundenkarte für IT-Support. Sie rufen an oder schreiben, wenn etwas klemmt: Excel-Problem, E-Mail-Einrichtung, Website-Frage, Software-Setup. Wir helfen – 10 Stunden inklusive, 12 Monate gültig.</p>
 
 <h2>Für wen ist das gedacht?</h2>
-<p>Für KMU ohne eigene IT: Handwerker, Einzelhändler, Freiberufler. Wer nicht 50.000 €/Jahr für eine IT-Kraft ausgeben will, aber trotzdem jemanden braucht, der sich auskennt.</p>
+<p>Für KMU ohne eigene IT: Handwerker, Einzelhändler, Freiberufler. Für alle, die flexibel Unterstützung brauchen und trotzdem jemanden möchten, der sich auskennt.</p>
 
 <h2>Was ist inklusive?</h2>
-<p>Web, Office, Design, Notfälle. Express-Ticket bei dringenden Problemen. Persönlicher Ansprechpartner – keine Ticketnummer. <a href="/tech">Jetzt Karte sichern</a>.</p>
+<p>Web, Office, Design, Notfälle. Express-Ticket bei dringenden Problemen. Persönlicher Ansprechpartner – keine Ticketnummer. <a href="/kontakt">Erstgespräch vereinbaren</a>.</p>
 `,
     relatedSlugs: ["it-service-kmu", "microsoft-365-fuer-handwerker", "it-sicherheit-kleine-betriebe"],
     datePublished: "2026-01-25",
@@ -395,7 +395,7 @@ const CLUSTER_3_PILLAR: RatgeberArticle = {
 <p>Der EU AI Act reguliert KI-Systeme. Für KI-Telefonassistenten und ChatGPT im Büro gelten meist geringe Anforderungen. Risiko-Kategorien: „minimal“ bis „unannehmbar“. Wir beraten bei der Einordnung – <a href="/ratgeber/ki-schulung-eu-ai-act">KI-Schulung & EU AI Act</a>.</p>
 
 <h2>Erste Schritte</h2>
-<p>Starten Sie mit dem KI-Telefonassistenten – der größte Impact bei wenig Aufwand. Parallel: ChatGPT oder Copilot für Ihre eigenen Texte testen. <a href="/handwerk">Handwerks-Pakete</a> mit KI-Telefon ab 2.800 €.</p>
+<p>Starten Sie mit dem KI-Telefonassistenten – der größte Impact bei wenig Aufwand. Parallel: ChatGPT oder Copilot für Ihre eigenen Texte testen. Die passende Umsetzung klären wir im <a href="/kontakt">Erstgespräch</a>.</p>
 `,
   relatedSlugs: [
     "ki-telefonassistent-vergleich",
@@ -421,8 +421,8 @@ const CLUSTER_3_ARTICLES: RatgeberArticle[] = [
 <h2>Anbieter für Handwerker</h2>
 <p>Es gibt verschiedene Anbieter – von günstigen Standardlösungen bis zu maßgeschneiderten Trainings. Wir setzen auf individuelle Anpassung: Der Assistent kennt Ihre Leistungen, Ihre Region, Ihre Sprache. <a href="/ratgeber/ki-telefonassistent-handwerk">So funktioniert der KI-Telefonassistent</a>.</p>
 
-<h2>Kosten</h2>
-<p>Als Modul ab ca. 690 € oder im <a href="/handwerk#pakete">Marktführer-Paket</a> inklusive. Monatliche Gebühren je nach Anbieter.</p>
+<h2>Umfang</h2>
+<p>Als Modul oder im <a href="/handwerk#pakete">Marktführer-Paket</a> umsetzbar. Die passende Lösung und laufende Kosten klären wir je nach Anbieter im Erstgespräch.</p>
 `,
     relatedSlugs: ["ki-im-handwerk", "ki-telefonassistent-handwerk", "automatisierung-handwerksbetrieb"],
     datePublished: "2026-01-30",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -11,6 +11,8 @@ interface ChatInputProps {
   disabled?: boolean;
   isLoading?: boolean;
   placeholder?: string;
+  mobilePlaceholder?: string;
+  mobilePlaceholderBreakpoint?: number;
   className?: string;
 }
 
@@ -21,10 +23,26 @@ export function ChatInput({
   disabled = false,
   isLoading = false,
   placeholder = "Ihre Frage…",
+  mobilePlaceholder,
+  mobilePlaceholderBreakpoint = 370,
   className,
 }: ChatInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [isMobilePlaceholder, setIsMobilePlaceholder] = useState(false);
   const isSubmitDisabled = disabled || isLoading || !value.trim();
+
+  useEffect(() => {
+    if (!mobilePlaceholder) return;
+
+    const mediaQuery = window.matchMedia(`(max-width: ${mobilePlaceholderBreakpoint}px)`);
+    const update = () => setIsMobilePlaceholder(mediaQuery.matches);
+
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, [mobilePlaceholder, mobilePlaceholderBreakpoint]);
+
+  const resolvedPlaceholder = isMobilePlaceholder && mobilePlaceholder ? mobilePlaceholder : placeholder;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +59,7 @@ export function ChatInput({
         ref={textareaRef}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder}
+        placeholder={resolvedPlaceholder}
         disabled={disabled}
         rows={1}
         aria-label="Ihre Nachricht an den Assistenten"

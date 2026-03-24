@@ -214,7 +214,7 @@ export const HANDWERK_STATS = [
 export const HANDWERK_GARANTIEN = [
   {
     title: "Festpreis bis Abnahme",
-    description: "Der Preis, den wir nennen, ist der Preis, den Sie zahlen. Keine versteckten Kosten, keine Nachforderungen – was im Angebot steht, gilt.",
+    description: "Klare Konditionen bis zur Abnahme. Keine versteckten Positionen, keine Nachforderungen – was im Angebot steht, gilt.",
   },
   {
     title: "12 Monate Support inklusive",
@@ -345,7 +345,7 @@ export const FAQ_ITEMS = [
   {
     question: "Was kostet eine Website bei Berneby Solutions?",
     answer:
-      "Wir bieten die Projektpakete STARTKLAR (ab 600 €), SICHTBAR (1.000 €) und PARTNER (2.000 €) mit transparenten Leistungsinhalten. Alle Details finden Sie auf unserer Handwerk-Seite. Für individuelle Webprojekte erstellen wir ein unverbindliches Angebot im Erstgespräch.",
+      "Wir bieten die Projektpakete STARTKLAR, SICHTBAR und PARTNER mit transparenten Leistungsinhalten. Alle Details und den passenden Umfang klären wir im unverbindlichen Erstgespräch.",
   },
   {
     question: "Arbeitet ihr nur mit Handwerkern?",
@@ -375,7 +375,7 @@ export const FAQ_ITEMS = [
   {
     question: "Was ist der Digitale Hausmeister?",
     answer:
-      "Eine 10er-Stundenkarte für 850 \u20AC. Sie rufen an, wenn etwas klemmt – Excel-Problem, Website-Frage, Software-Setup. Wir helfen. 12 Monate gültig.",
+      "Eine 10er-Stundenkarte. Sie rufen an, wenn etwas klemmt – Excel-Problem, Website-Frage, Software-Setup. Wir helfen. Details und Konditionen besprechen wir im Erstgespräch.",
   },
   {
     question: "Bietet ihr auch Wartung an?",
@@ -385,7 +385,7 @@ export const FAQ_ITEMS = [
   {
     question: "Könnt ihr auch einen Online-Shop einrichten?",
     answer:
-      "Ja. Wir arbeiten mit Shopify und WooCommerce. Den Umfang und die Kosten legen wir gemeinsam im Angebot fest.",
+      "Ja. Wir arbeiten mit Shopify und WooCommerce. Umfang und Konditionen legen wir gemeinsam im Erstgespräch fest.",
   },
   {
     question: "Wo sitzt ihr?",
@@ -401,8 +401,8 @@ export const FAQ_ITEMS = [
 export const CRAFT_PACKAGES = [
   {
     name: "STARTKLAR",
-    price: "600",
-    unit: "einmalig",
+    price: "Erstgespräch",
+    unit: "individuell",
     description: "Basis-Webauftritt für lokale Sichtbarkeit.",
     features: [
       "Basis-Strategie-Workshop",
@@ -416,8 +416,8 @@ export const CRAFT_PACKAGES = [
   },
   {
     name: "SICHTBAR",
-    price: "1.000",
-    unit: "einmalig",
+    price: "Erstgespräch",
+    unit: "individuell",
     description: "Erweiterter Auftritt mit Branding, SEO-Grundlagen & Social.",
     features: [
       "Alles aus STARTKLAR",
@@ -427,12 +427,11 @@ export const CRAFT_PACKAGES = [
       "Setup von bis zu 2 Social-Media-Kanälen",
     ],
     highlighted: true,
-    badge: "Bestseller".trim(),
   },
   {
     name: "PARTNER",
-    price: "2.000",
-    unit: "einmalig",
+    price: "Erstgespräch",
+    unit: "individuell",
     description: "Komplettpaket mit Individualfunktionen & Start in die Betreuung.",
     features: [
       "Alles aus SICHTBAR",
@@ -452,28 +451,28 @@ export const CRAFT_PACKAGES = [
 export const CRAFT_MODULES = [
   {
     name: "Klick-Dominator",
-    price: "350",
+    price: "Erstgespräch",
     description:
       "Moderne Website mit gezielten lokalen Landingpages – Ihr Betrieb wird im relevanten Umkreis besser gefunden.",
     icon: "IconMapPin",
   },
   {
     name: "KI-Empfang",
-    price: "690",
+    price: "Erstgespräch",
     description:
       "KI-gestützter digitaler Empfang: nimmt Anfragen (Telefon, Formulare) entgegen, vorsortiert und dokumentiert.",
     icon: "IconPhoneCall",
   },
   {
     name: "5-Sterne-Plus",
-    price: "290",
+    price: "Erstgespräch",
     description:
       "Bewertungs- und Reputationsmanagement: strukturierter Umgang mit Online-Bewertungen, Anstoß neuer Bewertungen.",
     icon: "IconStar",
   },
   {
     name: "Kennzahlen-Live",
-    price: "inkl.",
+    price: "Im Erstgespräch",
     description:
       "Einfacher Zugriff auf die wichtigsten Kennzahlen (Website-Besucher, Anfragen, Bewertungen) in einem klaren Dashboard.",
     icon: "IconChartBar",
@@ -491,17 +490,17 @@ export const SERVICES = {
       {
         title: "One-Pager",
         description: "Kompakte Website mit allen wichtigen Informationen auf einer Seite.",
-        price: "ab 600",
+        price: "Erstgespräch",
       },
       {
         title: "Mehrseitige Website",
         description: "Professioneller Webauftritt mit mehreren Unterseiten und SEO.",
-        price: "ab 1.000",
+        price: "Erstgespräch",
       },
       {
         title: "Landing Page",
         description: "Conversion-optimierte Seite für Kampagnen und Aktionen.",
-        price: "ab 690",
+        price: "Erstgespräch",
       },
     ],
   },
@@ -511,12 +510,12 @@ export const SERVICES = {
       {
         title: "Shopify Shop",
         description: "Professioneller Online-Shop mit Shopify – schnell, skalierbar, sicher.",
-        price: "ab 1.200",
+        price: "Erstgespräch",
       },
       {
         title: "WooCommerce Shop",
         description: "WordPress-basierter Online-Shop mit voller Flexibilität.",
-        price: "ab 1.500",
+        price: "Erstgespräch",
       },
     ],
   },
@@ -526,12 +525,12 @@ export const SERVICES = {
       {
         title: "Logo Design",
         description: "Einzigartiges Logo, das Ihren Betrieb repräsentiert.",
-        price: "ab 450",
+        price: "Erstgespräch",
       },
       {
         title: "Corporate Design",
         description: "Visitenkarten, Briefpapier, Fahrzeugbeschriftung – alles aus einem Guss.",
-        price: "ab 890",
+        price: "Erstgespräch",
       },
     ],
   },
@@ -541,18 +540,18 @@ export const SERVICES = {
       {
         title: "Microsoft 365 Setup",
         description: "E-Mail, Teams, OneDrive – professionell eingerichtet und erklärt.",
-        price: "ab 290",
+        price: "Erstgespräch",
       },
       {
         title: "KI-Schulung",
         description: "Wie Sie ChatGPT, Copilot und andere KI-Tools produktiv nutzen.",
-        price: "ab 190",
+        price: "Erstgespräch",
       },
       {
         title: "Digitaler Hausmeister",
         description:
           "10 Stunden Tech-Support, flexibel einsetzbar. Wie ein Hausmeister – aber für Ihre IT.",
-        price: "850",
+        price: "Erstgespräch",
       },
     ],
   },
@@ -562,12 +561,12 @@ export const SERVICES = {
       {
         title: "Google Ads",
         description: "Bezahlte Anzeigen, die sofort Kunden bringen.",
-        price: "ab 490",
+        price: "Erstgespräch",
       },
       {
         title: "Social Recruiting",
         description: "Mitarbeiter finden über Social Media – dort, wo sie sich aufhalten.",
-        price: "ab 690",
+        price: "Erstgespräch",
       },
     ],
   },
@@ -577,12 +576,12 @@ export const SERVICES = {
       {
         title: "Basis-Wartung",
         description: "Updates, Backups, Monitoring – Ihre Website bleibt sicher.",
-        price: "ab 45/Monat",
+        price: "Erstgespräch",
       },
       {
         title: "Premium-Wartung",
         description: "Alles aus Basis plus 2 Stunden Support und Content-Updates.",
-        price: "ab 180/Monat",
+        price: "Erstgespräch",
       },
     ],
   },
@@ -595,7 +594,7 @@ export const SERVICES = {
 export const WARUM_BERNEBY = [
   { point: "Persönlich", detail: "Keine Ticketnummer. Sie sprechen direkt mit Ihren Ansprechpartnern." },
   { point: "Lokal", detail: "Aus dem Erzgebirge, für das Erzgebirge. Kurze Wege, echtes Verständnis." },
-  { point: "Fair", detail: "Transparente Preise. Kein Kleingedrucktes, keine Überraschungen." },
+  { point: "Fair", detail: "Transparente Konditionen. Kein Kleingedrucktes, keine Überraschungen." },
   { point: "Ganzheitlich", detail: "Von der Website über SEO bis zum KI-Telefon – alles aus einer Hand." },
 ] as const;
 
@@ -691,17 +690,17 @@ export const PAGE_META = {
   home: {
     title: "Webdesign & IT-Service Erzgebirge | Berneby Solutions",
     description:
-      "Websites, KI-Telefon & lokale SEO für Handwerker im Erzgebirge. Ab 950 € – Festpreis, 4 Wochen bis Go-Live. Kostenloses Erstgespräch.",
+      "Websites, KI-Telefon & lokale SEO für Handwerker im Erzgebirge. Transparent geplant, verbindlich umgesetzt. Kostenloses Erstgespräch.",
   },
   handwerk: {
-    title: "Website für Handwerker ab 950 € | Berneby Solutions Erzgebirge",
+    title: "Website für Handwerker | Berneby Solutions Erzgebirge",
     description:
-      "Handwerker-Websites mit 50+ lokalen Landingpages, KI-Telefonassistent & Google Ads. Festpreis, 4 Wochen bis Go-Live. Jetzt Erstgespräch buchen.",
+      "Handwerker-Websites mit 50+ lokalen Landingpages, KI-Telefonassistent & Google Ads. Umfang und Umsetzung klären wir im Erstgespräch.",
   },
   tech: {
     title: "IT-Service & Webentwicklung Erzgebirge | Berneby Solutions",
     description:
-      "Webseiten, Online-Shops, Microsoft 365, KI-Schulung & IT-Support für KMU im Erzgebirge. Digitaler Hausmeister ab 850 €. Jetzt beraten lassen.",
+      "Webseiten, Online-Shops, Microsoft 365, KI-Schulung & IT-Support für KMU im Erzgebirge. Digitaler Hausmeister inklusive Erstgespräch. Jetzt beraten lassen.",
   },
   ueberUns: {
     title: "Über Berneby Solutions – Lennard Meyer & Daniel Hamburg | Erzgebirge",

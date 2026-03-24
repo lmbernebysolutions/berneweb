@@ -16,7 +16,7 @@ function MissionVariantA() {
     },
     {
       title: "Transparent & fair",
-      text: "Feste Preise, klare Angebote. Kein Kleingedrucktes.",
+      text: "Klare Konditionen, klare Angebote. Kein Kleingedrucktes.",
     },
   ];
   return (
@@ -58,7 +58,7 @@ function MissionVariantB() {
             {[
               "Webseiten und Shops planen und umsetzen",
               "IT-Support und Beratung auf Abruf",
-              "Klare Preise, keine versteckten Kosten",
+              "Klare Konditionen, keine versteckten Kosten",
               "Aus dem Erzgebirge, für die Region",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2">

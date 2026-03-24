@@ -235,6 +235,8 @@ export function ChatSection({
               onSubmit={handleFaqSubmit}
               isLoading={faqLoading}
               placeholder="Offene Frage stellen…"
+              mobilePlaceholder="Fragen stellen..."
+              mobilePlaceholderBreakpoint={370}
             />
           </div>
         </div>

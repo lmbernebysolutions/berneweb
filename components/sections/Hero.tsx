@@ -230,10 +230,28 @@ export function Hero({
                       asChild
                       variant={cta.variant === "default" || i === 0 ? "default" : "outline-light"}
                       size="lg"
-                      className={cn("text-sm sm:text-base")}
+                      className={cn(
+                        "text-sm sm:text-base",
+                        cta.variant !== "default" && "group relative isolate overflow-hidden bg-transparent"
+                      )}
                     >
                       <Link href={cta.href}>
-                        {cta.label}
+                        {cta.variant !== "default" ? (
+                          <>
+                            <span
+                              aria-hidden="true"
+                              className="pointer-events-none absolute inset-0 transition-opacity duration-200 group-hover:opacity-0"
+                              style={{
+                                backdropFilter: "blur(110px) saturate(0.65) brightness(0.8)",
+                                WebkitBackdropFilter: "blur(110px) saturate(0.65) brightness(0.8)",
+                                background: "rgba(40,53,105,0.36)",
+                              }}
+                            />
+                            <span className="relative z-10">{cta.label}</span>
+                          </>
+                        ) : (
+                          cta.label
+                        )}
                       </Link>
                     </Button>
                   ))}

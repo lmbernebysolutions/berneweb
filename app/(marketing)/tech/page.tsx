@@ -176,7 +176,7 @@ export default function TechPage() {
                     number="05"
                     overline="Flatrate"
                     title="Der Digitale Hausmeister"
-                    subtitle="10 Stunden Tech-Support für 850 € – flexibel einsetzbar für Web, Office und Notfälle."
+                    subtitle="10 Stunden Tech-Support – flexibel einsetzbar für Web, Office und Notfälle. Details klären wir im Erstgespräch."
                     align="left"
                     light
                 />
@@ -184,9 +184,6 @@ export default function TechPage() {
                     <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none" />
 
                     <div className="relative z-10">
-                        <div className="mb-6 inline-flex items-center border border-brand-warm bg-brand-warm px-4 py-1 text-xs font-bold text-brand-navy uppercase tracking-widest">
-                            Best Seller
-                        </div>
                         <h2 className="text-3xl md:text-5xl font-black text-white uppercase leading-none mb-6">
                             10er Karte<br />Support
                         </h2>
@@ -203,12 +200,8 @@ export default function TechPage() {
                                 </li>
                             ))}
                         </ul>
-                        <div className="flex items-baseline gap-4 mb-8">
-                            <span className="text-4xl font-bold text-brand-warm">850 €</span>
-                            <span className="text-sm font-mono text-brand-navy-muted">netto / Paket</span>
-                        </div>
                         <Button asChild size="lg" className="bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90 w-full md:w-auto">
-                            <Link href="/kontakt">Karte sichern</Link>
+                            <Link href="/kontakt">Erstgespräch</Link>
                         </Button>
                     </div>
 
@@ -336,15 +329,27 @@ export default function TechPage() {
                         provider: { "@id": `${SITE_URL}/#organization` },
                         name: "IT-Service & Webentwicklung Erzgebirge",
                         description:
-                            "Webseiten, Online-Shops, Microsoft 365, KI-Schulung & IT-Support für KMU im Erzgebirge. Digitaler Hausmeister ab 850 €.",
+                            "Webseiten, Online-Shops, Microsoft 365, KI-Schulung & IT-Support für KMU im Erzgebirge. Details und Umfang klären wir im Erstgespräch.",
                         areaServed: { "@type": "AdministrativeArea", name: "Erzgebirgskreis" },
                         hasOfferCatalog: {
                             "@type": "OfferCatalog",
                             name: "Tech-Leistungen",
                             itemListElement: [
-                                { "@type": "Offer", name: "One-Pager", price: "950", priceCurrency: "EUR" },
-                                { "@type": "Offer", name: "Mehrseitige Website", price: "1950", priceCurrency: "EUR" },
-                                { "@type": "Offer", name: "Digitaler Hausmeister", price: "850", priceCurrency: "EUR" },
+                                {
+                                    "@type": "Offer",
+                                    itemOffered: { "@type": "Service", name: "One-Pager" },
+                                    url: `${SITE_URL}/kontakt`,
+                                },
+                                {
+                                    "@type": "Offer",
+                                    itemOffered: { "@type": "Service", name: "Mehrseitige Website" },
+                                    url: `${SITE_URL}/kontakt`,
+                                },
+                                {
+                                    "@type": "Offer",
+                                    itemOffered: { "@type": "Service", name: "Digitaler Hausmeister" },
+                                    url: `${SITE_URL}/kontakt`,
+                                },
                             ],
                         },
                     }),

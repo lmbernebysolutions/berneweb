@@ -131,9 +131,14 @@ export default async function RatgeberArticlePage({
                 <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-brand-cyan mb-4">
                   Zum Thema
                 </h3>
-                <Button asChild variant="outline" className="border-brand-cyan/30 text-brand-cyan hover:bg-brand-cyan/10">
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full max-w-full justify-start border-brand-cyan/30 text-left normal-case tracking-normal whitespace-normal break-words leading-snug hover:bg-brand-cyan/10"
+                >
                   <Link href={`/ratgeber/${article.pillarSlug}`}>
-                    {pillarArticle.title} <IconArrowRight className="size-4 ml-2" />
+                    <span className="min-w-0">{pillarArticle.title}</span>
+                    <IconArrowRight className="ml-2 size-4 shrink-0 max-[359px]:hidden" />
                   </Link>
                 </Button>
               </div>

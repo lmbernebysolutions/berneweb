@@ -22,7 +22,7 @@ const ORGANIZATION_SCHEMA = {
       image: `${SITE_URL}/og-image.png`,
       telephone: "+4915511960927",
       email: COMPANY.email,
-      priceRange: "€€",
+      priceRange: "auf Anfrage",
       areaServed: {
         "@type": "AdministrativeArea",
         name: COMPANY.region,
