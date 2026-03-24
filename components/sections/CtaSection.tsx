@@ -53,6 +53,7 @@ export function CtaSection({ headline, subline, ctas, showRatgeberLink = true }:
                 variant={i === 0 ? "default" : "outline"}
                 size="lg"
                 asChild
+                className="max-[359px]:min-h-12 max-[359px]:px-7 max-[359px]:text-xs"
               >
                 <Link href={cta.href}>
                   {cta.label}

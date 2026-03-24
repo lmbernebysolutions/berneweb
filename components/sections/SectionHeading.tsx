@@ -71,10 +71,10 @@ export function SectionHeading({
           </div>
         )}
         {/* TechCorners: Platz rechts reservieren; relative z-10 damit rechter Corner nicht unter dem Heading-Text liegt */}
-        <div className={cn(align === "center" && "text-center", "pr-16 sm:pr-14 md:pr-16")}>
+        <div className={cn(align === "center" && "text-center", "pr-16 sm:pr-14 md:pr-16 max-[359px]:pr-0")}>
           <Tag
             className={cn(
-              "relative inline font-display uppercase tracking-tight text-balance leading-[1.1] max-w-full",
+              "relative inline-block font-display uppercase tracking-tight text-balance leading-[1.1] max-w-full max-[359px]:break-normal max-[359px]:[word-break:keep-all]",
               compactMobileTitle
                 ? "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl"
                 : "text-4xl lg:text-5xl xl:text-6xl",
@@ -83,7 +83,7 @@ export function SectionHeading({
           >
             <span
               className={cn(
-                "relative z-10 inline-block h-3 w-3 sm:h-4 sm:w-4 border-t-2 border-l-2 transition-colors mr-1 sm:mr-1.5 -mt-0.5 sm:-mt-1 align-top tech-corner-tl tech-corner-animate",
+                "relative z-10 inline-block h-3 w-3 sm:h-4 sm:w-4 border-t-2 border-l-2 transition-colors mr-1 sm:mr-1.5 -mt-0.5 sm:-mt-1 align-top tech-corner-tl tech-corner-animate max-[359px]:h-[8px] max-[359px]:w-[8px] max-[359px]:mr-[6px] max-[359px]:-mt-[2px]",
                 onLight ? "border-brand-navy/30" : "border-brand-cyan/40"
               )}
               aria-hidden="true"
@@ -119,7 +119,7 @@ export function SectionHeading({
             )}
             <span
               className={cn(
-                "relative z-10 inline-block h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-r-2 transition-colors ml-1 sm:ml-1.5 -mb-0.5 sm:-mb-1 align-bottom tech-corner-br tech-corner-animate",
+                "relative z-10 inline-block h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-r-2 transition-colors ml-1 sm:ml-1.5 -mb-0.5 sm:-mb-1 align-bottom tech-corner-br tech-corner-animate max-[359px]:h-[8px] max-[359px]:w-[8px] max-[359px]:ml-[6px] max-[359px]:-mb-[2px]",
                 onLight ? "border-brand-navy/30" : "border-brand-cyan/40"
               )}
               aria-hidden="true"

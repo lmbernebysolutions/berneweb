@@ -84,14 +84,14 @@ export default function KontaktPage() {
 
       {/* Contact Info + Form Grid – keine Variant (nur 02 hat subtle) */}
       <Section bg="transparent">
-        <div className="grid gap-8 lg:grid-cols-5 lg:items-stretch">
+        <div className="grid gap-8 lg:grid-cols-5 lg:items-stretch min-w-0">
           {/* Left: Contact Info + Map + Städte */}
-          <div className="flex flex-col gap-4 lg:col-span-2 lg:min-h-0">
+          <div className="flex min-w-0 flex-col gap-4 lg:col-span-2 lg:min-h-0">
             {/* Schnell-Kontakt: Jetzt anrufen */}
             <SectionCard
               variant="default"
               data-animate="fade-left"
-              className="overflow-hidden p-0 shrink-0"
+              className="w-full overflow-hidden p-0 shrink-0"
             >
               <TechCorners pattern="diagonal" variant="cyan" size="sm" />
               <div className="relative z-10 p-5">
@@ -117,7 +117,7 @@ export default function KontaktPage() {
                 variant="default"
                 data-animate="fade-left"
                 data-animate-delay={String(i * 80)}
-                className="shrink-0 p-5"
+                className="w-full shrink-0 p-5"
               >
                 <div>
                   <div className="flex items-center gap-3">
@@ -152,7 +152,7 @@ export default function KontaktPage() {
               variant="default"
               data-animate="fade-left"
               data-animate-delay="320"
-              className="flex min-h-0 flex-1 flex-col p-5"
+              className="flex w-full min-h-0 flex-1 flex-col p-5"
             >
               <p className="text-sm leading-relaxed text-muted-foreground">
                 Nicht sicher, was Sie brauchen? Schauen Sie sich unsere{" "}
@@ -175,8 +175,8 @@ export default function KontaktPage() {
           </div>
 
           {/* Right: Form */}
-          <div data-animate="fade-right" className="flex flex-col lg:col-span-3">
-            <SectionCard variant="default" className="flex-1 p-6 md:p-8">
+          <div data-animate="fade-right" className="flex min-w-0 flex-col lg:col-span-3">
+            <SectionCard variant="default" className="w-full flex-1 p-6 md:p-8">
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-xl font-extrabold uppercase tracking-wide">Nachricht schreiben</h2>
@@ -191,13 +191,13 @@ export default function KontaktPage() {
         </div>
 
         {/* Ort-Elemente unter Form: Map, Einzugsgebiet, Erreichbarkeit – Tablet: Map volle Breite wie Form */}
-        <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-3">
+        <div className="mt-8 grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-3">
           {/* Map – nur nach Cookie-Zustimmung (Alle akzeptieren) */}
           <ConsentMapCard
             locationLabel={`${COMPANY.location}, ${COMPANY.region}`}
             googleMapsHref={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAPS_SEARCH_QUERY)}`}
             appleMapsHref={`https://maps.apple.com/?q=${encodeURIComponent(MAPS_SEARCH_QUERY)}`}
-            className="overflow-hidden p-0"
+            className="w-full overflow-hidden p-0"
           />
 
           {/* Einzugsgebiet */}
@@ -205,7 +205,7 @@ export default function KontaktPage() {
             variant="default"
             data-animate="fade-up"
             data-animate-delay="150"
-            className="p-5"
+            className="w-full p-5"
           >
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan/60">
               Einzugsgebiet
@@ -228,16 +228,16 @@ export default function KontaktPage() {
             variant="default"
             data-animate="fade-up"
             data-animate-delay="200"
-            className="p-5"
+            className="w-full p-5 min-w-0"
           >
             {/* Mobile: nebeneinander; sm+: übereinander */}
-            <div className="flex flex-row gap-4 sm:flex-col sm:gap-0">
+            <div className="flex min-w-0 flex-row gap-4 max-[339px]:flex-col sm:flex-col sm:gap-0">
               {/* Öffnungszeiten */}
               <div className="flex-1 min-w-0 sm:flex-none flex flex-col items-center sm:items-start text-center sm:text-left">
                 <div className="flex items-center gap-2.5 text-sm font-semibold">
                   <span className="uppercase tracking-wide">Erreichbarkeit</span>
                 </div>
-                <div className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+                <div className="mt-3 space-y-1.5 text-sm text-muted-foreground max-[339px]:text-xs">
                   <p>Mo – Fr: 9:00 – 18:00 Uhr</p>
                   <p>Sa – So: Nach Vereinbarung</p>
                 </div>
@@ -245,12 +245,12 @@ export default function KontaktPage() {
 
               {/* Trennlinie: vertikal auf Mobile, horizontal auf sm+ */}
               <div
-                className="self-stretch w-px bg-white/10 sm:w-auto sm:h-px sm:self-auto sm:my-4"
+                className="self-stretch w-px bg-white/10 max-[339px]:hidden sm:w-auto sm:h-px sm:self-auto sm:my-4"
                 aria-hidden="true"
               />
 
               {/* Social Media Grid 2×2 – wie Footer (CONTAINER_A, kein TechCorners) */}
-              <div className="grid grid-cols-2 gap-2 shrink-0 sm:shrink sm:w-full">
+              <div className="grid min-w-0 flex-1 grid-cols-2 gap-2 max-[339px]:w-full sm:w-full">
                 {SOCIAL_LINKS.map((link) => {
                   const Icon = KONTAKT_SOCIAL_ICONS[link.label as keyof typeof KONTAKT_SOCIAL_ICONS];
                   return (

@@ -111,7 +111,7 @@ export function ProblemToSolutionScrollSection() {
                   {/* Problem row */}
                   <div
                     className={cn(
-                      "absolute inset-0 border-l-2 bg-white/[0.02] p-4 transition-opacity duration-300",
+                      "absolute inset-0 border-l-2 bg-white/[0.02] p-4 max-[359px]:p-3 transition-opacity duration-300",
                       progress > 0.5 ? "opacity-0 pointer-events-none border-white/10" : "opacity-100"
                     )}
                   >
@@ -119,12 +119,14 @@ export function ProblemToSolutionScrollSection() {
                       <span>{item.label}</span>
                       <span className="text-white/20">— {item.risk}</span>
                     </div>
-                    <p className="mt-1 font-medium text-brand-navy-muted">{item.val}</p>
+                    <p className="mt-1 font-medium text-brand-navy-muted max-[359px]:text-xs max-[359px]:leading-[1.2] max-[359px]:whitespace-nowrap">
+                      {item.val}
+                    </p>
                   </div>
                   {/* Solution row */}
                   <div
                     className={cn(
-                      "absolute inset-0 border-l-2 border-brand-cyan bg-brand-cyan/10 p-4 transition-opacity duration-300",
+                      "absolute inset-0 border-l-2 border-brand-cyan bg-brand-cyan/10 p-4 max-[359px]:p-3 transition-opacity duration-300",
                       progress > 0.5 ? "opacity-100" : "opacity-0 pointer-events-none"
                     )}
                   >
@@ -135,7 +137,9 @@ export function ProblemToSolutionScrollSection() {
                         ↑ {sol.gain}
                       </span>
                     </div>
-                    <p className="mt-1 font-bold text-white">{sol.val}</p>
+                    <p className="mt-1 text-sm font-bold text-white max-[359px]:text-xs max-[359px]:leading-[1.2] max-[359px]:whitespace-nowrap">
+                      {sol.val}
+                    </p>
                   </div>
                 </div>
               );

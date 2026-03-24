@@ -301,7 +301,10 @@ export function ReferenzCard({
               </Button>
             )}
             <Button asChild variant="outline-light" size="sm">
-              <Link href="/kontakt">Ähnliches Projekt anfragen</Link>
+              <Link href="/kontakt">
+                <span className="max-[359px]:hidden">Ähnliches Projekt anfragen</span>
+                <span className="hidden max-[359px]:inline">Projekt anfragen</span>
+              </Link>
             </Button>
           </div>
         </div>
