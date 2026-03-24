@@ -163,9 +163,3 @@ export const REFERENZEN: Referenz[] = [
   },
 ];
 
-export const REFERENZEN_STATS = [
-  { wert: "100%", label: "Projekte pünktlich geliefert" },
-  { wert: "∅ 4 Wo.", label: "Time-to-Live" },
-  { wert: "∅ +180%", label: "Anfragen-Steigerung" },
-  { wert: "4.9★", label: "Kundenzufriedenheit" },
-] as const;

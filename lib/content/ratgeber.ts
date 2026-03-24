@@ -533,11 +533,11 @@ export function getAllArticleSlugs(): string[] {
   return ALL_ARTICLES.map((a) => a.slug);
 }
 
-export function getArticlesByCluster(cluster: string): RatgeberArticle[] {
+function getArticlesByCluster(cluster: string): RatgeberArticle[] {
   return ALL_ARTICLES.filter((a) => a.cluster === cluster);
 }
 
-export function getPillarArticles(): RatgeberArticle[] {
+function getPillarArticles(): RatgeberArticle[] {
   return ALL_ARTICLES.filter((a) => a.slug === a.pillarSlug);
 }
 

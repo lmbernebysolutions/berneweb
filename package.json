@@ -13,11 +13,11 @@
     "audit:fix": "pnpm audit fix",
     "analyze": "ANALYZE=true next build --webpack",
     "deploy": "vercel --prod --yes",
-    "optimize:team": "node scripts/optimize-team-images.mjs",
-    "capture:slides:v2": "node scripts/capture-slides.mjs /socials-v2 exports/slides",
+    "capture:slides:v2": "node scripts/capture-slides.mjs /socials-v2 exports/slides-v2",
     "capture:slides:kerngeschaft": "node scripts/capture-slides.mjs /socials-kerngeschaft exports/slides-kerngeschaft",
+    "capture:slides:partnerschaft": "node scripts/capture-slides.mjs /socials-partnerschaft exports/slides-partnerschaft",
     "capture:slides:referenzen": "node scripts/capture-slides.mjs /socials-referenzen exports/slides-referenzen",
-    "capture:facebook-banner": "node scripts/capture-facebook-banner.mjs /socials-facebook-banner exports/facebook-banner"
+    "capture:slides:all": "node scripts/capture-slides-all.mjs"
   },
   "dependencies": {
     "@ai-sdk/google": "^3.0.30",
@@ -30,7 +30,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
-    "isomorphic-dompurify": "^2.36.0",
     "next": "16.1.6",
     "radix-ui": "^1.4.3",
     "react": "19.2.3",

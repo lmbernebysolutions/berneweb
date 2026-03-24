@@ -4,7 +4,7 @@
  *
  * Typ A – Neutral: Standard-Karten, Listen, Social-Buttons
  * Typ B – Akzent: Hervorgehobene Karten (Handwerk, Mit uns, Referenz, Zitat)
- * Typ C – Nur Struktur: border-l-4 etc., kein Vollrahmen (StatementSectionV3, WarumBernebyV3)
+ * Typ C wurde entfernt (nicht genutzt).
  */
 
 export const CONTAINER_A =
@@ -23,5 +23,3 @@ export const CONTAINER_B =
 export const CONTAINER_B_STATIC =
   "border border-brand-cyan/20 bg-brand-navy/60 backdrop-blur-md";
 
-/** Nur Struktur (z. B. border-l-4) – keine Klassen hier, Komponenten behalten ihre border-l-4. */
-export const CONTAINER_C = null;

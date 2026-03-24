@@ -122,15 +122,6 @@ export const TRUST_BAR = [
 // TECH STACK / PARTNER (Home, Tech)
 // =============================================================================
 
-export const TECH_STACK = [
-  "Next.js",
-  "React",
-  "Shopware",
-  "Microsoft 365",
-  "SEO & GEO",
-  "KI-Integration",
-] as const;
-
 /** Mit Kundennutzen für Nicht-Techniker (V3: Nutzenzeile unter Tech-Namen) */
 export const TECH_STACK_WITH_BENEFIT = [
   { name: "Next.js", benefit: "Blitzschnelle Ladezeiten" },
@@ -152,22 +143,6 @@ export const TECH_STATS = [
 // =============================================================================
 // REFERENZEN – BRANCHEN / FÜR WEN WIR ARBEITEN (Home, Handwerk)
 // =============================================================================
-
-/** Handwerk-Seite: 4 Branchen, passen sauber in den Strip */
-export const REFERENZEN_BRANCHEN = [
-  "Elektrik",
-  "Dachdecker",
-  "Sanitär",
-  "Heizungsbau",
-] as const;
-
-/** Home: 4 Branchen, passen sauber in den Strip */
-export const REFERENZEN_HOME = [
-  "Handwerk",
-  "Einzelhandel",
-  "Gastronomie",
-  "Dienstleistung",
-] as const;
 
 // =============================================================================
 // HOME – MINI-FAQ
@@ -207,24 +182,6 @@ export const TECH_TESTIMONIALS = [
     role: "Arztpraxis",
     text: "Hervorragende Arbeit: moderne, intuitive und patientenfreundliche Website. Unkomplizierte Zusammenarbeit, Änderungen umgehend. Wärmstens weiterempfehlen!",
     result: "Website-Relaunch",
-  },
-] as const;
-
-export const TECH_REFERENCES = [
-  {
-    title: "Website Relaunch",
-    description: "Mehrseitige Website mit SEO und lokalen Landingpages.",
-    result: "3x mehr Anfragen in 4 Wochen",
-  },
-  {
-    title: "Online-Shop",
-    description: "Shop-Einrichtung und Betreuung für Handwerksbedarf.",
-    result: "Live in 3 Wochen",
-  },
-  {
-    title: "Digitaler Hausmeister",
-    description: "10er-Karte für laufenden IT-Support und Office-Betreuung.",
-    result: "24/7 Ruhe bei IT-Fragen",
   },
 ] as const;
 
@@ -512,42 +469,6 @@ export const CRAFT_MODULES = [
 // LEISTUNGEN – SERVICE TABS
 // =============================================================================
 
-/** Nur Webseiten-Arten und Digitaler Hausmeister fürs Tech-Leistungsgrid (ohne Paketnamen) */
-export const LEISTUNGSGRID_TECH = [
-  {
-    key: "webseiten",
-    title: "Webseiten",
-    items: [
-      {
-        title: "One-Pager",
-        description: "Kompakte Website mit allen wichtigen Infos auf einer Seite.",
-        price: "ab 600",
-      },
-      {
-        title: "Mehrseitige Website",
-        description: "Professioneller Webauftritt mit mehreren Unterseiten und SEO.",
-        price: "ab 1.000",
-      },
-      {
-        title: "Landing Page",
-        description: "Conversion-optimierte Seite für Kampagnen und Aktionen.",
-        price: "ab 690",
-      },
-    ],
-  },
-  {
-    key: "hausmeister",
-    title: "Digitaler Hausmeister",
-    items: [
-      {
-        title: "10er-Karte Support",
-        description: "10 Stunden Tech-Support, flexibel einsetzbar. Web, Office, Notfälle – 12 Monate gültig.",
-        price: "850",
-      },
-    ],
-  },
-] as const;
-
 export const SERVICES = {
   webseiten: {
     title: "Webseiten",
@@ -730,13 +651,6 @@ export const VALUES = [
 // ÜBER UNS – KENNZAHLEN & STANDORT
 // =============================================================================
 
-export const UEBER_UNS_STATS = [
-  { value: "2025", label: "Gegründet" },
-  { value: "2", label: "Ansprechpartner" },
-  { value: "100%", label: "Erzgebirge" },
-  { value: "24/7", label: "KI-Telefon" },
-] as const;
-
 export const EINZUGSGEBIET_ORTE = [
   "Aue-Bad Schlema",
   "Annaberg-Buchholz",
@@ -750,24 +664,9 @@ export const EINZUGSGEBIET_ORTE = [
 // KONTAKT – ANFAHRT
 // =============================================================================
 
-export const ANFAHRT = {
-  auto: "Kostenlose Parkmöglichkeiten in der Nähe. Wir arbeiten überwiegend remote und kommen zu Ihnen – kurze Wege im gesamten Erzgebirgskreis.",
-  oepnv: "Aue-Bad Schlema ist mit Bus und Bahn erreichbar. Für ein persönliches Treffen vereinbaren wir einen Termin – wir kommen auch zu Ihnen.",
-  hinweis: "Wir arbeiten digital und persönlich. Kurze Wege im gesamten Erzgebirgskreis – wir kommen zu Ihnen.",
-} as const;
-
 // =============================================================================
 // KONTAKT – BETREFF-OPTIONEN
 // =============================================================================
-
-export const CONTACT_SUBJECTS = [
-  "Webseite erstellen",
-  "Online-Shop",
-  "Handwerks-Paket",
-  "Digitaler Hausmeister",
-  "Design & Branding",
-  "Sonstiges",
-] as const;
 
 // =============================================================================
 // META-DATA PER PAGE
