@@ -9,6 +9,21 @@ export const BEAM_CONTAINER_CLASS =
 /** Canonical Production-URL (Sitemap, Open Graph, JSON-LD, Breadcrumbs) */
 export const SITE_URL = "https://www.bernebysolutions.de" as const;
 
+/**
+ * Basis-URL für Next.js `metadataBase` (Favicons, OG-Bilder als absolute URLs).
+ * Auf Vercel-Previews (`*.vercel.app`) muss das die Deployment-URL sein – sonst zeigen Browser
+ * weiter das Favicon von www.bernebysolutions.de (oder einen leeren Fallback / Vercel-Standard).
+ */
+export function getMetadataBaseUrl(): string {
+  if (process.env.VERCEL_ENV === "production") {
+    return SITE_URL;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return "http://localhost:3000";
+}
+
 // =============================================================================
 // SOCIAL MEDIA LINKS – URLs hier zentral pflegen
 // =============================================================================

@@ -17,6 +17,7 @@
     "capture:slides:kerngeschaft": "node scripts/capture-slides.mjs /socials-kerngeschaft exports/slides-kerngeschaft",
     "capture:slides:partnerschaft": "node scripts/capture-slides.mjs /socials-partnerschaft exports/slides-partnerschaft",
     "capture:slides:referenzen": "node scripts/capture-slides.mjs /socials-referenzen exports/slides-referenzen",
+    "capture:slides:canvas": "node scripts/capture-slides.mjs /socials exports/slides",
     "capture:slides:all": "node scripts/capture-slides-all.mjs"
   },
   "dependencies": {

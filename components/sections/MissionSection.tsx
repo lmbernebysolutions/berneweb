@@ -1,55 +1,46 @@
 "use client";
 
 import { SectionCard } from "@/components/ui/section-card";
-import { IconDeviceDesktop, IconTool, IconHeart } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 
-/** Variante A: Drei Säulen (Webseiten | Support | Fair) – Text-Layout wie Vision & Mission, kein Karten-Container */
+/** Variante A: Drei Säulen – Mobile: Trennlinien untereinander wie WarumBernebyV3 (/ueber-uns); ab md vertikal zwischen Spalten */
 function MissionVariantA() {
   const pillars = [
     {
-      icon: IconDeviceDesktop,
       title: "Webseiten & Shops",
       text: "Von der One-Page bis zum Shop – wir bauen, was Sie brauchen.",
     },
     {
-      icon: IconTool,
       title: "Support auf Abruf",
       text: "Kein Festvertrag. Sie zahlen, wenn Sie uns brauchen.",
     },
     {
-      icon: IconHeart,
       title: "Transparent & fair",
       text: "Feste Preise, klare Angebote. Kein Kleingedrucktes.",
     },
   ];
   return (
     <div
-      className="grid grid-cols-1 gap-10 sm:gap-14 md:grid-cols-3 md:gap-0"
       data-animate="fade-up"
+      className={cn(
+        "grid grid-cols-1 gap-0 divide-y-4 divide-white/10 md:grid-cols-3 md:divide-y-0 md:divide-x-4"
+      )}
     >
-      {pillars.map((p, i) => {
-        const Icon = p.icon;
-        return (
-          <div
-            key={p.title}
-            className={cn(
-              "flex flex-col items-center border-l-4 border-white/10 pl-6 text-center",
-              /* Ab md: links kein Strich – nur zwei Trenner zwischen den drei Spalten */
-              "md:border-l-0 md:pl-0 md:px-8 lg:px-10",
-              i > 0 && "md:border-l-4 md:border-white/10"
-            )}
-          >
-            <Icon className="mb-3 size-5 text-brand-cyan" stroke={1.5} aria-hidden="true" />
-            <div className="mb-2 flex min-h-[3.25rem] w-full max-w-prose items-center justify-center sm:min-h-[4rem]">
-              <h3 className="font-display text-xl font-extrabold uppercase tracking-tight text-white sm:text-2xl">
-                {p.title}
-              </h3>
-            </div>
-            <p className="max-w-prose text-sm leading-relaxed text-white/70">{p.text}</p>
+      {pillars.map((p, i) => (
+        <div
+          key={p.title}
+          data-animate="fade-up"
+          data-animate-delay={String(i * 80)}
+          className="flex min-h-0 min-w-0 flex-col items-center px-6 py-6 text-center sm:px-6 sm:py-8 lg:px-7"
+        >
+          <div className="mb-2 flex min-h-[3.75rem] w-full items-center justify-center sm:min-h-[4rem] md:min-h-[4.25rem]">
+            <h3 className="font-display text-lg font-extrabold uppercase tracking-tight leading-snug text-white sm:text-xl md:text-2xl">
+              {p.title}
+            </h3>
           </div>
-        );
-      })}
+          <p className="w-full max-w-prose text-base leading-relaxed text-white/70">{p.text}</p>
+        </div>
+      ))}
     </div>
   );
 }

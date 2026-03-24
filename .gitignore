@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Playwright-Slide-Exports (große PNGs – lokal mit pnpm run capture:slides:all erzeugen)
+/exports/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

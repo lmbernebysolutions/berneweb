@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { GridBeams } from "@/components/layout/GridBeams";
-import { COMPANY, SITE_URL } from "@/lib/constants";
+import { COMPANY, SITE_URL, getMetadataBaseUrl } from "@/lib/constants";
 import "./globals.css";
 
 const ORGANIZATION_SCHEMA = {
@@ -132,7 +132,7 @@ export const metadata: Metadata = {
   },
   description:
     "Berneby Solutions macht lokale Betriebe im Erzgebirge online sichtbar und automatisiert das, was Zeit frisst. Webseiten, KI-Telefon, SEO – alles aus einer Hand.",
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(getMetadataBaseUrl()),
   openGraph: {
     type: "website",
     locale: "de_DE",

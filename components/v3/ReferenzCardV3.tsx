@@ -58,7 +58,7 @@ function BrowserMockup({
             src={imageSrc}
             alt="Desktop-Ansicht der Referenz"
             fill
-            className="object-cover object-top"
+            className="object-contain object-left object-top"
             sizes="(max-width: 768px) 100vw, 600px"
           />
         ) : (
@@ -100,7 +100,7 @@ function PhoneMockup({
             src={imageSrc}
             alt="Mobile-Ansicht der Referenz"
             fill
-            className="object-cover object-top"
+            className="object-contain object-left object-top"
             sizes="240px"
           />
         ) : (

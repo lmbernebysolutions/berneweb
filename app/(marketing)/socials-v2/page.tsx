@@ -120,7 +120,7 @@ const Sticker = ({ children, bottom }: { children: React.ReactNode; bottom?: str
     ? {position:'absolute', bottom, left:0, right:0}
     : {marginTop:'auto', margin:'auto 0 0 0'}
   }>
-    <div style={{border:'1px dashed #03f9f9', background:'rgba(3,249,249,0.05)', margin:'0 24px', padding:'12px', display:'flex', alignItems:'center', justifyContent:'center'}}>
+    <div style={{border:'1px dashed #03f9f9', background:'rgba(3,249,249,0.05)', margin:'0 24px', padding:'12px 18px', display:'flex', alignItems:'center', justifyContent:'center', borderRadius:'9999px'}}>
       <span className="font-mono text-[10px] text-brand-cyan uppercase tracking-widest text-center">{children}</span>
     </div>
   </div>
@@ -270,7 +270,7 @@ export default function SocialsV2() {
         <div className="flex flex-wrap gap-10 justify-center">
 
           {/* ── 01: Hook ──────────────────────────────────────────────────── */}
-          <Slide number="01" invertMount beamOutRight showLogo>
+          <Slide number="01" invertMount beamOutRight>
             <StoryHeading>
               DAS FRISST<br/>
               <span className="text-brand-cyan drop-shadow-[0_0_12px_rgba(3,249,249,0.5)]">ZU VIEL ZEIT?</span>
@@ -469,7 +469,7 @@ export default function SocialsV2() {
           </Slide>
 
           {/* ── 07: CTA ───────────────────────────────────────────────────── */}
-          <Slide number="GO" mountBottom footerVariant beamOutLeft showLogo>
+          <Slide number="GO" mountBottom footerVariant beamOutLeft>
             <StoryHeading>
               BEREIT FÜR<br/>
               <span className="text-brand-cyan drop-shadow-[0_0_12px_rgba(3,249,249,0.5)]">MEHR ZEIT?</span>

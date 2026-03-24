@@ -33,7 +33,7 @@ const BernebyBLogo = () => (
   </div>
 );
 
-const Slide = ({ children, number, withBeams = true, withCorners = true, invertMount = false, mountBottom = false, footerVariant = false, centerBackdrop = false }: { children: React.ReactNode, number: string, withBeams?: boolean, withCorners?: boolean, invertMount?: boolean, mountBottom?: boolean, footerVariant?: boolean, centerBackdrop?: boolean }) => (
+const Slide = ({ children, number, withBeams = true, withCorners = true, invertMount = false, mountBottom = false, footerVariant = false, centerBackdrop = false, showBrandLogo = true }: { children: React.ReactNode, number: string, withBeams?: boolean, withCorners?: boolean, invertMount?: boolean, mountBottom?: boolean, footerVariant?: boolean, centerBackdrop?: boolean, showBrandLogo?: boolean }) => (
   <div className="relative w-[360px] h-[640px] bg-brand-navy overflow-hidden shrink-0 shadow-2xl border border-white/10 group font-sans selection:bg-brand-cyan/30">
     {/* Background Grid & Noise */}
     <div className="absolute inset-0 pointer-events-none opacity-30" style={{
@@ -82,7 +82,7 @@ const Slide = ({ children, number, withBeams = true, withCorners = true, invertM
       </div>
     )}
 
-    <BernebyBLogo />
+    {showBrandLogo ? <BernebyBLogo /> : null}
 
     <div className="absolute z-[3] overflow-hidden opacity-35 pointer-events-none w-full h-full top-0 left-0 flex items-center justify-center">
         <BackdropNumber number={number} className="left-1/2 -translate-x-1/2 top-[28%] scale-75" />
@@ -127,7 +127,7 @@ export default function SocialToolsCanvas() {
         <div className="flex flex-wrap gap-10 justify-center">
 
           {/* SLIDE 01: Hook */}
-          <Slide number="01" invertMount>
+          <Slide number="01" invertMount showBrandLogo={false}>
             <StoryHeading>
               DAS FRISST<br/>
               <span className="text-brand-cyan drop-shadow-[0_0_12px_rgba(3,249,249,0.5)]">ZU VIEL ZEIT?</span>
@@ -141,7 +141,7 @@ export default function SocialToolsCanvas() {
               </StoryBody>
             </div>
 
-            <div className="mt-auto p-4 border border-brand-cyan border-dashed bg-brand-cyan/5 flex flex-col items-center justify-center min-h-[100px] relative mx-6 mb-2">
+            <div className="mt-auto p-4 border border-brand-cyan border-dashed bg-brand-cyan/5 flex flex-col items-center justify-center min-h-[100px] relative mx-6 mb-2 rounded-[9999px]">
                <span className="font-mono text-[11px] text-brand-cyan uppercase tracking-widest text-center">++ Platzhalter Umfrage ++<br/><br/>&quot;Was nervt mehr?&quot;<br/>[Telefon] vs [Büro]</span>
             </div>
           </Slide>
@@ -170,7 +170,7 @@ export default function SocialToolsCanvas() {
               </StoryBody>
             </div>
 
-             <div className="mt-auto p-3 border border-brand-cyan border-dashed bg-brand-cyan/5 flex items-center justify-center relative mx-6 mb-2">
+             <div className="mt-auto p-3 border border-brand-cyan border-dashed bg-brand-cyan/5 flex items-center justify-center relative mx-6 mb-2 rounded-[9999px] px-5">
                <span className="font-mono text-[10px] text-brand-cyan uppercase tracking-widest">++ Platzhalter Emoji-Slider 📈 ++</span>
             </div>
           </Slide>
@@ -352,7 +352,7 @@ export default function SocialToolsCanvas() {
           </Slide>
 
            {/* SLIDE 07: CTA */}
-           <Slide number="GO" mountBottom footerVariant centerBackdrop>
+           <Slide number="GO" mountBottom footerVariant centerBackdrop showBrandLogo={false}>
             <StoryHeading>
               BEREIT FÜR<br/>
               <span className="text-brand-cyan drop-shadow-[0_0_12px_rgba(3,249,249,0.5)]">MEHR ZEIT?</span>
@@ -373,7 +373,7 @@ export default function SocialToolsCanvas() {
 
             {/* Platzhalter darunter (wiederhergestellt) */}
             <div className="relative z-10 w-[90%] mx-auto mb-4 mt-auto">
-              <div className="p-2.5 border border-brand-cyan border-dashed bg-brand-cyan/10 flex items-center justify-center">
+              <div className="p-2.5 px-4 border border-brand-cyan border-dashed bg-brand-cyan/10 flex items-center justify-center rounded-[9999px]">
                  <span className="font-mono text-[10px] text-brand-cyan uppercase tracking-widest text-center font-bold">++ Platzhalter Link-Sticker ++<br/>🚀 Zum Kalender</span>
               </div>
             </div>

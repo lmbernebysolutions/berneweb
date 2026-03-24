@@ -3,8 +3,7 @@ import Image from 'next/image';
 import { IconArrowRight, IconMapPin, IconWorld, IconStar, IconChartBar, IconTrendingUp, IconStarFilled } from '@tabler/icons-react';
 import { BackdropNumber } from '@/components/ui/backdrop-number';
 import { TextLogo } from '@/components/brand/TextLogo';
-import { REFERENZEN, REFERENZEN_STATS } from '@/lib/data/referenzen';
-import { SITE_URL } from '@/lib/constants';
+import { REFERENZEN } from '@/lib/data/referenzen';
 import { SlideStoryBody as StoryBody, SLIDE_STORY_TEXT_MUTED, SLIDE_STORY_TEXT_STRONG } from '@/components/socials/slide-story-body';
 
 export const metadata: Metadata = { title: 'Socials Referenzen — Berneby Solutions' };
@@ -153,37 +152,88 @@ const KListItem = ({ icon, label }: { icon: React.ReactNode; label: string }) =>
 
 const Sticker = ({ children, bottom }: { children: React.ReactNode; bottom?: string }) => (
   <div style={bottom ? { position: 'absolute', bottom, left: 0, right: 0 } : { marginTop: 'auto', margin: 'auto 0 0 0' }}>
-    <div style={{ border: '1px dashed #03f9f9', background: 'rgba(3,249,249,0.05)', margin: '0 24px', padding: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div
+      style={{
+        border: '1px dashed #03f9f9',
+        background: 'rgba(3,249,249,0.05)',
+        margin: '0 24px',
+        padding: '12px 18px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '9999px',
+      }}
+    >
       <span className="font-mono text-[10px] text-brand-cyan uppercase tracking-widest text-center">{children}</span>
     </div>
   </div>
 );
 
+/**
+ * Referenz-PNGs: Desktop 1280×720 (16∶9), Phone 375×812.
+ * Gemeinsame Screenshot-Höhe H → Desktop-Breite H×16/9, Phone-Breite H×375/812 → kein Letterboxing, gleiche Höhe.
+ */
+const REF_MOCKUP_SCREENSHOT_H_PX = 84;
+const REF_DESKTOP_VIEWPORT_W = Math.round((REF_MOCKUP_SCREENSHOT_H_PX * 16) / 9);
+const REF_PHONE_VIEWPORT_W = Math.round((REF_MOCKUP_SCREENSHOT_H_PX * 375) / 812);
+
 const BrowserMockup = ({ imageSrc, url }: { imageSrc: string; url: string }) => (
-  <div style={{ border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(0,0,0,0.4)', overflow: 'hidden' }}>
-    <div style={{ height: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '6px', padding: '0 8px' }}>
+  <div
+    style={{
+      border: '1px solid rgba(255,255,255,0.15)',
+      background: 'rgba(0,0,0,0.4)',
+      overflow: 'hidden',
+      width: REF_DESKTOP_VIEWPORT_W,
+      maxWidth: '100%',
+    }}
+  >
+    <div style={{ height: '18px', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '6px', padding: '0 6px' }}>
       <div style={{ display: 'flex', gap: '4px' }}>
         <span className="block h-[4px] w-[4px] rounded-full bg-white/40" />
         <span className="block h-[4px] w-[4px] rounded-full bg-white/30" />
         <span className="block h-[4px] w-[4px] rounded-full bg-white/20" />
       </div>
-      <span className="font-mono text-[8px] text-white/50 truncate">{url}</span>
+      <span className="font-mono text-[7px] text-white/50 truncate min-w-0">{url}</span>
     </div>
-    <div style={{ position: 'relative', height: '104px' }}>
-      <Image src={imageSrc} alt="Desktop-Ansicht der Referenz" fill className="object-cover object-top" />
+    <div
+      style={{
+        position: 'relative',
+        width: '100%',
+        height: REF_MOCKUP_SCREENSHOT_H_PX,
+        background: '#0a0a0a',
+      }}
+    >
+      <Image src={imageSrc} alt="Desktop-Ansicht der Referenz" fill sizes="150px" className="object-contain" />
     </div>
   </div>
 );
 
 const PhoneMockup = ({ imageSrc }: { imageSrc: string }) => (
-  <div style={{ width: '58px', border: '2px solid rgba(255,255,255,0.2)', borderRadius: '14px', overflow: 'hidden', background: '#0f172a', flexShrink: 0 }}>
-    <div style={{ height: '12px', background: 'rgba(3,249,249,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  <div
+    style={{
+      width: REF_PHONE_VIEWPORT_W + 4,
+      border: '2px solid rgba(255,255,255,0.2)',
+      borderRadius: '12px',
+      overflow: 'hidden',
+      background: '#0f172a',
+      flexShrink: 0,
+    }}
+  >
+    <div style={{ height: '11px', background: 'rgba(3,249,249,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <span className="font-mono text-[6px]" style={{ color: SLIDE_STORY_TEXT_MUTED }}>
         09:41
       </span>
     </div>
-    <div style={{ position: 'relative', height: '112px' }}>
-      <Image src={imageSrc} alt="Mobile-Ansicht der Referenz" fill className="object-cover object-top" />
+    <div
+      style={{
+        position: 'relative',
+        width: REF_PHONE_VIEWPORT_W,
+        height: REF_MOCKUP_SCREENSHOT_H_PX,
+        margin: '0 auto',
+        background: '#0a0a0a',
+      }}
+    >
+      <Image src={imageSrc} alt="Mobile-Ansicht der Referenz" fill sizes="40px" className="object-contain" />
     </div>
   </div>
 );
@@ -344,44 +394,16 @@ const StoryTestimonialCard = () => {
   );
 };
 
-const PROJECTS: StoryProject[] = [
-  ...REFERENZEN.slice(0, 3).map((ref, index) => ({
-    id: ref.id,
-    kunde: ref.kunde,
-    branche: ref.branche,
-    typ: ref.typ,
-    url: ref.url ?? '#',
-    desktopImage:
-      ref.desktopImage ??
-      (index === 0
-        ? '/referenzen/gesund-schoen-desktop.png'
-        : index === 1
-          ? '/referenzen/hc-immobilien-desktop.png'
-          : '/referenzen/ergotherapie-voigt-desktop.png'),
-    phoneImage:
-      ref.phoneImage ??
-      (index === 0
-        ? '/referenzen/gesund-schoen-phone.png'
-        : index === 1
-          ? '/referenzen/hc-immobilien-phone.png'
-          : '/referenzen/ergotherapie-voigt-phone.png'),
-    ergebnisse: ref.ergebnisse,
-  })),
-  {
-    id: 'berneby-site',
-    kunde: 'Berneby Solutions',
-    branche: 'Agentur-Website / Showcase',
-    typ: 'Webseite',
-    url: SITE_URL,
-    desktopImage: '/screencapture-berneby-website-vercel-app-2026-02-22-23_31_18.png',
-    phoneImage: '/screencapture-berneby-website-vercel-app-2026-02-22-23_31_18.png',
-    ergebnisse: REFERENZEN_STATS.map((s) => ({
-      metrik: s.label,
-      wert: s.wert,
-      positiv: true,
-    })),
-  },
-];
+const PROJECTS: StoryProject[] = REFERENZEN.map((ref) => ({
+  id: ref.id,
+  kunde: ref.kunde,
+  branche: ref.branche,
+  typ: ref.typ,
+  url: ref.url ?? '#',
+  desktopImage: ref.desktopImage ?? `/referenzen/${ref.id}-desktop.png`,
+  phoneImage: ref.phoneImage ?? `/referenzen/${ref.id}-phone.png`,
+  ergebnisse: ref.ergebnisse,
+}));
 
 export default function SocialsReferenzen() {
   return (
@@ -394,7 +416,7 @@ export default function SocialsReferenzen() {
 
         <div className="flex flex-wrap gap-10 justify-center">
           {/* ── 01: HOOK (INHALT, KEINE MOCKUPS) ───────────────────────────── */}
-          <Slide number="01" invertMount beamOutRight showLogo>
+          <Slide number="01" invertMount beamOutRight>
             <StoryHeading>
               REFERENZEN,
               <br />
