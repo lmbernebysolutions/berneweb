@@ -15,10 +15,11 @@ interface TechCornersProps {
     animate?: boolean;
 }
 
+/** Feste px — unabhängig von html { font-size: calc(100vw/85) } ab 1290px (Playwright-Screenshots). */
 const SIZE = {
-    sm: "h-2 w-2",
-    md: "h-3 w-3",
-    lg: "h-4 w-4",
+    sm: "h-[8px] w-[8px]",
+    md: "h-[12px] w-[12px]",
+    lg: "h-[16px] w-[16px]",
 } as const;
 
 // STATIC class maps - Tailwind needs these as full strings to detect them

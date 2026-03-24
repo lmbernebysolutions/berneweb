@@ -282,8 +282,16 @@ const ReferenceCardCompact = ({ project, mockupMode = 'both' }: { project: Story
         </h3>
       </div>
 
-      <div style={{ marginTop: 'auto' }}>
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
+      <div
+        style={{
+          flex: 1,
+          minHeight: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {(mockupMode === 'both' || mockupMode === 'desktop') && (
             <div style={{ flex: 1, minWidth: 0 }}>
               <BrowserMockup imageSrc={project.desktopImage} url={extractDisplayUrl(project.url)} />
@@ -303,8 +311,8 @@ const TESTIMONIAL_STAR_COLOR = '#ffb547';
 const SLIDE_HOOK_TESTIMONIAL: { quote: string; name: string; role: string } = {
   quote:
     'Junges, motiviertes Team – professionell und zügig. Unkompliziert, Änderungen sofort umgesetzt. Patienten loben die neue Website. Weiterempfehlen, gerne wieder!',
-  name: 'Annemarie S.',
-  role: 'ARZTPRAXIS',
+  name: 'Anne-Karen V.',
+  role: 'ERGOTHERAPIE',
 };
 
 const MehrInfosStripe = ({ label = 'MEHR INFOS' }: { label?: string }) => (

@@ -108,9 +108,6 @@ export default function KontaktPage() {
                     Jetzt anrufen
                   </a>
                 </Button>
-                <p className="mt-2 text-xs text-muted-foreground">
-                  {COMPANY.phoneDisplay} · Mo–Fr, 9–18 Uhr
-                </p>
               </div>
             </SectionCard>
 

@@ -42,17 +42,21 @@ export function HausmeisterCardVisual({
         <TechCorners pattern="all" variant="cyan" size="lg" animate />
       )}
 
-      {/* Karten-Inhalt: Titelbereich */}
-      <div className={cn(
-        "absolute left-5 right-5 z-10 flex flex-col justify-center border border-white/10 bg-white/5 p-4",
-        mode === "story" ? "top-4 h-[84px]" : "top-5 h-[6.5rem]"
-      )}>
+      {/* Karten-Inhalt: Titelbereich — nur px/rem-feste Werte: Root-font skaliert ab 1290px (Screenshots). */}
+      <div
+        className={cn(
+          "absolute z-10 flex flex-col justify-center border border-white/10 bg-white/5",
+          mode === "story"
+            ? "left-[20px] right-[20px] top-[16px] h-[84px] p-[12px]"
+            : "left-5 right-5 top-5 h-[6.5rem] p-4"
+        )}
+      >
         {mode === "story" ? (
-          <div className="h-full flex items-center justify-center text-center relative">
-            <div className="absolute inset-0 pointer-events-none">
+          <div className="relative flex h-full items-center justify-center text-center">
+            <div className="pointer-events-none absolute inset-0">
               <TechCorners pattern="all" variant="cyan" size="sm" hoverExpand={false} />
             </div>
-            <span className="font-display font-black uppercase tracking-[0.06em] leading-[1.05] text-brand-cyan text-[18px]">
+            <span className="font-display text-[18px] font-black uppercase leading-[1.05] tracking-[0.06em] text-brand-cyan">
               HAUSMEISTER TICKET
             </span>
           </div>
@@ -73,8 +77,8 @@ export function HausmeisterCardVisual({
       {/* Bottom area: Barcodes/Price (Default) + Stamp (Story/Default) */}
       <div
         className={cn(
-          "absolute left-5 right-5 z-0 flex h-2 gap-0.5 pointer-events-none",
-          mode === "story" ? "bottom-6" : "bottom-12"
+          "pointer-events-none absolute z-0 flex gap-[2px]",
+          mode === "story" ? "bottom-[24px] left-[20px] right-[20px] h-[8px]" : "bottom-12 left-5 right-5 h-2"
         )}
         aria-hidden={false}
         style={{ opacity: 1 }}
@@ -89,21 +93,21 @@ export function HausmeisterCardVisual({
       </div>
       <div
         className={cn(
-          "absolute left-5 right-5 z-0 flex gap-2 pointer-events-none",
-          mode === "story" ? "bottom-3" : "bottom-6"
+          "pointer-events-none absolute z-0 flex",
+          mode === "story" ? "bottom-[12px] left-[20px] right-[20px] gap-[8px]" : "bottom-6 left-5 right-5 gap-2"
         )}
       >
-        <div className="h-0.5 w-8 bg-white/20" />
-        <div className="h-0.5 w-8 bg-white/20" />
+        <div className={cn("bg-white/20", mode === "story" ? "h-[2px] w-[32px]" : "h-0.5 w-8")} />
+        <div className={cn("bg-white/20", mode === "story" ? "h-[2px] w-[32px]" : "h-0.5 w-8")} />
       </div>
 
       {mode === "story" ? (
-        <div className="absolute top-[120px] left-4 right-4 bottom-[104px] z-10">
-          <ul className="flex flex-col gap-2.5">
+        <div className="absolute bottom-[104px] left-[16px] right-[16px] top-[120px] z-10">
+          <ul className="flex flex-col gap-[10px]">
             {resolvedFeatures.slice(0, 3).map((t) => (
               <li
                 key={t}
-                className="border-l-2 border-brand-cyan pl-3 py-0.5 font-sans font-medium uppercase tracking-[0.06em] text-white text-[10px] leading-[1.15]"
+                className="border-l-2 border-brand-cyan py-[2px] pl-[12px] font-sans text-[10px] font-medium uppercase leading-[1.15] tracking-[0.06em] text-white"
               >
                 {t}
               </li>
@@ -126,7 +130,7 @@ export function HausmeisterCardVisual({
       )}
 
       {mode === "story" && (
-        <div className="absolute bottom-[76px] left-4 right-4 text-center font-mono text-[11px] uppercase tracking-[0.18em] text-brand-navy-muted z-10">
+        <div className="absolute bottom-[76px] left-[16px] right-[16px] z-10 text-center font-mono text-[11px] uppercase tracking-[0.18em] text-brand-navy-muted">
           GÜLTIG FÜR 12 MONATE
         </div>
       )}
