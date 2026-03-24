@@ -9,11 +9,6 @@ export type ReferenzKategorie =
   | "Handwerk"
   | "Marketing";
 
-export interface ReferenzMetrik {
-  wert: string;
-  label: string;
-}
-
 export interface ReferenzResult {
   metrik: string;
   wert: string;

@@ -144,11 +144,11 @@ function PhoneMockup({
 
 function ErgebnisBadge({ result }: { result: { wert: string; metrik: string; positiv: boolean } }) {
   return (
-    <div className="flex flex-col items-center justify-center border border-brand-warm/30 bg-brand-warm/5 p-3 text-center">
-      <span className="font-display text-2xl font-extrabold text-brand-warm leading-none tabular-nums">
+    <div className="flex flex-col items-center justify-center border border-white/10 bg-white/[0.03] p-3 text-center">
+      <span className="font-display text-2xl max-[399px]:text-xl font-extrabold text-white leading-none tabular-nums">
         {result.wert}
       </span>
-      <span className="mt-1 text-[10px] font-mono uppercase tracking-wider text-white/50 leading-tight">
+      <span className="mt-1 text-[10px] max-[399px]:text-[9px] font-mono uppercase tracking-wider text-white leading-tight">
         {result.metrik}
       </span>
     </div>
@@ -249,9 +249,11 @@ export function ReferenzCard({
               </h2>
               <p className="mt-1 text-sm text-white/50">{referenz.typ}</p>
             </div>
-            <div className="shrink-0 border border-brand-warm/30 bg-brand-warm/10 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-brand-warm">
-              {referenz.dauer}
-            </div>
+            {!compact ? (
+              <div className="shrink-0 border border-brand-warm/30 bg-brand-warm/10 px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-brand-warm">
+                {referenz.dauer}
+              </div>
+            ) : null}
           </div>
           <blockquote className={cn("border-l-2 border-brand-cyan pl-4", compact ? "mb-4" : "mb-6")}>
             <p className="text-base font-medium italic text-white/80 leading-relaxed">
@@ -310,26 +312,6 @@ export function ReferenzCard({
         </div>
       </div>
     </article>
-  );
-}
-
-// =============================================================================
-// GRID – 2 Karten nebeneinander (für Home)
-// =============================================================================
-export function ReferenzenGrid({
-  referenzen,
-  limit = 2,
-}: {
-  referenzen: Referenz[];
-  limit?: number;
-}) {
-  const items = referenzen.slice(0, limit);
-  return (
-    <div className="grid gap-6 md:grid-cols-2">
-      {items.map((ref) => (
-        <ReferenzCard key={ref.id} referenz={ref} featured={false} />
-      ))}
-    </div>
   );
 }
 
