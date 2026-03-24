@@ -139,25 +139,20 @@ export function Hero({
     )}>
       {/* overflow-x-clip: Berg wird abgeschnitten ohne Scroll-Container; overflow-y-visible: keine Scrollleiste im Hero */}
 
-      {/* Bergsilhouette: breit + nach links; Höhe wie Footer-Berge; Sektion clippt mit overflow-x-clip */}
+      {/* Bergsilhouette: NUR mobile größer + links; Desktop wieder Standard */}
       <div
         className="pointer-events-none absolute bottom-0 left-0 right-0 z-[2] flex justify-center overflow-x-visible overflow-y-visible"
         aria-hidden="true"
-        style={{
-          height: "clamp(28.5rem, 80vw, 54rem)",
-        }}
       >
-        <div
-          className="relative h-full w-[169vw] max-w-none shrink-0 overflow-visible"
-          style={{ transform: "translate3d(-28vw, 0, 0)" }}
-        >
+        <div className="relative h-[clamp(28.5rem,80vw,54rem)] sm:h-[clamp(10rem,24vw,18rem)] w-[169vw] sm:w-full sm:max-w-6xl max-w-none shrink-0 overflow-visible">
+          <div className="absolute inset-0 -translate-x-[28vw] sm:translate-x-0">
           {bergConfig.layerIndices.map((layerIdx) => (
             <Image
               key={BERG_LAYERS[layerIdx]}
               src={BERG_LAYERS[layerIdx]}
               alt=""
               fill
-              sizes="(max-width: 640px) 169vw, (max-width: 1024px) 156vw, 1820px"
+              sizes="(max-width: 640px) 169vw, (max-width: 1024px) 90vw, 1152px"
               className={cn(
                 "object-cover object-bottom select-none berg-layer-grow",
                 BERG_LAYER_DELAYS[layerIdx]
@@ -170,6 +165,7 @@ export function Hero({
               aria-hidden
             />
           ))}
+          </div>
         </div>
       </div>
 

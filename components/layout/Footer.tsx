@@ -19,21 +19,15 @@ const SOCIAL_ICONS = {
 export function Footer() {
   return (
     <footer className="relative z-20 overflow-hidden border-t border-brand-cyan/20 bg-brand-navy text-brand-navy-foreground min-h-[28rem]">
-      {/* Bergsilhouette: Maße/Verschiebung wie Hero, kopfüber (scale-y-[-1]), ohne Berg1 */}
+      {/* Bergsilhouette: NUR mobile größer + links; Desktop wieder Standard */}
       <div
         className="footer-berg pointer-events-none absolute top-0 left-0 right-0 z-0 will-change-auto overflow-x-clip overflow-y-visible"
         data-animate
         aria-hidden="true"
       >
-        <div
-          className="flex w-full justify-center overflow-visible"
-          style={{ height: "clamp(28.5rem, 80vw, 54rem)" }}
-        >
-          <div
-            className="relative h-full w-[169vw] max-w-none shrink-0 overflow-visible"
-            style={{ transform: "translate3d(-23vw, 0, 0)" }}
-          >
-            <div className="absolute inset-0 scale-y-[-1] transform-gpu">
+        <div className="flex w-full justify-center overflow-visible h-[clamp(28.5rem,80vw,54rem)] sm:h-52 md:h-56 lg:h-64 xl:h-72">
+          <div className="relative h-full w-[169vw] sm:w-full sm:max-w-6xl max-w-none shrink-0 overflow-visible">
+            <div className="absolute inset-0 -translate-x-[23vw] sm:translate-x-0 scale-y-[-1] transform-gpu">
               {[
                 { src: "/icons/Berg2.svg", delay: "berg-layer-grow-on-view-delay-0" },
                 { src: "/icons/Berg3.svg", delay: "berg-layer-grow-on-view-delay-1" },
@@ -44,7 +38,7 @@ export function Footer() {
                   src={src}
                   alt=""
                   fill
-                  sizes="(max-width: 640px) 169vw, (max-width: 1024px) 156vw, 1820px"
+                  sizes="(max-width: 640px) 169vw, (max-width: 1280px) 100vw, 1152px"
                   className={`object-cover object-bottom select-none berg-layer-grow-on-view ${delay}`}
                   style={{ transformOrigin: "bottom center" }}
                   unoptimized
