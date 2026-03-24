@@ -23,25 +23,64 @@ const ORGANIZATION_SCHEMA = {
       telephone: "+4915511960927",
       email: COMPANY.email,
       priceRange: "€€",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: COMPANY.streetAddress,
-        addressLocality: COMPANY.location,
-        postalCode: COMPANY.postalCode,
-        addressRegion: COMPANY.state,
-        addressCountry: "DE",
-      },
       areaServed: {
         "@type": "AdministrativeArea",
         name: COMPANY.region,
       },
+      serviceArea: [
+        { "@type": "City", name: "Aue-Bad Schlema" },
+        { "@type": "City", name: "Bernsbach" },
+        { "@type": "City", name: "Bärenstein" },
+        { "@type": "City", name: "Crottendorf" },
+        { "@type": "City", name: "Bockau" },
+        { "@type": "City", name: "Breitenbrunn/Erzgebirge" },
+        { "@type": "City", name: "Großolbersdorf" },
+        { "@type": "City", name: "Gornsdorf" },
+        { "@type": "City", name: "Auerbach/Vogtland" },
+        { "@type": "City", name: "Annaberg-Buchholz" },
+        { "@type": "City", name: "Eibenstock" },
+        { "@type": "City", name: "Marienberg" },
+        { "@type": "City", name: "Schwarzenberg/Erzgebirge" }
+      ],
       founder: COMPANY.founders.map((f) => ({
         "@type": "Person",
         name: f.name,
         jobTitle: f.role.includes("Technische") ? "Tech & Entwicklung" : "Strategie & Kundenbeziehung",
       })),
       foundingDate: COMPANY.founded,
-      dateModified: "2026-02-13",
+      description:
+        "Berneby Solutions ist dein verlässlicher Digital-Partner für den regionalen Mittelstand im Erzgebirge. Wir machen Handwerks-, Dienstleistungs- und Handelsbetriebe online sichtbar und automatisieren zeitfressende Prozesse im Arbeitsalltag.",
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+4915511960927",
+          contactType: "customer support",
+          areaServed: "DE",
+          availableLanguage: ["de"]
+        },
+        {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          url: "https://wa.me/4915511960927",
+          areaServed: "DE",
+          availableLanguage: ["de"]
+        }
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Leistungen",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "IT-Beratung" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Webdesign & Entwicklung" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "IT-Service & Support" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Prozessautomatisierung" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Lokale SEO & Sichtbarkeit" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "KI-Telefon" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Online-Marketing" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Social Media Betreuung" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "IT-Strategie & Beratung" } }
+        ]
+      },
       knowsAbout: [
         "Webdesign",
         "Suchmaschinenoptimierung",
@@ -49,7 +88,11 @@ const ORGANIZATION_SCHEMA = {
         "IT-Support",
         "E-Commerce",
       ],
-      sameAs: [],
+      sameAs: [
+        "https://www.instagram.com/bernebysolutions",
+        "https://www.facebook.com/bernebysolutions/",
+        "https://wa.me/4915511960927"
+      ],
     },
     {
       "@type": "WebSite",
@@ -104,6 +147,20 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    other: [
+      { rel: "icon", url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { rel: "icon", url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+  },
+  manifest: "/site.webmanifest",
 };
 
 export const viewport = {
