@@ -690,12 +690,12 @@ export const PAGE_META = {
   home: {
     title: "Webdesign & IT-Service Erzgebirge | Berneby Solutions",
     description:
-      "Websites, KI-Telefon & lokale SEO für Handwerker im Erzgebirge. Transparent geplant, verbindlich umgesetzt. Kostenloses Erstgespräch.",
+      "Websites, KI-Telefon & IT-Service für KMU im Erzgebirge. Transparent geplant, verbindlich umgesetzt. Kostenloses Erstgespräch.",
   },
   handwerk: {
-    title: "Website für Handwerker | Berneby Solutions Erzgebirge",
+    title: "Webdesign & Digitalisierung für Handwerk",
     description:
-      "Handwerker-Websites mit 50+ lokalen Landingpages, KI-Telefonassistent & Google Ads. Umfang und Umsetzung klären wir im Erstgespräch.",
+      "Webdesign, KI-Telefon und lokale Sichtbarkeit fuer Handwerksbetriebe im Erzgebirge. Transparent geplant und im Erstgespraech passend auf Ihren Betrieb abgestimmt.",
   },
   tech: {
     title: "IT-Service & Webentwicklung Erzgebirge | Berneby Solutions",
