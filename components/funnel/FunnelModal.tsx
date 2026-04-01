@@ -183,9 +183,11 @@ export function FunnelModal() {
       </div>
 
       {/* Progress Bar */}
-      <div className="relative z-10 w-full max-w-xl shrink-0 mt-3 px-4">
-        <ProgressBar currentStep={currentStep} />
-      </div>
+      {currentStep > 0 && (
+        <div className="relative z-10 w-full max-w-xl shrink-0 mt-3 px-4">
+          <ProgressBar currentStep={currentStep} />
+        </div>
+      )}
 
       {/* Screen content */}
       <div 

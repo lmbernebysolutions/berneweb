@@ -13,9 +13,15 @@ export function ProgressBar({ currentStep, totalSteps = 7 }: ProgressBarProps) {
   // Screen 0 = kein ProgressBar (Landing)
   if (currentStep === 0) return null;
 
-  // Screen 6 = Laden (100% simuliert)
-  const effectiveStep = currentStep === 5 ? totalSteps : currentStep;
-  const pct = Math.round((effectiveStep / totalSteps) * 100);
+  // Sinnvolle Prozentwerte, damit der Fortschritt logisch ansteigt und bei "Fast fertig" nicht wieder sinkt
+  let pct = 0;
+  if (currentStep === 1) pct = 25;
+  else if (currentStep === 2) pct = 50;
+  else if (currentStep === 3) pct = 75;
+  else if (currentStep === 4) pct = 90;
+  else if (currentStep === 5) pct = 95; // Analyse läuft
+  else if (currentStep === 6) pct = 98; // Fast fertig
+  else if (currentStep >= 7) pct = 100;
 
   return (
     <div className="w-full px-0">
