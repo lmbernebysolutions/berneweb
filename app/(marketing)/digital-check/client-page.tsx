@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useFunnel } from "@/components/funnel/FunnelContext";
 import { useRouter } from "next/navigation";
 
@@ -8,19 +8,19 @@ export function CheckPageClient() {
   const { state, openFunnel } = useFunnel();
   const router = useRouter();
 
+  const hasMounted = useRef(false);
+
   useEffect(() => {
     if (!state.isOpen) {
-      openFunnel();
+      if (!hasMounted.current) {
+        hasMounted.current = true;
+        openFunnel();
+      } else {
+        // Der User hat den Funnel über X oder ESC geschlossen
+        router.push("/");
+      }
     }
-  }, [state.isOpen, openFunnel]);
-
-  // Wenn der Funnel vom User aktiv geschlossen wird (z. B. über ESC oder X), 
-  // leiten wir den Nutzer nach einer kurzen Verzögerung zurück auf die Startseite.
-  useEffect(() => {
-    // Hier können wir optional eine Logik einbauen.
-    // Da state.isOpen initial false ist, schließt er sich sonst sofort.
-    // Daher machen wir das Routing lieber so, dass er im Hintergrund "läuft".
-  }, [state.isOpen]);
+  }, [state.isOpen, openFunnel, router]);
 
   // Hintergrund-Design, solange das Modal offen ist 
   // (oder falls es geschlossen wird und man wartet)

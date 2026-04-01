@@ -433,7 +433,7 @@ export default function Home() {
         }}
       />
 
-      {/* Digital-Check Funnel Banner */}
+      {/* Digital-Check Funnel Banner (Vorerst ausgeblendet) 
       <section className="relative bg-slate-950 border-y border-brand-cyan/20 py-12 px-4">
         <div className="max-w-2xl mx-auto flex flex-col items-center gap-4 text-center">
           <span className="text-[10px] font-bold uppercase tracking-widest text-brand-cyan/60 border border-brand-cyan/20 px-3 py-1">
@@ -453,6 +453,7 @@ export default function Home() {
           />
         </div>
       </section>
+      */}
 
       {/* CTA Section */}
       <CtaSection
