@@ -75,6 +75,19 @@ export const COMPANY = {
 } as const;
 
 // =============================================================================
+// VISITENKARTE – RÜCKSEITE (ANSPRECHPARTNER & USPs)
+// =============================================================================
+export const VISITENKARTE_BACK = {
+  contactName: "Daniel Hamburg",
+  contactTitle: "Strategie & Vertrieb",
+  uspItems: [
+    "Websites, Online-Shops und konsistentes Branding.",
+    "IT-Service, Automatisierung und KI-Workflows.",
+    "SEO, Marketing und hohe Sichtbarkeit.",
+  ],
+} as const;
+
+// =============================================================================
 // NAVIGATION
 // =============================================================================
 

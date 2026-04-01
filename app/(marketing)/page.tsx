@@ -7,6 +7,7 @@ import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import dynamic from "next/dynamic";
 import { CtaSection } from "@/components/sections/CtaSection";
+import { FunnelTriggerButton } from "@/components/funnel/FunnelTriggerButton";
 
 const TestimonialGrid = dynamic(
   () => import("@/components/sections/TestimonialGrid").then((m) => ({ default: m.TestimonialGrid })),
@@ -431,6 +432,27 @@ export default function Home() {
           __html: JSON.stringify(generateFaqSchema(HOME_MINI_FAQ)),
         }}
       />
+
+      {/* Digital-Check Funnel Banner */}
+      <section className="relative bg-slate-950 border-y border-brand-cyan/20 py-12 px-4">
+        <div className="max-w-2xl mx-auto flex flex-col items-center gap-4 text-center">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-cyan/60 border border-brand-cyan/20 px-3 py-1">
+            Kostenloser Check · 90 Sekunden
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-tight">
+            Wo verliert dein Betrieb{" "}
+            <span className="text-brand-cyan">Geld &amp; Zeit?</span>
+          </h2>
+          <p className="text-sm text-white/50 max-w-sm">
+            Der 90-Sekunden Digital-Check für Handwerk &amp; Dienstleistung im Erzgebirge.
+          </p>
+          <FunnelTriggerButton
+            label="POTENZIAL KOSTENLOS PRÜFEN"
+            size="lg"
+            className="w-full sm:w-auto"
+          />
+        </div>
+      </section>
 
       {/* CTA Section */}
       <CtaSection

@@ -835,6 +835,39 @@ h6 {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
 }
 
+/**
+ * Visitenkarte (/socials-visitenkarten): Hero <h1> wie auf Standardseiten
+ * ab großem Viewport (xl:text-[7rem] + tracking-tighter), fest verdrahtet —
+ * die Karte hat keinen Browser-Viewport fürs Responsive.
+ * Etwas großzügiger als -0.05em: bei 7rem wirkt extremes Tight-Tracking leicht „zu klein“.
+ */
+@layer components {
+  .visitenkarte-hero-headline {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.95;
+    color: #ffffff;
+    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.25));
+    max-width: 100%;
+    text-wrap: balance;
+    word-break: keep-all;
+    hyphens: none;
+    min-width: 0;
+    overflow: visible;
+    letter-spacing: -0.05em; /* tracking-tighter */
+    font-size: 6rem; /* etwas kleiner als Desktop-Hero (7rem) für Visitenkarten-Trim */
+    padding-bottom: 1rem; /* pb-4 */
+    margin-left: 0;
+  }
+
+  .visitenkarte-hero-headline-accent {
+    color: #19f2e6; /* Druck-Vorschau-Cyan, nur Visitenkarten-Klasse */
+    font-size: 1.06em;
+    white-space: nowrap;
+  }
+}
+
 @media (min-width: 1290px) {
   .hero-heading-overlap {
     /* 2rem matches padding-left. 0.3em leicht reduziert für weniger Überlappung mit dem linken Beam. */

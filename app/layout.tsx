@@ -6,6 +6,8 @@ import { Footer } from "@/components/layout/Footer";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { GridBeams } from "@/components/layout/GridBeams";
+import { FunnelProvider } from "@/components/funnel/FunnelContext";
+import { FunnelModal } from "@/components/funnel/FunnelModal";
 import { COMPANY, SITE_URL, getMetadataBaseUrl } from "@/lib/constants";
 import "./globals.css";
 
@@ -197,18 +199,21 @@ gtag('config', 'G-QEVDGDCV9G');`,
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_SCHEMA) }}
         />
         <CookieProviders>
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-brand-cyan focus:text-brand-navy focus:p-4 focus:font-bold"
-          >
-            Zum Inhalt springen
-          </a>
-          <Header />
-          <GridBeams />
-          <main id="main-content" className="relative z-10">{children}</main>
-          <Footer />
-          <BackToTop />
-          <ScrollAnimator />
+          <FunnelProvider>
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-brand-cyan focus:text-brand-navy focus:p-4 focus:font-bold"
+            >
+              Zum Inhalt springen
+            </a>
+            <Header />
+            <GridBeams />
+            <main id="main-content" className="relative z-10">{children}</main>
+            <Footer />
+            <BackToTop />
+            <ScrollAnimator />
+            <FunnelModal />
+          </FunnelProvider>
         </CookieProviders>
       </body>
     </html>
