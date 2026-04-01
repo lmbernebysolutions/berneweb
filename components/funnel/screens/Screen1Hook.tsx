@@ -53,10 +53,7 @@ export function Screen1Hook() {
       </div>
 
       {/* CTA */}
-      <div className="pb-safe">
-        <p className="text-center text-xs font-mono text-white/40 mb-3 uppercase tracking-widest">
-          Kein Konto. Kein Risiko.
-        </p>
+      <div className="pb-safe mt-1">
         <Button
           onClick={nextStep}
           size="lg"
