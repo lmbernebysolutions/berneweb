@@ -7,9 +7,6 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import {
   IconPhone,
   IconMail,
-  IconMapPin,
-  IconClock,
-  IconCheck,
   IconBrandInstagram,
   IconBrandFacebook,
   IconBrandWhatsapp,
@@ -53,16 +50,34 @@ const CONTACT_INFO = [
     label: "Telefon",
     value: COMPANY.phoneDisplay,
     href: `tel:${COMPANY.phone}`,
-    description: "Mo–Fr, 9–18 Uhr",
+    description: "Persönlicher Rückruf nach Vereinbarung",
   },
   {
     icon: IconMail,
     label: "E-Mail",
     value: COMPANY.email,
     href: `mailto:${COMPANY.email}`,
-    description: "Antwort innerhalb von 24h",
+    description: "Persönliche Rückmeldung per E-Mail",
   },
 ];
+
+const CONTACT_FAQ_ITEMS = [
+  {
+    question: "Kostet das Erstgespräch etwas?",
+    answer:
+      "Nein. Das Erstgespräch ist zu 100% kostenlos und unverbindlich. Wir nutzen die 30 Minuten, um Ihr Anliegen zu verstehen und eine erste Einschätzung zu geben.",
+  },
+  {
+    question: "Wie schnell meldet ihr euch?",
+    answer:
+      "Zeitnah und zuverlässig. Wenn es dringend ist, rufen Sie uns direkt an oder schreiben Sie uns mit kurzem Hinweis zur Priorität.",
+  },
+  {
+    question: "Muss ich mich vorbereiten?",
+    answer:
+      "Nein. Erzählen Sie uns einfach, wo der Schuh drückt. Ob Handwerk, Praxis, Dienstleistung oder Einzelhandel: Wir stellen die richtigen Fragen und leiten Sie strukturiert durch das Gespräch.",
+  },
+] as const;
 
 
 
@@ -101,7 +116,7 @@ export default function KontaktPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="mt-3 w-full bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90"
+                  className="mt-3 w-full"
                 >
                   <a href={`tel:${COMPANY.phone}`}>
                     <IconPhone className="mr-2 size-5" stroke={2} />
@@ -238,8 +253,8 @@ export default function KontaktPage() {
                   <span className="uppercase tracking-wide">Erreichbarkeit</span>
                 </div>
                 <div className="mt-3 space-y-1.5 text-sm text-muted-foreground max-[339px]:text-xs">
-                  <p>Mo – Fr: 9:00 – 18:00 Uhr</p>
-                  <p>Sa – So: Nach Vereinbarung</p>
+                  <p>Termine und Rückrufe nach Vereinbarung.</p>
+                  <p>Schreiben Sie uns oder rufen Sie uns direkt an.</p>
                 </div>
               </div>
 
@@ -290,43 +305,14 @@ export default function KontaktPage() {
           light
         />
         <FaqAccordion
-          items={[
-            {
-              question: "Kostet das Erstgespräch etwas?",
-              answer: "Nein. Das Erstgespräch ist zu 100% kostenlos und unverbindlich. Wir nutzen die 30 Minuten, um Ihr Anliegen zu verstehen und eine erste Einschätzung zu geben.",
-            },
-            {
-              question: "Wie schnell meldet ihr euch?",
-              answer: "Innerhalb von 24 Stunden – meistens deutlich schneller. Wenn Sie es eilig haben, rufen Sie uns direkt an.",
-            },
-            {
-              question: "Muss ich mich vorbereiten?",
-              answer: "Nein. Erzählen Sie uns einfach, wo der Schuh drückt. Wir stellen die richtigen Fragen.",
-            },
-          ]}
+          items={CONTACT_FAQ_ITEMS}
         />
       </Section>
 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(generateFaqSchema([
-            {
-              question: "Kostet das Erstgespräch etwas?",
-              answer:
-                "Nein. Das Erstgespräch ist zu 100% kostenlos und unverbindlich. Wir nutzen die 30 Minuten, um Ihr Anliegen zu verstehen und eine erste Einschätzung zu geben.",
-            },
-            {
-              question: "Wie schnell meldet ihr euch?",
-              answer:
-                "Innerhalb von 24 Stunden – meistens deutlich schneller. Wenn Sie es eilig haben, rufen Sie uns direkt an.",
-            },
-            {
-              question: "Muss ich mich vorbereiten?",
-              answer:
-                "Nein. Erzählen Sie uns einfach, wo der Schuh drückt. Wir stellen die richtigen Fragen.",
-            },
-          ])),
+          __html: JSON.stringify(generateFaqSchema(CONTACT_FAQ_ITEMS)),
         }}
       />
       <script
@@ -351,6 +337,8 @@ export default function KontaktPage() {
               email: COMPANY.email,
               address: {
                 "@type": "PostalAddress",
+                streetAddress: COMPANY.streetAddress,
+                postalCode: COMPANY.postalCode,
                 addressLocality: COMPANY.location,
                 addressRegion: COMPANY.state,
                 addressCountry: "DE",

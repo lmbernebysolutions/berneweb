@@ -635,9 +635,14 @@ h6 {
   .animate-spin-slow,
   .animate-referenzen-marquee,
   .hero-line-reveal > *,
+  .hero-berg-reveal,
+  .berg-layer-grow,
+  .footer-berg .berg-layer-grow-on-view,
   .faq-spring-hover,
   .tech-corner-animate,
   .animate-cta-pulse,
+  .animate-partner-presence,
+  .animate-partner-glow,
   .clip-reveal {
     animation: none !important;
     opacity: 1 !important;
@@ -652,12 +657,26 @@ h6 {
     transform: none !important;
     transition: none !important;
   }
+  .js-animate [data-animate="fade-up"],
+  .js-animate [data-animate="fade-left"],
+  .js-animate [data-animate="fade-right"],
+  [data-animate="fade-left"],
+  [data-animate="fade-right"] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
   .tech-corner-animate.tech-corner-done {
     opacity: 1 !important;
     transform: none !important;
   }
   /* No tap feedback animation for reduced motion */
-  .tap-target {
+  .tap-target,
+  .hover-power,
+  .card-hover-glow,
+  .faq-spring-hover,
+  .link-draw::after {
     transition: none !important;
   }
 }
@@ -900,10 +919,37 @@ h6 {
   flex-shrink: 0 !important;
 }
 
-@layer utilities {
-  /* Ensure header links never wrap and scale slightly to fit */
+/* Header links: explicit, non-layered rules to avoid layer precedence issues */
+.nav-link-responsive {
+  white-space: nowrap;
+  font-size: clamp(0.8rem, 0.82vw + 0.12rem, 1rem) !important;
+  line-height: 1.2 !important;
+}
+
+/* Desktop + tablet landscape desktop-nav links one typography step larger */
+@media (min-width: 1024px) {
   .nav-link-responsive {
-    white-space: nowrap;
-    font-size: clamp(0.75rem, 0.85vw + 0.1rem, 1rem);
+    font-size: clamp(1.08rem, 0.98rem + 0.3vw, 1.24rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  .contact-button-responsive {
+    font-size: clamp(1.08rem, 0.98rem + 0.3vw, 1.24rem) !important;
+    line-height: 1.2 !important;
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.6rem !important;
+    padding-left: 1.05rem !important;
+    padding-right: 1.05rem !important;
+  }
+}
+
+/* Tablets/iPads portrait: always use hamburger navigation */
+@media (orientation: portrait) and (pointer: coarse) and (min-width: 768px) {
+  .tablet-portrait-force-desktop-nav {
+    display: none !important;
+  }
+
+  .tablet-portrait-force-mobile-trigger {
+    display: inline-flex !important;
   }
 }
