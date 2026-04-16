@@ -56,13 +56,13 @@ export function Header() {
         </div>
 
         {/* Desktop Navigation (zwischen Logo und Button) */}
-        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Hauptnavigation">
+        <nav className="tablet-portrait-force-desktop-nav hidden items-center gap-0.5 lg:flex" aria-label="Hauptnavigation">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                "nav-link-responsive relative px-2.5 py-1.5 min-[1920px]:px-4 text-lg min-[1920px]:text-xl font-medium transition-colors",
+                "nav-link-responsive relative px-2.5 py-1.5 min-[1920px]:px-4 font-medium transition-colors",
                 pathname === item.href
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -75,7 +75,7 @@ export function Header() {
               )}
             </Link>
           ))}
-          <Button asChild size="sm" className="group ml-3 shrink-0 cursor-pointer px-4 py-2 min-[1920px]:px-5 min-[1920px]:py-2.5 min-[1920px]:text-sm min-[1920px]:ml-6">
+          <Button asChild size="sm" className="contact-button-responsive group ml-3 shrink-0 cursor-pointer px-4 py-2 min-[1920px]:px-5 min-[1920px]:py-2.5 min-[1920px]:ml-6">
             <Link href="/kontakt">
               Kontakt
               <IconArrowRight
@@ -92,7 +92,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
+              className="tablet-portrait-force-mobile-trigger lg:hidden"
               aria-label="Navigation öffnen"
             >
               <IconMenu2 className="size-5" />

@@ -51,7 +51,7 @@ export default function UeberUnsPage() {
         headline="EIN TEAM"
         headlineLine2="EIN ZIEL"
         accentText="EIN ZIEL"
-        subline="Wir machen lokale Betriebe digital erfolgreich. Persönlich, pragmatisch, aus dem Erzgebirge."
+        subline={"Wir machen lokale Betriebe digital erfolgreich.\nPersönlich, pragmatisch, aus dem Erzgebirge."}
         variant="navy"
         compact
       />
@@ -59,7 +59,7 @@ export default function UeberUnsPage() {
       <div className="w-full border-t border-white/10" aria-hidden="true" />
 
       {/* 02: Intro-Statement (Zitat) – GEO-Zitat integriert */}
-      <Section bg="transparent">
+      <Section bg="subtle">
         <SectionHeading
           number="02"
           overline="Unser Versprechen"
@@ -86,9 +86,6 @@ export default function UeberUnsPage() {
               <br />
               Nicht in zehn Jahren &ndash; <span className="text-brand-cyan">jetzt.</span>&rdquo;
             </blockquote>
-            <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-xl">
-              Wie die Deutsche Handwerks-Zeitung berichtet: &ldquo;SEO für Handwerker ist in Zeiten von KI wichtiger denn je.&rdquo; Genau das ist unser Spezialgebiet.
-            </p>
             <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
               &mdash; Lennard &amp; Daniel, Gründer von Berneby Solutions
             </p>
@@ -97,7 +94,7 @@ export default function UeberUnsPage() {
       </Section>
 
       {/* 03: Team */}
-      <Section bg="subtle">
+      <Section bg="transparent">
         <SectionHeading
           number="03"
           overline="Das Team"

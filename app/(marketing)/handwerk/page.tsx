@@ -183,7 +183,7 @@ export default function HandwerkPage() {
                 </li>
               ))}
             </ul>
-            <Button asChild size="lg" className="bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90 w-full md:w-auto">
+            <Button asChild size="lg" className="w-full md:w-auto">
               <Link href="/kontakt">Erstgespräch</Link>
             </Button>
           </div>

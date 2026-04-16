@@ -20,8 +20,6 @@ import {
 import { generateLocalBusinessSchema } from "@/lib/seo/schema";
 import { COMPANY, HANDWERK_STATS, SOCIAL_LINKS } from "@/lib/constants";
 
-const BASE_URL = "https://berneby.de";
-
 export async function generateStaticParams() {
   return getAllLocationSlugs().map((ort) => ({ ort }));
 }
@@ -57,9 +55,9 @@ const LOCATION_FEATURES = [
   },
   {
     icon: "IconCurrencyEuro",
-    title: "Transparente Preise",
+    title: "Klare Leistungsstufen",
     description:
-      "Festpreise ab 950 €. Kein Kleingedrucktes. Wir kommen zu Ihnen – kurze Wege aus Aue-Bad Schlema.",
+      "Klare Leistungsstufen ohne versteckte Positionen. Wir kommen zu Ihnen – kurze Wege aus Aue-Bad Schlema.",
   },
 ];
 
@@ -189,11 +187,11 @@ export default async function StandortPage({
               Unsere Leistungen für {location.name}
             </h3>
             <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/80">
-              Wir bieten professionelle Websites ab 950 €, Mehrseiter mit 50+ Landingpages ab 1.950 €
-              und den KI-Telefonassistenten für 24/7 Anrufannahme. Alle Pakete mit Festpreis, 4
-              Wochen bis Go-Live und 12 Monate Support. Für Handwerker in {location.name} und
+              Wir bieten professionelle Websites mit 50+ Landingpages und den KI-Telefonassistenten
+              für 24/7 Anrufannahme. Alle Pakete mit Festpreis, 4 Wochen bis Go-Live und 12 Monate
+              Support. Für Handwerker in {location.name} und
               Umgebung – Elektriker, Dachdecker, Sanitär, Maler, Tischler und mehr. Auch IT-Service:
-              Microsoft 365, Digitaler Hausmeister (10 Stunden für 850 €), KI-Schulung.
+              Microsoft 365, Digitaler Hausmeister und KI-Schulung.
             </p>
             <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/70">
               <li className="flex items-center gap-2">
@@ -265,7 +263,7 @@ export default async function StandortPage({
                 <p className="text-xs sm:text-sm text-white/70 mt-1">
                   Kostenloses Erstgespräch, 30 Minuten, unverbindlich.
                 </p>
-                <Button asChild size="lg" className="mt-4 w-full sm:w-auto bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90 text-center text-sm sm:text-base">
+                <Button asChild size="lg" className="mt-4 w-full text-center text-sm sm:w-auto sm:text-base">
                   <Link href="#kontakt">Erstgespräch vereinbaren</Link>
                 </Button>
               </div>
@@ -293,7 +291,7 @@ export default async function StandortPage({
           number="04"
           overline="Kontakt"
           title="Erstgespräch vereinbaren"
-          subtitle="Kostenlos, unverbindlich – wir melden uns innerhalb von 24 Stunden."
+          subtitle="Kostenlos und unverbindlich – wir melden uns persönlich bei Ihnen."
           align="left"
           light
         />
@@ -301,7 +299,7 @@ export default async function StandortPage({
           <div>
             <p className="text-white/80 mb-6">
               Sie haben Fragen zu Webdesign, IT-Service oder unseren Handwerks-Paketen für{" "}
-              {location.name}? Schreiben Sie uns – wir antworten innerhalb von 24 Stunden.
+              {location.name}? Schreiben Sie uns – wir melden uns zeitnah persönlich zurück.
             </p>
             <div className="space-y-4">
               <p className="text-sm text-white/60">

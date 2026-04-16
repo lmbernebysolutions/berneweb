@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { BackdropNumber } from "@/components/ui/backdrop-number";
 
 interface SectionHeadingProps {
   title: string;
@@ -46,23 +45,13 @@ export function SectionHeading({
       )}
       data-animate="fade-up"
     >
-      {/* Background Number Anchor */}
-      {number && (
-        <BackdropNumber
-          number={number}
-          className={cn(
-            "-top-20 z-0 opacity-50",
-            align === "center" ? "left-1/2 -translate-x-1/2" : "left-2 sm:left-4 md:left-6"
-          )}
-        />
-      )}
-
       {/* Content Container (z-index check) */}
       <div className={cn("relative z-10", align === "center" && "mx-auto")}>
+        {number && <span className="sr-only">Abschnitt {number}</span>}
         {overline && (
           <div
             className={cn(
-              "mb-2 sm:mb-3 text-xs sm:text-sm font-bold uppercase tracking-[0.2em]",
+              "mb-2 sm:mb-3 text-sm sm:text-base font-bold uppercase tracking-[0.2em]",
               light ? "text-brand-cyan" : "text-brand-cyan",
               align === "center" && "mx-auto"
             )}

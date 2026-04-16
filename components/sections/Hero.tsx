@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { BackdropNumber } from "@/components/ui/backdrop-number";
 
 interface HeroCta {
   label: string;
@@ -174,9 +173,6 @@ export function Hero({
 
       {/* 2. THE CONTENT FRAME – z-[3] damit Subline vor dem Berg-SVG (z-[2]) liegt; Berg bleibt vollständig sichtbar */}
       <div className="relative z-[3] mx-auto max-w-6xl w-full">
-        {/* 1. THE MASSIVE SHADOW NUMBER – remain inside beams < 1290px, blueprint overlap ab 1290px */}
-        <BackdropNumber number="01" className="hero-backdrop-overlap top-[-10%] sm:top-[-15%] lg:top-[-20%] left-2 sm:left-4 md:left-6 lg:left-8 opacity-100" />
-
         {/* Headline: nur max-sm größer (clamp+vw); ab sm wie bisher. px-3 max-sm = etwas mehr Zeilenbreite. */}
         <div className="px-3 sm:px-5 md:px-6 lg:px-8 mb-6 sm:mb-6 md:mb-8 min-w-0 pr-11 sm:pr-14 md:pr-16">
           <div className="hero-line-reveal min-w-0 overflow-visible">

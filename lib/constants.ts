@@ -122,20 +122,6 @@ export const FOOTER_NAV = {
 } as const;
 
 // =============================================================================
-// HOME PAGE – HERO
-// =============================================================================
-
-export const HOME_HERO = {
-  headline: "Technik, die dein Geschäft nach vorne bringt.",
-  subline:
-    "Berneby Solutions macht lokale Betriebe im Erzgebirge online sichtbar und automatisiert das, was Zeit frisst.",
-  ctas: [
-    { label: "Erstgespräch vereinbaren", href: "/kontakt", variant: "default" as const },
-    { label: "Unsere Leistungen", href: "/tech", variant: "outline" as const },
-  ],
-} as const;
-
-// =============================================================================
 // TRUST BAR
 // =============================================================================
 
@@ -163,7 +149,7 @@ export const TECH_STACK_WITH_BENEFIT = [
 /** Tech-Seite: TrustBar-Kennzahlen (1:1 wie Über-uns, Inhalt angepasst) */
 export const TECH_STATS = [
   { value: "5+", label: "Tools" },
-  { value: "24/7", label: "IT-Support" },
+  { value: "On-Call", label: "IT-Support" },
   { value: "100%", label: "Erzgebirge" },
   { value: "2", label: "Ansprechpartner" },
 ] as const;
@@ -183,9 +169,9 @@ export const HOME_MINI_FAQ = [
       "Nichts. Das Erstgespräch ist kostenlos und unverbindlich. Wir besprechen Ihr Anliegen und geben eine erste Einschätzung.",
   },
   {
-    question: "Wie schnell kann es losgehen?",
+    question: "Für wen sind eure Leistungen gedacht?",
     answer:
-      "Nach dem Erstgespräch erhalten Sie ein transparentes Angebot. Je nach Projekt starten wir innerhalb von 1–2 Wochen.",
+      "Für Handwerksbetriebe genauso wie für Praxen, Dienstleister, Einzelhandel und andere KMU. Wir passen Website, IT- und Marketing-Leistungen an Ihren Betrieb an.",
   },
   {
     question: "Arbeitet ihr nur im Erzgebirge?",
@@ -240,31 +226,6 @@ export const HANDWERK_GARANTIEN = [
 ] as const;
 
 // =============================================================================
-// PROBLEM → LÖSUNG
-// =============================================================================
-
-export const PROBLEMS_SOLUTIONS = [
-  {
-    problem: "Kunden finden Sie nicht bei Google?",
-    solution:
-      "Wir bringen Sie mit 50+ lokalen Landingpages auf Seite 1 – für jeden Ort, den Sie bedienen.",
-    icon: "IconSearch",
-  },
-  {
-    problem: "Anrufe gehen ins Leere?",
-    solution:
-      "Unser KI-Telefonassistent nimmt ab – 24 Stunden, 7 Tage. Kein Kunde geht mehr verloren.",
-    icon: "IconPhone",
-  },
-  {
-    problem: "Kein Budget für eine IT-Abteilung?",
-    solution:
-      "Wir sind Ihre externe IT – flexibel, stundengenau, ohne Festanstellung.",
-    icon: "IconCurrencyEuro",
-  },
-] as const;
-
-// =============================================================================
 // OHNE UNS / MIT UNS – Home & Handwerk (4 Zeilen, Problem + Solution)
 // =============================================================================
 
@@ -300,9 +261,9 @@ export const TWO_PILLARS = {
     cta: { label: "Pakete ansehen", href: "/handwerk" },
   },
   general: {
-    title: "Tech & Digital",
+    title: "IT & Digital",
     description:
-      "Excel-Probleme, Shop-Betreuung, Software-Umzug oder KI-Schulung – wir lösen jedes digitale Problem.",
+      "Webseiten, Online-Shops, Office-Themen, KI-Integration oder IT-Support – wir begleiten Ihren digitalen Alltag ganzheitlich.",
     features: [
       "Webseiten & Online-Shops",
       "Office & Microsoft 365",
@@ -363,7 +324,7 @@ export const FAQ_ITEMS = [
   {
     question: "Arbeitet ihr nur mit Handwerkern?",
     answer:
-      "Nein. Handwerk ist unser Spezialgebiet, aber wir unterstützen alle lokalen Betriebe – vom Einzelhändler bis zum Freiberufler.",
+      "Nein. Handwerk ist unser Spezialgebiet, aber wir unterstützen ebenso Praxen, Dienstleister, Einzelhandel und weitere KMU im Erzgebirge und darüber hinaus.",
   },
   {
     question: "Was ist der Klick-Dominator?",
@@ -634,16 +595,22 @@ export const TEAM = [
     role: "Technik & Betrieb",
     initials: "LM",
     image: "/team/lennard-meyer.webp",
-    description:
-      "Full-Stack-Entwicklung, Architektur und Infrastruktur. Operative Projektsteuerung, Qualitätskontrolle, Buchhaltung und Finanzen. Technische Konzeption von Automatisierungen und IT-Services (z. B. KI-Empfang, Digitaler Hausmeister).",
+    responsibilities: [
+      "Kundenberatung und technische Projektplanung.",
+      "Full-Stack-Entwicklung, Architektur und Infrastruktur.",
+      "Projektsteuerung und Qualitätskontrolle.",
+    ],
   },
   {
     name: "Daniel Hamburg",
     role: "Kunden & Markt / Online-Marketing",
     initials: "DH",
     image: "/team/daniel-hamburg.webp",
-    description:
-      "Kundenberatung, Anforderungsaufnahme und Projektplanung. Akquise und Beziehungsaufbau zu lokalen Betrieben. Entwicklung und Umsetzung von Online-Marketing-Strategien. Sicherstellung der Kundenzufriedenheit und Ausbau-Potenzial.",
+    responsibilities: [
+      "Kundenberatung und Projektplanung.",
+      "Akquise und Betreuung lokaler Betriebe.",
+      "Online-Marketing für Sichtbarkeit und Anfragen.",
+    ],
   },
 ] as const;
 
@@ -664,7 +631,7 @@ export const VALUES = [
   },
   {
     title: "Maschinelle Präzision",
-    description: "Moderner Tech-Stack, saubere Implementierung, belastbare Ergebnisse.",
+    description: "Moderne Technik-Basis, saubere Implementierung, belastbare Ergebnisse.",
     icon: "IconShield",
   },
   {
@@ -685,6 +652,12 @@ export const EINZUGSGEBIET_ORTE = [
   "Schwarzenberg",
   "Marienberg",
   "Erzgebirgskreis",
+  "Schneeberg",
+  "Zwönitz",
+  "Lößnitz",
+  "Oelsnitz",
+  "Zschopau",
+  "Olbernhau",
 ] as const;
 
 // =============================================================================
@@ -723,7 +696,7 @@ export const PAGE_META = {
   kontakt: {
     title: "Kontakt & Erstgespräch | Berneby Solutions Erzgebirge",
     description:
-      "Kostenloses Erstgespräch vereinbaren. Rufen Sie an oder schreiben Sie uns – wir melden uns innerhalb von 24 Stunden.",
+      "Kostenloses Erstgespräch vereinbaren. Rufen Sie an oder schreiben Sie uns – wir melden uns zeitnah persönlich zurück.",
   },
   ratgeber: {
     title: "Ratgeber: IT & Digitalisierung | Berneby Solutions",

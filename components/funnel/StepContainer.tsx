@@ -20,14 +20,22 @@ export function StepContainer({ step, children, className }: StepContainerProps)
   useEffect(() => {
     // Trigger re-animation on step change
     if (prevStep.current !== step) {
-      setVisible(false);
       prevStep.current = step;
-      const raf = requestAnimationFrame(() => {
-        requestAnimationFrame(() => setVisible(true));
+      let raf2: number | undefined;
+      const raf1 = requestAnimationFrame(() => {
+        setVisible(false);
+        raf2 = requestAnimationFrame(() => setVisible(true));
       });
-      return () => cancelAnimationFrame(raf);
+      return () => {
+        cancelAnimationFrame(raf1);
+        if (raf2 !== undefined) {
+          cancelAnimationFrame(raf2);
+        }
+      };
     }
-    setVisible(true);
+
+    const raf = requestAnimationFrame(() => setVisible(true));
+    return () => cancelAnimationFrame(raf);
   }, [step]);
 
   return (

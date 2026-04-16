@@ -130,10 +130,7 @@ export async function POST(req: NextRequest) {
 
     const parsed = ContactSchema.safeParse(body);
     if (!parsed.success) {
-      return NextResponse.json(
-        { error: "Eingabe ungültig", details: parsed.error.flatten().fieldErrors },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Eingabe ungültig" }, { status: 400 });
     }
 
     const { name, email, phone, message } = parsed.data;

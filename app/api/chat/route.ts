@@ -41,8 +41,15 @@ const chatBodySchema = z.object({
 type ChatBody = z.infer<typeof chatBodySchema>;
 
 function getClientIp(request: NextRequest): string {
+  const requestIp = (request as NextRequest & { ip?: string }).ip;
+  if (requestIp) return requestIp;
+
   const forwarded = request.headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0]?.trim() ?? "anonymous";
+  if (forwarded) {
+    const ips = forwarded.split(",");
+    return ips[ips.length - 1]?.trim() ?? "anonymous";
+  }
+
   const realIp = request.headers.get("x-real-ip");
   if (realIp) return realIp;
   return "anonymous";

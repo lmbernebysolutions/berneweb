@@ -3,11 +3,14 @@ import path from "node:path";
 import bundleAnalyzer from "@next/bundle-analyzer";
 
 const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === "true" });
+const isDevelopment = process.env.NODE_ENV !== "production";
+const scriptSrc = isDevelopment
+  ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com"
+  : "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com";
 
 const cspHeader = [
   "default-src 'self'",
-  // unsafe-eval: Next.js dev mode + einige Build-Tools benötigen dies; in Production prüfen ob entfernbar
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com",
+  scriptSrc,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https:",
   "font-src 'self'",
@@ -45,7 +48,7 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-XSS-Protection", value: "1; mode=block" },
+          { key: "X-XSS-Protection", value: "0" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Permissions-Policy", value: "geolocation=(), microphone=(), camera=()" },
           { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains; preload" },

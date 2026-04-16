@@ -6,7 +6,8 @@ import { TechCorners } from "@/components/ui/tech-corners";
 /**
  * Feste Visualisierung der "10er Karte Support" (Digitaler Hausmeister).
  * Entspricht branding.md: Heavy Industrial, Brand Navy/Cyan/Warm, harte Kanten, Tech Corners, UPPERCASE.
- * Ersetzt den bisherigen Platzhalter mit "SOLD"-Text durch eine konsistente, wiederholbare Grafik.
+ * Ersetzt den bisherigen Platzhalter mit einem neutralen Service-Stempel
+ * durch eine konsistente, wiederholbare Grafik.
  */
 export function HausmeisterCardVisual({
   className,
@@ -125,7 +126,7 @@ export function HausmeisterCardVisual({
             "motion-reduce:rotate-0"
           )}
         >
-          SOLD
+          AKTIV
         </div>
       )}
 

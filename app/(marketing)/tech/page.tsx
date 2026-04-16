@@ -200,7 +200,7 @@ export default function TechPage() {
                                 </li>
                             ))}
                         </ul>
-                        <Button asChild size="lg" className="bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90 w-full md:w-auto">
+                        <Button asChild size="lg" className="w-full md:w-auto">
                             <Link href="/kontakt">Erstgespräch</Link>
                         </Button>
                     </div>
@@ -259,9 +259,9 @@ export default function TechPage() {
             <Section bg="transparent">
                 <SectionHeading
                     number="08"
-                    overline="Tech & Werkzeuge"
-                    title="TECH - STACK"
-                    subtitle="Moderne Stacks, klare Ergebnisse."
+                    overline="Werkzeuge"
+                    title="Technik-Set"
+                    subtitle="Moderne Technik, klare Ergebnisse."
                     align="left"
                     light
                 />

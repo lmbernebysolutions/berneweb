@@ -3,11 +3,9 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
-import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import dynamic from "next/dynamic";
 import { CtaSection } from "@/components/sections/CtaSection";
-import { FunnelTriggerButton } from "@/components/funnel/FunnelTriggerButton";
 
 const TestimonialGrid = dynamic(
   () => import("@/components/sections/TestimonialGrid").then((m) => ({ default: m.TestimonialGrid })),
@@ -16,29 +14,21 @@ const TestimonialGrid = dynamic(
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
-  IconArrowRight,
   IconHammer,
   IconDeviceDesktop,
   IconCheck,
   IconX,
-  IconPhone,
-  IconCurrencyEuro,
-  IconStarFilled,
   IconBrandGoogle,
   IconBrandNextjs,
   IconBrandReact,
   IconBrandWindows,
-  IconSearch,
   IconBrandAdobe,
   IconRobot,
 } from "@tabler/icons-react";
 import {
-  HOME_HERO,
   TRUST_BAR,
-  PROBLEMS_SOLUTIONS,
   TWO_PILLARS,
   PROCESS_STEPS,
-  COMPANY,
   TECH_STACK_WITH_BENEFIT,
   HOME_MINI_FAQ,
   PAGE_META,
@@ -53,7 +43,7 @@ import { ReferenzCard } from "@/components/sections/ReferenzenCarousel";
 import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
 import { ProblemToSolutionScrollSection } from "@/components/sections/ProblemToSolutionScrollSection";
 import { REFERENZEN } from "@/lib/data/referenzen";
-import { CONTAINER_A, CONTAINER_A_NO_GLOW, CONTAINER_A_STATIC, CONTAINER_B } from "@/lib/container-styles";
+import { CONTAINER_A, CONTAINER_A_STATIC, CONTAINER_B } from "@/lib/container-styles";
 import { cn } from "@/lib/utils";
 
 const ChatSection = dynamic(
@@ -67,12 +57,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const ICON_MAP: Record<string, React.ElementType> = {
-  IconSearch,
-  IconPhone,
-  IconCurrencyEuro,
-};
-
 export default function Home() {
   return (
     <>
@@ -84,10 +68,10 @@ export default function Home() {
           headlineLine2="WERKZEUG-"
           headlineLine3="KASTEN"
           accentText={["WERKZEUG-", "KASTEN"]}
-          subline="Wir sind der Digital-Partner fürs Erzgebirge.\nWebseiten, KI-Telefon & IT-Support aus Aue."
+          subline="Wir sind der Digital-Partner fürs Erzgebirge.\nWebseiten, KI-Telefon, Marketing & IT-Support."
           ctas={[
-            { label: "Für Handwerker", href: "/handwerk", variant: "default" },
-            { label: "Für Tech-Probleme", href: "/tech", variant: "outline" },
+            { label: "Für Handwerk", href: "/handwerk", variant: "default" },
+            { label: "Für IT & Digitales", href: "/tech", variant: "outline" },
           ]}
           variant="navy"
         />
@@ -98,10 +82,10 @@ export default function Home() {
           bergVariant="home"
           headline="DEIN DIGITALER WERKZEUGKASTEN"
           accentText="WERKZEUGKASTEN"
-          subline="Wir sind der Digital-Partner fürs Erzgebirge.\nWebseiten, KI-Telefon & IT-Support aus Aue."
+          subline="Wir sind der Digital-Partner fürs Erzgebirge.\nWebseiten, KI-Telefon, Marketing & IT-Support."
           ctas={[
-            { label: "Für Handwerker", href: "/handwerk", variant: "default" },
-            { label: "Für Tech-Probleme", href: "/tech", variant: "outline" },
+            { label: "Für Handwerk", href: "/handwerk", variant: "default" },
+            { label: "Für IT & Digitales", href: "/tech", variant: "outline" },
           ]}
           variant="navy"
         />
@@ -190,7 +174,7 @@ export default function Home() {
             </ul>
 
             <div className="space-y-3">
-              <Button asChild variant="outline" className="w-full border-brand-cyan text-brand-cyan hover:bg-brand-cyan hover:text-brand-navy">
+              <Button asChild variant="outline-light" className="w-full">
                 <Link href={TWO_PILLARS.general.cta.href}>
                   {TWO_PILLARS.general.cta.label}
                 </Link>
@@ -209,7 +193,7 @@ export default function Home() {
       <Section bg="subtle">
         <SectionHeading
           number="03"
-          overline="Handwerk & Digital"
+          overline="Handwerk & IT"
           title="Ohne uns vs. Mit uns"
           subtitle="Ein direkter Vergleich: was sich ändert, wenn wir Ihren digitalen Auftritt übernehmen."
           align="left"
@@ -334,12 +318,12 @@ export default function Home() {
         <SectionHeading
           number="06"
           overline="Werkzeuge"
-          title="Tech-Stack"
-          subtitle="Moderne Stacks, klare Ergebnisse."
+          title="Technik-Set"
+          subtitle="Moderne Technik, klare Ergebnisse."
           align="left"
           light
         />
-        {/* Layout 1:1 wie Sektion Tech-Stack auf /tech (Grid, Padding, Typo) */}
+        {/* Layout 1:1 wie Sektion Technik-Set auf /tech (Grid, Padding, Typo) */}
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
           {TECH_STACK_WITH_BENEFIT.map((item, i) => {
             const Icon = {
@@ -432,28 +416,6 @@ export default function Home() {
           __html: JSON.stringify(generateFaqSchema(HOME_MINI_FAQ)),
         }}
       />
-
-      {/* Digital-Check Funnel Banner (Vorerst ausgeblendet) 
-      <section className="relative bg-slate-950 border-y border-brand-cyan/20 py-12 px-4">
-        <div className="max-w-2xl mx-auto flex flex-col items-center gap-4 text-center">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-cyan/60 border border-brand-cyan/20 px-3 py-1">
-            Kostenloser Check · 90 Sekunden
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-tight">
-            Wo verliert dein Betrieb{" "}
-            <span className="text-brand-cyan">Geld &amp; Zeit?</span>
-          </h2>
-          <p className="text-sm text-white/50 max-w-sm">
-            Der 90-Sekunden Digital-Check für Handwerk &amp; Dienstleistung im Erzgebirge.
-          </p>
-          <FunnelTriggerButton
-            label="POTENZIAL KOSTENLOS PRÜFEN"
-            size="lg"
-            className="w-full sm:w-auto"
-          />
-        </div>
-      </section>
-      */}
 
       {/* CTA Section */}
       <CtaSection

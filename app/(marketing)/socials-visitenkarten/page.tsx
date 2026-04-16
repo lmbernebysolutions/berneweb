@@ -92,10 +92,7 @@ function rgbToHex({ r, g, b }: Rgb): string {
   return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`.toUpperCase();
 }
 
-/**
- * Branded QR URL using QRCoder API.
- * Note: this embeds the API key client-side for the print preview route.
- */
+/** Branded QR URL without embedded API secrets. */
 function getBrandedQrSrc({
   data,
   size = 500,
@@ -108,11 +105,11 @@ function getBrandedQrSrc({
   background?: string;
 }) {
   const encoded = encodeURIComponent(data);
-  const base = `https://www.qrcoder.co.uk/api/v4/?key=ofWn3qI5eLQRSOj8PCZxl2ug0c6twdp7&text=${encoded}&size=${size}&foreground=${foreground}&eye_outer=${foreground}&eye_inner=${foreground}`;
+  const base = `https://quickchart.io/qr?text=${encoded}&size=${size}&dark=${foreground}`;
   if (background === "transparent") {
-    return `${base}&format=svg`;
+    return `${base}&format=svg&light=0000`;
   }
-  return `${base}&background=${background}&format=png`;
+  return `${base}&light=${background}&format=png`;
 }
 
 function rgbToLab({ r, g, b }: Rgb): Lab {

@@ -16,15 +16,13 @@ const FaqAccordion = dynamic(
 );
 import { Button } from "@/components/ui/button";
 import { TechCorners } from "@/components/ui/tech-corners";
-import { IconCheck, IconCurrencyEuro, IconPhone } from "@tabler/icons-react";
+import { IconCheck, IconPhone } from "@tabler/icons-react";
 import {
   getBrancheBySlug,
   getAllBranchenSlugs,
 } from "@/lib/data/branchen";
 import { generateFaqSchema, generateProfessionalServiceSchema } from "@/lib/seo/schema";
 import { COMPANY, HANDWERK_STATS, CRAFT_PACKAGES } from "@/lib/constants";
-
-const BASE_URL = "https://berneby.de";
 
 export async function generateStaticParams() {
   return getAllBranchenSlugs().map((slug) => ({ slug }));
@@ -191,19 +189,15 @@ export default async function BranchePage({
             <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
             <div className="relative z-10 flex flex-col p-8 md:p-10">
               <div className="mb-3 flex h-12 w-12 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10" aria-hidden="true">
-                <IconCurrencyEuro className="size-6 text-brand-cyan" stroke={2} />
+                <IconCheck className="size-6 text-brand-cyan" stroke={2} />
               </div>
               <h3 className="text-xl font-bold text-white md:text-2xl">
-                Preise und Pakete für {branche.name}
+                Pakete und Einordnung für {branche.name}
               </h3>
               <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/80">
                 {branche.preisRelevant}
               </p>
               <ul className="mt-4 space-y-2 text-sm text-white/70">
-                <li className="flex items-center gap-2">
-                  <IconCheck className="size-4 shrink-0 text-brand-cyan" stroke={2.5} />
-                  Alle Preise netto zzgl. MwSt.
-                </li>
                 <li className="flex items-center gap-2">
                   <IconCheck className="size-4 shrink-0 text-brand-cyan" stroke={2.5} />
                   Festpreis bis Abnahme
@@ -218,7 +212,7 @@ export default async function BranchePage({
                 </li>
               </ul>
               <div className="mt-8">
-                <Button asChild size="lg" className="w-full sm:w-auto bg-brand-cyan text-brand-navy hover:bg-brand-cyan/90">
+                <Button asChild size="lg" className="w-full sm:w-auto">
                   <Link href="/kontakt">Jetzt Erstgespräch vereinbaren</Link>
                 </Button>
               </div>
@@ -233,8 +227,8 @@ export default async function BranchePage({
           number="05"
           overline="Investition"
           title="Pakete"
-          titleLine2="& Preise"
-          subtitle="Netto. Transparent. Ohne versteckte Kosten."
+          titleLine2="& Leistungspakete"
+          subtitle="Transparent eingeordnet und passend zum Projektumfang."
           align="left"
           light
         />

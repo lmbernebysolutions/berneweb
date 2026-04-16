@@ -12,10 +12,10 @@ interface TextLogoProps {
 const SIZE = {
   // Einheitliche Logo-Größe für Header, Hero, Footer
   default: {
-    logoClass: "h-11 sm:h-12 md:h-[3.25rem] lg:h-[3.25rem]",
+    logoClass: "h-11 sm:h-12 md:h-[3.5rem] lg:h-[3.75rem]",
   },
   lg: {
-    logoClass: "h-11 sm:h-12 md:h-[3.25rem] lg:h-[3.25rem]",
+    logoClass: "h-11 sm:h-12 md:h-[3.5rem] lg:h-[3.75rem]",
   },
 } as const;
 

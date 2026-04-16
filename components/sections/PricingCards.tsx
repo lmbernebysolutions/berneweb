@@ -99,7 +99,7 @@ function SinglePricingCard({
               pkg.highlighted ? "text-brand-warm" : "text-white"
             )}
           >
-            {pkg.price} €
+            {pkg.price}
           </span>
           <span className="text-[10px] sm:text-xs font-mono text-white/40 uppercase">
             {pkg.unit}

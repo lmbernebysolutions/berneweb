@@ -50,12 +50,12 @@ const BRANCHEN: Branche[] = [
       "Bewertungsmanagement (Review-Radar)",
     ],
     suchbegriffe: ["Elektriker Erzgebirge", "Elektroinstallation", "Elektrikermeister"],
-    preisRelevant: "Handwerks-Pakete ab 950 € – Meisterbetrieb mit 50+ Landingpages ab 1.950 €.",
+    preisRelevant: "Unsere Pakete werden im Erstgespräch passend zu Umfang, Zielen und Betrieb eingeordnet.",
     faqItems: [
       {
-        question: "Was kostet eine Website für Elektriker?",
+        question: "Wie werden Website und Leistungen für Elektriker eingeordnet?",
         answer:
-          "Unser Geselle-Paket (One-Pager) startet bei 950 € netto. Das Meisterbetrieb-Paket mit 50+ lokalen Landingpages und SEO kostet 1.950 €. Der Marktführer inkl. KI-Telefonassistent liegt bei 2.800 €.",
+          "Im Erstgespräch klären wir Ihren Bedarf und empfehlen das passende Paket – vom kompakten Einstieg bis zur umfassenden Lösung mit lokalen Landingpages und KI-Telefonassistent.",
       },
       {
         question: "Wie lange dauert die Umsetzung?",
@@ -98,7 +98,7 @@ const BRANCHEN: Branche[] = [
       "Bewertungsmanagement für mehr 5-Sterne-Bewertungen",
     ],
     suchbegriffe: ["Dachdecker Erzgebirge", "Dachsanierung", "Dachdecker Marienberg"],
-    preisRelevant: "Pakete ab 950 € – Meisterbetrieb mit 50+ Landingpages ab 1.950 €.",
+    preisRelevant: "Wir empfehlen die passende Paketstufe im Erstgespräch – transparent und nachvollziehbar.",
     faqItems: [
       {
         question: "Was bringt eine Website für Dachdecker?",
@@ -141,12 +141,12 @@ const BRANCHEN: Branche[] = [
       "Bewertungsmanagement",
     ],
     suchbegriffe: ["Sanitär Erzgebirge", "Heizungsbau", "Installateur"],
-    preisRelevant: "Pakete ab 950 € – Meisterbetrieb ab 1.950 €, Marktführer mit KI-Telefon ab 2.800 €.",
+    preisRelevant: "Die passende Kombination aus Website, lokaler Sichtbarkeit und KI-Telefon wird im Erstgespräch abgestimmt.",
     faqItems: [
       {
-        question: "Was kostet eine Website für Sanitär/Heizung?",
+        question: "Wie werden Website und Leistungen für Sanitär/Heizung eingeordnet?",
         answer:
-          "Ab 950 € für einen One-Pager. Das Meisterbetrieb-Paket mit 50+ Landingpages und SEO kostet 1.950 €. Inkl. Google Business und Bewertungsmanagement.",
+          "Wir ordnen Ihr Projekt im Erstgespräch transparent ein und empfehlen die passende Paketstufe inklusive Website, lokaler Sichtbarkeit und optionaler Zusatzleistungen.",
       },
       {
         question: "Wie funktioniert der KI-Telefonassistent bei Notfällen?",
@@ -184,7 +184,7 @@ const BRANCHEN: Branche[] = [
       "Bewertungsmanagement",
     ],
     suchbegriffe: ["Maler Erzgebirge", "Lackierer", "Malermeister"],
-    preisRelevant: "Pakete ab 950 € – Meisterbetrieb ab 1.950 €.",
+    preisRelevant: "Die passende Paketstufe wird im Erstgespräch auf Ihren Betrieb zugeschnitten.",
     faqItems: [
       {
         question: "Lohnt sich eine Website für Maler?",
@@ -222,7 +222,7 @@ const BRANCHEN: Branche[] = [
       "Google Business Profil",
     ],
     suchbegriffe: ["Tischler Erzgebirge", "Schreiner", "Möbelbau"],
-    preisRelevant: "Pakete ab 950 € – Meisterbetrieb ab 1.950 €.",
+    preisRelevant: "Wir empfehlen im Erstgespräch die passende Lösung für Ihren Tischlereibetrieb.",
     faqItems: [
       {
         question: "Was bringt eine Website für Tischler?",
@@ -260,12 +260,12 @@ const BRANCHEN: Branche[] = [
       "Google Business Profil",
     ],
     suchbegriffe: ["KFZ-Werkstatt Erzgebirge", "Autowerkstatt", "Werkstatt"],
-    preisRelevant: "Pakete ab 950 € – Meisterbetrieb ab 1.950 €.",
+    preisRelevant: "Website, lokale Sichtbarkeit und KI-Telefon werden passend zu Ihrem Bedarf kombiniert.",
     faqItems: [
       {
-        question: "Was kostet eine Website für eine KFZ-Werkstatt?",
+        question: "Wie werden Website und Leistungen für eine KFZ-Werkstatt eingeordnet?",
         answer:
-          "Ab 950 € für einen One-Pager. Das Meisterbetrieb-Paket mit 50+ Landingpages und SEO kostet 1.950 €. Inkl. Google Business und Bewertungsmanagement.",
+          "Im Erstgespräch klären wir Ziele und Umfang und empfehlen das passende Paket – transparent und ohne unnötige Extras.",
       },
     ],
   },
@@ -298,7 +298,7 @@ const BRANCHEN: Branche[] = [
       "Optional: Online-Terminbuchung",
     ],
     suchbegriffe: ["Friseur Erzgebirge", "Haarsalon", "Friseursalon"],
-    preisRelevant: "Pakete ab 950 € – individuell anpassbar für Friseure.",
+    preisRelevant: "Leistungsumfang und Paketstufe werden im Erstgespräch individuell auf Ihren Salon abgestimmt.",
     faqItems: [
       {
         question: "Was bringt eine Website für Friseure?",
@@ -336,12 +336,12 @@ const BRANCHEN: Branche[] = [
       "Optional: Reservierungssystem",
     ],
     suchbegriffe: ["Restaurant Erzgebirge", "Café", "Gastronomie"],
-    preisRelevant: "Pakete ab 950 € – individuell für Gastronomie.",
+    preisRelevant: "Für Gastronomiebetriebe legen wir die passende Lösung im Erstgespräch individuell fest.",
     faqItems: [
       {
-        question: "Was kostet eine Website für ein Restaurant?",
+        question: "Wie werden Website und Leistungen für ein Restaurant eingeordnet?",
         answer:
-          "Ab 950 € für einen One-Pager mit Speisekarte und Öffnungszeiten. Größere Projekte mit Reservierung ab 1.950 €.",
+          "Die passende Lösung wird im Erstgespräch festgelegt – von der kompakten Präsenz bis zur erweiterten Website mit Reservierungsoption.",
       },
     ],
   },
@@ -374,7 +374,7 @@ const BRANCHEN: Branche[] = [
       "Optional: Online-Shop",
     ],
     suchbegriffe: ["Einzelhandel Erzgebirge", "Laden", "Geschäft"],
-    preisRelevant: "Pakete ab 950 € – Online-Shop ab 1.200 €.",
+    preisRelevant: "Website- und optionaler Shop-Umfang werden im Erstgespräch transparent abgestimmt.",
     faqItems: [
       {
         question: "Lohnt sich eine Website für Einzelhändler?",
@@ -402,7 +402,7 @@ const BRANCHEN: Branche[] = [
       {
         problem: "IT und Verwaltung",
         description:
-          "Der Digitale Hausmeister (10 Stunden für 850 €) hilft bei Office, E-Mail und Software.",
+          "Der Digitale Hausmeister hilft bei Office, E-Mail und Software – flexibel auf Abruf.",
       },
     ],
     loesungen: [
@@ -412,12 +412,12 @@ const BRANCHEN: Branche[] = [
       "Optional: KI-Schulung",
     ],
     suchbegriffe: ["Freiberufler Erzgebirge", "Steuerberater", "Architekt"],
-    preisRelevant: "Websites ab 950 € – Digitaler Hausmeister 850 €.",
+    preisRelevant: "Website- und Serviceumfang werden im Erstgespräch passend zu Ihren Anforderungen eingeordnet.",
     faqItems: [
       {
-        question: "Was kostet eine Website für Freiberufler?",
+        question: "Wie werden Website und Leistungen für Freiberufler eingeordnet?",
         answer:
-          "Ab 950 € für einen professionellen One-Pager. Mehrseitige Websites mit SEO ab 1.950 €. Der Digitale Hausmeister (IT-Support) kostet 850 € für 10 Stunden.",
+          "Im Erstgespräch klären wir Ziele und Umfang und empfehlen die passende Kombination aus Website, SEO und optionalem IT-Service.",
       },
     ],
   },

@@ -4,20 +4,20 @@ import { Slot } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap text-sm font-bold uppercase tracking-widest transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 tap-target",
+  "inline-flex items-center justify-center whitespace-nowrap text-sm font-bold uppercase tracking-widest transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 tap-target",
   {
     variants: {
       variant: {
         default:
-          "bg-brand-cyan text-brand-navy hover:bg-brand-warm hover:text-brand-navy clip-corner shadow-[4px_4px_0_0_rgba(0,0,0,0.3)] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_0_rgba(255,181,71,0.4)]",
+          "bg-brand-cyan text-brand-navy clip-corner shadow-[4px_4px_0_0_rgba(0,0,0,0.3)] hover:translate-y-[-2px] hover:bg-brand-warm hover:text-brand-navy hover:shadow-[6px_6px_0_0_rgba(255,181,71,0.4)]",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 clip-corner",
+          "bg-destructive text-destructive-foreground clip-corner hover:translate-y-[-2px] hover:bg-destructive/90",
         outline:
-          "border-2 border-brand-cyan bg-transparent text-brand-cyan hover:bg-brand-cyan hover:text-brand-navy clip-corner hover:shadow-[4px_4px_0_0_rgba(3,249,249,0.2)]",
+          "border-2 border-brand-cyan bg-transparent text-brand-cyan clip-corner hover:translate-y-[-2px] hover:bg-brand-cyan hover:text-brand-navy hover:shadow-[4px_4px_0_0_rgba(3,249,249,0.2)]",
         "outline-light":
-          "border-2 border-white bg-transparent text-white hover:bg-brand-cyan hover:border-brand-cyan hover:text-brand-navy clip-corner hover:shadow-[4px_4px_0_0_rgba(3,249,249,0.3)] transition-all hover:translate-y-[-2px]",
+          "border-2 border-white bg-transparent text-white clip-corner hover:translate-y-[-2px] hover:border-brand-cyan hover:bg-brand-cyan hover:text-brand-navy hover:shadow-[4px_4px_0_0_rgba(3,249,249,0.3)]",
         secondary:
-          "bg-brand-navy border border-brand-cyan/30 text-brand-cyan hover:bg-brand-navy/80 clip-corner",
+          "border border-brand-cyan/30 bg-brand-navy text-brand-cyan clip-corner hover:translate-y-[-2px] hover:bg-brand-navy/80",
         ghost: "hover:bg-brand-cyan/10 hover:text-brand-cyan",
         link: "text-brand-cyan underline-offset-4 hover:underline",
       },
