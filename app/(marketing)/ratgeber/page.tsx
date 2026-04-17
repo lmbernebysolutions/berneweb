@@ -27,7 +27,11 @@ export default function RatgeberPage() {
 
   return (
     <>
-      <Section bg="subtle" className="pt-24 sm:pt-28 md:pt-32">
+      <Section
+        bg="subtle"
+        className="pt-20 sm:pt-24 md:pt-24 lg:pt-24 min-[1920px]:pt-32"
+        contentClassName="pt-4 sm:pt-5 md:pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32"
+      >
         <SectionHeading
           number="01"
           overline="Ratgeber"

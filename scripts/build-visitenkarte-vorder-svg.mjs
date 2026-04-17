@@ -55,7 +55,6 @@ const SAFE = 28;
 const INNER_X = BLEED + SAFE;
 const INNER_Y = BLEED + SAFE;
 const INNER_W = W - 2 * INNER_X;
-const INNER_H = H - 2 * INNER_Y;
 const TRIM_W = W - 2 * BLEED;
 const TRIM_H = H - 2 * BLEED;
 const BEAM_INSET = Math.round(W * (32 / 360));

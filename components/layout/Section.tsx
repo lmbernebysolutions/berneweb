@@ -6,6 +6,8 @@ interface SectionProps {
   narrow?: boolean;
   id?: string;
   className?: string;
+  /** When `bg="subtle"`, replaces default inner `sectionPadding` on the content wrapper (e.g. tighter top under fixed header). */
+  contentClassName?: string;
 }
 
 const bgClasses: Record<NonNullable<SectionProps["bg"]>, string> = {
@@ -24,6 +26,7 @@ export function Section({
   narrow,
   id,
   className,
+  contentClassName,
 }: SectionProps) {
   const isSubtle = bg === "subtle";
   const sectionPadding = "py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32";
@@ -64,7 +67,13 @@ export function Section({
                   "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.015) 10%, rgba(255,255,255,0.015) 90%, transparent 100%)",
               }}
             />
-            <div className={cn("relative z-10", contentPadding, sectionPadding)}>
+            <div
+              className={cn(
+                "relative z-10",
+                contentPadding,
+                contentClassName ?? sectionPadding
+              )}
+            >
               {children}
             </div>
           </div>

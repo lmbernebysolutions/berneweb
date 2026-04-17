@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 interface BackdropNumberProps {
     number: string;
     className?: string;
-    color?: string; // Optional override
 }
 
 /**
@@ -11,7 +10,7 @@ interface BackdropNumberProps {
  * This implements the "Heavy Shadow Aesthetic" requested by the user.
  * It is meant to be placed absolute behind content or sticky.
  */
-export function BackdropNumber({ number, className, color }: BackdropNumberProps) {
+export function BackdropNumber({ number, className }: BackdropNumberProps) {
     return (
         <div
             className={cn(
