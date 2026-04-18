@@ -3,6 +3,7 @@ import { getAllArticleSlugs } from "@/lib/content/ratgeber";
 import { getAllLocationSlugs } from "@/lib/data/locations";
 import { getAllBranchenSlugs } from "@/lib/data/branchen";
 import { SITE_URL } from "@/lib/constants";
+import { ROUTE_VISIBILITY } from "@/lib/route-visibility";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE_URL;
@@ -13,9 +14,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/handwerk`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
     { url: `${baseUrl}/tech`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
     { url: `${baseUrl}/ratgeber`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
-    { url: `${baseUrl}/standorte`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 },
+    ...(ROUTE_VISIBILITY.standorte
+      ? [{ url: `${baseUrl}/standorte`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 }]
+      : []),
     { url: `${baseUrl}/referenzen`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 },
-    { url: `${baseUrl}/branchen`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 },
+    ...(ROUTE_VISIBILITY.branchen
+      ? [{ url: `${baseUrl}/branchen`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 }]
+      : []),
     { url: `${baseUrl}/ueber-uns`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 },
     { url: `${baseUrl}/kontakt`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 },
     { url: `${baseUrl}/impressum`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.3 },
@@ -29,19 +34,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const locationUrls: MetadataRoute.Sitemap = getAllLocationSlugs().map((ort) => ({
-    url: `${baseUrl}/standorte/${ort}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+  const locationUrls: MetadataRoute.Sitemap = ROUTE_VISIBILITY.standorte
+    ? getAllLocationSlugs().map((ort) => ({
+        url: `${baseUrl}/standorte/${ort}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      }))
+    : [];
 
-  const branchenUrls: MetadataRoute.Sitemap = getAllBranchenSlugs().map((slug) => ({
-    url: `${baseUrl}/branchen/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+  const branchenUrls: MetadataRoute.Sitemap = ROUTE_VISIBILITY.branchen
+    ? getAllBranchenSlugs().map((slug) => ({
+        url: `${baseUrl}/branchen/${slug}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      }))
+    : [];
 
   return [...staticPages, ...ratgeberUrls, ...locationUrls, ...branchenUrls];
 }

@@ -19,8 +19,13 @@ import {
 } from "@/lib/data/locations";
 import { generateLocalBusinessSchema } from "@/lib/seo/schema";
 import { COMPANY, HANDWERK_STATS, SOCIAL_LINKS } from "@/lib/constants";
+import { ROUTE_VISIBILITY } from "@/lib/route-visibility";
 
 export async function generateStaticParams() {
+  if (!ROUTE_VISIBILITY.standorte) {
+    return [];
+  }
+
   return getAllLocationSlugs().map((ort) => ({ ort }));
 }
 
@@ -29,6 +34,16 @@ export async function generateMetadata({
 }: {
   params: Promise<{ ort: string }>;
 }): Promise<Metadata> {
+  if (!ROUTE_VISIBILITY.standorte) {
+    return {
+      title: "Standort nicht gefunden",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
   const { ort } = await params;
   const location = getLocationBySlug(ort);
   if (!location) return { title: "Standort nicht gefunden" };
@@ -73,6 +88,10 @@ export default async function StandortPage({
 }: {
   params: Promise<{ ort: string }>;
 }) {
+  if (!ROUTE_VISIBILITY.standorte) {
+    notFound();
+  }
+
   const { ort } = await params;
   const location = getLocationBySlug(ort);
   if (!location) notFound();
@@ -96,6 +115,7 @@ export default async function StandortPage({
         headline="Webdesign & IT in"
         headlineLine2={`${location.name}.`}
         accentText={location.name}
+        compactHeadline
         subline={`Wir unterstützen Handwerker und Betriebe in ${location.name} (${location.population.toLocaleString("de-DE")} Einwohner) mit professionellen Websites, lokaler SEO und IT-Service. Aus Aue-Bad Schlema – ${location.entfernung === 0 ? "direkt vor Ort" : `nur ${location.entfernung} km entfernt`}.`}
         ctas={[
           { label: "Jetzt Erstgespräch buchen", href: "#kontakt", variant: "default" },
@@ -115,6 +135,7 @@ export default async function StandortPage({
           subtitle={`In ${location.name} mit ${location.population.toLocaleString("de-DE")} Einwohnern unterstützen wir Handwerker, Einzelhändler und KMU mit professionellen Websites und digitaler Sichtbarkeit.`}
           align="left"
           light
+          compactTitle
         />
 
         {/* Lead: Ortsbeschreibung */}
@@ -281,6 +302,7 @@ export default async function StandortPage({
           subtitle="Websites, lokale SEO, KI-Telefon – alles aus einer Hand."
           align="left"
           light
+          compactTitle
         />
         <FeatureGrid features={features} cols={3} light />
       </Section>
@@ -294,6 +316,7 @@ export default async function StandortPage({
           subtitle="Kostenlos und unverbindlich – wir melden uns persönlich bei Ihnen."
           align="left"
           light
+          compactTitle
         />
         <div className="grid gap-8 lg:grid-cols-2">
           <div>

@@ -50,7 +50,7 @@ export function WarumBernebyV3({ items, onLight = false }: WarumBernebyV3Props) 
             <p
               className={cn(
                 // Design system: wie Mission-Säulen / Display-Überschriften, etwas größer als zuvor (text-base)
-                "font-display text-lg font-extrabold uppercase tracking-tight leading-snug sm:text-xl md:text-2xl",
+                "font-display whitespace-normal md:whitespace-pre-line text-lg font-extrabold uppercase tracking-tight leading-snug sm:text-xl md:text-2xl",
                 onLight ? "text-brand-navy" : "text-white"
               )}
             >

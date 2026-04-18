@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 interface HeroCta {
   label: string;
+  mobileLabel?: string;
   href: string;
   variant: "default" | "outline" | "outline-light";
 }
@@ -62,6 +63,8 @@ interface HeroProps {
   compact?: boolean;
   accentText?: string | string[];
   bergVariant?: string;
+  /** Kleinere, robustere Headline-Skalierung für lange Branchen-/Standortnamen. */
+  compactHeadline?: boolean;
   /** Optionaler 3-Zeilen-Umbruch nur für ultrakleine Geräte (<340px). */
   ultraNarrowHeadlineLines?: [string, string, string];
 }
@@ -76,6 +79,7 @@ export function Hero({
   compact = false,
   accentText,
   bergVariant,
+  compactHeadline = false,
   ultraNarrowHeadlineLines,
 }: HeroProps) {
   const bergConfig = BERG_VARIANTS[bergVariant ?? "default"] ?? BERG_VARIANTS.default;
@@ -96,7 +100,7 @@ export function Hero({
             acc.push(part);
             if (i < parts.length - 1) {
               acc.push(
-                <span key={`${accent}-${i}`} className="text-brand-cyan text-[1.06em] whitespace-nowrap">
+                <span key={`${accent}-${i}`} className="text-brand-cyan text-[1.06em] break-words [overflow-wrap:anywhere]">
                   {accent}
                 </span>
               );
@@ -178,8 +182,13 @@ export function Hero({
           <div className="hero-line-reveal min-w-0 overflow-visible">
             <h1
               className={cn(
-                "hero-heading-overlap font-display font-extrabold uppercase leading-[0.95] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-normal [word-break:keep-all] hyphens-none min-w-0 max-sm:pb-0 pb-4 ml-[-0.05em] sm:ml-[-0.1em] md:ml-0 lg:ml-0 overflow-visible tracking-tighter max-sm:tracking-[-0.04em]",
-                "max-sm:text-[length:clamp(2.8rem,6.1vw+1.68rem,3.75rem)] max-[359px]:text-[length:clamp(2.3rem,4.9vw+1.05rem,2.95rem)] sm:text-5xl md:text-6xl lg:text-[5.625rem] xl:text-[7rem] 2xl:text-8xl"
+                "hero-heading-overlap font-display font-extrabold uppercase leading-[0.95] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-normal min-w-0 max-sm:pb-0 pb-4 ml-[-0.05em] sm:ml-[-0.1em] md:ml-0 lg:ml-0 overflow-visible tracking-tighter max-sm:tracking-[-0.04em]",
+                compactHeadline
+                  ? "[word-break:normal] hyphens-auto [overflow-wrap:anywhere]"
+                  : "[word-break:keep-all] hyphens-none",
+                compactHeadline
+                  ? "max-sm:text-[length:clamp(2.2rem,4.1vw+1.3rem,2.95rem)] max-[359px]:text-[length:clamp(1.85rem,3.9vw+0.95rem,2.4rem)] sm:text-4xl md:text-5xl lg:text-[4.6rem] xl:text-[5.6rem] 2xl:text-[6.1rem]"
+                  : "max-sm:text-[length:clamp(2.8rem,6.1vw+1.68rem,3.75rem)] max-[359px]:text-[length:clamp(2.3rem,4.9vw+1.05rem,2.95rem)] sm:text-5xl md:text-6xl lg:text-[5.625rem] xl:text-[7rem] 2xl:text-8xl"
               )}
             >
               {ultraNarrowHeadlineLines ? (
@@ -243,10 +252,16 @@ export function Hero({
                                 background: "rgba(40,53,105,0.36)",
                               }}
                             />
-                            <span className="relative z-10">{cta.label}</span>
+                            <span className="relative z-10">
+                              <span className="sm:hidden">{cta.mobileLabel ?? cta.label}</span>
+                              <span className="hidden sm:inline">{cta.label}</span>
+                            </span>
                           </>
                         ) : (
-                          cta.label
+                          <>
+                            <span className="sm:hidden">{cta.mobileLabel ?? cta.label}</span>
+                            <span className="hidden sm:inline">{cta.label}</span>
+                          </>
                         )}
                       </Link>
                     </Button>

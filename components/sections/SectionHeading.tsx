@@ -21,6 +21,8 @@ interface SectionHeadingProps {
   number?: string;
   /** Etwas kleinere Display-Typo nur auf sehr schmalen Viewports (ab sm wieder Standard-Stufe). */
   compactMobileTitle?: boolean;
+  /** Heading über alle Breakpoints eine Stufe kleiner darstellen. */
+  compactTitle?: boolean;
 }
 
 export function SectionHeading({
@@ -36,6 +38,7 @@ export function SectionHeading({
   overline,
   number,
   compactMobileTitle = false,
+  compactTitle = false,
 }: SectionHeadingProps) {
   return (
     <div
@@ -64,9 +67,11 @@ export function SectionHeading({
           <Tag
             className={cn(
               "relative inline-block font-display uppercase tracking-tight text-balance leading-[1.1] max-w-full max-[359px]:break-normal max-[359px]:[word-break:keep-all]",
-              compactMobileTitle
-                ? "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl"
-                : "text-4xl lg:text-5xl xl:text-6xl",
+              compactTitle
+                ? "text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] xl:text-[3rem]"
+                : compactMobileTitle
+                  ? "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl"
+                  : "text-4xl lg:text-5xl xl:text-6xl",
               onLight ? "text-brand-navy" : (light ? "text-brand-navy-foreground" : "text-foreground")
             )}
           >

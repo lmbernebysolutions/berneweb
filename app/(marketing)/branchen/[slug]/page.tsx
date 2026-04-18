@@ -17,14 +17,32 @@ const FaqAccordion = dynamic(
 import { Button } from "@/components/ui/button";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { IconCheck, IconPhone } from "@tabler/icons-react";
+import { WarumBernebyV3 } from "@/components/v3/WarumBernebyV3";
 import {
   getBrancheBySlug,
   getAllBranchenSlugs,
 } from "@/lib/data/branchen";
 import { generateFaqSchema, generateProfessionalServiceSchema } from "@/lib/seo/schema";
 import { COMPANY, HANDWERK_STATS, CRAFT_PACKAGES } from "@/lib/constants";
+import { ROUTE_VISIBILITY } from "@/lib/route-visibility";
+
+function toSingleWordHeading(text: string): string {
+  const cleaned = text
+    .replace(/[„“"'.:,;!?()]/g, " ")
+    .trim();
+  const firstWord = cleaned.split(/\s+/).find(Boolean);
+  const upper = firstWord ? firstWord.toUpperCase() : "LÖSUNG";
+  if (upper === "BEWERTUNGSMANAGEMENT" || upper === "BEWERTUNGSMANAGEMENTS") {
+    return "BEWERTUNGS-\nMANAGEMENT";
+  }
+  return upper;
+}
 
 export async function generateStaticParams() {
+  if (!ROUTE_VISIBILITY.branchen) {
+    return [];
+  }
+
   return getAllBranchenSlugs().map((slug) => ({ slug }));
 }
 
@@ -33,6 +51,16 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  if (!ROUTE_VISIBILITY.branchen) {
+    return {
+      title: "Branche nicht gefunden",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
   const { slug } = await params;
   const branche = getBrancheBySlug(slug);
   if (!branche) return { title: "Branche nicht gefunden" };
@@ -49,6 +77,10 @@ export default async function BranchePage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  if (!ROUTE_VISIBILITY.branchen) {
+    notFound();
+  }
+
   const { slug } = await params;
   const branche = getBrancheBySlug(slug);
   if (!branche) notFound();
@@ -66,9 +98,10 @@ export default async function BranchePage({
         headline="Website & Digitalisierung für"
         headlineLine2={`${branche.name}.`}
         accentText={branche.name}
+        compactHeadline
         subline={`Wir unterstützen ${branche.name} im Erzgebirge mit professionellen Websites, 50+ lokalen Landingpages, KI-Telefonassistent und IT-Service. Festpreis, 4 Wochen bis Go-Live. Jetzt Erstgespräch vereinbaren.`}
         ctas={[
-          { label: "Erstgespräch vereinbaren", href: "#pakete", variant: "default" },
+          { label: "Erstgespräch vereinbaren", mobileLabel: "Erstgespräch", href: "#pakete", variant: "default" },
           { label: "Alle Handwerks-Pakete", href: "/handwerk", variant: "outline" },
         ]}
         variant="navy"
@@ -85,6 +118,7 @@ export default async function BranchePage({
           subtitle="76% der Nutzer, die lokal suchen, besuchen innerhalb von 24 Stunden ein Geschäft. Ohne professionelle Website und lokale SEO existieren Sie für diese Kunden praktisch nicht."
           align="left"
           light
+          compactTitle
         />
         <ProblemSection
           title="Typische Probleme"
@@ -93,7 +127,7 @@ export default async function BranchePage({
         />
       </Section>
 
-      {/* Lösungen */}
+      {/* Lösungen – identisches Layout wie Garantien auf /handwerk, nur Inhalte branchenspezifisch */}
       <Section bg="subtle">
         <SectionHeading
           number="03"
@@ -102,25 +136,14 @@ export default async function BranchePage({
           subtitle="Websites, lokale SEO, KI-Telefon – alles aus einer Hand."
           align="left"
           light
+          compactTitle
         />
-        <div className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {branche.loesungen.map((loesung, i) => (
-            <div
-              key={loesung}
-              data-animate="fade-up"
-              data-animate-delay={String(i * 80)}
-              className="group relative min-w-0 overflow-hidden border border-white/10 bg-brand-navy/60 p-5 backdrop-blur-md transition-all hover:border-brand-cyan/20 card-hover-glow md:p-6"
-            >
-              <TechCorners pattern="diagonal" variant="cyan" size="sm" />
-              <div className="relative z-10 flex min-w-0 items-start gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-brand-cyan/30 bg-brand-cyan/10 md:h-10 md:w-10">
-                  <IconCheck className="size-5 text-brand-cyan" stroke={2.5} />
-                </div>
-                <p className="min-w-0 break-words text-sm font-medium text-white md:text-base">{loesung}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <WarumBernebyV3
+          items={branche.loesungen.map((loesung) => ({
+            point: toSingleWordHeading(loesung),
+            detail: loesung,
+          }))}
+        />
       </Section>
 
       {/* 04: Ausführlicher Content – in Karten wie auf Hauptseiten */}
@@ -132,6 +155,7 @@ export default async function BranchePage({
           subtitle="76% der Nutzer, die lokal suchen, besuchen innerhalb von 24 Stunden ein Geschäft. Ohne starke Präsenz bleiben Sie unsichtbar."
           align="left"
           light
+          compactTitle
         />
         {/* Lead: Beschreibung in einer Karte */}
         <div
@@ -221,23 +245,25 @@ export default async function BranchePage({
         </div>
       </Section>
 
-      {/* Pricing */}
+      {/* Pricing – wie /handwerk: gleiche Paketnamen & Vergleich, Preise ausgeblendet (kein „Erstgespräch“ als Preiszeile) */}
       <Section id="pakete" bg="subtle">
         <SectionHeading
           number="05"
           overline="Investition"
-          title="Pakete"
-          titleLine2="& Leistungspakete"
-          subtitle="Transparent eingeordnet und passend zum Projektumfang."
+          title="PAKETE"
+          titleLine2="& LÖSUNGEN"
+          subtitle="Transparente Leistungen – konkretes Angebot im persönlichen Gespräch."
           align="left"
           light
+          compactTitle
         />
         <PricingCards
+          hidePrices
           packages={CRAFT_PACKAGES}
           comparisonRows={[
-            { label: "Professionelle Website", inPackages: ["Geselle", "Meisterbetrieb", "Marktführer"] },
-            { label: "50+ Landingpages", inPackages: ["Meisterbetrieb", "Marktführer"] },
-            { label: "KI-Telefonassistent", inPackages: ["Marktführer"] },
+            { label: "Professionelle Website", inPackages: ["STARTKLAR", "SICHTBAR", "PARTNER"] },
+            { label: "50+ Landingpages", inPackages: ["SICHTBAR", "PARTNER"] },
+            { label: "KI-Telefonassistent", inPackages: ["PARTNER"] },
           ]}
         />
       </Section>
@@ -252,6 +278,7 @@ export default async function BranchePage({
           subtitle={`Antworten für ${branche.name}`}
           align="left"
           light
+          compactTitle
         />
         <FaqAccordion items={branche.faqItems} />
       </Section>

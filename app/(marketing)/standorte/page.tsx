@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { CtaSection } from "@/components/sections/CtaSection";
@@ -7,6 +8,7 @@ import { IconArrowRight } from "@tabler/icons-react";
 import { getAllLocationSlugs, getLocationBySlug } from "@/lib/data/locations";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { CONTAINER_A } from "@/lib/container-styles";
+import { ROUTE_VISIBILITY } from "@/lib/route-visibility";
 
 export const metadata: Metadata = {
   title: "Standorte – Webdesign & IT-Service im Erzgebirgskreis | Berneby Solutions",
@@ -16,6 +18,10 @@ export const metadata: Metadata = {
 };
 
 export default function StandortePage() {
+  if (!ROUTE_VISIBILITY.standorte) {
+    notFound();
+  }
+
   const slugs = getAllLocationSlugs();
   const locations = slugs
     .map((s) => getLocationBySlug(s))
@@ -32,11 +38,13 @@ export default function StandortePage() {
         <SectionHeading
           number="01"
           overline="Standorte"
-          title="Webdesign & IT im Erzgebirgskreis"
-          titleLine2="Eine Lösung."
+          title="Webdesign & IT im"
+          titleLine2="Erzgebirgskreis"
+          titleLine3="Eine Lösung."
           subtitle="Wir unterstützen Handwerker und KMU in allen Gemeinden und Städten des Erzgebirgskreises – mit professionellen Websites, lokaler SEO und IT-Service. Aus Aue-Bad Schlema für die ganze Region."
           align="left"
           light
+          compactTitle
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 min-w-0">
           {locations.map((loc, i) => (

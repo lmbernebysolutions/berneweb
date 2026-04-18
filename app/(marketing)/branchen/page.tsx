@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { CtaSection } from "@/components/sections/CtaSection";
@@ -7,6 +8,7 @@ import { IconArrowRight } from "@tabler/icons-react";
 import { getAllBranchenSlugs, getBrancheBySlug } from "@/lib/data/branchen";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { CONTAINER_A } from "@/lib/container-styles";
+import { ROUTE_VISIBILITY } from "@/lib/route-visibility";
 
 export const metadata: Metadata = {
   title: "Branchen – Website & Digitalisierung für Handwerk & KMU | Berneby Solutions",
@@ -16,6 +18,10 @@ export const metadata: Metadata = {
 };
 
 export default function BranchenPage() {
+  if (!ROUTE_VISIBILITY.branchen) {
+    notFound();
+  }
+
   const slugs = getAllBranchenSlugs();
   const branchen = slugs
     .map((s) => getBrancheBySlug(s))
@@ -36,6 +42,7 @@ export default function BranchenPage() {
           subtitle="Elektriker, Dachdecker, Sanitär, Maler, Tischler, KFZ-Werkstatt, Friseur, Gastronomie, Einzelhandel, Freiberufler – wir unterstützen Handwerk und KMU im Erzgebirge mit professionellen Websites, lokaler SEO und KI-Telefonassistent."
           align="left"
           light
+          compactMobileTitle
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 min-w-0">
           {branchen.map((b, i) => (
