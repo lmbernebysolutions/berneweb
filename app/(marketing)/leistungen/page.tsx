@@ -63,18 +63,36 @@ const TECH_ICONS: Record<string, (typeof IconDeviceDesktop)> = {
 export default function TechPage() {
     return (
         <>
-            <Hero
-                bergVariant="tech"
-                headline="DEINE EXTERNE IT-ABTEILUNG"
-                accentText={["IT-ABTEILUNG", "ABTEILUNG"]}
-                ultraNarrowHeadlineLines={["DEINE", "EXTERNE IT-", "ABTEILUNG"]}
-                subline="Flexibel. Auf Abruf. Ohne Festanstellung. Von der neuen Webseite über Shops bis IT-Support – wir bauen und betreuen."
-                ctas={[
-                    { label: "Webseite anfragen", href: "/kontakt", variant: "default" },
-                    { label: "Alle Leistungen", href: "#leistungen", variant: "outline" },
-                ]}
-                variant="cyan"
-            />
+            {/* Mobile: Hyphen raus, "ABTEILUNG" auf eigener Zeile — nie mid-word Split */}
+            <div className="sm:hidden">
+                <Hero
+                    bergVariant="tech"
+                    headline="DEINE EXTERNE IT"
+                    headlineLine2="ABTEILUNG"
+                    accentText={["ABTEILUNG"]}
+                    ultraNarrowHeadlineLines={["DEINE", "EXTERNE IT", "ABTEILUNG"]}
+                    subline="Flexibel. Auf Abruf. Ohne Festanstellung. Von der neuen Webseite über Shops bis IT-Support – wir bauen und betreuen."
+                    ctas={[
+                        { label: "Webseite anfragen", href: "/kontakt", variant: "default" },
+                        { label: "Alle Leistungen", href: "#leistungen", variant: "outline" },
+                    ]}
+                    variant="cyan"
+                />
+            </div>
+            {/* Desktop/Tablet: unverändert mit "IT-ABTEILUNG" als Einheit */}
+            <div className="hidden sm:block">
+                <Hero
+                    bergVariant="tech"
+                    headline="DEINE EXTERNE IT-ABTEILUNG"
+                    accentText={["IT-ABTEILUNG", "ABTEILUNG"]}
+                    subline="Flexibel. Auf Abruf. Ohne Festanstellung. Von der neuen Webseite über Shops bis IT-Support – wir bauen und betreuen."
+                    ctas={[
+                        { label: "Webseite anfragen", href: "/kontakt", variant: "default" },
+                        { label: "Alle Leistungen", href: "#leistungen", variant: "outline" },
+                    ]}
+                    variant="cyan"
+                />
+            </div>
 
             <TrustBar items={TECH_STATS} />
 

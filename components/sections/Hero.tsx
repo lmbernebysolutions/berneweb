@@ -231,14 +231,20 @@ export function Hero({
             <div className="lg:col-span-8 min-w-0">
               <div className="mt-0 border-l-2 border-white/25 pl-3 sm:pl-6">
                 <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-blue-100 leading-relaxed max-w-full">
-                  {subline
-                    .replace(/\\n/g, "\n")
-                    .split("\n")
-                    .map((line, i) => (
+                  {(() => {
+                    const normalized = subline.replace(/\\n/g, "\n");
+                    // Wenn kein Zeilenumbruch definiert ist: natürlichen Fluss zulassen
+                    // (sonst erzwingt sm:whitespace-nowrap eine nicht umbrechende Zeile
+                    // auch ohne \n, was auf Desktop zu fehlender Umbruchlogik führt).
+                    if (!normalized.includes("\n")) {
+                      return normalized;
+                    }
+                    return normalized.split("\n").map((line, i) => (
                       <span key={i} className="block sm:whitespace-nowrap">
                         {line}
                       </span>
-                    ))}
+                    ));
+                  })()}
                 </p>
               </div>
 
