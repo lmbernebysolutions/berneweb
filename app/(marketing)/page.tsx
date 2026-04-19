@@ -84,7 +84,8 @@ export default function Home() {
           headline="DEIN DIGITALER"
           headlineLine2="WERKZEUG-"
           headlineLine3="KASTEN"
-          accentText={["WERKZEUG-", "KASTEN"]}
+          accentText={["WERKZEUG-", "WERKZEUG", "KASTEN"]}
+          ultraNarrowHeadlineLines={["DEIN DIGITALER", "WERKZEUG", "KASTEN"]}
           subline="Webseiten, Online-Shops, IT-Support, Marketing und KI-Telefon\naus einer Hand für KMU im Erzgebirge."
           ctas={[
             { label: "Erstgespräch sichern", mobileLabel: "Erstgespräch", href: "/kontakt", variant: "default" },
