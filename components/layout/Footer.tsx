@@ -66,7 +66,7 @@ export function Footer() {
 
       {/* Inhalt in Beam-Breite (wie Rest der Seite), Beams im Footer nicht sichtbar; Berg kann oben leicht überdecken */}
       <div className="relative mx-auto max-w-6xl px-4 sm:px-5 md:px-6 lg:px-8 pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8">
-        {/* Main grid: Mobile = Brand, dann Leistungen+Unternehmen nebeneinander, dann CTA; ab md 12 Spalten */}
+        {/* Main grid: Mobile = Brand, dann Link-Spalten, dann CTA; ab md 12 Spalten */}
         <div className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-12 md:gap-8 lg:gap-10">
           {/* Brand - takes more space */}
           <div className="md:col-span-4">
@@ -144,7 +144,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Leistungen + Unternehmen auf Mobile nebeneinander */}
+          {/* Link-Spalten */}
           <div className="grid grid-cols-2 gap-6 sm:gap-8 md:contents">
             {/* Leistungen */}
             <div className="md:col-span-3">
@@ -189,7 +189,7 @@ export function Footer() {
 
           {/* CTA card – SectionCard-Style, TechCorners (V2) */}
           <div className="md:col-span-3">
-            <div className={cn("group relative overflow-hidden p-5 backdrop-blur-sm", CONTAINER_A)}>
+            <div className={cn("group relative overflow-hidden p-5 backdrop-blur-sm flex flex-col items-center text-center md:items-start md:text-left", CONTAINER_A)}>
               <p className="relative z-10 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan">
                 Projekt starten
               </p>
@@ -198,10 +198,17 @@ export function Footer() {
               </p>
               <Link
                 href="/kontakt"
-                className="relative z-10 mt-4 inline-flex items-center gap-1.5 border border-brand-cyan/30 bg-brand-cyan/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-brand-cyan transition-all hover:border-brand-cyan hover:bg-brand-cyan/20 hover:shadow-[0_0_15px_rgba(3,249,249,0.15)] tap-target"
+                className="relative z-10 mt-4 inline-flex items-center justify-center gap-1.5 border border-brand-cyan/30 bg-brand-cyan/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-brand-cyan transition-all hover:border-brand-cyan hover:bg-brand-cyan/20 hover:shadow-[0_0_15px_rgba(3,249,249,0.15)] tap-target"
               >
                 Kontakt
                 <IconArrowRight className="size-3.5" stroke={2} />
+              </Link>
+              <Link
+                href="/handwerk"
+                className="group relative z-10 mt-3 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.18em] text-brand-cyan/90 transition-colors hover:text-brand-cyan"
+              >
+                Für Handwerk: Spezialpakete
+                <IconArrowUpRight className="size-3 opacity-80 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" stroke={2} />
               </Link>
             </div>
           </div>

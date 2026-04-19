@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { HeroAudiencePill } from "@/components/ui/hero-audience-pill";
 import { cn } from "@/lib/utils";
 
 interface HeroCta {
@@ -8,6 +9,14 @@ interface HeroCta {
   mobileLabel?: string;
   href: string;
   variant: "default" | "outline" | "outline-light";
+}
+
+interface HeroAudiencePillConfig {
+  label: string;
+  mobileLabel?: string;
+  href: string;
+  /** Optionales Icon (ReactNode). Default: Hammer-Icon. */
+  icon?: React.ReactNode;
 }
 
 /** Überall 4 Berg-Layer wie auf Home; hinten→vorne: Berg1, Berg2, Berg3, Berg4 (Berg4 ganz vorn); Animation 4→2→3→1 */
@@ -59,6 +68,12 @@ interface HeroProps {
   headlineLine3?: string;
   subline: string;
   ctas?: HeroCta[];
+  /**
+   * Optionale Audience-Pill zwischen Subline und CTAs. Signalisiert eine
+   * sekundäre Zielgruppe („Spezialfall Handwerk"), ohne die Haupt-CTAs zu
+   * verwässern.
+   */
+  audiencePill?: HeroAudiencePillConfig;
   variant?: "navy" | "cyan";
   compact?: boolean;
   accentText?: string | string[];
@@ -75,6 +90,7 @@ export function Hero({
   headlineLine3,
   subline,
   ctas,
+  audiencePill,
   variant = "navy",
   compact = false,
   accentText,
@@ -218,17 +234,32 @@ export function Hero({
                   {subline
                     .replace(/\\n/g, "\n")
                     .split("\n")
-                    .map((line, i, arr) => (
-                      <span key={i}>
+                    .map((line, i) => (
+                      <span key={i} className="block sm:whitespace-nowrap">
                         {line}
-                        {i < arr.length - 1 ? <br /> : null}
                       </span>
                     ))}
                 </p>
               </div>
 
+              {audiencePill && (
+                <div className="mt-5 sm:mt-6 flex">
+                  <HeroAudiencePill
+                    href={audiencePill.href}
+                    label={audiencePill.label}
+                    mobileLabel={audiencePill.mobileLabel}
+                    icon={audiencePill.icon}
+                  />
+                </div>
+              )}
+
               {ctas && ctas.length > 0 && (
-                <div className="mt-6 sm:mt-8 lg:mt-12 flex flex-wrap gap-2 sm:gap-4">
+                <div
+                  className={cn(
+                    "flex flex-wrap gap-2 sm:gap-4",
+                    audiencePill ? "mt-4 sm:mt-5 lg:mt-6" : "mt-6 sm:mt-8 lg:mt-12"
+                  )}
+                >
                   {ctas.map((cta, i) => (
                     <Button
                       key={cta.label}

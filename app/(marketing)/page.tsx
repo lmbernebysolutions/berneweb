@@ -16,8 +16,12 @@ import Link from "next/link";
 import {
   IconHammer,
   IconDeviceDesktop,
+  IconShoppingCart,
+  IconTool,
+  IconChartBar,
   IconCheck,
   IconX,
+  IconArrowRight,
   IconBrandGoogle,
   IconBrandNextjs,
   IconBrandReact,
@@ -27,7 +31,9 @@ import {
 } from "@tabler/icons-react";
 import {
   TRUST_BAR,
-  TWO_PILLARS,
+  SERVICES,
+  HOME_STANDARD_SERVICE_KEYS,
+  HANDWERK_SPECIALTY,
   PROCESS_STEPS,
   TECH_STACK_WITH_BENEFIT,
   HOME_MINI_FAQ,
@@ -57,6 +63,17 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+/**
+ * Icon-Map für die 4 Standard-Service-Cards in Sektion 02.
+ * Identisch zu TECH_ICONS auf /leistungen – nur die 4 auf Home relevanten Keys.
+ */
+const HOME_SERVICE_ICONS = {
+  webseiten: IconDeviceDesktop,
+  ecommerce: IconShoppingCart,
+  office: IconTool,
+  marketing: IconChartBar,
+} as const satisfies Record<(typeof HOME_STANDARD_SERVICE_KEYS)[number], typeof IconDeviceDesktop>;
+
 export default function Home() {
   return (
     <>
@@ -68,11 +85,16 @@ export default function Home() {
           headlineLine2="WERKZEUG-"
           headlineLine3="KASTEN"
           accentText={["WERKZEUG-", "KASTEN"]}
-          subline="Wir sind der Digital-Partner fürs Erzgebirge.\nWebseiten, KI-Telefon, Marketing & IT-Support."
+          subline="Webseiten, Online-Shops, IT-Support, Marketing und KI-Telefon\naus einer Hand für KMU im Erzgebirge."
           ctas={[
-            { label: "Für Handwerk", href: "/handwerk", variant: "default" },
-            { label: "Für IT & Digitales", href: "/tech", variant: "outline" },
+            { label: "Erstgespräch sichern", mobileLabel: "Erstgespräch", href: "/kontakt", variant: "default" },
+            { label: "Alle Leistungen", href: "/leistungen", variant: "outline" },
           ]}
+          audiencePill={{
+            label: "Handwerksbetrieb? Spezielle Pakete für dich",
+            mobileLabel: "Für Handwerk: Spezialpakete",
+            href: "/handwerk",
+          }}
           variant="navy"
         />
       </div>
@@ -82,108 +104,133 @@ export default function Home() {
           bergVariant="home"
           headline="DEIN DIGITALER WERKZEUGKASTEN"
           accentText="WERKZEUGKASTEN"
-          subline="Wir sind der Digital-Partner fürs Erzgebirge.\nWebseiten, KI-Telefon, Marketing & IT-Support."
+          subline="Webseiten, Online-Shops, IT-Support, Marketing und KI-Telefon\naus einer Hand für KMU im Erzgebirge."
           ctas={[
-            { label: "Für Handwerk", href: "/handwerk", variant: "default" },
-            { label: "Für IT & Digitales", href: "/tech", variant: "outline" },
+            { label: "Erstgespräch sichern", href: "/kontakt", variant: "default" },
+            { label: "Alle Leistungen", href: "/leistungen", variant: "outline" },
           ]}
+          audiencePill={{
+            label: "Handwerksbetrieb? Spezielle Pakete für dich",
+            mobileLabel: "Für Handwerk: Spezialpakete",
+            href: "/handwerk",
+          }}
           variant="navy"
         />
       </div>
 
       <TrustBar items={TRUST_BAR} />
 
-      {/* 02: SELECTION */}
+      {/* 02: STANDARD-LEISTUNGEN (2×2) + HANDWERK-SPEZIALFALL */}
       <Section bg="transparent">
         <SectionHeading
           number="02"
-          overline="Einstieg"
-          title="Zwei Welten. Eine Lösung."
-          subtitle="Ob Handwerksbetrieb oder digitales Alltagsproblem – wählen Sie Ihren Bereich."
+          overline="Katalog"
+          title="Digitales Werkzeug-Set"
+          subtitle="Unsere Standard-Leistungen – für KMU aller Branchen im Erzgebirge."
           align="left"
-          light // Because background is navy (transparent on body)
+          light
         />
-        <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:gap-12">
-          {/* Handwerk */}
-          <div
-            data-animate="fade-left"
-            className={cn(
-              "group relative flex flex-col overflow-hidden p-6 sm:p-8",
-              CONTAINER_B
-            )}
+
+        <div className="grid gap-6 md:grid-cols-2">
+          {HOME_STANDARD_SERVICE_KEYS.map((key, i) => {
+            const category = SERVICES[key];
+            const Icon = HOME_SERVICE_ICONS[key];
+            const visibleItems = category.items.filter(
+              (item) => item.title !== "Digitaler Hausmeister"
+            );
+            return (
+              <div
+                key={key}
+                data-animate="fade-up"
+                data-animate-delay={String(i * 80)}
+                className={cn(
+                  "group relative flex flex-col overflow-hidden",
+                  CONTAINER_B
+                )}
+              >
+                <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
+
+                <div className="absolute top-0 right-0 p-4 opacity-10" aria-hidden="true">
+                  <Icon className="size-24 text-white" />
+                </div>
+
+                <div className="border-b border-white/5 p-6 flex items-center gap-4 relative z-10">
+                  <div className="flex h-12 w-12 items-center justify-center bg-brand-cyan/10 text-brand-cyan">
+                    <Icon className="size-6" />
+                  </div>
+                  <h3 className="font-bold text-lg text-white uppercase tracking-wider">{category.title}</h3>
+                </div>
+                <div className="p-6 flex flex-col grow gap-4 relative z-10">
+                  {visibleItems.map((item) => (
+                    <div key={item.title} className="group/item relative">
+                      <TechCorners pattern="all" variant="cyan" size="sm" />
+                      <div className="flex justify-between items-baseline px-4 py-2 transition-colors group-hover/item:bg-brand-cyan/5">
+                        <h4 className="font-medium text-xs text-white/90 uppercase tracking-wider">{item.title}</h4>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-auto p-6 pt-0 relative z-10">
+                  <Button asChild variant="ghost" className="w-full justify-between text-brand-navy-muted hover:text-brand-cyan hover:bg-transparent px-0 uppercase tracking-widest text-xs">
+                    <Link href="/kontakt">
+                      Jetzt anfragen <IconArrowRight className="size-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-8 text-center">
+          <Link
+            href="/leistungen"
+            className="text-sm font-mono uppercase tracking-widest text-brand-cyan hover:text-brand-cyan/80 transition-colors"
           >
-            {/* Tech Corners - 2→4 diagonal pattern */}
-            <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
+            Alle Leistungen ansehen →
+          </Link>
+        </div>
 
-            <div className="mb-6 flex h-14 w-14 items-center justify-center bg-brand-navy shadow-[4px_4px_0_0_rgba(3,249,249,0.2)]" aria-hidden="true">
-              <IconHammer className="size-8 text-brand-cyan" stroke={1.5} />
+        {/* Spezialfall Handwerk – visuell deutlich abgesetzt */}
+        <div
+          data-animate="fade-up"
+          className={cn(
+            "group relative mt-8 md:mt-10 overflow-hidden p-6 sm:p-8 md:p-10",
+            CONTAINER_B
+          )}
+        >
+          <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
+
+          <div className="relative z-10 grid gap-6 md:grid-cols-[1fr_auto] md:items-end lg:gap-10">
+            <div className="max-w-2xl">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-cyan">
+                {HANDWERK_SPECIALTY.eyebrow}
+              </p>
+              <h3 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tighter text-white leading-[1.05]">
+                {HANDWERK_SPECIALTY.title}
+              </h3>
+              <p className="mt-4 text-base text-blue-200 leading-relaxed">
+                {HANDWERK_SPECIALTY.description}
+              </p>
+              <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                {HANDWERK_SPECIALTY.bullets.map((b) => (
+                  <li key={b} className="flex items-start gap-2.5 text-sm text-white/85">
+                    <span className="mt-2 size-1.5 shrink-0 bg-brand-cyan shadow-[0_0_6px_rgba(3,249,249,0.8)]" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <h3 className="text-2xl text-white mb-2">{TWO_PILLARS.handwerk.title}</h3>
-            <p className="text-blue-200 mb-6 leading-relaxed">
-              {TWO_PILLARS.handwerk.description}
-            </p>
-
-            <ul className="space-y-3 mb-8 grow">
-              {TWO_PILLARS.handwerk.features.map((f) => (
-                <li key={f} className="flex items-center gap-3 text-sm text-white/80">
-                  <span className="w-1.5 h-1.5 bg-white/40" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-
-            <div className="space-y-3">
-              <Button asChild className="w-full">
-                <Link href={TWO_PILLARS.handwerk.cta.href}>
-                  {TWO_PILLARS.handwerk.cta.label}
+            <div className="md:pb-1 flex flex-col items-center justify-center gap-5 sm:gap-6 md:gap-7 pt-2 sm:pt-4">
+              <div className="hidden md:block opacity-[0.06] pointer-events-none" aria-hidden="true">
+                <IconHammer className="size-36 text-white" stroke={1} />
+              </div>
+              <Button asChild size="lg">
+                <Link href={HANDWERK_SPECIALTY.cta.href}>
+                  <span className="inline min-[840px]:hidden">Handwerks-Pakete</span>
+                  <span className="hidden min-[840px]:inline">{HANDWERK_SPECIALTY.cta.label}</span>
                 </Link>
               </Button>
-              <p className="text-xs text-brand-navy-muted">
-                <Link href="/ratgeber/digitalisierung-handwerk" className="text-brand-cyan/80 hover:text-brand-cyan">
-                  Ratgeber: Digitalisierung im Handwerk →
-                </Link>
-              </p>
-            </div>
-          </div>
-
-          {/* General Tech */}
-          <div
-            data-animate="fade-right"
-            className={cn(
-              "group relative flex flex-col overflow-hidden p-6 sm:p-8",
-              CONTAINER_A
-            )}
-          >
-            <div className="mb-6 flex h-14 w-14 items-center justify-center bg-brand-navy shadow-[4px_4px_0_0_rgba(255,255,255,0.15)]" aria-hidden="true">
-              <IconDeviceDesktop className="size-8 text-brand-cyan" stroke={1.5} />
-            </div>
-
-            <h3 className="text-2xl text-white mb-2">{TWO_PILLARS.general.title}</h3>
-            <p className="text-blue-200 mb-6 leading-relaxed">
-              {TWO_PILLARS.general.description}
-            </p>
-
-            <ul className="space-y-3 mb-8 grow">
-              {TWO_PILLARS.general.features.map((f) => (
-                <li key={f} className="flex items-center gap-3 text-sm text-white/80">
-                  <span className="w-1.5 h-1.5 bg-white/40" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-
-            <div className="space-y-3">
-              <Button asChild variant="outline-light" className="w-full">
-                <Link href={TWO_PILLARS.general.cta.href}>
-                  {TWO_PILLARS.general.cta.label}
-                </Link>
-              </Button>
-              <p className="text-xs text-brand-navy-muted">
-                <Link href="/ratgeber/microsoft-365-fuer-handwerker" className="text-brand-cyan/80 hover:text-brand-cyan">
-                  Microsoft 365 für Ihren Betrieb →
-                </Link>
-              </p>
             </div>
           </div>
         </div>
@@ -193,7 +240,7 @@ export default function Home() {
       <Section bg="subtle">
         <SectionHeading
           number="03"
-          overline="Handwerk & IT"
+          overline="Systemwechsel"
           title="Ohne uns vs. Mit uns"
           subtitle="Ein direkter Vergleich: was sich ändert, wenn wir Ihren digitalen Auftritt übernehmen."
           align="left"
@@ -323,7 +370,7 @@ export default function Home() {
           align="left"
           light
         />
-        {/* Layout 1:1 wie Sektion Technik-Set auf /tech (Grid, Padding, Typo) */}
+        {/* Layout 1:1 wie Sektion Technik-Set auf /leistungen (Grid, Padding, Typo) */}
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
           {TECH_STACK_WITH_BENEFIT.map((item, i) => {
             const Icon = {

@@ -61,6 +61,10 @@ const nextConfig: NextConfig = {
     return [
       { source: "/legal/impressum", destination: "/impressum", permanent: true },
       { source: "/legal/datenschutz", destination: "/datenschutz", permanent: true },
+      // /tech → /leistungen (URL-Refactor 2026-04: „Tech" war Tech-intern,
+      // „Leistungen" spricht die breitere Zielgruppe an. 301 erhält Backlink-Equity.)
+      { source: "/tech", destination: "/leistungen", permanent: true },
+      { source: "/tech/:path*", destination: "/leistungen/:path*", permanent: true },
     ];
   },
 };

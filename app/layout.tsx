@@ -51,7 +51,7 @@ const ORGANIZATION_SCHEMA = {
       })),
       foundingDate: COMPANY.founded,
       description:
-        "Berneby Solutions ist dein verlässlicher Digital-Partner für den regionalen Mittelstand im Erzgebirge. Wir machen Handwerks-, Dienstleistungs- und Handelsbetriebe online sichtbar und automatisieren zeitfressende Prozesse im Arbeitsalltag.",
+        "Berneby Solutions ist dein Digital-Partner für den regionalen Mittelstand im Erzgebirge: Webseiten, Online-Shops, Office & IT-Support, Online-Marketing und KI-Telefon für Dienstleister, Praxen, Einzelhandel und andere KMU – mit speziellen Paketen für Handwerksbetriebe.",
       contactPoint: [
         {
           "@type": "ContactPoint",
@@ -85,10 +85,20 @@ const ORGANIZATION_SCHEMA = {
       },
       knowsAbout: [
         "Webdesign",
-        "Suchmaschinenoptimierung",
-        "KI-Integration",
-        "IT-Support",
+        "Webentwicklung",
         "E-Commerce",
+        "Shopify",
+        "WooCommerce",
+        "Suchmaschinenoptimierung",
+        "Lokale SEO",
+        "Online-Marketing",
+        "Google Ads",
+        "Microsoft 365",
+        "IT-Support",
+        "KI-Integration",
+        "KI-Telefonassistent",
+        "Digitalisierung Handwerk",
+        "Digitalisierung KMU",
       ],
       sameAs: [
         "https://www.instagram.com/bernebysolutions",

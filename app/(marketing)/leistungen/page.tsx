@@ -24,6 +24,8 @@ import {
     IconBrandAdobe,
 } from "@tabler/icons-react";
 import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK_WITH_BENEFIT, TECH_STATS, TECH_TESTIMONIALS, PAGE_META, SOCIAL_LINKS, SITE_URL } from "@/lib/constants";
+// Hinweis: Interner Konstantenschlüssel bleibt „TECH_*" für Kontinuität der Daten;
+// die User-facing URL lautet seit 2025-Q2 /leistungen.
 import dynamic from "next/dynamic";
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { TrustBar } from "@/components/sections/TrustBar";
@@ -44,9 +46,9 @@ const TestimonialGrid = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: PAGE_META.tech.title,
-  description: PAGE_META.tech.description,
-  alternates: { canonical: "/tech" },
+  title: PAGE_META.leistungen.title,
+  description: PAGE_META.leistungen.description,
+  alternates: { canonical: "/leistungen" },
 };
 
 const TECH_ICONS: Record<string, (typeof IconDeviceDesktop)> = {
@@ -316,7 +318,7 @@ export default function TechPage() {
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(generateBreadcrumbSchema([
                         { name: "Home", url: "/" },
-                        { name: "Tech Solutions", url: "/tech" },
+                        { name: "Leistungen", url: "/leistungen" },
                     ])),
                 }}
             />

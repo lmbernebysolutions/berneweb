@@ -45,7 +45,7 @@ export default function ReferenzenPage() {
         subline="Echte Projekte. Echte Ergebnisse. Für Betriebe aus dem Erzgebirge und darüber hinaus."
         ctas={[
           { label: "Projekt anfragen", href: "/kontakt", variant: "default" },
-          { label: "Leistungen entdecken", href: "/tech", variant: "outline" },
+          { label: "Leistungen entdecken", href: "/leistungen", variant: "outline" },
         ]}
         variant="navy"
       />

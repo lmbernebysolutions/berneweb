@@ -94,18 +94,19 @@ export const VISITENKARTE_BACK = {
 export const NAV_ITEMS = [
   { label: "Home", href: "/" },
   { label: "Über uns", href: "/ueber-uns" },
-  { label: "Handwerk", href: "/handwerk" },
-  { label: "Tech", href: "/tech" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Für Handwerk", href: "/handwerk" },
   { label: "Referenzen", href: "/referenzen" },
 ] as const;
 
 export const FOOTER_NAV = {
   leistungen: [
-    { label: "Webseiten", href: "/tech#leistungen" },
-    { label: "E-Commerce", href: "/tech#leistungen" },
-    { label: "Design & Branding", href: "/tech#leistungen" },
-    { label: "Handwerks-Pakete", href: "/handwerk" },
-    { label: "Digitaler Hausmeister", href: "/tech#leistungen" },
+    { label: "Webseiten", href: "/leistungen#leistungen" },
+    { label: "E-Commerce", href: "/leistungen#leistungen" },
+    { label: "Design & Branding", href: "/leistungen#leistungen" },
+    { label: "Office & IT-Support", href: "/leistungen#leistungen" },
+    { label: "Online-Marketing", href: "/leistungen#leistungen" },
+    { label: "Digitaler Hausmeister", href: "/leistungen#leistungen" },
   ],
   unternehmen: [
     { label: "Über uns", href: "/ueber-uns" },
@@ -128,7 +129,7 @@ export const FOOTER_NAV = {
 export const TRUST_BAR = [
   { value: "100%", label: "Lokal" },
   { value: "24/7", label: "KI-Telefon" },
-  { value: "50+", label: "Orte" },
+  { value: "10 Tage", label: "Go-Live" },
   { value: "2", label: "Ansprechpartner" },
 ] as const;
 
@@ -171,7 +172,7 @@ export const HOME_MINI_FAQ = [
   {
     question: "Für wen sind eure Leistungen gedacht?",
     answer:
-      "Für Handwerksbetriebe genauso wie für Praxen, Dienstleister, Einzelhandel und andere KMU. Wir passen Website, IT- und Marketing-Leistungen an Ihren Betrieb an.",
+      "Unsere Standard-Leistungen (Webseiten, Online-Shops, Office & IT-Support, Online-Marketing) passen für Praxen, Dienstleister, Einzelhandel und KMU aller Branchen. Für Handwerksbetriebe haben wir zusätzlich spezielle Pakete – dazu der eigene Bereich „Für Handwerk“ in der Navigation.",
   },
   {
     question: "Arbeitet ihr nur im Erzgebirge?",
@@ -244,34 +245,38 @@ export const MIT_UNS_ROWS = [
 ] as const;
 
 // =============================================================================
-// ZWEI SÄULEN
+// HOME – SEKTION 02: STANDARD-LEISTUNGEN & HANDWERK-SPEZIALBLOCK
 // =============================================================================
 
-export const TWO_PILLARS = {
-  handwerk: {
-    title: "Handwerk",
-    description:
-      "Speziell für Handwerker entwickelt. Website, Sichtbarkeit und Telefonservice – alles in einem Paket.",
-    features: [
-      "Professionelle Website",
-      "50+ lokale Landingpages",
-      "KI-Telefonassistent",
-      "Google-Bewertungsmanagement",
-    ],
-    cta: { label: "Pakete ansehen", href: "/handwerk" },
-  },
-  general: {
-    title: "IT & Digital",
-    description:
-      "Webseiten, Online-Shops, Office-Themen, KI-Integration oder IT-Support – wir begleiten Ihren digitalen Alltag ganzheitlich.",
-    features: [
-      "Webseiten & Online-Shops",
-      "Office & Microsoft 365",
-      "KI-Integration",
-      "Digitaler Hausmeister",
-    ],
-    cta: { label: "Alle Leistungen", href: "/tech" },
-  },
+/**
+ * Auswahl der 4 SERVICES-Kategorien, die auf der Startseite in Sektion 02
+ * als Standard-Leistungskatalog gezeigt werden (2×2-Grid, Card-Komponente 1:1
+ * wie auf /leistungen). Reihenfolge = Anzeige-Reihenfolge.
+ */
+export const HOME_STANDARD_SERVICE_KEYS = [
+  "webseiten",
+  "ecommerce",
+  "office",
+  "marketing",
+] as const;
+
+/**
+ * Separater „Spezialfall: Handwerk"-Block unter der Standard-Service-Grid.
+ * Macht klar: Handwerk ist eine Vertikale unserer Standardleistungen, kein
+ * paralleles Angebot.
+ */
+export const HANDWERK_SPECIALTY = {
+  eyebrow: "Spezialfall",
+  title: "Du bist Handwerksbetrieb?",
+  description:
+    "Zusätzlich zu unseren Standard-Leistungen haben wir Pakete, die speziell für die Anforderungen von Handwerksbetrieben entwickelt wurden – inkl. Klick-Dominator, KI-Empfang und Bewertungs-Automation.",
+  bullets: [
+    "Lokale Landingpages für 50+ Orte",
+    "KI-Telefonassistent für verpasste Anrufe",
+    "Google-Bewertungsmanagement",
+    "Klick-Dominator für lokale Sichtbarkeit",
+  ],
+  cta: { label: "Handwerks-Pakete ansehen", href: "/handwerk" },
 } as const;
 
 // =============================================================================
@@ -676,14 +681,14 @@ export const PAGE_META = {
   home: {
     title: "Webdesign & IT-Service Erzgebirge | Berneby Solutions",
     description:
-      "Websites, KI-Telefon & IT-Service für KMU im Erzgebirge. Transparent geplant, verbindlich umgesetzt. Kostenloses Erstgespräch.",
+      "Webseiten, Online-Shops, Office & IT-Support, Online-Marketing und KI-Telefon für KMU im Erzgebirge – mit speziellen Paketen für Handwerksbetriebe. Kostenloses Erstgespräch.",
   },
   handwerk: {
     title: "Webdesign & Digitalisierung für Handwerk",
     description:
       "Webdesign, KI-Telefon und lokale Sichtbarkeit fuer Handwerksbetriebe im Erzgebirge. Transparent geplant und im Erstgespraech passend auf Ihren Betrieb abgestimmt.",
   },
-  tech: {
+  leistungen: {
     title: "IT-Service & Webentwicklung Erzgebirge | Berneby Solutions",
     description:
       "Webseiten, Online-Shops, Microsoft 365, KI-Schulung & IT-Support für KMU im Erzgebirge. Digitaler Hausmeister inklusive Erstgespräch. Jetzt beraten lassen.",

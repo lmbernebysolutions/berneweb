@@ -236,7 +236,7 @@ const CLUSTER_2_PILLAR: RatgeberArticle = {
   pillarSlug: "it-service-kmu",
   content: `
 <h2>Was ist IT-Service für KMU?</h2>
-<p><strong>IT-Service für KMU</strong> umfasst die Betreuung von Hard- und Software, Netzwerken, Cloud-Lösungen und IT-Sicherheit – ohne eigene IT-Abteilung. Kleine Betriebe nutzen externe Partner wie den <a href="/tech">Digitalen Hausmeister</a>, der stundengenau und flexibel arbeitet.</p>
+<p><strong>IT-Service für KMU</strong> umfasst die Betreuung von Hard- und Software, Netzwerken, Cloud-Lösungen und IT-Sicherheit – ohne eigene IT-Abteilung. Kleine Betriebe nutzen externe Partner wie den <a href="/leistungen">Digitalen Hausmeister</a>, der stundengenau und flexibel arbeitet.</p>
 
 <h2>Warum externe IT statt Festanstellung?</h2>
 <p>Eine Vollzeit-IT-Kraft bindet dauerhaft hohe Ressourcen. Für viele KMU ist externe IT sinnvoller: Sie holen gezielt Unterstützung, wenn sie gebraucht wird. Kein Festgehalt, keine Urlaubsvertretung. Umfang und Konditionen klären wir im Erstgespräch.</p>
@@ -343,7 +343,7 @@ const CLUSTER_2_ARTICLES: RatgeberArticle[] = [
 </ol>
 
 <h2>Brauchen Sie eine Firewall?</h2>
-<p>Für die meisten kleinen Betriebe reichen Router-Firewall + Antivirus. Wichtig: Backups und Awareness. Wir beraten im <a href="/tech">Digitalen Hausmeister</a>-Paket.</p>
+<p>Für die meisten kleinen Betriebe reichen Router-Firewall + Antivirus. Wichtig: Backups und Awareness. Wir beraten im <a href="/leistungen">Digitalen Hausmeister</a>-Paket.</p>
 `,
     relatedSlugs: ["it-service-kmu", "digitaler-hausmeister-erklaert", "cloud-loesungen-handwerk"],
     datePublished: "2026-01-27",

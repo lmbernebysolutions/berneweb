@@ -79,7 +79,7 @@ export default function HandwerkPage() {
         bergVariant="handwerk"
         headline="AUFTRÄGE VOLL? BÜRO LEER?"
         accentText="BÜRO LEER?"
-        subline="Digital-Partner für Handwerker im Erzgebirge. Website, lokale Landingpages, KI-Telefon – handfest, transparent, aus einer Hand."
+        subline="Digital-Partner für Handwerker im Erzgebirge. Website, lokale\nLandingpages, KI-Telefon – handfest, transparent, aus einer Hand."
         ctas={[
           { label: "Projekt anfragen", href: "/kontakt", variant: "default" },
           { label: "Pakete ansehen", href: "#pakete", variant: "outline" },

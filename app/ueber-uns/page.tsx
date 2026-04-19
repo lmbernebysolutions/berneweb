@@ -199,7 +199,7 @@ export default function UeberUnsPage() {
         subline="30 Minuten, unverbindlich – wir freuen uns auf ein persönliches Gespräch."
         ctas={[
           { label: "Kontakt aufnehmen", href: "/kontakt" },
-          { label: "Unsere Leistungen", href: "/tech" },
+          { label: "Unsere Leistungen", href: "/leistungen" },
         ]}
       />
 

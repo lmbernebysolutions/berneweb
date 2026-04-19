@@ -179,7 +179,7 @@ export default function KontaktPage() {
                 </Link>{" "}
                 oder{" "}
                 <Link
-                  href="/tech"
+                  href="/leistungen"
                   className="font-medium text-brand-cyan underline underline-offset-2 hover:text-brand-cyan/80"
                 >
                   alle Leistungen
