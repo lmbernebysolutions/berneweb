@@ -267,7 +267,7 @@ export const HOME_STANDARD_SERVICE_KEYS = [
  */
 export const HANDWERK_SPECIALTY = {
   eyebrow: "Spezialfall",
-  title: "Du bist Handwerksmeister?",
+  title: "Du bist aus dem Handwerk?",
   description:
     "Zusätzlich zu unseren Standard-Leistungen haben wir Pakete, die speziell für die Anforderungen von Handwerksbetrieben entwickelt wurden – inkl. Klick-Dominator, KI-Empfang und Bewertungs-Automation.",
   bullets: [
