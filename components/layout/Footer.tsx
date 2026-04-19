@@ -7,6 +7,7 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import { CONTAINER_A } from "@/lib/container-styles";
+import { ROUTE_VISIBILITY } from "@/lib/route-visibility";
 import { cn } from "@/lib/utils";
 
 const SOCIAL_ICONS = {
@@ -17,6 +18,12 @@ const SOCIAL_ICONS = {
 } as const;
 
 export function Footer() {
+  const unternehmenLinks = FOOTER_NAV.unternehmen.filter((item) => {
+    if (item.href === "/standorte" && !ROUTE_VISIBILITY.standorte) return false;
+    if (item.href === "/branchen" && !ROUTE_VISIBILITY.branchen) return false;
+    return true;
+  });
+
   return (
     <footer className="relative z-20 overflow-hidden border-t border-brand-cyan/20 bg-brand-navy text-brand-navy-foreground min-h-[28rem]">
       {/* Bergsilhouette: NUR mobile größer + links; Desktop wieder Standard */}
@@ -165,7 +172,7 @@ export function Footer() {
                 Unternehmen
               </h3>
               <ul className="space-y-2.5">
-                {FOOTER_NAV.unternehmen.map((item) => (
+                {unternehmenLinks.map((item) => (
                   <li key={item.label}>
                     <Link
                       href={item.href}
