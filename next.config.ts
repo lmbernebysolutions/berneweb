@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import path from "node:path";
 import bundleAnalyzer from "@next/bundle-analyzer";
+import { SITE_URL } from "./lib/constants";
 
 const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === "true" });
 const isDevelopment = process.env.NODE_ENV !== "production";
@@ -61,10 +62,11 @@ const nextConfig: NextConfig = {
     return [
       { source: "/legal/impressum", destination: "/impressum", permanent: true },
       { source: "/legal/datenschutz", destination: "/datenschutz", permanent: true },
-      // /tech → /leistungen (URL-Refactor 2026-04: „Tech" war Tech-intern,
-      // „Leistungen" spricht die breitere Zielgruppe an. 301 erhält Backlink-Equity.)
-      { source: "/tech", destination: "/leistungen", permanent: true },
-      { source: "/tech/:path*", destination: "/leistungen/:path*", permanent: true },
+      // /tech → /leistungen (URL-Refactor 2026-04). Absolute Ziel-URL, damit der
+      // Location-Header nicht relativ ist (RFC-konformer; manche Crawler melden
+      // sonst „Umleitungsfehler“ in der Search Console).
+      { source: "/tech", destination: `${SITE_URL}/leistungen`, permanent: true },
+      { source: "/tech/:path*", destination: `${SITE_URL}/leistungen/:path*`, permanent: true },
     ];
   },
 };
