@@ -44,11 +44,12 @@
     "zod": "^4.3.6"
   },
   "browserslist": [
-    "last 2 Chrome versions",
-    "last 2 Firefox versions",
-    "last 2 Safari versions",
-    "last 2 Edge versions",
-    "not dead"
+    "chrome >= 111",
+    "and_chr >= 111",
+    "firefox >= 115",
+    "safari >= 16.4",
+    "ios_saf >= 16.4",
+    "edge >= 111"
   ],
   "devDependencies": {
     "@next/bundle-analyzer": "^16.2.4",

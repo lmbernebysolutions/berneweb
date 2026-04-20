@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { CookieManager } from "react-cookie-manager";
-import { initGA, revokeGA } from "@/lib/ga";
+import { initGA, revokeGA, tryInitGAFromStoredConsent } from "@/lib/ga";
 
 type CookieCategories = { Analytics: boolean; Social: boolean; Advertising: boolean };
 
@@ -95,6 +96,10 @@ const cookieClassNames = {
 };
 
 export function CookieProviders({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    tryInitGAFromStoredConsent();
+  }, []);
+
   const handleAccept = () => {
     initGA();
   };

@@ -186,18 +186,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className={`${notoSans.variable} ${jetbrainsMono.variable} ${barlow.variable}`} style={{ colorScheme: "dark" }}>
-      <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEVDGDCV9G" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-QEVDGDCV9G');`,
-          }}
-        />
-      </head>
       <body className="font-sans antialiased relative overflow-x-hidden">
         <style
           dangerouslySetInnerHTML={{
