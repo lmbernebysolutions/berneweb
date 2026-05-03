@@ -42,7 +42,7 @@ mkdirSync(outPath, { recursive: true });
 
   await page.addStyleTag({
     content:
-      ".fixed.z-\\[100\\] { display: none !important; } .fixed.z-50.bottom-6 { display: none !important; }",
+      ".fixed.z-\\[100\\], .fixed.z-50.bottom-6, nextjs-portal, #nextjs__container, #nextjs-portal, [data-nextjs-dev-tools-button], [data-nextjs-toast], [data-next-badge-root], [class*='nextjs-'], [id*='nextjs'] { display: none !important; visibility: hidden !important; opacity: 0 !important; }",
   });
 
   await page.evaluate(async () => {

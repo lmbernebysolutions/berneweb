@@ -35,7 +35,7 @@ export const SOCIAL_LINKS = [
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/bernebysolutions/",
+    href: "https://www.facebook.com/profile.php?id=61576536654995",
     ariaLabel: "Berneby Solutions auf Facebook",
   },
   {
@@ -45,7 +45,7 @@ export const SOCIAL_LINKS = [
   },
   {
     label: "Google",
-    href: "https://share.google/8BZjFb7920r2P0ULk",
+    href: "https://maps.app.goo.gl/YecucGGCgUZTSsys7",
     ariaLabel: "Berneby Solutions Google Unternehmensprofil",
   },
 ] as const;
@@ -644,25 +644,6 @@ export const VALUES = [
     description: "Jede Lösung soll Arbeit abnehmen, nicht neue Arbeit erzeugen.",
     icon: "IconHeart",
   },
-] as const;
-
-// =============================================================================
-// ÜBER UNS – KENNZAHLEN & STANDORT
-// =============================================================================
-
-export const EINZUGSGEBIET_ORTE = [
-  "Aue-Bad Schlema",
-  "Annaberg-Buchholz",
-  "Stollberg",
-  "Schwarzenberg",
-  "Marienberg",
-  "Erzgebirgskreis",
-  "Schneeberg",
-  "Zwönitz",
-  "Lößnitz",
-  "Oelsnitz",
-  "Zschopau",
-  "Olbernhau",
 ] as const;
 
 // =============================================================================

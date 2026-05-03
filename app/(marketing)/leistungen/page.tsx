@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
     IconDeviceDesktop,
-    IconDeviceLaptop,
     IconShoppingCart,
     IconBrush,
     IconTool,
@@ -20,7 +19,6 @@ import {
     IconBrandReact,
     IconBrandWindows,
     IconRobot,
-    IconSearch,
     IconBrandAdobe,
 } from "@tabler/icons-react";
 import { SERVICES, COMPANY, FAQ_ITEMS, PROCESS_STEPS, TECH_STACK_WITH_BENEFIT, TECH_STATS, TECH_TESTIMONIALS, PAGE_META, SOCIAL_LINKS, SITE_URL } from "@/lib/constants";
@@ -107,12 +105,28 @@ export default function TechPage() {
                     align="left"
                     light
                 />
-                <p className="mb-8 text-sm text-white/60">
-                    <Link href="/ratgeber/microsoft-365-fuer-handwerker" className="text-brand-cyan hover:underline">
-                        Microsoft 365 für Ihren Betrieb →
-                    </Link>
-                </p>
                 <MissionSection variant="a" />
+                <nav aria-label="Weiterfuehrende Links Leistungen" className="mt-8 text-sm text-white/60">
+                    <Link href="/ratgeber/microsoft-365-fuer-handwerker" className="text-brand-cyan hover:underline">
+                        Microsoft 365 für Ihren Betrieb
+                    </Link>
+                    {" · "}
+                    <Link href="/standorte" className="text-brand-cyan hover:underline">
+                        Alle Standorte im Erzgebirge
+                    </Link>
+                    {" · "}
+                    <Link href="/standorte/annaberg-buchholz" className="text-brand-cyan hover:underline">
+                        Webdesign in Annaberg-Buchholz
+                    </Link>
+                    {" · "}
+                    <Link href="/branchen" className="text-brand-cyan hover:underline">
+                        Lösungen nach Branche
+                    </Link>
+                    {" · "}
+                    <Link href="/branchen/sanitaer-heizung" className="text-brand-cyan hover:underline">
+                        Lösung für Sanitär & Heizung
+                    </Link>
+                </nav>
             </Section>
 
             {/* 03: Services Grid */}

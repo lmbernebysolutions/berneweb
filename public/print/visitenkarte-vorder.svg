@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-  width="91mm"
-  height="63mm"
-  viewBox="0 0 1076 722"
+  width="88mm"
+  height="58mm"
+  viewBox="0 0 1039 685"
   role="img"
   aria-label="Berneby Solutions Visitenkarte Vorderseite">
   <title>Berneby Solutions — Visitenkarte Vorderseite</title>
-  <desc>Druckdaten: 85×55 mm Endformat, 3 mm Beschnitt. Schnittkante gestrichelt.</desc>
+  <desc>Druckdaten: 88×58 mm Endformat.</desc>
 
   <defs>
     <style><![CDATA[
@@ -17,15 +17,9 @@
     </filter>
   </defs>
 
-  <rect width="1076" height="722" fill="#283569"/>
+  <rect width="1039" height="685" fill="#283569"/>
 
-  <rect x="36" y="36" width="1004" height="650"
-    fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1" stroke-dasharray="8 6"/>
-
-  <line x1="96" y1="0" x2="96" y2="722" stroke="#19F2E6" stroke-opacity="0.2" stroke-width="1"/>
-  <line x1="980" y1="0" x2="980" y2="722" stroke="#19F2E6" stroke-opacity="0.2" stroke-width="1"/>
-
-  <g transform="translate(128,64) scale(1.0833333333333333)">
+  <g transform="translate(124,28) scale(1.0833333333333333)">
     <!-- B-Marke: Druck-Cyan #19F2E6, nur fuer Visitenkarten-Export; Original-SVGs unveraendert -->
     
       <g transform="matrix(1.3333333,0,0,-1.3333333,0,64)">
@@ -75,10 +69,10 @@
   </g>
 
   <g filter="url(#vk-hero-ds)">
-    <text x="64" y="235.04"
+    <text x="28" y="199.04"
       font-family="'BarlowEmbedded'"
       font-size="96" font-weight="800" letter-spacing="-0.05em" fill="#ffffff">DIGITAL-PARTNER</text>
-    <text x="64" y="326.24"
+    <text x="28" y="290.24"
       font-family="'BarlowEmbedded'"
       font-size="96" font-weight="800" letter-spacing="-0.05em">
       <tspan fill="#ffffff">IM </tspan>
@@ -87,7 +81,7 @@
   </g>
 
   <g aria-label="QR Platzhalter 2 cm">
-    <rect x="420" y="395.36" width="236" height="236" fill="rgba(255,255,255,0.04)" stroke="#19F2E6" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="6 4"/>
-    <text x="538" y="517.36" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="700" fill="rgba(255,255,255,0.45)">QR 2cm</text>
+    <rect x="397.5" y="359.36" width="244" height="244" fill="rgba(255,255,255,0.04)" stroke="#19F2E6" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="519.5" y="485.36" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="700" fill="rgba(255,255,255,0.45)">QR 2cm</text>
   </g>
 </svg>

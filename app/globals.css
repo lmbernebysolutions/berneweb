@@ -854,7 +854,7 @@ h6 {
     min-width: 0;
     overflow: visible;
     letter-spacing: -0.05em; /* tracking-tighter */
-    font-size: 6rem; /* etwas kleiner als Desktop-Hero (7rem) für Visitenkarten-Trim */
+    font-size: 6.35rem; /* leicht vergroessert fuer Front-Preview/Export */
     padding-bottom: 1rem; /* pb-4 */
     margin-left: 0;
   }

@@ -47,11 +47,19 @@ export async function generateMetadata({
   const { ort } = await params;
   const location = getLocationBySlug(ort);
   if (!location) return { title: "Standort nicht gefunden" };
+  const variants = getLocationSearchVariants(location.name);
 
   return {
     title: `Webdesign & IT-Service in ${location.name} | Berneby Solutions`,
     description: `Professionelle Websites, lokale SEO und IT-Service für ${location.name} und Umgebung. ${location.population.toLocaleString("de-DE")} Einwohner – wir bringen Ihren Betrieb auf Seite 1. Jetzt Erstgespräch vereinbaren.`,
     alternates: { canonical: `/standorte/${location.slug}` },
+    keywords: [
+      location.name,
+      ...variants,
+      ...location.nearbyOrte.slice(0, 3),
+      `Webdesign ${location.name}`,
+      `SEO ${location.name}`,
+    ],
   };
 }
 
@@ -72,7 +80,7 @@ const LOCATION_FEATURES = [
     icon: "IconCurrencyEuro",
     title: "Klare Leistungsstufen",
     description:
-      "Klare Leistungsstufen ohne versteckte Positionen. Wir kommen zu Ihnen – kurze Wege aus Aue-Bad Schlema.",
+      "Klare Leistungsstufen ohne versteckte Positionen. Wir kommen zu Ihnen – kurze Wege aus Aue-Bad Schlema (Aue).",
   },
 ];
 
@@ -81,6 +89,71 @@ function buildLocationFeatures(ortName: string) {
     ...f,
     description: f.description.replace(/\[Ort\]/g, ortName),
   }));
+}
+
+const UMLAUT_FALLBACKS: Record<string, string> = {
+  ä: "ae",
+  ö: "oe",
+  ü: "ue",
+  Ä: "Ae",
+  Ö: "Oe",
+  Ü: "Ue",
+  ß: "ss",
+};
+
+function toAsciiVariant(value: string): string {
+  return value.replace(/[äöüÄÖÜß]/g, (char) => UMLAUT_FALLBACKS[char] ?? char);
+}
+
+function getLocationSearchVariants(name: string): string[] {
+  const variants = new Set<string>();
+  const cleaned = name
+    .replace(/\/Erzgeb(?:irge)?\.?/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  variants.add(name);
+  variants.add(cleaned);
+  variants.add(`${cleaned} Erzgebirge`);
+  variants.add(toAsciiVariant(cleaned));
+
+  if (cleaned.includes("-")) {
+    cleaned
+      .split("-")
+      .map((part) => part.trim())
+      .filter((part) => part.length > 2)
+      .forEach((part) => variants.add(part));
+  }
+
+  if (cleaned === "Aue-Bad Schlema") {
+    variants.add("Aue");
+    variants.add("Bad Schlema");
+    variants.add("Aue (Sachsen)");
+    variants.add("Bad Schlema Erzgebirge");
+  }
+
+  return Array.from(variants).filter(Boolean);
+}
+
+function buildLocationSeoParagraphs(location: {
+  name: string;
+  nearbyOrte: readonly string[];
+  besonderheiten: readonly string[];
+}) {
+  const variants = getLocationSearchVariants(location.name);
+  const nearby = location.nearbyOrte.slice(0, 3).join(", ");
+  const highlights = location.besonderheiten.slice(0, 3).join(", ");
+
+  return {
+    variants,
+    paragraphs: [
+      `Rund um ${location.name} betreuen wir Betriebe auch in ${nearby}. Typische lokale Merkmale wie ${highlights} nutzen wir gezielt fuer Inhalte, damit Ihre Seite fuer regionale Suchanfragen besser einordnet wird.`,
+      `Kunden suchen nicht immer gleich: Neben "${location.name}" tauchen auch Schreibweisen wie ${variants
+        .slice(0, 4)
+        .map((entry) => `"${entry}"`)
+        .join(", ")} auf. Diese Varianten beruecksichtigen wir in Seitenstruktur, Zwischenueberschriften und internen Verlinkungen fuer eine stabilere lokale Auffindbarkeit.`,
+    ],
+  };
 }
 
 export default async function StandortPage({
@@ -98,8 +171,10 @@ export default async function StandortPage({
 
   const nearbySlugs = getNearbyLocationSlugs(location);
   const features = buildLocationFeatures(location.name);
+  const { variants: locationSearchVariants, paragraphs: locationSeoParagraphs } =
+    buildLocationSeoParagraphs(location);
 
-  const localBusinessSchema = generateLocalBusinessSchema({
+  const localBusinessSchemaBase = generateLocalBusinessSchema({
     name: "Berneby Solutions",
     description: `Webdesign, IT-Service und lokale SEO für ${location.name} und den Erzgebirgskreis.`,
     areaServed: location.name,
@@ -107,6 +182,10 @@ export default async function StandortPage({
     addressLocality: "Aue-Bad Schlema",
     addressRegion: "Sachsen",
   });
+  const localBusinessSchema = {
+    ...localBusinessSchemaBase,
+    alternateName: locationSearchVariants,
+  };
 
   return (
     <>
@@ -116,7 +195,7 @@ export default async function StandortPage({
         headlineLine2={`${location.name}.`}
         accentText={location.name}
         compactHeadline
-        subline={`Wir unterstützen Handwerker und Betriebe in ${location.name} (${location.population.toLocaleString("de-DE")} Einwohner) mit professionellen Websites, lokaler SEO und IT-Service. Aus Aue-Bad Schlema – ${location.entfernung === 0 ? "direkt vor Ort" : `nur ${location.entfernung} km entfernt`}.`}
+        subline={`Wir unterstützen Handwerker und Betriebe in ${location.name} (${location.population.toLocaleString("de-DE")} Einwohner) mit professionellen Websites, lokaler SEO und IT-Service. Aus Aue-Bad Schlema (Aue) – ${location.entfernung === 0 ? "direkt vor Ort" : `nur ${location.entfernung} km entfernt`}.`}
         ctas={[
           { label: "Jetzt Erstgespräch buchen", href: "#kontakt", variant: "default" },
           { label: "Handwerks-Pakete", href: "/handwerk", variant: "outline" },
@@ -144,9 +223,17 @@ export default async function StandortPage({
           className="relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md p-8 md:p-10 mb-8 md:mb-12"
         >
           <TechCorners pattern="diagonal" variant="cyan" size="lg" />
-          <p className="relative z-10 text-[0.9375rem] leading-relaxed text-white/85 md:text-base">
+          <p className="relative z-10 text-[0.9375rem] leading-relaxed text-white/85 break-words md:text-base">
             {location.description}
           </p>
+          {locationSeoParagraphs.map((paragraph) => (
+            <p
+              key={paragraph}
+              className="relative z-10 mt-4 text-sm leading-relaxed text-white/80 break-words md:text-[0.9375rem]"
+            >
+              {paragraph}
+            </p>
+          ))}
         </div>
 
         {/* Zwei Karten: Warum Berneby + Besonderheiten – rechte Karte vertikal zur linken zentriert */}
@@ -165,7 +252,7 @@ export default async function StandortPage({
                 bei Google, KI-Telefonassistent für 24/7 Anrufannahme und IT-Service aus einer Hand.
                 Festpreis, 4 Wochen bis Go-Live, 12 Monate Support inklusive. Für Betriebe in{" "}
                 {location.name} und Umgebung – Handwerk, Einzelhandel, Gastronomie, Dienstleister.
-                {location.entfernung === 0 && " Wir sitzen in Aue-Bad Schlema – kurze Wege, persönliche Beratung vor Ort."}
+                {location.entfernung === 0 && " Wir sitzen in Aue-Bad Schlema (Aue) – kurze Wege, persoenliche Beratung vor Ort."}
               </p>
             </div>
           </div>
@@ -279,7 +366,7 @@ export default async function StandortPage({
                 <p className="font-bold text-white text-sm sm:text-base">
                   {location.entfernung === 0
                     ? "Sitz von Berneby Solutions – wir sind vor Ort."
-                    : `Nur ${location.entfernung} km von Aue-Bad Schlema.`}
+                    : `Nur ${location.entfernung} km von Aue-Bad Schlema (Aue).`}
                 </p>
                 <p className="text-xs sm:text-sm text-white/70 mt-1">
                   Kostenloses Erstgespräch, 30 Minuten, unverbindlich.

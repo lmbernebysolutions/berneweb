@@ -11,26 +11,26 @@ export const metadata: Metadata = {
 /**
  * Visitenkarte – Druckvorbereitung
  * ────────────────────────────────
- * Trim: 85 × 55 mm (übliches EU-Format, entspricht ca. ISO 7810 ID-1 Höhe)
- * Auflösung im Layout: 1004 × 650 CSS px ≈ 300 dpi auf Trim
+ * Trim: 88 × 58 mm
+ * Auflösung im Layout: 1056 × 696 CSS px ≈ 300 dpi auf Trim
  * Beschnitt: 3 mm je Seite (+36 px pro Kante bei diesem Maßstab)
- * Gesamt-Kanvas inkl. Beschnitt: 1076 × 722 px
+ * Gesamt-Kanvas inkl. Beschnitt: 1128 × 768 px
  *
  * Safe Zone: mindestens 3 mm innerhalb der Schnittkante (hier ca. 35 px Padding
  * innerhalb der Trim-Linie).
  */
-const CARD_OUTER_W = 1076;
-const CARD_OUTER_H = 722;
+const CARD_OUTER_W = 1128;
+const CARD_OUTER_H = 768;
 const BLEED_PX = 36;
 const BEAM_INSET = Math.round(CARD_OUTER_W * (32 / 360));
-/** Trim-Breite in px (85 mm), Kalibrierung ~300 dpi */
+/** Trim-Breite in px (88 mm), Kalibrierung ~300 dpi */
 const TRIM_W_PX = CARD_OUTER_W - 2 * BLEED_PX;
-const TRIM_W_MM = 85;
+const TRIM_W_MM = 88;
 const MM_PER_PT = 25.4 / 72;
 const PX_PER_MM = TRIM_W_PX / TRIM_W_MM;
 const SAFE_INSET_MM = 3;
 const SAFE_INSET_TRIM = Math.round(SAFE_INSET_MM * PX_PER_MM);
-/** 7.5–8 pt als Druckzielgröße für Kontaktzeilen auf 85 mm Trim. */
+/** 7.5–8 pt als Druckzielgröße für Kontaktzeilen auf 88 mm Trim. */
 const CONTACT_TEXT_PRINT_PT = 7.8;
 const CONTACT_TEXT_PRINT_PX = Math.round(CONTACT_TEXT_PRINT_PT * MM_PER_PT * PX_PER_MM);
 /** Navy Muted laut Branding (Kontrast-geprüft auf Brand Navy). */
@@ -51,15 +51,15 @@ const BACK_CONTENT_BEAM_GAP = LOGO_MARGIN_LEFT;
 /** Wie Standardseite (TextLogo size=lg): h-[3.25rem], aspect-[240/48] */
 const VISITENKARTE_LOGO_H = "4.5rem";
 const VISITENKARTE_LOGO_W = "22.5rem"; // 4.5rem * (240/48)
-/** QR-Platzhalter 2 × 2 cm (20 mm Kantenlänge) im Trim-Maßstab (85 mm ≈ TRIM_W_PX) */
-const QR_PLACEHOLDER_PX = Math.round((20 / 85) * TRIM_W_PX);
+/** QR-Platzhalter 2 × 2 cm (20 mm Kantenlänge) im Trim-Maßstab. */
+const QR_PLACEHOLDER_PX = Math.round((20 / TRIM_W_MM) * TRIM_W_PX);
 /** Logo sitzt 4–5 mm innerhalb Trim: 3 mm Safe + 1.5 mm Zusatzabstand. */
 const LOGO_TOP_EXTRA_MM = 0.8;
 const LOGO_TOP_EXTRA_PX = Math.round(LOGO_TOP_EXTRA_MM * PX_PER_MM);
 const BRIDGE_CTA_LINE_1 = "ZUM DIGITAL-CHECK";
 const LOCKED_GAP_X = 48;
 const LOCKED_CANVAS_W = CARD_OUTER_W * 2 + LOCKED_GAP_X;
-const BRIDGE_QR_TARGET_URL = "https://bernebysolutions.de";
+const BRIDGE_QR_TARGET_URL = "http://bernebysolutions.de/digital-check";
 
 type Cmyk = { c: number; m: number; y: number; k: number };
 type Rgb = { r: number; g: number; b: number };
@@ -294,18 +294,6 @@ function CardShell({
         aria-hidden
       />
 
-      {/* Trim-Linie (Endformat) */}
-      <div
-        className="pointer-events-none absolute box-border border border-dashed border-white/25"
-        style={{
-          top: BLEED_PX,
-          left: BLEED_PX,
-          right: BLEED_PX,
-          bottom: BLEED_PX,
-        }}
-        aria-hidden
-      />
-
       {/* Inhalt innerhalb Trim + Safe */}
       <div
         className="absolute flex flex-col"
@@ -378,7 +366,7 @@ export default function SocialsVisitenkartenPage() {
             Visitenkarten
           </h1>
           <p className="mt-2 font-mono text-[11px] uppercase tracking-widest text-white/45 md:text-[12px]">
-            Vorderseite · Rückseite · {CARD_OUTER_W}×{CARD_OUTER_H}px inkl. 3&nbsp;mm Beschnitt · Trim ca. 85×55&nbsp;mm @ ~300&nbsp;dpi
+            Vorderseite · Rückseite · {CARD_OUTER_W}×{CARD_OUTER_H}px inkl. 3&nbsp;mm Beschnitt · Trim ca. 88×58&nbsp;mm @ ~300&nbsp;dpi
           </p>
           <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55">
             Für konsistente Vorschau: Browser-Zoom 100% · Export nur aus diesem Locked-Modus
@@ -421,14 +409,14 @@ export default function SocialsVisitenkartenPage() {
                   </div>
 
                   <div
-                    className="flex w-full shrink-0 justify-center"
+                    className="flex w-full shrink-0"
                     style={{ paddingLeft: FRONT_CONTENT_BEAM_GAP, paddingRight: FRONT_CONTENT_BEAM_GAP }}
                   >
-                    <div className="flex w-fit items-center gap-8">
+                    <div className="flex w-full items-center justify-between">
                       <div className="relative px-4 py-3 text-left">
                         <TechCorners pattern="diagonal" variant="cyan" size="lg" />
                         <p
-                          className="font-display text-[46px] font-extrabold uppercase leading-[0.98] tracking-[0.04em] text-white"
+                          className="font-display text-[50px] font-extrabold uppercase leading-[0.98] tracking-[0.04em] text-white"
                         >
                           {BRIDGE_CTA_LINE_1}
                         </p>
@@ -446,7 +434,7 @@ export default function SocialsVisitenkartenPage() {
                           src={getBrandedQrSrc({
                             data: BRIDGE_QR_TARGET_URL,
                             size: 500,
-                            foreground: "283569",
+                            foreground: "ffffff",
                             background: "transparent",
                           })}
                           alt="Test QR-Code zur Bridge-Page"
@@ -521,7 +509,7 @@ export default function SocialsVisitenkartenPage() {
                       />
                     </div>
 
-                    {/* Kontaktdaten im Website-Body-Font: 7.5–8 pt Zielgroesse (hier ~7.8 pt bei 85 mm Trim). */}
+                    {/* Kontaktdaten im Website-Body-Font: 7.5–8 pt Zielgroesse (hier ~7.8 pt bei 88 mm Trim). */}
                     {/* SVG-Icons in Preview; fuer Vektordruck als SVG->EPS/AI im Grafik-Workflow uebergeben. */}
                     {/* Farbhinweis: Screen-Preview nutzt Soft-Proof-Cyan; final fuer 4c-Akzente C100 M0 Y0 K0 verwenden. */}
                     <div className="mt-5 space-y-3.5">
@@ -562,9 +550,9 @@ export default function SocialsVisitenkartenPage() {
                   >
                     <ul className="relative z-10 space-y-3.5">
                       {trimmedBackUsps.map((usp) => (
-                        <li key={usp} className="flex items-start gap-3">
+                        <li key={usp} className="flex items-center gap-3">
                           <IconCheck
-                            className="mt-[2px] shrink-0"
+                            className="shrink-0"
                             style={{ width: 24, height: 24, color: PRINT_READY_COLORS.cyan }}
                             stroke={2.4}
                             aria-hidden
@@ -809,8 +797,8 @@ export default function SocialsVisitenkartenPage() {
               <strong className="text-white">VISITENKARTE_CAPTURE_DPR=4 pnpm run capture:visitenkarten</strong>
             </li>
             <li>
-              In der Druckerei: <strong className="text-white">3 mm Beschnitt</strong> aktivieren; Schnittkante =
-              gestrichelte Linie; Farbraum CMYK nach Wunsch der Druckerei.
+              In der Druckerei: <strong className="text-white">3 mm Beschnitt</strong> aktivieren; Farbraum CMYK nach
+              Wunsch der Druckerei.
             </li>
           </ol>
         </aside>

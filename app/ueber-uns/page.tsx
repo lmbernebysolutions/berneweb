@@ -235,7 +235,7 @@ export default function UeberUnsPage() {
               foundingDate: "2026",
               foundingLocation: {
                 "@type": "Place",
-                name: "Aue-Bad Schlema, Erzgebirgskreis",
+                name: "Aue-Bad Schlema (Aue), Erzgebirgskreis",
               },
             },
           }),

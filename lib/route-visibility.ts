@@ -4,7 +4,7 @@
  * Set to `true` to re-enable route groups later.
  */
 export const ROUTE_VISIBILITY = {
-  branchen: false,
-  standorte: false,
+  branchen: true,
+  standorte: true,
 } as const;
 

@@ -70,6 +70,27 @@ export default function RatgeberPage() {
             </div>
           ))}
         </div>
+        <nav aria-label="Weiterfuehrende Links Ratgeber" className="mt-6 text-sm text-white/60">
+          <Link href="/standorte" className="text-brand-cyan hover:underline">
+            Alle Standorte im Erzgebirge
+          </Link>
+          {" · "}
+          <Link href="/standorte/schwarzenberg" className="text-brand-cyan hover:underline">
+            Standort Schwarzenberg im Detail
+          </Link>
+          {" · "}
+          <Link href="/branchen" className="text-brand-cyan hover:underline">
+            Branchen-Lösungen im Überblick
+          </Link>
+          {" · "}
+          <Link href="/branchen/dachdecker" className="text-brand-cyan hover:underline">
+            Lösung für Dachdecker
+          </Link>
+          {" · "}
+          <Link href="/branchen/elektriker" className="text-brand-cyan hover:underline">
+            Lösung für Elektriker
+          </Link>
+        </nav>
       </Section>
 
       <div className="w-full h-px bg-brand-cyan/20 shrink-0" role="presentation" aria-hidden="true" />

@@ -237,7 +237,10 @@ export default async function BranchePage({
               </ul>
               <div className="mt-8">
                 <Button asChild size="lg" className="w-full sm:w-auto">
-                  <Link href="/kontakt">Jetzt Erstgespräch vereinbaren</Link>
+                  <Link href="/kontakt">
+                    <span className="sm:hidden">Erstgespräch</span>
+                    <span className="hidden sm:inline">Jetzt Erstgespräch vereinbaren</span>
+                  </Link>
                 </Button>
               </div>
             </div>

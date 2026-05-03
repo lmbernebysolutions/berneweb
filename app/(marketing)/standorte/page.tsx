@@ -13,7 +13,7 @@ import { ROUTE_VISIBILITY } from "@/lib/route-visibility";
 export const metadata: Metadata = {
   title: "Standorte – Webdesign & IT-Service im Erzgebirgskreis | Berneby Solutions",
   description:
-    "Wir unterstützen Handwerker und Betriebe in 59 Orten im Erzgebirgskreis – von Aue-Bad Schlema bis Annaberg-Buchholz. Webdesign, lokale SEO, IT-Service.",
+    "Wir unterstützen Handwerker und Betriebe in 59 Orten im Erzgebirgskreis – von Aue-Bad Schlema (Aue) bis Annaberg-Buchholz. Webdesign, lokale SEO, IT-Service.",
   alternates: { canonical: "/standorte" },
 };
 
@@ -41,7 +41,7 @@ export default function StandortePage() {
           title="Webdesign & IT im"
           titleLine2="Erzgebirgskreis"
           titleLine3="Eine Lösung."
-          subtitle="Wir unterstützen Handwerker und KMU in allen Gemeinden und Städten des Erzgebirgskreises – mit professionellen Websites, lokaler SEO und IT-Service. Aus Aue-Bad Schlema für die ganze Region."
+          subtitle="Wir unterstützen Handwerker und KMU in allen Gemeinden und Städten des Erzgebirgskreises – mit professionellen Websites, lokaler SEO und IT-Service. Aus Aue-Bad Schlema (Aue) für die ganze Region."
           align="left"
           light
           compactTitle

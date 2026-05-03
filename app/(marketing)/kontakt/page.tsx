@@ -19,7 +19,7 @@ const FaqAccordion = dynamic(
 );
 
 import { ConsentMapCard } from "@/components/sections/consent-map-card";
-import { COMPANY, PAGE_META, EINZUGSGEBIET_ORTE, SOCIAL_LINKS } from "@/lib/constants";
+import { COMPANY, PAGE_META, SOCIAL_LINKS } from "@/lib/constants";
 import { generateFaqSchema, generateBreadcrumbSchema } from "@/lib/seo/schema";
 import { cn } from "@/lib/utils";
 import { SectionCard } from "@/components/ui/section-card";
@@ -226,16 +226,6 @@ export default function KontaktPage() {
               Einzugsgebiet
             </p>
             <p className="mt-1 font-semibold">{COMPANY.location}</p>
-            <ul className="mt-3 flex flex-wrap gap-2">
-              {EINZUGSGEBIET_ORTE.map((ort) => (
-                <li
-                  key={ort}
-                  className="border border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 text-xs font-medium uppercase tracking-wider text-brand-cyan"
-                >
-                  {ort}
-                </li>
-              ))}
-            </ul>
           </SectionCard>
 
           {/* Erreichbarkeit + Social Media */}
@@ -335,6 +325,10 @@ export default function KontaktPage() {
               name: COMPANY.name,
               telephone: COMPANY.phone,
               email: COMPANY.email,
+              areaServed: [
+                { "@type": "City", name: COMPANY.location },
+                { "@type": "AdministrativeArea", name: COMPANY.region },
+              ],
               address: {
                 "@type": "PostalAddress",
                 streetAddress: COMPANY.streetAddress,

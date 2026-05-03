@@ -45,7 +45,7 @@ export function ConsentMapCard({
         <div className="relative h-[180px] w-full overflow-hidden">
           {mounted && hasConsent ? (
             <iframe
-              title="Karte Aue-Bad Schlema"
+              title="Karte Aue-Bad Schlema (Aue)"
               src={MAP_EMBED_SRC}
               className="absolute inset-0 h-full w-full border-0"
               loading="lazy"

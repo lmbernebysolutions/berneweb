@@ -3,7 +3,7 @@
  * Erzeugt eine eigenständige Vektor-Vorderseite der Visitenkarte als SVG.
  *
  * Bewährte Druck-Praxis:
- * - Physische Größe in mm (Endformat + 3 mm Beschnitt)
+ * - Physische Größe in mm (Endformat)
  * - viewBox in Design-Pixeln (1:1 zu /socials-visitenkarten)
  * - Logo aus berneby-logo-dark-visitenkarte.svg (B in Druck-Cyan #19F2E6)
  * - Live-Text — vor Produktion ggf. in Illustrator/Inkscape in Pfade umwandeln
@@ -47,9 +47,9 @@ const DATA = {
   line2Accent: "ERZGEBIRGE",
 };
 
-const W = 1076;
-const H = 722;
-const BLEED = 36;
+const W = 1039;
+const H = 685;
+const BLEED = 0;
 /** Wie page.tsx SAFE_INSET_TRIM — Abstand Schnittkante → Safe-Inhalt */
 const SAFE = 28;
 const INNER_X = BLEED + SAFE;
@@ -121,13 +121,13 @@ const qrX = qrCenterX - QR_PLACEHOLDER_PX / 2;
 
 const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-  width="91mm"
-  height="63mm"
+  width="88mm"
+  height="58mm"
   viewBox="0 0 ${W} ${H}"
   role="img"
   aria-label="Berneby Solutions Visitenkarte Vorderseite">
   <title>Berneby Solutions — Visitenkarte Vorderseite</title>
-  <desc>Druckdaten: 85×55 mm Endformat, 3 mm Beschnitt. Schnittkante gestrichelt.</desc>
+  <desc>Druckdaten: 88×58 mm Endformat.</desc>
 
   <defs>
     <style><![CDATA[
@@ -139,12 +139,6 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
   </defs>
 
   <rect width="${W}" height="${H}" fill="#283569"/>
-
-  <rect x="${BLEED}" y="${BLEED}" width="${TRIM_W}" height="${TRIM_H}"
-    fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1" stroke-dasharray="8 6"/>
-
-  <line x1="${BEAM_INSET}" y1="0" x2="${BEAM_INSET}" y2="${H}" stroke="#19F2E6" stroke-opacity="0.2" stroke-width="1"/>
-  <line x1="${W - BEAM_INSET}" y1="0" x2="${W - BEAM_INSET}" y2="${H}" stroke="#19F2E6" stroke-opacity="0.2" stroke-width="1"/>
 
   <g transform="translate(${logoX},${stackTop}) scale(${LOGO_SCALE})">
 ${indentedLogo}

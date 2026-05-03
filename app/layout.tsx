@@ -15,22 +15,57 @@ const ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["Organization", "LocalBusiness"],
+      "@type": ["ProfessionalService", "LocalBusiness", "Organization"],
       "@id": `${SITE_URL}/#organization`,
       name: COMPANY.name,
       legalName: COMPANY.legal,
       url: SITE_URL,
       logo: `${SITE_URL}/berneby-logo-light.svg`,
       image: `${SITE_URL}/berneby-logo-light.png`,
-      telephone: "+4915511960927",
+      telephone: COMPANY.phone,
       email: COMPANY.email,
+      category: [
+        "IT-Berater",
+        "IT-Beratung",
+        "Webdesign & Entwicklung",
+        "IT-Service & Support",
+        "Prozessautomatisierung",
+        "Lokale SEO & Sichtbarkeit",
+        "KI-Telefon",
+        "Online-Marketing",
+        "Social Media Betreuung",
+        "IT-Strategie & Beratung",
+      ],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: COMPANY.streetAddress,
+        postalCode: COMPANY.postalCode,
+        addressLocality: COMPANY.location,
+        addressRegion: COMPANY.state,
+        addressCountry: "DE",
+      },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "09:00",
+          closes: "17:00",
+        },
+      ],
       priceRange: "auf Anfrage",
       areaServed: {
         "@type": "AdministrativeArea",
         name: COMPANY.region,
       },
       serviceArea: [
-        { "@type": "City", name: "Aue-Bad Schlema" },
+        { "@type": "City", name: "Aue-Bad Schlema (Aue)" },
+        { "@type": "City", name: "Geyer" },
+        { "@type": "City", name: "Flöha" },
+        { "@type": "City", name: "Augustusburg" },
+        { "@type": "City", name: "Oelsnitz/Erzgebirge" },
+        { "@type": "City", name: "Ehrenfriedersdorf" },
+        { "@type": "City", name: "Johanngeorgenstadt" },
+        { "@type": "City", name: "Lauter-Bernsbach" },
         { "@type": "City", name: "Bernsbach" },
         { "@type": "City", name: "Bärenstein" },
         { "@type": "City", name: "Crottendorf" },
@@ -55,7 +90,7 @@ const ORGANIZATION_SCHEMA = {
       contactPoint: [
         {
           "@type": "ContactPoint",
-          telephone: "+4915511960927",
+          telephone: COMPANY.phone,
           contactType: "customer support",
           areaServed: "DE",
           availableLanguage: ["de"]
@@ -102,7 +137,8 @@ const ORGANIZATION_SCHEMA = {
       ],
       sameAs: [
         "https://www.instagram.com/bernebysolutions",
-        "https://www.facebook.com/bernebysolutions/",
+        "https://www.facebook.com/profile.php?id=61576536654995",
+        "https://maps.app.goo.gl/YecucGGCgUZTSsys7",
         "https://wa.me/4915511960927"
       ],
     },

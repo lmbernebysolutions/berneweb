@@ -100,7 +100,7 @@ export default function HandwerkPage() {
           light
         />
         <HandwerkProblemWithRevealSection />
-        <p className="mt-6 text-sm text-white/60">
+        <nav aria-label="Weiterfuehrende Links Handwerk" className="mt-6 text-sm text-white/60">
           <Link href="/ratgeber/seo-fuer-handwerker" className="text-brand-cyan hover:underline">
             Wie lokale SEO funktioniert
           </Link>
@@ -108,7 +108,23 @@ export default function HandwerkPage() {
           <Link href="/ratgeber/ki-telefonassistent-handwerk" className="text-brand-cyan hover:underline">
             So funktioniert der KI-Telefonassistent
           </Link>
-        </p>
+          {" · "}
+          <Link href="/standorte" className="text-brand-cyan hover:underline">
+            Alle Standorte im Erzgebirge
+          </Link>
+          {" · "}
+          <Link href="/standorte/aue-bad-schlema" className="text-brand-cyan hover:underline">
+            Standort Aue-Bad Schlema (Aue)
+          </Link>
+          {" · "}
+          <Link href="/branchen" className="text-brand-cyan hover:underline">
+            Alle Branchen-Lösungen
+          </Link>
+          {" · "}
+          <Link href="/branchen/elektriker" className="text-brand-cyan hover:underline">
+            Branchen-Seite Elektriker
+          </Link>
+        </nav>
       </Section>
 
       {/* 03: MODULES */}

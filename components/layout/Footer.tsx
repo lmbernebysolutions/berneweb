@@ -217,7 +217,7 @@ export function Footer() {
         {/* Regional greeting */}
         <div className="mt-12 text-center">
           <p className="text-sm text-brand-navy-muted font-medium flex flex-wrap items-center justify-center gap-1">
-            <span>Herzliche Grüße aus Aue-Bad Schlema im Erzgebirge.</span>
+            <span>Herzliche Grüße aus Aue-Bad Schlema (Aue) im Erzgebirge.</span>
             <span className="text-brand-warm whitespace-nowrap">Glück auf!</span>
           </p>
         </div>
