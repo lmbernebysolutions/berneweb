@@ -150,6 +150,16 @@ export interface ProfessionalServiceSchemaParams {
   name: string;
   description: string;
   serviceType: string;
+  telephone?: string;
+  priceRange?: string;
+  imageUrl?: string;
+  address?: {
+    streetAddress: string;
+    postalCode: string;
+    addressLocality: string;
+    addressRegion: string;
+    addressCountry?: string;
+  };
 }
 
 export function generateProfessionalServiceSchema(params: ProfessionalServiceSchemaParams) {
@@ -159,6 +169,22 @@ export function generateProfessionalServiceSchema(params: ProfessionalServiceSch
     name: params.name,
     description: params.description,
     serviceType: params.serviceType,
+    ...(params.telephone && { telephone: params.telephone }),
+    ...(params.priceRange && { priceRange: params.priceRange }),
+    ...(params.imageUrl && { image: params.imageUrl }),
+    ...(params.address && {
+      address: {
+        "@type": "PostalAddress" as const,
+        streetAddress: params.address.streetAddress,
+        postalCode: params.address.postalCode,
+        addressLocality: params.address.addressLocality,
+        addressRegion: params.address.addressRegion,
+        addressCountry: {
+          "@type": "Country" as const,
+          name: params.address.addressCountry ?? "DE",
+        },
+      },
+    }),
     provider: {
       "@id": `${SITE_URL}/#organization`,
     },

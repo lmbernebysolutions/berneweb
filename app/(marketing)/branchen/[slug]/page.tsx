@@ -23,7 +23,7 @@ import {
   getAllBranchenSlugs,
 } from "@/lib/data/branchen";
 import { generateFaqSchema, generateProfessionalServiceSchema } from "@/lib/seo/schema";
-import { COMPANY, HANDWERK_STATS, CRAFT_PACKAGES } from "@/lib/constants";
+import { COMPANY, HANDWERK_STATS, CRAFT_PACKAGES, SITE_URL } from "@/lib/constants";
 import { ROUTE_VISIBILITY } from "@/lib/route-visibility";
 
 function toSingleWordHeading(text: string): string {
@@ -89,6 +89,16 @@ export default async function BranchePage({
     name: `Berneby Solutions – Website & Digitalisierung für ${branche.name}`,
     description: branche.description,
     serviceType: `Website & Digitalisierung für ${branche.name}`,
+    telephone: COMPANY.phone,
+    priceRange: "auf Anfrage",
+    imageUrl: `${SITE_URL}/berneby-logo-light.png`,
+    address: {
+      streetAddress: COMPANY.streetAddress,
+      postalCode: COMPANY.postalCode,
+      addressLocality: COMPANY.location,
+      addressRegion: COMPANY.state,
+      addressCountry: "DE",
+    },
   });
 
   return (
