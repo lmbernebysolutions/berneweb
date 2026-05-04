@@ -41,7 +41,7 @@ export default function StandortePage() {
           title="Webdesign & IT im"
           titleLine2="Erzgebirgskreis"
           titleLine3="Eine Lösung."
-          subtitle="Wir unterstützen Handwerker und KMU in allen Gemeinden und Städten des Erzgebirgskreises – mit professionellen Websites, lokaler SEO und IT-Service. Aus Aue-Bad Schlema (Aue) für die ganze Region."
+          subtitle="Wir unterstützen Handwerker und KMU in allen Gemeinden und Städten des Erzgebirgskreises – mit professionellen Websites, KI-Telefon und IT-Service. Aus Aue-Bad Schlema (Aue) für die ganze Region."
           align="left"
           light
           compactTitle

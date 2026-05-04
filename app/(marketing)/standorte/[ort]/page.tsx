@@ -321,7 +321,7 @@ export default async function StandortPage({
             {location.description}
           </p>
           <p className="relative z-10 mt-4 text-sm leading-relaxed text-white/75 break-words md:text-[0.9375rem]">
-            Fokus in {location.name}: klare Positionierung, lokale Auffindbarkeit und messbare Anfragen.
+            Fokus in {location.name}: klare Positionierung, verlässlicher Auftritt und planbare Anfragen.
           </p>
         </div>
 
@@ -554,7 +554,7 @@ export default async function StandortPage({
           number="05"
           overline="Systemwechsel"
           title={`Vorher vs. Nachher in ${location.name}`}
-          subtitle="Nicht nur Design: klarer Unterschied bei Auffindbarkeit, Anfragen und digitalen Prozessen."
+          subtitle="Nicht nur Design: klarer Unterschied bei Sichtbarkeit, Anfragen und digitalen Prozessen."
           align="left"
           light
           compactTitle
@@ -665,7 +665,7 @@ export default async function StandortPage({
           number="07"
           overline={`Branchen in ${location.name}`}
           title="Typische Betriebe, die wir hier begleiten"
-          subtitle={`Beispielhafte branchenspezifische Einstiege für ${location.name}. Jede Seite ist auf reale Suchintentionen und lokale Entscheidungsfaktoren ausgerichtet.`}
+          subtitle={`Passende Einstiege für Betriebe in ${location.name}: verständlich aufgebaut und nah am Arbeitsalltag.`}
           align="left"
           light
           compactTitle

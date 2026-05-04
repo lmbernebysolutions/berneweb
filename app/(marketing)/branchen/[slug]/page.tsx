@@ -166,7 +166,7 @@ export default async function BranchePage({
           number="02"
           overline="Problem -> Lösung"
           title={`Vom Engpass zur klaren Struktur in ${branche.name}`}
-          subtitle="Alte Reibungsverluste raus, klare Prozesse und bessere Auffindbarkeit rein."
+          subtitle="Alte Reibungsverluste raus, klare Prozesse und planbare Anfragen rein."
           align="left"
           light
           compactTitle

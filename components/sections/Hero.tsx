@@ -272,34 +272,11 @@ export function Hero({
                       asChild
                       variant={cta.variant === "default" || i === 0 ? "default" : "outline-light"}
                       size="lg"
-                      className={cn(
-                        "text-sm sm:text-base",
-                        cta.variant !== "default" && "group relative isolate overflow-hidden bg-transparent"
-                      )}
+                      className="text-sm sm:text-base"
                     >
                       <Link href={cta.href}>
-                        {cta.variant !== "default" ? (
-                          <>
-                            <span
-                              aria-hidden="true"
-                              className="pointer-events-none absolute inset-0 transition-opacity duration-200 group-hover:opacity-0"
-                              style={{
-                                backdropFilter: "blur(110px) saturate(0.65) brightness(0.8)",
-                                WebkitBackdropFilter: "blur(110px) saturate(0.65) brightness(0.8)",
-                                background: "rgba(40,53,105,0.36)",
-                              }}
-                            />
-                            <span className="relative z-10">
-                              <span className="sm:hidden">{cta.mobileLabel ?? cta.label}</span>
-                              <span className="hidden sm:inline">{cta.label}</span>
-                            </span>
-                          </>
-                        ) : (
-                          <>
-                            <span className="sm:hidden">{cta.mobileLabel ?? cta.label}</span>
-                            <span className="hidden sm:inline">{cta.label}</span>
-                          </>
-                        )}
+                        <span className="sm:hidden">{cta.mobileLabel ?? cta.label}</span>
+                        <span className="hidden sm:inline">{cta.label}</span>
                       </Link>
                     </Button>
                   ))}

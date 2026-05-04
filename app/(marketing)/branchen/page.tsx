@@ -39,7 +39,7 @@ export default function BranchenPage() {
           overline="Branchen"
           title="Website & Digitalisierung"
           titleLine2="für jede Branche"
-          subtitle="Elektriker, Dachdecker, Sanitär, Maler, Tischler, KFZ-Werkstatt, Friseur, Gastronomie, Einzelhandel, Freiberufler – wir unterstützen Handwerk und KMU im Erzgebirge mit professionellen Websites, lokaler SEO und KI-Telefonassistent."
+          subtitle="Elektriker, Dachdecker, Sanitär, Maler, Tischler, KFZ-Werkstatt, Friseur, Gastronomie, Einzelhandel, Freiberufler – wir unterstützen Handwerk und KMU im Erzgebirge mit professionellen Websites, KI-Telefonassistent und IT-Unterstützung."
           align="left"
           light
           compactTitle
