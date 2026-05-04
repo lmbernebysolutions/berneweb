@@ -6,20 +6,50 @@ import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { FeatureGrid } from "@/components/sections/FeatureGrid";
+import { ProcessSteps } from "@/components/sections/ProcessSteps";
+import { ProblemToSolutionScrollSection } from "@/components/sections/ProblemToSolutionScrollSection";
 import { CtaSection } from "@/components/sections/CtaSection";
+import { FaqAccordion } from "@/components/sections/FaqAccordion";
+import { ReferenzCard } from "@/components/sections/ReferenzenCarousel";
+import { MobileSwipeGrid } from "@/components/sections/MobileSwipeGrid";
 import { Button } from "@/components/ui/button";
 import { SectionCard } from "@/components/ui/section-card";
 import { TechCorners } from "@/components/ui/tech-corners";
-import { IconMapPin, IconCheck, IconCurrencyEuro, IconStar, IconBrandWhatsapp, IconBrandGoogle } from "@tabler/icons-react";
+import {
+  IconMapPin,
+  IconCheck,
+  IconCurrencyEuro,
+  IconStar,
+  IconBrandWhatsapp,
+  IconBrandGoogle,
+  IconArrowRight,
+  IconX,
+  IconDeviceDesktop,
+  IconShoppingCart,
+  IconTool,
+  IconChartBar,
+} from "@tabler/icons-react";
 import {
   getLocationBySlug,
   getAllLocationSlugs,
   getNearbyLocationSlugs,
 } from "@/lib/data/locations";
-import { generateLocalBusinessSchema } from "@/lib/seo/schema";
-import { COMPANY, HANDWERK_STATS, SOCIAL_LINKS } from "@/lib/constants";
+import { getAllBranchenSlugs, getBrancheBySlug } from "@/lib/data/branchen";
+import { REFERENZEN } from "@/lib/data/referenzen";
+import { generateBreadcrumbSchema, generateFaqSchema, generateLocalBusinessSchema } from "@/lib/seo/schema";
+import {
+  COMPANY,
+  HANDWERK_STATS,
+  SOCIAL_LINKS,
+  SERVICES,
+  HOME_STANDARD_SERVICE_KEYS,
+  PROCESS_STEPS,
+  OHNE_UNS_ROWS,
+  MIT_UNS_ROWS,
+} from "@/lib/constants";
 import { ROUTE_VISIBILITY } from "@/lib/route-visibility";
+import { CONTAINER_A_STATIC, CONTAINER_B } from "@/lib/container-styles";
+import { cn } from "@/lib/utils";
 
 export async function generateStaticParams() {
   if (!ROUTE_VISIBILITY.standorte) {
@@ -63,33 +93,12 @@ export async function generateMetadata({
   };
 }
 
-const LOCATION_FEATURES = [
-  {
-    icon: "IconSearch",
-    title: "Lokale SEO",
-    description:
-      "50+ Landingpages für maximale Sichtbarkeit bei Google. Wir sorgen dafür, dass Sie für Suchanfragen wie „Elektriker [Ort]“ oder „Website [Ort]“ gefunden werden.",
-  },
-  {
-    icon: "IconPhone",
-    title: "KI-Telefonassistent",
-    description:
-      "24/7 Anrufannahme, wenn Sie auf der Baustelle sind. Kein Kunde geht mehr verloren – auch in [Ort] und Umgebung.",
-  },
-  {
-    icon: "IconCurrencyEuro",
-    title: "Klare Leistungsstufen",
-    description:
-      "Klare Leistungsstufen ohne versteckte Positionen. Wir kommen zu Ihnen – kurze Wege aus Aue-Bad Schlema (Aue).",
-  },
-];
-
-function buildLocationFeatures(ortName: string) {
-  return LOCATION_FEATURES.map((f) => ({
-    ...f,
-    description: f.description.replace(/\[Ort\]/g, ortName),
-  }));
-}
+const LOCATION_SERVICE_ICONS = {
+  webseiten: IconDeviceDesktop,
+  ecommerce: IconShoppingCart,
+  office: IconTool,
+  marketing: IconChartBar,
+} as const satisfies Record<(typeof HOME_STANDARD_SERVICE_KEYS)[number], typeof IconDeviceDesktop>;
 
 const UMLAUT_FALLBACKS: Record<string, string> = {
   ä: "ae",
@@ -135,24 +144,100 @@ function getLocationSearchVariants(name: string): string[] {
   return Array.from(variants).filter(Boolean);
 }
 
-function buildLocationSeoParagraphs(location: {
+function buildLocationGeoContext(location: {
   name: string;
   nearbyOrte: readonly string[];
   besonderheiten: readonly string[];
 }) {
   const variants = getLocationSearchVariants(location.name);
-  const nearby = location.nearbyOrte.slice(0, 3).join(", ");
-  const highlights = location.besonderheiten.slice(0, 3).join(", ");
+  const nearby = location.nearbyOrte.slice(0, 3);
+  const highlights = location.besonderheiten.slice(0, 3);
 
   return {
     variants,
-    paragraphs: [
-      `Rund um ${location.name} betreuen wir Betriebe auch in ${nearby}. Typische lokale Merkmale wie ${highlights} nutzen wir gezielt fuer Inhalte, damit Ihre Seite fuer regionale Suchanfragen besser einordnet wird.`,
-      `Kunden suchen nicht immer gleich: Neben "${location.name}" tauchen auch Schreibweisen wie ${variants
-        .slice(0, 4)
-        .map((entry) => `"${entry}"`)
-        .join(", ")} auf. Diese Varianten beruecksichtigen wir in Seitenstruktur, Zwischenueberschriften und internen Verlinkungen fuer eine stabilere lokale Auffindbarkeit.`,
-    ],
+    nearby,
+    highlights,
+  };
+}
+
+const BRANCH_KEYWORDS: ReadonlyArray<{
+  readonly slug: string;
+  readonly keywords: readonly string[];
+}> = [
+  { slug: "gastronomie", keywords: ["tourismus", "wintersport", "weihnachts", "altstadt"] },
+  { slug: "einzelhandel", keywords: ["marktplatz", "gewerbe", "industriestandort"] },
+  { slug: "kfz-werkstatt", keywords: ["verkehr", "a72", "verkehrsknoten"] },
+  { slug: "freiberufler", keywords: ["kreisstadt", "zentrale lage"] },
+];
+
+function getRelevantBranchenLinks(location: {
+  name: string;
+  besonderheiten: readonly string[];
+}) {
+  const terms = location.besonderheiten.join(" ").toLowerCase();
+  const dynamicMatches = BRANCH_KEYWORDS.filter((entry) =>
+    entry.keywords.some((keyword) => terms.includes(keyword))
+  )
+    .map((entry) => entry.slug)
+    .slice(0, 2);
+
+  const fallback = ["elektriker", "sanitaer-heizung", "dachdecker"];
+  const uniqueSlugs = Array.from(new Set([...dynamicMatches, ...fallback])).slice(0, 3);
+
+  return uniqueSlugs
+    .map((slug) => getBrancheBySlug(slug))
+    .filter((branche): branche is NonNullable<ReturnType<typeof getBrancheBySlug>> => Boolean(branche))
+    .map((branche) => ({
+      slug: branche.slug,
+      name: branche.name,
+      summary: branche.typischeProbleme[0]?.problem ?? `Digitale Sichtbarkeit für ${branche.name}`,
+    }));
+}
+
+function buildLocationFaqItems(location: {
+  name: string;
+  nearbyOrte: readonly string[];
+  entfernung: number;
+}) {
+  const neighbors = location.nearbyOrte.slice(0, 2).join(" und ") || "dem Erzgebirgskreis";
+  return [
+    {
+      question: `Wie schnell kann ein Projekt in ${location.name} starten?`,
+      answer:
+        "Nach dem Erstgespräch starten wir in der Regel innerhalb weniger Werktage mit Struktur, Inhalten und Prioritäten. Erste sichtbare Ergebnisse sehen Sie meist bereits in den ersten zwei Wochen.",
+    },
+    {
+      question: `Unterstützt Berneby Solutions auch Betriebe außerhalb von ${location.name}?`,
+      answer: `Ja. Wir betreuen neben ${location.name} auch Unternehmen in ${neighbors}. Durch klare Prozesse und feste Ansprechpartner bleibt die Zusammenarbeit effizient und persönlich.`,
+    },
+    {
+      question: "Welche Leistungen bringen die schnellste Wirkung für lokale Anfragen?",
+      answer:
+        "In den meisten Fällen wirken eine klar positionierte Website, lokale Landingpages und ein optimiertes Google-Unternehmensprofil am schnellsten. Ergänzend sorgt strukturierter Content für dauerhaft stabile Sichtbarkeit.",
+    },
+    {
+      question: `Ist Vor-Ort-Beratung in ${location.name} möglich?`,
+      answer:
+        location.entfernung === 0
+          ? `Ja, wir sitzen direkt in ${COMPANY.location} und beraten auch persönlich vor Ort.`
+          : `Ja. Mit nur ${location.entfernung} km Entfernung sind auch Vor-Ort-Termine in ${location.name} möglich, wenn sie sinnvoll sind.`,
+    },
+  ] as const;
+}
+
+function getLocationReferenzen(location: {
+  name: string;
+  nearbyOrte: readonly string[];
+}): { referenzen: typeof REFERENZEN; hasLocalMatch: boolean } {
+  const tokens = [location.name, ...location.nearbyOrte.slice(0, 2)].map((entry) => entry.toLowerCase());
+  const matches = REFERENZEN.filter((ref) => {
+    const corpus = `${ref.tagline} ${ref.beschreibung} ${ref.challenge} ${ref.loesung}`.toLowerCase();
+    return tokens.some((token) => corpus.includes(token));
+  });
+
+  return {
+    referenzen: (matches.length > 0 ? matches : REFERENZEN).slice(0, 2),
+    hasLocalMatch: matches.length > 0,
   };
 }
 
@@ -170,9 +255,12 @@ export default async function StandortPage({
   if (!location) notFound();
 
   const nearbySlugs = getNearbyLocationSlugs(location);
-  const features = buildLocationFeatures(location.name);
-  const { variants: locationSearchVariants, paragraphs: locationSeoParagraphs } =
-    buildLocationSeoParagraphs(location);
+  const { variants: locationSearchVariants, nearby: locationNearbyNames, highlights: locationHighlights } =
+    buildLocationGeoContext(location);
+  const relatedBranchen = getRelevantBranchenLinks(location);
+  const locationFaqItems = buildLocationFaqItems(location);
+  const topBranchenLinks = getAllBranchenSlugs().slice(0, 4);
+  const { referenzen: locationReferenzen, hasLocalMatch: referenzenHasLocalMatch } = getLocationReferenzen(location);
 
   const localBusinessSchemaBase = generateLocalBusinessSchema({
     name: "Berneby Solutions",
@@ -186,6 +274,12 @@ export default async function StandortPage({
     ...localBusinessSchemaBase,
     alternateName: locationSearchVariants,
   };
+  const faqSchema = generateFaqSchema(locationFaqItems);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Startseite", url: "/" },
+    { name: "Standorte", url: "/standorte" },
+    { name: location.name, url: `/standorte/${location.slug}` },
+  ]);
 
   return (
     <>
@@ -226,14 +320,9 @@ export default async function StandortPage({
           <p className="relative z-10 text-[0.9375rem] leading-relaxed text-white/85 break-words md:text-base">
             {location.description}
           </p>
-          {locationSeoParagraphs.map((paragraph) => (
-            <p
-              key={paragraph}
-              className="relative z-10 mt-4 text-sm leading-relaxed text-white/80 break-words md:text-[0.9375rem]"
-            >
-              {paragraph}
-            </p>
-          ))}
+          <p className="relative z-10 mt-4 text-sm leading-relaxed text-white/75 break-words md:text-[0.9375rem]">
+            Fokus in {location.name}: klare Positionierung, lokale Auffindbarkeit und messbare Anfragen.
+          </p>
         </div>
 
         {/* Zwei Karten: Warum Berneby + Besonderheiten – rechte Karte vertikal zur linken zentriert */}
@@ -248,11 +337,10 @@ export default async function StandortPage({
                 Warum Berneby Solutions in {location.name}?
               </h3>
               <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/80">
-                Wir bieten professionelle Websites, 50+ lokale Landingpages für maximale Sichtbarkeit
-                bei Google, KI-Telefonassistent für 24/7 Anrufannahme und IT-Service aus einer Hand.
-                Festpreis, 4 Wochen bis Go-Live, 12 Monate Support inklusive. Für Betriebe in{" "}
-                {location.name} und Umgebung – Handwerk, Einzelhandel, Gastronomie, Dienstleister.
-                {location.entfernung === 0 && " Wir sitzen in Aue-Bad Schlema (Aue) – kurze Wege, persoenliche Beratung vor Ort."}
+                Website, lokale Sichtbarkeit, KI-Telefon und IT-Service aus einer Hand. Festpreis, klare
+                Umsetzung in etwa 4 Wochen, 12 Monate Support. Für Betriebe in {location.name} und
+                Umgebung.
+                {location.entfernung === 0 && " Wir sitzen direkt vor Ort – kurze Wege, persönliche Beratung."}
               </p>
             </div>
           </div>
@@ -272,7 +360,7 @@ export default async function StandortPage({
                     key={b}
                     className="inline-flex items-center gap-1 rounded border border-brand-cyan/30 bg-brand-cyan/5 px-2.5 py-1 text-xs font-medium text-brand-cyan"
                   >
-                    <IconStar className="size-3 shrink-0" stroke={2} />
+                    <IconStar className="size-3 shrink-0" stroke={2} aria-hidden="true" />
                     {b}
                   </span>
                 ))}
@@ -295,11 +383,9 @@ export default async function StandortPage({
               Unsere Leistungen für {location.name}
             </h3>
             <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/80">
-              Wir bieten professionelle Websites mit 50+ Landingpages und den KI-Telefonassistenten
-              für 24/7 Anrufannahme. Alle Pakete mit Festpreis, 4 Wochen bis Go-Live und 12 Monate
-              Support. Für Handwerker in {location.name} und
-              Umgebung – Elektriker, Dachdecker, Sanitär, Maler, Tischler und mehr. Auch IT-Service:
-              Microsoft 365, Digitaler Hausmeister und KI-Schulung.
+              Professionelle Websites, lokale Landingpages, KI-Telefon und IT-Service. Alles auf
+              Betriebe in {location.name} ausgerichtet, mit klaren Paketen und nachvollziehbarer
+              Umsetzung.
             </p>
             <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/70">
               <li className="flex items-center gap-2">
@@ -380,24 +466,338 @@ export default async function StandortPage({
         </div>
       </Section>
 
-      {/* Services */}
+      {/* Services – wie Startseite, aber lokalisiert auf den Ort */}
       <Section bg="subtle">
         <SectionHeading
           number="03"
-          overline="Leistungen"
-          title="Was wir für Sie tun"
-          subtitle="Websites, lokale SEO, KI-Telefon – alles aus einer Hand."
+          overline={`Leistungen in ${location.name}`}
+          title="Digitales Leistungs-Set"
+          subtitle={`Die gleichen Kernleistungen wie auf unserer Startseite – ausgerichtet auf Betriebe in ${location.name} und Umgebung.`}
           align="left"
           light
           compactTitle
         />
-        <FeatureGrid features={features} cols={3} light />
+        <div className="grid gap-6 md:grid-cols-2">
+          {HOME_STANDARD_SERVICE_KEYS.map((key, i) => {
+            const category = SERVICES[key];
+            const Icon = LOCATION_SERVICE_ICONS[key];
+            const visibleItems = category.items.filter((item) => item.title !== "Digitaler Hausmeister");
+
+            return (
+              <div
+                key={key}
+                data-animate="fade-up"
+                data-animate-delay={String(i * 80)}
+                className={cn("group relative flex flex-col overflow-hidden", CONTAINER_B)}
+              >
+                <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
+
+                <div className="absolute top-0 right-0 p-4 opacity-10" aria-hidden="true">
+                  <Icon className="size-24 text-white" />
+                </div>
+
+                <div className="border-b border-white/5 p-6 flex items-center gap-4 relative z-10">
+                  <div className="flex h-12 w-12 items-center justify-center bg-brand-cyan/10 text-brand-cyan">
+                    <Icon className="size-6" />
+                  </div>
+                  <h3 className="font-bold text-lg text-white uppercase tracking-wider break-words">{category.title}</h3>
+                </div>
+
+                <div className="p-6 flex flex-col grow gap-4 relative z-10">
+                  <p className="text-sm text-white/70 leading-relaxed break-words">
+                    Für {location.name}: {category.title.toLowerCase()} mit Fokus auf lokale Sichtbarkeit und messbare
+                    Anfragen.
+                  </p>
+                  {visibleItems.map((item) => (
+                    <div key={item.title} className="group/item relative">
+                      <TechCorners pattern="all" variant="cyan" size="sm" />
+                      <div className="flex justify-between items-baseline px-4 py-2 transition-colors group-hover/item:bg-brand-cyan/5">
+                        <h4 className="font-medium text-xs text-white/90 uppercase tracking-wider break-words">{item.title}</h4>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-auto p-6 pt-0 relative z-10">
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="w-full justify-between text-brand-navy-muted hover:text-brand-cyan hover:bg-transparent px-0 uppercase tracking-widest text-xs"
+                  >
+                    <Link href="#kontakt">
+                      Erstgespräch buchen <IconArrowRight className="size-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Section>
+
+      {/* Prozess – wie auf Startseite/Leistungen, lokal kontextualisiert */}
+      <Section bg="transparent">
+        <SectionHeading
+          number="04"
+          overline="Ablauf"
+          title="In 5 Schritten zur Umsetzung"
+          subtitle={`Von der Anfrage aus ${location.name} bis zum Go-Live: klarer Ablauf, feste Ansprechpartner, transparente Übergaben.`}
+          align="left"
+          light
+          compactTitle
+        />
+        <ProcessSteps steps={PROCESS_STEPS} />
+      </Section>
+
+      <Section bg="subtle">
+        <SectionHeading
+          number="05"
+          overline="Systemwechsel"
+          title={`Vorher vs. Nachher in ${location.name}`}
+          subtitle="Nicht nur Design: klarer Unterschied bei Auffindbarkeit, Anfragen und digitalen Prozessen."
+          align="left"
+          light
+          compactTitle
+        />
+        <div className="md:hidden">
+          <ProblemToSolutionScrollSection />
+        </div>
+        <div className="max-md:hidden grid gap-6 sm:gap-8 md:grid-cols-2 lg:gap-12">
+          <div className={cn("relative overflow-hidden p-6 sm:p-8 backdrop-blur-sm", CONTAINER_A_STATIC)} data-animate="fade-left">
+            <div
+              className="absolute inset-0 opacity-5 pointer-events-none"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px)",
+              }}
+              aria-hidden="true"
+            />
+            <div className="relative z-10 mb-8 flex items-center justify-between">
+              <h3 className="text-2xl font-bold uppercase tracking-tight text-white/60">Ohne uns</h3>
+              <div className="flex h-10 w-10 items-center justify-center border-2 border-white/20 bg-white/5" aria-hidden="true">
+                <IconX className="size-6 text-white/40" stroke={3} />
+              </div>
+            </div>
+            <div className="relative z-10 space-y-4">
+              {OHNE_UNS_ROWS.slice(0, 4).map((item) => (
+                <div key={`without-${item.label}`} className="border-l-2 border-white/10 bg-white/[0.02] p-4">
+                  <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-white/35">
+                    <span>{item.label}</span>
+                    <span className="text-white/20">— {item.risk}</span>
+                  </div>
+                  <p className="mt-1 font-medium text-brand-navy-muted">{item.val}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className={cn("group relative overflow-hidden p-6 sm:p-8 backdrop-blur-sm", CONTAINER_B)} data-animate="fade-right">
+            <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
+            <div
+              className="absolute inset-0 opacity-5 pointer-events-none"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
+                backgroundSize: "20px 20px",
+              }}
+              aria-hidden="true"
+            />
+            <div className="relative z-10 mb-8 flex items-center justify-between">
+              <h3 className="text-2xl font-bold uppercase tracking-tight text-brand-cyan">Mit uns</h3>
+              <div className="flex h-10 w-10 items-center justify-center border-2 border-brand-cyan bg-brand-cyan/20 shadow-[0_0_20px_rgba(3,249,249,0.4)]" aria-hidden="true">
+                <IconCheck className="size-6 text-brand-cyan" stroke={3} />
+              </div>
+            </div>
+            <div className="relative z-10 space-y-4">
+              {MIT_UNS_ROWS.slice(0, 4).map((item) => (
+                <div key={`with-${item.label}`} className="relative border-l-2 border-brand-cyan bg-brand-cyan/10 p-4">
+                  <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-brand-cyan">
+                    <span>{item.label}</span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-brand-cyan shadow-[0_0_6px_rgba(3,249,249,0.8)]" />
+                      ↑ {item.gain}
+                    </span>
+                  </div>
+                  <p className="mt-1 font-bold text-white">{item.val}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section bg="transparent">
+        <SectionHeading
+          number="06"
+          overline="Ergebnisse"
+          title={referenzenHasLocalMatch ? `Referenzen aus der Region um ${location.name}` : "Ausgewählte Referenzen"}
+          subtitle="Design, Struktur und Conversion in der Praxis: ausgewählte Projekte mit messbarer Wirkung."
+          align="left"
+          light
+          compactTitle
+        />
+        <div className="md:max-w-4xl lg:max-w-5xl md:mx-auto">
+          <div className="md:hidden">
+            <MobileSwipeGrid gridClassName="grid gap-6" slideMinWidth="min-w-[90%] sm:min-w-[75%]">
+              {locationReferenzen.map((ref) => (
+                <ReferenzCard key={`mobile-${ref.id}`} referenz={ref} featured={false} compact />
+              ))}
+            </MobileSwipeGrid>
+          </div>
+          <div className="hidden md:grid md:grid-cols-2 md:gap-6">
+            {locationReferenzen.map((ref) => (
+              <ReferenzCard key={`desktop-${ref.id}`} referenz={ref} featured={false} compact />
+            ))}
+          </div>
+        </div>
+        <p className="mt-6 text-center">
+          <Link
+            href="/referenzen"
+            className="text-sm font-mono uppercase tracking-widest text-brand-cyan transition-colors hover:text-brand-cyan/80"
+          >
+            Alle Referenzen ansehen <span aria-hidden="true">→</span>
+          </Link>
+        </p>
+      </Section>
+
+      <Section bg="subtle">
+        <SectionHeading
+          number="07"
+          overline={`Branchen in ${location.name}`}
+          title="Typische Betriebe, die wir hier begleiten"
+          subtitle={`Beispielhafte branchenspezifische Einstiege für ${location.name}. Jede Seite ist auf reale Suchintentionen und lokale Entscheidungsfaktoren ausgerichtet.`}
+          align="left"
+          light
+          compactTitle
+        />
+        <div className="grid gap-6 md:grid-cols-3">
+          {relatedBranchen.map((branche, index) => (
+            <div
+              key={branche.slug}
+              data-animate="fade-up"
+              data-animate-delay={String(index * 80)}
+              className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-6 backdrop-blur-md transition-all hover:border-brand-cyan/30"
+            >
+              <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
+              <p className="relative z-10 text-xs font-mono uppercase tracking-widest text-brand-cyan/70">
+                {location.name}
+              </p>
+              <h3 className="relative z-10 mt-3 text-lg font-bold text-white">{branche.name}</h3>
+              <p className="relative z-10 mt-3 text-sm leading-relaxed text-white/75 break-words">
+                Fokus: {branche.summary}
+              </p>
+              <Button asChild variant="ghost" className="relative z-10 mt-5 w-full justify-between px-0 text-xs uppercase tracking-wider text-brand-navy-muted hover:bg-transparent hover:text-brand-cyan">
+                <Link href={`/branchen/${branche.slug}`}>
+                  Branche ansehen <IconArrowRight className="size-4" />
+                </Link>
+              </Button>
+            </div>
+          ))}
+        </div>
+        <nav aria-label="Weitere Branchen links" className="mt-6 flex flex-wrap gap-2">
+          {topBranchenLinks.map((slug) => {
+            const branche = getBrancheBySlug(slug);
+            if (!branche) return null;
+            return (
+              <Link
+                key={slug}
+                href={`/branchen/${slug}`}
+                className="inline-flex items-center rounded border border-brand-cyan/25 bg-brand-cyan/5 px-3 py-1.5 text-xs font-medium text-brand-cyan transition-colors hover:bg-brand-cyan/10"
+              >
+                {branche.name} im Erzgebirge
+              </Link>
+            );
+          })}
+          <Link
+            href="/branchen"
+            className="inline-flex items-center rounded border border-white/15 px-3 py-1.5 text-xs font-medium text-white/80 transition-colors hover:border-brand-cyan/30 hover:text-brand-cyan"
+          >
+            Alle Branchen ansehen
+          </Link>
+        </nav>
+      </Section>
+
+      <Section bg="transparent">
+        <SectionHeading
+          number="08"
+          overline="Regional aktiv"
+          title={`Im Umkreis von ${location.name} unterwegs`}
+          subtitle="Nach den Kernleistungen: wo wir konkret unterstützen und wie die Zusammenarbeit regional funktioniert."
+          align="left"
+          light
+          compactTitle
+        />
+        <div
+          data-animate="fade-up"
+          className="group relative overflow-hidden border border-white/10 bg-brand-navy/60 p-6 md:p-8 backdrop-blur-md"
+        >
+          <TechCorners pattern="diagonal" variant="cyan" size="md" animate />
+          <h3 className="relative z-10 text-base font-bold uppercase tracking-wide text-white">
+            Umgebung & lokale Merkmale
+          </h3>
+          <p className="relative z-10 mt-3 text-sm leading-relaxed text-white/75">
+            Wir betreuen in und um {location.name} auch Betriebe in{" "}
+            {locationNearbyNames.map((name, index) => (
+              <span key={`${name}-${index}`}>
+                {index > 0 ? ", " : ""}
+                {name}
+              </span>
+            ))}
+            . Inhalte und Schwerpunkte werden auf regionale Merkmale wie {locationHighlights.join(", ")} abgestimmt.
+          </p>
+          <ul className="relative z-10 mt-4 grid gap-2 text-sm text-white/70 md:grid-cols-2">
+            <li className="flex items-center gap-2">
+              <IconCheck className="size-4 shrink-0 text-brand-cyan" stroke={2.5} />
+              Kurze Wege für Abstimmung und Umsetzung
+            </li>
+            <li className="flex items-center gap-2">
+              <IconCheck className="size-4 shrink-0 text-brand-cyan" stroke={2.5} />
+              Fester Ansprechpartner statt Ticketsystem
+            </li>
+            <li className="flex items-center gap-2">
+              <IconCheck className="size-4 shrink-0 text-brand-cyan" stroke={2.5} />
+              Klare Prioritäten für lokale Anfragen
+            </li>
+            <li className="flex items-center gap-2">
+              <IconCheck className="size-4 shrink-0 text-brand-cyan" stroke={2.5} />
+              Messbare Schritte statt Bauchgefühl
+            </li>
+          </ul>
+          <div className="relative z-10 mt-4 flex flex-wrap gap-2">
+            {nearbySlugs.slice(0, 4).map((slug) => {
+              const loc = getLocationBySlug(slug);
+              if (!loc) return null;
+              return (
+                <Link
+                  key={slug}
+                  href={`/standorte/${slug}`}
+                  className="rounded border border-brand-cyan/25 bg-brand-cyan/5 px-3 py-1 text-xs font-medium text-brand-cyan transition-colors hover:bg-brand-cyan/10"
+                >
+                  {loc.name}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </Section>
+
+      <Section bg="transparent">
+        <SectionHeading
+          number="09"
+          overline="Häufige Fragen"
+          title={`FAQ für Betriebe in ${location.name}`}
+          subtitle="Kurz beantwortet: Umsetzung, Zusammenarbeit und lokaler Fokus."
+          align="left"
+          light
+          compactTitle
+        />
+        <FaqAccordion items={locationFaqItems} />
       </Section>
 
       {/* Kontakt */}
       <Section id="kontakt" bg="transparent">
         <SectionHeading
-          number="04"
+          number="10"
           overline="Kontakt"
           title="Erstgespräch vereinbaren"
           subtitle="Kostenlos und unverbindlich – wir melden uns persönlich bei Ihnen."
@@ -432,7 +832,7 @@ export default async function StandortPage({
                 Oder direkt:
               </span>
               <div className="flex gap-2">
-                {[SOCIAL_LINKS[2], SOCIAL_LINKS[3]].map((link) => {
+                {SOCIAL_LINKS.filter((link) => link.label === "WhatsApp" || link.label === "Google").slice(0, 2).map((link) => {
                   const Icon = link.label === "WhatsApp" ? IconBrandWhatsapp : IconBrandGoogle;
                   return (
                     <a
@@ -476,7 +876,7 @@ export default async function StandortPage({
         headline="Bereit für das Upgrade?"
         subline={`Lassen Sie uns über Ihre Digitalisierung in ${location.name} sprechen.`}
         ctas={[
-          { label: "Jetzt Termin vereinbaren", href: "/kontakt" },
+          { label: "Jetzt Termin vereinbaren", href: "#kontakt" },
           { label: `Anrufen: ${COMPANY.phoneDisplay}`, href: `tel:${COMPANY.phone}` },
         ]}
       />
@@ -485,6 +885,18 @@ export default async function StandortPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(localBusinessSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
         }}
       />
     </>
