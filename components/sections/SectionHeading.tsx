@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
@@ -54,8 +52,8 @@ export function SectionHeading({
         {overline && (
           <div
             className={cn(
-              "mb-2 sm:mb-3 text-sm sm:text-base font-bold uppercase tracking-[0.2em]",
-              light ? "text-brand-cyan" : "text-brand-cyan",
+              "mb-2 sm:mb-3 type-micro font-bold uppercase",
+              "text-brand-cyan",
               align === "center" && "mx-auto"
             )}
           >
@@ -66,7 +64,7 @@ export function SectionHeading({
         <div className={cn(align === "center" && "text-center", "pr-16 sm:pr-14 md:pr-16 max-[359px]:pr-0")}>
           <Tag
             className={cn(
-              "relative inline-block font-display uppercase tracking-tight text-balance leading-[1.1] max-w-full max-[359px]:break-normal max-[359px]:[word-break:keep-all]",
+              "relative inline-block font-display uppercase text-balance max-w-full max-[359px]:break-normal max-[359px]:[word-break:keep-all]",
               compactTitle
                 ? "text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] xl:text-[3rem]"
                 : compactMobileTitle
@@ -123,7 +121,7 @@ export function SectionHeading({
         {subtitle && (
           <p
             className={cn(
-              "mt-4 sm:mt-5 md:mt-6 text-base sm:text-lg md:text-xl font-medium leading-relaxed",
+              "mt-4 sm:mt-5 md:mt-6 type-lead font-medium",
               onLight ? "text-brand-navy/60" : (light ? "text-white/60" : "text-muted-foreground"),
               align === "center" && "mx-auto max-w-2xl"
             )}

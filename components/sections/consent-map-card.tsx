@@ -58,7 +58,7 @@ export function ConsentMapCard({
                 <strong className="text-white">Analyse &amp; Karte</strong> in den
                 Cookie-Einstellungen (speichern nicht vergessen).
               </p>
-              <Button type="button" variant="outline-light" size="sm" onClick={openPreferences}>
+              <Button type="button" variant="outline-light" size="sm" onClick={openPreferences} className="font-display tracking-[0.05em]">
                 Cookie-Einstellungen
               </Button>
             </div>

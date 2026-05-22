@@ -6,7 +6,19 @@
 |--------|--------|----------------------|
 | **Logo (Berneby)** | **Noto Sans** (Body) | `TextLogo` – `font-bold` / `font-normal`, keine Display-Schrift |
 | **Header (Navigation)** | **Noto Sans** | `Header` – Links und „Erstgespräch“ nutzen die Body-Schrift |
-| **Überschriften (Hero, Sektionen, CTA)** | **Bebas Neue** (Display) | Klasse `.font-display` in Hero, SectionHeading, CtaSection |
+| **Überschriften (Hero, Sektionen, CTA)** | **Barlow** (Display, Fallback Syne) | Klasse `.font-display` in Hero, SectionHeading, CtaSection |
+
+## Typografie-SSoT (Marketing)
+
+- Zentrale Quelle: `berneby-website/app/globals.css`
+- Kanonische Scale: `--type-size-*` (micro, body-sm, body, lead, h3, h2, h1, display)
+- Semantische Nutzung: `type-*` Utility-Klassen statt ad-hoc `text-[...]`-Werte
+- Mobile Regel: Section-Heading auf kleinen Viewports nicht größer als aktueller Stand (~36px)
+
+## Kontext-Trennung
+
+- **Marketing-Website:** nutzt die kanonische Scale.
+- **Social/Export-Seiten:** behalten separate, pixelgenaue Typografie für feste Canvas-/Print-Layouts.
 
 ---
 

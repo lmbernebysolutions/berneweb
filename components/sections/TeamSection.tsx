@@ -89,7 +89,7 @@ export function TeamSection({ members, variant = "default" }: TeamSectionProps) 
                 </p>
                 <ul className="mt-4 md:mt-4 space-y-2.5">
                   {member.responsibilities.slice(0, 3).map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-[0.9375rem] leading-relaxed text-white/80">
+                    <li key={item} className="flex items-start gap-3 type-body-sm text-white/80">
                       <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 bg-brand-cyan/70" aria-hidden />
                       <span>{item}</span>
                     </li>
@@ -128,7 +128,7 @@ export function TeamSection({ members, variant = "default" }: TeamSectionProps) 
                   </p>
                   <ul className="mt-4 space-y-2.5">
                     {member.responsibilities.slice(0, 3).map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-[0.9375rem] leading-relaxed text-muted-foreground">
+                      <li key={item} className="flex items-start gap-3 type-body-sm text-muted-foreground">
                         <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 bg-brand-cyan/70" aria-hidden />
                         <span>{item}</span>
                       </li>

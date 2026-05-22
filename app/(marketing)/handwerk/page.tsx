@@ -183,7 +183,7 @@ export default function HandwerkPage() {
           <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
 
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-black text-white uppercase leading-none mb-6">
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-white uppercase leading-none mb-6">
               10er Karte<br />Support
             </h2>
             <ul className="space-y-4 mb-8">

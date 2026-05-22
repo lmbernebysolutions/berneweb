@@ -416,7 +416,7 @@ export default function SocialsVisitenkartenPage() {
                       <div className="relative px-4 py-3 text-left">
                         <TechCorners pattern="diagonal" variant="cyan" size="lg" />
                         <p
-                          className="font-display text-[50px] font-extrabold uppercase leading-[0.98] tracking-[0.04em] text-white"
+                          className="font-display text-[50px] font-bold uppercase leading-[0.98] tracking-[0.04em] text-white"
                         >
                           {BRIDGE_CTA_LINE_1}
                         </p>
@@ -484,7 +484,7 @@ export default function SocialsVisitenkartenPage() {
                     >
                       Persönlicher Ansprechpartner
                     </p>
-                    <h3 className="mt-2 font-display text-[46px] font-extrabold uppercase leading-[0.98] tracking-[0.04em] text-white">
+                    <h3 className="mt-2 font-display text-[46px] font-bold uppercase leading-[0.98] tracking-[0.04em] text-white">
                       {trimmedBackContactName}
                     </h3>
                     <p

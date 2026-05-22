@@ -36,7 +36,7 @@ export function StatementSectionV3({ items, onLight = false }: StatementSectionV
 
           {/* Headline — Display, primäre Botschaft */}
           <h3
-            className={`font-display text-2xl sm:text-3xl font-extrabold uppercase tracking-tight leading-tight mb-4 ${
+            className={`font-display text-2xl sm:text-3xl font-bold uppercase leading-tight mb-4 ${
               onLight ? "text-brand-navy" : "text-white"
             }`}
           >

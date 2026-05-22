@@ -51,7 +51,7 @@ export function CraftToolboxGrid({ modules }: CraftToolboxGridProps) {
 
             {/* 01, 02 … top right, light grey */}
             <div
-              className="absolute top-0 right-0 p-4 font-mono text-[10px] font-bold uppercase tracking-tighter text-white/40 select-none pointer-events-none z-10"
+              className="absolute top-0 right-0 p-4 font-mono type-micro font-bold uppercase tracking-tighter text-white/40 select-none pointer-events-none z-10"
               aria-hidden="true"
             >
               {String(i + 1).padStart(2, "0")}
@@ -71,7 +71,7 @@ export function CraftToolboxGrid({ modules }: CraftToolboxGridProps) {
 
             {/* Body: description */}
             <div className="p-6 flex flex-col grow relative z-10">
-              <p className="text-[0.9375rem] leading-relaxed text-white/80">
+              <p className="type-body-sm text-white/80">
                 {module.description}
               </p>
             </div>

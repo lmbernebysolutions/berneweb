@@ -36,7 +36,7 @@ function TestimonialCard({ t, i, animate = true }: { t: Testimonial; i: number; 
             <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white mb-2 sm:mb-3 md:mb-4 min-h-[3rem] sm:min-h-[4rem] md:min-h-[5.25rem] break-words flex-1">&ldquo;{t.text}&rdquo;</p>
             <div className="mb-3 sm:mb-4 md:mb-6 mt-auto self-start inline-flex items-center gap-1.5 sm:gap-2 border border-brand-warm/30 bg-brand-warm/5 px-2 py-0.5 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 max-w-full flex-wrap shrink-0">
                 <IconCheck className="size-2.5 sm:size-3 md:size-3.5 text-brand-warm shrink-0 max-[359px]:hidden" stroke={2} aria-hidden="true" />
-                <span className="text-[0.6rem] sm:text-[0.65rem] md:text-xs font-bold text-brand-warm uppercase tracking-wider break-words">{t.result}</span>
+                <span className="type-micro md:text-sm font-bold text-brand-warm uppercase tracking-wider break-words">{t.result}</span>
             </div>
             <div className="flex items-center gap-2 sm:gap-3 border-t border-white/10 pt-2 sm:pt-3 md:pt-4 min-w-0 shrink-0">
                 <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 bg-white/5 border border-white/15 text-white font-bold flex items-center justify-center shrink-0 text-xs sm:text-sm md:text-base">
@@ -44,7 +44,7 @@ function TestimonialCard({ t, i, animate = true }: { t: Testimonial; i: number; 
                 </div>
                 <div className="min-w-0">
                     <div className="font-bold text-white text-xs sm:text-sm md:text-base truncate">{t.name}</div>
-                    <div className="text-[0.6rem] sm:text-[0.65rem] md:text-xs text-brand-navy-muted uppercase tracking-wider truncate">{t.role}</div>
+                    <div className="type-micro md:text-sm text-brand-navy-muted uppercase tracking-wider truncate">{t.role}</div>
                 </div>
             </div>
         </div>

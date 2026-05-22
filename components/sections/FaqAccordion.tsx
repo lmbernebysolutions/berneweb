@@ -59,7 +59,7 @@ export function FaqAccordion({ items, number }: FaqAccordionProps) {
                 {item.question}
               </span>
             </AccordionTrigger>
-            <AccordionContent className="border-t border-white/10 pt-4 text-[0.9375rem] leading-relaxed text-muted-foreground">
+            <AccordionContent className="border-t border-white/10 pt-4 type-body-sm text-muted-foreground">
               {item.answer}
             </AccordionContent>
           </AccordionItem>

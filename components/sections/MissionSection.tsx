@@ -21,7 +21,6 @@ function MissionVariantA() {
   ];
   return (
     <div
-      data-animate="fade-up"
       className={cn(
         "grid grid-cols-1 gap-0 divide-y-4 divide-white/10 md:grid-cols-3 md:divide-y-0 md:divide-x-4"
       )}
@@ -34,7 +33,7 @@ function MissionVariantA() {
           className="flex min-h-0 min-w-0 flex-col items-center px-6 py-6 text-center sm:px-6 sm:py-8 lg:px-7"
         >
           <div className="mb-2 flex min-h-[3.75rem] w-full items-center justify-center sm:min-h-[4rem] md:min-h-[4.25rem]">
-            <h3 className="font-display text-lg font-extrabold uppercase tracking-tight leading-snug text-white sm:text-xl md:text-2xl">
+            <h3 className="font-display text-lg font-bold uppercase leading-snug text-white sm:text-xl md:text-2xl">
               {p.title}
             </h3>
           </div>

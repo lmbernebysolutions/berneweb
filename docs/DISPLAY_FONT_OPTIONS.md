@@ -1,6 +1,6 @@
 # Display-Schrift: Auswahl für Überschriften
 
-Aktuell im Einsatz: **Bebas Neue**.  
+Aktuell im Einsatz: **Barlow** (Display), optionaler Fallback: **Syne**.  
 Alle unten genannten Schriften sind mit `next/font/google` nutzbar und bilden einen klaren Kontrast zur Body-Schrift **Noto Sans**.
 
 ---
@@ -11,7 +11,7 @@ Alle unten genannten Schriften sind mit `next/font/google` nutzbar und bilden ei
 |------------|------|----------|
 | **Archivo Black** | Sehr kräftig, plakativ | Starke Headlines, wenig Text in der Headline |
 | **Barlow Condensed** | Eng, technisch, klar | Tech, Industrial, „System“-Gefühl |
-| **Bebas Neue** *(aktuell)* | Condensed, Impact, Großbuchstaben | Plakativ, sehr prägnant |
+| **Bebas Neue** | Condensed, Impact, Großbuchstaben | Plakativ, sehr prägnant |
 | **Lexend** | Lesbar, modern, ruhig | Wenn Headlines trotzdem sehr gut lesbar sein sollen |
 | **Manrope** | Geometrisch, sachlich | Clean Tech, nicht zu verspielt |
 | **Orbitron** | Geometrisch, futuristisch | Starker Tech/Sci-Fi-Akzent |
@@ -20,7 +20,7 @@ Alle unten genannten Schriften sind mit `next/font/google` nutzbar und bilden ei
 | **Plus Jakarta Sans** | Rund, professionell | Corporate, ein bisschen weicher als Syne |
 | **Rajdhani** | Eng, technisch | Tech, Daten/UI-Feeling |
 | **Space Grotesk** | Geometrisch, Tech | Sehr gut für Tech/Startup, ähnlich Syne |
-| **Syne** *(aktuell)* | Geometrisch, modern, etwas charaktervoll | Eure jetzige Wahl, guter Allrounder |
+| **Syne** *(Fallback)* | Geometrisch, modern, etwas charaktervoll | Fallback/Alternative zu Barlow |
 | **Tektur** | Geometrisch, technisch | Sehr technisch, etwas „Code“-Vibe |
 
 ---

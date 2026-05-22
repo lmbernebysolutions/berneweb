@@ -27,7 +27,7 @@ export function Screen8Success() {
           </svg>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-display font-black uppercase tracking-tight text-white mt-4">
+        <h2 className="text-3xl sm:text-4xl font-display font-bold uppercase text-white mt-4">
           Dein Report
           <br />
           <span className="text-brand-cyan">ist unterwegs.</span>
@@ -51,7 +51,7 @@ export function Screen8Success() {
       {/* Calendly Upsell */}
       <div className={cn("flex flex-col gap-5 p-6 relative group", CONTAINER_A_NO_GLOW)}>
         <div>
-          <p className="text-base font-display font-black uppercase tracking-wide text-white">
+          <p className="text-base font-display font-bold uppercase text-white">
             Keine Lust zu warten?
           </p>
           <p className="text-sm text-white/60 mt-2 leading-relaxed">

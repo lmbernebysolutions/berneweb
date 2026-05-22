@@ -63,7 +63,7 @@ export function HandwerkProblemWithRevealSection() {
             "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px)",
         }}
       />
-      <div className="absolute top-0 right-0 border-b-2 border-l-2 border-white/10 bg-black/40 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-white/40 z-20">
+      <div className="absolute top-0 right-0 border-b-2 border-l-2 border-white/10 bg-black/40 px-3 py-1 font-mono type-micro uppercase text-white/40 z-20">
         STATUS_OFFLINE
       </div>
 
@@ -75,7 +75,7 @@ export function HandwerkProblemWithRevealSection() {
         )}
       >
         <div className="mb-10 flex items-center justify-between">
-          <h3 className="text-3xl sm:text-3xl font-bold uppercase tracking-tighter text-white/60">
+          <h3 className="font-display text-3xl sm:text-3xl uppercase text-white/60">
             Ohne Uns
           </h3>
           <div className="flex h-10 w-10 items-center justify-center border-2 border-white/20 bg-white/5">
@@ -88,7 +88,7 @@ export function HandwerkProblemWithRevealSection() {
               key={item.label}
               className="border-l-2 border-white/10 bg-white/[0.02] p-4"
             >
-              <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-white/30">
+              <div className="flex justify-between font-mono type-micro uppercase text-white/30">
                 <span>{item.label}</span>
                 <span className="text-white/20">PROBLEM: {item.risk}</span>
               </div>

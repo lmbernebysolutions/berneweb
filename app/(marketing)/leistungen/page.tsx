@@ -168,14 +168,14 @@ export default function TechPage() {
                                     <div className="flex h-12 w-12 items-center justify-center bg-brand-cyan/10 text-brand-cyan">
                                         <Icon className="size-6" />
                                     </div>
-                                    <h3 className="font-bold text-lg text-white uppercase tracking-wider">{category.title}</h3>
+                                    <h3 className="font-display text-lg text-white uppercase">{category.title}</h3>
                                 </div>
                                 <div className="p-6 flex flex-col grow gap-4 relative z-10">
                                     {visibleItems.map((item) => (
                                         <div key={item.title} className="group/item relative">
                                             <TechCorners pattern="all" variant="cyan" size="sm" />
                                             <div className="flex justify-between items-baseline px-4 py-2 transition-colors group-hover/item:bg-brand-cyan/5">
-                                                <h4 className="font-medium text-xs text-white/90 uppercase tracking-wider">{item.title}</h4>
+                                                <h4 className="font-display text-xs text-white/90 uppercase">{item.title}</h4>
                                             </div>
                                         </div>
                                     ))}
@@ -218,7 +218,7 @@ export default function TechPage() {
                     <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none" />
 
                     <div className="relative z-10">
-                        <h2 className="text-3xl md:text-5xl font-black text-white uppercase leading-none mb-6">
+                        <h2 className="font-display text-3xl md:text-5xl font-bold text-white uppercase leading-none mb-6">
                             10er Karte<br />Support
                         </h2>
                         <ul className="space-y-4 mb-8">

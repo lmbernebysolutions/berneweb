@@ -48,12 +48,12 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
                 </div>
 
                 {/* Titel: lesbar, proportional zu Section-Überschriften; 5 Spalten → moderate Stufen */}
-                <h3 className="mt-4 text-sm font-semibold uppercase tracking-tight text-white md:text-xs lg:text-sm xl:text-base">
+                <h3 className="mt-4 text-sm font-semibold uppercase tracking-[0.08em] text-white md:text-xs lg:text-sm xl:text-base">
                   {s.title}
                 </h3>
                 {/* Beschreibung bewusst kompakt (nur Überschriften vergrößert) */}
                 {s.description && (
-                  <p className="mt-2 border-l-2 border-white/25 pl-3 text-left text-[0.8125rem] leading-snug text-white/80 md:text-[0.6rem] lg:text-[0.7rem] xl:text-[0.8125rem]">
+                  <p className="mt-2 border-l-2 border-white/25 pl-3 text-left type-body-sm text-white/80 md:type-micro xl:type-body-sm">
                     {s.description}
                   </p>
                 )}
@@ -63,7 +63,7 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
               {i < steps.length - 1 && (
                 <div
                   className="absolute top-14 left-[calc(50%+32px)] z-20 flex items-center justify-center pointer-events-none"
-                  style={{ width: "calc(100% - 64px)" }}
+                  style={{ width: "calc(100% - 64px + 1rem)" }}
                   aria-hidden="true"
                 >
                   <div className="h-px flex-1 bg-brand-cyan/50" />
@@ -94,11 +94,11 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
             </div>
 
             <div className="min-w-0 flex-1 pb-0">
-              <h3 className="text-sm font-semibold uppercase tracking-tight text-white sm:text-base">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.08em] text-white sm:text-base">
                 {s.title}
               </h3>
               {s.description && (
-                <p className="mt-1.5 border-l-2 border-white/25 pl-3 text-[0.8125rem] leading-snug text-white/80">
+                <p className="mt-1.5 border-l-2 border-white/25 pl-3 type-body-sm text-white/80">
                   {s.description}
                 </p>
               )}

@@ -77,7 +77,7 @@ export function ProblemToSolutionScrollSection() {
           <div className="mb-10 flex items-center justify-between">
             <h3
               className={cn(
-                "text-3xl sm:text-3xl font-bold uppercase tracking-tighter transition-colors duration-300",
+                "font-display text-3xl sm:text-3xl uppercase transition-colors duration-300",
                 progress > 0.5 ? "text-brand-cyan" : "text-white/60"
               )}
             >
@@ -115,7 +115,7 @@ export function ProblemToSolutionScrollSection() {
                       progress > 0.5 ? "opacity-0 pointer-events-none border-white/10" : "opacity-100"
                     )}
                   >
-                    <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-white/30">
+                    <div className="flex justify-between font-mono type-micro uppercase text-white/30">
                       <span>{item.label}</span>
                       <span className="text-white/20">— {item.risk}</span>
                     </div>
@@ -130,7 +130,7 @@ export function ProblemToSolutionScrollSection() {
                       progress > 0.5 ? "opacity-100" : "opacity-0 pointer-events-none"
                     )}
                   >
-                    <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-brand-cyan">
+                    <div className="flex justify-between font-mono type-micro uppercase text-brand-cyan">
                       <span>{sol.label}</span>
                       <span className="flex items-center gap-1.5">
                         <div className="h-1.5 w-1.5 animate-pulse bg-brand-cyan rounded-full shadow-[0_0_6px_rgba(3,249,249,0.8)]" />

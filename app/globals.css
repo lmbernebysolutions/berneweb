@@ -14,6 +14,7 @@
 
   /* Brand Tokens - Heavy Industrial */
   --color-brand-navy: #283569;
+  --color-brand-navy-foreground: #ffffff;
   --color-brand-navy-dark: #1a2342;
   /* WCAG AA compliant muted text on navy (~4.5:1 on #283569) */
   --color-brand-navy-muted: #9caec9;
@@ -29,20 +30,32 @@
   /* Animation Easings - Machine Precision */
   --ease-mechanical: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Fluid Typography Scale - Responsive font sizes */
-  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-  --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);
-  --font-size-xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
-  --font-size-2xl: clamp(1.875rem, 1.5rem + 1.875vw, 3rem);
-  --font-size-3xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);
-  --font-size-hero: clamp(2.5rem, 4vw + 1rem, 7rem);
+  /* Canonical marketing typography scale (SSoT, optimized down to 320px) */
+  --type-size-micro: clamp(0.75rem, 0.73rem + 0.12vw, 0.8125rem);
+  --type-size-body-sm: clamp(0.875rem, 0.84rem + 0.18vw, 1rem);
+  --type-size-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --type-size-lead: clamp(1.125rem, 1.02rem + 0.55vw, 1.5rem);
+  --type-size-h3: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+  --type-size-h2: clamp(2.25rem, 2.03rem + 1.1vw, 3rem);
+  --type-size-h2-mobile-compact: clamp(1.875rem, 1.7rem + 0.9vw, 3rem);
+  --type-size-h2-compact: clamp(1.5rem, 1.38rem + 0.6vw, 2.5rem);
+  --type-size-h1: clamp(2.5rem, 2.2rem + 1.5vw, 3.75rem);
+  --type-size-display: clamp(2.5rem, 4vw + 1rem, 7rem);
+  --type-size-display-compact: clamp(2.2rem, 3.8vw + 1rem, 6.1rem);
+  --type-size-display-compact-narrow: clamp(1.85rem, 3.9vw + 0.95rem, 2.4rem);
+  --type-size-display-narrow: clamp(2.3rem, 4.9vw + 1.05rem, 2.95rem);
 
-  /* Semantic Mobile Heading Tokens */
-  --font-size-h2-mobile: 3.25rem;   /* 52px              — SectionHeading, CtaSection h2 */
-  --font-size-h3-mobile: 1.5rem;    /* 24px = text-2xl  — Subsection headings */
-  --font-size-stat-mobile: 3rem;    /* 48px              — TrustBar, PricingCards stats */
+  --type-leading-tight: 1.05;
+  --type-leading-heading: 1.1;
+  --type-leading-body: 1.5;
+  --type-leading-relaxed: 1.6;
+
+  --type-tracking-tight: 0.06em;
+  --type-tracking-display: 0.05em;
+  --type-tracking-normal: 0;
+  --type-tracking-wide: 0.05em;
+  --type-tracking-label: 0.2em;
+  --type-weight-display: 600;
 
   /* Fluid Spacing Scale - Responsive spacing */
   --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
@@ -89,9 +102,11 @@
   --radius: 0;
 }
 
-/* Display font (Syne) – applied via .font-display; variable set by next/font on html */
+/* Display font is injected in layout.tsx via --font-display. */
 .font-display {
   font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-weight: var(--type-weight-display);
+  letter-spacing: var(--type-tracking-display);
 }
 
 /* ==========================================================================
@@ -124,17 +139,81 @@ body::after {
 }
 
 /* Industrial Typography - Display Font for Headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-sans), sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 700;
-  line-height: 0.95;
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    text-transform: uppercase;
+    letter-spacing: var(--type-tracking-display);
+    font-weight: var(--type-weight-display);
+    line-height: 0.98;
+  }
+}
+
+@layer utilities {
+  .type-micro {
+    font-size: var(--type-size-micro);
+    line-height: 1.4;
+    letter-spacing: var(--type-tracking-label);
+  }
+
+  .type-body-sm {
+    font-size: var(--type-size-body-sm);
+    line-height: var(--type-leading-body);
+    letter-spacing: var(--type-tracking-normal);
+  }
+
+  .type-body {
+    font-size: var(--type-size-body);
+    line-height: var(--type-leading-body);
+    letter-spacing: var(--type-tracking-normal);
+  }
+
+  .type-lead {
+    font-size: var(--type-size-lead);
+    line-height: var(--type-leading-relaxed);
+    letter-spacing: var(--type-tracking-normal);
+  }
+
+  .type-heading-h3 {
+    font-size: var(--type-size-h3);
+    line-height: var(--type-leading-heading);
+    letter-spacing: var(--type-tracking-display);
+  }
+
+  .type-heading-h2 {
+    font-size: var(--type-size-h2);
+    line-height: var(--type-leading-heading);
+    letter-spacing: var(--type-tracking-display);
+  }
+
+  .type-heading-h2-mobile-compact {
+    font-size: var(--type-size-h2-mobile-compact);
+    line-height: var(--type-leading-heading);
+    letter-spacing: var(--type-tracking-display);
+  }
+
+  .type-heading-h2-compact {
+    font-size: var(--type-size-h2-compact);
+    line-height: var(--type-leading-heading);
+    letter-spacing: var(--type-tracking-display);
+  }
+
+  .type-heading-display {
+    font-size: var(--type-size-display);
+    line-height: 0.95;
+    letter-spacing: var(--type-tracking-display);
+  }
+
+  .type-heading-display-compact {
+    font-size: var(--type-size-display-compact);
+    line-height: 1;
+    letter-spacing: var(--type-tracking-display);
+  }
 }
 
 /* Scrollbar */

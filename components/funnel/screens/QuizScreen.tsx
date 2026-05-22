@@ -39,7 +39,7 @@ export function QuizScreen({ question, options, answerKey }: QuizScreenProps) {
     <div className="flex flex-col gap-5 w-full">
       {/* Question */}
       <div className="flex flex-col gap-3">
-        <h2 className="text-2xl sm:text-3xl font-display font-black uppercase tracking-tight leading-tight text-white shadow-sm">
+        <h2 className="text-2xl sm:text-3xl font-display font-bold uppercase leading-tight text-white shadow-sm">
           {question}
         </h2>
         <p className="text-xs font-mono text-white/40 uppercase tracking-widest">

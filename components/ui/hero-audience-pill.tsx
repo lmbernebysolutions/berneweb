@@ -39,7 +39,7 @@ export function HeroAudiencePill({
         "group relative inline-flex items-center gap-2.5 self-start",
         "border border-brand-cyan/30 bg-brand-cyan/[0.06] backdrop-blur-sm",
         "px-3 py-1.5 sm:px-4 sm:py-2",
-        "text-[0.7rem] sm:text-xs font-semibold uppercase tracking-[0.14em] text-white/90",
+        "type-micro sm:text-xs font-semibold uppercase tracking-[0.14em] text-white/90",
         "transition-all duration-200",
         "hover:border-brand-cyan/60 hover:bg-brand-cyan/10 hover:text-white",
         "hover:shadow-[0_0_18px_rgba(3,249,249,0.15)]",

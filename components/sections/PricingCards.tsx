@@ -55,7 +55,7 @@ function SinglePricingCard({
       )}
     >
       {pkg.badge && (
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center bg-brand-cyan py-1 px-2 text-[10px] font-bold text-brand-navy uppercase tracking-widest border border-brand-cyan md:text-xs md:py-1 md:px-2.5">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center bg-brand-cyan py-1 px-2 type-micro font-bold text-brand-navy uppercase border border-brand-cyan md:text-sm md:py-1 md:px-2.5">
           Bestseller
         </div>
       )}
@@ -69,7 +69,7 @@ function SinglePricingCard({
         <h3
           className={cn(
             hidePrices && mobileCard
-              ? "font-display text-[length:var(--font-size-xl)] font-black uppercase tracking-tight leading-[1.05] break-words text-white"
+              ? "font-display type-heading-h3 font-bold uppercase leading-[1.05] break-words text-white"
               : "text-xs sm:text-lg md:text-base lg:text-xl xl:text-2xl font-black uppercase tracking-widest leading-tight break-words text-white"
           )}
         >
@@ -78,8 +78,8 @@ function SinglePricingCard({
         <p
           className={cn(
             hidePrices && mobileCard
-              ? "mt-2 text-[length:var(--font-size-sm)] sm:text-[length:var(--font-size-base)] line-clamp-3 text-white/80"
-              : "mt-1 sm:mt-2 text-[10px] sm:text-xs md:text-xs lg:text-sm line-clamp-2 md:line-clamp-none",
+              ? "mt-2 type-body-sm sm:type-body line-clamp-3 text-white/80"
+              : "mt-1 sm:mt-2 type-micro sm:text-sm md:text-sm lg:text-base line-clamp-2 md:line-clamp-none",
             !hidePrices || !mobileCard
               ? pkg.highlighted
                 ? "text-brand-cyan/80"
@@ -101,7 +101,7 @@ function SinglePricingCard({
           >
             {pkg.price}
           </span>
-          <span className="text-[10px] sm:text-xs font-mono text-white/40 uppercase">
+          <span className="type-micro sm:text-sm font-mono text-white/40 uppercase">
             {pkg.unit}
           </span>
         </div>
@@ -109,13 +109,13 @@ function SinglePricingCard({
 
       {compact ? (
         <details className="relative md:hidden group/details">
-          <summary className="list-none cursor-pointer flex items-center justify-center gap-1 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-cyan/80 hover:text-brand-cyan [&::-webkit-details-marker]:hidden">
+          <summary className="list-none cursor-pointer flex items-center justify-center gap-1 py-1.5 type-micro font-bold uppercase tracking-widest text-brand-cyan/80 hover:text-brand-cyan [&::-webkit-details-marker]:hidden">
             <span>Details</span>
             <IconChevronDown className="size-3 transition-transform group-open/details:rotate-180" />
           </summary>
           <ul className="relative grow space-y-2 mb-3 mt-2">
             {pkg.features.map((feature) => (
-              <li key={feature} className="flex items-start gap-2 text-[10px]">
+              <li key={feature} className="flex items-start gap-2 type-micro">
                 <div className={cn("mt-1 w-1 h-1 shrink-0", pkg.highlighted ? "bg-brand-cyan" : "bg-white/30")} />
                 <span className="text-white/80 leading-snug">{feature}</span>
               </li>
@@ -123,17 +123,17 @@ function SinglePricingCard({
           </ul>
           {comparisonRows && comparisonRows.length > 0 && (
             <div className="relative mb-4 border-t border-white/10 pt-3">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-cyan/60 mb-2">Kernfeatures</p>
+              <p className="type-micro font-bold uppercase tracking-[0.2em] text-brand-cyan/60 mb-2">Kernfeatures</p>
               <ul className="space-y-1.5">
                 {comparisonRows.map((row) => {
                   const included = row.inPackages.includes(pkg.name);
                   return (
-                    <li key={row.label} className="flex items-center justify-between gap-2 text-[10px]">
+                    <li key={row.label} className="flex items-center justify-between gap-2 type-micro">
                       <span className="text-white/70 truncate">{row.label}</span>
                       {included ? (
-                        <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded border border-brand-cyan/50 bg-brand-cyan/10 text-brand-cyan text-[10px]">✓</span>
+                        <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded border border-brand-cyan/50 bg-brand-cyan/10 text-brand-cyan type-micro">✓</span>
                       ) : (
-                        <span className="text-white/30 text-[10px]">—</span>
+                        <span className="text-white/30 type-micro">—</span>
                       )}
                     </li>
                   );
@@ -154,7 +154,7 @@ function SinglePricingCard({
           </ul>
           {comparisonRows && comparisonRows.length > 0 && (
             <div className="border-t border-white/10 pt-6">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-cyan/60 mb-3">Kernfeatures im Vergleich</p>
+              <p className="type-micro font-bold uppercase tracking-[0.2em] text-brand-cyan/60 mb-3">Kernfeatures im Vergleich</p>
               <ul className="space-y-2">
                 {comparisonRows.map((row) => {
                   const included = row.inPackages.includes(pkg.name);
@@ -181,7 +181,7 @@ function SinglePricingCard({
           variant={pkg.highlighted ? "default" : "outline"}
           size="sm"
           className={cn(
-            "w-full uppercase tracking-widest font-bold text-[10px] sm:text-xs py-2 md:py-0 md:text-sm md:h-10",
+            "w-full uppercase tracking-widest font-bold type-micro sm:text-sm py-2 md:py-0 md:text-base md:h-10",
             !pkg.highlighted && "border-white/20 text-white hover:bg-white/10"
           )}
         >

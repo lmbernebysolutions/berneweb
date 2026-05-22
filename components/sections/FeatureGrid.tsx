@@ -87,7 +87,7 @@ function FeatureCard({
       <h3 className={cn("text-xl font-bold uppercase tracking-wide", light ? "text-white" : "text-foreground")}>
         {feature.title}
       </h3>
-      <p className={cn("mt-4 text-[0.9375rem] leading-relaxed", light ? "text-blue-100/70" : "text-muted-foreground")}>
+      <p className={cn("mt-4 type-body-sm", light ? "text-blue-100/70" : "text-muted-foreground")}>
         {feature.description}
       </p>
     </div>

@@ -188,7 +188,7 @@ export default async function BranchePage({
               aria-hidden="true"
             />
             <div className="relative z-10 mb-8 flex items-center justify-between">
-              <h3 className="text-2xl font-bold uppercase tracking-tight text-white/60">Ohne uns</h3>
+              <h3 className="font-display text-2xl uppercase text-white/60">Ohne uns</h3>
               <div
                 className="flex h-10 w-10 items-center justify-center border-2 border-white/20 bg-white/5"
                 aria-hidden="true"
@@ -199,7 +199,7 @@ export default async function BranchePage({
             <div className="relative z-10 space-y-4">
               {branche.typischeProbleme.slice(0, 4).map((item, index) => (
                 <div key={`without-${item.problem}`} className="border-l-2 border-white/10 bg-white/[0.02] p-4">
-                  <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-white/35">
+                  <div className="flex justify-between font-mono type-micro uppercase text-white/35">
                     <span>Problem {index + 1}</span>
                     <span className="text-white/20">- {item.problem}</span>
                   </div>
@@ -224,7 +224,7 @@ export default async function BranchePage({
               aria-hidden="true"
             />
             <div className="relative z-10 mb-8 flex items-center justify-between">
-              <h3 className="text-2xl font-bold uppercase tracking-tight text-brand-cyan">Mit uns</h3>
+              <h3 className="font-display text-2xl uppercase text-brand-cyan">Mit uns</h3>
               <div
                 className="flex h-10 w-10 items-center justify-center border-2 border-brand-cyan bg-brand-cyan/20 shadow-[0_0_20px_rgba(3,249,249,0.4)]"
                 aria-hidden="true"
@@ -235,7 +235,7 @@ export default async function BranchePage({
             <div className="relative z-10 space-y-4">
               {branche.loesungen.slice(0, 4).map((item, index) => (
                 <div key={`with-${item}`} className="relative border-l-2 border-brand-cyan bg-brand-cyan/10 p-4">
-                  <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-brand-cyan">
+                  <div className="flex justify-between font-mono type-micro uppercase text-brand-cyan">
                     <span>Lösung {index + 1}</span>
                     <span className="flex items-center gap-1.5">
                       <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-brand-cyan shadow-[0_0_6px_rgba(3,249,249,0.8)]" />
@@ -283,7 +283,7 @@ export default async function BranchePage({
                   <div className="flex h-12 w-12 items-center justify-center bg-brand-cyan/10 text-brand-cyan">
                     <Icon className="size-6" />
                   </div>
-                  <h3 className="text-lg font-bold uppercase tracking-wider text-white">{category.title}</h3>
+                  <h3 className="font-display text-lg uppercase text-white">{category.title}</h3>
                 </div>
 
                 <div className="relative z-10 flex grow flex-col gap-4 p-6">
@@ -295,7 +295,7 @@ export default async function BranchePage({
                     <div key={item.title} className="group/item relative">
                       <TechCorners pattern="all" variant="cyan" size="sm" />
                       <div className="flex items-baseline justify-between px-4 py-2 transition-colors group-hover/item:bg-brand-cyan/5">
-                        <h4 className="text-xs font-medium uppercase tracking-wider text-white/90">
+                        <h4 className="font-display text-xs uppercase text-white/90">
                           {item.title}
                         </h4>
                       </div>
@@ -337,7 +337,7 @@ export default async function BranchePage({
           className="relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md p-8 md:p-10 mb-8 md:mb-12"
         >
           <TechCorners pattern="diagonal" variant="cyan" size="lg" />
-          <p className="relative z-10 text-[0.9375rem] leading-relaxed text-white/85 md:text-base">
+          <p className="relative z-10 type-body-sm text-white/85 md:type-body">
             {branche.description}
           </p>
         </div>
@@ -356,7 +356,7 @@ export default async function BranchePage({
               <h3 className="text-xl font-bold text-white md:text-2xl">
                 Warum {branche.name} von Berneby profitieren
               </h3>
-              <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/80">
+              <p className="mt-4 type-body-sm text-white/80">
                 {branche.name} im Erzgebirge stehen vor ähnlichen Herausforderungen: Sichtbarkeit bei
                 Google, Anrufannahme wenn Sie beschäftigt sind, Bewertungsmanagement. Wir haben
                 speziell für Handwerker und lokale Betriebe Pakete entwickelt – mit 50+ lokalen
@@ -392,7 +392,7 @@ export default async function BranchePage({
               <h3 className="text-xl font-bold text-white md:text-2xl">
                 Pakete und Einordnung für {branche.name}
               </h3>
-              <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/80">
+              <p className="mt-4 type-body-sm text-white/80">
                 {branche.preisRelevant}
               </p>
               <ul className="mt-4 space-y-2 text-sm text-white/70">

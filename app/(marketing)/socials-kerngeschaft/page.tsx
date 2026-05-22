@@ -102,7 +102,7 @@ const Slide = ({ children, number, invertMount=false, mountBottom=false, footerV
 // ─── Components ───────────────────────────────────────────────────────────────
 const StoryHeading = ({ children }: { children: React.ReactNode }) => (
   <div className="w-full shrink-0">
-    <h1 className="font-display text-[42px] font-extrabold uppercase leading-[0.95] tracking-[0.02em] text-white ml-[-16px] overflow-visible drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)]">
+    <h1 className="font-display text-[42px] font-bold uppercase leading-[0.95] tracking-[0.02em] text-white ml-[-16px] overflow-visible drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)]">
       {children}
     </h1>
   </div>

@@ -198,7 +198,7 @@ export function Hero({
           <div className="hero-line-reveal min-w-0 overflow-visible">
             <h1
               className={cn(
-                "hero-heading-overlap font-display font-extrabold uppercase leading-[0.95] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-normal min-w-0 max-sm:pb-0 pb-4 ml-[-0.05em] sm:ml-[-0.1em] md:ml-0 lg:ml-0 overflow-visible tracking-tighter max-sm:tracking-[-0.04em]",
+                "hero-heading-overlap font-display font-bold uppercase leading-[0.95] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] max-w-full text-balance break-normal min-w-0 max-sm:pb-0 pb-4 ml-[-0.05em] sm:ml-[-0.1em] md:ml-0 lg:ml-0 overflow-visible",
                 compactHeadline
                   ? "[word-break:normal] hyphens-auto [overflow-wrap:anywhere]"
                   : "[word-break:keep-all] hyphens-none",

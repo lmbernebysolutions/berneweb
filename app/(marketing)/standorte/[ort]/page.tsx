@@ -317,10 +317,10 @@ export default async function StandortPage({
           className="relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md p-8 md:p-10 mb-8 md:mb-12"
         >
           <TechCorners pattern="diagonal" variant="cyan" size="lg" />
-          <p className="relative z-10 text-[0.9375rem] leading-relaxed text-white/85 break-words md:text-base">
+          <p className="relative z-10 type-body-sm text-white/85 break-words md:type-body">
             {location.description}
           </p>
-          <p className="relative z-10 mt-4 text-sm leading-relaxed text-white/75 break-words md:text-[0.9375rem]">
+          <p className="relative z-10 mt-4 type-body-sm text-white/75 break-words">
             Fokus in {location.name}: klare Positionierung, verlässlicher Auftritt und planbare Anfragen.
           </p>
         </div>
@@ -336,7 +336,7 @@ export default async function StandortPage({
               <h3 className="text-xl font-bold text-white md:text-2xl">
                 Warum Berneby Solutions in {location.name}?
               </h3>
-              <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/80">
+              <p className="mt-4 type-body-sm text-white/80">
                 Website, lokale Sichtbarkeit, KI-Telefon und IT-Service aus einer Hand. Festpreis, klare
                 Umsetzung in etwa 4 Wochen, 12 Monate Support. Für Betriebe in {location.name} und
                 Umgebung.
@@ -382,7 +382,7 @@ export default async function StandortPage({
             <h3 className="text-xl font-bold text-white md:text-2xl">
               Unsere Leistungen für {location.name}
             </h3>
-            <p className="mt-4 text-[0.9375rem] leading-relaxed text-white/80">
+            <p className="mt-4 type-body-sm text-white/80">
               Professionelle Websites, lokale Landingpages, KI-Telefon und IT-Service. Alles auf
               Betriebe in {location.name} ausgerichtet, mit klaren Paketen und nachvollziehbarer
               Umsetzung.
@@ -500,7 +500,7 @@ export default async function StandortPage({
                   <div className="flex h-12 w-12 items-center justify-center bg-brand-cyan/10 text-brand-cyan">
                     <Icon className="size-6" />
                   </div>
-                  <h3 className="font-bold text-lg text-white uppercase tracking-wider break-words">{category.title}</h3>
+                  <h3 className="font-display text-lg text-white uppercase break-words">{category.title}</h3>
                 </div>
 
                 <div className="p-6 flex flex-col grow gap-4 relative z-10">
@@ -512,7 +512,7 @@ export default async function StandortPage({
                     <div key={item.title} className="group/item relative">
                       <TechCorners pattern="all" variant="cyan" size="sm" />
                       <div className="flex justify-between items-baseline px-4 py-2 transition-colors group-hover/item:bg-brand-cyan/5">
-                        <h4 className="font-medium text-xs text-white/90 uppercase tracking-wider break-words">{item.title}</h4>
+                        <h4 className="font-display text-xs text-white/90 uppercase break-words">{item.title}</h4>
                       </div>
                     </div>
                   ))}
@@ -573,7 +573,7 @@ export default async function StandortPage({
               aria-hidden="true"
             />
             <div className="relative z-10 mb-8 flex items-center justify-between">
-              <h3 className="text-2xl font-bold uppercase tracking-tight text-white/60">Ohne uns</h3>
+              <h3 className="font-display text-2xl uppercase text-white/60">Ohne uns</h3>
               <div className="flex h-10 w-10 items-center justify-center border-2 border-white/20 bg-white/5" aria-hidden="true">
                 <IconX className="size-6 text-white/40" stroke={3} />
               </div>
@@ -581,7 +581,7 @@ export default async function StandortPage({
             <div className="relative z-10 space-y-4">
               {OHNE_UNS_ROWS.slice(0, 4).map((item) => (
                 <div key={`without-${item.label}`} className="border-l-2 border-white/10 bg-white/[0.02] p-4">
-                  <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-white/35">
+                  <div className="flex justify-between font-mono type-micro uppercase text-white/35">
                     <span>{item.label}</span>
                     <span className="text-white/20">— {item.risk}</span>
                   </div>
@@ -603,7 +603,7 @@ export default async function StandortPage({
               aria-hidden="true"
             />
             <div className="relative z-10 mb-8 flex items-center justify-between">
-              <h3 className="text-2xl font-bold uppercase tracking-tight text-brand-cyan">Mit uns</h3>
+              <h3 className="font-display text-2xl uppercase text-brand-cyan">Mit uns</h3>
               <div className="flex h-10 w-10 items-center justify-center border-2 border-brand-cyan bg-brand-cyan/20 shadow-[0_0_20px_rgba(3,249,249,0.4)]" aria-hidden="true">
                 <IconCheck className="size-6 text-brand-cyan" stroke={3} />
               </div>
@@ -611,7 +611,7 @@ export default async function StandortPage({
             <div className="relative z-10 space-y-4">
               {MIT_UNS_ROWS.slice(0, 4).map((item) => (
                 <div key={`with-${item.label}`} className="relative border-l-2 border-brand-cyan bg-brand-cyan/10 p-4">
-                  <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest text-brand-cyan">
+                  <div className="flex justify-between font-mono type-micro uppercase text-brand-cyan">
                     <span>{item.label}</span>
                     <span className="flex items-center gap-1.5">
                       <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-brand-cyan shadow-[0_0_6px_rgba(3,249,249,0.8)]" />
@@ -861,7 +861,7 @@ export default async function StandortPage({
                   Alle Felder mit * sind Pflichtfelder.
                 </p>
               </div>
-              <div className="hidden font-mono text-[0.6rem] text-brand-cyan/30 uppercase tracking-widest sm:block">
+              <div className="hidden font-mono type-micro text-brand-cyan/30 uppercase sm:block">
                 FORM.SYS
               </div>
             </div>

@@ -41,7 +41,7 @@ export default function VisitenkartenA4VergleichPage() {
   return (
     <main className="min-h-screen bg-[#0b0f19] p-6 text-white md:p-10">
       <div className="mx-auto max-w-[1200px]">
-        <h1 className="font-display text-[34px] font-extrabold uppercase tracking-[0.04em] text-[#03f9f9]">
+        <h1 className="font-display text-[34px] font-bold uppercase tracking-[0.04em] text-[#03f9f9]">
           Visitenkarten auf A4 Vergleich
         </h1>
         <p className="mt-2 font-sans text-[16px] text-white/85">

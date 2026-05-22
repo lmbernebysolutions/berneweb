@@ -53,7 +53,7 @@ function BrowserMockup({
         </div>
         <div className="flex flex-1 items-center gap-1.5 mx-2 px-2.5 py-1 bg-white/5 border border-white/10 min-w-0">
           <div className="h-1.5 w-1.5 rounded-full bg-brand-cyan/60 shrink-0" />
-          <span className="text-[10px] font-mono text-white/30 truncate leading-none">{url}</span>
+          <span className="type-micro font-mono text-white/30 truncate leading-none">{url}</span>
         </div>
         <div className="flex gap-2 shrink-0">
           <div className="h-1.5 w-1.5 bg-white/20 rounded-full" />
@@ -116,7 +116,7 @@ function PhoneMockup({
         className="flex items-center justify-center px-3 py-1.5"
         style={{ background: `${theme.primary}ee` }}
       >
-        <span className="text-[7px] font-mono opacity-60" style={{ color: theme.text }}>09:41</span>
+        <span className="text-[8px] font-mono opacity-60" style={{ color: theme.text }}>09:41</span>
       </div>
       <div className="relative aspect-[9/19] w-full overflow-hidden" style={{ background: theme.bg }}>
         {imageSrc ? (
@@ -129,7 +129,7 @@ function PhoneMockup({
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center px-2 text-center">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-white/40 leading-tight">
+            <span className="type-micro font-mono uppercase tracking-wider text-white/40 leading-tight">
               Mobile-Screenshot hinzufügen
             </span>
           </div>
@@ -145,10 +145,10 @@ function PhoneMockup({
 function ErgebnisBadge({ result }: { result: { wert: string; metrik: string; positiv: boolean } }) {
   return (
     <div className="flex flex-col items-center justify-center border border-white/10 bg-white/[0.03] p-3 text-center">
-      <span className="font-display text-2xl max-[399px]:text-xl font-extrabold text-white leading-none tabular-nums">
+      <span className="font-display text-2xl max-[399px]:text-xl font-bold text-white leading-none tabular-nums">
         {result.wert}
       </span>
-      <span className="mt-1 text-[10px] max-[399px]:text-[9px] font-mono uppercase tracking-wider text-white leading-tight">
+      <span className="mt-1 type-micro max-[399px]:text-[10px] font-mono uppercase tracking-wider text-white leading-tight">
         {result.metrik}
       </span>
     </div>
@@ -183,7 +183,7 @@ export function ReferenzCard({
       </div>
       {featured && (
         <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 border-b border-x border-brand-cyan/40 bg-brand-cyan/10 px-6 py-1">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-brand-cyan">
+          <span className="font-mono type-micro uppercase tracking-widest text-brand-cyan">
             Featured Case
           </span>
         </div>
@@ -227,7 +227,7 @@ export function ReferenzCard({
             {referenz.tags.map((tag) => (
               <span
                 key={tag}
-                className="border border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-brand-cyan/70"
+                className="border border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-0.5 font-mono type-micro uppercase tracking-wider text-brand-cyan/70"
               >
                 {tag}
               </span>
@@ -241,10 +241,10 @@ export function ReferenzCard({
         >
           <div className="mb-6 flex items-start justify-between gap-4">
             <div>
-              <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-brand-cyan/60">
+              <div className="mb-1 font-mono type-micro uppercase tracking-widest text-brand-cyan/60">
                 {referenz.branche} · {referenz.jahr}
               </div>
-              <h2 className="text-xl font-bold uppercase tracking-tight text-white md:text-2xl">
+              <h2 className="font-display text-xl uppercase text-white md:text-2xl">
                 {referenz.kunde}
               </h2>
               <p className="mt-1 text-sm text-white/50">{referenz.typ}</p>
@@ -268,13 +268,13 @@ export function ReferenzCard({
           {featured && !compact && (
             <div className="mb-6 space-y-3">
               <div className="border border-white/5 bg-white/[0.03] p-3">
-                <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-red-400/70">
+                <div className="mb-1 font-mono type-micro uppercase tracking-widest text-red-400/70">
                   Challenge
                 </div>
                 <p className="text-sm text-white/60 leading-relaxed">{referenz.challenge}</p>
               </div>
               <div className="border border-brand-cyan/10 bg-brand-cyan/[0.03] p-3">
-                <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-brand-cyan/70">
+                <div className="mb-1 font-mono type-micro uppercase tracking-widest text-brand-cyan/70">
                   Lösung
                 </div>
                 <p className="text-sm text-white/60 leading-relaxed">{referenz.loesung}</p>

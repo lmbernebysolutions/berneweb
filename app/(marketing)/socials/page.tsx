@@ -99,7 +99,7 @@ const Slide = ({ children, number, withBeams = true, withCorners = true, invertM
 // Es liegt ganz oben in dem Container.
 const StoryHeading = ({ children }: { children: React.ReactNode }) => (
   <div className="w-full">
-    <h1 className="font-display text-[42px] font-extrabold uppercase leading-[0.95] tracking-[0.02em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] ml-[-16px] overflow-visible">
+    <h1 className="font-display text-[42px] font-bold uppercase leading-[0.95] tracking-[0.02em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)] ml-[-16px] overflow-visible">
       {children}
     </h1>
   </div>

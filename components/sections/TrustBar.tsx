@@ -13,11 +13,17 @@ interface TrustBarProps {
 
 function AnimatedValue({ value }: { value: string }) {
   const ref = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<number | null>(null);
   const [display, setDisplay] = useState(value);
   const hasAnimated = useRef(false);
 
   useEffect(() => {
     if (!ref.current || hasAnimated.current) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplay(value);
+      hasAnimated.current = true;
+      return;
+    }
 
     const numericMatch = value.match(/^(\d+(?:\.\d+)?)/);
     if (!numericMatch) return;
@@ -40,10 +46,10 @@ function AnimatedValue({ value }: { value: string }) {
             const current = eased * target;
             const formatted = isFloat ? current.toFixed(1) : Math.round(current);
             setDisplay(`${formatted}${suffix}`);
-            if (progress < 1) requestAnimationFrame(tick);
+            if (progress < 1) frameRef.current = requestAnimationFrame(tick);
           }
 
-          requestAnimationFrame(tick);
+          frameRef.current = requestAnimationFrame(tick);
           observer.disconnect();
         }
       },
@@ -51,7 +57,12 @@ function AnimatedValue({ value }: { value: string }) {
     );
 
     observer.observe(ref.current);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (frameRef.current != null) {
+        cancelAnimationFrame(frameRef.current);
+      }
+    };
   }, [value]);
 
   return (
@@ -115,7 +126,7 @@ export function TrustBar({ items }: TrustBarProps) {
               <div className="relative z-10 flex w-full flex-1 flex-col justify-end">
                 <AnimatedValue value={item.value} />
                 {item.label ? (
-                  <div className="mt-1 sm:mt-1.5 text-[0.625rem] sm:text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                  <div className="mt-1 sm:mt-1.5 type-micro font-bold uppercase text-muted-foreground">
                     {item.label}
                   </div>
                 ) : null}

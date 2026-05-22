@@ -76,30 +76,30 @@ export function Footer() {
               Online-Sichtbarkeit – alles aus einer Hand.
             </p>
 
-            {/* Mobile: Kontakt links + Social-Grid 2×2 rechts (hidden ab md) */}
-            <div className="mt-6 flex flex-row items-start gap-3 md:hidden">
-              <div className="flex-1 min-w-0 space-y-2.5">
+            {/* Mobile: Kontakt + Social; unter 430px gestapelt (kein Überlappen), ab 430px nebeneinander */}
+            <div className="mt-6 flex flex-col gap-3 max-[429px]:gap-3.5 min-[430px]:flex-row min-[430px]:items-start min-[430px]:gap-3 md:hidden">
+              <div className="min-w-0 space-y-2.5 min-[430px]:flex-1">
                 <a
                   href={`tel:${COMPANY.phone}`}
-                  className="flex items-center gap-2.5 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
+                  className="flex items-center gap-2.5 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan max-[429px]:whitespace-nowrap"
                 >
                   <IconPhone className="size-4 shrink-0" stroke={1.5} />
                   {COMPANY.phoneDisplay}
                 </a>
                 <a
                   href={`mailto:${COMPANY.email}`}
-                  className="flex items-center gap-2.5 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan"
+                  className="flex items-start gap-2.5 text-sm text-brand-navy-muted transition-colors hover:text-brand-cyan break-all min-[430px]:break-normal"
                 >
-                  <IconMail className="size-4 shrink-0" stroke={1.5} />
+                  <IconMail className="size-4 shrink-0 mt-0.5" stroke={1.5} />
                   {COMPANY.email}
                 </a>
-                <span className="flex items-center gap-2.5 text-sm text-brand-navy-muted">
-                  <IconMapPin className="size-4 shrink-0" stroke={1.5} />
-                  {COMPANY.location}, {COMPANY.region}
+                <span className="flex items-start gap-2.5 text-sm text-brand-navy-muted">
+                  <IconMapPin className="size-4 shrink-0 mt-0.5" stroke={1.5} />
+                  <span>{COMPANY.location}, {COMPANY.region}</span>
                 </span>
               </div>
-              {/* Social 2×2 */}
-              <div className="grid grid-cols-2 gap-1.5 shrink-0">
+              {/* Social: 4er-Reihe <430px, 2×2 ab 430px */}
+              <div className="grid max-[429px]:grid-cols-4 max-[429px]:w-full max-[429px]:gap-1 min-[430px]:grid-cols-2 min-[430px]:gap-1.5 min-[430px]:shrink-0">
                 {SOCIAL_LINKS.map((link) => {
                   const Icon = SOCIAL_ICONS[link.label as keyof typeof SOCIAL_ICONS];
                   return (
@@ -112,7 +112,7 @@ export function Footer() {
                       className={cn("group tap-target relative overflow-hidden p-2 flex flex-col items-center justify-center gap-1 cursor-pointer", CONTAINER_A)}
                     >
                       <Icon className="size-4 text-brand-cyan relative z-10" stroke={1.5} />
-                      <span className="text-[0.48rem] font-bold uppercase tracking-widest text-brand-navy-muted relative z-10 text-center leading-tight">
+                      <span className="max-[429px]:text-[0.52rem] max-[399px]:text-[0.48rem] max-[399px]:tracking-widest min-[430px]:text-[0.48rem] font-bold uppercase text-brand-navy-muted relative z-10 text-center leading-tight">
                         {link.label}
                       </span>
                     </a>
@@ -217,7 +217,7 @@ export function Footer() {
         {/* Regional greeting */}
         <div className="mt-12 text-center">
           <p className="text-sm text-brand-navy-muted font-medium flex flex-wrap items-center justify-center gap-1">
-            <span>Herzliche Grüße aus Aue-Bad Schlema (Aue) im Erzgebirge.</span>
+            <span>Herzliche Grüße aus Aue-Bad Schlema im Erzgebirge.</span>
             <span className="text-brand-warm whitespace-nowrap">Glück auf!</span>
           </p>
         </div>

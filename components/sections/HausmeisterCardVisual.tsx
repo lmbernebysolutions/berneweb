@@ -57,18 +57,18 @@ export function HausmeisterCardVisual({
             <div className="pointer-events-none absolute inset-0">
               <TechCorners pattern="all" variant="cyan" size="sm" hoverExpand={false} />
             </div>
-            <span className="font-display text-[18px] font-black uppercase leading-[1.05] tracking-[0.06em] text-brand-cyan">
+            <span className="font-display text-[18px] font-bold uppercase leading-[1.05] text-brand-cyan">
               HAUSMEISTER TICKET
             </span>
           </div>
         ) : (
           <>
             <span
-              className="font-display text-5xl font-black uppercase leading-none tracking-tighter text-brand-cyan sm:text-6xl"
+              className="font-display text-5xl font-bold uppercase leading-none text-brand-cyan sm:text-6xl"
             >
               10
             </span>
-            <span className="font-display mt-1 text-sm font-bold uppercase tracking-widest text-white/80">
+            <span className="font-display mt-1 text-sm font-bold uppercase text-white/80">
               Stunden · Support
             </span>
           </>
@@ -108,7 +108,7 @@ export function HausmeisterCardVisual({
             {resolvedFeatures.slice(0, 3).map((t) => (
               <li
                 key={t}
-                className="border-l-2 border-brand-cyan py-[2px] pl-[12px] font-sans text-[10px] font-medium uppercase leading-[1.15] tracking-[0.06em] text-white"
+                className="border-l-2 border-brand-cyan py-[2px] pl-[12px] font-sans type-micro font-medium uppercase leading-[1.15] tracking-[0.06em] text-white"
               >
                 {t}
               </li>
@@ -120,7 +120,7 @@ export function HausmeisterCardVisual({
           className={cn(
             "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
             "border-[5px] border-brand-cyan bg-brand-navy px-6 py-4",
-            "font-display text-4xl font-black uppercase tracking-tighter text-brand-cyan sm:text-5xl",
+            "font-display text-4xl font-bold uppercase text-brand-cyan sm:text-5xl",
             "shadow-[0_0_24px_rgba(3,249,249,0.45)]",
             "rotate-[-12deg]",
             "motion-reduce:rotate-0"
@@ -131,7 +131,7 @@ export function HausmeisterCardVisual({
       )}
 
       {mode === "story" && (
-        <div className="absolute bottom-[76px] left-[16px] right-[16px] z-10 text-center font-mono text-[11px] uppercase tracking-[0.18em] text-brand-navy-muted">
+        <div className="absolute bottom-[76px] left-[16px] right-[16px] z-10 text-center font-mono text-xs uppercase tracking-[0.18em] text-brand-navy-muted">
           GÜLTIG FÜR 12 MONATE
         </div>
       )}

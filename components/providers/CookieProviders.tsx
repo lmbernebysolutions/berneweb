@@ -49,8 +49,8 @@ const cookieClassNames = {
     "fixed bottom-0 left-0 right-0 z-[100] flex justify-center p-3 sm:p-4 font-sans",
   bannerContent:
     "w-full max-w-md sm:max-w-2xl md:max-w-6xl mx-auto px-3 py-3 sm:px-5 sm:py-4 flex flex-col gap-3 sm:gap-4 sm:flex-row sm:items-center sm:justify-between rounded-lg border border-white/30 shadow-xl bg-[#283569]",
-  bannerTitle: "font-bold text-white text-xs sm:text-lg uppercase tracking-tight",
-  bannerMessage: "text-[0.7rem] sm:text-sm text-white/90 leading-snug",
+  bannerTitle: "font-display font-bold text-white text-xs sm:text-lg uppercase",
+  bannerMessage: "type-body-sm text-white/90 leading-snug",
   acceptButton:
     "inline-flex items-center justify-center rounded-md px-3 py-2 text-xs sm:px-4 sm:py-2.5 sm:text-sm font-semibold hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2",
   declineButton:
@@ -63,18 +63,18 @@ const cookieClassNames = {
     "fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 font-sans",
   popupContent:
     "rounded-lg border border-white/30 p-6 shadow-xl max-w-md w-full",
-  popupTitle: "font-bold text-white text-lg uppercase tracking-tight",
+  popupTitle: "font-display font-bold text-white text-lg uppercase",
   popupMessage: "text-sm text-white/90",
 
   modalContainer:
     "fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 font-sans",
   modalContent:
     "rounded-lg border border-white/30 p-6 shadow-xl max-w-md w-full",
-  modalTitle: "font-bold text-white text-lg uppercase tracking-tight",
+  modalTitle: "font-display font-bold text-white text-lg uppercase",
   modalMessage: "text-sm text-white/90",
 
   manageCookieContainer: "flex flex-col gap-6 text-white/90",
-  manageCookieTitle: "font-bold text-white text-lg uppercase tracking-tight",
+  manageCookieTitle: "font-display font-bold text-white text-lg uppercase",
   manageCookieMessage: "text-sm",
   manageCookieCategory: "flex items-start justify-between gap-4",
   manageCookieCategoryTitle: "font-semibold text-white",

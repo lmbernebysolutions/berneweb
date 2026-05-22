@@ -24,12 +24,12 @@ export function CtaSection({ headline, subline, ctas, showRatgeberLink = true }:
 
       <div className="relative z-10 mx-auto max-w-4xl min-w-0 overflow-hidden" data-animate>
         <div className="px-4 text-center md:px-6 clip-reveal">
-          <h2 className="font-display text-4xl md:text-6xl lg:text-8xl font-extrabold uppercase tracking-tighter text-white mb-6 drop-shadow-2xl text-balance break-words max-w-full">
+          <h2 className="font-display type-heading-h2 md:type-heading-display font-bold uppercase text-white mb-6 drop-shadow-2xl text-balance break-words max-w-full">
             {headline}
           </h2>
 
           {subline && (
-            <p className="mt-6 text-xl md:text-2xl font-light text-blue-100 max-w-2xl mx-auto">
+            <p className="mt-6 type-lead font-light text-blue-100 max-w-2xl mx-auto">
               {subline}
             </p>
           )}
@@ -38,7 +38,7 @@ export function CtaSection({ headline, subline, ctas, showRatgeberLink = true }:
             <div className="mt-10 flex justify-center">
               <Link
                 href="/ratgeber"
-                className="group inline-flex items-center gap-2 text-sm font-mono uppercase tracking-[0.2em] text-brand-cyan hover:text-brand-cyan/90 transition-colors"
+                className="group inline-flex items-center gap-2 type-body sm:type-lead font-semibold uppercase text-brand-cyan hover:text-brand-cyan/90 transition-colors"
               >
                 Ratgeber: Praxiswissen &amp; Tipps
                 <IconArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" stroke={2} aria-hidden />

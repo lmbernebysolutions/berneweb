@@ -35,7 +35,7 @@ export const SOCIAL_LINKS = [
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/profile.php?id=61576536654995",
+    href: "https://www.facebook.com/bernebysolutions/",
     ariaLabel: "Berneby Solutions auf Facebook",
   },
   {
@@ -45,7 +45,7 @@ export const SOCIAL_LINKS = [
   },
   {
     label: "Google",
-    href: "https://maps.app.goo.gl/YecucGGCgUZTSsys7",
+    href: "https://share.google/8BZjFb7920r2P0ULk",
     ariaLabel: "Berneby Solutions Google Unternehmensprofil",
   },
 ] as const;
@@ -53,7 +53,7 @@ export const SOCIAL_LINKS = [
 export const COMPANY = {
   name: "Berneby Solutions",
   nameShort: "Berneby",
-  legal: "Lennard Meyer & Daniel Hamburg Solutions GbR",
+  legal: "Lennard Meyer und Daniel Hamburg Solutions GbR",
   rechtsform: "GbR",
   phone: "+49 15511 960927",
   phoneDisplay: "+49 15511 960927",
@@ -66,8 +66,8 @@ export const COMPANY = {
   state: "Sachsen",
   country: "Deutschland",
   founders: [
-    { name: "Lennard Meyer", role: "Technische Leitung (51%)", share: "51%" },
-    { name: "Daniel Hamburg", role: "Strategie & Vertrieb (49%)", share: "49%" },
+    { name: "Lennard Meyer", role: "Technische Leitung", share: "51%" },
+    { name: "Daniel Hamburg", role: "Strategie & Vertrieb", share: "49%" },
   ],
   founded: "2025",
   representation: "Jeder Gesellschafter ist einzeln vertretungsberechtigt.",
@@ -267,7 +267,7 @@ export const HOME_STANDARD_SERVICE_KEYS = [
  */
 export const HANDWERK_SPECIALTY = {
   eyebrow: "Spezialfall",
-  title: "Du bist aus dem Handwerk?",
+  title: "Du bist Handwerksbetrieb?",
   description:
     "Zusätzlich zu unseren Standard-Leistungen haben wir Pakete, die speziell für die Anforderungen von Handwerksbetrieben entwickelt wurden – inkl. Klick-Dominator, KI-Empfang und Bewertungs-Automation.",
   bullets: [
@@ -300,7 +300,7 @@ export const PROCESS_STEPS = [
     step: 3,
     title: "Umsetzung",
     description:
-      "Technische Realisierung (Development, Einrichtung, Integration) und Umsetzung der vereinbarten Maßnahmen.",
+      "Development, Einrichtung, Integration und Umsetzung der vereinbarten Maßnahmen.",
   },
   {
     step: 4,
@@ -310,7 +310,7 @@ export const PROCESS_STEPS = [
   },
   {
     step: 5,
-    title: "Übergabe & Betrieb",
+    title: "Übergabe",
     description:
       "Go-Live sowie Aktivierung der Services. Bei laufenden Paketen: Übergang in den Regelbetrieb.",
   },
@@ -647,6 +647,25 @@ export const VALUES = [
 ] as const;
 
 // =============================================================================
+// ÜBER UNS – KENNZAHLEN & STANDORT
+// =============================================================================
+
+export const EINZUGSGEBIET_ORTE = [
+  "Aue-Bad Schlema",
+  "Annaberg-Buchholz",
+  "Stollberg",
+  "Schwarzenberg",
+  "Marienberg",
+  "Erzgebirgskreis",
+  "Schneeberg",
+  "Zwönitz",
+  "Lößnitz",
+  "Oelsnitz",
+  "Zschopau",
+  "Olbernhau",
+] as const;
+
+// =============================================================================
 // KONTAKT – ANFAHRT
 // =============================================================================
 
@@ -675,7 +694,7 @@ export const PAGE_META = {
       "Webseiten, Online-Shops, Microsoft 365, KI-Schulung & IT-Support für KMU im Erzgebirge. Digitaler Hausmeister inklusive Erstgespräch. Jetzt beraten lassen.",
   },
   ueberUns: {
-    title: "Über Berneby Solutions – Lennard Meyer & Daniel Hamburg | Erzgebirge",
+    title: "Über Berneby Solutions – Lennard Meyer und Daniel Hamburg | Erzgebirge",
     description:
       "Lennard Meyer (Tech) und Daniel Hamburg (Strategie) – wir machen lokale Betriebe digital erfolgreich. Aus Aue-Bad Schlema im Erzgebirge.",
   },

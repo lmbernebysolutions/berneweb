@@ -42,7 +42,7 @@ function ImpressumCard({
       className={cn("relative overflow-hidden border p-6 sm:p-8", variant === "highlight" ? CONTAINER_B_STATIC : CONTAINER_A_NO_GLOW)}
     >
       <TechCorners pattern="diagonal" variant="cyan" size="md" />
-      <div className="absolute top-0 right-0 border-b border-l border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-widest text-brand-cyan/70">
+      <div className="absolute top-0 right-0 border-b border-l border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 font-mono type-micro uppercase text-brand-cyan/70">
         {tag}
       </div>
       <div className="flex items-center gap-3 mb-5">
@@ -61,7 +61,7 @@ function ImpressumCard({
 function DataRow({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-3 border-l-2 border-brand-cyan/20 bg-white/[0.02] px-4 py-3">
-      <span className="font-mono text-[0.6rem] uppercase tracking-widest text-white/40 shrink-0 sm:mt-0.5 sm:w-32">{label}</span>
+      <span className="font-mono type-micro uppercase text-white/40 shrink-0 sm:mt-0.5 sm:w-32">{label}</span>
       <span className="text-sm text-white/80">{value}</span>
     </div>
   );
@@ -80,11 +80,11 @@ export default function ImpressumPage() {
           </div>
           <div className="relative w-fit">
             <TechCorners pattern="diagonal" variant="cyan" size="lg" animate />
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-tight px-5 py-2">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl uppercase text-white leading-tight px-5 py-2">
               Impressum
             </h1>
           </div>
-          <p className="mt-3 font-mono text-[0.7rem] uppercase tracking-widest text-white/40">
+          <p className="mt-3 font-mono type-micro uppercase text-white/40">
             Angaben gemäß § 5 DDG
           </p>
         </div>
@@ -231,10 +231,10 @@ export default function ImpressumPage() {
           {/* Haftungshinweis */}
           <div className={cn("relative overflow-hidden p-6 sm:p-8", CONTAINER_A_NO_GLOW)}>
             <TechCorners pattern="diagonal" variant="cyan" size="sm" />
-            <div className="absolute top-0 right-0 border-b border-l border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-widest text-brand-cyan/70">
+            <div className="absolute top-0 right-0 border-b border-l border-brand-cyan/20 bg-brand-cyan/5 px-2.5 py-1 font-mono type-micro uppercase text-brand-cyan/70">
               HAFTUNGSAUSSCHLUSS
             </div>
-            <p className="font-mono text-[0.65rem] uppercase tracking-widest text-brand-cyan/60 mb-4">
+            <p className="font-mono text-[0.75rem] uppercase tracking-widest text-brand-cyan/60 mb-4">
               Haftung für Inhalte & Links
             </p>
             <div className="space-y-3 text-xs text-white/50 leading-relaxed">

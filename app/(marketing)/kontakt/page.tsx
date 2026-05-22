@@ -271,7 +271,7 @@ export default function KontaktPage() {
                       )}
                     >
                       <Icon className="size-5 sm:size-7 text-brand-cyan relative z-10" stroke={1.5} />
-                      <span className="text-[0.6rem] font-bold uppercase tracking-widest text-brand-navy-muted relative z-10 text-center leading-tight">
+                      <span className="type-micro font-bold uppercase text-brand-navy-muted relative z-10 text-center leading-tight">
                         {link.label}
                       </span>
                     </a>

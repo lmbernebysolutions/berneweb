@@ -124,7 +124,7 @@ export function ChatSection({
             <p className="text-white/80 mb-4">
               Um den Chat zu nutzen, bestätigen Sie bitte die Cookie-Einstellungen.
             </p>
-            <Button type="button" variant="outline-light" size="sm" onClick={openPreferences}>
+            <Button type="button" variant="outline-light" size="sm" onClick={openPreferences} className="font-display tracking-[0.05em]">
               Cookie-Einstellungen
             </Button>
           </div>

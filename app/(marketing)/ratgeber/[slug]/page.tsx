@@ -87,7 +87,11 @@ export default async function RatgeberArticlePage({
 
   return (
     <>
-      <Section bg="subtle" className="pt-28 sm:pt-32">
+      <Section
+        bg="subtle"
+        className="pt-20 sm:pt-24 md:pt-24 lg:pt-24 min-[1920px]:pt-32"
+        contentClassName="pt-4 sm:pt-5 md:pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32"
+      >
         <div className="mb-8">
           <BreadcrumbNav items={breadcrumbItems} />
         </div>

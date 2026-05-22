@@ -13,7 +13,7 @@ export function Screen1Hook() {
       {/* Hero Section */}
       <div className="flex flex-col gap-4 pt-0">
         {/* Headline */}
-        <h1 className="text-4xl sm:text-5xl font-display font-black uppercase tracking-tight leading-[0.95] text-white">
+        <h1 className="text-4xl sm:text-5xl font-display font-bold uppercase leading-[0.95] text-white">
           WO VERLIERT{" "}
           <span className="text-brand-cyan">DEIN BETRIEB</span>
           <br />

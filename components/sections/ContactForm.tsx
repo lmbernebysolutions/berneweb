@@ -49,7 +49,7 @@ export function ContactForm() {
         <TechCorners pattern="all" variant="cyan" size="md" />
 
         <BLogo size={64} className="opacity-90" />
-        <div className="mt-2 font-mono text-[0.6rem] text-brand-cyan/80 uppercase tracking-widest">
+        <div className="mt-2 font-mono type-micro text-brand-cyan/80 uppercase">
           STATUS: GESENDET
         </div>
         <h3 className="mt-4 text-xl font-extrabold uppercase tracking-wide">Nachricht gesendet</h3>
