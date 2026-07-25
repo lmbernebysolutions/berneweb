@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 const CLUSTER_LABELS: Record<string, string> = {
   "digitalisierung-handwerk": "Digitalisierung Handwerk",
-  "it-service-kmu": "IT-Service KMU",
+  "it-service-handwerk": "IT-Service Handwerk",
   "ki-im-handwerk": "KI im Handwerk",
 };
 
@@ -33,6 +33,7 @@ export default function RatgeberPage() {
         contentClassName="pt-4 sm:pt-5 md:pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32"
       >
         <SectionHeading
+          as="h1"
           number="01"
           overline="Ratgeber"
           title="IT & DIGITALISIERUNG"

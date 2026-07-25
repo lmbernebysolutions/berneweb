@@ -149,7 +149,7 @@ const ORGANIZATION_SCHEMA = {
       url: SITE_URL,
       publisher: { "@id": `${SITE_URL}/#organization` },
       inLanguage: "de-DE",
-      dateModified: "2026-02-13",
+      dateModified: new Date().toISOString().slice(0, 10),
     },
   ],
 };

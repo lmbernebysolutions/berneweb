@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { Section } from "@/components/layout/Section";
 import { BreadcrumbNav } from "@/components/sections/breadcrumb-nav";
@@ -10,6 +11,7 @@ import { IconArrowRight } from "@tabler/icons-react";
 import {
   getArticleBySlug,
   getAllArticleSlugs,
+  RATGEBER_DEFAULT_AUTHOR,
 } from "@/lib/content/ratgeber";
 import { generateBreadcrumbSchema, generateArticleSchema } from "@/lib/seo/schema";
 import { COMPANY, SITE_URL } from "@/lib/constants";
@@ -51,6 +53,16 @@ function formatDate(dateStr: string): string {
   return `${months[d.getMonth()]} ${d.getFullYear()}`;
 }
 
+function resolveAuthor(article: NonNullable<ReturnType<typeof getArticleBySlug>>) {
+  const author = article.author ?? RATGEBER_DEFAULT_AUTHOR;
+  return {
+    name: author.name,
+    role: author.role,
+    url: author.url,
+    image: author.image ?? RATGEBER_DEFAULT_AUTHOR.image,
+  };
+}
+
 export default async function RatgeberArticlePage({
   params,
 }: {
@@ -59,6 +71,8 @@ export default async function RatgeberArticlePage({
   const { slug } = await params;
   const article = getArticleBySlug(slug);
   if (!article) notFound();
+
+  const author = resolveAuthor(article);
 
   const breadcrumbItems = [
     { name: "Home", url: "/" },
@@ -80,8 +94,8 @@ export default async function RatgeberArticlePage({
     description: article.description,
     datePublished: article.datePublished,
     dateModified: article.dateModified,
-    authorName: "Lennard Meyer",
-    authorUrl: `${SITE_URL}/ueber-uns`,
+    authorName: author.name,
+    authorUrl: author.url.startsWith("http") ? author.url : `${SITE_URL}${author.url}`,
     articleUrl: `${SITE_URL}/ratgeber/${article.slug}`,
   });
 
@@ -100,18 +114,54 @@ export default async function RatgeberArticlePage({
           <header className="mb-12">
             <div className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan">
               {article.cluster === "digitalisierung-handwerk" && "Digitalisierung Handwerk"}
-              {article.cluster === "it-service-kmu" && "IT-Service KMU"}
+              {article.cluster === "it-service-handwerk" && "IT-Service Handwerk"}
               {article.cluster === "ki-im-handwerk" && "KI im Handwerk"}
             </div>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-white">
               {article.title}
             </h1>
-            <p className="mt-4 text-lg text-white/70">
-              {article.description}
-            </p>
-            <p className="mt-4 text-sm text-brand-navy-muted">
-              Zuletzt aktualisiert: {formatDate(article.dateModified)}
-            </p>
+
+            <div className="mt-6">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan">
+                Key Takeaways
+              </p>
+              <ul className="space-y-2 text-base text-white/80 sm:text-lg">
+                {article.keyTakeaways.map((takeaway) => (
+                  <li key={takeaway} className="flex gap-3 leading-relaxed">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand-cyan" aria-hidden />
+                    <span>{takeaway}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+              <Link
+                href={author.url}
+                className="group inline-flex items-center gap-3 rounded-sm border border-white/15 bg-white/[0.03] px-3 py-2 transition-colors hover:border-brand-cyan/40 hover:bg-brand-cyan/5"
+              >
+                {author.image ? (
+                  <span className="relative size-10 shrink-0 overflow-hidden rounded-[2px] ring-1 ring-white/20">
+                    <Image
+                      src={author.image}
+                      alt={`Porträt ${author.name}`}
+                      fill
+                      className="object-cover"
+                      sizes="40px"
+                    />
+                  </span>
+                ) : null}
+                <span className="min-w-0 text-left">
+                  <span className="block text-sm font-bold text-white group-hover:text-brand-cyan">
+                    {author.name}
+                  </span>
+                  <span className="block text-xs text-white/60">{author.role}</span>
+                </span>
+              </Link>
+              <p className="text-sm text-brand-navy-muted">
+                Zuletzt aktualisiert: {formatDate(article.dateModified)}
+              </p>
+            </div>
           </header>
 
           <div
@@ -138,7 +188,7 @@ export default async function RatgeberArticlePage({
                 <Button
                   asChild
                   variant="outline"
-                  className="w-full max-w-full justify-start border-brand-cyan/30 text-left normal-case tracking-normal whitespace-normal break-words leading-snug hover:bg-brand-cyan/10"
+                  className="w-full max-w-full justify-start border-brand-cyan/30 text-left normal-case tracking-normal whitespace-normal break-words leading-snug hover:bg-brand-cyan hover:!text-white"
                 >
                   <Link href={`/ratgeber/${article.pillarSlug}`}>
                     <span className="min-w-0">{pillarArticle.title}</span>

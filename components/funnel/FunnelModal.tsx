@@ -50,7 +50,7 @@ const QUIZ_SCREENS = [
         value: "sichtbarkeit" as PainPointKey,
         label: "Wir sind regional unsichtbar — Mitbewerber schnappen uns Aufträge weg.",
         sublabel: "→ Lokales Marketing",
-        meta: { label: "die fehlende regionale Sichtbarkeit", product: "Klick-Dominator" },
+        meta: { label: "die fehlende regionale Sichtbarkeit", product: "Lokale Sichtbarkeit" },
       },
       {
         value: "it-chaos" as PainPointKey,

@@ -238,10 +238,10 @@ export const OHNE_UNS_ROWS = [
 ] as const;
 
 export const MIT_UNS_ROWS = [
-  { label: "Sichtbarkeit", val: "Top-Platzierung & Seite 1 Fokus", gain: "+300%" },
-  { label: "Kundenkontakt", val: "KI-Empfang nimmt 24/7 Anrufe an", gain: "100%" },
-  { label: "Online Reputation", val: "Automatisierte 5-Sterne-Systeme", gain: "Max" },
-  { label: "Außendarstellung", val: "Premium Design & Branding", gain: "High" },
+  { label: "Sichtbarkeit", val: "Bei Google gefunden werden", gain: "Klar" },
+  { label: "Kundenkontakt", val: "KI-Empfang nimmt 24/7 Anrufe an", gain: "Ruhig" },
+  { label: "Online Reputation", val: "Systematisch um Bewertungen bitten (ohne zu nerven)", gain: "Ehrlich" },
+  { label: "Außendarstellung", val: "Sauberes Design, das zu euch passt", gain: "Passend" },
 ] as const;
 
 // =============================================================================
@@ -269,12 +269,12 @@ export const HANDWERK_SPECIALTY = {
   eyebrow: "Spezialfall",
   title: "Du bist Handwerksbetrieb?",
   description:
-    "Zusätzlich zu unseren Standard-Leistungen haben wir Pakete, die speziell für die Anforderungen von Handwerksbetrieben entwickelt wurden – inkl. Klick-Dominator, KI-Empfang und Bewertungs-Automation.",
+    "Zusätzlich zu unseren Standard-Leistungen haben wir Pakete, die speziell für Handwerksbetriebe gemacht sind – klarer Auftritt, KI-Empfang und Hilfe bei Bewertungen.",
   bullets: [
-    "Lokale Landingpages für 50+ Orte",
+    "Klarer Auftritt für die Orte, in denen ihr wirklich arbeitet",
     "KI-Telefonassistent für verpasste Anrufe",
-    "Google-Bewertungsmanagement",
-    "Klick-Dominator für lokale Sichtbarkeit",
+    "Systematisch um Bewertungen bitten (ohne zu nerven)",
+    "Bei Google gefunden werden",
   ],
   cta: { label: "Handwerks-Pakete ansehen", href: "/handwerk" },
 } as const;
@@ -286,25 +286,25 @@ export const HANDWERK_SPECIALTY = {
 export const PROCESS_STEPS = [
   {
     step: 1,
-    title: "Discovery",
+    title: "Kennenlernen",
     description:
-      "Aufnahme von Ist-Situation, Zielen und Pain Points. Kostenloses Erstgespräch – unverbindlich.",
+      "Aufnahme von Ist-Situation, Zielen und was im Alltag hakt. Kostenloses Erstgespräch – unverbindlich.",
   },
   {
     step: 2,
     title: "Konzeption",
     description:
-      "Ausarbeitung eines schlanken Konzepts – z. B. Website-Struktur, Automatisierungs-Ansatz, Leistungsumfang.",
+      "Ausarbeitung eines schlanken Konzepts – z. B. Website-Struktur, was wir entlasten können, Leistungsumfang.",
   },
   {
     step: 3,
     title: "Umsetzung",
     description:
-      "Development, Einrichtung, Integration und Umsetzung der vereinbarten Maßnahmen.",
+      "Einrichtung, Integration und Umsetzung der vereinbarten Maßnahmen.",
   },
   {
     step: 4,
-    title: "Review",
+    title: "Durchsicht",
     description:
       "Gemeinsame Durchsicht mit Ihnen, Feinschliff und Funktionsprüfung. Sie geben Feedback, wir setzen um.",
   },
@@ -332,9 +332,9 @@ export const FAQ_ITEMS = [
       "Nein. Handwerk ist unser Spezialgebiet, aber wir unterstützen ebenso Praxen, Dienstleister, Einzelhandel und weitere KMU im Erzgebirge und darüber hinaus.",
   },
   {
-    question: "Was ist der Klick-Dominator?",
+    question: "Wie werdet ihr bei Google besser gefunden?",
     answer:
-      "Ein Paket zur Steigerung der lokalen Sichtbarkeit: moderne Website, strukturierte Inhalte und gezielte lokale Landingpages, damit Ihr Betrieb im relevanten Umkreis besser gefunden wird.",
+      "Mit einer klaren Website, sauber strukturierten Inhalten und einem Auftritt für die Orte, in denen ihr wirklich arbeitet – damit Interessenten euch im Umkreis finden.",
   },
   {
     question: "Wie funktioniert die KI-Telefonassistenz?",
@@ -349,7 +349,7 @@ export const FAQ_ITEMS = [
   {
     question: "Wie lange dauert eine Website?",
     answer:
-      "Ein One-Pager ist in 1–2 Wochen fertig. Größere Projekte mit Klick-Dominator (lokale Landingpages) dauern ca. 3–4 Wochen.",
+      "Ein One-Pager ist in 1–2 Wochen fertig. Größere Projekte mit klarem Auftritt für eure Orte dauern ca. 3–4 Wochen.",
   },
   {
     question: "Was ist der Digitale Hausmeister?",
@@ -429,31 +429,31 @@ export const CRAFT_PACKAGES = [
 
 export const CRAFT_MODULES = [
   {
-    name: "Klick-Dominator",
+    name: "Lokale Sichtbarkeit",
     price: "Erstgespräch",
     description:
-      "Moderne Website mit gezielten lokalen Landingpages – Ihr Betrieb wird im relevanten Umkreis besser gefunden.",
+      "Klarer Auftritt für die Orte, in denen ihr wirklich arbeitet – damit Interessenten euch bei Google finden.",
     icon: "IconMapPin",
   },
   {
     name: "KI-Empfang",
     price: "Erstgespräch",
     description:
-      "KI-gestützter digitaler Empfang: nimmt Anfragen (Telefon, Formulare) entgegen, vorsortiert und dokumentiert.",
+      "Nimmt Anrufe und Formulare entgegen, wenn ihr auf der Baustelle seid – Name, Anliegen und Rückrufnummer landen bei euch.",
     icon: "IconPhoneCall",
   },
   {
-    name: "5-Sterne-Plus",
+    name: "Bewertungen",
     price: "Erstgespräch",
     description:
-      "Bewertungs- und Reputationsmanagement: strukturierter Umgang mit Online-Bewertungen, Anstoß neuer Bewertungen.",
+      "Systematisch um Bewertungen bitten (ohne zu nerven) – und sauber mit Rückmeldungen umgehen.",
     icon: "IconStar",
   },
   {
     name: "Kennzahlen-Live",
     price: "Im Erstgespräch",
     description:
-      "Einfacher Zugriff auf die wichtigsten Kennzahlen (Website-Besucher, Anfragen, Bewertungen) in einem klaren Dashboard.",
+      "Einfacher Zugriff auf die wichtigsten Zahlen (Website-Besucher, Anfragen, Bewertungen) in einem klaren Überblick.",
     icon: "IconChartBar",
   },
 ] as const;
@@ -478,7 +478,7 @@ export const SERVICES = {
       },
       {
         title: "Landing Page",
-        description: "Conversion-optimierte Seite für Kampagnen und Aktionen.",
+        description: "Damit Anrufe und Anfragen klar ankommen – Seite für Kampagnen und Aktionen.",
         price: "Erstgespräch",
       },
     ],
@@ -488,7 +488,7 @@ export const SERVICES = {
     items: [
       {
         title: "Shopify Shop",
-        description: "Professioneller Online-Shop mit Shopify – schnell, skalierbar, sicher.",
+        description: "Professioneller Online-Shop mit Shopify – schnell, wächst mit, sicher.",
         price: "Erstgespräch",
       },
       {
@@ -580,13 +580,13 @@ export const WARUM_BERNEBY = [
 export const VISION_MISSION = [
   {
     label: "Vision",
-    headline: "Digitalisierung als strategischer Vorteil",
-    body: "Die Digitalisierung des regionalen Mittelstands von einer Hürde in einen strategischen Vorteil verwandeln – durch ehrliche Beratung, messbare Ergebnisse und modernste Technologie.",
+    headline: "Weniger Chaos, mehr echte Anfragen",
+    body: "Lokale Betriebe im Erzgebirge sollen online klar auftreten – mit ehrlicher Beratung und Lösungen, die im Alltag wirklich entlasten.",
   },
   {
     label: "Mission",
-    headline: "Sichtbar machen. Zeitfresser automatisieren.",
-    body: "Lokale Betriebe im Erzgebirge online sichtbar machen und zeitfressende Prozesse automatisieren – mit Web, SEO, IT-Service und KI aus einer Hand.",
+    headline: "Lösungen aus einer Hand",
+    body: "Lokale Betriebe im Erzgebirge online sichtbar machen und Zeitfresser abnehmen – mit Web, SEO, IT-Service und KI aus einer Hand.",
   },
 ] as const;
 

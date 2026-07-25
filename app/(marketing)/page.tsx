@@ -77,47 +77,26 @@ const HOME_SERVICE_ICONS = {
 export default function Home() {
   return (
     <>
-      {/* Mobile */}
-      <div className="sm:hidden">
-        <Hero
-          bergVariant="home"
-          headline="DEIN DIGITALER"
-          headlineLine2="WERKZEUG-"
-          headlineLine3="KASTEN"
-          accentText={["WERKZEUG-", "WERKZEUG", "KASTEN"]}
-          ultraNarrowHeadlineLines={["DEIN DIGITALER", "WERKZEUG", "KASTEN"]}
-          subline="Webseiten, Online-Shops, IT-Support, Marketing und KI-Telefon\naus einer Hand für KMU im Erzgebirge."
-          ctas={[
-            { label: "Erstgespräch sichern", mobileLabel: "Erstgespräch", href: "/kontakt", variant: "default" },
-            { label: "Alle Leistungen", href: "/leistungen", variant: "outline" },
-          ]}
-          audiencePill={{
-            label: "Handwerksbetrieb? Spezielle Pakete für dich",
-            mobileLabel: "Für Handwerk: Spezialpakete",
-            href: "/handwerk",
-          }}
-          variant="navy"
-        />
-      </div>
-      {/* Desktop */}
-      <div className="hidden sm:block">
-        <Hero
-          bergVariant="home"
-          headline="DEIN DIGITALER WERKZEUGKASTEN"
-          accentText="WERKZEUGKASTEN"
-          subline="Webseiten, Online-Shops, IT-Support, Marketing und KI-Telefon\naus einer Hand für KMU im Erzgebirge."
-          ctas={[
-            { label: "Erstgespräch sichern", href: "/kontakt", variant: "default" },
-            { label: "Alle Leistungen", href: "/leistungen", variant: "outline" },
-          ]}
-          audiencePill={{
-            label: "Handwerksbetrieb? Spezielle Pakete für dich",
-            mobileLabel: "Für Handwerk: Spezialpakete",
-            href: "/handwerk",
-          }}
-          variant="navy"
-        />
-      </div>
+      <Hero
+        bergVariant="home"
+        headline="DEIN DIGITALER"
+        headlineLine2="WERKZEUG-"
+        headlineLine3="KASTEN"
+        desktopHeadline="DEIN DIGITALER WERKZEUGKASTEN"
+        accentText={["WERKZEUG-", "WERKZEUG", "KASTEN", "WERKZEUGKASTEN"]}
+        ultraNarrowHeadlineLines={["DEIN DIGITALER", "WERKZEUG", "KASTEN"]}
+        subline="Webseiten, Online-Shops, IT-Support, Marketing und KI-Telefon\naus einer Hand für KMU im Erzgebirge."
+        ctas={[
+          { label: "Erstgespräch sichern", mobileLabel: "Erstgespräch", href: "/kontakt", variant: "default" },
+          { label: "Alle Leistungen", href: "/leistungen", variant: "outline" },
+        ]}
+        audiencePill={{
+          label: "Handwerksbetrieb? Spezielle Pakete für dich",
+          mobileLabel: "Für Handwerk: Spezialpakete",
+          href: "/handwerk",
+        }}
+        variant="navy"
+      />
 
       <TrustBar items={TRUST_BAR} />
 

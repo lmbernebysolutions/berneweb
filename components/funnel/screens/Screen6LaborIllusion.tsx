@@ -9,7 +9,10 @@ interface LaborStep {
 
 const LABOR_STEPS: LaborStep[] = [
   { delay: 500, text: "> Initialisiere regionale Marktdaten..." },
-  { delay: 2200, text: "> Gleiche Betriebsstruktur ab (Ø 75 Tage Verlust/Jahr, HWK 2025)..." },
+  {
+    delay: 2200,
+    text: `> Gleiche Betriebsstruktur ab (Ø 75 Tage Verlust/Jahr, HWK ${new Date().getFullYear()})...`,
+  },
   { delay: 4100, text: "> Kalkuliere Marktdruck: >25% der Inhaber im Erzgebirge über 60 (ZDH)..." },
   { delay: 6000, text: "✓ Individueller Wachstumsplan erfolgreich generiert." },
 ];

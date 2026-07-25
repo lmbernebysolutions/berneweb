@@ -79,7 +79,7 @@ export default function HandwerkPage() {
         bergVariant="handwerk"
         headline="AUFTRÄGE VOLL? BÜRO LEER?"
         accentText="BÜRO LEER?"
-        subline="Digital-Partner für Handwerker im Erzgebirge. Website, lokale\nLandingpages, KI-Telefon – handfest, transparent, aus einer Hand."
+        subline="Digital-Partner für Handwerker im Erzgebirge. Website, klarer\nAuftritt vor Ort, KI-Telefon – handfest, transparent, aus einer Hand."
         ctas={[
           { label: "Projekt anfragen", href: "/kontakt", variant: "default" },
           { label: "Pakete ansehen", href: "#pakete", variant: "outline" },
@@ -95,7 +95,7 @@ export default function HandwerkPage() {
           number="02"
           overline="Das Problem"
           title="Risiko: Stillstand"
-          subtitle="Laut Google besuchen 76% der Nutzer, die lokal suchen, innerhalb von 24 Stunden ein Geschäft. Mit unseren 50+ Landingpages sorgen wir dafür, dass du gefunden wirst."
+          subtitle="Laut Google besuchen 76% der Nutzer, die lokal suchen, innerhalb von 24 Stunden ein Geschäft. Wir sorgen dafür, dass du bei Google gefunden wirst – klarer Auftritt für die Orte, in denen ihr wirklich arbeitet."
           align="left"
           light
         />
@@ -263,7 +263,7 @@ export default function HandwerkPage() {
           packages={CRAFT_PACKAGES}
           comparisonRows={[
             { label: "Professionelle Website", inPackages: ["STARTKLAR", "SICHTBAR", "PARTNER"] },
-            { label: "50+ Landingpages", inPackages: ["SICHTBAR", "PARTNER"] },
+            { label: "Klarer Auftritt für eure Orte", inPackages: ["SICHTBAR", "PARTNER"] },
             { label: "KI-Telefonassistent", inPackages: ["PARTNER"] },
           ]}
         />

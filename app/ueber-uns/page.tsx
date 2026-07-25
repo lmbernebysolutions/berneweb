@@ -23,6 +23,7 @@ import {
   SOCIAL_LINKS,
   WARUM_BERNEBY,
   VISION_MISSION,
+  COMPANY,
 } from "@/lib/constants";
 
 const UEBER_UNS_SOCIAL_ICONS = {
@@ -64,7 +65,7 @@ export default function UeberUnsPage() {
           number="02"
           overline="Unser Versprechen"
           title="DIGITALE PRÄSENZ"
-          subtitle="Unsere Philosophie für Ihren Erfolg – lokal verwurzelt, digital visionär."
+          subtitle="Unsere Philosophie für Ihren Erfolg – lokal verwurzelt. Weniger Chaos, mehr echte Anfragen."
           align="left"
           light
         />
@@ -99,7 +100,7 @@ export default function UeberUnsPage() {
           number="03"
           overline="Das Team"
           title="Technik trifft Strategie"
-          subtitle="Eine Kombination, die funktioniert – zwei Perspektiven für ganzheitliche Lösungen."
+          subtitle="Eine Kombination, die funktioniert – zwei Perspektiven für Lösungen aus einer Hand."
           align="left"
           light
         />
@@ -232,7 +233,7 @@ export default function UeberUnsPage() {
                 name: m.name,
                 jobTitle: m.role,
               })),
-              foundingDate: "2026",
+              foundingDate: COMPANY.founded,
               foundingLocation: {
                 "@type": "Place",
                 name: "Aue-Bad Schlema (Aue), Erzgebirgskreis",

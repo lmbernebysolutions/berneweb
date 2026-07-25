@@ -25,7 +25,7 @@ const BRANCHEN: Branche[] = [
     name: "Elektriker",
     slug: "elektriker",
     description:
-      "Elektriker im Erzgebirge stehen vor der Herausforderung, bei lokalen Suchanfragen wie „Elektriker Annaberg“ oder „Elektroinstallation Marienberg“ gefunden zu werden. 76% der Nutzer, die lokal suchen, besuchen innerhalb von 24 Stunden ein Geschäft – ohne professionelle Website und lokale SEO existieren Sie für diese Kunden praktisch nicht. Berneby Solutions unterstützt Elektrikermeister und -betriebe mit Websites, 50+ Landingpages und KI-Telefonassistent. Aus Aue-Bad Schlema für das gesamte Erzgebirge.",
+      "Elektriker im Erzgebirge stehen vor der Herausforderung, bei lokalen Suchanfragen wie „Elektriker Annaberg“ oder „Elektroinstallation Marienberg“ gefunden zu werden. 76% der Nutzer, die lokal suchen, besuchen innerhalb von 24 Stunden ein Geschäft – ohne klaren Auftritt und lokale Sichtbarkeit existieren Sie für diese Kunden praktisch nicht. Berneby Solutions unterstützt Elektrikermeister und -betriebe mit Websites, echter Sichtbarkeit an euren Standorten und KI-Telefonassistent. Aus Aue-Bad Schlema für das gesamte Erzgebirge.",
     typischeProbleme: [
       {
         problem: "Auf der Baustelle – Anrufe gehen ins Leere",
@@ -35,19 +35,19 @@ const BRANCHEN: Branche[] = [
       {
         problem: "Google kennt nur die Konkurrenz",
         description:
-          "Ohne Website und lokale SEO ranken andere für „Elektriker Aue“ oder „Elektro Stollberg“. Sie sind unsichtbar – obwohl Sie vor Ort sind.",
+          "Ohne Website und lokale Sichtbarkeit erscheinen andere für „Elektriker Aue“ oder „Elektro Stollberg“. Sie sind unsichtbar – obwohl Sie vor Ort sind.",
       },
       {
         problem: "Bewertungen fehlen oder sind veraltet",
         description:
-          "Kunden vertrauen Google-Bewertungen. Ohne aktives Bewertungsmanagement bleiben Sie hinter der Konkurrenz zurück.",
+          "Kunden vertrauen Google-Bewertungen. Ohne systematisches Nachfragen bleiben Sie hinter der Konkurrenz zurück.",
       },
     ],
     loesungen: [
-      "50+ lokale Landingpages für jeden Ort im Einzugsgebiet",
+      "Echte Sichtbarkeit an den Orten, in denen ihr wirklich arbeitet",
       "KI-Telefonassistent für 24/7 Anrufannahme",
-      "Google Business Profil optimiert",
-      "Bewertungsmanagement (Review-Radar)",
+      "Google-Unternehmensprofil klar und vollständig",
+      "Systematisch um Bewertungen bitten (ohne zu nerven)",
     ],
     suchbegriffe: ["Elektriker Erzgebirge", "Elektroinstallation", "Elektrikermeister"],
     preisRelevant: "Unsere Pakete werden im Erstgespräch passend zu Umfang, Zielen und Betrieb eingeordnet.",
@@ -55,12 +55,12 @@ const BRANCHEN: Branche[] = [
       {
         question: "Wie werden Website und Leistungen für Elektriker eingeordnet?",
         answer:
-          "Im Erstgespräch klären wir Ihren Bedarf und empfehlen das passende Paket – vom kompakten Einstieg bis zur umfassenden Lösung mit lokalen Landingpages und KI-Telefonassistent.",
+          "Im Erstgespräch klären wir Ihren Bedarf und empfehlen das passende Paket – vom kompakten Einstieg bis zur umfassenden Lösung mit klarer Sichtbarkeit an euren Orten und KI-Telefonassistent.",
       },
       {
         question: "Wie lange dauert die Umsetzung?",
         answer:
-          "Ein One-Pager ist in 1–2 Wochen fertig. Das Meisterbetrieb-Paket mit 50+ Landingpages dauert etwa 4 Wochen bis Go-Live.",
+          "Ein One-Pager ist in 1–2 Wochen fertig. Größere Projekte mit Auftritt für eure Standorte dauern etwa 4 Wochen bis Go-Live.",
       },
       {
         question: "Funktioniert der KI-Telefonassistent für Notdienste?",
@@ -73,7 +73,7 @@ const BRANCHEN: Branche[] = [
     name: "Dachdecker",
     slug: "dachdecker",
     description:
-      "Dachdecker im Erzgebirge arbeiten oft auf dem Dach – wenn das Telefon klingelt, können sie nicht rangehen. Gleichzeitig suchen Hausbesitzer nach „Dachdecker Marienberg“ oder „Dachsanierung Annaberg“. Ohne Website und lokale SEO gehen Aufträge an die Konkurrenz. Berneby Solutions bringt Dachdeckerbetriebe mit professionellen Websites, 50+ Landingpages und KI-Telefonassistent ins Netz. Festpreis, 4 Wochen bis Go-Live, aus dem Erzgebirge.",
+      "Dachdecker im Erzgebirge arbeiten oft auf dem Dach – wenn das Telefon klingelt, können sie nicht rangehen. Gleichzeitig suchen Hausbesitzer nach „Dachdecker Marienberg“ oder „Dachsanierung Annaberg“. Ohne Website und lokale Sichtbarkeit gehen Aufträge an die Konkurrenz. Berneby Solutions bringt Dachdeckerbetriebe mit professionellen Websites, echter Sichtbarkeit an euren Standorten und KI-Telefonassistent ins Netz. Klar geplant, aus dem Erzgebirge.",
     typischeProbleme: [
       {
         problem: "Auf dem Dach – kein Empfang, keine Zeit",
@@ -83,19 +83,19 @@ const BRANCHEN: Branche[] = [
       {
         problem: "Sichtbarkeit bei Sturm- und Hagelschäden",
         description:
-          "Nach Unwetter suchen viele nach Dachdeckern. Wer nicht bei Google steht, bekommt keine Anfragen.",
+          "Nach Unwetter suchen viele nach Dachdeckern. Wer nicht bei Google steht, bekommt keine qualifizierten Anfragen.",
       },
       {
         problem: "Angebote und Verwaltung neben der Arbeit",
         description:
-          "Angebote schreiben, Termine koordinieren – das frisst Zeit. Ohne digitale Prozesse bleibt wenig für die eigentliche Arbeit.",
+          "Angebote schreiben, Termine koordinieren – das frisst Zeit. Ohne klare Abläufe bleibt wenig für die eigentliche Arbeit.",
       },
     ],
     loesungen: [
-      "Website mit lokalen Landingpages für jeden Ort",
+      "Website mit klarem Auftritt für eure Orte",
       "KI-Telefonassistent nimmt Anrufe entgegen",
-      "Google Business Profil für lokale Sichtbarkeit",
-      "Bewertungsmanagement für mehr 5-Sterne-Bewertungen",
+      "Google-Unternehmensprofil für lokale Sichtbarkeit",
+      "Systematisch um Bewertungen bitten (ohne zu nerven)",
     ],
     suchbegriffe: ["Dachdecker Erzgebirge", "Dachsanierung", "Dachdecker Marienberg"],
     preisRelevant: "Wir empfehlen die passende Paketstufe im Erstgespräch – transparent und nachvollziehbar.",
@@ -103,7 +103,7 @@ const BRANCHEN: Branche[] = [
       {
         question: "Was bringt eine Website für Dachdecker?",
         answer:
-          "76% der Nutzer, die lokal suchen, besuchen innerhalb von 24 Stunden ein Geschäft. Mit 50+ Landingpages ranken Sie für „Dachdecker [Ort]“ in Ihrer Region und bekommen mehr Anfragen.",
+          "76% der Nutzer, die lokal suchen, besuchen innerhalb von 24 Stunden ein Geschäft. Mit klarem Auftritt an euren Standorten werdet ihr für „Dachdecker [Ort]“ gefunden – und bekommt mehr qualifizierte Anfragen.",
       },
       {
         question: "Kann der KI-Telefonassistent Notfälle erkennen?",
@@ -116,7 +116,7 @@ const BRANCHEN: Branche[] = [
     name: "Sanitär & Heizung",
     slug: "sanitaer-heizung",
     description:
-      "Sanitär- und Heizungsbetriebe im Erzgebirge werden bei „Installateur Stollberg“ oder „Heizungsbau Schwarzenberg“ gesucht. Ohne Website und lokale SEO bleiben Sie unsichtbar. Berneby Solutions unterstützt mit professionellen Websites, 50+ Landingpages und KI-Telefonassistent – damit Sie Anrufe nicht verpassen, wenn Sie bei Kunden sind. Aus Aue-Bad Schlema für Sanitär, Heizung und Klempner im gesamten Erzgebirgskreis.",
+      "Sanitär- und Heizungsbetriebe im Erzgebirge werden bei „Installateur Stollberg“ oder „Heizungsbau Schwarzenberg“ gesucht. Ohne Website und lokale Sichtbarkeit bleiben Sie unsichtbar. Berneby Solutions unterstützt mit professionellen Websites, echter Sichtbarkeit an euren Standorten und KI-Telefonassistent – damit Sie Anrufe nicht verpassen, wenn Sie bei Kunden sind. Aus Aue-Bad Schlema für Sanitär, Heizung und Klempner im gesamten Erzgebirgskreis.",
     typischeProbleme: [
       {
         problem: "Bei Kunden – Anrufe gehen daneben",
@@ -131,14 +131,14 @@ const BRANCHEN: Branche[] = [
       {
         problem: "Angebote und Abrechnung am Abend",
         description:
-          "Bürokram nach Feierabend kostet Zeit. Digitale Prozesse entlasten – von der Website bis zur Terminverwaltung.",
+          "Bürokram nach Feierabend kostet Zeit. Klare Abläufe schaffen Entlastung – von der Website bis zur Terminverwaltung.",
       },
     ],
     loesungen: [
-      "50+ Landingpages für Sanitär, Heizung, Klempner",
+      "Echte Sichtbarkeit für Sanitär, Heizung, Klempner an euren Orten",
       "KI-Telefonassistent für 24/7 Anrufannahme",
-      "Google Business Profil optimiert",
-      "Bewertungsmanagement",
+      "Google-Unternehmensprofil klar und vollständig",
+      "Systematisch um Bewertungen bitten (ohne zu nerven)",
     ],
     suchbegriffe: ["Sanitär Erzgebirge", "Heizungsbau", "Installateur"],
     preisRelevant: "Die passende Kombination aus Website, lokaler Sichtbarkeit und KI-Telefon wird im Erstgespräch abgestimmt.",
@@ -159,7 +159,7 @@ const BRANCHEN: Branche[] = [
     name: "Maler & Lackierer",
     slug: "maler-lackierer",
     description:
-      "Maler und Lackierer im Erzgebirge werden bei „Maler Annaberg“ oder „Lackierer Stollberg“ gesucht. Viele Betriebe haben keine Website – und verschenken damit Kunden. Berneby Solutions bringt Malerbetriebe mit professionellen Websites, lokaler SEO und KI-Telefonassistent ins Netz. Damit Sie gefunden werden, wenn Kunden nach Renovierung, Fassadenanstrich oder Innenausbau suchen.",
+      "Maler und Lackierer im Erzgebirge werden bei „Maler Annaberg“ oder „Lackierer Stollberg“ gesucht. Viele Betriebe haben keine Website – und verschenken damit qualifizierte Anfragen. Berneby Solutions bringt Malerbetriebe mit professionellen Websites, lokaler Sichtbarkeit und KI-Telefonassistent ins Netz. Damit Sie gefunden werden, wenn Kunden nach Renovierung, Fassadenanstrich oder Innenausbau suchen.",
     typischeProbleme: [
       {
         problem: "Auf der Baustelle – Telefon klingelt",
@@ -169,7 +169,7 @@ const BRANCHEN: Branche[] = [
       {
         problem: "Keine Online-Sichtbarkeit",
         description:
-          "Ohne Website ranken Sie nicht für „Maler [Ort]“. Die Konkurrenz mit Website bekommt die Anfragen.",
+          "Ohne Website werdet ihr nicht für „Maler [Ort]“ gefunden. Die Konkurrenz mit klarem Auftritt bekommt die Anfragen.",
       },
       {
         problem: "Saisonale Auftragsspitzen nutzen",
@@ -178,10 +178,10 @@ const BRANCHEN: Branche[] = [
       },
     ],
     loesungen: [
-      "Website mit lokalen Landingpages",
+      "Website mit klarem Auftritt für eure Orte",
       "KI-Telefonassistent für Anrufannahme",
-      "Google Business Profil",
-      "Bewertungsmanagement",
+      "Google-Unternehmensprofil",
+      "Systematisch um Bewertungen bitten (ohne zu nerven)",
     ],
     suchbegriffe: ["Maler Erzgebirge", "Lackierer", "Malermeister"],
     preisRelevant: "Die passende Paketstufe wird im Erstgespräch auf Ihren Betrieb zugeschnitten.",
@@ -189,7 +189,7 @@ const BRANCHEN: Branche[] = [
       {
         question: "Lohnt sich eine Website für Maler?",
         answer:
-          "Ja. 76% der Nutzer, die lokal suchen, besuchen innerhalb von 24 Stunden ein Geschäft. Mit Website und lokaler SEO werden Sie bei „Maler [Ort]“ gefunden.",
+          "Ja. 76% der Nutzer, die lokal suchen, besuchen innerhalb von 24 Stunden ein Geschäft. Mit Website und lokaler Sichtbarkeit werdet ihr bei „Maler [Ort]“ gefunden.",
       },
     ],
   },
@@ -197,7 +197,7 @@ const BRANCHEN: Branche[] = [
     name: "Tischler",
     slug: "tischler",
     description:
-      "Tischler und Schreinereien im Erzgebirge fertigen Möbel, Fenster und Innenausbau. Bei „Tischler Marienberg“ oder „Schreiner Annaberg“ suchen Kunden nach Handwerksbetrieben. Ohne Website bleiben Sie unsichtbar. Berneby Solutions unterstützt Tischler mit Websites, lokaler SEO und KI-Telefonassistent – für mehr Anfragen aus der Region.",
+      "Tischler und Schreinereien im Erzgebirge fertigen Möbel, Fenster und Innenausbau. Bei „Tischler Marienberg“ oder „Schreiner Annaberg“ suchen Kunden nach Handwerksbetrieben. Ohne Website bleiben Sie unsichtbar. Berneby Solutions unterstützt Tischler mit Websites, lokaler Sichtbarkeit und KI-Telefonassistent – für mehr qualifizierte Anfragen aus der Region.",
     typischeProbleme: [
       {
         problem: "In der Werkstatt – Anrufe verpasst",
@@ -217,9 +217,9 @@ const BRANCHEN: Branche[] = [
     ],
     loesungen: [
       "Website mit Referenzen und Leistungen",
-      "50+ lokale Landingpages",
+      "Echte Sichtbarkeit an euren Standorten",
       "KI-Telefonassistent",
-      "Google Business Profil",
+      "Google-Unternehmensprofil",
     ],
     suchbegriffe: ["Tischler Erzgebirge", "Schreiner", "Möbelbau"],
     preisRelevant: "Wir empfehlen im Erstgespräch die passende Lösung für Ihren Tischlereibetrieb.",
@@ -227,7 +227,7 @@ const BRANCHEN: Branche[] = [
       {
         question: "Was bringt eine Website für Tischler?",
         answer:
-          "Kunden suchen online nach Tischlern. Mit Website und lokaler SEO werden Sie bei „Tischler [Ort]“ gefunden. Referenzen und Leistungen bauen Vertrauen auf.",
+          "Kunden suchen online nach Tischlern. Mit Website und lokaler Sichtbarkeit werdet ihr bei „Tischler [Ort]“ gefunden. Referenzen und Leistungen bauen Vertrauen auf.",
       },
     ],
   },
@@ -235,7 +235,7 @@ const BRANCHEN: Branche[] = [
     name: "KFZ-Werkstatt",
     slug: "kfz-werkstatt",
     description:
-      "KFZ-Werkstätten im Erzgebirge werden bei „Werkstatt Annaberg“ oder „Autowerkstatt Stollberg“ gesucht. Kunden vergleichen online – wer keine Website hat, wirkt veraltet. Berneby Solutions unterstützt KFZ-Betriebe mit Websites, lokaler SEO und KI-Telefonassistent. Damit Sie gefunden werden und Anrufe nicht verpassen, wenn Sie in der Werkstatt sind.",
+      "KFZ-Werkstätten im Erzgebirge werden bei „Werkstatt Annaberg“ oder „Autowerkstatt Stollberg“ gesucht. Kunden vergleichen online – wer keine Website hat, wirkt veraltet. Berneby Solutions unterstützt KFZ-Betriebe mit Websites, lokaler Sichtbarkeit und KI-Telefonassistent. Damit Sie gefunden werden und Anrufe nicht verpassen, wenn Sie in der Werkstatt sind.",
     typischeProbleme: [
       {
         problem: "In der Werkstatt – Kunden rufen an",
@@ -245,7 +245,7 @@ const BRANCHEN: Branche[] = [
       {
         problem: "Keine Online-Sichtbarkeit",
         description:
-          "Kunden suchen „Werkstatt in der Nähe“ oder „AU [Ort]“. Ohne Website ranken Sie nicht.",
+          "Kunden suchen „Werkstatt in der Nähe“ oder „AU [Ort]“. Ohne Website werdet ihr nicht gefunden.",
       },
       {
         problem: "Terminverwaltung und Rückrufe",
@@ -255,9 +255,9 @@ const BRANCHEN: Branche[] = [
     ],
     loesungen: [
       "Website mit Leistungen und Öffnungszeiten",
-      "50+ lokale Landingpages",
+      "Echte Sichtbarkeit an euren Standorten",
       "KI-Telefonassistent",
-      "Google Business Profil",
+      "Google-Unternehmensprofil",
     ],
     suchbegriffe: ["KFZ-Werkstatt Erzgebirge", "Autowerkstatt", "Werkstatt"],
     preisRelevant: "Website, lokale Sichtbarkeit und KI-Telefon werden passend zu Ihrem Bedarf kombiniert.",
@@ -273,7 +273,7 @@ const BRANCHEN: Branche[] = [
     name: "Friseur",
     slug: "friseur",
     description:
-      "Friseursalons im Erzgebirge brauchen Online-Sichtbarkeit für „Friseur Annaberg“ oder „Haarsalon Marienberg“. Viele Kunden buchen online oder suchen Bewertungen. Berneby Solutions unterstützt Friseure mit Websites, lokaler SEO und optionaler Online-Terminbuchung. Damit Sie gefunden werden und mehr Kunden anziehen.",
+      "Friseursalons im Erzgebirge brauchen Online-Sichtbarkeit für „Friseur Annaberg“ oder „Haarsalon Marienberg“. Viele Kunden buchen online oder suchen Bewertungen. Berneby Solutions unterstützt Friseure mit Websites, lokaler Sichtbarkeit und optionaler Online-Terminbuchung. Damit Sie gefunden werden und mehr Kunden anziehen.",
     typischeProbleme: [
       {
         problem: "Beim Kunden – Telefon klingelt",
@@ -283,18 +283,18 @@ const BRANCHEN: Branche[] = [
       {
         problem: "Keine Bewertungen, keine Sichtbarkeit",
         description:
-          "Google-Bewertungen entscheiden oft über die Wahl. Ohne aktives Bewertungsmanagement bleiben Sie unsichtbar.",
+          "Google-Bewertungen entscheiden oft über die Wahl. Ohne systematisches Nachfragen bleiben Sie unsichtbar.",
       },
       {
         problem: "Online-Buchung gewünscht",
         description:
-          "Viele Kunden buchen lieber online. Eine Website mit Terminbuchung spart Telefonate.",
+          "Viele Kunden buchen lieber online. Eine Website mit Terminbuchung spart Telefonate – Entlastung im Alltag.",
       },
     ],
     loesungen: [
       "Website mit Leistungen und Preisen",
-      "Lokale SEO für „Friseur [Ort]“",
-      "Bewertungsmanagement",
+      "Lokale Sichtbarkeit für „Friseur [Ort]“",
+      "Systematisch um Bewertungen bitten (ohne zu nerven)",
       "Optional: Online-Terminbuchung",
     ],
     suchbegriffe: ["Friseur Erzgebirge", "Haarsalon", "Friseursalon"],
@@ -303,7 +303,7 @@ const BRANCHEN: Branche[] = [
       {
         question: "Was bringt eine Website für Friseure?",
         answer:
-          "Kunden suchen online nach Friseuren in der Nähe. Mit Website und lokaler SEO werden Sie bei „Friseur [Ort]“ gefunden. Bewertungsmanagement bringt mehr 5-Sterne-Bewertungen.",
+          "Kunden suchen online nach Friseuren in der Nähe. Mit Website und lokaler Sichtbarkeit werdet ihr bei „Friseur [Ort]“ gefunden. Systematisches Nachfragen bringt mehr echte Bewertungen.",
       },
     ],
   },
@@ -311,7 +311,7 @@ const BRANCHEN: Branche[] = [
     name: "Gastronomie",
     slug: "gastronomie",
     description:
-      "Restaurants, Cafés und Gaststätten im Erzgebirge werden bei „Restaurant Annaberg“ oder „Café Marienberg“ gesucht. Öffnungszeiten, Speisekarte und Bewertungen entscheiden. Berneby Solutions unterstützt Gastronomen mit Websites, lokaler SEO und Bewertungsmanagement. Damit Gäste Sie finden und buchen.",
+      "Restaurants, Cafés und Gaststätten im Erzgebirge werden bei „Restaurant Annaberg“ oder „Café Marienberg“ gesucht. Öffnungszeiten, Speisekarte und Bewertungen entscheiden. Berneby Solutions unterstützt Gastronomen mit Websites, lokaler Sichtbarkeit und Hilfe bei Bewertungen. Damit Gäste Sie finden und buchen.",
     typischeProbleme: [
       {
         problem: "Keine oder veraltete Website",
@@ -321,7 +321,7 @@ const BRANCHEN: Branche[] = [
       {
         problem: "Bewertungen entscheiden",
         description:
-          "Google-Bewertungen beeinflussen die Wahl. Aktives Bewertungsmanagement bringt mehr 5-Sterne-Bewertungen.",
+          "Google-Bewertungen beeinflussen die Wahl. Systematisches Nachfragen bringt mehr echte Stimmen.",
       },
       {
         problem: "Reservierungen und Anfragen",
@@ -331,8 +331,8 @@ const BRANCHEN: Branche[] = [
     ],
     loesungen: [
       "Website mit Speisekarte und Öffnungszeiten",
-      "Lokale SEO für „Restaurant [Ort]“",
-      "Bewertungsmanagement",
+      "Lokale Sichtbarkeit für „Restaurant [Ort]“",
+      "Systematisch um Bewertungen bitten (ohne zu nerven)",
       "Optional: Reservierungssystem",
     ],
     suchbegriffe: ["Restaurant Erzgebirge", "Café", "Gastronomie"],
@@ -349,7 +349,7 @@ const BRANCHEN: Branche[] = [
     name: "Einzelhandel",
     slug: "einzelhandel",
     description:
-      "Einzelhändler im Erzgebirge konkurrieren mit Online-Shops. Lokale Sichtbarkeit bei „Geschäft Annaberg“ oder „Laden Marienberg“ bringt Kunden in den Laden. Berneby Solutions unterstützt mit Websites, lokaler SEO und optionalen Online-Shops. Damit Sie gefunden werden und Kunden wissen, was Sie anbieten.",
+      "Einzelhändler im Erzgebirge konkurrieren mit Online-Shops. Lokale Sichtbarkeit bei „Geschäft Annaberg“ oder „Laden Marienberg“ bringt Kunden in den Laden. Berneby Solutions unterstützt mit Websites, lokaler Sichtbarkeit und optionalen Online-Shops. Damit Sie gefunden werden und Kunden wissen, was Sie anbieten.",
     typischeProbleme: [
       {
         problem: "Keine Online-Präsenz",
@@ -369,8 +369,8 @@ const BRANCHEN: Branche[] = [
     ],
     loesungen: [
       "Website mit Sortiment und Öffnungszeiten",
-      "Lokale SEO",
-      "Bewertungsmanagement",
+      "Lokale Sichtbarkeit",
+      "Systematisch um Bewertungen bitten (ohne zu nerven)",
       "Optional: Online-Shop",
     ],
     suchbegriffe: ["Einzelhandel Erzgebirge", "Laden", "Geschäft"],
@@ -379,7 +379,7 @@ const BRANCHEN: Branche[] = [
       {
         question: "Lohnt sich eine Website für Einzelhändler?",
         answer:
-          "Ja. Kunden suchen online nach Geschäften, Öffnungszeiten und Bewertungen. Mit Website und lokaler SEO werden Sie gefunden.",
+          "Ja. Kunden suchen online nach Geschäften, Öffnungszeiten und Bewertungen. Mit Website und lokaler Sichtbarkeit werdet ihr gefunden.",
       },
     ],
   },
@@ -387,7 +387,7 @@ const BRANCHEN: Branche[] = [
     name: "Freiberufler",
     slug: "freiberufler",
     description:
-      "Freiberufler – Steuerberater, Architekten, Berater – im Erzgebirge brauchen professionelle Websites für Vertrauen und Sichtbarkeit. Bei „Steuerberater Annaberg“ oder „Architekt Marienberg“ suchen Kunden online. Berneby Solutions unterstützt Freiberufler mit Websites, lokaler SEO und IT-Service. Damit Sie gefunden werden und seriös wirken.",
+      "Freiberufler – Steuerberater, Architekten, Berater – im Erzgebirge brauchen professionelle Websites für Vertrauen und Sichtbarkeit. Bei „Steuerberater Annaberg“ oder „Architekt Marienberg“ suchen Kunden online. Berneby Solutions unterstützt Freiberufler mit Websites, lokaler Sichtbarkeit und IT-Service. Damit Sie gefunden werden und seriös wirken.",
     typischeProbleme: [
       {
         problem: "Keine oder veraltete Website",
@@ -397,17 +397,17 @@ const BRANCHEN: Branche[] = [
       {
         problem: "Lokale Sichtbarkeit",
         description:
-          "Bei „[Beruf] [Ort]“ suchen Kunden. Ohne SEO ranken Sie nicht.",
+          "Bei „[Beruf] [Ort]“ suchen Kunden. Ohne klaren Auftritt werdet ihr nicht gefunden.",
       },
       {
         problem: "IT und Verwaltung",
         description:
-          "Der Digitale Hausmeister hilft bei Office, E-Mail und Software – flexibel auf Abruf.",
+          "Der Digitale Hausmeister hilft bei Office, E-Mail und Software – flexibel auf Abruf. Entlastung statt Chaos.",
       },
     ],
     loesungen: [
       "Professionelle Website",
-      "Lokale SEO",
+      "Lokale Sichtbarkeit",
       "IT-Service (Digitaler Hausmeister)",
       "Optional: KI-Schulung",
     ],
@@ -417,7 +417,7 @@ const BRANCHEN: Branche[] = [
       {
         question: "Wie werden Website und Leistungen für Freiberufler eingeordnet?",
         answer:
-          "Im Erstgespräch klären wir Ziele und Umfang und empfehlen die passende Kombination aus Website, SEO und optionalem IT-Service.",
+          "Im Erstgespräch klären wir Ziele und Umfang und empfehlen die passende Kombination aus Website, Sichtbarkeit und optionalem IT-Service.",
       },
     ],
   },

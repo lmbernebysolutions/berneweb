@@ -103,6 +103,8 @@ export interface LocalBusinessSchemaParams {
   name: string;
   description: string;
   areaServed: string; // City name
+  /** Standort-Slug – macht `@id` eindeutig und trennt sie von der globalen Organization. */
+  slug: string;
   serviceRadiusKm?: number;
   addressLocality?: string;
   addressRegion?: string;
@@ -124,7 +126,10 @@ export function generateLocalBusinessSchema(params: LocalBusinessSchemaParams) {
   return {
     "@context": "https://schema.org" as const,
     "@type": "LocalBusiness" as const,
-    "@id": `${SITE_URL}/#organization`,
+    "@id": `${SITE_URL}/standorte/${params.slug}#localbusiness`,
+    parentOrganization: {
+      "@id": `${SITE_URL}/#organization`,
+    },
     name: params.name,
     description: params.description,
     areaServed: {

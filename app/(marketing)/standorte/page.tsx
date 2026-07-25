@@ -6,14 +6,15 @@ import { CtaSection } from "@/components/sections/CtaSection";
 import Link from "next/link";
 import { IconArrowRight } from "@tabler/icons-react";
 import { getAllLocationSlugs, getLocationBySlug } from "@/lib/data/locations";
+import { getLocationContent } from "@/lib/content/standorte";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { CONTAINER_A } from "@/lib/container-styles";
 import { ROUTE_VISIBILITY } from "@/lib/route-visibility";
 
 export const metadata: Metadata = {
-  title: "Standorte – Webdesign & IT-Service im Erzgebirgskreis | Berneby Solutions",
+  title: "Standorte – Webdesign & IT-Service im Erzgebirge | Berneby Solutions",
   description:
-    "Wir unterstützen Handwerker und Betriebe in 59 Orten im Erzgebirgskreis – von Aue-Bad Schlema (Aue) bis Annaberg-Buchholz. Webdesign, lokale SEO, IT-Service.",
+    "Webdesign, lokale SEO und IT-Service an fünf Kernstandorten: Aue-Bad Schlema, Schwarzenberg, Schneeberg, Stollberg und Annaberg-Buchholz.",
   alternates: { canonical: "/standorte" },
 };
 
@@ -24,7 +25,12 @@ export default function StandortePage() {
 
   const slugs = getAllLocationSlugs();
   const locations = slugs
-    .map((s) => getLocationBySlug(s))
+    .map((s) => {
+      const loc = getLocationBySlug(s);
+      const content = getLocationContent(s);
+      if (!loc || !content) return null;
+      return { ...loc, localIntro: content.localIntro };
+    })
     .filter((l): l is NonNullable<typeof l> => l != null)
     .sort((a, b) => a.entfernung - b.entfernung);
 
@@ -36,12 +42,13 @@ export default function StandortePage() {
         contentClassName="pt-4 sm:pt-5 md:pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32"
       >
         <SectionHeading
+          as="h1"
           number="01"
           overline="Standorte"
           title="Webdesign & IT im"
-          titleLine2="Erzgebirgskreis"
-          titleLine3="Eine Lösung."
-          subtitle="Wir unterstützen Handwerker und KMU in allen Gemeinden und Städten des Erzgebirgskreises – mit professionellen Websites, KI-Telefon und IT-Service. Aus Aue-Bad Schlema (Aue) für die ganze Region."
+          titleLine2="Erzgebirge"
+          titleLine3="Fünf starke Hubs."
+          subtitle="Statt austauschbarer Massen-Seiten fokussieren wir uns auf fünf Kernstandorte mit eigenem Inhalt – und betreuen Betriebe im gesamten Erzgebirgskreis von dort aus."
           align="left"
           light
           compactTitle
@@ -68,7 +75,7 @@ export default function StandortePage() {
                 <IconArrowRight className="size-4 shrink-0 text-white/40 group-hover:text-brand-cyan transition-colors" />
               </div>
               <p className="relative z-10 mt-2 text-xs text-brand-navy-muted line-clamp-2">
-                {loc.description}
+                {loc.localIntro}
               </p>
             </Link>
           ))}
@@ -79,7 +86,7 @@ export default function StandortePage() {
 
       <CtaSection
         headline="Ihr Ort nicht dabei?"
-        subline="Wir arbeiten im gesamten Erzgebirgskreis. Kontaktieren Sie uns – wir finden eine Lösung."
+        subline="Die fünf Hubs decken das Erzgebirge ab – wir kommen auch zu Ihnen. Schreiben Sie uns kurz, wo Ihr Betrieb sitzt."
         ctas={[
           { label: "Jetzt anfragen", href: "/kontakt" },
           { label: "Handwerks-Pakete", href: "/handwerk" },

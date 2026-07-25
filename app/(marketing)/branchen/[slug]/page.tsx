@@ -150,7 +150,7 @@ export default async function BranchePage({
         headlineLine2={`${branche.name}.`}
         accentText={branche.name}
         compactHeadline
-        subline={`Wir unterstützen ${branche.name} im Erzgebirge mit professionellen Websites, 50+ lokalen Landingpages, KI-Telefonassistent und IT-Service. Festpreis, 4 Wochen bis Go-Live. Jetzt Erstgespräch vereinbaren.`}
+        subline={`Wir unterstützen ${branche.name} im Erzgebirge mit professionellen Websites, echter Sichtbarkeit an euren Standorten, KI-Telefonassistent und IT-Service. Klar geplant – jetzt Erstgespräch vereinbaren.`}
         ctas={[
           { label: "Erstgespräch vereinbaren", mobileLabel: "Erstgespräch", href: "#pakete", variant: "default" },
           { label: "Alle Handwerks-Pakete", href: "/handwerk", variant: "outline" },
@@ -358,12 +358,12 @@ export default async function BranchePage({
               </h3>
               <p className="mt-4 type-body-sm text-white/80">
                 {branche.name} im Erzgebirge stehen vor ähnlichen Herausforderungen: Sichtbarkeit bei
-                Google, Anrufannahme wenn Sie beschäftigt sind, Bewertungsmanagement. Wir haben
-                speziell für Handwerker und lokale Betriebe Pakete entwickelt – mit 50+ lokalen
-                Landingpages für jeden Ort im Einzugsgebiet. So ranken Sie für Suchanfragen wie
-                „{branche.suchbegriffe[0]}“ oder „{branche.name} [Ort]“. Der KI-Telefonassistent nimmt
+                Google, Anrufannahme wenn Sie beschäftigt sind, Bewertungen. Wir haben
+                speziell für Handwerker und lokale Betriebe Pakete entwickelt – mit echter
+                Sichtbarkeit an den Orten, in denen ihr wirklich arbeitet. So werdet ihr für Suchanfragen wie
+                „{branche.suchbegriffe[0]}“ oder „{branche.name} [Ort]“ gefunden. Der KI-Telefonassistent nimmt
                 Anrufe entgegen, wenn Sie auf der Baustelle, in der Werkstatt oder beim Kunden sind.
-                Kein Kunde geht mehr verloren.
+                Weniger verpasste Anrufe, mehr Entlastung.
               </p>
               {branche.suchbegriffe.length > 0 && (
                 <div className="mt-6 flex flex-wrap gap-2">
@@ -440,7 +440,7 @@ export default async function BranchePage({
           number="06"
           overline="Ergebnisse"
           title={hasBrancheMatch ? `Referenzen für ${branche.name}` : "Ausgewählte Referenzen"}
-          subtitle="Design, Struktur und Conversion in der Praxis: ausgewählte Projekte mit messbarer Wirkung."
+          subtitle="Design, Struktur und klare Anfragen in der Praxis: ausgewählte Projekte mit spürbarer Wirkung."
           align="left"
           light
           compactTitle
@@ -485,7 +485,7 @@ export default async function BranchePage({
           packages={CRAFT_PACKAGES}
           comparisonRows={[
             { label: "Professionelle Website", inPackages: ["STARTKLAR", "SICHTBAR", "PARTNER"] },
-            { label: "50+ Landingpages", inPackages: ["SICHTBAR", "PARTNER"] },
+            { label: "Klarer Auftritt für eure Orte", inPackages: ["SICHTBAR", "PARTNER"] },
             { label: "KI-Telefonassistent", inPackages: ["PARTNER"] },
           ]}
         />

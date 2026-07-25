@@ -28,12 +28,14 @@ import {
   IconShoppingCart,
   IconTool,
   IconChartBar,
+  IconQuote,
 } from "@tabler/icons-react";
 import {
   getLocationBySlug,
   getAllLocationSlugs,
   getNearbyLocationSlugs,
 } from "@/lib/data/locations";
+import { getLocationContent } from "@/lib/content/standorte";
 import { getAllBranchenSlugs, getBrancheBySlug } from "@/lib/data/branchen";
 import { REFERENZEN } from "@/lib/data/referenzen";
 import { generateBreadcrumbSchema, generateFaqSchema, generateLocalBusinessSchema } from "@/lib/seo/schema";
@@ -77,6 +79,8 @@ export async function generateMetadata({
   const { ort } = await params;
   const location = getLocationBySlug(ort);
   if (!location) return { title: "Standort nicht gefunden" };
+  const content = getLocationContent(ort);
+  if (!content) return { title: "Standort nicht gefunden" };
   const variants = getLocationSearchVariants(location.name);
 
   return {
@@ -194,37 +198,6 @@ function getRelevantBranchenLinks(location: {
     }));
 }
 
-function buildLocationFaqItems(location: {
-  name: string;
-  nearbyOrte: readonly string[];
-  entfernung: number;
-}) {
-  const neighbors = location.nearbyOrte.slice(0, 2).join(" und ") || "dem Erzgebirgskreis";
-  return [
-    {
-      question: `Wie schnell kann ein Projekt in ${location.name} starten?`,
-      answer:
-        "Nach dem Erstgespräch starten wir in der Regel innerhalb weniger Werktage mit Struktur, Inhalten und Prioritäten. Erste sichtbare Ergebnisse sehen Sie meist bereits in den ersten zwei Wochen.",
-    },
-    {
-      question: `Unterstützt Berneby Solutions auch Betriebe außerhalb von ${location.name}?`,
-      answer: `Ja. Wir betreuen neben ${location.name} auch Unternehmen in ${neighbors}. Durch klare Prozesse und feste Ansprechpartner bleibt die Zusammenarbeit effizient und persönlich.`,
-    },
-    {
-      question: "Welche Leistungen bringen die schnellste Wirkung für lokale Anfragen?",
-      answer:
-        "In den meisten Fällen wirken eine klar positionierte Website, lokale Landingpages und ein optimiertes Google-Unternehmensprofil am schnellsten. Ergänzend sorgt strukturierter Content für dauerhaft stabile Sichtbarkeit.",
-    },
-    {
-      question: `Ist Vor-Ort-Beratung in ${location.name} möglich?`,
-      answer:
-        location.entfernung === 0
-          ? `Ja, wir sitzen direkt in ${COMPANY.location} und beraten auch persönlich vor Ort.`
-          : `Ja. Mit nur ${location.entfernung} km Entfernung sind auch Vor-Ort-Termine in ${location.name} möglich, wenn sie sinnvoll sind.`,
-    },
-  ] as const;
-}
-
 function getLocationReferenzen(location: {
   name: string;
   nearbyOrte: readonly string[];
@@ -252,13 +225,14 @@ export default async function StandortPage({
 
   const { ort } = await params;
   const location = getLocationBySlug(ort);
-  if (!location) notFound();
+  const content = getLocationContent(ort);
+  if (!location || !content) notFound();
 
   const nearbySlugs = getNearbyLocationSlugs(location);
   const { variants: locationSearchVariants, nearby: locationNearbyNames, highlights: locationHighlights } =
     buildLocationGeoContext(location);
   const relatedBranchen = getRelevantBranchenLinks(location);
-  const locationFaqItems = buildLocationFaqItems(location);
+  const locationFaqItems = content.localFaq;
   const topBranchenLinks = getAllBranchenSlugs().slice(0, 4);
   const { referenzen: locationReferenzen, hasLocalMatch: referenzenHasLocalMatch } = getLocationReferenzen(location);
 
@@ -266,6 +240,7 @@ export default async function StandortPage({
     name: "Berneby Solutions",
     description: `Webdesign, IT-Service und lokale SEO für ${location.name} und den Erzgebirgskreis.`,
     areaServed: location.name,
+    slug: location.slug,
     serviceRadiusKm: 30,
     addressLocality: "Aue-Bad Schlema",
     addressRegion: "Sachsen",
@@ -311,19 +286,37 @@ export default async function StandortPage({
           compactTitle
         />
 
-        {/* Lead: Ortsbeschreibung */}
+        {/* Lead: individueller Orts-Intro (Anti-Duplicate) */}
         <div
           data-animate="fade-up"
           className="relative overflow-hidden border border-white/10 bg-brand-navy/60 backdrop-blur-md p-8 md:p-10 mb-8 md:mb-12"
         >
           <TechCorners pattern="diagonal" variant="cyan" size="lg" />
-          <p className="relative z-10 type-body-sm text-white/85 break-words md:type-body">
-            {location.description}
-          </p>
-          <p className="relative z-10 mt-4 type-body-sm text-white/75 break-words">
-            Fokus in {location.name}: klare Positionierung, verlässlicher Auftritt und planbare Anfragen.
+          <p className="relative z-10 type-body-sm text-white/85 break-words md:type-body whitespace-pre-line">
+            {content.localIntro}
           </p>
         </div>
+
+        {/* Lokales Testimonial */}
+        <figure
+          data-animate="fade-up"
+          className="relative mb-8 overflow-hidden border border-brand-cyan/25 bg-brand-cyan/5 p-6 md:mb-12 md:p-8"
+        >
+          <TechCorners pattern="diagonal" variant="cyan" size="md" />
+          <IconQuote
+            className="relative z-10 mb-3 size-8 text-brand-cyan/70"
+            stroke={1.5}
+            aria-hidden
+          />
+          <blockquote className="relative z-10 text-lg font-medium leading-relaxed text-white md:text-xl">
+            „{content.localTestimonial.quote}“
+          </blockquote>
+          <figcaption className="relative z-10 mt-4 text-sm text-white/65">
+            <span className="font-bold text-white">{content.localTestimonial.name}</span>
+            {" · "}
+            {content.localTestimonial.role}
+          </figcaption>
+        </figure>
 
         {/* Zwei Karten: Warum Berneby + Besonderheiten – rechte Karte vertikal zur linken zentriert */}
         <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-center">
@@ -383,7 +376,7 @@ export default async function StandortPage({
               Unsere Leistungen für {location.name}
             </h3>
             <p className="mt-4 type-body-sm text-white/80">
-              Professionelle Websites, lokale Landingpages, KI-Telefon und IT-Service. Alles auf
+              Professionelle Websites, klarer Auftritt vor Ort, KI-Telefon und IT-Service. Alles auf
               Betriebe in {location.name} ausgerichtet, mit klaren Paketen und nachvollziehbarer
               Umsetzung.
             </p>
@@ -631,7 +624,7 @@ export default async function StandortPage({
           number="06"
           overline="Ergebnisse"
           title={referenzenHasLocalMatch ? `Referenzen aus der Region um ${location.name}` : "Ausgewählte Referenzen"}
-          subtitle="Design, Struktur und Conversion in der Praxis: ausgewählte Projekte mit messbarer Wirkung."
+          subtitle="Design, Struktur und klare Anfragen in der Praxis: ausgewählte Projekte mit spürbarer Wirkung."
           align="left"
           light
           compactTitle

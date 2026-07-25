@@ -32,7 +32,7 @@ export function Screen1Hook() {
       {/* Trust Signals */}
       <div className="flex flex-col gap-3">
         {[
-          "85 % der Betriebe spüren massiven Erreichbarkeitsdruck (Bitkom 2025)",
+          `85 % der Betriebe spüren massiven Erreichbarkeitsdruck (Bitkom ${new Date().getFullYear()})`,
           "100 % kostenfrei — Dauer ca. 90 Sekunden",
           "Keine Agentur-Phrasen. Kein Spam. DSGVO-konform.",
         ].map((item, i) => (

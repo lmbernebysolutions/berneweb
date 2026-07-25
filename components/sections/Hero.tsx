@@ -66,6 +66,11 @@ interface HeroProps {
   headlineLine2?: string;
   /** Dritte Zeile der Headline – für kontrollierten Umbruch auf Mobile */
   headlineLine3?: string;
+  /**
+   * Desktop-Headline (≥ sm). Wenn gesetzt: Mobile nutzt headline(+Line2/3),
+   * Desktop zeigt diesen String – alles in einer einzigen `<h1>` (CSS-Swap).
+   */
+  desktopHeadline?: string;
   subline: string;
   ctas?: HeroCta[];
   /**
@@ -88,6 +93,7 @@ export function Hero({
   headline,
   headlineLine2,
   headlineLine3,
+  desktopHeadline,
   subline,
   ctas,
   audiencePill,
@@ -207,7 +213,27 @@ export function Hero({
                   : "max-sm:text-[length:clamp(2.8rem,6.1vw+1.68rem,3.75rem)] max-[359px]:text-[length:clamp(2.3rem,4.9vw+1.05rem,2.95rem)] sm:text-5xl md:text-6xl lg:text-[5.625rem] xl:text-[7rem] 2xl:text-8xl"
               )}
             >
-              {ultraNarrowHeadlineLines ? (
+              {desktopHeadline != null && desktopHeadline !== "" ? (
+                <>
+                  <span className="sm:hidden">
+                    {ultraNarrowHeadlineLines ? (
+                      <>
+                        <span className="max-[339px]:hidden">{headlineParts}</span>
+                        <span className="hidden max-[339px]:inline">
+                          {applyAccents(ultraNarrowHeadlineLines[0])}
+                          <br />
+                          {applyAccents(ultraNarrowHeadlineLines[1])}
+                          <br />
+                          {applyAccents(ultraNarrowHeadlineLines[2])}
+                        </span>
+                      </>
+                    ) : (
+                      headlineParts
+                    )}
+                  </span>
+                  <span className="hidden sm:inline">{applyAccents(desktopHeadline)}</span>
+                </>
+              ) : ultraNarrowHeadlineLines ? (
                 <>
                   <span className="max-[339px]:hidden">{headlineParts}</span>
                   <span className="hidden max-[339px]:inline">

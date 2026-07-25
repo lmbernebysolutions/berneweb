@@ -61,36 +61,20 @@ const TECH_ICONS: Record<string, (typeof IconDeviceDesktop)> = {
 export default function TechPage() {
     return (
         <>
-            {/* Mobile: Hyphen raus, "ABTEILUNG" auf eigener Zeile — nie mid-word Split */}
-            <div className="sm:hidden">
-                <Hero
-                    bergVariant="tech"
-                    headline="DEINE EXTERNE IT"
-                    headlineLine2="ABTEILUNG"
-                    accentText={["ABTEILUNG"]}
-                    ultraNarrowHeadlineLines={["DEINE", "EXTERNE IT", "ABTEILUNG"]}
-                    subline="Flexibel. Auf Abruf. Ohne Festanstellung. Von der neuen Webseite über Shops bis IT-Support – wir bauen und betreuen."
-                    ctas={[
-                        { label: "Webseite anfragen", href: "/kontakt", variant: "default" },
-                        { label: "Alle Leistungen", href: "#leistungen", variant: "outline" },
-                    ]}
-                    variant="cyan"
-                />
-            </div>
-            {/* Desktop/Tablet: unverändert mit "IT-ABTEILUNG" als Einheit */}
-            <div className="hidden sm:block">
-                <Hero
-                    bergVariant="tech"
-                    headline="DEINE EXTERNE IT-ABTEILUNG"
-                    accentText={["IT-ABTEILUNG", "ABTEILUNG"]}
-                    subline="Flexibel. Auf Abruf. Ohne Festanstellung. Von der neuen Webseite über Shops bis IT-Support – wir bauen und betreuen."
-                    ctas={[
-                        { label: "Webseite anfragen", href: "/kontakt", variant: "default" },
-                        { label: "Alle Leistungen", href: "#leistungen", variant: "outline" },
-                    ]}
-                    variant="cyan"
-                />
-            </div>
+            <Hero
+                bergVariant="tech"
+                headline="DEINE EXTERNE IT"
+                headlineLine2="ABTEILUNG"
+                desktopHeadline="DEINE EXTERNE IT-ABTEILUNG"
+                accentText={["IT-ABTEILUNG", "ABTEILUNG"]}
+                ultraNarrowHeadlineLines={["DEINE", "EXTERNE IT", "ABTEILUNG"]}
+                subline="Flexibel. Auf Abruf. Ohne Festanstellung. Von der neuen Webseite über Shops bis IT-Support – wir bauen und betreuen."
+                ctas={[
+                    { label: "Webseite anfragen", href: "/kontakt", variant: "default" },
+                    { label: "Alle Leistungen", href: "#leistungen", variant: "outline" },
+                ]}
+                variant="cyan"
+            />
 
             <TrustBar items={TECH_STATS} />
 
@@ -107,8 +91,8 @@ export default function TechPage() {
                 />
                 <MissionSection variant="a" />
                 <nav aria-label="Weiterfuehrende Links Leistungen" className="mt-8 text-sm text-white/60">
-                    <Link href="/ratgeber/microsoft-365-fuer-handwerker" className="text-brand-cyan hover:underline">
-                        Microsoft 365 für Ihren Betrieb
+                    <Link href="/ratgeber/cloud-baustelle-handwerk" className="text-brand-cyan hover:underline">
+                        Cloud &amp; Ordnung für Ihren Betrieb
                     </Link>
                     {" · "}
                     <Link href="/standorte" className="text-brand-cyan hover:underline">

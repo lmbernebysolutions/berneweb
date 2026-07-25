@@ -35,6 +35,7 @@ export default function BranchenPage() {
         contentClassName="pt-4 sm:pt-5 md:pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32"
       >
         <SectionHeading
+          as="h1"
           number="01"
           overline="Branchen"
           title="Website & Digitalisierung"
