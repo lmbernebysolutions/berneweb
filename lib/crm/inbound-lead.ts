@@ -101,10 +101,12 @@ export async function postInboundLead(
   const timeoutId = setTimeout(() => abort.abort(), timeoutMs);
 
   try {
+    // Sign and send the same canonical bytes the server verifies against.
+    const canonical = canonicalJsonBody(body);
     const res = await fetch(url, {
       method: "POST",
       headers: buildInboundLeadHeaders(secret, body),
-      body: JSON.stringify(body),
+      body: canonical,
       signal: abort.signal,
     });
 
@@ -125,7 +127,34 @@ export async function postInboundLead(
       };
     }
 
-    return { ok: true, status: res.status, body: parsed };
+    // Twenty HTTP Logic Functions often return HTTP 200 with
+    // { statusCode: 401|500, body: { error|success } }. Auth/signature
+    // failures must not be treated as CRM writes.
+    const envelope =
+      parsed && typeof parsed === "object"
+        ? (parsed as {
+            statusCode?: unknown;
+            success?: unknown;
+            body?: { success?: unknown };
+          })
+        : null;
+    const nestedStatus =
+      typeof envelope?.statusCode === "number" ? envelope.statusCode : res.status;
+    const successFlag =
+      envelope?.success ??
+      (envelope?.body && typeof envelope.body === "object"
+        ? envelope.body.success
+        : undefined);
+    if (nestedStatus !== 200 || successFlag !== true) {
+      return {
+        ok: false,
+        status: nestedStatus >= 400 ? nestedStatus : 502,
+        error: "twenty_success_false",
+        body: parsed,
+      };
+    }
+
+    return { ok: true, status: nestedStatus, body: parsed };
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") {
       return { ok: false, status: 504, error: "twenty_timeout" };
