@@ -6,6 +6,7 @@ import { FunnelInput } from "../atoms/FunnelInput";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { trackGAEvent } from "@/lib/ga";
 
 const WHATSAPP_NUMBER = "4915511960927";
 
@@ -23,15 +24,22 @@ export function Screen7LeadCapture() {
   const validate = (): boolean => {
     if (!contact.trim() || contact.trim().length < 3) {
       setContactError("Bitte gib eine gültige E-Mail oder deinen Namen an.");
+      trackGAEvent("digital_check_field_error", { field: "contact" });
       return false;
     }
     setContactError("");
     return true;
   };
 
+  const ensureGdpr = (): boolean => {
+    if (gdprAccepted) return true;
+    trackGAEvent("digital_check_field_error", { field: "gdpr" });
+    return false;
+  };
+
   // Primary CTA: WhatsApp (opens link, also logs via API)
   const handleWhatsApp = async () => {
-    if (!gdprAccepted || !validate()) return;
+    if (!ensureGdpr() || !validate()) return;
 
     // Log lead asynchronously, don't block the WhatsApp redirect
     submitLead(contact, "whatsapp").catch(console.error);
@@ -46,7 +54,7 @@ export function Screen7LeadCapture() {
 
   // Secondary CTA: E-Mail submission via API
   const handleEmail = async () => {
-    if (!gdprAccepted || !validate()) return;
+    if (!ensureGdpr() || !validate()) return;
     setSubmitError("");
     const ok = await submitLead(contact, "email");
     if (!ok) {
@@ -121,15 +129,13 @@ export function Screen7LeadCapture() {
 
       {/* CTAs */}
       <div className="flex flex-col gap-3 mt-4">
-        {/* Micro copy */}
         <p className="text-center text-xs font-mono text-white/40 uppercase tracking-widest">
           Kein Agentur-Spam · Nur echte Ergebnisse · DSGVO-konform
         </p>
-        
-        {/* Primary: WhatsApp */}
+
         <Button
           onClick={handleWhatsApp}
-          disabled={!gdprAccepted || isSubmitting}
+          disabled={isSubmitting}
           size="lg"
           className="w-full"
         >
@@ -139,10 +145,9 @@ export function Screen7LeadCapture() {
           REPORT VIA WHATSAPP
         </Button>
 
-        {/* Secondary: E-Mail */}
         <Button
           onClick={handleEmail}
-          disabled={!gdprAccepted || isSubmitting}
+          disabled={isSubmitting}
           variant="outline"
           size="lg"
           className="w-full"
@@ -151,7 +156,6 @@ export function Screen7LeadCapture() {
         </Button>
       </div>
 
-      {/* Submit error */}
       {submitError && (
         <p className="text-sm text-red-400 text-center font-medium">{submitError}</p>
       )}

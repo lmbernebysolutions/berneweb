@@ -103,6 +103,17 @@ export function initGA(): void {
 }
 
 /**
+ * Fire a GA4 event if gtag is available (after consent). No-ops otherwise.
+ */
+export function trackGAEvent(
+  eventName: string,
+  params?: Record<string, unknown>
+): void {
+  if (typeof window === "undefined") return;
+  window.gtag?.("event", eventName, params);
+}
+
+/**
  * Revoke analytics consent. Call on decline or when user disables Analytics in preferences.
  */
 export function revokeGA(): void {

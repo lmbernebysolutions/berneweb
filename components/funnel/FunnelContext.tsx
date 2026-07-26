@@ -1,6 +1,14 @@
 "use client";
 
-import React, { createContext, useContext, useReducer, useCallback } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
+import { trackGAEvent } from "@/lib/ga";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -15,10 +23,17 @@ export interface FunnelAnswers {
   step4TeamSize?: string;
 }
 
+export interface FunnelUtm {
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+}
+
 export interface FunnelState {
   isOpen: boolean;
   currentStep: number; // 0–7
   answers: FunnelAnswers;
+  utm: FunnelUtm;
   isSubmitting: boolean;
   isSubmitted: boolean;
 }
@@ -28,9 +43,12 @@ type FunnelAction =
   | { type: "CLOSE" }
   | { type: "NEXT_STEP" }
   | { type: "SET_ANSWER"; payload: Partial<FunnelAnswers> }
+  | { type: "SET_UTM"; payload: FunnelUtm }
   | { type: "SET_SUBMITTING"; payload: boolean }
   | { type: "SET_SUBMITTED" }
   | { type: "RESET" };
+
+const UTM_STORAGE_KEY = "berneby_digital_check_utm";
 
 // ─── Reducer ──────────────────────────────────────────────────────────────────
 
@@ -38,6 +56,7 @@ const initialState: FunnelState = {
   isOpen: false,
   currentStep: 0,
   answers: {},
+  utm: {},
   isSubmitting: false,
   isSubmitted: false,
 };
@@ -45,7 +64,7 @@ const initialState: FunnelState = {
 function funnelReducer(state: FunnelState, action: FunnelAction): FunnelState {
   switch (action.type) {
     case "OPEN":
-      return { ...initialState, isOpen: true };
+      return { ...initialState, isOpen: true, utm: state.utm };
     case "CLOSE":
       return { ...state, isOpen: false };
     case "NEXT_STEP":
@@ -58,14 +77,52 @@ function funnelReducer(state: FunnelState, action: FunnelAction): FunnelState {
         ...state,
         answers: { ...state.answers, ...action.payload },
       };
+    case "SET_UTM":
+      return { ...state, utm: action.payload };
     case "SET_SUBMITTING":
       return { ...state, isSubmitting: action.payload };
     case "SET_SUBMITTED":
       return { ...state, isSubmitting: false, isSubmitted: true };
     case "RESET":
-      return { ...initialState };
+      return { ...initialState, utm: state.utm };
     default:
       return state;
+  }
+}
+
+function readUtmFromUrl(): FunnelUtm {
+  if (typeof window === "undefined") return {};
+  const params = new URLSearchParams(window.location.search);
+  const utmSource = params.get("utm_source")?.trim() || undefined;
+  const utmMedium = params.get("utm_medium")?.trim() || undefined;
+  const utmCampaign = params.get("utm_campaign")?.trim() || undefined;
+  if (!utmSource && !utmMedium && !utmCampaign) return {};
+  return { utmSource, utmMedium, utmCampaign };
+}
+
+function readUtmFromStorage(): FunnelUtm {
+  if (typeof window === "undefined") return {};
+  try {
+    const raw = window.localStorage.getItem(UTM_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as FunnelUtm;
+    return {
+      utmSource: parsed.utmSource || undefined,
+      utmMedium: parsed.utmMedium || undefined,
+      utmCampaign: parsed.utmCampaign || undefined,
+    };
+  } catch {
+    return {};
+  }
+}
+
+function persistUtm(utm: FunnelUtm) {
+  if (typeof window === "undefined") return;
+  if (!utm.utmSource && !utm.utmMedium && !utm.utmCampaign) return;
+  try {
+    window.localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(utm));
+  } catch {
+    // ignore quota / private mode
   }
 }
 
@@ -87,8 +144,28 @@ const FunnelContext = createContext<FunnelContextValue | null>(null);
 
 export function FunnelProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(funnelReducer, initialState);
+  const utmHydrated = useRef(false);
 
-  const openFunnel = useCallback(() => dispatch({ type: "OPEN" }), []);
+  useEffect(() => {
+    if (utmHydrated.current) return;
+    utmHydrated.current = true;
+    const fromUrl = readUtmFromUrl();
+    if (fromUrl.utmSource || fromUrl.utmMedium || fromUrl.utmCampaign) {
+      persistUtm(fromUrl);
+      dispatch({ type: "SET_UTM", payload: fromUrl });
+      return;
+    }
+    const fromStorage = readUtmFromStorage();
+    if (fromStorage.utmSource || fromStorage.utmMedium || fromStorage.utmCampaign) {
+      dispatch({ type: "SET_UTM", payload: fromStorage });
+    }
+  }, []);
+
+  const openFunnel = useCallback(() => {
+    dispatch({ type: "OPEN" });
+    trackGAEvent("digital_check_opened");
+  }, []);
+
   const closeFunnel = useCallback(() => dispatch({ type: "CLOSE" }), []);
   const nextStep = useCallback(() => dispatch({ type: "NEXT_STEP" }), []);
   const setAnswer = useCallback(
@@ -120,10 +197,19 @@ export function FunnelProvider({ children }: { children: React.ReactNode }) {
             contact,
             channel,
             gdprAccepted: true,
+            ...(state.utm.utmSource ? { utmSource: state.utm.utmSource } : {}),
+            ...(state.utm.utmMedium ? { utmMedium: state.utm.utmMedium } : {}),
+            ...(state.utm.utmCampaign ? { utmCampaign: state.utm.utmCampaign } : {}),
           }),
         });
         if (!res.ok) throw new Error("API Error");
         dispatch({ type: "SET_SUBMITTED" });
+        trackGAEvent("digital_check_lead_submitted", {
+          channel,
+          ...(state.utm.utmSource ? { utm_source: state.utm.utmSource } : {}),
+          ...(state.utm.utmMedium ? { utm_medium: state.utm.utmMedium } : {}),
+          ...(state.utm.utmCampaign ? { utm_campaign: state.utm.utmCampaign } : {}),
+        });
         setTimeout(() => dispatch({ type: "NEXT_STEP" }), 300);
         return true;
       } catch {
@@ -131,7 +217,7 @@ export function FunnelProvider({ children }: { children: React.ReactNode }) {
         return false;
       }
     },
-    [state.answers]
+    [state.answers, state.utm]
   );
 
   return (

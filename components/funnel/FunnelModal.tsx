@@ -12,6 +12,7 @@ import { Screen8Success } from "./screens/Screen8Success";
 import { PainPointKey } from "./FunnelContext";
 import { cn } from "@/lib/utils";
 import { TextLogo } from "@/components/brand/TextLogo";
+import { trackGAEvent } from "@/lib/ga";
 
 // ─── Quiz-Daten ───────────────────────────────────────────────────────────────
 
@@ -92,12 +93,15 @@ export function FunnelModal() {
   const { isOpen, currentStep } = state;
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
-  // Auto-Scroll to Top on Step Change
+  // Auto-Scroll to Top on Step Change + GA step event
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo(0, 0);
     }
-  }, [currentStep]);
+    if (isOpen) {
+      trackGAEvent("digital_check_step_changed", { step: currentStep });
+    }
+  }, [currentStep, isOpen]);
 
   // Body scroll lock
   useEffect(() => {

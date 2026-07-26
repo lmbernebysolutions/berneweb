@@ -59,7 +59,8 @@ const LOGO_TOP_EXTRA_PX = Math.round(LOGO_TOP_EXTRA_MM * PX_PER_MM);
 const BRIDGE_CTA_LINE_1 = "ZUM DIGITAL-CHECK";
 const LOCKED_GAP_X = 48;
 const LOCKED_CANVAS_W = CARD_OUTER_W * 2 + LOCKED_GAP_X;
-const BRIDGE_QR_TARGET_URL = "http://bernebysolutions.de/digital-check";
+const BRIDGE_QR_TARGET_URL =
+  "https://www.bernebysolutions.de/digital-check?utm_source=visitenkarte&utm_medium=qr&utm_campaign=print";
 
 type Cmyk = { c: number; m: number; y: number; k: number };
 type Rgb = { r: number; g: number; b: number };

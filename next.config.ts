@@ -15,8 +15,8 @@ const cspHeader = [
   "img-src 'self' data: https:",
   "font-src 'self'",
   "frame-src 'self' https://www.openstreetmap.org",
-  // GA4 Measurement + Notion API (server-side, aber CORS-Header für Preflight)
-  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://api.notion.com",
+  // GA4 Measurement (server-side fetch zu mira läuft über /api/* same-origin)
+  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net",
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'self'",
