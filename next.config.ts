@@ -15,8 +15,8 @@ const cspHeader = [
   "img-src 'self' data: https:",
   "font-src 'self'",
   "frame-src 'self' https://www.openstreetmap.org",
-  // GA4 Measurement (server-side fetch zu mira läuft über /api/* same-origin)
-  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net",
+  // GA4 / gtag collect (inkl. regionale Endpunkte + GTM runtime)
+  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://stats.g.doubleclick.net",
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'self'",

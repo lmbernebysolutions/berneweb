@@ -1,13 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
+import { ContactSchema } from "@/lib/contact-schema";
 import { postInboundLead } from "@/lib/crm/inbound-lead";
-
-const ContactSchema = z.object({
-  name: z.string().min(2, "Name zu kurz").max(100),
-  email: z.string().email("Ungültige E-Mail").max(200),
-  phone: z.string().max(50).optional(),
-  message: z.string().min(10, "Nachricht zu kurz").max(2000),
-});
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
@@ -92,13 +85,20 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json().catch(() => null);
-    if (!body) {
+    if (!body || typeof body !== "object") {
       return NextResponse.json({ error: "Ungültige Anfrage" }, { status: 400 });
     }
 
     const parsed = ContactSchema.safeParse(body);
     if (!parsed.success) {
-      return NextResponse.json({ error: "Eingabe ungültig" }, { status: 400 });
+      const fieldErrors = parsed.error.flatten().fieldErrors;
+      const firstMessage =
+        Object.values(fieldErrors).flat()[0] ?? "Eingabe ungültig";
+      console.warn("[contact] validation failed", fieldErrors);
+      return NextResponse.json(
+        { error: firstMessage, fieldErrors },
+        { status: 400 }
+      );
     }
 
     const { name, email, phone, message } = parsed.data;

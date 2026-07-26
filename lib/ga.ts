@@ -13,12 +13,14 @@ declare global {
       targetIdOrDate: string | Date,
       config?: Record<string, unknown>
     ) => void;
+    /** Queue for gtag.js — Arguments objects from gtag() plus GTM event objects. */
     dataLayer?: unknown[];
   }
 }
 
-const GA_MEASUREMENT_ID =
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-QEVDGDCV9G";
+const GA_MEASUREMENT_ID = (
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-QEVDGDCV9G"
+).trim();
 const SCRIPT_URL = "https://www.googletagmanager.com/gtag/js";
 
 /** Gleicher Default wie `react-cookie-manager` – gespeicherte Zustimmung auslesen. */
@@ -26,35 +28,47 @@ const CONSENT_COOKIE_KEY = "cookie-consent";
 
 let gaLoaded = false;
 
-function ensureDataLayer(): void {
-  if (typeof window === "undefined") return;
+/**
+ * Official gtag stub: MUST push `arguments` (Arguments object), not a rest-array.
+ * Google’s gtag.js only treats Arguments-like queue entries as API commands.
+ * Pushing a plain Array leaves window.gtag as a dead stub and never sends hits.
+ */
+function installGtagStub(): void {
   window.dataLayer = window.dataLayer ?? [];
+  if (typeof window.gtag === "function") return;
+  // Official snippet shape: push the Arguments object, never a rest-array.
+  // Rest-params would recreate the previous bug (array queue entries).
+  window.gtag = function gtag(): void {
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer!.push(arguments);
+  } as NonNullable<Window["gtag"]>;
 }
 
 function injectGtagScript(): void {
   if (typeof window === "undefined" || !GA_MEASUREMENT_ID || gaLoaded) return;
-  ensureDataLayer();
-  const gtag = (...args: Parameters<NonNullable<typeof window.gtag>>) => {
-    window.dataLayer!.push(args);
-  };
-  window.gtag = gtag;
-  gtag("js", new Date());
-  gtag("consent", "default", {
+
+  installGtagStub();
+  window.gtag!("js", new Date());
+  window.gtag!("consent", "default", {
     analytics_storage: "denied",
     ad_storage: "denied",
     ad_user_data: "denied",
     ad_personalization: "denied",
   });
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `${SCRIPT_URL}?id=${GA_MEASUREMENT_ID}`;
-  document.head.appendChild(script);
+
+  const existing = document.querySelector<HTMLScriptElement>(
+    `script[src^="${SCRIPT_URL}"]`
+  );
+  if (!existing) {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `${SCRIPT_URL}?id=${encodeURIComponent(GA_MEASUREMENT_ID)}`;
+    document.head.appendChild(script);
+  }
+
   gaLoaded = true;
 }
 
-/**
- * Initialize GA4 only after Analytics consent. Call from CookieManager onAccept or onManage (Analytics true).
- */
 /**
  * Beim Seitenaufruf: Wenn bereits eine gültige Analytics-Zustimmung im Cookie
  * liegt (z. B. wiederkehrende Besucher), GA laden – ohne Snippet im `<head>`.
@@ -84,6 +98,9 @@ export function tryInitGAFromStoredConsent(): void {
   }
 }
 
+/**
+ * Initialize GA4 only after Analytics consent. Call from CookieManager onAccept or onManage (Analytics true).
+ */
 export function initGA(): void {
   if (!GA_MEASUREMENT_ID) return;
   if (typeof window === "undefined") return;

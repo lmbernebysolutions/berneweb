@@ -8,37 +8,69 @@ import { Textarea } from "@/components/ui/textarea";
 import { IconLoader2, IconSend } from "@tabler/icons-react";
 import { TechCorners } from "@/components/ui/tech-corners";
 import { BLogo } from "@/components/brand/BLogo";
+import { ContactSchema } from "@/lib/contact-schema";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
 export function ContactForm() {
   const [state, setState] = useState<FormState>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setState("sending");
+    setErrorMessage("");
 
     const form = e.currentTarget;
+    const privacy = form.elements.namedItem("privacy") as HTMLInputElement;
+    if (!privacy?.checked) {
+      setErrorMessage("Bitte die Datenschutzerklärung bestätigen.");
+      setState("error");
+      return;
+    }
+
     const data = {
-      name: (form.elements.namedItem("name") as HTMLInputElement).value.trim(),
-      email: (form.elements.namedItem("email") as HTMLInputElement).value.trim(),
-      phone: (form.elements.namedItem("phone") as HTMLInputElement).value.trim() || undefined,
-      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim(),
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
     };
+
+    const parsed = ContactSchema.safeParse(data);
+    if (!parsed.success) {
+      const first =
+        Object.values(parsed.error.flatten().fieldErrors).flat()[0] ??
+        "Eingabe ungültig";
+      setErrorMessage(first);
+      setState("error");
+      return;
+    }
+
+    setState("sending");
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(parsed.data),
       });
 
       if (res.ok) {
         setState("success");
-      } else {
-        setState("error");
+        return;
       }
+
+      const payload = (await res.json().catch(() => null)) as {
+        error?: string;
+      } | null;
+      setErrorMessage(
+        payload?.error ??
+          "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie uns an."
+      );
+      setState("error");
     } catch {
+      setErrorMessage(
+        "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie uns an."
+      );
       setState("error");
     }
   }
@@ -68,7 +100,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="name" className="text-xs font-bold uppercase tracking-[0.15em]">
@@ -78,6 +110,8 @@ export function ContactForm() {
             id="name"
             name="name"
             required
+            minLength={2}
+            maxLength={100}
             autoComplete="name"
             placeholder="Max Mustermann…"
             disabled={state === "sending"}
@@ -93,6 +127,7 @@ export function ContactForm() {
             name="email"
             type="email"
             required
+            maxLength={200}
             autoComplete="email"
             spellCheck={false}
             placeholder="max@beispiel.de…"
@@ -110,6 +145,7 @@ export function ContactForm() {
           id="phone"
           name="phone"
           type="tel"
+          maxLength={50}
           autoComplete="tel"
           placeholder="+49…"
           disabled={state === "sending"}
@@ -125,11 +161,14 @@ export function ContactForm() {
           id="message"
           name="message"
           required
+          minLength={10}
+          maxLength={2000}
           placeholder="Wie können wir Ihnen helfen?…"
           rows={5}
           disabled={state === "sending"}
           className="input-focus-glow"
         />
+        <p className="text-xs text-white/40">Mindestens 10 Zeichen.</p>
       </div>
 
       {/* DSGVO-Pflichtfeld: Einwilligung / Hinweis Art. 13 DSGVO */}
@@ -162,8 +201,8 @@ export function ContactForm() {
           <div className="absolute top-0 left-0 h-1.5 w-1.5 border-t border-l border-destructive" />
           <div className="absolute bottom-0 right-0 h-1.5 w-1.5 border-b border-r border-destructive" />
           <p className="text-sm text-destructive">
-            Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie
-            uns an.
+            {errorMessage ||
+              "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie uns an."}
           </p>
         </div>
       )}
