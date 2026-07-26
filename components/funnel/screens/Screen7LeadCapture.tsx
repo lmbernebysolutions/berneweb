@@ -21,10 +21,22 @@ export function Screen7LeadCapture() {
 
   const painLabel = answers.step2Label ?? "euren größten Schmerzpunkt";
 
-  const validate = (): boolean => {
-    if (!contact.trim() || contact.trim().length < 3) {
-      setContactError("Bitte gib eine gültige E-Mail oder deinen Namen an.");
+  const looksEmail = (value: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+  const looksPhone = (value: string) =>
+    /^\+?[0-9\s\-()]{7,30}$/.test(value.trim());
+
+  /** API accepts email or phone; name-only fails Zod on the server. */
+  const validateContact = (): boolean => {
+    const trimmed = contact.trim();
+    if (!trimmed) {
+      setContactError("Bitte E-Mail oder Telefonnummer eingeben.");
       trackGAEvent("digital_check_field_error", { field: "contact" });
+      return false;
+    }
+    if (!looksEmail(trimmed) && !looksPhone(trimmed)) {
+      setContactError("Bitte eine gültige E-Mail oder Telefonnummer eingeben.");
+      trackGAEvent("digital_check_field_error", { field: "contact_format" });
       return false;
     }
     setContactError("");
@@ -39,10 +51,11 @@ export function Screen7LeadCapture() {
 
   // Primary CTA: WhatsApp (opens link, also logs via API)
   const handleWhatsApp = async () => {
-    if (!ensureGdpr() || !validate()) return;
+    if (!ensureGdpr() || !validateContact()) return;
 
+    const channel = looksEmail(contact) ? "email" : "whatsapp";
     // Log lead asynchronously, don't block the WhatsApp redirect
-    submitLead(contact, "whatsapp").catch(console.error);
+    submitLead(contact, channel).catch(console.error);
 
     const msg = encodeURIComponent(
       `Hallo Daniel! Ich habe gerade den Berneby Digital-Check gemacht.\n\nMein größtes Problem: ${painLabel}\n\nMein Name / Kontakt: ${contact}\n\nIch freue mich auf die Ergebnisse.`
@@ -54,9 +67,10 @@ export function Screen7LeadCapture() {
 
   // Secondary CTA: E-Mail submission via API
   const handleEmail = async () => {
-    if (!ensureGdpr() || !validate()) return;
+    if (!ensureGdpr() || !validateContact()) return;
     setSubmitError("");
-    const ok = await submitLead(contact, "email");
+    const channel = looksPhone(contact) ? "whatsapp" : "email";
+    const ok = await submitLead(contact, channel);
     if (!ok) {
       setSubmitError("Fehler beim Senden. Bitte versuch es erneut.");
     }
@@ -89,7 +103,7 @@ export function Screen7LeadCapture() {
         <FunnelInput
           id="funnel-contact"
           label="Wohin sollen wir die Ergebnisse senden?"
-          placeholder="E-Mail oder Name + Telefon"
+          placeholder="E-Mail oder Telefonnummer"
           value={contact}
           onChange={(e) => setContact(e.target.value)}
           error={contactError}

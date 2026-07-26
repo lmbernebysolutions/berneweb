@@ -78,13 +78,40 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json().catch(() => null);
-    if (!body) {
+    if (!body || typeof body !== "object") {
       return NextResponse.json({ error: "Ungültige Anfrage" }, { status: 400 });
     }
 
-    const parsed = FunnelLeadSchema.safeParse(body);
+    // Button channel may not match the contact shape (e.g. WhatsApp-CTA + E-Mail).
+    // Detect email/phone from `contact` so Zod does not 400 wrongly.
+    const raw = body as Record<string, unknown>;
+    const contactRaw = typeof raw.contact === "string" ? raw.contact.trim() : "";
+    const looksEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactRaw);
+    const looksPhone = /^\+?[0-9\s\-()]{7,30}$/.test(contactRaw);
+    const buttonChannel =
+      raw.channel === "whatsapp" || raw.channel === "email"
+        ? raw.channel
+        : undefined;
+    const resolvedChannel = looksEmail
+      ? "email"
+      : looksPhone
+        ? "whatsapp"
+        : buttonChannel;
+
+    const parsed = FunnelLeadSchema.safeParse({
+      ...raw,
+      contact: contactRaw,
+      channel: resolvedChannel,
+    });
     if (!parsed.success) {
-      return NextResponse.json({ error: "Eingabe ungültig" }, { status: 400 });
+      console.warn("[funnel] validation failed", parsed.error.flatten());
+      return NextResponse.json(
+        {
+          error: "Eingabe ungültig",
+          hint: "Bitte eine gültige E-Mail oder Telefonnummer angeben.",
+        },
+        { status: 400 }
+      );
     }
 
     const {
