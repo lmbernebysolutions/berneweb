@@ -98,7 +98,7 @@ const ORGANIZATION_SCHEMA = {
         {
           "@type": "ContactPoint",
           contactType: "customer support",
-          url: "https://wa.me/4915511960927",
+          url: "https://wa.me/4915511566177",
           areaServed: "DE",
           availableLanguage: ["de"]
         }
@@ -139,7 +139,7 @@ const ORGANIZATION_SCHEMA = {
         "https://www.instagram.com/bernebysolutions",
         "https://www.facebook.com/profile.php?id=61576536654995",
         "https://maps.app.goo.gl/YecucGGCgUZTSsys7",
-        "https://wa.me/4915511960927"
+        "https://wa.me/4915511566177"
       ],
     },
     {
