@@ -8,7 +8,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { trackGAEvent } from "@/lib/ga";
 
-const WHATSAPP_NUMBER = "4915511960927";
+const WHATSAPP_NUMBER = "4915511566177";
 
 function looksEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());

@@ -40,7 +40,7 @@ export const SOCIAL_LINKS = [
   },
   {
     label: "WhatsApp",
-    href: "https://wa.me/4915511960927",
+    href: "https://wa.me/4915511566177",
     ariaLabel: "Berneby Solutions per WhatsApp Business kontaktieren",
   },
   {
@@ -55,8 +55,8 @@ export const COMPANY = {
   nameShort: "Berneby",
   legal: "Lennard Meyer und Daniel Hamburg Solutions GbR",
   rechtsform: "GbR",
-  phone: "+49 15511 960927",
-  phoneDisplay: "+49 15511 960927",
+  phone: "+49 155 11566177",
+  phoneDisplay: "+49 155 11566177",
   email: "info@bernebysolutions.de",
   location: "Aue-Bad Schlema",
   streetAddress: "Altmarkt 5",
